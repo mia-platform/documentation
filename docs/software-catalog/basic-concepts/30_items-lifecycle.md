@@ -20,22 +20,11 @@ The following are the various **lifecycle status** an item can go through.
 
 * **Deprecated**: an item in the "Deprecated" state is no longer supported with bug fixes, new features, or updates. It is a signal that the item is being phased out, and a plan for its removal from the marketplace is in place. The deprecation phase typically precedes an item's removal, which occurs during a future major release of the console or platform. Users are encouraged to migrate to a newer version or alternative.
 
-* **Archived**: when an item enters the archived phase, it is no longer available for use and has been completely removed from the marketplace. The item is retained for historical or record-keeping purposes, but is no longer accessible to users for instantiation or use. 
-
-* **Deleted**: the Deleted state represents the permanent removal of the item from the system. It is completely deleted, including any associated data, and is no longer available in any form. This action is typically taken by a curator and is irreversible.
-
-
-### Deprecated Items
-
-Sometimes, a Marketplace item may become deprecated. This typically occurs when a newer item replaces it with enhanced features, or when a better solution is provided by a new application. 
-
-<!-- ![deprecated-service](./img/deprecated-service.png) -->
-
-In such cases, the maintainer may decide not to longer support the older item, meaning it will not receive any future updates.
-
-The item will be marked as **Deprecated**. While you can still use it if necessary, its functionality may be limited or outdated compared to current standards. The suggested alternative will be published in the deprecated item documentation.
-
 :::caution
 It's important to consider the alternatives to a deprecated item. Using updated and supported items ensures better performance, security, and compatibility.
 :::
+
+* **Archived**: when an item enters the archived phase, it is no longer available for use and has been completely removed from the marketplace. The item is retained for historical or record-keeping purposes, but is no longer accessible to users for instantiation or use. 
+
+* **Deleted**: the Deleted state represents the permanent removal of the item from the system. It is completely deleted, including any associated data, and is no longer available in any form. This action is typically taken by a curator and is irreversible.
 

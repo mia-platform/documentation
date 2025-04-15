@@ -10,7 +10,30 @@ You need to have *Company Owner* or *Project Administrator* role at Company leve
 
 ## List item
 
-...
+Go to **Software Catalog > All Items** to view and explore catalog items.
+
+![List of software catalog items](./img/software-catalog-overview.png)
+
+The main catalog page includes a search bar and advanced filters to narrow results by:
+
+- **Type**: filter item by their specific type
+- **Lifecycle status**: e.g., Coming Soon, Draft, Published, etc..
+- **Availability**: this filter determines whether an item is public, accessible to all companies, or restricted to the current company only.
+
+Additionally, users can also toggle between company-specific and all available items.
+
+Each item has a detail page with two tabs:
+
+- **General**: this tab presents an initial Details section containing essential information about the item, including its name, general information, and useful links.
+- **Assets**: this tab displays a JSON representation containing detailed information specific to the item.
+
+### Versions
+
+If versioning is supported, the first page lists all versions with release dates and notes.
+
+![item versions](./img/version-overview.png)
+
+Selecting a version opens its details. Breadcrumbs at the top help navigate between versions and related items.
 
 ## Create item
 
