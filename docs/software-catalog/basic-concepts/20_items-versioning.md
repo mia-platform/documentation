@@ -4,7 +4,7 @@ title: Items versioning
 sidebar_label: Items versioning
 ---
 
-A versioned resource is a distinct, immutable snapshot of an item that captures a specific state of its configuration, metadata, and underlying components at a given point in time.
+A versioned resource is a distinct, immutable snapshot of an item that captures a specific state of its configuration, metadata, and resources at a given point in time.
 
 Versioning allows teams to:
 - Evolve resources over time while maintaining consistency and traceability.
