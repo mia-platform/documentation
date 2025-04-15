@@ -4,6 +4,12 @@ title: miactl
 sidebar_label: miactl
 ---
 
+Before getting started, make sure you have set up [`miactl`](/cli/miactl/10_overview.md) by following the steps in the [setup guide](/cli/miactl/20_setup.md).
+
+:::tip
+If you need to manage a large number of items, we recommend adopting a [Declarative Approach](#declarative-approach) for better consistency and automation.
+:::
+
 :::info
 You need to have *Company Owner* or *Project Administrator* role at Company level to perform the following actions
 :::
