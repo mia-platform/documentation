@@ -6,7 +6,7 @@ sidebar_label: Infrastructure Projects
 
 # Infrastructure Projects 
 
-**Infrastructure Projects** are a dedicated Project type in Console that enable the provisioning and management of infrastructure following the *Infrastructure as Code* paradigm.
+**Infrastructure Projects** are a dedicated Project type in Console specifically dedicated to the provisioning and management of infrastructure, following the *Infrastructure as Code* paradigm.
 
 They are designed primarily for **Operations teams**, who can use them to define, version, and deploy infrastructure resources while ensuring consistency, transparency, and control over infrastructure changes.  
 These Projects are distinct from traditional Application Projects as they are specifically designed to manage infrastructure resources, enabling better control, automation, and governance in the context of Infrastructure as Code.
