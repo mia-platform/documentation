@@ -169,14 +169,14 @@ This is an indicative list. For up to date information about the latest versions
         <td>✅</td>
         <td>✅</td>
         <td>✅</td>
-        <td></td>
+        <td>✅</td>
     </tr>
     <tr>
-        <td>v2.2.0</td>
+        <td><= v2.2.0</td>
         <td>❌</td>
         <td>❌</td>
         <td>❌</td>
-        <td></td>
+        <td>❌</td>
     </tr>
     <tr>
         <td rowspan="2"><a href="../../runtime_suite/mongo2kafka/configuration">Mongo2Kafka</a></td>
