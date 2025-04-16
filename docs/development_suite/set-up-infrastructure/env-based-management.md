@@ -27,25 +27,26 @@ Users can designate specific configuration snapshots by creating named environme
 
 ## Migration Process
 
-Existing projects can transition to Environment Based Management through the Console UI. Company Owners will receive a migration prompt upon first accessing a Project.
+When you're ready to embrace Environment Based Management for your existing projects, the transition process is straightforward and accessible through the Console UI. As a Company Owner, you'll notice a helpful migration prompt the first time you access your Project after this feature becomes available.
 
-The migration can be executed through two methods while preserving existing revision versions:
+To ensure a smooth transition while maintaining the integrity of your existing revision versions, we offer two flexible migration methods that you can choose from based on your specific needs and preferences:
 
 ### Automatic Migration
 
-Prerequisites:
+Before proceeding with the automatic migration, there are several important prerequisites that must be met:
 
-- All project environments must have at least one previous deployment
-- Runtime environments inherit their most recent deployed revision configuration
-- All revisions transfer to virtual environments
+First, ensure that all project environments have been deployed at least once. This is essential for maintaining configuration history and ensuring a smooth transition.
+
+Second, when migrating, runtime environments will automatically inherit the configuration from their most recently deployed revision. This preserves your current operational state.
+
+Finally, during the migration process, all existing revisions will be converted into virtual environments, maintaining your complete configuration history and development workflow.
 
 ### Manual Migration
 
-This guided process offers granular control over the final configuration:
+The manual migration process provides users with more control and flexibility over how their project configurations are transferred. Here's how it works:
 
-1. Environment Configuration Selection
-   - Choose initial configuration snapshots for each Project Environment
-2. Revision Migration
-   - Determine which revisions to convert to virtual environments
+During the manual migration, you'll have the opportunity to carefully select and configure various aspects of your environments. First, you'll be able to choose specific configuration snapshots for each of your Project Environments, allowing you to precisely define the starting point for each environment. Next, you'll have control over which existing revisions should be converted into virtual environments, enabling you to maintain only the most relevant historical configurations.
 
-Note: Users may postpone migration by selecting 'Skip' or closing the migration dialog. The prompt will reappear the following day.
+If you're not ready to proceed with the migration immediately, don't worry - you can either click 'Skip' or simply close the migration dialog. The system will remind you about the pending migration by showing the prompt again the next day, ensuring you won't forget about this important transition.
+
+## Environment configuration promotion
