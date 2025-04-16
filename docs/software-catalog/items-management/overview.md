@@ -5,7 +5,7 @@ title: Items management
 
 The **Items Management** section provides an overview of how to manage items within the Software Catalog.
 
-Managing items involves three main actions:
+Managing items involves the following main actions:
 - **Listing** existing items and their available versions
 - **Creating** new items or new versions
 - **Editing** existing items or version metadata
