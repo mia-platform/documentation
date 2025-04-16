@@ -4,44 +4,48 @@ title: Environment Based Management
 sidebar_label: Environment Based Management
 ---
 
-The Environment Based Management is a feature available on enhanced project that aims to merge the concept of Project Revisions into Project Environments, in a way that Project Environments will be the main abstraction for both Project Configuration management and Runtime management.
+Environment Based Management enables enhanced projects to unify Project Revisions and Project Environments. This integration establishes Project Environments as the primary mechanism for managing both Project Configuration and Runtime operations.
 
-## Two types of Environments
+## Environment Types
 
-This new workflow introduces two types of Environments:
+Environment Based Management introduces two distinct environment categories:
 
-- **Virtual Environments** are environments that are used only to manage the Project configuration.
-- **Runtime Environments** are virtual environments that are connected to a cluster and, when deployed, their configuration will be up and running in the selected runtime.
+- **Virtual Environments**: Dedicated environments for Project configuration management
+- **Runtime Environments**: Virtual environments linked to clusters that enable configuration deployment and execution in the selected runtime
 
-## Environment Configuration snapshots
+## Configuration Management
 
-Both runtime and virtual environments can hold a set of snapshots of a Project configuration, these snapshots contain all the project design elements such as microservices, endpoints, and so on.
+### Configuration Snapshots
 
-Configuration snapshots are arranged in a linked list, where each snapshot is linked to the previous one, and the latest snapshot is the current configuration of the environment.
+Both environment types maintain configuration snapshots that preserve project design elements, including: microservices, endpoints and so on.
 
-## Environment Configuration versioning
+These snapshots form a sequential chain, with each snapshot referencing its predecessor. The most recent snapshot represents the current environment configuration.
 
-Users can give a name to specific environment configuration snapshots by creating an environment configuration version. Versioned runtime environments configuration snapshots can be deployed to a runtime environment.
+### Version Control
 
-## Migrate existing Projects to the new Environment Based Management
+Users can designate specific configuration snapshots by creating named environment configuration versions. For Runtime environments, versioned configuration snapshots can be deployed to the runtime environment.
 
-Existing projects can be migrated to the new Environment Based Management using the Console UI. When you first enter a Project, if you are a Company Owner, you will be prompted to migrate the project to the new Environment Based Management.
+## Migration Process
 
-The project migration process can either be done automatically or manually.
+Existing projects can transition to Environment Based Management through the Console UI. Company Owners will receive a migration prompt upon first accessing a Project.
 
-In both cases, the existing revisions versions will be kept and available in the new Environment Based Management.
+The migration can be executed through two methods while preserving existing revision versions:
 
-### Automatic migration
+### Automatic Migration
 
-The automatic migration can only be performed if each environment of the project has been deployed at least once.
+Prerequisites:
 
-With the automatic migration, each runtime environment will inherit its latest deployed revision configuration and each revision will be migrated to a virtual environment.
+- All project environments must have at least one previous deployment
+- Runtime environments inherit their most recent deployed revision configuration
+- All revisions transfer to virtual environments
 
-### Manual migration
+### Manual Migration
 
-The manual migration is a guided process, that allows the user to have a finer control over the resulting project configuration. It consists of the following steps:
+This guided process offers granular control over the final configuration:
 
-1. For each Project Environment, select a snapshot to be used as the initial configuration for the environment.
-2. Select which revisions to migrate to virtual environments.
+1. Environment Configuration Selection
+   - Choose initial configuration snapshots for each Project Environment
+2. Revision Migration
+   - Determine which revisions to convert to virtual environments
 
-This process can be skipped by clicking the `Skip` button or closing the migration modal. When skipped, the migration will not be prompted until the following day.
+Note: Users may postpone migration by selecting 'Skip' or closing the migration dialog. The prompt will reappear the following day.
