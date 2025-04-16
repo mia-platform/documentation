@@ -6,13 +6,16 @@ sidebar_label: Environment Based Configuration Management
 
 Environment Based Configuration Management represents a significant evolution in project management, introducing a unified approach that seamlessly integrates Project Revisions with Project Environments. This thoughtful integration transforms Project Environments into a comprehensive solution for managing both Project Configuration and Runtime operations, streamlining the entire development workflow.
 
-## Quick reference
+## Key Concepts and Overview
 
-- Revisions are integrated into the environments.
-- Environments are split into two categories: Virtual Environments and Runtime Environments.
-- Only Runtime Environments can be versioned and deployed to.
-- Newly created Projects will use this new approach by default.
-- Use Environment promotion to move configurations between environments.
+- Each Environment maintains its own dedicated configuration, replacing the previous revision-based system.
+- Environments are categorized into two types: Virtual Environments for configuration management and Runtime Environments for deployment.
+- Deployment capabilities are exclusive to Runtime Environments, which can be versioned and deployed to clusters.
+- All new Projects automatically utilize this enhanced environment-based management system.
+- Configuration changes can be promoted between environments using the Environment promotion feature.
+- Version control is managed at the individual environment level rather than project-wide.
+- The Environment variables section displays only the variables specific to the currently selected environment configuration.
+- Deployments are restricted to either the latest environment configuration or specific versioned configurations.
 
 ## Environment Types
 
