@@ -39,25 +39,18 @@ With the introduction of AI-Native capabilities, we’re unlocking new ways to h
 
 ### AI-Compliance for Data Catalog: AI-powered Data Discovery
 
-To meet the increasing demand for accessible, reliable, and governance-oriented Data Discovery, the Data Catalog has been enhanced with an AI Assistant. Through a dedicated user interface, users - *especially non-technical roles like Data Protection Officers (DPOs)* - can interact with a chat system to explore metadata and information about data assets (e.g., sensitive data fields) using natural language.
+To meet the increasing demand for accessible, reliable, and governance-oriented Data Discovery, the Data Catalog has been enhanced with an AI Assistant. Through a dedicated user interface, users - *especially non-technical roles like Data Protection Officers (DPOs)* - can interact with a chat to explore all Data Catalog metadata information using natural language.
 
-For example, the AI Assistant allows users to ask questions such as:
+For example, the AI Compliance Assistant allows users to ask:
 
-- "_What categories of personal data are processed?_"
-- "_Who has access to the data? Are they all internal employees or also external consultants?_"
-- "_Is there any data transfer, and if so, where? Within the EU or outside?_"
-- "_Which personal data assets are classified as sensitive under GDPR, and where are they stored?_"
+- *"What categories of personal data are processed?"*
+- *"Who has access to the data? Are they all internal employees or also external consultants?"*
+- *"Is there any data transfer, and if so, where? Within the EU or outside?"*
+- *"Which personal data assets are classified as sensitive under GDPR, and where are they stored?"*
 
-Behind the scenes, the assistant leverages advanced LLM technologies (e.g., Gemini 1.5 Pro / 2.0 Flash) and structured metadata to deliver accurate, human-readable responses. It analyzes datasets, metadata, and governance information to surface well-structured, context-aware answers.
+For DPOs, it enables transparent, on-demand access to data-related information, simplifies GDPR audit preparation and documentation, and reduces dependency on technical teams, saving time and effort.
 
-For DPOs, this transforms the Data Catalog from a technical repository into a practical tool for compliance and governance. It enables:
-
-- Transparent, on-demand access to data-related information  
-- Simplified GDPR audit preparation and documentation  
-- Improved collaboration with data owners through a shared, accessible language  
-- Reduced dependency on technical teams, saving time and effort  
-
-Ultimately, this AI-powered integration bridges the gap between legal, compliance, and data teams, making data governance more inclusive, efficient, and effective.
+This AI-powered integration bridges the gap between legal, compliance, and data teams, making governance more inclusive, efficient, and effective.
 
 ## AI Agent Lifecycle
 
@@ -87,6 +80,20 @@ We've streamlined the interface to make it easier for users to view and manage f
 
 For a complete overview of the new layout and its features, see the [Flow Manager Configurator documentation](/development_suite/api-console/api-design/flow-manager-configurator/overview.md)
 
+### Quality Assistant for your Software Development Lifecycle
+
+The **Quality Assistant** is the first Software Development Lifecycle tool in Mia-Platform IDP engineered to accelerate and improve the quality of generated assets for the product development in compliance with structured regulatory frameworks. 
+
+Quality Assistant aids in defining your software system requirements and specifications, designing the software product, controlling the implementation through automatic detection of dependencies and vulnerabilities and supporting the verification process. It reduces manual operations for software design, development, release and maintenance, complemented by streamlined documentation. Furthermore, seamless tool integrations provide a single point of access to external information such as Application Lifecycle Management (ALM) data (e.g. Jira). 
+
+Quality Assistant integrates AI-powered features to enhance Design Inputs quality such as requirements and tests, and improving the system test coverage. 
+
+Among the range of supported industries, leveraging our Mia-Care Branch's deep expertise, the first healthcare-tailored solution of Quality Assistant is [P4SaMD](https://docs.mia-care.io/docs/p4samd/overview).
+
+Do you want to learn more about Quality Assistant? Request a Demo [here](https://mia-platform.eu/ask-for-a-demo/).
+
+![Quality Assistant - Software Items overview](img/quality-assistant.png)
+
 ### Clone Microservice repository via Cursor AI IDE 
 
 Now you can easily clone your Microservice repository into the Cursor AI IDE directly from the Mia-Platform Console. This integration provides an easy way to access your service code, enabling a smoother development experience powered by the intelligence of Cursor AI, with support for both `ssh` and `https` protocols.
@@ -101,22 +108,29 @@ Mia-Platform Data Catalog introduces **Data Lineage**, a powerful tool for under
 
 ![Data Lineage Overview](img/data-lineage-overview.png)
 
-This feature allows users to explore data relationships at two complementary levels: **Table Lineage** and **System of Record (SoR) Lineage**, providing both granular insights and a holistic overview of data flows.  
+This feature lets users explore data relationships on two complementary levels: **Table Lineage** and **System of Record (SoR) Lineage**, offering both detailed insights and a holistic view of data flows.  
 By offering a detailed visualization of data dependencies and relationships, the **Lineage** view enables users to perform impact analyses, identify potential bottlenecks, and ensure compliance across data workflows.  
-Users can enrich the **Lineage** with **virtual assets** and **jobs**, allowing them to complete relationships not yet automatically retrieved and to clearly describe the context and purpose of each data flow.  
-If you're using **Fast Data Control Plane**, aggregation processes configured within your **Fast Data Projects** are automatically captured, making **Fast Data jobs** directly visible on the **Lineage** canvas.
+Users can enrich the **Lineage** with **virtual assets** and **jobs**, useful to fully describe the context and purpose of each data flow.  
+When using **Fast Data Control Plane**, aggregation processes configured in **Fast Data Projects** can be automatically captured, making **Fast Data jobs** visible on the **Lineage** canvas.
 
 To find out how it works and all the benefits of our Data Lineage solution, please refer to the related [documentation](/data_catalog/frontend/data_lineage.mdx).
 
 ### Integration Connector Agent
 
 The **Integration Connector Agent** is a modular plugin designed to enable seamless **data integration** between external **sources** and **sinks**.  
-It collects data from external systems, processes and normalizes it, and then sends the data to a defined sink. The Agent supports multiple sources, including **webhooks** from services such as **Mia-Platform Console** and **Jira**, and integrates with **MongoDB** as the current supported sink.  
+It collects data from external systems, maps and processes it, and sends it to a defined sink. Supported ingestion sources include **webhooks** from tools like **Mia-Platform Console** and **Jira**, while **MongoDB** is the currently supported sink.  
 Thanks to its pluggable architecture, it allows easy integration of new sources and sinks with minimal configuration effort.  
 
-By automating data flows and ensuring consistency across platforms, the Integration Connector Agent centralizes data storage, enabling the collection of information from multiple sources and its storage in the target destination. It also facilitates **data synchronization and transformation**, improving data accessibility, streamlining workflows, and supporting more effective reporting and decision-making across systems.
+The Integration Connector Agent enables the collection of information from multiple sources and its storage in a centralized target destination, improving data accessibility, streamlining workflows, and supporting more effective reporting and decision-making across systems.
 
 To learn more about all the features and how to configure it, visit the [official documentation](/runtime_suite/integration-connector-agent/10_overview.md).
+
+### MongoDB connection support in Data Catalog
+
+Data Catalog introduces **MongoDB** as a new natively **supported connection provider**. Once connected, in case a JSON Schema validation is defined on a retrieved collection, Data Catalog can extract field structures and types to ensure accurate metadata management.
+Database and collection retrieval behavior can be tailored through multiple configuration modes to better fit user needs.  
+
+To learn more about how to configure it, visit the [official documentation](/data_catalog/frontend/data_catalog_connections.mdx#mongodb).
 
 ## Platform Engineering enablement
 
