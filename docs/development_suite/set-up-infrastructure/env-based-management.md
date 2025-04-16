@@ -1,10 +1,10 @@
 ---
 id: env-based-management
-title: Environment Based Management
-sidebar_label: Environment Based Management
+title: Environment Based Configuration Management
+sidebar_label: Environment Based Configuration Management
 ---
 
-Environment Based Management enables enhanced projects to unify Project Revisions and Project Environments. This integration establishes Project Environments as the primary mechanism for managing both Project Configuration and Runtime operations.
+Environment Based Configuration Management represents a significant evolution in project management, introducing a unified approach that seamlessly integrates Project Revisions with Project Environments. This thoughtful integration transforms Project Environments into a comprehensive solution for managing both Project Configuration and Runtime operations, streamlining the entire development workflow.
 
 ## Environment Types
 
@@ -49,6 +49,15 @@ The manual migration process provides users with more control and flexibility ov
 
 During the manual migration, you'll have the opportunity to carefully select and configure various aspects of your environments. First, you'll be able to choose specific configuration snapshots for each of your Project Environments, allowing you to precisely define the starting point for each environment. Next, you'll have control over which existing revisions should be converted into virtual environments, enabling you to maintain only the most relevant historical configurations.
 
-## Environment configuration promotion
+## Environment Configuration Promotion
 
-Environment configuration promotion is a powerful feature that allows you to easily propagate configuration changes across multiple environments. This feature is particularly useful when you want to ensure that all environments are using the same configuration, regardless of whether they are virtual or runtime environments.
+The Environment Configuration Promotion feature enables you to efficiently synchronize configurations across your environments. Whether you're working with virtual or runtime environments, you can seamlessly propagate configuration changes to maintain consistency throughout your project.
+
+Key capabilities:
+
+- Promote configurations between any environment types
+- Select specific environment variables to transfer
+- Review and merge design configurations using an interactive diff editor
+- Maintain granular control over which settings to keep or update in target environments
+
+This streamlined process helps ensure configuration consistency while giving you full control over the promotion workflow.
