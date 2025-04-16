@@ -28,6 +28,8 @@ Users can designate specific configuration snapshots by creating named environme
 
 ## Migration Process
 
+![Migration Process](img/migration-process.png)
+
 When you're ready to embrace Environment Based Management for your existing projects, the transition process is straightforward and accessible through the Console UI. As a Company Owner, you'll notice a helpful migration prompt the first time you access your Project after this feature becomes available.
 
 If you're not ready to proceed with the migration immediately, don't worry - you can either click 'Skip' or simply close the migration dialog. The system will remind you about the pending migration by showing the prompt again the next day, ensuring you won't forget about this important transition.
@@ -51,6 +53,8 @@ The manual migration process provides users with more control and flexibility ov
 During the manual migration, you'll have the opportunity to carefully select and configure various aspects of your environments. First, you'll be able to choose specific configuration snapshots for each of your Project Environments, allowing you to precisely define the starting point for each environment. Next, you'll have control over which existing revisions should be converted into virtual environments, enabling you to maintain only the most relevant historical configurations.
 
 ## Environment Configuration Promotion
+
+![Promotion](img/promotion.png)
 
 The Environment Configuration Promotion feature enables you to efficiently synchronize configurations across your environments. Whether you're working with virtual or runtime environments, you can seamlessly propagate configuration changes to maintain consistency throughout your project.
 
