@@ -19,6 +19,8 @@ Environment Based Configuration Management represents a significant evolution in
 
 ## Environment Types
 
+![Migration Process](img/environments-table.png)
+
 Environment Based Management introduces two distinct environment categories that work together to provide a comprehensive project management solution:
 
 - **Virtual Environments** serve as dedicated spaces for managing and iterating on your Project configurations. These environments allow teams to experiment with different configuration setups, test changes, and maintain multiple configuration versions without affecting live systems.
