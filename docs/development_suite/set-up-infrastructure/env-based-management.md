@@ -8,10 +8,11 @@ Environment Based Configuration Management represents a significant evolution in
 
 ## Environment Types
 
-Environment Based Management introduces two distinct environment categories:
+Environment Based Management introduces two distinct environment categories that work together to provide a comprehensive project management solution:
 
-- **Virtual Environments**: Dedicated environments for Project configuration management
-- **Runtime Environments**: Virtual environments linked to clusters that enable configuration deployment and execution in the selected runtime
+- **Virtual Environments** serve as dedicated spaces for managing and iterating on your Project configurations. These environments allow teams to experiment with different configuration setups, test changes, and maintain multiple configuration versions without affecting live systems.
+  
+- **Runtime Environments** take configuration management a step further by connecting virtual environments to actual clusters. This enables teams to not only manage configurations but also deploy and execute them in selected runtime environments. Runtime environments bridge the gap between configuration management and actual system deployment, providing a seamless path from development to production.
 
 ## Configuration Management
 
