@@ -8,6 +8,7 @@ Environment Based Configuration Management represents a significant evolution in
 
 ## Quick reference
 
+- Revisions are integrated into the environments.
 - Environments are split into two categories: Virtual Environments and Runtime Environments.
 - Only Runtime Environments can be versioned and deployed to.
 - Newly created Projects will use this new approach by default.
