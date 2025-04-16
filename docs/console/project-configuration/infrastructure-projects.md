@@ -46,6 +46,8 @@ This enables controlled and consistent infrastructure delivery, aligned with Dev
 
 After deployment, the current state of the released infrastructure is available for monitoring directly in the Runtime area of your Infrastructure Project.  
 
+TO DO: runtime setup explanation
+
 ![Infrastructure Projects Runtime](/)
 
 ## Access and Permissions
