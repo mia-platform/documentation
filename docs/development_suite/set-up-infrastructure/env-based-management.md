@@ -15,7 +15,7 @@ Environment Based Configuration Management represents a significant evolution in
 - Configuration changes can be promoted between environments using the Environment promotion feature.
 - Version control is managed at the individual environment level rather than project-wide.
 - The Environment variables section displays only the variables specific to the currently selected environment configuration.
-- Deployments are bound to either the latest environment configuration or specific versioned configurations.
+- Runtime Environments can be deployed using either the latest configuration or a specific versioned configuration.
 
 ## Environment Types
 
