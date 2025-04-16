@@ -40,7 +40,7 @@ From within your Project, you can manage the deployment flow of your infrastruct
 
 ![Infrastructure Projects apply](/)
 
-This enables controlled and consistent infrastructure delivery, aligned with DevOps practices.
+This enables control and consistency in your infrastructure.
 
 ## Runtime Visibility
 
