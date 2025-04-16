@@ -50,3 +50,5 @@ During the manual migration, you'll have the opportunity to carefully select and
 If you're not ready to proceed with the migration immediately, don't worry - you can either click 'Skip' or simply close the migration dialog. The system will remind you about the pending migration by showing the prompt again the next day, ensuring you won't forget about this important transition.
 
 ## Environment configuration promotion
+
+Environment configuration promotion is a powerful feature that allows you to easily propagate configuration changes across multiple environments. This feature is particularly useful when you want to ensure that all environments are using the same configuration, regardless of whether they are virtual or runtime environments.
