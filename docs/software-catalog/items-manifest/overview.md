@@ -18,10 +18,6 @@ The full JSON schema is available [on GitHub](https://raw.githubusercontent.com/
 
 <SchemaViewer schema={catalogItemManifestSchema} />
 
-## Permissions
-
-...
-
 [items-data-structure]: ../basic-concepts/05_items-data-structure.md
 [items-type]: ../basic-concepts/10_items-types.md
 [items-managements]: ../items-management/overview.md

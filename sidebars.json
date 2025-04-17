@@ -1953,6 +1953,10 @@
         {
           "id": "software-catalog/items-management/miactl",
           "type": "doc"
+        },
+        {
+          "id": "software-catalog/items-management/api",
+          "type": "doc"
         }
       ]
     },
