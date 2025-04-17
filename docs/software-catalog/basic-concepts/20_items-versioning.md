@@ -4,7 +4,7 @@ title: Items versioning
 sidebar_label: Items versioning
 ---
 
-A **versioned item** is a distinct, immutable snapshot of an item that captures a specific state of its configuration, metadata, and resources at a given point in time.
+A **version of an item** is a distinct, immutable snapshot of an item that captures a specific state of its configuration, metadata, and resources at a given point in time.
 
 Versioning allows teams to:
 - evolve resources over time while maintaining consistency and traceability,
@@ -32,7 +32,7 @@ These three properties together — `tenantId`, `itemId`, and `version.name` —
 Refer to [this section][items-management] for implementation details.
 
 :::info
-Items that were created without a version will still appear in the Console. These are treated as non-versioned items and will be shown with a version value of *N/A*.
+Items that were created without a version will still appear in the Console and will be shown with a version value of *N/A*.
 :::
 
 When multiple versions of an item exist, one of them is automatically considered the **latest** version:
@@ -50,13 +50,13 @@ You can find these updates:
 
 ### Editing a versioned item
 
-The following fields define a versioned item:
+The following fields define a version of an item:
 - `itemId`
 - `tenantId`
 - `version.name`
 - `assets` (field `resources`)
 
-As long as the item is in the `draft` state (according to the [lifecycle stage][items-lifecycle]), the `assets` can still be modified. Once the item moves to the `published` stage, the `assets` become immutable. Attempting to modify it will result in an error, and the item will not be updated. In this case, you need to create a *new version* of the item.
+As long as the item is in the **draft stage** (according to the [lifecycle stage][items-lifecycle]), the `assets` can still be modified. Once the item moves to the **published stage**, the `assets` become immutable. Attempting to modify it will result in an error, and the item will not be updated. In this case, you need to create a *new version* of the item.
 
 Some examples:
 
