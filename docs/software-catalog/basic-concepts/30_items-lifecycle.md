@@ -14,7 +14,7 @@ The following are the various **lifecycle status** an item can go through.
 This state indicates that the item is in its early stages of development. Implementation has just begun, and the component is not yet ready for use by the public. However, users can be informed about its upcoming availability. It serves as a teaser or preview, giving users an idea of new features that are being worked on, but without offering any functionality yet.
 
 #### **2. Draft**
-In the *draft state*, the item is available for internal use or testing but is not yet finalized. This release is still subject to change, and both its metadata and assets are open to modification. The item can be instantiated from the Marketplace, allowing it to be tested in real-world scenarios. However, it is not considered a stable release and should not be used in production environments.
+In the *draft state*, the item is available for internal use or testing but is not yet finalized. This release is still subject to change, and both its metadata and assets are open to modification - including for versioned items. The item can be instantiated from the Marketplace, allowing it to be tested in real-world scenarios. However, it is not considered a stable release and should not be used in production environments.
 
 #### **3. Published**
 When an item is in the *published state*, it is considered stable, ready for production use, and has passed the necessary validations or review steps. It is available in the Marketplace and can be instantiated by users. In this state, the item is expected to follow a consistent update cycle, including bug fixes, enhancements, and the introduction of new features.

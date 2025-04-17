@@ -29,7 +29,7 @@ To define a *version of an item*, a few key properties must be configured:
 
 These three properties together — `tenantId`, `itemId`, and `version.name` — form the unique identity of a versioned item.
 
-Refer to [this section](/software-catalog/items-management/overview.md) for implementation details.
+Refer to [this section][items-management] for implementation details.
 
 :::info
 Items that were created without a version will still appear in the Console. These are treated as non-versioned items and will be shown with a version value of *N/A*.
@@ -50,19 +50,18 @@ You can find these updates:
 
 ### Editing a versioned item
 
-Versioned items are designed to be **immutable**, meaning their core configuration cannot be changed once published. This guarantees reliability and consistency across environments. However, metadata such as a description or release notes may still be updated.
-
-The following fields cannot be edited after publishing a version:
+The following fields define a versioned item:
 - `itemId`
 - `tenantId`
 - `version.name`
 - `assets` (field `resources`)
 
-Since items are defined by the `itemId`, the `tenantId` and the `version` name, attempting to modify one of these three properties will cause the creation of a new item, completely separated from the previous one.
-
-Attemping to modify the `resources` property will cause an error, and the item will not be updated. In this case, you need to create a new version of the item.
+As long as the item is in the `draft` state (according to the [lifecycle stage][items-lifecycle]), the `assets` can still be modified. Once the item moves to the `published` stage, the `assets` become immutable. Attempting to modify it will result in an error, and the item will not be updated. In this case, you need to create a *new version* of the item.
 
 Some examples:
 
 - **Plugin**: The `dockerImage` field determines the version. Any update to this field requires creating a new version.
 - **Infrastructure Resource**: Defined by the `apiVersion` and `kind` properties. Changes to these fields must also be handled via versioning.
+
+[items-management]: ../items-management/overview.md
+[items-lifecycle]: ../basic-concepts/30_items-lifecycle.md
