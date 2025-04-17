@@ -18,6 +18,17 @@ The full JSON schema is available [on GitHub](https://raw.githubusercontent.com/
 
 <SchemaViewer schema={catalogItemManifestSchema} />
 
+## Permissions
+
+To create or edit items, users must have the [role](/development_suite/identity-and-access-management/console-levels-and-permission-management.md#identity-capabilities-inside-console) of **Company Owner** or **Project Administrator** in the Company the item belongs to.
+
+On top of that, the specific permission [**`marketplace.root.manage`**](/development_suite/identity-and-access-management/console-levels-and-permission-management.md#console-root-level-permissions) is needed to set or edit these restricted properties:
+
+- `publishOnMiaDocumentation`
+- `supportedBy`
+- `supportedByImage`
+- `visibility`
+
 [items-data-structure]: ../basic-concepts/05_items-data-structure.md
 [items-type]: ../basic-concepts/10_items-types.md
 [items-managements]: ../items-management/overview.md
