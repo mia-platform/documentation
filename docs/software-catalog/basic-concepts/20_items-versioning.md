@@ -7,9 +7,9 @@ sidebar_label: Items versioning
 A **versioned item** is a distinct, immutable snapshot of an item that captures a specific state of its configuration, metadata, and resources at a given point in time.
 
 Versioning allows teams to:
-- Evolve resources over time while maintaining consistency and traceability.
-- Prevent unintended changes to items already in use.
-- Support multiple iterations of the same item simultaneously.
+- evolve resources over time while maintaining consistency and traceability,
+- prevent unintended changes to items already in use, and
+- support multiple iterations of the same item simultaneously.
 
 :::info
 Versioning is currently supported for the following [item types](./10_items-types.md):
@@ -21,9 +21,9 @@ Versioning is currently supported for the following [item types](./10_items-type
 
 To define a *version of an item*, a few key properties must be configured:
 
-- **Version name** (the `name` property inside the `version` object): a unique name that identifies the version of the item. This typically follows [Semantic Versioning rules](https://semver.org/) (e.g. 1.0.0, 2.1.3).
+- **version name** (the `name` property inside the `version` object): a unique name that identifies the version of the item. This typically follows [Semantic Versioning rules](https://semver.org/) (e.g. 1.0.0, 2.1.3).
 
-- **Stable properties across versions**: the following properties must remain consistent across all versions of the same item:
+- **stable properties across versions**: the following properties must remain consistent across all versions of the same item:
     - `itemId`
     - `tenantId`
 
@@ -42,8 +42,8 @@ When multiple versions of an item exist, one of them is automatically considered
 :::info
 If any resource attached to a Marketplace item has an available update, the Console will notify you.
 You can find these updates:
-- In the sidebar, at the bottom of your service list
-- Within the detail page of the service that requires updating
+- in the sidebar, at the bottom of your service list, and
+- within the detail page of the service that requires updating
 
  ![Design page with notifications of new Marketplace versions](./img/versions_notifications.png)
 :::

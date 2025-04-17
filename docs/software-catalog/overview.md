@@ -10,11 +10,11 @@ In essence, the Software Catalog empowers development teams provides visibility 
 
 The Software Catalog is composed by:
 
-- **Public Catalog**: a ready-to-use collection of components offered by Mia-Platform to simplify and accelerate application development. This catalog may also include components from Mia-Platform's trusted partners, further extending its capabilities.
+- **Public Catalog**: a ready-to-use collection of runtime components offered by Mia-Platform to simplify and accelerate application development. This catalog may also include components from Mia-Platform's trusted partners, further extending its capabilities.
 
 - **Private Catalog**: a dedicated space where organizations can store and standardize their internal software components. These items are curated and designed to promote reuse, modularity, and composability within the organization’s development processes.
 
-![overview table] - inserire immagine software catalog
+![overview table](./img/software-catalog-overview.png)
 
 Here are the **key challenges** that a software catalog addresses.
 
@@ -26,7 +26,7 @@ Here are the **key challenges** that a software catalog addresses.
 
 ## Marketplace
 
-The Marketplace is a centralized hub where software items, whether public or private, created within the Software Catalog are made available for use. Whenever a software item is added to the Software Catalog — be it a reusable template, pugin, or cloud resource — it is automatically published to the Marketplace based on the visibility settings applied to it (For more details on setting visibility and managing items in the Marketplace, refer to the [documentation link]).
+The Marketplace is a centralized hub where software items, whether public or private, created within the Software Catalog are made available for use. Whenever a software item is added to the Software Catalog — be it a reusable template, pugin, or cloud resource — it is automatically published to the Marketplace based on the [visibility settings](/software-catalog/basic-concepts/40_items-visibility.md) applied to it.
 
 The Marketplace serves as the primary repository for all available software assets that can be accessed and used by developers. These assets are organized according to the visibility settings, ensuring that users only see items from a specific company or those shared across multiple companies.
 
