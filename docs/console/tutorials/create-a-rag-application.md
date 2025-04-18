@@ -84,7 +84,7 @@ Next, proceed to set up the application. When searching in the marketplace, sear
 - the _AI RAG Chat_, which is the application where the _RAG Chatbot API_ is provided in form of a [Plugin](/plugins/mia-platform-plugins.md), maintained and supported by the Mia-Platform team
 - the _AI RAG Chat Template_, which is the application where the _RAG Chatbot API_ is provided in form of a [Template](/marketplace/templates/mia_templates.md) that will create a repository in your Git provider; while this template represents all the features of the plugin and it is fully functional, you can modify it by adding or removing features according to your needs
 
-![AI RAG Chat applications in Marketplace](../img/ai-rag-chat-in-marketplace.png)
+![AI RAG Chat applications in Marketplace](./img/ai-rag-chat-in-marketplace.png)
 
 It will prompt you to create the _API Gateway_ (you can use the previously created one with the available listener), the _RAG Chatbot API_, and the _AI RAG Template Chat_, along with several endpoints to expose the service APIs for sending questions and generating embeddings.
 
@@ -203,7 +203,7 @@ The content of `vectorStore` is the same as the one described in the previous se
 From the _deploy_ section, you can deploy the new configuration. After verifying that the services are up, we can check if the application is running by accessing the chatbot frontend.
 The frontend is accessible through the automatically generated endpoint `/` (e.g., if the project is hosted at `https://my-project.console.my-company.com`, the frontend will be accessible at the same URL).
 
-![Assistant Playground homepage](../img/assistant-playground-home.png)
+![Assistant Playground homepage](./img/assistant-playground-home.png)
 
 The frontend will display a page with an input field where you can communicate with the chatbot.
 However, at this point, there are no embeddings, so specific questions may not give us the expected response.
@@ -239,7 +239,7 @@ With this information, you have all the knowledge needed to generate the embeddi
 
 From the _API Portal_ you can make a request to the `api/embeddings/generate` API by expanding the corresponding card and clicking on "Try it out".
 
-![Embeddings generate API](../img/embeddings-generate-api.png)
+![Embeddings generate API](./img/embeddings-generate-api.png)
 
 In the request body, the following information are needed:
 
@@ -277,7 +277,7 @@ You can call the API multiple times, and when the response includes `{ "status":
 If you need to generate embeddings from a file, you can use to the `api/embeddings/generateFromFile` API, accessible from the _API Portal_.
 By expanding the corresponding card and clicking on "Try it out", you will see that this time it is required to upload a file.
 
-![Embeddings generateFromFile API](../img/embeddings-generate-from-file-api.png)
+![Embeddings generateFromFile API](./img/embeddings-generate-from-file-api.png)
 
 By clicking on _Choose file_ you can select a file to upload.
 Supported files are the following:
@@ -298,7 +298,7 @@ As explained above, you can check the status of the process by calling the `/api
 
 Once the process is over, there's no need to re-deploy or restart any service: after a few moments, the MongoDB Vector Index will be updated and the frontend application will be ready to give us meaningful answers based on the generated embeddings.
 
-![Assistant Playground working](../img/assistant-playground-working.png)
+![Assistant Playground working](./img/assistant-playground-working.png)
 
 ## Troubleshooting
 
