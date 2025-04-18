@@ -1,14 +1,14 @@
 ---
-id: infrastructure-projects
-title: Projects for Infrastructure Provisioning
+id: infrastructure-project
+title: Infrastructure Projects
 sidebar_label: Infrastructure Projects
+sidebar_order: 2
 ---
-
-# Infrastructure Projects 
 
 **Infrastructure Projects** are a dedicated Project type in Console specifically dedicated to the provisioning and management of infrastructure, following the *Infrastructure as Code* paradigm.
 
 They are designed primarily for **Operations teams**, who can use them to define, version, and deploy infrastructure resources while ensuring consistency, transparency, and control over infrastructure changes.  
+
 These Projects are distinct from traditional Application Projects as they are specifically designed to manage infrastructure resources, enabling better control, automation, and governance in the context of Infrastructure as Code.
 
 ## Creating an Infrastructure Project
@@ -16,7 +16,7 @@ These Projects are distinct from traditional Application Projects as they are sp
 When creating a new Project in your Company, you can select the **Infrastructure** type.  
 This option unlocks a dedicated setup flow and enables the creation of a Project tailored to infrastructure workflows.
 
-![Infrastructure Projects creation](/)
+<!-- ![Infrastructure Projects creation](/) -->
 
 ## Managing Infrastructure Components
 
@@ -26,7 +26,7 @@ You can currently create an infrastructure component from scratch; in future rel
 
 TO DO: components creation steps explanation
 
-![Infrastructure component creation](/)
+<!-- ![Infrastructure component creation](/) -->
 
 Creating a component automatically generates a new repository, which you can manage to evolve your infrastructure.
 
@@ -38,7 +38,7 @@ From within your Project, you can manage the deployment flow of your infrastruct
 - Running a **plan** to preview proposed infrastructure changes  
 - Executing an **apply** to confirm and release your infrastructure changes
 
-![Infrastructure Projects apply](/)
+<!-- ![Infrastructure Projects apply](/) -->
 
 This enables control and consistency in your infrastructure.
 
@@ -48,9 +48,9 @@ After deployment, the current state of the released infrastructure is available 
 
 TO DO: runtime setup explanation
 
-![Infrastructure Projects Runtime](/)
+<!-- ![Infrastructure Projects Runtime](/) -->
 
 ## Access and Permissions
 
 Currently, all members of a Company can view Infrastructure Projects.  
-However, only users with the role of **Project Administrator** or **Company Owner** are allowed to perform changes within them.
+However, only users with the role of **Project Administrator** or **Company Owner** are allowed to perform changes within them. 
