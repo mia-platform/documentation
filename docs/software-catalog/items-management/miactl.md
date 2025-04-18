@@ -4,19 +4,17 @@ title: miactl
 sidebar_label: miactl
 ---
 
-Before getting started, make sure you have set up [`miactl`](/cli/miactl/10_overview.md) by following the steps in the [setup guide](/cli/miactl/20_setup.md).
+One of the possible ways to interact with the Catalog is through [`miactl`](/cli/miactl/10_overview.md), the Mia-Platform Command Line Interface. 
 
 :::tip
-If you need to manage a large number of items, we recommend adopting a [Declarative Approach](#declarative-approach) for better consistency and automation.
+Before getting started, make sure you have completed the [setup guide](/cli/miactl/20_setup.md).
 :::
 
-:::info
-You need to have *Company Owner* or *Project Administrator* role at Company level to perform the following actions
-:::
+The commands 
 
 ## List item
 
-...
+
 
 ## Create item
 
