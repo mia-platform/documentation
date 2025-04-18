@@ -13,7 +13,7 @@ Versioning allows teams to:
 - support multiple iterations of the same item simultaneously.
 
 :::caution
-Versioning is currently supported by a subset of [item types](./10_items-types.md), namely:
+Versioning is currently supported by a subset of [item types][items-type], namely:
 
 - **plugins**,
 - **infrastructure resources**,

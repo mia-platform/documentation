@@ -31,7 +31,9 @@ const filesToExcludeFromSidebarCheck = [
   "standalone-resources/*",
   "fast_data/runtime_management/snippets/*",
   "fast_data/snippets/*",
-  "development_suite/api-console/api-design/videos/subtitle/*"
+  "development_suite/api-console/api-design/videos/subtitle/*",
+  "software-catalog/basic-concepts/*",
+  "software-catalog/snippets/*"
 ]
 
 const checkIdRegexp = new RegExp('^---(\\n.*)+id:\\s+([-\\w. ]+)(.*\\n)+---$', 'm')

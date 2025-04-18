@@ -26,7 +26,7 @@ Here are the **key challenges** that a software catalog addresses.
 
 ## Marketplace
 
-The Marketplace is a centralized hub where software items, whether public or private, created within the Software Catalog are made available for use. Whenever a software item is added to the Software Catalog — be it a reusable template, pugin, or cloud resource — it is automatically published to the Marketplace based on the [visibility settings](/software-catalog/basic-concepts/40_items-visibility.md) applied to it.
+The Marketplace is a centralized hub where software items, whether public or private, created within the Software Catalog are made available for use. Whenever a software item is added to the Software Catalog — be it a reusable template, plugin, or cloud resource — it is automatically published to the Marketplace based on the [visibility settings](/software-catalog/basic-concepts/40_items-visibility.md) applied to it.
 
 The Marketplace serves as the primary repository for all available software assets that can be accessed and used by developers. These assets are organized according to the visibility settings, ensuring that users only see items from a specific company or those shared across multiple companies.
 
