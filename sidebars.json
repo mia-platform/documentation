@@ -318,6 +318,14 @@
       },
       "items": [
         {
+          "id": "console/project-configuration/application-project",
+          "type": "doc"
+        },
+        {
+          "id": "console/project-configuration/infrastructure-project",
+          "type": "doc"
+        },
+        {
           "id": "console/project-configuration/create-a-project",
           "type": "doc"
         },
