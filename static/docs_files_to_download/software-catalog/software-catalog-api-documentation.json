@@ -1,0 +1,4466 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "description": "APIs to interact with Mia-Platform Software Catalog",
+    "title": "Mia-Platform Software Catalog",
+    "version": "14.0.0"
+  },
+  "components": {
+    "schemas": {
+      "http-error": {
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "error": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "statusCode": {
+            "type": "number"
+          }
+        },
+        "title": "HTTP error",
+        "type": "object"
+      },
+      "catalog-category": {
+        "title": "Catalog category",
+        "description": "Data model of a Catalog category",
+        "type": "object",
+        "properties": {
+          "categoryId": {
+            "type": "string"
+          },
+          "label": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "categoryId",
+          "label"
+        ]
+      },
+      "catalog-item-manifest": {
+        "title": "Catalog item manifest",
+        "description": "Data model of a Catalog item to apply",
+        "type": "object",
+        "properties": {
+          "categoryId": {
+            "description": "Identifier of the item's category",
+            "type": "string"
+          },
+          "description": {
+            "description": "Brief description of the item",
+            "type": "string"
+          },
+          "documentation": {
+            "description": "Documentation of the item",
+            "properties": {
+              "type": {
+                "enum": [
+                  "externalLink",
+                  "markdown"
+                ],
+                "type": "string"
+              },
+              "url": {
+                "format": "uri-reference",
+                "type": "string"
+              }
+            },
+            "required": [
+              "type",
+              "url"
+            ],
+            "type": "object"
+          },
+          "imageUrl": {
+            "description": "Url of the image associated with the item",
+            "format": "uri-reference",
+            "type": "string"
+          },
+          "itemId": {
+            "description": "RFC-1035 compliant identifier of the item. It forms a composite PK with tenantId and, if present, version.name",
+            "minLength": 1,
+            "pattern": "^[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?$",
+            "type": "string"
+          },
+          "lifecycleStatus": {
+            "description": "Lifecycle status of the item",
+            "enum": [
+              "coming-soon",
+              "draft",
+              "published",
+              "maintenance",
+              "deprecated",
+              "archived"
+            ],
+            "type": "string"
+          },
+          "name": {
+            "description": "Human-readable name of the item",
+            "minLength": 1,
+            "type": "string"
+          },
+          "providerId": {
+            "description": "Identifier of the provider used to retrieve markdown documentation content and external resources, if supported by the item type",
+            "type": "string"
+          },
+          "publishOnMiaDocumentation": {
+            "description": "Flag stating if the resource documentation should be published on Mia-Platform public documentation",
+            "type": "boolean"
+          },
+          "releaseDate": {
+            "description": "Creation date of this item's release",
+            "format": "date-time",
+            "type": "string"
+          },
+          "repositoryUrl": {
+            "description": "URL of the repository containing the source code of the resource created by the item",
+            "format": "uri-reference",
+            "type": "string"
+          },
+          "resources": {
+            "additionalProperties": true,
+            "description": "Representation of the resource that will be created starting from this item. It could be validated through the matching CRD",
+            "type": "object"
+          },
+          "supportedBy": {
+            "description": "Identifier of the company that has produced the item",
+            "type": "string"
+          },
+          "supportedByImageUrl": {
+            "description": "Url of the image associated with the company that has produced the item",
+            "format": "uri-reference",
+            "type": "string"
+          },
+          "tenantId": {
+            "description": "Identifier of the tenant to which the item belongs. It forms a composite PK with itemId and, if present, version.name",
+            "type": "string"
+          },
+          "type": {
+            "description": "Type of the item. It must match a CRD resources.name property",
+            "type": "string"
+          },
+          "version": {
+            "description": "Version of the item following semver",
+            "properties": {
+              "name": {
+                "description": "Semantic version",
+                "pattern": "^(0|[1-9]\\d*)\\.(0|[1-9]\\d*)\\.(0|[1-9]\\d*)(?:-((?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\\.(?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\\+([0-9a-zA-Z-]+(?:\\.[0-9a-zA-Z-]+)*))?$",
+                "type": "string"
+              },
+              "releaseNote": {
+                "description": "Markdown release note",
+                "type": "string"
+              },
+              "security": {
+                "description": "Flag stating if the version addresses any vulnerability",
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "name",
+              "releaseNote"
+            ],
+            "type": "object"
+          },
+          "visibility": {
+            "description": "Visibility of the item",
+            "properties": {
+              "allTenants": {
+                "default": false,
+                "description": "If true, the item will be accessible to all companies",
+                "type": "boolean"
+              },
+              "public": {
+                "default": false,
+                "description": "If true, the item will be accessible from any user that access the Console, even if not authenticated",
+                "type": "boolean"
+              }
+            },
+            "type": "object"
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "name",
+          "itemId",
+          "tenantId",
+          "type",
+          "resources",
+          "lifecycleStatus"
+        ]
+      },
+      "catalog-item": {
+        "title": "Catalog item",
+        "description": "Data model of a Catalog item",
+        "type": "object",
+        "properties": {
+          "_id": {
+            "description": "Database identifier of the item",
+            "type": "string"
+          },
+          "category": {
+            "description": "Identifier of the item's category",
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "label": {
+                "type": "string"
+              }
+            },
+            "additionalProperties": false,
+            "required": [
+              "id",
+              "label"
+            ]
+          },
+          "componentsIds": {
+            "description": "List of source component ids of the services in the item's resources",
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "description": {
+            "description": "Brief description of the item",
+            "type": "string"
+          },
+          "documentation": {
+            "description": "Documentation of the item",
+            "properties": {
+              "type": {
+                "enum": [
+                  "externalLink",
+                  "markdown"
+                ],
+                "type": "string"
+              },
+              "url": {
+                "format": "uri-reference",
+                "type": "string"
+              }
+            },
+            "required": [
+              "type",
+              "url"
+            ],
+            "type": "object"
+          },
+          "imageUrl": {
+            "description": "Url of the image associated with the item",
+            "format": "uri-reference",
+            "type": "string"
+          },
+          "isLatest": {
+            "description": "Flag stating if the the current document is the latest version of the item",
+            "type": "boolean"
+          },
+          "itemId": {
+            "description": "RFC-1035 compliant identifier of the item. It forms a composite PK with tenantId and, if present, version.name",
+            "minLength": 1,
+            "pattern": "^[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?$",
+            "type": "string"
+          },
+          "lifecycleStatus": {
+            "description": "Lifecycle status of the item",
+            "enum": [
+              "coming-soon",
+              "draft",
+              "published",
+              "maintenance",
+              "deprecated",
+              "archived"
+            ],
+            "type": "string"
+          },
+          "name": {
+            "description": "Human-readable name of the item",
+            "minLength": 1,
+            "type": "string"
+          },
+          "providerId": {
+            "description": "Identifier of the provider used to retrieve markdown documentation content and external resources, if supported by the item type",
+            "type": "string"
+          },
+          "publishOnMiaDocumentation": {
+            "description": "Flag stating if the resource documentation should be published on Mia-Platform public documentation",
+            "type": "boolean"
+          },
+          "releaseDate": {
+            "description": "Creation date of this item's release",
+            "format": "date-time",
+            "type": "string"
+          },
+          "repositoryUrl": {
+            "description": "URL of the repository containing the source code of the resource created by the item",
+            "format": "uri-reference",
+            "type": "string"
+          },
+          "resources": {
+            "additionalProperties": true,
+            "description": "Representation of the resource that will be created starting from this item. It could be validated through the matching CRD",
+            "type": "object"
+          },
+          "supportedBy": {
+            "description": "Identifier of the company that has produced the item",
+            "type": "string"
+          },
+          "supportedByImageUrl": {
+            "description": "Url of the image associated with the company that has produced the item",
+            "format": "uri-reference",
+            "type": "string"
+          },
+          "tenantId": {
+            "description": "Identifier of the tenant to which the item belongs. It forms a composite PK with itemId and, if present, version.name",
+            "type": "string"
+          },
+          "type": {
+            "description": "Type of the item. It must match a CRD resources.name property",
+            "type": "string"
+          },
+          "version": {
+            "description": "Version of the item following semver",
+            "properties": {
+              "name": {
+                "description": "Semantic version",
+                "pattern": "^(0|[1-9]\\d*)\\.(0|[1-9]\\d*)\\.(0|[1-9]\\d*)(?:-((?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\\.(?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\\+([0-9a-zA-Z-]+(?:\\.[0-9a-zA-Z-]+)*))?$",
+                "type": "string"
+              },
+              "releaseNote": {
+                "description": "Markdown release note",
+                "type": "string"
+              },
+              "security": {
+                "description": "Flag stating if the version addresses any vulnerability",
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "name",
+              "releaseNote"
+            ],
+            "type": "object"
+          },
+          "visibility": {
+            "description": "Visibility of the item",
+            "properties": {
+              "allTenants": {
+                "default": false,
+                "description": "If true, the item will be accessible to all companies",
+                "type": "boolean"
+              },
+              "public": {
+                "default": false,
+                "description": "If true, the item will be accessible from any user that access the Console, even if not authenticated",
+                "type": "boolean"
+              }
+            },
+            "type": "object"
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "_id",
+          "name",
+          "itemId",
+          "tenantId",
+          "type",
+          "releaseDate",
+          "lifecycleStatus"
+        ]
+      },
+      "catalog-release": {
+        "title": "Catalog release",
+        "description": "Data model of a Catalog item release",
+        "type": "object",
+        "properties": {
+          "description": {
+            "description": "Brief description of the item",
+            "type": "string"
+          },
+          "isLatest": {
+            "description": "Flag stating if the the current document is the latest version of the item",
+            "type": "boolean"
+          },
+          "lifecycleStatus": {
+            "description": "Lifecycle status of the item",
+            "enum": [
+              "coming-soon",
+              "draft",
+              "published",
+              "maintenance",
+              "deprecated",
+              "archived"
+            ],
+            "type": "string"
+          },
+          "name": {
+            "description": "Human-readable name of the item",
+            "minLength": 1,
+            "type": "string"
+          },
+          "reference": {
+            "description": "Mongo objectId of the item",
+            "type": "string"
+          },
+          "releaseDate": {
+            "description": "Creation date of this item's release",
+            "format": "date-time",
+            "type": "string"
+          },
+          "releaseNote": {
+            "description": "Markdown release note",
+            "type": "string"
+          },
+          "security": {
+            "description": "Flag stating if the version addresses any vulnerability",
+            "type": "boolean"
+          },
+          "version": {
+            "oneOf": [
+              {
+                "description": "Semantic version",
+                "pattern": "^(0|[1-9]\\d*)\\.(0|[1-9]\\d*)\\.(0|[1-9]\\d*)(?:-((?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\\.(?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\\+([0-9a-zA-Z-]+(?:\\.[0-9a-zA-Z-]+)*))?$",
+                "type": "string"
+              },
+              {
+                "description": "Fallback version",
+                "enum": [
+                  "NA"
+                ]
+              }
+            ]
+          },
+          "visibility": {
+            "description": "Visibility of the item",
+            "properties": {
+              "allTenants": {
+                "default": false,
+                "description": "If true, the item will be accessible to all companies",
+                "type": "boolean"
+              },
+              "public": {
+                "default": false,
+                "description": "If true, the item will be accessible from any user that access the Console, even if not authenticated",
+                "type": "boolean"
+              }
+            },
+            "type": "object"
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "name",
+          "description",
+          "version",
+          "reference",
+          "releaseNote",
+          "releaseDate",
+          "lifecycleStatus"
+        ]
+      },
+      "catalog-versioned-item": {
+        "title": "Catalog versioned item",
+        "description": "Data model of a Catalog item with required version",
+        "type": "object",
+        "properties": {
+          "_id": {
+            "description": "Database identifier of the item",
+            "type": "string"
+          },
+          "category": {
+            "description": "Identifier of the item's category",
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "label": {
+                "type": "string"
+              }
+            },
+            "additionalProperties": false,
+            "required": [
+              "id",
+              "label"
+            ]
+          },
+          "componentsIds": {
+            "description": "List of source component ids of the services in the item's resources",
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "description": {
+            "description": "Brief description of the item",
+            "type": "string"
+          },
+          "documentation": {
+            "description": "Documentation of the item",
+            "properties": {
+              "type": {
+                "enum": [
+                  "externalLink",
+                  "markdown"
+                ],
+                "type": "string"
+              },
+              "url": {
+                "format": "uri-reference",
+                "type": "string"
+              }
+            },
+            "required": [
+              "type",
+              "url"
+            ],
+            "type": "object"
+          },
+          "imageUrl": {
+            "description": "Url of the image associated with the item",
+            "format": "uri-reference",
+            "type": "string"
+          },
+          "isLatest": {
+            "description": "Flag stating if the the current document is the latest version of the item",
+            "type": "boolean"
+          },
+          "itemId": {
+            "description": "RFC-1035 compliant identifier of the item. It forms a composite PK with tenantId and, if present, version.name",
+            "minLength": 1,
+            "pattern": "^[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?$",
+            "type": "string"
+          },
+          "lifecycleStatus": {
+            "description": "Lifecycle status of the item",
+            "enum": [
+              "coming-soon",
+              "draft",
+              "published",
+              "maintenance",
+              "deprecated",
+              "archived"
+            ],
+            "type": "string"
+          },
+          "name": {
+            "description": "Human-readable name of the item",
+            "minLength": 1,
+            "type": "string"
+          },
+          "providerId": {
+            "description": "Identifier of the provider used to retrieve markdown documentation content and external resources, if supported by the item type",
+            "type": "string"
+          },
+          "publishOnMiaDocumentation": {
+            "description": "Flag stating if the resource documentation should be published on Mia-Platform public documentation",
+            "type": "boolean"
+          },
+          "releaseDate": {
+            "description": "Creation date of this item's release",
+            "format": "date-time",
+            "type": "string"
+          },
+          "repositoryUrl": {
+            "description": "URL of the repository containing the source code of the resource created by the item",
+            "format": "uri-reference",
+            "type": "string"
+          },
+          "resources": {
+            "additionalProperties": true,
+            "description": "Representation of the resource that will be created starting from this item. It could be validated through the matching CRD",
+            "type": "object"
+          },
+          "supportedBy": {
+            "description": "Identifier of the company that has produced the item",
+            "type": "string"
+          },
+          "supportedByImageUrl": {
+            "description": "Url of the image associated with the company that has produced the item",
+            "format": "uri-reference",
+            "type": "string"
+          },
+          "tenantId": {
+            "description": "Identifier of the tenant to which the item belongs. It forms a composite PK with itemId and, if present, version.name",
+            "type": "string"
+          },
+          "type": {
+            "description": "Type of the item. It must match a CRD resources.name property",
+            "type": "string"
+          },
+          "version": {
+            "description": "Version of the item",
+            "properties": {
+              "name": {
+                "oneOf": [
+                  {
+                    "description": "Semantic version",
+                    "pattern": "^(0|[1-9]\\d*)\\.(0|[1-9]\\d*)\\.(0|[1-9]\\d*)(?:-((?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\\.(?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\\+([0-9a-zA-Z-]+(?:\\.[0-9a-zA-Z-]+)*))?$",
+                    "type": "string"
+                  },
+                  {
+                    "description": "Fallback version",
+                    "enum": [
+                      "NA"
+                    ]
+                  }
+                ]
+              },
+              "releaseNote": {
+                "description": "Markdown release note",
+                "type": "string"
+              },
+              "security": {
+                "description": "Flag stating if the version addresses any vulnerability",
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "name",
+              "releaseNote"
+            ],
+            "type": "object"
+          },
+          "visibility": {
+            "description": "Visibility of the item",
+            "properties": {
+              "allTenants": {
+                "default": false,
+                "description": "If true, the item will be accessible to all companies",
+                "type": "boolean"
+              },
+              "public": {
+                "default": false,
+                "description": "If true, the item will be accessible from any user that access the Console, even if not authenticated",
+                "type": "boolean"
+              }
+            },
+            "type": "object"
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "_id",
+          "name",
+          "itemId",
+          "tenantId",
+          "type",
+          "releaseDate",
+          "lifecycleStatus",
+          "version"
+        ]
+      },
+      "catalog-item-metadata": {
+        "title": "Catalog item metadata",
+        "description": "Data model of a Catalog item metadata",
+        "type": "object",
+        "properties": {
+          "itemId": {
+            "description": "RFC-1035 compliant identifier of the item. It forms a composite PK with tenantId and, if present, version.name",
+            "minLength": 1,
+            "pattern": "^[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?$",
+            "type": "string"
+          },
+          "tenantId": {
+            "description": "Identifier of the tenant to which the item belongs. It forms a composite PK with itemId and, if present, version.name",
+            "type": "string"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "application",
+              "plugin",
+              "proxy",
+              "sidecar",
+              "template"
+            ]
+          },
+          "versions": {
+            "items": {
+              "additionalProperties": false,
+              "properties": {
+                "componentId": {
+                  "type": "string"
+                },
+                "dockerImage": {
+                  "pattern": "^(?:[a-z0-9.\\-\\/:]+\\/)?([\\w.}{\\-\\/]+)(:[\\w.}{\\-]+)?$",
+                  "type": "string"
+                },
+                "id": {
+                  "type": "string"
+                },
+                "name": {
+                  "description": "Human-readable name of the item",
+                  "minLength": 1,
+                  "type": "string"
+                },
+                "url": {
+                  "type": "string"
+                },
+                "version": {
+                  "oneOf": [
+                    {
+                      "description": "Semantic version",
+                      "pattern": "^(0|[1-9]\\d*)\\.(0|[1-9]\\d*)\\.(0|[1-9]\\d*)(?:-((?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\\.(?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\\+([0-9a-zA-Z-]+(?:\\.[0-9a-zA-Z-]+)*))?$",
+                      "type": "string"
+                    },
+                    {
+                      "description": "Fallback version",
+                      "enum": [
+                        "NA"
+                      ]
+                    }
+                  ]
+                }
+              },
+              "required": [
+                "id",
+                "version"
+              ],
+              "type": "object"
+            },
+            "type": "array"
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "itemId",
+          "tenantId",
+          "type",
+          "versions"
+        ]
+      },
+      "catalog-crd": {
+        "title": "Catalog CRD",
+        "description": "Data model of a Catalog Custom Resource Definition",
+        "type": "object",
+        "properties": {
+          "description": {
+            "description": "Brief description of the item",
+            "type": "string"
+          },
+          "itemId": {
+            "description": "RFC-1035 compliant identifier of the item. It forms a composite PK with tenantId and, if present, version.name",
+            "minLength": 1,
+            "pattern": "^[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?$",
+            "type": "string"
+          },
+          "name": {
+            "description": "Human-readable name of the item",
+            "minLength": 1,
+            "type": "string"
+          },
+          "resources": {
+            "type": "object",
+            "properties": {
+              "controlledFields": {
+                "description": "List detailing the fields that are managed by the Marketplace item",
+                "items": {
+                  "properties": {
+                    "jsonPath": {
+                      "description": "JSON path to access the marketplace item value",
+                      "type": "string"
+                    },
+                    "key": {
+                      "description": "Unique name of the field",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "key",
+                    "jsonPath"
+                  ],
+                  "type": "object"
+                },
+                "type": "array"
+              },
+              "isVersioningSupported": {
+                "description": "States if versioning is supported for the custom resource defined by the CRD",
+                "type": "boolean"
+              },
+              "name": {
+                "description": "Type of the described resource",
+                "type": "string"
+              },
+              "validation": {
+                "description": "How to validate the defined resource",
+                "oneOf": [
+                  {
+                    "description": "Validation through JSON schema",
+                    "properties": {
+                      "jsonSchema": {
+                        "additionalProperties": true,
+                        "type": "object"
+                      }
+                    },
+                    "required": [
+                      "jsonSchema"
+                    ],
+                    "type": "object"
+                  },
+                  {
+                    "description": "Validation through webhook",
+                    "properties": {
+                      "validationWebhook": {
+                        "properties": {
+                          "urls": {
+                            "properties": {
+                              "schema": {
+                                "description": "URL to the schema",
+                                "pattern": "^https?:\\/\\/([^:\\/\\s]+)((:[0-9]{1,5})?(\\/.*)?)([^\\/:])\\/?$",
+                                "type": "string"
+                              },
+                              "validation": {
+                                "description": "URL to the validation webhook",
+                                "pattern": "^https?:\\/\\/([^:\\/\\s]+)((:[0-9]{1,5})?(\\/.*)?)([^\\/:])\\/?$",
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "validation"
+                            ],
+                            "type": "object"
+                          }
+                        },
+                        "required": [
+                          "urls"
+                        ],
+                        "type": "object"
+                      }
+                    },
+                    "required": [
+                      "validationWebhook"
+                    ],
+                    "type": "object"
+                  }
+                ]
+              }
+            },
+            "additionalProperties": false,
+            "required": [
+              "name"
+            ]
+          },
+          "tenantId": {
+            "description": "Identifier of the tenant to which the item belongs. It forms a composite PK with itemId and, if present, version.name",
+            "type": "string"
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "name",
+          "itemId",
+          "tenantId",
+          "resources"
+        ]
+      },
+      "legacy-catalog-category": {
+        "additionalProperties": false,
+        "description": "Data model of a Catalog category",
+        "properties": {
+          "categoryId": {
+            "type": "string"
+          },
+          "label": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "categoryId",
+          "label"
+        ],
+        "title": "Legacy catalog category",
+        "type": "object"
+      },
+      "legacy-catalog-item-manifest": {
+        "additionalProperties": false,
+        "description": "Data model of a Catalog item to apply",
+        "properties": {
+          "categoryId": {
+            "description": "Identifier of the item's category",
+            "type": "string"
+          },
+          "comingSoon": {
+            "description": "Flag that will prevent the use of the item",
+            "nullable": true,
+            "type": "boolean"
+          },
+          "description": {
+            "description": "Brief description of the item",
+            "type": "string"
+          },
+          "documentation": {
+            "description": "Documentation of the item",
+            "nullable": true,
+            "properties": {
+              "type": {
+                "enum": [
+                  "externalLink",
+                  "markdown"
+                ],
+                "type": "string"
+              },
+              "url": {
+                "format": "uri-reference",
+                "type": "string"
+              }
+            },
+            "required": [
+              "type",
+              "url"
+            ],
+            "type": "object"
+          },
+          "imageUrl": {
+            "description": "Url of the image associated with the item",
+            "format": "uri-reference",
+            "type": "string"
+          },
+          "isVersioningSupported": {
+            "description": "States if versioning is supported for the custom resource defined by the CRD. Applicable only for type \"custom-resource-definition\"",
+            "type": "boolean"
+          },
+          "itemId": {
+            "description": "RFC-1035 compliant identifier of the item. It forms a composite PK with tenantId and, if present, version.name",
+            "minLength": 1,
+            "pattern": "^[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?$",
+            "type": "string"
+          },
+          "name": {
+            "description": "Human-readable name of the item",
+            "minLength": 1,
+            "type": "string"
+          },
+          "providerId": {
+            "description": "Identifier of the provider used to retrieve markdown documentation content and external resources, if supported by the item type",
+            "type": "string"
+          },
+          "publishOnMiaDocumentation": {
+            "description": "Flag stating if the resource documentation should be published on Mia-Platform public documentation",
+            "nullable": true,
+            "type": "boolean"
+          },
+          "releaseStage": {
+            "description": "Release stage of the item",
+            "enum": [
+              "beta",
+              "deprecated",
+              "",
+              "preview",
+              "stable"
+            ],
+            "type": "string"
+          },
+          "repositoryUrl": {
+            "description": "URL of the repository containing the source code of the resource created by the item",
+            "format": "uri-reference",
+            "nullable": true,
+            "type": "string"
+          },
+          "resources": {
+            "additionalProperties": true,
+            "description": "Representation of the resource that will be created starting from this item. It could be validated through the matching CRD",
+            "type": "object"
+          },
+          "supportedBy": {
+            "description": "Identifier of the company that has produced the item",
+            "type": "string"
+          },
+          "supportedByImageUrl": {
+            "description": "Url of the image associated with the company that has produced the item",
+            "format": "uri-reference",
+            "type": "string"
+          },
+          "tenantId": {
+            "description": "Identifier of the tenant to which the item belongs. It forms a composite PK with itemId and, if present, version.name",
+            "type": "string"
+          },
+          "type": {
+            "description": "Type of the item. It must match a CRD resources.name property",
+            "type": "string"
+          },
+          "version": {
+            "description": "Version of the item following semver",
+            "properties": {
+              "name": {
+                "description": "Semantic version",
+                "pattern": "^(0|[1-9]\\d*)\\.(0|[1-9]\\d*)\\.(0|[1-9]\\d*)(?:-((?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\\.(?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\\+([0-9a-zA-Z-]+(?:\\.[0-9a-zA-Z-]+)*))?$",
+                "type": "string"
+              },
+              "releaseNote": {
+                "description": "Markdown release note",
+                "type": "string"
+              },
+              "security": {
+                "description": "Flag stating if the version addresses any vulnerability",
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "name",
+              "releaseNote"
+            ],
+            "type": "object"
+          },
+          "visibility": {
+            "description": "Visibility of the item",
+            "properties": {
+              "allTenants": {
+                "default": false,
+                "description": "If true, the item will be accessible to all companies",
+                "type": "boolean"
+              },
+              "public": {
+                "default": false,
+                "description": "If true, the item will be accessible from any user that access the Console, even if not authenticated",
+                "type": "boolean"
+              }
+            },
+            "type": "object"
+          }
+        },
+        "required": [
+          "name",
+          "itemId",
+          "tenantId",
+          "type",
+          "resources"
+        ],
+        "title": "Legacy catalog item manifest",
+        "type": "object"
+      },
+      "legacy-catalog-item": {
+        "additionalProperties": false,
+        "description": "Data model of a Catalog item",
+        "properties": {
+          "_id": {
+            "description": "Database identifier of the item",
+            "type": "string"
+          },
+          "category": {
+            "additionalProperties": false,
+            "description": "Identifier of the item's category",
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "label": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "id",
+              "label"
+            ],
+            "type": "object"
+          },
+          "comingSoon": {
+            "description": "Flag that will prevent the use of the item",
+            "nullable": true,
+            "type": "boolean"
+          },
+          "componentsIds": {
+            "description": "List of source component ids of the services in the item's resources",
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "description": {
+            "description": "Brief description of the item",
+            "type": "string"
+          },
+          "documentation": {
+            "description": "Documentation of the item",
+            "nullable": true,
+            "properties": {
+              "type": {
+                "enum": [
+                  "externalLink",
+                  "markdown"
+                ],
+                "type": "string"
+              },
+              "url": {
+                "format": "uri-reference",
+                "type": "string"
+              }
+            },
+            "required": [
+              "type",
+              "url"
+            ],
+            "type": "object"
+          },
+          "imageUrl": {
+            "description": "Url of the image associated with the item",
+            "format": "uri-reference",
+            "type": "string"
+          },
+          "isLatest": {
+            "description": "Flag stating if the the current document is the latest version of the item",
+            "type": "boolean"
+          },
+          "isVersioningSupported": {
+            "description": "States if versioning is supported for the custom resource defined by the CRD. Applicable only for type \"custom-resource-definition\"",
+            "type": "boolean"
+          },
+          "itemId": {
+            "description": "RFC-1035 compliant identifier of the item. It forms a composite PK with tenantId and, if present, version.name",
+            "minLength": 1,
+            "pattern": "^[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?$",
+            "type": "string"
+          },
+          "name": {
+            "description": "Human-readable name of the item",
+            "minLength": 1,
+            "type": "string"
+          },
+          "providerId": {
+            "description": "Identifier of the provider used to retrieve markdown documentation content and external resources, if supported by the item type",
+            "type": "string"
+          },
+          "publishOnMiaDocumentation": {
+            "description": "Flag stating if the resource documentation should be published on Mia-Platform public documentation",
+            "nullable": true,
+            "type": "boolean"
+          },
+          "releaseDate": {
+            "description": "Creation date of this item's release",
+            "format": "date-time",
+            "type": "string"
+          },
+          "releaseStage": {
+            "description": "Release stage of the item",
+            "enum": [
+              "beta",
+              "deprecated",
+              "",
+              "preview",
+              "stable"
+            ],
+            "type": "string"
+          },
+          "repositoryUrl": {
+            "description": "URL of the repository containing the source code of the resource created by the item",
+            "format": "uri-reference",
+            "nullable": true,
+            "type": "string"
+          },
+          "resources": {
+            "additionalProperties": true,
+            "description": "Representation of the resource that will be created starting from this item. It could be validated through the matching CRD",
+            "type": "object"
+          },
+          "supportedBy": {
+            "description": "Identifier of the company that has produced the item",
+            "type": "string"
+          },
+          "supportedByImageUrl": {
+            "description": "Url of the image associated with the company that has produced the item",
+            "format": "uri-reference",
+            "type": "string"
+          },
+          "tenantId": {
+            "description": "Identifier of the tenant to which the item belongs. It forms a composite PK with itemId and, if present, version.name",
+            "type": "string"
+          },
+          "type": {
+            "description": "Type of the item. It must match a CRD resources.name property",
+            "type": "string"
+          },
+          "version": {
+            "description": "Version of the item following semver",
+            "properties": {
+              "name": {
+                "description": "Semantic version",
+                "pattern": "^(0|[1-9]\\d*)\\.(0|[1-9]\\d*)\\.(0|[1-9]\\d*)(?:-((?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\\.(?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\\+([0-9a-zA-Z-]+(?:\\.[0-9a-zA-Z-]+)*))?$",
+                "type": "string"
+              },
+              "releaseNote": {
+                "description": "Markdown release note",
+                "type": "string"
+              },
+              "security": {
+                "description": "Flag stating if the version addresses any vulnerability",
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "name",
+              "releaseNote"
+            ],
+            "type": "object"
+          },
+          "visibility": {
+            "description": "Visibility of the item",
+            "properties": {
+              "allTenants": {
+                "default": false,
+                "description": "If true, the item will be accessible to all companies",
+                "type": "boolean"
+              },
+              "public": {
+                "default": false,
+                "description": "If true, the item will be accessible from any user that access the Console, even if not authenticated",
+                "type": "boolean"
+              }
+            },
+            "type": "object"
+          }
+        },
+        "required": [
+          "_id",
+          "name",
+          "itemId",
+          "tenantId",
+          "type"
+        ],
+        "title": "Legacy catalog item",
+        "type": "object"
+      },
+      "legacy-catalog-release": {
+        "additionalProperties": false,
+        "description": "Data model of a Catalog item release",
+        "properties": {
+          "comingSoon": {
+            "description": "Flag that will prevent the use of the item",
+            "nullable": true,
+            "type": "boolean"
+          },
+          "description": {
+            "description": "Brief description of the item",
+            "type": "string"
+          },
+          "isLatest": {
+            "description": "Flag stating if the the current document is the latest version of the item",
+            "type": "boolean"
+          },
+          "name": {
+            "description": "Human-readable name of the item",
+            "minLength": 1,
+            "type": "string"
+          },
+          "reference": {
+            "description": "Mongo objectId of the item",
+            "type": "string"
+          },
+          "releaseDate": {
+            "description": "Creation date of this item's release",
+            "format": "date-time",
+            "type": "string"
+          },
+          "releaseNote": {
+            "description": "Markdown release note",
+            "type": "string"
+          },
+          "releaseStage": {
+            "description": "Release stage of the item",
+            "enum": [
+              "beta",
+              "deprecated",
+              "",
+              "preview",
+              "stable"
+            ],
+            "type": "string"
+          },
+          "security": {
+            "description": "Flag stating if the version addresses any vulnerability",
+            "type": "boolean"
+          },
+          "version": {
+            "oneOf": [
+              {
+                "description": "Semantic version",
+                "pattern": "^(0|[1-9]\\d*)\\.(0|[1-9]\\d*)\\.(0|[1-9]\\d*)(?:-((?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\\.(?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\\+([0-9a-zA-Z-]+(?:\\.[0-9a-zA-Z-]+)*))?$",
+                "type": "string"
+              },
+              {
+                "description": "Fallback version",
+                "enum": [
+                  "NA"
+                ]
+              }
+            ]
+          },
+          "visibility": {
+            "description": "Visibility of the item",
+            "properties": {
+              "allTenants": {
+                "default": false,
+                "description": "If true, the item will be accessible to all companies",
+                "type": "boolean"
+              },
+              "public": {
+                "default": false,
+                "description": "If true, the item will be accessible from any user that access the Console, even if not authenticated",
+                "type": "boolean"
+              }
+            },
+            "type": "object"
+          }
+        },
+        "required": [
+          "name",
+          "description",
+          "version",
+          "reference",
+          "releaseNote",
+          "releaseDate"
+        ],
+        "title": "Legacy catalog release",
+        "type": "object"
+      },
+      "legacy-catalog-versioned-item": {
+        "additionalProperties": false,
+        "description": "Data model of a Catalog item with required version",
+        "properties": {
+          "_id": {
+            "description": "Database identifier of the item",
+            "type": "string"
+          },
+          "category": {
+            "additionalProperties": false,
+            "description": "Identifier of the item's category",
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "label": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "id",
+              "label"
+            ],
+            "type": "object"
+          },
+          "comingSoon": {
+            "description": "Flag that will prevent the use of the item",
+            "nullable": true,
+            "type": "boolean"
+          },
+          "componentsIds": {
+            "description": "List of source component ids of the services in the item's resources",
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "description": {
+            "description": "Brief description of the item",
+            "type": "string"
+          },
+          "documentation": {
+            "description": "Documentation of the item",
+            "nullable": true,
+            "properties": {
+              "type": {
+                "enum": [
+                  "externalLink",
+                  "markdown"
+                ],
+                "type": "string"
+              },
+              "url": {
+                "format": "uri-reference",
+                "type": "string"
+              }
+            },
+            "required": [
+              "type",
+              "url"
+            ],
+            "type": "object"
+          },
+          "imageUrl": {
+            "description": "Url of the image associated with the item",
+            "format": "uri-reference",
+            "type": "string"
+          },
+          "isLatest": {
+            "description": "Flag stating if the the current document is the latest version of the item",
+            "type": "boolean"
+          },
+          "isVersioningSupported": {
+            "description": "States if versioning is supported for the custom resource defined by the CRD. Applicable only for type \"custom-resource-definition\"",
+            "type": "boolean"
+          },
+          "itemId": {
+            "description": "RFC-1035 compliant identifier of the item. It forms a composite PK with tenantId and, if present, version.name",
+            "minLength": 1,
+            "pattern": "^[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?$",
+            "type": "string"
+          },
+          "name": {
+            "description": "Human-readable name of the item",
+            "minLength": 1,
+            "type": "string"
+          },
+          "providerId": {
+            "description": "Identifier of the provider used to retrieve markdown documentation content and external resources, if supported by the item type",
+            "type": "string"
+          },
+          "publishOnMiaDocumentation": {
+            "description": "Flag stating if the resource documentation should be published on Mia-Platform public documentation",
+            "nullable": true,
+            "type": "boolean"
+          },
+          "releaseDate": {
+            "description": "Creation date of this item's release",
+            "format": "date-time",
+            "type": "string"
+          },
+          "releaseStage": {
+            "description": "Release stage of the item",
+            "enum": [
+              "beta",
+              "deprecated",
+              "",
+              "preview",
+              "stable"
+            ],
+            "type": "string"
+          },
+          "repositoryUrl": {
+            "description": "URL of the repository containing the source code of the resource created by the item",
+            "format": "uri-reference",
+            "nullable": true,
+            "type": "string"
+          },
+          "resources": {
+            "additionalProperties": true,
+            "description": "Representation of the resource that will be created starting from this item. It could be validated through the matching CRD",
+            "type": "object"
+          },
+          "supportedBy": {
+            "description": "Identifier of the company that has produced the item",
+            "type": "string"
+          },
+          "supportedByImageUrl": {
+            "description": "Url of the image associated with the company that has produced the item",
+            "format": "uri-reference",
+            "type": "string"
+          },
+          "tenantId": {
+            "description": "Identifier of the tenant to which the item belongs. It forms a composite PK with itemId and, if present, version.name",
+            "type": "string"
+          },
+          "type": {
+            "description": "Type of the item. It must match a CRD resources.name property",
+            "type": "string"
+          },
+          "version": {
+            "description": "Version of the item",
+            "properties": {
+              "name": {
+                "oneOf": [
+                  {
+                    "description": "Semantic version",
+                    "pattern": "^(0|[1-9]\\d*)\\.(0|[1-9]\\d*)\\.(0|[1-9]\\d*)(?:-((?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\\.(?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\\+([0-9a-zA-Z-]+(?:\\.[0-9a-zA-Z-]+)*))?$",
+                    "type": "string"
+                  },
+                  {
+                    "description": "Fallback version",
+                    "enum": [
+                      "NA"
+                    ]
+                  }
+                ]
+              },
+              "releaseNote": {
+                "description": "Markdown release note",
+                "type": "string"
+              },
+              "security": {
+                "description": "Flag stating if the version addresses any vulnerability",
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "name",
+              "releaseNote"
+            ],
+            "type": "object"
+          },
+          "visibility": {
+            "description": "Visibility of the item",
+            "properties": {
+              "allTenants": {
+                "default": false,
+                "description": "If true, the item will be accessible to all companies",
+                "type": "boolean"
+              },
+              "public": {
+                "default": false,
+                "description": "If true, the item will be accessible from any user that access the Console, even if not authenticated",
+                "type": "boolean"
+              }
+            },
+            "type": "object"
+          }
+        },
+        "required": [
+          "_id",
+          "name",
+          "itemId",
+          "tenantId",
+          "type",
+          "version"
+        ],
+        "title": "Legacy catalog versioned item",
+        "type": "object"
+      },
+      "legacy-catalog-item-metadata": {
+        "additionalProperties": false,
+        "description": "Data model of a Catalog item metadata",
+        "properties": {
+          "itemId": {
+            "description": "RFC-1035 compliant identifier of the item. It forms a composite PK with tenantId and, if present, version.name",
+            "minLength": 1,
+            "pattern": "^[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?$",
+            "type": "string"
+          },
+          "tenantId": {
+            "description": "Identifier of the tenant to which the item belongs. It forms a composite PK with itemId and, if present, version.name",
+            "type": "string"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "template",
+              "plugin",
+              "example",
+              "proxy",
+              "sidecar"
+            ]
+          },
+          "versions": {
+            "items": {
+              "additionalProperties": false,
+              "properties": {
+                "componentId": {
+                  "type": "string"
+                },
+                "dockerImage": {
+                  "pattern": "^(?:[a-z0-9.\\-\\/:]+\\/)?([\\w.}{\\-\\/]+)(:[\\w.}{\\-]+)?$",
+                  "type": "string"
+                },
+                "id": {
+                  "type": "string"
+                },
+                "name": {
+                  "description": "Human-readable name of the item",
+                  "minLength": 1,
+                  "type": "string"
+                },
+                "url": {
+                  "type": "string"
+                },
+                "version": {
+                  "oneOf": [
+                    {
+                      "description": "Semantic version",
+                      "pattern": "^(0|[1-9]\\d*)\\.(0|[1-9]\\d*)\\.(0|[1-9]\\d*)(?:-((?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\\.(?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\\+([0-9a-zA-Z-]+(?:\\.[0-9a-zA-Z-]+)*))?$",
+                      "type": "string"
+                    },
+                    {
+                      "description": "Fallback version",
+                      "enum": [
+                        "NA"
+                      ]
+                    }
+                  ]
+                }
+              },
+              "required": [
+                "id",
+                "version"
+              ],
+              "type": "object"
+            },
+            "type": "array"
+          }
+        },
+        "required": [
+          "itemId",
+          "tenantId",
+          "type",
+          "versions"
+        ],
+        "title": "Legacy catalog item metadata",
+        "type": "object"
+      }
+    }
+  },
+  "paths": {
+    "/api/marketplace": {
+      "get": {
+        "operationId": "marketplaceGetItemsList",
+        "summary": "Returns the list of available Marketplace items",
+        "tags": [
+          "marketplace"
+        ],
+        "description": "Returns the list of available Marketplace items",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "availableTo",
+            "required": false,
+            "description": "A comma-separated string of possible item visibilities: \"public\", \"all-tenants\", \"private\". It is mutually exclusive with \"includeTenantId\""
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "category",
+            "required": false,
+            "description": "A comma-separated string of possible item categories"
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "includeTenantId",
+            "required": false,
+            "description": "The Id of the Tenant for which to return both the public and private marketplace resources. It is mutually exclusive with \"availableTo\""
+          },
+          {
+            "schema": {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "in": "query",
+            "name": "itemUrns",
+            "required": false,
+            "description": "List of item URNs used to fetch only specific items, where the URN pattern is `urn:<<tenantId>>:mktp:<<itemId>>`, or `urn:<<tenantId>>:mktp:<<itemId>>?=version=<<version>>`. Each list element should be passed on a different query param (ie. itemUrns=urn1&itemUrns=urn2)"
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "lifecycleStatus",
+            "required": false,
+            "description": "A comma-separated string of possible item release stages: \"coming-soon\", \"draft\", \"published\", \"maintenance\", \"deprecated\", \"archived\""
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "name",
+            "required": false,
+            "description": "Regex for filtering items by name"
+          },
+          {
+            "schema": {
+              "default": 1,
+              "minimum": 1,
+              "type": "integer"
+            },
+            "in": "query",
+            "name": "page",
+            "required": false,
+            "description": "Page number to be retrieved"
+          },
+          {
+            "schema": {
+              "maximum": 200,
+              "minimum": 1,
+              "type": "integer",
+              "default": 50
+            },
+            "in": "query",
+            "name": "perPage",
+            "required": false,
+            "description": "Number of items per page"
+          },
+          {
+            "schema": {
+              "maximum": 200,
+              "minimum": 1,
+              "type": "integer",
+              "default": 50
+            },
+            "in": "query",
+            "name": "per_page",
+            "required": false,
+            "description": "Number of items per page. **Deprecated in favor of `perPage`**"
+          },
+          {
+            "schema": {
+              "type": "boolean"
+            },
+            "in": "query",
+            "name": "publishOnMiaDocumentation",
+            "required": false
+          },
+          {
+            "schema": {
+              "type": "boolean"
+            },
+            "in": "query",
+            "name": "resolveResourcesData",
+            "required": false,
+            "description": "If true the returned items contain also the resources data as well as metadata"
+          },
+          {
+            "schema": {
+              "enum": [
+                "name",
+                "-name",
+                "type",
+                "-type"
+              ],
+              "type": "string"
+            },
+            "in": "query",
+            "name": "sort",
+            "required": false,
+            "description": "The field to which sort results. Default sort is ascending, for descending order add a \"-\" before the field (e.g. -name)."
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "tenantId",
+            "required": false,
+            "description": "The Id of the Tenant for which to filter the marketplace resources"
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "types",
+            "required": false,
+            "description": "A comma separated string of marketplace types (e.g.: plugin,template,example,application)"
+          }
+        ],
+        "x-rond": {
+          "options": {
+            "ignoreTrailingSlash": true
+          },
+          "requestFlow": {
+            "policyName": "allow_all"
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Default Response",
+            "headers": {
+              "x-total-items": {
+                "schema": {
+                  "type": "number"
+                },
+                "description": "Total number of items available"
+              },
+              "x-total-pages": {
+                "schema": {
+                  "type": "number"
+                },
+                "description": "Total number of pages available"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/catalog-item"
+                  },
+                  "type": "array"
+                }
+              }
+            }
+          },
+          "4XX": {
+            "description": "Client error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/http-error",
+                  "description": "Client error"
+                }
+              }
+            }
+          },
+          "5XX": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/http-error",
+                  "description": "Server error"
+                }
+              }
+            }
+          }
+        }
+      },
+      "head": {
+        "operationId": "marketplaceGetItemsList-head",
+        "summary": "Returns the list of available Marketplace items",
+        "tags": [
+          "marketplace"
+        ],
+        "description": "Returns the list of available Marketplace items",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "availableTo",
+            "required": false,
+            "description": "A comma-separated string of possible item visibilities: \"public\", \"all-tenants\", \"private\". It is mutually exclusive with \"includeTenantId\""
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "category",
+            "required": false,
+            "description": "A comma-separated string of possible item categories"
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "includeTenantId",
+            "required": false,
+            "description": "The Id of the Tenant for which to return both the public and private marketplace resources. It is mutually exclusive with \"availableTo\""
+          },
+          {
+            "schema": {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "in": "query",
+            "name": "itemUrns",
+            "required": false,
+            "description": "List of item URNs used to fetch only specific items, where the URN pattern is `urn:<<tenantId>>:mktp:<<itemId>>`, or `urn:<<tenantId>>:mktp:<<itemId>>?=version=<<version>>`. Each list element should be passed on a different query param (ie. itemUrns=urn1&itemUrns=urn2)"
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "lifecycleStatus",
+            "required": false,
+            "description": "A comma-separated string of possible item release stages: \"coming-soon\", \"draft\", \"published\", \"maintenance\", \"deprecated\", \"archived\""
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "name",
+            "required": false,
+            "description": "Regex for filtering items by name"
+          },
+          {
+            "schema": {
+              "default": 1,
+              "minimum": 1,
+              "type": "integer"
+            },
+            "in": "query",
+            "name": "page",
+            "required": false,
+            "description": "Page number to be retrieved"
+          },
+          {
+            "schema": {
+              "maximum": 200,
+              "minimum": 1,
+              "type": "integer",
+              "default": 50
+            },
+            "in": "query",
+            "name": "perPage",
+            "required": false,
+            "description": "Number of items per page"
+          },
+          {
+            "schema": {
+              "maximum": 200,
+              "minimum": 1,
+              "type": "integer",
+              "default": 50
+            },
+            "in": "query",
+            "name": "per_page",
+            "required": false,
+            "description": "Number of items per page. **Deprecated in favor of `perPage`**"
+          },
+          {
+            "schema": {
+              "type": "boolean"
+            },
+            "in": "query",
+            "name": "publishOnMiaDocumentation",
+            "required": false
+          },
+          {
+            "schema": {
+              "type": "boolean"
+            },
+            "in": "query",
+            "name": "resolveResourcesData",
+            "required": false,
+            "description": "If true the returned items contain also the resources data as well as metadata"
+          },
+          {
+            "schema": {
+              "enum": [
+                "name",
+                "-name",
+                "type",
+                "-type"
+              ],
+              "type": "string"
+            },
+            "in": "query",
+            "name": "sort",
+            "required": false,
+            "description": "The field to which sort results. Default sort is ascending, for descending order add a \"-\" before the field (e.g. -name)."
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "tenantId",
+            "required": false,
+            "description": "The Id of the Tenant for which to filter the marketplace resources"
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "types",
+            "required": false,
+            "description": "A comma separated string of marketplace types (e.g.: plugin,template,example,application)"
+          }
+        ],
+        "x-rond": {
+          "options": {
+            "ignoreTrailingSlash": true
+          },
+          "requestFlow": {
+            "policyName": "allow_all"
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Default Response",
+            "headers": {
+              "x-total-items": {
+                "schema": {
+                  "type": "number"
+                }
+              },
+              "x-total-pages": {
+                "schema": {
+                  "type": "number"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/catalog-item"
+                  },
+                  "type": "array"
+                }
+              }
+            }
+          },
+          "4XX": {
+            "description": "Client error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/http-error",
+                  "description": "Client error"
+                }
+              }
+            }
+          },
+          "5XX": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/http-error",
+                  "description": "Server error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/marketplace/custom-resource-definitions": {
+      "get": {
+        "operationId": "marketplaceGetCustomResourceDefinitionsList",
+        "summary": "Returns the list of available Marketplace Custom Resource Definitions",
+        "tags": [
+          "marketplace"
+        ],
+        "description": "Returns the list of available Marketplace Custom Resource Definitions",
+        "parameters": [
+          {
+            "schema": {
+              "default": 1,
+              "minimum": 1,
+              "type": "integer"
+            },
+            "in": "query",
+            "name": "page",
+            "required": false,
+            "description": "Page number to be retrieved"
+          },
+          {
+            "schema": {
+              "maximum": 200,
+              "minimum": 1,
+              "type": "integer",
+              "default": 50
+            },
+            "in": "query",
+            "name": "perPage",
+            "required": false,
+            "description": "Number of items per page"
+          },
+          {
+            "schema": {
+              "maximum": 200,
+              "minimum": 1,
+              "type": "integer",
+              "default": 50
+            },
+            "in": "query",
+            "name": "per_page",
+            "required": false,
+            "description": "Number of items per page. **Deprecated in favor of `perPage`**"
+          }
+        ],
+        "x-rond": {
+          "options": {
+            "ignoreTrailingSlash": true
+          },
+          "requestFlow": {
+            "policyName": "allow_all"
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Default Response",
+            "headers": {
+              "x-total-items": {
+                "schema": {
+                  "type": "number"
+                }
+              },
+              "x-total-pages": {
+                "schema": {
+                  "type": "number"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/catalog-crd"
+                  },
+                  "type": "array"
+                }
+              }
+            }
+          },
+          "4XX": {
+            "description": "Client error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/http-error",
+                  "description": "Client error"
+                }
+              }
+            }
+          },
+          "5XX": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/http-error",
+                  "description": "Server error"
+                }
+              }
+            }
+          }
+        }
+      },
+      "head": {
+        "operationId": "marketplaceGetCustomResourceDefinitionsList-head",
+        "summary": "Returns the list of available Marketplace Custom Resource Definitions",
+        "tags": [
+          "marketplace"
+        ],
+        "description": "Returns the list of available Marketplace Custom Resource Definitions",
+        "parameters": [
+          {
+            "schema": {
+              "default": 1,
+              "minimum": 1,
+              "type": "integer"
+            },
+            "in": "query",
+            "name": "page",
+            "required": false,
+            "description": "Page number to be retrieved"
+          },
+          {
+            "schema": {
+              "maximum": 200,
+              "minimum": 1,
+              "type": "integer",
+              "default": 50
+            },
+            "in": "query",
+            "name": "perPage",
+            "required": false,
+            "description": "Number of items per page"
+          },
+          {
+            "schema": {
+              "maximum": 200,
+              "minimum": 1,
+              "type": "integer",
+              "default": 50
+            },
+            "in": "query",
+            "name": "per_page",
+            "required": false,
+            "description": "Number of items per page. **Deprecated in favor of `perPage`**"
+          }
+        ],
+        "x-rond": {
+          "options": {
+            "ignoreTrailingSlash": true
+          },
+          "requestFlow": {
+            "policyName": "allow_all"
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Default Response",
+            "headers": {
+              "x-total-items": {
+                "schema": {
+                  "type": "number"
+                }
+              },
+              "x-total-pages": {
+                "schema": {
+                  "type": "number"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/catalog-crd"
+                  },
+                  "type": "array"
+                }
+              }
+            }
+          },
+          "4XX": {
+            "description": "Client error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/http-error",
+                  "description": "Client error"
+                }
+              }
+            }
+          },
+          "5XX": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/http-error",
+                  "description": "Server error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/tenants/{tenantId}/marketplace/items": {
+      "post": {
+        "operationId": "marketplaceApplyItems",
+        "summary": "Upsert multiple Marketplace items",
+        "tags": [
+          "marketplace"
+        ],
+        "description": "Upsert multiple Marketplace items",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "resources": {
+                    "items": {
+                      "$ref": "#/components/schemas/catalog-item-manifest"
+                    },
+                    "type": "array"
+                  }
+                },
+                "required": [
+                  "resources"
+                ],
+                "type": "object"
+              }
+            }
+          },
+          "required": true
+        },
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "path",
+            "name": "tenantId",
+            "required": true
+          }
+        ],
+        "x-rond": {
+          "options": {
+            "ignoreTrailingSlash": true
+          },
+          "requestFlow": {
+            "policyName": "allow_apply_marketplace_item",
+            "preventBodyLoad": true
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "done": {
+                      "type": "boolean"
+                    },
+                    "items": {
+                      "items": {
+                        "additionalProperties": false,
+                        "properties": {
+                          "_id": {
+                            "type": "string"
+                          },
+                          "done": {
+                            "type": "boolean"
+                          },
+                          "errors": {
+                            "items": {
+                              "additionalProperties": true,
+                              "properties": {
+                                "ajvError": {
+                                  "additionalProperties": false,
+                                  "properties": {
+                                    "instancePath": {
+                                      "type": "string"
+                                    },
+                                    "keyword": {
+                                      "type": "string"
+                                    },
+                                    "message": {
+                                      "type": "string"
+                                    },
+                                    "params": {
+                                      "additionalProperties": true,
+                                      "type": "object"
+                                    },
+                                    "schemaPath": {
+                                      "type": "string"
+                                    }
+                                  },
+                                  "type": "object"
+                                },
+                                "message": {
+                                  "type": "string"
+                                }
+                              },
+                              "required": [
+                                "message"
+                              ],
+                              "type": "object"
+                            },
+                            "type": "array"
+                          },
+                          "inserted": {
+                            "type": "boolean"
+                          },
+                          "isLatest": {
+                            "type": "boolean"
+                          },
+                          "isUsingVersion": {
+                            "type": "boolean"
+                          },
+                          "itemId": {
+                            "type": "string"
+                          },
+                          "name": {
+                            "type": "string"
+                          },
+                          "updated": {
+                            "type": "boolean"
+                          },
+                          "version": {
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "itemId",
+                          "name",
+                          "done",
+                          "inserted",
+                          "updated",
+                          "errors"
+                        ],
+                        "type": "object"
+                      },
+                      "type": "array"
+                    }
+                  },
+                  "required": [
+                    "done",
+                    "items"
+                  ],
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "4XX": {
+            "description": "Client error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/http-error",
+                  "description": "Client error"
+                }
+              }
+            }
+          },
+          "5XX": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/http-error",
+                  "description": "Server error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/tenants/{tenantId}/marketplace/items/{itemId}/versions": {
+      "get": {
+        "operationId": "marketplaceGetItemVersions",
+        "summary": "Returns the versions of a Marketplace item",
+        "tags": [
+          "marketplace"
+        ],
+        "description": "Returns the versions of a Marketplace item",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "path",
+            "name": "itemId",
+            "required": true
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "path",
+            "name": "tenantId",
+            "required": true
+          }
+        ],
+        "x-rond": {
+          "options": {
+            "ignoreTrailingSlash": true
+          },
+          "requestFlow": {
+            "policyName": "allow_all"
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/catalog-release"
+                  },
+                  "type": "array"
+                }
+              }
+            }
+          },
+          "4XX": {
+            "description": "Client error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/http-error",
+                  "description": "Client error"
+                }
+              }
+            }
+          },
+          "5XX": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/http-error",
+                  "description": "Server error"
+                }
+              }
+            }
+          }
+        }
+      },
+      "head": {
+        "operationId": "marketplaceGetItemVersions-head",
+        "summary": "Returns the versions of a Marketplace item",
+        "tags": [
+          "marketplace"
+        ],
+        "description": "Returns the versions of a Marketplace item",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "path",
+            "name": "itemId",
+            "required": true
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "path",
+            "name": "tenantId",
+            "required": true
+          }
+        ],
+        "x-rond": {
+          "options": {
+            "ignoreTrailingSlash": true
+          },
+          "requestFlow": {
+            "policyName": "allow_all"
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/catalog-release"
+                  },
+                  "type": "array"
+                }
+              }
+            }
+          },
+          "4XX": {
+            "description": "Client error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/http-error",
+                  "description": "Client error"
+                }
+              }
+            }
+          },
+          "5XX": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/http-error",
+                  "description": "Server error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/tenants/{tenantId}/marketplace/items/{itemId}/versions/{version}": {
+      "get": {
+        "operationId": "marketplaceGetItemVersion",
+        "summary": "Returns a specific version of a Marketplace item",
+        "tags": [
+          "marketplace"
+        ],
+        "description": "Returns a specific version of a Marketplace item",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "path",
+            "name": "itemId",
+            "required": true
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "path",
+            "name": "tenantId",
+            "required": true
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "path",
+            "name": "version",
+            "required": true
+          }
+        ],
+        "x-rond": {
+          "options": {
+            "ignoreTrailingSlash": true
+          },
+          "requestFlow": {
+            "policyName": "allow_all"
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/catalog-versioned-item"
+                }
+              },
+              "application/json; as=manifest": {
+                "schema": {
+                  "$ref": "#/components/schemas/catalog-item-manifest"
+                }
+              },
+              "application/yaml; as=manifest": {
+                "schema": {
+                  "$ref": "#/components/schemas/catalog-item-manifest"
+                }
+              }
+            }
+          },
+          "4XX": {
+            "description": "Client error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/http-error",
+                  "description": "Client error"
+                }
+              }
+            }
+          },
+          "5XX": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/http-error",
+                  "description": "Server error"
+                }
+              }
+            }
+          }
+        }
+      },
+      "head": {
+        "operationId": "marketplaceGetItemVersion-head",
+        "summary": "Returns a specific version of a Marketplace item",
+        "tags": [
+          "marketplace"
+        ],
+        "description": "Returns a specific version of a Marketplace item",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "path",
+            "name": "itemId",
+            "required": true
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "path",
+            "name": "tenantId",
+            "required": true
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "path",
+            "name": "version",
+            "required": true
+          }
+        ],
+        "x-rond": {
+          "options": {
+            "ignoreTrailingSlash": true
+          },
+          "requestFlow": {
+            "policyName": "allow_all"
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/catalog-versioned-item"
+                }
+              },
+              "application/json; as=manifest": {
+                "schema": {
+                  "$ref": "#/components/schemas/catalog-item-manifest"
+                }
+              },
+              "application/yaml; as=manifest": {
+                "schema": {
+                  "$ref": "#/components/schemas/catalog-item-manifest"
+                }
+              }
+            }
+          },
+          "4XX": {
+            "description": "Client error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/http-error",
+                  "description": "Client error"
+                }
+              }
+            }
+          },
+          "5XX": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/http-error",
+                  "description": "Server error"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "operationId": "marketplaceDeleteItemVersion",
+        "summary": "Deletes a specific version of a Marketplace item",
+        "tags": [
+          "marketplace"
+        ],
+        "description": "Deletes a specific version of a Marketplace item",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "path",
+            "name": "itemId",
+            "required": true
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "path",
+            "name": "tenantId",
+            "required": true
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "path",
+            "name": "version",
+            "required": true
+          }
+        ],
+        "x-rond": {
+          "options": {
+            "ignoreTrailingSlash": true
+          },
+          "requestFlow": {
+            "policyName": "allow_delete_marketplace_item",
+            "preventBodyLoad": true
+          }
+        },
+        "responses": {
+          "204": {
+            "description": "Default Response",
+            "headers": {
+              "X-Marketplace-Item-Latest-Version": {
+                "schema": {
+                  "type": "string"
+                },
+                "description": "URN of the new latest version"
+              }
+            }
+          },
+          "4XX": {
+            "description": "Client error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/http-error",
+                  "description": "Client error"
+                }
+              }
+            }
+          },
+          "5XX": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/http-error",
+                  "description": "Server error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/tenants/{tenantId}/marketplace/items/{itemId}/versions/{version}/metadata": {
+      "patch": {
+        "operationId": "marketplacePatchItemVersionMetadata",
+        "summary": "Patches the metadata of a specific version of a Marketplace item",
+        "tags": [
+          "marketplace"
+        ],
+        "description": "Patches the metadata of a specific version of a Marketplace item",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "additionalProperties": false,
+                "properties": {
+                  "$set": {
+                    "additionalProperties": false,
+                    "properties": {
+                      "categoryId": {
+                        "description": "Identifier of the item's category",
+                        "type": "string"
+                      },
+                      "description": {
+                        "description": "Brief description of the item",
+                        "type": "string"
+                      },
+                      "documentation": {
+                        "description": "Documentation of the item",
+                        "properties": {
+                          "type": {
+                            "enum": [
+                              "externalLink",
+                              "markdown"
+                            ],
+                            "type": "string"
+                          },
+                          "url": {
+                            "format": "uri-reference",
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "type",
+                          "url"
+                        ],
+                        "type": "object"
+                      },
+                      "imageUrl": {
+                        "description": "Url of the image associated with the item",
+                        "format": "uri-reference",
+                        "type": "string"
+                      },
+                      "lifecycleStatus": {
+                        "description": "Lifecycle status of the item",
+                        "enum": [
+                          "coming-soon",
+                          "draft",
+                          "published",
+                          "maintenance",
+                          "deprecated",
+                          "archived"
+                        ],
+                        "type": "string"
+                      },
+                      "name": {
+                        "description": "Human-readable name of the item",
+                        "minLength": 1,
+                        "type": "string"
+                      },
+                      "providerId": {
+                        "description": "Identifier of the provider used to retrieve markdown documentation content and external resources, if supported by the item type",
+                        "type": "string"
+                      },
+                      "publishOnMiaDocumentation": {
+                        "description": "Flag stating if the resource documentation should be published on Mia-Platform public documentation",
+                        "type": "boolean"
+                      },
+                      "releaseDate": {
+                        "description": "Creation date of this item's release",
+                        "format": "date-time",
+                        "type": "string"
+                      },
+                      "repositoryUrl": {
+                        "description": "URL of the repository containing the source code of the resource created by the item",
+                        "format": "uri-reference",
+                        "type": "string"
+                      },
+                      "supportedBy": {
+                        "description": "Identifier of the company that has produced the item",
+                        "type": "string"
+                      },
+                      "supportedByImageUrl": {
+                        "description": "Url of the image associated with the company that has produced the item",
+                        "format": "uri-reference",
+                        "type": "string"
+                      },
+                      "version": {
+                        "additionalProperties": false,
+                        "properties": {
+                          "releaseNote": {
+                            "description": "Markdown release note",
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "releaseNote"
+                        ],
+                        "type": "object"
+                      },
+                      "visibility": {
+                        "description": "Visibility of the item",
+                        "properties": {
+                          "allTenants": {
+                            "default": false,
+                            "description": "If true, the item will be accessible to all companies",
+                            "type": "boolean"
+                          },
+                          "public": {
+                            "default": false,
+                            "description": "If true, the item will be accessible from any user that access the Console, even if not authenticated",
+                            "type": "boolean"
+                          }
+                        },
+                        "type": "object"
+                      }
+                    },
+                    "type": "object"
+                  },
+                  "$unset": {
+                    "additionalProperties": false,
+                    "properties": {
+                      "categoryId": {
+                        "enum": [
+                          true
+                        ]
+                      },
+                      "description": {
+                        "enum": [
+                          true
+                        ]
+                      },
+                      "documentation": {
+                        "enum": [
+                          true
+                        ]
+                      },
+                      "imageUrl": {
+                        "enum": [
+                          true
+                        ]
+                      },
+                      "providerId": {
+                        "enum": [
+                          true
+                        ]
+                      },
+                      "publishOnMiaDocumentation": {
+                        "enum": [
+                          true
+                        ]
+                      },
+                      "repositoryUrl": {
+                        "enum": [
+                          true
+                        ]
+                      },
+                      "supportedBy": {
+                        "enum": [
+                          true
+                        ]
+                      },
+                      "supportedByImageUrl": {
+                        "enum": [
+                          true
+                        ]
+                      },
+                      "visibility": {
+                        "enum": [
+                          true
+                        ]
+                      }
+                    },
+                    "type": "object"
+                  }
+                },
+                "type": "object"
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "path",
+            "name": "itemId",
+            "required": true
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "path",
+            "name": "tenantId",
+            "required": true
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "path",
+            "name": "version",
+            "required": true
+          }
+        ],
+        "x-rond": {
+          "options": {
+            "ignoreTrailingSlash": true
+          },
+          "requestFlow": {
+            "policyName": "allow_apply_marketplace_item",
+            "preventBodyLoad": true
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Data model of a Catalog item with required version",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/catalog-versioned-item"
+                }
+              }
+            }
+          },
+          "4XX": {
+            "description": "Client error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/http-error",
+                  "description": "Client error"
+                }
+              }
+            }
+          },
+          "5XX": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/http-error",
+                  "description": "Server error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/marketplace/categories": {
+      "get": {
+        "operationId": "marketplaceGetCategories",
+        "summary": "Returns the list of available Marketplace categories",
+        "tags": [
+          "marketplace"
+        ],
+        "description": "Returns the list of available Marketplace categories",
+        "x-rond": {
+          "options": {
+            "ignoreTrailingSlash": true
+          },
+          "requestFlow": {
+            "policyName": "allow_all"
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/catalog-category"
+                  },
+                  "type": "array"
+                }
+              }
+            }
+          },
+          "4XX": {
+            "description": "Client error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/http-error",
+                  "description": "Client error"
+                }
+              }
+            }
+          },
+          "5XX": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/http-error",
+                  "description": "Server error"
+                }
+              }
+            }
+          }
+        }
+      },
+      "head": {
+        "operationId": "marketplaceGetCategories-head",
+        "summary": "Returns the list of available Marketplace categories",
+        "tags": [
+          "marketplace"
+        ],
+        "description": "Returns the list of available Marketplace categories",
+        "x-rond": {
+          "options": {
+            "ignoreTrailingSlash": true
+          },
+          "requestFlow": {
+            "policyName": "allow_all"
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/catalog-category"
+                  },
+                  "type": "array"
+                }
+              }
+            }
+          },
+          "4XX": {
+            "description": "Client error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/http-error",
+                  "description": "Client error"
+                }
+              }
+            }
+          },
+          "5XX": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/http-error",
+                  "description": "Server error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/tenants/{tenantId}/marketplace/files": {
+      "post": {
+        "operationId": "marketplaceUploadFile",
+        "summary": "Uploads a Marketplace-related file",
+        "tags": [
+          "marketplace"
+        ],
+        "description": "Uploads a Marketplace-related file",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "path",
+            "name": "tenantId",
+            "required": true
+          },
+          {
+            "schema": {
+              "pattern": "^multipart/form-data",
+              "type": "string"
+            },
+            "in": "header",
+            "name": "content-type",
+            "required": false
+          }
+        ],
+        "x-rond": {
+          "options": {
+            "ignoreTrailingSlash": true
+          },
+          "requestFlow": {
+            "policyName": "allow_upload_marketplace_file",
+            "preventBodyLoad": true
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "_id": {
+                      "type": "string"
+                    },
+                    "file": {
+                      "type": "string"
+                    },
+                    "location": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "size": {
+                      "type": "number"
+                    }
+                  },
+                  "required": [
+                    "_id",
+                    "name",
+                    "file",
+                    "size",
+                    "location"
+                  ],
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "4XX": {
+            "description": "Client error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/http-error",
+                  "description": "Client error"
+                }
+              }
+            }
+          },
+          "5XX": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/http-error",
+                  "description": "Server error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/backend/marketplace": {
+      "get": {
+        "tags": [
+          "marketplace"
+        ],
+        "description": "Returns the list of available Marketplace items",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "includeTenantId",
+            "required": false,
+            "description": "The Id of the Tenant for which to return both the public and private marketplace resources"
+          },
+          {
+            "schema": {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "in": "query",
+            "name": "itemUrns",
+            "required": false,
+            "description": "List of item URNs used to fetch only specific items, where the URN pattern is `urn:<<tenantId>>:mktp:<<itemId>>`, or `urn:<<tenantId>>:mktp:<<itemId>>?=version=<<version>>`. Each list element should be passed on a different query param (ie. itemUrns=urn1&itemUrns=urn2)"
+          },
+          {
+            "schema": {
+              "type": "integer"
+            },
+            "in": "query",
+            "name": "perPage",
+            "required": false,
+            "description": "Size of the page to be downloaded"
+          },
+          {
+            "schema": {
+              "type": "boolean"
+            },
+            "in": "query",
+            "name": "publishOnMiaDocumentation",
+            "required": false
+          },
+          {
+            "schema": {
+              "type": "boolean"
+            },
+            "in": "query",
+            "name": "resolveResourcesData",
+            "required": false,
+            "description": "If true the returned items contain also the resources data as well as metadata"
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "tenantId",
+            "required": false,
+            "description": "The Id of the Tenant for which to filter the marketplace resources"
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "types",
+            "required": false,
+            "description": "A comma separated string of marketplace types (e.g.: plugin,template,example,application)"
+          }
+        ],
+        "deprecated": true,
+        "x-rond": {
+          "options": {
+            "ignoreTrailingSlash": true
+          },
+          "requestFlow": {
+            "policyName": "allow_all"
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/legacy-catalog-item"
+                  },
+                  "type": "array"
+                }
+              }
+            }
+          },
+          "4XX": {
+            "description": "Client error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/http-error",
+                  "description": "Client error"
+                }
+              }
+            }
+          },
+          "5XX": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/http-error",
+                  "description": "Server error"
+                }
+              }
+            }
+          }
+        }
+      },
+      "head": {
+        "tags": [
+          "marketplace"
+        ],
+        "description": "Returns the list of available Marketplace items",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "includeTenantId",
+            "required": false,
+            "description": "The Id of the Tenant for which to return both the public and private marketplace resources"
+          },
+          {
+            "schema": {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "in": "query",
+            "name": "itemUrns",
+            "required": false,
+            "description": "List of item URNs used to fetch only specific items, where the URN pattern is `urn:<<tenantId>>:mktp:<<itemId>>`, or `urn:<<tenantId>>:mktp:<<itemId>>?=version=<<version>>`. Each list element should be passed on a different query param (ie. itemUrns=urn1&itemUrns=urn2)"
+          },
+          {
+            "schema": {
+              "type": "integer"
+            },
+            "in": "query",
+            "name": "perPage",
+            "required": false,
+            "description": "Size of the page to be downloaded"
+          },
+          {
+            "schema": {
+              "type": "boolean"
+            },
+            "in": "query",
+            "name": "publishOnMiaDocumentation",
+            "required": false
+          },
+          {
+            "schema": {
+              "type": "boolean"
+            },
+            "in": "query",
+            "name": "resolveResourcesData",
+            "required": false,
+            "description": "If true the returned items contain also the resources data as well as metadata"
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "tenantId",
+            "required": false,
+            "description": "The Id of the Tenant for which to filter the marketplace resources"
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "types",
+            "required": false,
+            "description": "A comma separated string of marketplace types (e.g.: plugin,template,example,application)"
+          }
+        ],
+        "deprecated": true,
+        "x-rond": {
+          "options": {
+            "ignoreTrailingSlash": true
+          },
+          "requestFlow": {
+            "policyName": "allow_all"
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/legacy-catalog-item"
+                  },
+                  "type": "array"
+                }
+              }
+            }
+          },
+          "4XX": {
+            "description": "Client error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/http-error",
+                  "description": "Client error"
+                }
+              }
+            }
+          },
+          "5XX": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/http-error",
+                  "description": "Server error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/backend/marketplace/{uuid}": {
+      "get": {
+        "tags": [
+          "marketplace"
+        ],
+        "description": "Returns details of a specific Marketplace item given its database uuid",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "path",
+            "name": "uuid",
+            "required": true
+          }
+        ],
+        "deprecated": true,
+        "x-rond": {
+          "options": {
+            "ignoreTrailingSlash": true
+          },
+          "requestFlow": {
+            "policyName": "allow_all"
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Data model of a Catalog item with required version",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/legacy-catalog-versioned-item"
+                }
+              }
+            }
+          },
+          "4XX": {
+            "description": "Client error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/http-error",
+                  "description": "Client error"
+                }
+              }
+            }
+          },
+          "5XX": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/http-error",
+                  "description": "Server error"
+                }
+              }
+            }
+          }
+        }
+      },
+      "head": {
+        "tags": [
+          "marketplace"
+        ],
+        "description": "Returns details of a specific Marketplace item given its database uuid",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "path",
+            "name": "uuid",
+            "required": true
+          }
+        ],
+        "deprecated": true,
+        "x-rond": {
+          "options": {
+            "ignoreTrailingSlash": true
+          },
+          "requestFlow": {
+            "policyName": "allow_all"
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Data model of a Catalog item with required version",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/legacy-catalog-versioned-item"
+                }
+              }
+            }
+          },
+          "4XX": {
+            "description": "Client error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/http-error",
+                  "description": "Client error"
+                }
+              }
+            }
+          },
+          "5XX": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/http-error",
+                  "description": "Server error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/backend/marketplace/tenants/{tenantId}/resources": {
+      "post": {
+        "tags": [
+          "marketplace"
+        ],
+        "description": "Apply items to the marketplace",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "resources": {
+                    "items": {
+                      "$ref": "#/components/schemas/legacy-catalog-item-manifest"
+                    },
+                    "type": "array"
+                  }
+                },
+                "required": [
+                  "resources"
+                ],
+                "type": "object"
+              }
+            }
+          },
+          "required": true
+        },
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "path",
+            "name": "tenantId",
+            "required": true
+          }
+        ],
+        "deprecated": true,
+        "x-rond": {
+          "options": {
+            "ignoreTrailingSlash": true
+          },
+          "requestFlow": {
+            "policyName": "allow_apply_marketplace_item",
+            "preventBodyLoad": true
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "done": {
+                      "type": "boolean"
+                    },
+                    "items": {
+                      "items": {
+                        "properties": {
+                          "_id": {
+                            "type": "string"
+                          },
+                          "done": {
+                            "type": "boolean"
+                          },
+                          "errors": {
+                            "items": {
+                              "additionalProperties": true,
+                              "properties": {
+                                "ajvError": {
+                                  "additionalProperties": false,
+                                  "properties": {
+                                    "instancePath": {
+                                      "type": "string"
+                                    },
+                                    "keyword": {
+                                      "type": "string"
+                                    },
+                                    "message": {
+                                      "type": "string"
+                                    },
+                                    "params": {
+                                      "additionalProperties": true,
+                                      "type": "object"
+                                    },
+                                    "schemaPath": {
+                                      "type": "string"
+                                    }
+                                  },
+                                  "type": "object"
+                                },
+                                "message": {
+                                  "type": "string"
+                                }
+                              },
+                              "required": [
+                                "message"
+                              ],
+                              "type": "object"
+                            },
+                            "type": "array"
+                          },
+                          "inserted": {
+                            "type": "boolean"
+                          },
+                          "isLatest": {
+                            "type": "boolean"
+                          },
+                          "isUsingVersion": {
+                            "type": "boolean"
+                          },
+                          "itemId": {
+                            "type": "string"
+                          },
+                          "name": {
+                            "type": "string"
+                          },
+                          "updated": {
+                            "type": "boolean"
+                          },
+                          "validationErrors": {
+                            "items": {
+                              "additionalProperties": false,
+                              "properties": {
+                                "instancePath": {
+                                  "type": "string"
+                                },
+                                "keyword": {
+                                  "type": "string"
+                                },
+                                "message": {
+                                  "type": "string"
+                                },
+                                "params": {
+                                  "additionalProperties": true,
+                                  "type": "object"
+                                },
+                                "schemaPath": {
+                                  "type": "string"
+                                }
+                              },
+                              "type": "object"
+                            },
+                            "type": "array"
+                          }
+                        },
+                        "required": [
+                          "itemId",
+                          "name",
+                          "done",
+                          "inserted",
+                          "updated",
+                          "validationErrors",
+                          "errors"
+                        ],
+                        "type": "object"
+                      },
+                      "type": "array"
+                    }
+                  },
+                  "required": [
+                    "done",
+                    "items"
+                  ],
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "4XX": {
+            "description": "Client error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/http-error",
+                  "description": "Client error"
+                }
+              }
+            }
+          },
+          "5XX": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/http-error",
+                  "description": "Server error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/backend/marketplace/tenants/{tenantId}/resources/{uuid}": {
+      "delete": {
+        "tags": [
+          "marketplace"
+        ],
+        "description": "Deletes a specific Marketplace item given its database uuid",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "path",
+            "name": "tenantId",
+            "required": true
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "path",
+            "name": "uuid",
+            "required": true
+          }
+        ],
+        "deprecated": true,
+        "x-rond": {
+          "options": {
+            "ignoreTrailingSlash": true
+          },
+          "requestFlow": {
+            "policyName": "allow_delete_marketplace_item",
+            "preventBodyLoad": true
+          }
+        },
+        "responses": {
+          "204": {
+            "description": "Default Response"
+          },
+          "4XX": {
+            "description": "Client error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/http-error",
+                  "description": "Client error"
+                }
+              }
+            }
+          },
+          "5XX": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/http-error",
+                  "description": "Server error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/backend/marketplace/tenants/{tenantId}/resources/{itemId}/versions": {
+      "get": {
+        "tags": [
+          "marketplace"
+        ],
+        "description": "Returns the list of a Marketplace item versions",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "path",
+            "name": "itemId",
+            "required": true
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "path",
+            "name": "tenantId",
+            "required": true
+          }
+        ],
+        "deprecated": true,
+        "x-rond": {
+          "options": {
+            "ignoreTrailingSlash": true
+          },
+          "requestFlow": {
+            "policyName": "allow_all"
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/legacy-catalog-release"
+                  },
+                  "type": "array"
+                }
+              }
+            }
+          },
+          "4XX": {
+            "description": "Client error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/http-error",
+                  "description": "Client error"
+                }
+              }
+            }
+          },
+          "5XX": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/http-error",
+                  "description": "Server error"
+                }
+              }
+            }
+          }
+        }
+      },
+      "head": {
+        "tags": [
+          "marketplace"
+        ],
+        "description": "Returns the list of a Marketplace item versions",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "path",
+            "name": "itemId",
+            "required": true
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "path",
+            "name": "tenantId",
+            "required": true
+          }
+        ],
+        "deprecated": true,
+        "x-rond": {
+          "options": {
+            "ignoreTrailingSlash": true
+          },
+          "requestFlow": {
+            "policyName": "allow_all"
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/legacy-catalog-release"
+                  },
+                  "type": "array"
+                }
+              }
+            }
+          },
+          "4XX": {
+            "description": "Client error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/http-error",
+                  "description": "Client error"
+                }
+              }
+            }
+          },
+          "5XX": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/http-error",
+                  "description": "Server error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/backend/marketplace/tenants/{tenantId}/resources/{itemId}/versions/{version}": {
+      "get": {
+        "tags": [
+          "marketplace"
+        ],
+        "description": "Returns details of a specific Marketplace item version",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "path",
+            "name": "itemId",
+            "required": true
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "path",
+            "name": "tenantId",
+            "required": true
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "path",
+            "name": "version",
+            "required": true
+          }
+        ],
+        "deprecated": true,
+        "x-rond": {
+          "options": {
+            "ignoreTrailingSlash": true
+          },
+          "requestFlow": {
+            "policyName": "allow_all"
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Data model of a Catalog item with required version",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/legacy-catalog-versioned-item"
+                }
+              }
+            }
+          },
+          "4XX": {
+            "description": "Client error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/http-error",
+                  "description": "Client error"
+                }
+              }
+            }
+          },
+          "5XX": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/http-error",
+                  "description": "Server error"
+                }
+              }
+            }
+          }
+        }
+      },
+      "head": {
+        "tags": [
+          "marketplace"
+        ],
+        "description": "Returns details of a specific Marketplace item version",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "path",
+            "name": "itemId",
+            "required": true
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "path",
+            "name": "tenantId",
+            "required": true
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "path",
+            "name": "version",
+            "required": true
+          }
+        ],
+        "deprecated": true,
+        "x-rond": {
+          "options": {
+            "ignoreTrailingSlash": true
+          },
+          "requestFlow": {
+            "policyName": "allow_all"
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Data model of a Catalog item with required version",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/legacy-catalog-versioned-item"
+                }
+              }
+            }
+          },
+          "4XX": {
+            "description": "Client error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/http-error",
+                  "description": "Client error"
+                }
+              }
+            }
+          },
+          "5XX": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/http-error",
+                  "description": "Server error"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "marketplace"
+        ],
+        "description": "Deletes a specific Marketplace item version",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "path",
+            "name": "itemId",
+            "required": true
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "path",
+            "name": "tenantId",
+            "required": true
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "path",
+            "name": "version",
+            "required": true
+          }
+        ],
+        "deprecated": true,
+        "x-rond": {
+          "options": {
+            "ignoreTrailingSlash": true
+          },
+          "requestFlow": {
+            "policyName": "allow_delete_marketplace_item",
+            "preventBodyLoad": true
+          }
+        },
+        "responses": {
+          "204": {
+            "description": "Default Response",
+            "headers": {
+              "X-Marketplace-Item-Latest-Version": {
+                "schema": {
+                  "type": "string"
+                },
+                "description": "URN of the new latest version"
+              }
+            }
+          },
+          "4XX": {
+            "description": "Client error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/http-error",
+                  "description": "Client error"
+                }
+              }
+            }
+          },
+          "5XX": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/http-error",
+                  "description": "Server error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/backend/marketplace/categories": {
+      "get": {
+        "tags": [
+          "marketplace"
+        ],
+        "description": "Returns the list of available Marketplace categories",
+        "deprecated": true,
+        "x-rond": {
+          "options": {
+            "ignoreTrailingSlash": true
+          },
+          "requestFlow": {
+            "policyName": "allow_all"
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/catalog-category"
+                  },
+                  "type": "array"
+                }
+              }
+            }
+          },
+          "4XX": {
+            "description": "Client error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/http-error",
+                  "description": "Client error"
+                }
+              }
+            }
+          },
+          "5XX": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/http-error",
+                  "description": "Server error"
+                }
+              }
+            }
+          }
+        }
+      },
+      "head": {
+        "tags": [
+          "marketplace"
+        ],
+        "description": "Returns the list of available Marketplace categories",
+        "deprecated": true,
+        "x-rond": {
+          "options": {
+            "ignoreTrailingSlash": true
+          },
+          "requestFlow": {
+            "policyName": "allow_all"
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/catalog-category"
+                  },
+                  "type": "array"
+                }
+              }
+            }
+          },
+          "4XX": {
+            "description": "Client error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/http-error",
+                  "description": "Client error"
+                }
+              }
+            }
+          },
+          "5XX": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/http-error",
+                  "description": "Server error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/backend/marketplace/tenants/{tenantId}/files": {
+      "post": {
+        "tags": [
+          "marketplace"
+        ],
+        "description": "Upload a file to the marketplace",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "path",
+            "name": "tenantId",
+            "required": true
+          },
+          {
+            "schema": {
+              "pattern": "^multipart/form-data",
+              "type": "string"
+            },
+            "in": "header",
+            "name": "content-type",
+            "required": false
+          }
+        ],
+        "deprecated": true,
+        "x-rond": {
+          "options": {
+            "ignoreTrailingSlash": true
+          },
+          "requestFlow": {
+            "policyName": "allow_upload_marketplace_file",
+            "preventBodyLoad": true
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "_id": {
+                      "type": "string"
+                    },
+                    "file": {
+                      "type": "string"
+                    },
+                    "location": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "size": {
+                      "type": "number"
+                    }
+                  },
+                  "required": [
+                    "_id",
+                    "name",
+                    "file",
+                    "size",
+                    "location"
+                  ],
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "4XX": {
+            "description": "Client error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/http-error",
+                  "description": "Client error"
+                }
+              }
+            }
+          },
+          "5XX": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/http-error",
+                  "description": "Server error"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "tags": [
+    {
+      "description": "Marketplace related APIs",
+      "name": "marketplace"
+    }
+  ]
+}
