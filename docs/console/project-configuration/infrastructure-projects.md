@@ -28,7 +28,7 @@ To create a new infrastructure component from scratch, you need to provide the f
 
 - **Name**: The name of the component.  
 - **Repository URL**: The URL of the Git repository where the component's code is hosted.  
-- **Git Reference Name**: The Git branch, tag, or commit that the deployment pipeline will run on.  
+- **Git Ref Name**: The Git branch, tag, or commit that the deployment pipeline will run on.  
 - **Repository Project ID**: The project ID associated with the Git repository.
 
 ![Query parameters](./img/add-infrastructure-component.png)
