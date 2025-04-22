@@ -22,8 +22,6 @@ The steps to enable SSO on your extension are therefore the following:
 - In the "Console Single Sign-On" section, enable the toggle to activate SSO support.
 - Once enabled, you must provide the Callback URL
 
-![Extensions SSO](img/extensions-sso.png)
-
 ## Login Flow
 
 1. **Initiate the Login Flow**
