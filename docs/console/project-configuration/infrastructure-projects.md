@@ -24,9 +24,14 @@ Each Infrastructure Project includes a specific section for managing **infrastru
 
 You can currently create an infrastructure component from scratch; in future releases, you’ll also be able to instantiate components from a **Marketplace**.  
 
-TO DO: components creation steps explanation
+To create a new infrastructure component from scratch, you need to provide the following information:
 
-<!-- ![Infrastructure component creation](/) -->
+- **Name**: The name of the component.  
+- **Repository URL**: The URL of the Git repository where the component's code is hosted.  
+- **Git Reference Name**: The Git branch, tag, or commit that the deployment pipeline will run on.  
+- **Repository Project ID**: The project ID associated with the Git repository.
+
+![Query parameters](./img/add-infrastructure-component.png)
 
 Creating a component automatically generates a new repository, which you can manage to evolve your infrastructure.
 
