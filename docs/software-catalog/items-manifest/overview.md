@@ -10,7 +10,7 @@ The information needed to [create or edit an item][items-managements] (or, bette
 
 Manifests top-level structure is the same for any item, while the content of the `resources` property is specific for each [item type][items-type].
 
-What follows is the formal definition of a generic manifest, with the other pages of this section documenting how the assets should be shaped for each type.
+What follows is the formal definition of a generic manifest, with the other pages of this section documenting how the **assets** (field `resources`) should be shaped for each type.
 
 :::tip
 The full JSON schema is available [on GitHub](https://raw.githubusercontent.com/mia-platform/console-sdk/refs/heads/main/packages/console-types/schemas/catalog/item-manifest.schema.json).
