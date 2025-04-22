@@ -33,7 +33,8 @@ const filesToExcludeFromSidebarCheck = [
   "fast_data/snippets/*",
   "development_suite/api-console/api-design/videos/subtitle/*",
   "software-catalog/basic-concepts/*",
-  "software-catalog/snippets/*"
+  "software-catalog/snippets/*",
+  "software-catalog/tutorials/*",
 ]
 
 const checkIdRegexp = new RegExp('^---(\\n.*)+id:\\s+([-\\w. ]+)(.*\\n)+---$', 'm')
