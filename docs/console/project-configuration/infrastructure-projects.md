@@ -38,17 +38,11 @@ From within your Project, you can manage the deployment flow of your infrastruct
 - Running a **plan** to preview proposed infrastructure changes  
 - Executing an **apply** to confirm and release your infrastructure changes
 
-<!-- ![Infrastructure Projects apply](/) -->
-
 This enables control and consistency in your infrastructure.
 
 ## Runtime Visibility
 
 After deployment, the current state of the released infrastructure is available for monitoring directly in the Runtime area of your Infrastructure Project.  
-
-TO DO: runtime setup explanation
-
-<!-- ![Infrastructure Projects Runtime](/) -->
 
 ## Access and Permissions
 
