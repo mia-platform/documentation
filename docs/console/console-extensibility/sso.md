@@ -6,13 +6,13 @@ sidebar_label: Extensions Single Sign On
 
 # Extensions Single Sign-On (SSO) Integration
 
-The Mia Platform Console can serve as an **OAuth2 Authorization Server** for iframe-based extensions. When properly configured, this feature ensures that users logged into the Console are automatically authenticated in the embedded extension, eliminating the need for a second login.
+The Mia-Platform Console can serve as an **OAuth2 Authorization Server** for iframe-based extensions. When properly configured, this feature ensures that users logged into the Console are automatically authenticated in the embedded extension, eliminating the need for a second login.
 
 Here below you can read how to enable this feature via Console and how the flow for the SSO integration works within your iframe extension.
 
 ## Feature Overview
 
-With SSO enabled, users who are authenticated in the Mia Platform Console do not need to log in again when accessing the extension embedded within the Console. This seamless experience improves user convenience and security by leveraging OAuth2 authentication.
+With SSO enabled, users who are authenticated in the Mia-Platform Console do not need to log in again when accessing the extension embedded within the Console. This seamless experience improves user convenience and security by leveraging OAuth2 authentication.
 
 To enable and configure this feature, you can use the Console interface, specifically within the extension’s detail section. After enabling the feature, you will provide a **Callback URL**, which is the route in your extension that will receive the OAuth2 authorization code for further processing and where the Console will redirect the user after completing the login process.
 
@@ -37,13 +37,13 @@ The steps to enable SSO on your extension are therefore the following:
      - `extensionId`: ID of the extension.
 
 2. **Redirect to the Extension Frontend**
-   - As the login process proceeds, the Mia Platform Console will redirect the user to the extension’s **Callback URL**, appending the `code` and `state` query parameters.
+   - As the login process proceeds, the Mia-Platform Console will redirect the user to the extension’s **Callback URL**, appending the `code` and `state` query parameters.
 
 3. **Send Code and State from Frontend to Backend**
    - The extension’s frontend has a page registered on the callback URL route that receives the `code` and `state` query parameters. With these parameters, the frontend sends them to its backend for further processing.
 
 4. **Exchange Authorization Code for Access Token**
-   - The backend then makes a `POST` request to the Mia Platform Console’s token endpoint:
+   - The backend then makes a `POST` request to the Mia-Platform Console’s token endpoint:
    
      ```
      POST CONSOLE_BASE_URL/api/oauth/token
@@ -83,4 +83,4 @@ The steps to enable SSO on your extension are therefore the following:
    - Implement an endpoint in your extension's backend (e.g., `/token`) to exchange the authorization code for an access token. This will communicate with the Console’s `/api/oauth/token` endpoint.
    - Ensure that the backend can validate the received access token by calling the Console’s `/jwks` endpoint.
 
-By following these steps, you can seamlessly implement **Single Sign-On (SSO)** for your iframe extensions using Mia Platform’s OAuth2 Authorization Server. This provides a secure and user-friendly authentication mechanism for your users, allowing them to access your extension without needing to log in again after authenticating with the Console.
+By following these steps, you can seamlessly implement **Single Sign-On (SSO)** for your iframe extensions using Mia-Platform’s OAuth2 Authorization Server. This provides a secure and user-friendly authentication mechanism for your users, allowing them to access your extension without needing to log in again after authenticating with the Console.
