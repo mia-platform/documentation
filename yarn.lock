@@ -3121,6 +3121,19 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@mia-platform/console-types@npm:^0.30.1":
+  version: 0.30.1
+  resolution: "@mia-platform/console-types@npm:0.30.1"
+  dependencies:
+    "@types/json-schema": "npm:^7.0.9"
+    ramda: "npm:^0.30.1"
+  peerDependencies:
+    "@fastify/swagger": ^8 || ^6
+    fastify: ^4 || ^3
+  checksum: 10/4d30bb5ccfbb7f26c58c04cd0aae2526f387c221422ab0cc0e775ca740107727463e167fe59f18f15f77f65337e8519d304ccf00c99f09de3185499235582b8e
+  languageName: node
+  linkType: hard
+
 "@nicolo-ribaudo/eslint-scope-5-internals@npm:5.1.1-v1":
   version: 5.1.1-v1
   resolution: "@nicolo-ribaudo/eslint-scope-5-internals@npm:5.1.1-v1"
@@ -10755,6 +10768,7 @@ __metadata:
     "@docusaurus/core": "npm:2.4.3"
     "@docusaurus/plugin-client-redirects": "npm:2.4.3"
     "@docusaurus/preset-classic": "npm:2.4.3"
+    "@mia-platform/console-types": "npm:^0.30.1"
     "@staticdeploy/cli": "npm:^0.15.5"
     "@swc/core": "npm:^1.11.18"
     clsx: "npm:^2.1.1"
@@ -12624,6 +12638,13 @@ __metadata:
   dependencies:
     inherits: "npm:~2.0.3"
   checksum: 10/3437954ef1442c86ff01a0fbe3dc6222838823b1ca97f37eff651bc20b868c0c2904424ef2c0d44cba46055f54b578f92866e573125dc9a5e8823d751e4d1585
+  languageName: node
+  linkType: hard
+
+"ramda@npm:^0.30.1":
+  version: 0.30.1
+  resolution: "ramda@npm:0.30.1"
+  checksum: 10/f3e1a7bc11f3a113edb3bb4764c2c22088c5896594934c01cf1980184d00f1d5a7af82761a3389419e2d51542ad2121ff44e718f40792d167e2846bba79a4c6d
   languageName: node
   linkType: hard
 
