@@ -16,7 +16,7 @@ These Projects are distinct from traditional Application Projects as they are sp
 When creating a new Project in your Company, you can select the **Infrastructure** type.  
 This option unlocks a dedicated setup flow and enables the creation of a Project tailored to infrastructure workflows.
 
-<!-- ![Infrastructure Projects creation](/) -->
+![Infrastructure Project selection](./img/infrastructure-project-selection.png)
 
 ## Managing Infrastructure Components
 
@@ -31,7 +31,7 @@ To create a new infrastructure component from scratch, you need to provide the f
 - **Git Ref Name**: The Git branch, tag, or commit that the deployment pipeline will run on.  
 - **Repository Project ID**: The project ID associated with the Git repository.
 
-![Query parameters](./img/add-infrastructure-component.png)
+![Add Infrastructure Component](./img/add-infrastructure-component.png)
 
 Creating a component automatically generates a new repository, which you can manage to evolve your infrastructure.
 
