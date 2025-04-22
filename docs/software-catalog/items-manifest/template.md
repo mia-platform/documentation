@@ -4,8 +4,14 @@ title: Template
 sidebar_label: Template
 ---
 
-import { catalogWellKnownItems } from "@mia-platform/console-types"
+import { catalogWellKnownItems } from "@mia-platform/console-types";
 import SchemaViewer from "../snippets/schema_viewer.mdx";
+
+Teamplates can be instantiated in Console the same as plugins. The difference is that they provide an **archive** that is cloned in the Project scope, instead of a Docker image, giving developers direct access to the codebase to evolve it at will.
+
+Templates are meant to be starting points with the bear minimum needed to start a service. Just like plugins, templates may also come with some predefined configurations.
+
+To [create or edit](/software-catalog/items-management/overview.md) a template, you need to provide a [manifest](/software-catalog/items-manifest/overview.md), whose `resources` property should adhere to the following JSON schema.
 
 :::tip
 The JSON schemas of the [template resources](https://raw.githubusercontent.com/mia-platform/console-sdk/refs/heads/main/packages/console-types/schemas/catalog/template.resources.schema.json) and of the [full template manifest](https://raw.githubusercontent.com/mia-platform/console-sdk/refs/heads/main/packages/console-types/schemas/catalog/template.manifest.schema.json) are available on GitHub.

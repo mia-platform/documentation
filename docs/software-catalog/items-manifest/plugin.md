@@ -4,7 +4,7 @@ title: Plugin
 sidebar_label: Plugin
 ---
 
-import { catalogWellKnownItems } from "@mia-platform/console-types"
+import { catalogWellKnownItems } from "@mia-platform/console-types";
 import SchemaViewer from "../snippets/schema_viewer.mdx";
 
 Plugins are services that can be instantiated from the [microservices](/development_suite/api-console/api-design/services.md) section of the Console Design area.
