@@ -81,7 +81,7 @@ You can also refer to the instructions [in this tutorial](/console/tutorials/con
 
 Next, proceed to set up the application. When searching in the marketplace, search for **AI RAG Chat**. You can find two different results:
 
-- the _AI RAG Chat_, which is the application where the _RAG Chatbot API_ is provided in form of a [Plugin](/plugins/mia-platform-plugins.md), maintained and supported by the Mia-Platform team
+- the _AI RAG Chat_, which is the application where the _RAG Chatbot API_ is provided in form of a [Plugin](/marketplace/plugins/mia-platform-plugins.md), maintained and supported by the Mia-Platform team
 - the _AI RAG Chat Template_, which is the application where the _RAG Chatbot API_ is provided in form of a [Template](/marketplace/templates/mia_templates.md) that will create a repository in your Git provider; while this template represents all the features of the plugin and it is fully functional, you can modify it by adding or removing features according to your needs
 
 ![AI RAG Chat applications in Marketplace](./img/ai-rag-chat-in-marketplace.png)
