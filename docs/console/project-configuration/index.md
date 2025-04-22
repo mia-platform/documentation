@@ -13,5 +13,5 @@ Within the platform's hierarchy, a "Project" sits beneath a "Company", allowing 
 
 There are two different Project types, supported in Console:
 
-- [Application Projects](./application-project.md): meant for software products development and release
-- [Infrastructure Projects](./infrastructure-project.md): meant for operations teams, leveraging IaC for infrastructure provisioning
+- [Application Projects](/console/project-configuration/application-project.md): meant for software products development and release
+- [Infrastructure Projects](/console/project-configuration/infrastructure-project.md): meant for operations teams, leveraging IaC for infrastructure provisioning
