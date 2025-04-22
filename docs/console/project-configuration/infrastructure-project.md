@@ -47,7 +47,12 @@ This enables control and consistency in your infrastructure.
 
 ## Runtime Visibility
 
-After deployment, the current state of the released infrastructure is available for monitoring directly in the Runtime area of your Infrastructure Project.  
+After the deployment of your infrastructure components, the current state of the released infrastructure can be available for monitoring directly in the Runtime area of your Infrastructure Project.
+In order to do so, you can configure the Runtime of your infrastructure projects using the Microfrontend Composer.  
+
+:::info
+A step-by-step tutorial on how to build Extensions with the Microfrontend Composer will be available soon.
+:::
 
 ## Access and Permissions
 
