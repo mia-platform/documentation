@@ -22,7 +22,7 @@ The JSON schemas of the [infrastructure resource resources](https://raw.githubus
 
 ## Monitor a Custom Kubernetes Resource in the Runtime area
 
-If you've upgraded to Console release `v13.3.0`, you can now view the status of your Current Kubernetes Resources directly in the Runtime section. To enable this feature, [publish a new version](/docs/software-catalog/items-management/ui.md#create-a-new-version) of your infrastructure resource that include the fields `runtime`.
+If you've upgraded to Console release `v13.3.0`, you can now view the status of your Current Kubernetes Resources directly in the Runtime section. To enable this feature, [publish a new version](/software-catalog/items-management/ui.md#create-a-new-version) of your infrastructure resource that include the fields `runtime`.
 
 ## Generate dynamic form to customize validation
 
