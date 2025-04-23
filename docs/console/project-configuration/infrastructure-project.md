@@ -22,7 +22,11 @@ This option unlocks a dedicated setup flow and enables the creation of a Project
 
 Each Infrastructure Project includes a specific section for managing **infrastructure components**.
 
-You can currently create an infrastructure component from scratch; in future releases, you’ll also be able to instantiate components from a **Marketplace**.  
+You can currently create an infrastructure component only from scratch. 
+
+:::info
+At the moment, the only supported provider for Infrastructure Projects is **GitLab**.
+:::
 
 To create a new infrastructure component from scratch, you need to provide the following information:
 
