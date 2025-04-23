@@ -7,7 +7,7 @@ sidebar_label: Extension
 import { catalogWellKnownItems } from "@mia-platform/console-types";
 import SchemaViewer from "../snippets/schema_viewer.mdx";
 
-Extensions are **custom pages** that enhances Console capabilities by integrating it into the sidebar navigation. Since extensions have their own [dedicated section](/console/company-configuration/extensions.md), they are left out by the [Software Catalog UI][ui]. Extensions can still be managed with [miactl][miactl], and API calls.
+Extensions are **custom pages** that enhances Console capabilities by integrating it into the sidebar navigation.
 
 To [create or edit](/software-catalog/items-management/overview.md) an extension, you need to provide a [manifest](/software-catalog/items-manifest/overview.md), whose `resources` property should adhere to the following JSON schema.
 

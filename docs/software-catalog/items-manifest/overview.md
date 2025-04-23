@@ -18,6 +18,10 @@ The full JSON schema is available [on GitHub](https://raw.githubusercontent.com/
 
 <SchemaViewer schema={catalogItemManifestSchema} />
 
+## Categories
+
+Items can be organized in categories with the field `catagoryId`. The available categories are pre-defined, and can be found [here](https://raw.githubusercontent.com/mia-platform-marketplace/public-catalog/refs/heads/main/assets/categories.json).
+
 ## Permissions
 
 To create or edit items, users must have the [role](/development_suite/identity-and-access-management/console-levels-and-permission-management.md#identity-capabilities-inside-console) of **Company Owner** or **Project Administrator** in the Company the item belongs to.
