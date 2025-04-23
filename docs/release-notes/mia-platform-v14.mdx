@@ -27,7 +27,7 @@ This AI-Native DevX offers:
 - A context-aware intelligent assistant embedded throughout the entire software development lifecycle;
 - Intelligent engineering AI agents that execute, compose, and orchestrate tasks by leveraging deep platform context and operational awareness.
 
-### AI Agent Use Cases:
+### AI Agent Use Cases
 
 With the introduction of AI-Native capabilities, we’re unlocking new ways to harness the power of AI within a Platform context. As a use cases, we’re currently offering:
 
@@ -112,14 +112,14 @@ Mia-Platform Data Catalog introduces **Data Lineage**, a powerful tool for under
 
 This feature lets users explore data relationships on two complementary levels: **Table Lineage** and **System of Record (SoR) Lineage**, offering both detailed insights and a holistic view of data flows.  
 By offering a detailed visualization of data dependencies and relationships, the **Lineage** view enables users to perform impact analyses, identify potential bottlenecks, and ensure compliance across data workflows.  
-Users can enrich the **Lineage** with **virtual assets** and **jobs**, useful to fully describe the context and purpose of each data flow.  
-When using **Fast Data Control Plane**, aggregation processes configured in **Fast Data Projects** can be automatically captured, making **Fast Data jobs** visible on the **Lineage** canvas.
+Users can enrich the lineage with **virtual assets** and **virtual jobs**, useful to fully describe the context and purpose of each data flow.  
+When using [**Fast Data Control Plane**](/fast_data/runtime_management/overview.mdx), aggregation processes configured in Fast Data Projects can be automatically captured, making Fast Data jobs visible on the Lineage canvas.
 
 To find out how it works and all the benefits of our Data Lineage solution, please refer to the related [documentation](/data_catalog/frontend/data_lineage.mdx).
 
 ### Integration Connector Agent
 
-The **Integration Connector Agent** is a modular plugin designed to enable seamless **data integration** between external **sources** and **sinks**.  
+The Integration Connector Agent is a modular plugin designed to enable seamless **data integration** between external sources and sinks.  
 It collects data from external systems, maps and processes it, and sends it to a defined sink. Supported ingestion sources include **webhooks** from tools like **Mia-Platform Console** and **Jira**, while **MongoDB** is the currently supported sink.  
 Thanks to its pluggable architecture, it allows easy integration of new sources and sinks with minimal configuration effort.  
 
@@ -129,7 +129,7 @@ To learn more about all the features and how to configure it, visit the [officia
 
 ### MongoDB connection support in Data Catalog
 
-Data Catalog introduces **MongoDB** as a new natively **supported connection provider**. Once connected, in case a JSON Schema validation is defined on a retrieved collection, Data Catalog can extract field structures and types to ensure accurate metadata management.
+Data Catalog introduces MongoDB as a new natively supported connection provider. Once connected, in case a JSON Schema validation is defined on a retrieved collection, Data Catalog can extract field structures and types to ensure accurate metadata management.
 Database and collection retrieval behavior can be tailored through multiple configuration modes to better fit user needs.  
 
 To learn more about how to configure it, visit the [official documentation](/data_catalog/frontend/data_catalog_connections.mdx#mongodb).
@@ -159,11 +159,13 @@ Mia-Platform Console now features a redesigned environment management system, si
 The concept of branches in the Design area has been replaced, with the environment now serving as the central element for each area.   
 Users will work directly within specific environments across all Mia-Platform Console sections, establishing a consistent and intuitive experience and aligning the Design area with the logical structure of other Mia-Platform Console areas.
 
-To discover more, head to the related [documentation](/development_suite/set-up-infrastructure/env-based-management.md)
+To discover more, head to the related [documentation](/development_suite/set-up-infrastructure/env-based-management.md).
 
 ### Iframe extensions support login with Console SSO
 
 Iframe extensions now benefit from a unified and secure authentication framework using Console Single Sign-On (SSO). This enhancement allows iframe extensions to recognize user permissions and manage authentication and authorization seamlessly. By leveraging Console SSO in your extensions, only authorized users can access and interact with specific iframe extensions, enhancing overall security and control across Mia-Platform Console.
+
+![Extensions SSO](img/extensions-sso.png)
 
 ### Auto-generated form in Infrastructure Resource Creation 
 
@@ -180,6 +182,8 @@ Stay informed and in control with our new Audit Logs feature, designed to provid
 
 ![Audit logs table](./img/audit-logs.png)
 
+To discover more, head to the related [documentation](/development_suite/identity-and-access-management/monitor-audit-logs.md).
+
 ## Secure Cloud Ops
 
 Upholding high standards of service reliability and maintaining the comprehensive security posture required for business operations within complex, distributed platform environments is key for IT Organizations. This involves the implementation and management of Infrastructure resources, robust operational controls, cost and resources utilization monitoring, security measures, and resilience strategies.
@@ -187,6 +191,10 @@ Upholding high standards of service reliability and maintaining the comprehensiv
 ### Projects for Infrastructure Provisioning  
 
 Take greater control over your infrastructure provisioning with the new dedicated Project category in the Mia-Platform Console. Designed for Operations teams, these specialized Projects facilitate management of infrastructure resources within the Console, aligning with Infrastructure as Code practices. Easily visualize and manage your infrastructure state, and execute provisioning actions with improved efficiency for your infrastructure-related tasks.
+
+![Infrastructure Projects](./img/infrastructure-project-selection.png)
+
+To discover more, head to the related [documentation](/console/project-configuration/infrastructure-project.md).
 
 ### Kubernetes Import via miactl 
 
