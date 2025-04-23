@@ -8,7 +8,7 @@ Mia-Platform prioritize the smooth operation and continuous improvement of the s
 
 Regarding Mia-Platform PaaS the maintenance covers several stream:
 
-- **Infrastructure Maintenance**: wth a focus on managing and maintaining the underlying infrastructure that supports the PaaS environment such as PaaS tools, CI/CD and K8s.
+- **Infrastructure Maintenance**: with a focus on managing and maintaining the underlying infrastructure that supports the PaaS environment such as PaaS tools, CI/CD and K8s.
 
 - **Security Maintenance**: with a focus on security measures to protect the platform and the applications running on it, involving activities such as implementing and managing firewalls, intrusion detection systems, access controls, data encryption, vulnerability scanning, and security patching.
 
