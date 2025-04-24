@@ -699,7 +699,7 @@ In case the service is not able to get user authentication from the request head
 ### GET /transcription/:roomId/:sessionId
 
 :::note
-Available from version 2.1.0. The trascription is only available if the `DEFAULT_RECORDING_TYPE` is set to `manual` or `automatic`.
+Available from version 2.1.0. The transcription is only available if the `DEFAULT_RECORDING_TYPE` is set to `manual` or `automatic`.
 :::
 
 Retrieves the transcription for a specific session within a teleconsultation room, as stored on Kaleyra([reference][kaleyra-get-transcription]).
