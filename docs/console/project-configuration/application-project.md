@@ -5,6 +5,9 @@ sidebar_label: Application Projects
 sidebar_order: 1
 ---
 
+A Console Project serves as a central hub for managing and deploying applications within the Mia-Platform ecosystem.
+It allows users to configure various aspects of their applications, including microservices, database collections, API Gateway endpoints to be deployed and monitored across different environments.
+
 ## Application Project Sections
 
 The Project is structured into various sections, each with a specific purpose to manage the application's lifecycle. 

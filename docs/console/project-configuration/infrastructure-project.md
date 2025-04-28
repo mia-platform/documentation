@@ -9,7 +9,15 @@ sidebar_order: 2
 
 They are designed primarily for **Operations teams**, who can use them to define, version, and deploy infrastructure resources while ensuring consistency, transparency, and control over infrastructure changes.  
 
-These Projects are distinct from traditional Application Projects as they are specifically designed to manage infrastructure resources, enabling better control, automation, and governance in the context of Infrastructure as Code.
+These Projects are distinct from traditional [Application Projects](/docs/console/project-configuration/application-project.md) as they are specifically designed to manage infrastructure resources, enabling better control, automation, and governance in the context of Infrastructure as Code.
+
+:::info
+Infrastructure Projects are currently a [**BETA** feature](/docs/info/version_policy.md#feature-preview-and-beta), as such they are under development as we are adding new features and improvements.
+
+At this time they only support **GitLab** repositories with a specific pipeline configuration, the support for other providers will come with the next Console releases. You can find out more in the [techical limitations](#technical-limitations) section below.
+
+If you want to share your feedback you can head to the [Community discussion post](https://github.com/mia-platform/community/discussions/612).
+:::
 
 ## Creating an Infrastructure Project
 
@@ -24,10 +32,6 @@ Each Infrastructure Project includes a specific section for managing **infrastru
 
 You can currently create an infrastructure component only from scratch. 
 
-:::info
-At the moment, the only supported provider for Infrastructure Projects is **GitLab**.
-:::
-
 To create a new infrastructure component from scratch, you need to provide the following information:
 
 - **Name**: The name of the component.  
@@ -36,9 +40,6 @@ To create a new infrastructure component from scratch, you need to provide the f
 - **Repository Project ID**: The project ID associated with the Git repository.
 
 ![Add Infrastructure Component](./img/add-infrastructure-component.png)
-
-Creating a component automatically generates a new repository, which you can manage to evolve your infrastructure.
-
 
 ## Deploying your Infrastructure
 
@@ -61,4 +62,17 @@ A step-by-step tutorial on how to build Extensions with the Microfrontend Compos
 ## Access and Permissions
 
 Currently, all members of a Company can view Infrastructure Projects.  
-However, only users with the role of **Project Administrator** or **Company Owner** are allowed to perform changes within them. 
+However, only users with the role of **Project Administrator** or **Company Owner** are allowed to perform changes within them.
+
+## Technical limitations
+
+As mentioned above, there are still some technical limitations that repositories must conform to in order for Infrastructure Projects to work.
+
+:::note
+All of the following limitations will be soon resolved
+:::
+
+- the repository must be on GitLab and use GitLab CI
+- the repository must hold a [Terraform](https://www.hashicorp.com/en/products/terraform)/[OpenTofu](https://opentofu.org/) project
+- the GitLab CI pipeline must be composed of two separate jobs named `plan` and `apply`
+- creation from Marketplace is not supported yet, so you need to create your repository beforehand
