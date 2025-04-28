@@ -67,11 +67,10 @@ This enables control and consistency in your infrastructure.
 
 ## Runtime Visibility
 
-After the deployment of your infrastructure components, runtime data retrieval can be integrated in the Console by leveraging the 
-In order to do so, you can configure the Runtime of your infrastructure projects using the Microfrontend Composer.  
+After the deployment of your infrastructure components, runtime data retrieval can be integrated in the Console by leveraging the [Infrastructure Component Runtime Software Catalog item type](/docs/software-catalog/items-manifest/infrastructure-component-runtime.md).
 
-:::info
-A step-by-step tutorial on how to build Extensions with the Microfrontend Composer will be available soon.
+:::tip
+You can later access the data via API or by creating a custom extension using the [Composer extensions](/docs/console/company-configuration/extensions.md#add-new-extension)
 :::
 
 ## Access and Permissions
