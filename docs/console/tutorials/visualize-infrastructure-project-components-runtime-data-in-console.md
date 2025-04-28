@@ -8,7 +8,7 @@ This tutorial will demonstrate you how to collect runtime data from your cloud p
 
 The tutorial assumes you have the following prerequisites in place:
 
-- you have created an [Infrastructure Project](/docs/console/project-configuration/infrastructure-project.md#creating-an-infrastructure-project)
+- you have created an [Infrastructure Project](/console/project-configuration/infrastructure-project.md#creating-an-infrastructure-project)
 - you are using GitLab
 - you have a repository with a [Terraform](https://www.hashicorp.com/en/products/terraform)/[OpenTofu](https://opentofu.org/) project in place that can produce a terraform plan file using the `show` command
 - you can modify the CI/CD pipeline for that repository
@@ -18,7 +18,7 @@ The tutorial assumes you have the following prerequisites in place:
 The purpose of this tutorial is to
 
 - re-use a [Terraform](https://www.hashicorp.com/en/products/terraform)/[OpenTofu](https://opentofu.org/) plan to extract insights from the cloud provider runtime,
-- manipulate and push them to the Console using an [Infrastructure Component Runtime](/docs/software-catalog/items-manifest/infrastructure-component-runtime.md) catalog item,
+- manipulate and push them to the Console using an [Infrastructure Component Runtime](/software-catalog/items-manifest/infrastructure-component-runtime.md) catalog item,
 - visualize them in the Console using a Composer-based extension
 
 ### Scheduled Pipeline with a Plan
@@ -86,7 +86,7 @@ This will make it possible to extract runtime attributes from a plan file produc
 
 ### Composer-based extension using Console API
 
-To visualize data in Console you can add a new [Extension](/docs/console/company-configuration/extensions.md#add-new-extension) with Composer type.
+To visualize data in Console you can add a new [Extension](/console/company-configuration/extensions.md#add-new-extension) with Composer type.
 
 In the Composer you can use the [Console SDK WebComponent Client](https://github.com/mia-platform/console-sdk/tree/main/packages/console-client-wc) to fetch the Catalog API and display data.
 

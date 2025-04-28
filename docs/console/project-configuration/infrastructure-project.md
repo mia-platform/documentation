@@ -13,11 +13,11 @@ import TabItem from '@theme/TabItem';
 They are designed primarily for **Operations teams**, who can use them to define, version,
 and deploy infrastructure resources while ensuring consistency, transparency, and control over infrastructure changes.
 
-These Projects are distinct from traditional [Application Projects](/docs/console/project-configuration/application-project.md) as they are specifically designed to manage infrastructure resources,
+These Projects are distinct from traditional [Application Projects](/console/project-configuration/application-project.md) as they are specifically designed to manage infrastructure resources,
 enabling better control, automation, and governance in the context of Infrastructure as Code.
 
 :::info
-Infrastructure Projects are currently a [**BETA** feature](/docs/info/version_policy.md#feature-preview-and-beta), as such they are under development as we are adding new features and improvements.
+Infrastructure Projects are currently a [**BETA** feature](/info/version_policy.md#feature-preview-and-beta), as such they are under development as we are adding new features and improvements.
 
 At this time they only support **GitLab** repositories with a specific pipeline configuration, the support for other providers will come with the next Console releases.
 You can find out more in the [technical limitations](#technical-limitations) section below.
@@ -67,10 +67,10 @@ This enables control and consistency in your infrastructure.
 
 ## Runtime Visibility
 
-After the deployment of your infrastructure components, runtime data retrieval can be integrated in the Console by leveraging the [Infrastructure Component Runtime Software Catalog item type](/docs/software-catalog/items-manifest/infrastructure-component-runtime.md).
+After the deployment of your infrastructure components, runtime data retrieval can be integrated in the Console by leveraging the [Infrastructure Component Runtime Software Catalog item type](/software-catalog/items-manifest/infrastructure-component-runtime.md).
 
 :::tip
-You can later access the data via API or by creating a custom extension using the [Composer extensions](/docs/console/company-configuration/extensions.md#add-new-extension)
+You can later access the data via API or by creating a custom extension using the [Composer extensions](/console/company-configuration/extensions.md#add-new-extension)
 :::
 
 ## Access and Permissions
