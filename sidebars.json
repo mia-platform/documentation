@@ -1963,6 +1963,10 @@
         },
         {
           "type": "doc",
+          "id": "software-catalog/items-manifest/infrastructure-component-runtime"
+        },
+        {
+          "type": "doc",
           "id": "software-catalog/items-manifest/plugin"
         },
         {
