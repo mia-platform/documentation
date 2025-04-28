@@ -90,6 +90,10 @@
         {
           "id": "console/tutorials/create-a-rag-application",
           "type": "doc"
+        },
+        {
+          "id": "console/tutorials/visualize-infrastructure-project-components-runtime-data-in-console",
+          "type": "doc"
         }
       ]
     },
@@ -1960,6 +1964,10 @@
         {
           "type": "doc",
           "id": "software-catalog/items-manifest/infrastructure-resource"
+        },
+        {
+          "type": "doc",
+          "id": "software-catalog/items-manifest/infrastructure-component-runtime"
         },
         {
           "type": "doc",
