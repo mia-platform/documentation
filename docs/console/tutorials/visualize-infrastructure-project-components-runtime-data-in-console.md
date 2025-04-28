@@ -4,7 +4,7 @@ title: View Infrastructure Runtime Data In Console
 sidebar_label: View Infrastructure Project Runtime
 ---
 
-This tutorial will demonstrate you how to collect runtime data from your cloud provider and make it avaible to the your final user in Console.
+This tutorial will demonstrate you how to collect runtime data from your cloud provider and make it available to the your final user in Console.
 
 The tutorial assumes you have the following prerequisites in place:
 
