@@ -232,7 +232,7 @@ First of all, download and save the latest version of the item configuration:
 
 ```bash
 
-> miactl catalog get --item-id ITEM-ID --version VERSION > myAwesomeService.json
+> miactl catalog get --item-id ITEM_ID --version VERSION > myAwesomeService.json
 
 ```
 
