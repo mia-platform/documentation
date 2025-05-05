@@ -22,7 +22,7 @@ Your extension needs to define and expose:
 - a frontend endpoint that will be used by the Console as the [OAuth 2.0 Redirect Endpoint][ietf-redirection-endpoint] when performing the authentication flow
 - a backend endpoint that acts as proxy towards the Console `/api/oauth/token` endpoint
 
-These endpoints are described below as [Login Endpoint][extension-login-endpoint] [*Callback URL*][extension-callback-url] and [*Token Endpoint*][extension-token-endpoint].
+These endpoints are described below as [Login Endpoint][extension-login-endpoint] [*Callback URL*], [extension-callback-url] and [*Token Endpoint*][extension-token-endpoint].
 
 ## Enable Console SSO for extensions
 
