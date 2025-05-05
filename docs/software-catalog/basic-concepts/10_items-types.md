@@ -48,3 +48,7 @@ Extensions are **custom pages** that enhances Console capabilities by integratin
 [miactl]: ../items-management/miactl.md
 [ui]: ../items-management/ui.md
 [items-manifest]: ../items-manifest//overview.md
+
+### Infrastructure Component runtime
+
+Infrastructure Component runtime items are **custom objects** that are not part of the standard Console supported resources. They can be managed in the context of [Infrastructure Project](/console/project-configuration/infrastructure-project.md) to be able to collect [runtime data](/console/project-configuration/infrastructure-project.md#runtime-visibility) for visualization within Console.

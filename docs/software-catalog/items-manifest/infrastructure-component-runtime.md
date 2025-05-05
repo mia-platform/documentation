@@ -13,6 +13,8 @@ import SchemaViewer from "../snippets/schema_viewer.mdx";
 Infrastructure Component Runtime items are meant to be used in the context of an [Infrastructure Project](/console/project-configuration/infrastructure-project.md)
 to be able to collect [runtime data](/console/project-configuration/infrastructure-project.md#runtime-visibility) for visualization within Console.
 
+To [create or edit](/software-catalog/items-management/overview.md) an infrastructure Component Runtime item, you need to provide a [manifest](/software-catalog/items-manifest/overview.md), whose `resources` property should adhere to the following JSON schema.
+
 :::tip
 The JSON schemas of the [infrastructure Component Runtime item](https://raw.githubusercontent.com/mia-platform/console-sdk/refs/heads/main/packages/console-types/schemas/catalog/infrastructure-component-runtime.resources.schema.json)
 and its [full manifest](https://raw.githubusercontent.com/mia-platform/console-sdk/refs/heads/main/packages/console-types/schemas/catalog/infrastructure-component-runtime.manifest.schema.json)
