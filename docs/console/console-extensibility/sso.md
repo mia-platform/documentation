@@ -84,3 +84,27 @@ The steps to enable SSO on your extension are therefore the following:
    - Ensure that the backend can validate the received access token by calling the Console’s `/jwks` endpoint.
 
 By following these steps, you can seamlessly implement **Single Sign-On (SSO)** for your iframe extensions using Mia-Platform’s OAuth2 Authorization Server. This provides a secure and user-friendly authentication mechanism for your users, allowing them to access your extension without needing to log in again after authenticating with the Console.
+
+
+
+
+
+
+
+
+Flow overview
+- login process starts when  the page `/authz` is reached from inside the extension iframe
+- the console generate the `code` and redirects to the page `callbackUrl` of the extension
+- the extension can now obtain the token contacting the API `/token`. The extension frontend cannot contact this api directly but via its backend non to incur in CORS errors
+- the token is generated and can be used by the extension to further processing (i.e. can be stored in localStorage and send to subsequent calls to its backend) 
+- to verify the token the extension backend can call /jkws API, a further check is checking the audience to check that the token is the one generated for that specific extension (the audience must contains the entryUrl of the extension)
+
+Setup steps
+- first the extension sso must be enabled and configured with the callbackUrl (more on this in following points) 
+- to trigger the login process the extension frontend must navigate to /authz. Tipically this can be done by a manual action (i.e. click on a login button), or programmatically (the details of how this is made are left to the extension developer)
+- As the login process continue the extension page in the iFrame is redirected to the callback page configured via the callbackUrl. This page must exist in the extension frontend. and it must be developed so that it reads two query params (`state` and `code`) from URL
+The obtained params are necessary to continue in the process of obtaining a valid JWT token. 
+To obtain the token a call must be executed to the `/token`. This call must be made by the extension backend  endpont it must call the extension backend passing them to obtain the token
+- in the extension BE must be implemented the API that is used to obtain the token (previous point). This API is a Pass-through to contact CONSOLE /token API. the parameters needed are `state` and `code` and a valid token is returned
+- once obtained a valid token it can be used by the extension to authorize the subsequent calls. It tipically will be attached to each calls that the extension FE makes to the extension BE API, and the backend can check the token validity calling /jkws console API (and verify that the audience claim is the expected one)
+
