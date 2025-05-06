@@ -8,13 +8,15 @@ sidebar_label: Integrate Single Sign-On (SSO)
 
 Using Mia-Platform extensions, users can access custom data and perform custom actions. If this data is protected, or these actions may be restricted to a specific set of users only, you need a way to authenticate the user and validate its permissions.  
 
-By using the *Mia-Platform Console SSO (SSO)* you empower your extensions with this exact capability, getting rid of multiple logins, while also delegating to Mia-Platform all of the heavy lifting and security concerns. In this way you can ony just on what really matters to your users.
+By using the *Mia-Platform Console SSO (SSO)* you empower your extensions with this exact capability, getting rid of multiple logins, while also delegating to Mia-Platform all of the heavy lifting and security concerns. In this way you can focus just on what really matters to your users.
 
-Here below you can understand how this feature works and how you can enable it for your extensions.
+In this page you can find out how this feature works and how you can enable it for your extensions.
 
 ## Prerequisites
 
-Currently this feature is only available to `iframe` and `external link` extensions. For more information on extension types and features, see [Manage Extensions][docs-manage-extensions].
+:::info
+This feature is currently available for `iframe` and `external link` extensions. For more information on extension types and features, see [Manage Extensions][docs-manage-extensions].
+:::
 
 Your extension needs to define and expose:
 
