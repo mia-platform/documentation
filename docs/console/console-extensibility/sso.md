@@ -18,7 +18,7 @@ In this page you can find out how this feature works and how you can enable it f
 This feature is currently available for `iframe` and `external link` extensions. For more information on extension types and features, see [Manage Extensions][docs-manage-extensions].
 :::
 
-Your extension MUST define and expose these 3 endpoints:
+In order to integrate with Mia-Platform Console SSO, your extension MUST define and expose:
 
 - a [*Login Entry Point*][extension-login-entry-point] used to start the login flow towards the Mia-Platform Console
 - a [*Callback Endpoint*][extension-callback-url] that will be used by the Console as the [OAuth 2.0 Redirection Endpoint][ietf-redirection-endpoint] when performing the authentication flow
