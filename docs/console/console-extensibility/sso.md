@@ -18,13 +18,11 @@ In this page you can find out how this feature works and how you can enable it f
 This feature is currently available for `iframe` and `external link` extensions. For more information on extension types and features, see [Manage Extensions][docs-manage-extensions].
 :::
 
-Your extension needs to define and expose:
+Your extension MUST define and expose these 3 endpoints:
 
-- a frontend endpoint that starts the login flow towards the Mia-Platform Console
-- a frontend endpoint that will be used by the Console as the [OAuth 2.0 Redirect Endpoint][ietf-redirection-endpoint] when performing the authentication flow
-- a backend endpoint that acts as proxy towards the Console `/api/oauth/token` endpoint
-
-These endpoints are described below as [Login Endpoint][extension-login-endpoint], [*Callback URL*][extension-callback-url] and [*Token Endpoint*][extension-token-endpoint].
+- a [*Login Entry Point*][extension-login-entry-point] used to start the login flow towards the Mia-Platform Console
+- a [*Callback Endpoint*][extension-callback-url] that will be used by the Console as the [OAuth 2.0 Redirection Endpoint][ietf-redirection-endpoint] when performing the authentication flow
+- a [*Token Endpoint*][extension-token-endpoint] exposed by the extension backend that acts as proxy endpoint towards the Console `/api/oauth/token` endpoint
 
 ## Enable Console SSO for extensions
 
@@ -70,19 +68,24 @@ When accessing an extension from within the Mia-Platform Console, the user is al
 This means that in the sequence above, the (B) part is done without requiring any user action. This behavior may however change in the future.
 :::
 
-## Extension Login Endpoint
+## Extension Login Entry Point
 
-The *Login Endpoint* is the endpoint exposed by the extension frontend and is needed to start an authorization flow.
+This is the entry point for the entire authorization flow. It can be any of:
 
-When navigating to the *Login Endpoint*, the extension generates a new `state` that is used throughout all the login flow.
+- a frontend page that shows some UI to inform the user about the login
+- a frontend page that automatically starts the login flow
+- a backend endpoint that just redirects the *user-agent* to the Console authorization page
 
-It does not matter whether this endpoint shows some UI elements to inform the user about the login or not. What matters is that - in order to perform the login - this page MUST redirect the *user-agent* (the browser in use) to the specific extension authorization endpoint of the Console, specifying the generated `state`.
+It doesn't matter which of these techniques you will choose. What matters is that - in order to perform the login - this endpoint MUST:
+
+- generate a new `state` that will be used throughout all the login flow
+- redirect the *user-agent* (the browser in use) to the specific extension authorization page of the Console, specifying the generated `state`
 
 The Console endpoint that handles extension authorization is the following one, preceded by the Console base URL:
 
 `/tenants/{tenantId}/extension/{extensionId}/authz?state={state}`
 
-Here an example:
+Here an example of a frontend page that starts the login flow when the user clicks on a Login button:
 
 ```js
 function performExtensionLogin() {
@@ -90,9 +93,9 @@ function performExtensionLogin() {
    const extensionId = 'acme-extension-123'
    
    // Remember to store the state and validate it throughout the login flow
-   const state = 'foo'
+   const state = crypto.randomUUID()
    
-   window.location.replace(`https://console.cloud.mia-platform.eu/tenants/${tenantId}/extension/${extensionId}/authz?state=${state}`)
+   window.location.replace(`https://<CONSOLE_URL>/tenants/${tenantId}/extension/${extensionId}/authz?state=${state}`)
 }
 ```
 
@@ -115,7 +118,7 @@ Currently, only valid *HTTPS* URLs can be configured as redirection endpoints.
 
 In OAuth 2.0 with Authorization Code Grant, the *authorization server* redirects the *user-agent* back to the *client* (in this case the extension frontend) using the redirection URI configured earlier (the extension's *Callback URL*), providing an authorization `code` and the `state` provided by the client earlier.
 
-Use both the authorization `code` and the `state` to requests an access token from the Console token endpoint `/api/oauth/token`.
+This endpoint MUST be able to read the authorization `code` and the `state` from the query component and request an access token from the Console token endpoint forwarding both the authorization `code` and the `state`.
 
 :::info
 For safety reasons, all modern browsers block Cross Origin requests, thus you need to implement a proxy endpoint in order to contact the Console token endpoint.
@@ -123,16 +126,56 @@ For safety reasons, all modern browsers block Cross Origin requests, thus you ne
 
 ## Extension Token Endpoint
 
-This endpoint exposed by the extension backend is needed to exchange the *Authorization Code* received on the extension *Callback URL* with a valid access token.
+As all modern browsers block Cross Origin requests, in order to request an access token from the Console endpoint, you MUST expose an extension backend endpoint acting as a proxy towards the Console token endpoint.
 
-This endpoint just acts as a proxy towards the following Console token endpoint, preceded by the Console base URL:
+Here a simple example of a Fiber app in Go that exposes a `POST /api/token` API acting as a proxy towards the Console `POST https://<CONSOLE_URL>/api/oauth/token` endpoint:
 
-`/api/oauth/token`
+```go
+package main
 
-Note that when authorizing a user on an extension, the access token is contained in the response body. 
+func main() {
+     app := fiber.New()
+
+     app.Post("/api/token", func(c *fiber.Ctx) error {
+          tokenResponse, err := http.Post(
+               "https://<CONSOLE_URL>/api/oauth/token",
+               "application/json",
+               bytes.NewReader(c.Body()),
+          )
+          if err != nil {
+               c.Send([]byte(err.Error()))
+               return c.SendStatus(http.StatusInternalServerError)
+          }
+          defer tokenResponse.Body.Close()
+
+          responseBodyBytes, err := io.ReadAll(tokenResponse.Body)
+          if err != nil {
+               c.Send([]byte(err.Error()))
+               return c.SendStatus(http.StatusInternalServerError)
+          }
+          return c.Send(responseBodyBytes)
+     })
+
+     log.Fatal(app.Listen(":3000"))
+}
+```
+
+The access token is contained in the response body as a `JSON` structured in this way:
+
+```json
+{
+    "accessToken": "my-access-token",
+    "refreshToken": "my-refresh-token",
+    "expireAt": 1234567890
+}
+```
+
+Further detail on this API can be found on the [Authentication Service documentation][docs-authentication-service-get-token].
 
 :::info
-How the extension access token is stored and communicated to the frontend is not scope of this guide.
+How you should store and communicate the access token to the extension frontend is not scope of this guide.
+
+Whether you choose to set an HttpOnly Cookie for your extension domain, or store the access token securely in your favorite way does not make any difference.
 :::
 
 ## Validate Access Token
@@ -158,7 +201,9 @@ If the audiences claim (**aud**) does not include your application URL, the toke
 [ietf-jwt-claims]: https://datatracker.ietf.org/doc/html/rfc7519#section-4.1
 [ietf-jwks]: https://datatracker.ietf.org/doc/html/rfc7517
 
+[docs-authentication-service-get-token]: https://docs.mia-platform.eu/docs/runtime_suite/authentication-service/usage#get-jwt-token
+
 [docs-manage-extensions]: /console/company-configuration/extensions.md
-[extension-login-endpoint]: #extension-login-endpoint
+[extension-login-entry-point]: #extension-login-entry-point
 [extension-callback-url]: #extension-callback-url
 [extension-token-endpoint]: #extension-token-endpoint
