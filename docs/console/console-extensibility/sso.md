@@ -128,7 +128,8 @@ For safety reasons, all modern browsers block Cross Origin requests, thus you ne
 
 As all modern browsers block Cross Origin requests, in order to request an access token from the Console endpoint, you MUST expose an extension backend endpoint acting as a proxy towards the Console token endpoint.
 
-Here a simple example of a Fiber app in Go that exposes a `POST /api/token` API acting as a proxy towards the Console `POST https://<CONSOLE_URL>/api/oauth/token` endpoint:
+Here a simple example of a `POST /api/token` proxy API towards the Console `POST https://<CONSOLE_URL>/api/oauth/token` endpoint.
+It is implemented in Go as a Fiber app, but you can implement yours using your favorite development stack:
 
 ```go
 package main
