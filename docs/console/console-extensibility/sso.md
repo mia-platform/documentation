@@ -193,7 +193,7 @@ When using the *Console SSO* for your extension, remember to validate tokens whe
 - ensure that the **aud** claim refers to your extension application
 
 :::warning
-If the audiences claim (**aud**) does not include your application URL, the token is not valid and you MUST reject that request!
+If the audiences claim (**aud**) does not include your application URL, it means that the token was not signed for your application to be used, you MUST reject that request!
 :::
 
 [ietf-redirection-endpoint]: https://datatracker.ietf.org/doc/html/rfc6749#section-3.1.2
