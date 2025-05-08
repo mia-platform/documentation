@@ -10,6 +10,12 @@ DO NOT MODIFY IT BY HAND.
 Instead, modify the source file and run the aggregator to regenerate this file.
 -->
 
+## [2.2.1] - 2025-05-07
+
+### Fixed
+
+- Fixed missing fallback language
+
 ## [2.2.0] - 2025-02-14
 
 ### Added
