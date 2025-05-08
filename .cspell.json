@@ -367,7 +367,9 @@
     "HANA",
     "pgsql",
     "saphana",
-    "Medisanté"
+    "Medisanté",
+    "SDLC",
+    "IMDRF"
   ],
   "dictionaries": [
     "softwareTerms",
