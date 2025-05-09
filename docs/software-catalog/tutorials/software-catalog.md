@@ -57,7 +57,7 @@ For a detailed explanation of the required metadata please refere to [this guide
    5. `Name` that is the name of the service
    6. `Description`
    7. `Repository Url` which is the url to the source code of the service
-   8. `Docker Image` 
+   8. `Docker Image`
 
 :::caution
 The `Asstes` object have a different spec based on the `Item Type` the exaple provided in this guide is related to the components of item `plugin`
@@ -122,7 +122,7 @@ For reference this is the `Assets` object configuration for an hypothetical plug
 ```
 
 :::caution
-The `componentId` and `name` fields must be equal. 
+The `componentId` and `name` fields must be equal.
 :::
 
 1. **Complete the process** – Follow the on-screen instructions, then save and submit the item to add it to the Catalog.
@@ -136,7 +136,7 @@ Using `miactl` requires setting up the CLI beforehand. For more details, refer t
 :::
 
 :::info
-For testing purpose you can use your own account to create context and log-in the Mia-Platform Console using miactl. 
+For testing purpose you can use your own account to create context and log-in the Mia-Platform Console using miactl.
 For production purpose the use of a `Service Account` with the `Company Owner` permission is recommended. To know more about service accounts follow this [documentation page](/development_suite/identity-and-access-management/manage-service-accounts.md).
 :::
 
@@ -199,7 +199,7 @@ Once the `manifest.json` is ready, the following commands are needed to release 
 > miactl context auth miactl-bot --client-id $CLIENT_ID --client-secret $CLIENT_SECRET
 > miactl context set my-context --company-id $COMPANY_ID --endpoint $CONSOLE_URL --auth-name miactl-bot
 > miactl context use my-context
-> miactl marketplace apply -f ./manifest.json
+> miactl catalog apply -f ./manifest.json
 
 ```
 
@@ -232,17 +232,17 @@ First of all, download and save the latest version of the item configuration:
 
 ```bash
 
-> miactl marketplace get ITEM_ID > myAwesomeService.json
+> miactl catalog get --item-id ITEM_ID --version VERSION > myAwesomeService.json
 
 ```
 
-If you don't know the item id, use the `miactl marketplace list` command to list all the Catalog items.
+If you don't know the item id and/or the version, use the `miactl catalog list` command to list all the Catalog items.
 
 Once you have the manifest, modify the fields you need and the publish the new version using the following command:
 
 ```bash
 
-> miactl marketplace apply -f myAwesomeService.json
+> miactl catalog apply -f myAwesomeService.json
 
 ```
 

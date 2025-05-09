@@ -4,7 +4,7 @@ title: miactl
 sidebar_label: miactl
 ---
 
-One of the possible ways to interact with the Catalog is through [`miactl`](/cli/miactl/10_overview.md), the Mia-Platform Command Line Interface. 
+One of the possible ways to interact with the Catalog is through [`miactl`](/cli/miactl/10_overview.md), the Mia-Platform Command Line Interface.
 
 :::tip
 Before getting started, make sure you have completed the [setup guide](/cli/miactl/20_setup.md).
@@ -75,7 +75,7 @@ The idea behind the automation of the managing process is to leverage a CI/CD to
 
 Any CI/CD tool will do the trick, but in this example we will focus on a Gitlab pipeline.
 
-First of all, you need to create a **service account** on the Console, using, for example, the [Client Secret Basic authentication](/development_suite/identity-and-access-management/manage-service-accounts.md#adding-a-service-account). 
+First of all, you need to create a **service account** on the Console, using, for example, the [Client Secret Basic authentication](/development_suite/identity-and-access-management/manage-service-accounts.md#adding-a-service-account).
 
 With the account in place, create a `CLIENT_ID` and a `CLIENT_SECRET` [Gitlab CI/CD Variable](https://docs.gitlab.com/ee/ci/variables/) in your project and set the respective `client-id` and `client-secret` values you obtained during the setup of the service account.
 
@@ -111,7 +111,7 @@ apply-catalog:
     - miactl context auth new-auth --client-id $CLIENT_ID --client-secret $CLIENT_SECRET
     - miactl context set new-context --company-id $COMPANY_ID --endpoint $CONSOLE_ENDPOINT --auth-name new-auth
     - miactl context use new-context
-    - miactl marketplace apply -f ./items
+    - miactl catalog apply -f ./items
 
   rules:
     - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
@@ -139,4 +139,4 @@ In this way, even users without the permission to manage the Catalog directly ca
 
 When deleting an item or an item's version from the Catalog, keep in mind that you need to work both on the repository and on the Catalog itself, since a declarative approach usually works only in addition (i.e., deleting a manifest from the repository will not remove the item from the Catalog).
 
-Therefore, remove the manifest from Git and use the `miactl marketplace delete` command to clean the Catalog.
+Therefore, remove the manifest from Git and use the `miactl catalog delete` command to clean the Catalog.

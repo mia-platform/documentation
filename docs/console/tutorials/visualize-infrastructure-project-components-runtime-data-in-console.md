@@ -58,7 +58,7 @@ runtime-data:
     - miactl context auth ci-auth --client-id "$CLIENT_ID" --client-secret "$CLIENT_SECRET"
     - miactl context set console --endpoint $CONSOLE --company-id $COMPANY_ID --auth-name ci-auth
     - miactl context use console
-    - miactl marketplace apply --company-id=$COMPANY_ID -f runtime_manifest.json
+    - miactl catalog apply --company-id=$COMPANY_ID -f runtime_manifest.json
 ```
 
 <details>

@@ -20,7 +20,7 @@ Marketplace service templates can be configured to be built using Jenkins, this 
 We are going to create the service template in the Marketplace using `miactl` and link a git repository containing the Jenkins pipeline template:
 
 - Create the marketplace resource object and save it in `jenkins-service-template.yaml`
- 
+
   ```yaml
   tenantId: <TENANT_ID>
   type: template
@@ -76,7 +76,7 @@ We are going to create the service template in the Marketplace using `miactl` an
 - Apply the resource using `miactl`
 
   ```sh
-  miactl marketplace apply -f jenkins-service-template.yaml
+  miactl catalog apply -f jenkins-service-template.yaml
   ```
 
 - In the linked repository create the Jenkins pipeline template at `services/node.xml`, this will instruct Jenkins to build the service when a new commit is pushed to the repository and run the
@@ -199,7 +199,7 @@ pipeline as defined in the linked `Jenkinsfile`. This template will be interpola
   - `mia_template_service_name_placeholder` name of the service, as specified in the Project
   - `mia_template_project_id_placeholder` the identifier of the Project
   - `mia_template_image_name_placeholder` the image name of the service, as specified in the Project
-  - `%CUSTOM_PLUGIN_PROJECT_NAME%` name of the Project 
+  - `%CUSTOM_PLUGIN_PROJECT_NAME%` name of the Project
   - `%CUSTOM_PLUGIN_SERVICE_DESCRIPTION%` service description
   - `%CUSTOM_PLUGIN_CREATOR_USERNAME%` username of the user who created the service
   - `%CUSTOM_PLUGIN_PROJECT_FULL_PATH%` the full path of the Project in the Git provider
@@ -207,7 +207,7 @@ pipeline as defined in the linked `Jenkinsfile`. This template will be interpola
   - `%GIT_PROVIDER_GROUP%` the group of service repository
   - `%GIT_PROVIDER_PROJECT%` the name of the service repository
   - `%CUSTOM_PLUGIN_PROJECT_GIT_PATH%` the full path of the service repository
-  - `%NEXUS_HOSTNAME%` registry hostname 
+  - `%NEXUS_HOSTNAME%` registry hostname
   - `%SECRET_TOKEN%`secret token used to trigger the pipeline
 
 - create the build pipeline definition `Jenkinsfile`
