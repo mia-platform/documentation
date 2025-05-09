@@ -13,7 +13,9 @@ For each of the following scenarios, we will provide both an overview of the arc
 ### Scenarios
 
 These are the scenarios you can find in this tutorial:
+
 - [Scenario 1: Use static API Keys](/console/tutorials/configure-marketplace-components/auth-architecture/static-api-key.md)
 - [Scenario 2: Integrate an external Identity Provider](/console/tutorials/configure-marketplace-components/auth-architecture/external-idp.md)
-- [Scenario 3: Integrate an external Identity Provider but manage session and user groups within your project](/console/tutorials/configure-marketplace-components/auth-architecture/external-idp-internal-session.md)
-- [Scenario 4: Centralize the authentication in a multi-projects architecture](/console/tutorials/configure-marketplace-components/auth-architecture/multiple-projects.mdx)
+- [Scenario 3: Integrate an external Identity Provider using the JWT Token Validator](/console/tutorials/configure-marketplace-components/auth-architecture/external-idp-jwt-plugin.md)
+- [Scenario 4: Integrate an external Identity Provider but manage session and user groups within your project](/console/tutorials/configure-marketplace-components/auth-architecture/external-idp-internal-session.md)
+- [Scenario 5: Centralize the authentication in a multi-projects architecture](/console/tutorials/configure-marketplace-components/auth-architecture/multiple-projects.mdx)
