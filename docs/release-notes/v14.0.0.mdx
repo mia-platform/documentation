@@ -93,6 +93,11 @@ From now on, when creating a Project, you can read the description of the Projec
 
 Starting from now, newly created Projects of traditional type Application will show to the user the name of the Project Template from which the Project has been created. This information will be visible in the Settings of the Project, inside the General tab.
 
+#### Import Flow Configuration in Flow Manager Configurator
+
+You can now import a Flow Manager configuration directly from the configurator, either by uploading a file or pasting a JSON snippet. Once imported, the flow will be immediately rendered in the canvas.
+Uploading a new service configuration will overwrite the existing one in the canvas.
+
 ## Fast Data
 
 ### Fast Data Services
@@ -114,6 +119,20 @@ For more information check out the service [changelog](/runtime_suite/single-vie
 [Support for MongoDB](/data_catalog/frontend/data_catalog_connections.mdx#mongodb) as a new connection provider has been introduced in Data Catalog. Users can now define a connection string to connect directly to a MongoDB instance. When collections include a MongoDB JSON Schema validation, the agent is able to automatically detect field structures and types.  
 Retrieval of databases and collections can be managed through multiple configuration modes.  
 Check the full list of available options in the [official documentation](/data_catalog/frontend/data_catalog_connections.mdx#mongodb-databases-settings) to configure the behavior according to your needs.
+
+## Microfrontend Composer
+
+### Back-Lit Library
+
+The new version `v1.5.17` of the back-kit library is available!
+
+Refer to back-kit [changelog](/microfrontend-composer/back-kit/changelog.md) for finer-grained details of new versions.
+
+#### Improvements
+
+##### Form Validation Support for Custom Footer Actions in `bk-dynamic-form-modal`
+
+Added possibility to validate the form content when performing a custom footer action in `bk-dynamic-form-modal` component.
 
 ## Marketplace
 
