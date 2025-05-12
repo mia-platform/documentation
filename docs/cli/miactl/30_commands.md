@@ -1158,7 +1158,7 @@ miactl marketplace list-versions -i some-item
 ## catalog
 
 :::info
-This command and its subcommands use APIs that are available from Mia-Plaftorm Console v14.0.0. If you are using a previous Console version, use [marketplace](#marketplace) command instead.
+This command and its subcommands use APIs that are available from Mia-Platform Console v14.0.0. If you are using a previous Console version, use [marketplace](#marketplace) command instead.
 :::
 
 View and manage Catalog items
