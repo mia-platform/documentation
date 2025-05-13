@@ -17,7 +17,7 @@ Practically speaking, plugins are **Docker images** that comes with some predefi
 
 ### Templates
 
-Teamplates can be instantiated in Console the same as plugins. The difference is that they provide an **archive** that is cloned in the Project scope, instead of a Docker image, giving developers direct access to the codebase to evolve it at will.
+Templates can be instantiated in Console the same as plugins. The difference is that they provide an **archive** that is cloned in the Project scope, instead of a Docker image, giving developers direct access to the codebase to evolve it at will.
 
 Templates are meant to be starting points with the bear minimum needed to start a service. Just like plugins, templates may also come with some predefined configurations.
 
