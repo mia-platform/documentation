@@ -4,15 +4,7 @@ title: MongoDB Compatibility Matrix
 sidebar_label: MongoDB Compatibility Matrix
 ---
 
-
 The table shows a compatibility matrix for MongoDB versions support of Marketplace items.
-
-:::caution
-
-This is an indicative list. For up to date information about the latest versions of the services, please visit their documentation.
-
-:::
-
 
 <table>
     <tr>
@@ -139,33 +131,18 @@ This is an indicative list. For up to date information about the latest versions
         <td>✅</td>
         <td>✅</td>
         <td>✅</td>
-        <td></td>
+        <td>❌</td>
     </tr>
     <tr>
         <td>v2.3.1</td>
         <td>❌</td>
         <td>❌</td>
         <td>❌</td>
-        <td></td>
-    </tr>
-    <tr>
-        <td rowspan="2"><a href="../../runtime_suite/mongodb-reader/configuration">MongoDB Reader</a></td>
-        <td>v2.1.0</td>
-        <td>✅</td>
-        <td>✅</td>
         <td>❌</td>
-        <td></td>
-    </tr>
-    <tr>
-        <td>v2.0.2</td>
-        <td>❌</td>
-        <td>❌</td>
-        <td>❌</td>
-        <td></td>
     </tr>
     <tr>
         <td rowspan="2"><a href="../../console/tutorials/configure-marketplace-components/flow-manager">Flow Manager</a></td>
-        <td>≤ v2.6.x </td>
+        <td>≤ v2.6.x</td>
         <td>✅</td>
         <td>✅</td>
         <td>✅</td>
@@ -184,14 +161,14 @@ This is an indicative list. For up to date information about the latest versions
         <td>✅</td>
         <td>✅</td>
         <td>❌</td>
-        <td></td>
+        <td>❌</td>
     </tr>
     <tr>
         <td>v1.1.1</td>
         <td>❌</td>
         <td>❌</td>
         <td>❌</td>
-        <td></td>
+        <td>❌</td>
     </tr>
     <tr>
         <td rowspan="3"><a href="../../runtime_suite/files-service/configuration">Files Service</a></td>
@@ -199,21 +176,21 @@ This is an indicative list. For up to date information about the latest versions
         <td>✅</td>
         <td>✅</td>
         <td>✅</td>
-        <td></td>
+        <td>❌</td>
     </tr>
     <tr>
         <td>≥ v2.9.0</td>
         <td>✅</td>
         <td>✅</td>
         <td>❌</td>
-        <td></td>
+        <td>❌</td>
     </tr>
     <tr>
         <td>≥ v2.3.x</td>
         <td>❌</td>
         <td>❌</td>
         <td>❌</td>
-        <td></td>
+        <td>❌</td>
     </tr>
     <tr>
         <td><a href="../../runtime_suite/push-notification-manager/configuration">Notification Manager</a></td>
@@ -221,6 +198,6 @@ This is an indicative list. For up to date information about the latest versions
         <td>✅</td>
         <td>✅</td>
         <td>❌</td>
-        <td></td>
+        <td>❌</td>
     </tr>
 </table>
