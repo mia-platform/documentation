@@ -1,5 +1,5 @@
 ---
-id: Overview
+id: overview
 title: Kafka2Rest Kotlin Library
 sidebar_label: Kafka2Rest
 ---
