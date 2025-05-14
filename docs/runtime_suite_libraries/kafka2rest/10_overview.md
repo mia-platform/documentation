@@ -1,5 +1,5 @@
 ---
-id: kafka2rest
+id: Overview
 title: Kafka2Rest Kotlin Library
 sidebar_label: Kafka2Rest
 ---
@@ -59,14 +59,14 @@ First of all you need to initialize Kafka2Rest with:
 
 #### Config Parameters
 
-|Parameter|Meaning|
-|---|---|
-|maxIntervalBetweenPolls|The maximum time (Duration) interval between two consecutive poll. When this timeout is exceeded the method `isRunning()` returns false.|
-|topicList|The list of topic to subscribe to.|
-|pollTimeout|The time (Duration) spent waiting in poll if data is not available in the buffer. If 0, returns immediately with any records that are available currently in the buffer, else returns empty. Must not be negative.|
-|onExceptionTopic|(Optional) Defines a topic where messages causing unhandled processor exceptions will be stored. Kafka2Rest will enrich the message headers with two properties `retryNumber` and `errors`.|
-|retriesLimit||
-|sleepPeriod||
+| Parameter               | Meaning                                                                                                                                                                                                            |
+| ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| maxIntervalBetweenPolls | The maximum time (Duration) interval between two consecutive poll. When this timeout is exceeded the method `isRunning()` returns false.                                                                           |
+| topicList               | The list of topic to subscribe to.                                                                                                                                                                                 |
+| pollTimeout             | The time (Duration) spent waiting in poll if data is not available in the buffer. If 0, returns immediately with any records that are available currently in the buffer, else returns empty. Must not be negative. |
+| onExceptionTopic        | (Optional) Defines a topic where messages causing unhandled processor exceptions will be stored. Kafka2Rest will enrich the message headers with two properties `retryNumber` and `errors`.                        |
+| retriesLimit            |                                                                                                                                                                                                                    |
+| sleepPeriod             |                                                                                                                                                                                                                    |
 
 #### Code Sample
 
