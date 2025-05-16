@@ -1,5 +1,5 @@
 ---
-id: rest2kafka
+id: overview
 title: Rest2Kafka Kotlin Library
 sidebar_label: Rest2Kafka
 ---

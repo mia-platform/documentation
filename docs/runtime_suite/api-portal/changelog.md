@@ -10,6 +10,16 @@ DO NOT MODIFY IT BY HAND.
 Instead, modify the source file and run the aggregator to regenerate this file.
 -->
 
+## [2.2.2] - 2025-05-14
+
+### Fixed
+
+- Fixed scroll in tags and filters with select
+
+### Security
+
+- Fix vulnerabilities
+
 ## [2.2.1] - 2025-05-07
 
 ### Fixed

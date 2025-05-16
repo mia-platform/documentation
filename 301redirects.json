@@ -1886,5 +1886,33 @@
   "/docs/runtime_suite_applications/data-analytics/how_to_use": {
     "destination": "/docs/marketplace/applications/mia_applications",
     "addedOn": "2025-01-31"
+  },
+  "/docs/next/libraries/overview_service_libraries": {
+    "destination": "/docs/next/marketplace/overview_marketplace",
+    "addedOn": "2025-05-15"
+  },
+  "/docs/next/development_suite/api-console/api-design/plugin_baas_4": {
+    "destination": "/docs/next/marketplace/overview_marketplace",
+    "addedOn": "2025-05-15"
+  },
+  "/docs/next/libraries/kafka2rest": {
+    "destination": "/docs/next/runtime_suite_libraries/kafka2rest/overview",
+    "addedOn": "2025-05-15"
+  },
+  "/docs/next/libraries/rest2kafka": {
+    "destination": "/docs/next/runtime_suite_libraries/rest2kafka/overview",
+    "addedOn": "2025-05-15"
+  },
+  "/docs/next/development_suite/api-console/api-design/plugin_baas_4/": {
+    "destination": "/docs/next/marketplace/overview_marketplace",
+    "addedOn": "2025-05-15"
+  },
+  "/docs/next/libraries/create-new-library": {
+    "destination": "/docs/next/marketplace/overview_marketplace",
+    "addedOn": "2025-05-15"
+  },
+  "/docs/next/runtime_suite_applications/api-documentation-aggregator/changelog": {
+    "destination": "/docs/next/runtime_suite_applications/api-documentation-aggregator/overview",
+    "addedOn": "2025-05-15"
   }
 }
