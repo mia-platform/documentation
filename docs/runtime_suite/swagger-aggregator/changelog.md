@@ -10,6 +10,12 @@ DO NOT MODIFY IT BY HAND.
 Instead, modify the source file and run the aggregator to regenerate this file.
 -->
 
+## [3.9.4] 2024-05-14
+
+### Updated
+
+- Updated Api Portal to version `2.2.2`
+
 ## [3.9.3] 2024-05-07
 
 ### Updated
