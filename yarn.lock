@@ -1715,6 +1715,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@babel/runtime@npm:^7.18.3":
+  version: 7.27.0
+  resolution: "@babel/runtime@npm:7.27.0"
+  dependencies:
+    regenerator-runtime: "npm:^0.14.0"
+  checksum: 10/e6966e03b695feb4c0ac0856a4355231c2580bf9ebd0298f47739f85c0ea658679dd84409daf26378d42c86c1cbe7e33feab709b14e784254b6c441d91606465
+  languageName: node
+  linkType: hard
+
 "@babel/template@npm:^7.12.7, @babel/template@npm:^7.22.15, @babel/template@npm:^7.24.0":
   version: 7.24.0
   resolution: "@babel/template@npm:7.24.0"
@@ -3118,6 +3127,20 @@ __metadata:
   version: 1.6.22
   resolution: "@mdx-js/util@npm:1.6.22"
   checksum: 10/4b393907e39a1a75214f0314bf72a0adfa5e5adffd050dd5efe9c055b8549481a3cfc9f308c16dfb33311daf3ff63added7d5fd1fe52db614c004f886e0e559a
+  languageName: node
+  linkType: hard
+
+"@mia-platform/console-types@npm:^0.37.1":
+  version: 0.37.1
+  resolution: "@mia-platform/console-types@npm:0.37.1"
+  dependencies:
+    "@types/json-schema": "npm:^7.0.9"
+    json-schema-to-ts: "npm:^2.9.2"
+    ramda: "npm:^0.30.1"
+  peerDependencies:
+    "@fastify/swagger": ">= 8 || ^6"
+    fastify: ">= 3 < 6"
+  checksum: 10/c8f998c1b561028638657a050efdc28a1e99eb0ceb3a5864682816e66c54a326ad4a582aae4428b65edd2183a47538b56d23ee11c0cd0aabaa7447331370ec70
   languageName: node
   linkType: hard
 
@@ -10147,6 +10170,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"json-schema-to-ts@npm:^2.9.2":
+  version: 2.12.0
+  resolution: "json-schema-to-ts@npm:2.12.0"
+  dependencies:
+    "@babel/runtime": "npm:^7.18.3"
+    "@types/json-schema": "npm:^7.0.9"
+    ts-algebra: "npm:^1.2.2"
+  checksum: 10/6d608e039f5699cda503ced169bf966df21400da5591e312aef4ef563f8d2f5574ca205f8eb3e696fef7448996f676c799545895e0f1ffe91e34e76df40104cc
+  languageName: node
+  linkType: hard
+
 "json-schema-traverse@npm:^0.4.1":
   version: 0.4.1
   resolution: "json-schema-traverse@npm:0.4.1"
@@ -10755,6 +10789,7 @@ __metadata:
     "@docusaurus/core": "npm:2.4.3"
     "@docusaurus/plugin-client-redirects": "npm:2.4.3"
     "@docusaurus/preset-classic": "npm:2.4.3"
+    "@mia-platform/console-types": "npm:^0.37.1"
     "@staticdeploy/cli": "npm:^0.15.5"
     "@swc/core": "npm:^1.11.18"
     clsx: "npm:^2.1.1"
@@ -12624,6 +12659,13 @@ __metadata:
   dependencies:
     inherits: "npm:~2.0.3"
   checksum: 10/3437954ef1442c86ff01a0fbe3dc6222838823b1ca97f37eff651bc20b868c0c2904424ef2c0d44cba46055f54b578f92866e573125dc9a5e8823d751e4d1585
+  languageName: node
+  linkType: hard
+
+"ramda@npm:^0.30.1":
+  version: 0.30.1
+  resolution: "ramda@npm:0.30.1"
+  checksum: 10/f3e1a7bc11f3a113edb3bb4764c2c22088c5896594934c01cf1980184d00f1d5a7af82761a3389419e2d51542ad2121ff44e718f40792d167e2846bba79a4c6d
   languageName: node
   linkType: hard
 
@@ -14654,6 +14696,13 @@ __metadata:
   version: 1.0.5
   resolution: "trough@npm:1.0.5"
   checksum: 10/2209753fda70516f990c33f5d573361ccd896f81aaee0378ef6dae5c753b724d75a70b40a741e55edc188db51cfd9cd753ee1a3382687b17f04348860405d6b2
+  languageName: node
+  linkType: hard
+
+"ts-algebra@npm:^1.2.2":
+  version: 1.2.2
+  resolution: "ts-algebra@npm:1.2.2"
+  checksum: 10/198f1d6fdfec0e8ffacf96d3db6464546afd147e80fac06158744188a64809524bc6d5eccfdbe3510e83e665d36d39fc7900940e5e258516a2c57a94b4963102
   languageName: node
   linkType: hard
 

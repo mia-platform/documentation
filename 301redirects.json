@@ -1808,47 +1808,47 @@
     "addedOn": "2024-10-23"
   },
   "/docs/marketplace/add_to_marketplace/create_your_company_marketplace": {
-    "destination": "/docs/software-catalog/manage-items/overview-manage-items",
+    "destination": "/docs/old_software-catalog/manage-items/overview-manage-items",
     "addedOn": "2024-11-19"
   },
   "/docs/marketplace/add_to_marketplace/add_item_by_type/add_plugin": {
-    "destination": "/docs/software-catalog/manage-items/mia-ctl/create/create-item-by-type/create_plugin",
+    "destination": "/docs/old_software-catalog/manage-items/mia-ctl/create/create-item-by-type/create_plugin",
     "addedOn": "2024-11-19"
   },
   "/docs/marketplace/add_to_marketplace/add_item_by_type/add_template_or_example": {
-    "destination": "/docs/software-catalog/manage-items/mia-ctl/create/create-item-by-type/create_template_or_example",
+    "destination": "/docs/old_software-catalog/manage-items/mia-ctl/create/create-item-by-type/create_template_or_example",
     "addedOn": "2024-11-19"
   },
   "/docs/marketplace/add_to_marketplace/add_item_by_type/add_application": {
-    "destination": "/docs/software-catalog/manage-items/mia-ctl/create/create-item-by-type/create_application",
+    "destination": "/docs/old_software-catalog/manage-items/mia-ctl/create/create-item-by-type/create_application",
     "addedOn": "2024-11-19"
   },
   "/docs/marketplace/add_to_marketplace/add_item_by_type/add_sidecar": {
-    "destination": "/docs/software-catalog/manage-items/mia-ctl/create/create-item-by-type/create_sidecar",
+    "destination": "/docs/old_software-catalog/manage-items/mia-ctl/create/create-item-by-type/create_sidecar",
     "addedOn": "2024-11-19"
   },
   "/docs/marketplace/add_to_marketplace/add_item_by_type/add_custom_resource": {
-    "destination": "/docs/software-catalog/manage-items/mia-ctl/create/create-item-by-type/create_infrastructure_resource",
+    "destination": "/docs/old_software-catalog/manage-items/mia-ctl/create/create-item-by-type/create_infrastructure_resource",
     "addedOn": "2024-11-19"
   },
   "/docs/marketplace/add_to_marketplace/manage_marketplace_items": {
-    "destination": "/docs/software-catalog/manage-items/overview-manage-items",
+    "destination": "/docs/old_software-catalog/manage-items/overview-manage-items",
     "addedOn": "2024-11-19"
   },
   "/docs/marketplace/add_to_marketplace/marketplace_items_accessibility": {
-    "destination": "/docs/software-catalog/catalog-and-marketplace/overview-catalog-and-marketplace",
+    "destination": "/docs/old_software-catalog/catalog-and-marketplace/overview-catalog-and-marketplace",
     "addedOn": "2024-11-19"
   },
   "/docs/marketplace/add_to_marketplace/change_marketplace_item_visibility": {
-    "destination": "/docs/software-catalog/catalog-and-marketplace/overview-catalog-and-marketplace",
+    "destination": "/docs/old_software-catalog/catalog-and-marketplace/overview-catalog-and-marketplace",
     "addedOn": "2024-11-19"
   },
   "/docs/marketplace/add_to_marketplace/declarative_marketplace": {
-    "destination": "/docs/software-catalog/manage-items/declarative-approach",
+    "destination": "/docs/old_software-catalog/manage-items/declarative-approach",
     "addedOn": "2024-11-19"
   },
-  "/docs/software-catalog/manage-items/mia-ctl/overview-mia-ctl": {
-    "destination": "/docs/software-catalog/manage-items/mia-ctl/overview-miactl",
+  "/docs/old_software-catalog/manage-items/mia-ctl/overview-mia-ctl": {
+    "destination": "/docs/old_software-catalog/manage-items/mia-ctl/overview-miactl",
     "addedOn": "2024-12-04"
   },
   "/docs/data_catalog/data_catalog_frontend": {
@@ -1886,5 +1886,33 @@
   "/docs/runtime_suite_applications/data-analytics/how_to_use": {
     "destination": "/docs/marketplace/applications/mia_applications",
     "addedOn": "2025-01-31"
+  },
+  "/docs/next/libraries/overview_service_libraries": {
+    "destination": "/docs/next/marketplace/overview_marketplace",
+    "addedOn": "2025-05-15"
+  },
+  "/docs/next/development_suite/api-console/api-design/plugin_baas_4": {
+    "destination": "/docs/next/marketplace/overview_marketplace",
+    "addedOn": "2025-05-15"
+  },
+  "/docs/next/libraries/kafka2rest": {
+    "destination": "/docs/next/runtime_suite_libraries/kafka2rest/overview",
+    "addedOn": "2025-05-15"
+  },
+  "/docs/next/libraries/rest2kafka": {
+    "destination": "/docs/next/runtime_suite_libraries/rest2kafka/overview",
+    "addedOn": "2025-05-15"
+  },
+  "/docs/next/development_suite/api-console/api-design/plugin_baas_4/": {
+    "destination": "/docs/next/marketplace/overview_marketplace",
+    "addedOn": "2025-05-15"
+  },
+  "/docs/next/libraries/create-new-library": {
+    "destination": "/docs/next/marketplace/overview_marketplace",
+    "addedOn": "2025-05-15"
+  },
+  "/docs/next/runtime_suite_applications/api-documentation-aggregator/changelog": {
+    "destination": "/docs/next/runtime_suite_applications/api-documentation-aggregator/overview",
+    "addedOn": "2025-05-15"
   }
 }
