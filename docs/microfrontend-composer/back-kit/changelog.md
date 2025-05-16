@@ -17,6 +17,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [1.5.17] - 2025-05-07
 
+### Fixed
+
 - added prop `validateForm` to custom footer button under the `actions` section  for validating a form.
 
 ## [1.5.16] - 2025-03-03
