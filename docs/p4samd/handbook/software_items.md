@@ -6,7 +6,7 @@ sidebar_label: Overview
 
 The section allows users to view, create, and edit software items. It provides an intuitive interface for managing software items, including detailed views, adding new entries, and updating existing records. Additionally, using the console, software items are also detected automatically, ensuring efficient and seamless handling of software-related data.
 
-## 1. Create Software Item Design 
+## Create Software Item Design 
 
 1. **Click the "Add software item design" Button**  
    This will open the modal to create a new Software Item.
@@ -16,7 +16,7 @@ The section allows users to view, create, and edit software items. It provides a
    When you click on this field, a dropdown will appear. In the dropdown, you can either:  
    - **Enter a new Software Item name**: Type the name you want to assign to the new Software Item and select **Create new**.
    - **Select an existing Software Item**: If a Software Item with the same name and version already exists in the system, you can select it from the list. This will automatically prefill the form with the details of the selected Software Item.
-   Fill in the required fields as needed  ([Fields description](#fields-description))
+   Fill in the required fields as needed ([Fields description](#fields-description))
 
 3. **Save the New Software Item**  
    Once you've completed the form, click the **"Add software item design"** button at the end of the modal to create and save the new Software Item in the system.
@@ -25,12 +25,14 @@ The section allows users to view, create, and edit software items. It provides a
 You can create a new Software Item starting from an older one: simply select it from the dropdown, then modify the `name` and other fields.
 ::: 
 
-## 2. Software Items Visualization
+## Software Items Visualization
 
 ### Table
 
 ![alt text](img/swi_table.png)
+
 The table shows basic info of the tree of software items:
+
 1. **+/-**: Expand/Collapse Software Item children
 2. **Software Item**: Name of the Software Item, clickable if the `Implementation link` is filled.
 3. **Suggestions**: Count of the suggestions, hover to show a dropdown with a number of how much is in error and in warning. Clicking open modal in the suggestion tab.
@@ -71,7 +73,8 @@ Each box contains key details about a software item, including:
 - **Fit View:** Adjusts the graph to fit within the visible area, ensuring all elements are displayed properly.  
 
 
-## 3. Software Item States and Related Actions
+## Software Item States and Related Actions
+
 Depending on the status of the software items, several fast actions are available:
 
 | Status | Button | Description | Action |
@@ -85,7 +88,8 @@ Depending on the status of the software items, several fast actions are availabl
 |![alt text](img/swi_version_unmatched.png)|        |Versions designed and detected are not matched| |
 |![alt text](img/swi_undetectable.png)|        |Software Item can't be detected| |
 
-## 4. Software Item Drawer
+## Software Item Drawer
+
 Clicking on a row or the specific button will open a navigable drawer.
 
 From here, you can approve or disapprove a Software Item. <br/>Additionally, all the actions available from the menu inside the table are accessible here as well, just click on the three dots icon in the top right corner.
@@ -111,61 +115,75 @@ This is divided into multiple tabs:
 If a Software Item is not designed but detected by the system, a warning will appear, and you can proceed with its creation.
 :::
 
-
-
 ## Fields description
-1. **Software item name**:  Name of Software Item.
+
+- **Software item name**:  Name of Software Item.
    - *Only for creation*
-2. **Version**: Version of Software Item.
+- **Version**: Version of Software Item.
    - *Only for creation*
    - Should follow **semantic versioning** format.
-4. **Implementation link**: Link to the implementation of the Software Item.
-5. **Resource type**: Type of the Software Item (project, service, library, or other).
+- **Implementation link**: Link to the implementation of the Software Item.
+- **Resource type**: Type of the Software Item (project, service, library, or other).
    - *Only for creation*
    - Selectable from the following options: `Project`, `Service`, `Library`, `Other`.
-6. **Parent software item**: Select the parent Software Items.
+- **Parent software item**: Select the parent Software Items.
    - *Only for creation*
    - Editable only if the Software Item type is `Service` or `Library`.
    - Allows the selection of multiple parent Software Items.
-7. **Description**: Description of the Software Item.
-8. **Is medical device**: Flag indicating whether the Software Item is a medical device.
-9. **Software safety classification**: Safety class of the medical device.
-   - Visible only if `Is medical device` is selected.
-   - Available options: `A`, `B`, `C`.
-10. **Detailed design reference**: Link to the detailed design documentation.
-    - Visible only if `Is medical device` is selected.
-11. **Detailed interface architecture reference**: Link to the detailed interface architecture documentation.
-    - Visible only if `Is medical device` is selected.
-12. **Is SOUP**: Flag indicating whether the Software Item is a "Software of Unknown Provenance" (SOUP).
+- **Description**: Description of the Software Item.
+- **Is medical device**: Flag indicating whether the Software Item is a medical device.
+- **Is SOUP**: Flag indicating whether the Software Item is a "Software of Unknown Provenance" (SOUP).
     - Selectable only if the Software Item **IS NOT** of type `Project`.
-13. **Manufacturer**: Name of the Software Item manufacturer.
-    - Visible only if `Is SOUP` is selected.
-14. **License**: License of the Software Item.
-    - Visible only if `Is SOUP` is selected.
-15. **Required hardware and software**: Hardware and Software required for the Software Item.
-    - Visible only if `Is SOUP` is selected.
-16. **Verification reason**: Reason for verifying the Software Item.
-    - Visible only if `Is SOUP` is selected.
-17. **Repository ID**: ID of the repository associated with the Software Item.
-18. **Repository link**: Link to the repository of the Software Item.
-19. **Architecture reference**: Link to the architecture reference of the Software Item.
-20. **Interface architecture reference**: Link to the interface architecture reference of the Software Item.
-21. **Linked requirements**: Requirements associated with the Software Item.
+- **Is AI**: Flag indicating whether the Software Item uses AI-based technologies.
+- **Repository ID**: ID of the repository associated with the Software Item.
+- **Repository link**: Link to the repository of the Software Item.
+- **Architecture reference**: Link to the architecture reference of the Software Item.
+- **Interface architecture reference**: Link to the interface architecture reference of the Software Item.
+- **Linked requirements**: Requirements associated with the Software Item.
     - Requirements are defined in the provider application.
-22. **Linked integration tests**: Integration tests associated with the Software Item.
+- **Linked integration tests**: Integration tests associated with the Software Item.
     - Integration tests are defined in the provider application.
-23. **Linked risks**: Risks associated with the Software Item.
+- **Linked risks**: Risks associated with the Software Item.
     - Risks are defined in the provider application.
-24. **Linked changes**: Applicable regulations for the Software Item.
+- **Linked changes**: Applicable regulations for the Software Item.
     - Changes are defined in the provider application.
 
+### Medical device
 
-<br />
+If you select **Is medical device**, the following additional fields are available:
+
+- **Software safety classification**: Safety class of the medical device.
+   - Available options: `A`, `B`, `C`.
+- **Detailed design reference**: Link to the detailed design documentation.
+- **Detailed interface architecture reference**: Link to the detailed interface architecture documentation.
+
+### SOUP
+
+If you select **Is SOUP**, the following additional fields are available:
+
+- **Manufacturer**: Name of the Software Item manufacturer.
+- **License**: License of the Software Item.
+- **Required hardware and software**: Hardware and Software required for the Software Item.
+- **Verification reason**: Reason for verifying the Software Item.
+
+### AI
+
+If you select **Is AI**, the following additional fields are available:
+
+- **AI type**: type of AI technology (`Agent`, `Model`).
+- **AI Bias Mitigation Strategies**: measures adopted to address and mitigate AI bias risks.
+- **AI Transparency & Explainability**: measures adopted to ensure AI transparency and accountability.
+- **Technical Documentation Link/Reference**: link or reference to technical documentation about the model.
+- **AI Model/Data Hosting Location**: location of AI hosting and data processing facilities. 
+- **AI Risk Classification**: risk level of AI system (`Minimal`, `Limited`, `High Risk`, `Unacceptable`)
+- **AI Risk Classification description**: additional information about the risk level for the AI system.
 
 :::warning
-Each Software Item is a design of an **instance**; every edit, approval, or disapproval **will be applied to all instances**. <br />
+Each Software Item is a design of an **instance**; every edit, approval, or disapproval **will be applied to all instances**.
+
 For this reason, you **cannot** create two Software Items with the same `name` and `version`, in that case an error will be displayed. 
 :::
 
 :::warning
 To **Approve** a Software Item all his children should be approved.
+:::

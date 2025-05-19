@@ -22,8 +22,9 @@ To streamline workflow efficiency, a **Quick Access** feature allows users to re
 - **Start Date**: The date when work on this version began.
 - **Planned Date**: The estimated release date of the version.<br/> 
 
-  |![alt text](img/system_version_elapsed_icon.png)|This icon notifies the user that the release date has passed. When you hover over it, the number of days elapsed since the scheduled release date is displayed.|
-|----|----|
+  | ![alt text](img/system_version_elapsed_icon.png) | This icon notifies the user that the release date has passed. When you hover over it, the number of days elapsed since the scheduled release date is displayed. |
+  | ------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+
 - **Status**: The current development phase (e.g., "Development" or "Released").
 - **Suggestions**: The number of suggestions or feedback items related to this version.
 - **Changes**: The number of changes or modifications applied to the version.
