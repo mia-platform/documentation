@@ -16,7 +16,8 @@ Each suggestion includes:
 - **Issue Resolution**: Users are warned about necessary actions to resolve detected issues;
 - **Actionable Guidance**: Clear instructions on what must be done;
 - **Standard Reference**: The applicable IEC 62304 requirement, including the paragraph number, title, and explanation.
-![alt text](img/suggestion_example.png)
+
+![Example of a warning suggestion](img/suggestion_example.png)
 
 ## Suggestions Rules
 

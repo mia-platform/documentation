@@ -109,7 +109,7 @@ P4SaMD includes functionalities based on artificial intelligence, the intellectu
   - [Data Protection Addendum][azure-openai-dpa]
   - [Data, privacy, and security][azure-openai-data-privacy-security]
 
-You should always to check the privacy policy and terms of use of the services your are going to use, to ensure their data processing practices are compliant with applicable regulations and company policies, especially if sensitive or confidential information are involved.
+You should always check the privacy policy and terms of use of the services your are going to use, to ensure their data processing practices are compliant with applicable regulations and company policies, especially if sensitive or confidential information are involved.
 
 ---
 
