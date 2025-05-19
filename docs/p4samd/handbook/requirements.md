@@ -46,7 +46,7 @@ Under the **Quality** column, you can see the following icons indicating the eva
 
 Under the last column on the table you can perform the following actions:
 
-- **Link Software Items**: by clicking on the link icon, you can link a new software item to the requirement or unlink an associated one. 
+- **Link Software Items**: by clicking on the link icon, you can link a new software item to the requirement or unlink an already associated one. The linked software items are displayed in the drawer under the **Traceability** tab.
 
 ## Drawer
 
