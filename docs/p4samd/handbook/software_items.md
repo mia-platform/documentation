@@ -111,7 +111,24 @@ This is divided into multiple tabs:
 If a Software Item is not designed but detected by the system, a warning will appear, and you can proceed with its creation.
 :::
 
+## 5. Software Item Exclusion 
+ You can choose to exclude projects that are not a part of the software system to have a clean Software Item design with the right project.[alt text](img/system_versions_setting.png)
+ The settings modal is availble in the SWI tab, for each version when they are not released
 
+1. **Click the "Setting" Button**  
+   This will open the modal to exclude/include projects.
+
+2. **Select the projects** 
+   In the modal, for the specific version, you can check/uncheck and decide which projects excllude from system version
+
+3. **Save the New Software Item**  
+   Once you've completed, click the **"Save Changes"** button at the end of the modal to save the new system version setting.
+
+:::tip
+   - The exclusion/inclusion in system version setting is valid only for software item project level.
+   - If a software item has the design, it can’t be excluded from system version.
+   - All the not-designed software items can be excluded from system versio.
+::: 
 
 ## Fields description
 1. **Software item name**:  Name of Software Item.
