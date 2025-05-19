@@ -65,7 +65,7 @@ Each box contains key details about a software item, including:
 - The minimap (bottom-right corner) provides an overview of the entire graph, helping users navigate large structures efficiently.  
 
 ##### **Caption (Legend)**  
-- Located in the top-left corner, the caption explains the different symbols and colors used in the graph, see **Status** of [Software Item States and Related Actions](#3-software-item-states-and-related-actions) for more infos.
+- Located in the top-left corner, the caption explains the different symbols and colors used in the graph, see **Status** of [Software Item States and Related Actions](#software-item-states-and-related-actions) for more infos.
 
 ##### **Actions**  
 - **Zoom In (+):** Increases the zoom level for a closer view of details.  
@@ -99,17 +99,23 @@ This is divided into multiple tabs:
 - **Traceability**: Shows the linked issues (Requirements, Risks, Integration Tests, Changes), which are clickable.
 - **Suggestions**: Displays a list of suggestions, if any, to ensure the Software Item meets the ISO standards.
 
-| IEC 62304 Reference Requirement | Title | Description |
-|-----------|-----------|----------|
-|[**5.3.1**] Transform software requirements into an ARCHITECTURE | Missing architecture reference | Each Software Item of class B or C must include a reference to its architecture. |
-|[**5.3.2**] Develop an ARCHITECTURE for the interfaces of SOFTWARE ITEMS | Missing interface architecture reference | Each Software Item of class B and class C must include a reference to the architecture of its interfaces. |
-|[**5.3.3**] Specify functional and performance requirements of SOUP item | Missing functional or performance requirements | Each SOUP Software Item of class B or C must include specified functional and performance requirements necessary for its intended use. |
-|[**5.3.4**] Specify SYSTEM hardware and software required by SOUP item | Missing system hardware and software requirements | Each SOUP Software Item of class B or C must include the system hardware and software necessary to support the proper operation of the item. |
-|[**5.4.2**] Develop detailed design for each SOFTWARE UNIT | Missing detailed design | Each Software Item of class C must have a detailed design documented to allow correct implementation. |
-|[**5.4.3**] Develop detailed design for interfaces | Missing detailed design for interfaces |Each Software Item of class C must include a detailed design for its interfaces with external components and other Software Units |
-|[**5.6.1**] Integrate SOFTWARE UNITS <br /> [**5.6.2**] Verify software integration <br /> [**5.6.3**] Software integration testing <br /> [**5.6.4**] Software integration testing content <br /> [**5.6.7**] Integration test record contents| Missing integration tests | Each Software Item of class B or C must be associated with at least one integration test. | 
-|[**7.1.1**] Identify SOFTWARE ITEMS that could contribute to a hazardous situation <br /> [**7.1.2**] Identify potential causes of contribution to a hazardous situation | Missing Risks | Each Software Item of class B or C must be associated with at least one risk |
-|[**8.1.2**] Identify SOUP | Missing Manufacturer in SOUP Software Item | Each SOUP Software Item must include the manufacturer's information. |
+| # | Reference Requirement | Title | Description |
+|-----|-------|-----------|----------|
+| 1 |[IEC 62304 **5.3.1**] Transform software requirements into an ARCHITECTURE | Missing architecture reference | Each Software Item of class B or C must include a reference to its architecture. |
+| 2 |[IEC 62304 **5.3.2**] Develop an ARCHITECTURE for the interfaces of SOFTWARE ITEMS | Missing interface architecture reference | Each Software Item of class B and class C must include a reference to the architecture of its interfaces. |
+| 3 |[IEC 62304 **5.3.3**] Specify functional and performance requirements of SOUP item | Missing functional or performance requirements | Each SOUP Software Item of class B or C must include specified functional and performance requirements necessary for its intended use. |
+| 4 |[IEC 62304 **5.3.4**] Specify SYSTEM hardware and software required by SOUP item | Missing system hardware and software requirements | Each SOUP Software Item of class B or C must include the system hardware and software necessary to support the proper operation of the item. |
+| 5 |[IEC 62304 **5.4.2**] Develop detailed design for each SOFTWARE UNIT | Missing detailed design | Each Software Item of class C must have a detailed design documented to allow correct implementation. |
+| 6 |[IEC 62304 **5.4.3**] Develop detailed design for interfaces | Missing detailed design for interfaces |Each Software Item of class C must include a detailed design for its interfaces with external components and other Software Units |
+| 7 |[IEC 62304 **5.6.1**] Integrate SOFTWARE UNITS <br /> [IEC 62304 **5.6.2**] Verify software integration <br /> [IEC 62304 **5.6.3**] Software integration testing <br /> [IEC 62304 **5.6.4**] Software integration testing content <br /> [IEC 62304 **5.6.7**] Integration test record contents| Missing integration tests | Each Software Item of class B or C must be associated with at least one integration test. |
+| 8 |[IEC 62304 **8.1.2**] Identify SOUP | Missing Manufacturer in SOUP Software Item | Each SOUP Software Item must include the manufacturer's information. |
+| 9 |[IEC 62304 **7.1.1**] Identify SOFTWARE ITEMS that could contribute to a hazardous situation <br /> [IEC 62304 **7.1.2**] Identify potential causes of contribution to a hazardous situation | Missing Risks | Each Software Item of class B or C must be associated with at least one risk |
+| 10 | [EU AI Act / FDA / GMLP] Transparency & Explainability Requirement | Missing transparency details | AI-based Software Items must include transparency details such as the AI component toggle and a link to the model card or transparency documentation. |
+| 11 | [GMLP] Data Bias Mitigation Requirement | Missing bias mitigation strategy | AI-based Software Items should document strategies for ensuring data diversity and mitigating AI bias. |
+| 12 | [EU AI Act / FDA / GMLP] Technical Documentation Requirement | Missing technical documentation | AI-based Software Items must include a link to technical documentation that details the model’s performance, limitations, and integration. |
+| 13 | [EU AI Act / GMLP] Model Location & Data Treatment Requirement | Missing model location details | AI-based Software Items must specify where the AI model and its data are hosted. |
+| 14 | [EU AI Act / FDA / GMLP] Risk Classification Requirement | Missing risk classification | AI-based Software Items must have a risk classification based on defined risk levels. |
+| 15 | [EU AI Act / FDA / GMLP] Risk Control Measures Documentation | Missing risk control rationale | AI-based Software Items must include a documented rationale and control measures for risk mitigation. |
 
 :::warning
 If a Software Item is not designed but detected by the system, a warning will appear, and you can proceed with its creation.
