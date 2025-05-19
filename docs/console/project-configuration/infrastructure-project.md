@@ -42,13 +42,14 @@ To create a new infrastructure component from scratch, you need to provide the f
 
 - **Name**: The name of the component.  
 - **Repository URL**: The URL of the Git repository where the component's code is hosted. This is used to provide a reference to the user.
-- **Git Ref Name**: The Git branch, tag, or commit that the deployment pipeline will run on.  
+- **Branch/tag Name**: The Git branch, tag, or commit that the deployment pipeline will run on.  
 - **Repository Project ID**: The project ID associated with the Git repository. This is actually used to interact with the Git Provider.
 
 <Tabs>
 <TabItem value="GitLab-Example" label="GitLab" default>
 
 - **Repository URL**: `https://my.gitlab.host/some/repo`
+- **Branch/tag name**: `main`
 - **Repository Project ID**: `some/repo` (or the numeric ID that can be copied from the GitLab UI)
 
 </TabItem>
