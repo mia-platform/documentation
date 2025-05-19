@@ -13,8 +13,6 @@ The changes displayed in the table originate from **Jira**, where they are creat
 
 ## Table
 
-![Changes table](img/changes-table.png)
-
 Each change listed in the table contains the following information:
 
 - **Title**: A brief description of the identified change and a link to the Jira issue identified by its key.
@@ -23,18 +21,26 @@ Each change listed in the table contains the following information:
 - **Assignee**: The owner of processing the change request.
 - **Due Date**: The deadline for the completion and release of the change in the affected software items.
 - **Software Items**: The number of software items affected by the change.
-- **Requirements**: The number of requirements related to the change.
 - **Risks**: The number of risks that may affect the change.
+- **Requirements**: The number of requirements related to the change.
+
+### Actions
+
+Under the last column on the table you can perform the following actions:
+
+- **Link Software Items**: by clicking on the link icon, you can link a software item to the change or unlink an already associated one. The linked software items are displayed in the drawer under the **Traceability** tab.
 
 ## Drawer
 
 Clicking on a row opens a drawer displaying detailed information about the selected change.
 
-The drawer shows the following information in two different tabs: **Details** and **Traceability**
+The drawer shows the following information in two different tabs: **Details** and **Traceability**.
+
+You can navigate between the linked entities - tests, requirements, risks and software items - by selecting them under the *Traceability* section in the detailed view.
+
+You can browse back to previous entities by accessing the history menu at the top of the detailed view and selecting the entity of interest.
 
 ### Details
-
-![Details tab of the drawer](img/changes-drawer-details.png)
 
 The **Details** tab provides, in addition to the information displayed in the table:
 
@@ -48,9 +54,8 @@ The **Details** tab provides, in addition to the information displayed in the ta
 
 ### Traceability
 
-![Traceability tab of the drawer](img/changes-drawer-traceability.png)
-
 The **Traceability** tab shows all the issues linked to the change grouped by:
+
 - **Software Items**
 - **Risk Control Measures**
 - **Changes**

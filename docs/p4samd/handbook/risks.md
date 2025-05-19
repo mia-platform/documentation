@@ -28,33 +28,42 @@ The risks displayed in the table originate from **Jira**, where they are created
 
 Under the last column on the table you can perform the following actions:
 
-- **Link Software Items**: by clicking on the link icon, you can link a new software item to the risks or unlink an already associated one. The linked software items are displayed in the drawer under the **Traceability** tab.
+- **Link Software Items**: by clicking on the link icon, you can link a software item to the risks or unlink an already associated one. The linked software items are displayed in the drawer under the **Traceability** tab.
 
 ## Drawer  
-Clicking on a row opens a **drawer** displaying detailed information about the selected risk. <br/>
-The drawer shows risk related information into three tabs:
 
-**Details**: Beyond the information displayed in the table, it shows:
-  - **Title**: A brief description of the identified risk and a link to the Jira Issue represented by its Key.  
-  - **Description**: A paragraph describing the risk.
-  - **Hazard**: The nature of the risk and its potential consequences.  
-  - **Sequence of events**: The conditions leading to the risk.  
-  - **Hazardous situation**: The specific scenario in which the risk could occur.  
-  - **Harm**: The expected negative impact.  
-  - **Probability notes**: Notes about probability.
-  - **Probability**: A numerical value indicating the likelihood of the risk occurring.  
-  - **Mitigated probability**: A number indicating how much the **RCM** mitigates probability.
-  - **Severity**: A numerical value representing the potential impact of the risk.  
-  - **Mitigation severity**: A number indicating how much the **RCM** mitigates severity.
-  - **Risk Level**: A classification based on probability and severity. See [Levels](#levels) section for further details.
-  - **Residual Risk**: The remaining level of risk after mitigation measures are applied. See [Levels](#levels) section for further details.
+Clicking on a row opens a **drawer** displaying detailed information about the selected risk.
 
-**Traceability**: Shows the linked issues of the risk grouped by:
-  - **[Software Items](./software_items)**
-  - **Risk Control Measures**
-  - **[Changes](./changes)**
+The drawer shows risk related information into three tabs: **Details**, **Traceability** and **Suggestions**.
 
-**Suggestions**: Shows related suggestions of the risk.
+You can navigate between the linked entities - changes, risks and software items - by selecting them under the *Traceability* section in the detailed view.
+
+You can browse back to previous entities by accessing the history menu at the top of the detailed view and selecting the entity of interest.
+
+### Details
+
+Beyond the information displayed in the table, this tab shows:
+
+- **Description**: A paragraph describing the risk.
+- **Hazard**: The nature of the risk and its potential consequences.  
+- **Sequence of events**: The conditions leading to the risk.  
+- **Hazardous situation**: The specific scenario in which the risk could occur.  
+- **Harm**: The expected negative impact.  
+- **Probability notes**: Notes about probability.
+- **Mitigated probability**: A number indicating how much the **RCM** mitigates probability.
+- **Mitigation severity**: A number indicating how much the **RCM** mitigates severity.
+
+### Traceability
+
+This tab shows the linked issues of the risk grouped by:
+
+- **[Software Items](./software_items)**
+- **Risk Control Measures**
+- **[Changes](./changes)**
+
+### Suggestions
+
+This tab shows related suggestions of the risk.
 
 ## Levels
 
