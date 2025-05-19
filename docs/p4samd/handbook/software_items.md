@@ -25,11 +25,7 @@ The section allows users to view, create, and edit software items. It provides a
 You can create a new Software Item starting from an older one: simply select it from the dropdown, then modify the `name` and other fields.
 ::: 
 
-## 2. Software Items Visualization
-
-### Table
-
-![alt text](img/swi_table.png)
+## 2. Software Item Table
 The table shows basic info of the tree of software items:
 1. **+/-**: Expand/Collapse Software Item children
 2. **Software Item**: Name of the Software Item, clickable if the `Implementation link` is filled.
@@ -44,32 +40,6 @@ The table shows basic info of the tree of software items:
    - **Delete item**: Opens a confirmation modal to delete the item.
 
 **N.B.** Every edit of the software item is reflected in all instances.
-
-### Graph  
-
-The graph provides a visual representation of software items, displaying only the first two levels of the hierarchy. Clicking on a box open the related drawer.
-
-![Software Item Graph](img/swi_chart.png)  
-
-Each box contains key details about a software item, including:  
-1. **Name** 
-2. **Version** 
-4. **Count of Suggestions** (shown only if greater than 0)  
-3. **Approval Status**
-5. **Implementation Status**  
-6. **Software Safety Class** (shown only for medical device)
-
-##### **Minimap**  
-- The minimap (bottom-right corner) provides an overview of the entire graph, helping users navigate large structures efficiently.  
-
-##### **Caption (Legend)**  
-- Located in the top-left corner, the caption explains the different symbols and colors used in the graph, see **Status** of [Software Item States and Related Actions](#3-software-item-states-and-related-actions) for more infos.
-
-##### **Actions**  
-- **Zoom In (+):** Increases the zoom level for a closer view of details.  
-- **Zoom Out (-):** Decreases the zoom level for a broader view.  
-- **Fit View:** Adjusts the graph to fit within the visible area, ensuring all elements are displayed properly.  
-
 
 ## 3. Software Item States and Related Actions
 Depending on the status of the software items, several fast actions are available:
@@ -109,6 +79,67 @@ This is divided into multiple tabs:
 
 :::warning
 If a Software Item is not designed but detected by the system, a warning will appear, and you can proceed with its creation.
+:::
+
+## 5. Edit Flow
+
+When the **Edit** button is clicked, an edit modal will appear:
+
+![Edit Modal](img/swi_edit_modal.png)
+
+## Behavior of Edits by Tab
+
+### Specific Properties Tab
+
+Changes made **exclusively** in the **Specific Properties** tab will affect **only this instance** of the software item.
+
+###  General Properties Tab and Switches
+
+Changes made in the **General Properties** tab and/or to the switches:
+
+- **Soup**
+- **Based on AI technology**
+
+will be **propagated to all software items** that share this instance.  
+This will cause **disapproval** of their associated tree structures.
+
+## Special Case: Version Change
+
+When changing the **version** of a software item, there are two possible outcomes:
+
+###  1. No Existing Instance Matches
+
+If **no instance exists** with the same name and the new version:
+
+- The current software item will be **disassociated** from the existing instance.
+- A **new instance** will be created and associated.
+- Other existing instances remain **unaffected**.
+
+### 2. An Instance Already Exists with the New Version
+
+If an instance **already exists** with the same name and the new version, the user will be prompted to choose how to proceed:
+
+![Version Conflict Modal](img/swi_edit_modal_compare.png)
+
+The modal displays two options:
+
+- **Existing software item**  
+  Refers to the already existing instance in the system.
+
+- **New software item**  
+  Reflects the changes made in the **General Properties** tab.
+
+#### Selecting "Existing software item":
+- No changes are applied to other instances.
+- The current software item is linked to the existing instance.
+
+#### Selecting "New software item":
+- All changes made to General Properties will be **propagated** to other instances.
+- The associated tree structures will be **disapproved**.
+
+
+:::warning
+ Be mindful of which tab you're editing. Only changes in Specific Properties are instance-specific. All others may have broader implications.
 :::
 
 
