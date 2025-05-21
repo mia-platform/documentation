@@ -24,7 +24,7 @@ The Software Items are described by **General** and **Specific** properties: the
    Once you've completed the form, click the **"Add software item design"** button at the end of the modal to create and save the new Software Item in the system.
 
 :::tip
-You can create a new Software Item starting from an older one: simply select it from the dropdown, then modify the `name` and other fields.
+You can create a new Software Item starting from an existing one. Simply select it from the dropdown, modify the `name` and other fields as needed, it will be added as a *new* instance within the current system version.
 ::: 
 
 ## Software Items Visualization
@@ -123,7 +123,7 @@ This is divided into multiple tabs:
 If a Software Item is not designed but detected by the system, a warning will appear, and you can proceed with its creation.
 :::
 
-## Software Item Edit Flow
+## Edit Software Item
 
 When the **Edit** button is clicked, an edit modal will appear:
 
