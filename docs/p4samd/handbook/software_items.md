@@ -93,7 +93,7 @@ From here, you can approve or disapprove a Software Item. <br/>Additionally, all
 This is divided into multiple tabs:
 - **Detail**: Displays all the fields entered ([Fields description](#fields-description)) for the Software Item.
 - **Traceability**: Shows the linked issues (Requirements, Risks, Integration Tests, Changes), which are clickable.
-- **Suggestions**: Displays a list of suggestions, if any, to ensure the Software Item meets the ISO standards.
+- **Suggestions**: Displays a list of suggestions, if any, to ensure the Software Item meets the reference standards.
 
 | IEC 62304 Reference Requirement | Title | Description |
 |-----------|-----------|----------|
