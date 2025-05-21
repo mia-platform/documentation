@@ -4,9 +4,7 @@ title: Software Items
 sidebar_label: Overview
 ---
 
-The section allows users to view, create, and edit software items in the Software System Version. It provides an intuitive interface for managing software items, including detailed views, adding new entries, and updating existing records. Additionally, using the console, software items are also detected automatically, ensuring efficient and seamless handling of software-related data.
-
-The Software Items are described by **General** and **Specific** properties: the former are reporting the item information, shared with all the possible instances of the item (e.g. name of Manufacturer for a SOUP-type SWI); the latter refers to properties related to the instances of the SWI, considering the location in the software system, parent and specific usage. 
+The section allows users to view, create, and edit software items. It provides an intuitive interface for managing software items, including detailed views, adding new entries, and updating existing records. Additionally, using the console, software items are also detected automatically, ensuring efficient and seamless handling of software-related data.
 
 ## Create Software Item Design 
 
@@ -99,7 +97,7 @@ From here, you can approve or disapprove a Software Item. <br/>Additionally, all
 This is divided into multiple tabs:
 - **Detail**: Displays all the fields entered ([Fields description](#fields-description)) for the Software Item.
 - **Traceability**: Shows the linked issues (Requirements, Risks, Integration Tests, Changes), which are clickable.
-- **Suggestions**: Displays a list of suggestions, if any, to ensure the Software Item meets the reference standards.
+- **Suggestions**: Displays a list of suggestions, if any, to ensure the Software Item meets the ISO standards.
 
 | # | Reference Requirement | Title | Description |
 |-----|-------|-----------|----------|

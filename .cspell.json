@@ -1,7 +1,16 @@
 {
   "version": "0.2",
   "language": "en",
-  "words": [],
+  "words": [
+    "GMLP",
+    "IMDRF",
+    "rgba",
+    "SDLC",
+    "syft",
+    "Traefik",
+    "Velero",
+    "Fluentd"
+  ],
   "ignoreWords": [],
   "dictionaries": [
     "softwareTerms",
