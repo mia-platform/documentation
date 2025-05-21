@@ -187,11 +187,5 @@ If you select **Is AI**, the following additional fields are available:
 - **AI Risk Classification description**: additional information about the risk level for the AI system.
 
 :::warning
-Each Software Item is a design of an **instance**; every edit, approval, or disapproval **will be applied to all instances**.
-
-For this reason, you **cannot** create two Software Items with the same `name` and `version`, in that case an error will be displayed. 
-:::
-
-:::warning
 To **Approve** a Software Item all his children should be approved.
 :::
