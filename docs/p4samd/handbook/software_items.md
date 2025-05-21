@@ -123,15 +123,16 @@ This is divided into multiple tabs:
 If a Software Item is not designed but detected by the system, a warning will appear, and you can proceed with its creation.
 :::
 
-## 5. Software Items settings 
+## Software Items settings 
+
 P4SaMD detects the implementation of the Software Items, considering all the Projects belonging to your Company by default. You can customize your Software System, excluding detected Projects so that they and all of their SWI children will not appear in the SWI table and will not be taken into account in the Software System documentation. It applies, for example, on test/POC projects which are not part of your software product.
    
 
 ![alt text](img/system_versions_setting.png)
-The settings modal is availble in the SWI tab, for each version when they are not released
+The settings modal is available in the SWI tab, for each version when they are not released
 
 1. **Click the "Settings" Button**  
-   This will open the modal to customize the Softawre System at the Project level.
+   This will open the modal to customize the Software System at the Project level.
 
 2. **Customize the Software System** 
    In the modal, select/deselect the Projects to define your Software System.
@@ -141,7 +142,7 @@ The settings modal is availble in the SWI tab, for each version when they are no
 
 :::info
    - The exclusion of a Project is only possible when there is no associated design.
-   - The customization is only valid for the selected Sofatware System Version
+   - The customization is only valid for the selected Software System Version
 ::: 
 
 ## Fields description
