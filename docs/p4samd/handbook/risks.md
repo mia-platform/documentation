@@ -10,7 +10,7 @@ sidebar_label: Risks
 
 The Table provides an overview of potential issues identified in the **P4SaMD** project. Each row in the table represents a **P4SaMD Risk entity in Jira**.  
 
-The risks displayed in the table originate from **Jira**, where they are created, updated, and edited. The table dynamically reflects any changes made in Jira, ensuring up-to-date risk assessment.
+The risks displayed in the table originate from the integrated ALM, where they are created, updated, and edited. The table dynamically reflects any changes made in the ALM, ensuring up-to-date risk assessment.
 
 ## Table  
 

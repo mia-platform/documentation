@@ -36,7 +36,7 @@ Clicking on a row opens a drawer displaying detailed information about the selec
 
 The drawer shows the following information in two different tabs: **Details** and **Traceability**.
 
-You can navigate between the linked entities - tests, requirements, risks and software items - by selecting them under the *Traceability* section in the detailed view.
+You can navigate between the linked entities - requirements, risks and software items - by selecting them under the *Traceability* section in the detailed view.
 
 You can browse back to previous entities by accessing the history menu at the top of the detailed view and selecting the entity of interest.
 
