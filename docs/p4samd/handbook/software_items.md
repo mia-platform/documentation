@@ -4,7 +4,7 @@ title: Software Items
 sidebar_label: Overview
 ---
 
-The section allows users to view, create, and edit software items. It provides an intuitive interface for managing software items, including detailed views, adding new entries, and updating existing records. Additionally, using the console, software items are also detected automatically, ensuring efficient and seamless handling of software-related data.
+The section allows users to view, create, and edit software items. It provides an intuitive interface for managing software items, including detailed views, adding new entries, and updating existing records. Additionally, the implementation of Software Items is detected automatically, checking the projects belonging to the Company, ensuring efficient and seamless handling of software-related data.
 
 ## 1. Create Software Item Design 
 
@@ -111,23 +111,25 @@ This is divided into multiple tabs:
 If a Software Item is not designed but detected by the system, a warning will appear, and you can proceed with its creation.
 :::
 
-## 5. Software Item Exclusion 
- You can choose to exclude projects that are not a part of the software system to have a clean Software Item design with the right project.[alt text](img/system_versions_setting.png)
- The settings modal is availble in the SWI tab, for each version when they are not released
+## 5. Software Items settings 
+P4SaMD detects the implementation of the Software Items, considering all the Projects belonging to your Company by default. You can customize your Software System, excluding detected Projects so that they and all of their SWI children will not appear in the SWI table and will not be taken into account in the Software System documentation. It applies, for example, on test/POC projects which are not part of your software product.
+   
 
-1. **Click the "Setting" Button**  
-   This will open the modal to exclude/include projects.
+![alt text](img/system_versions_setting.png)
+The settings modal is availble in the SWI tab, for each version when they are not released
 
-2. **Select the projects** 
-   In the modal, for the specific version, you can check/uncheck and decide which projects excllude from system version
+1. **Click the "Settings" Button**  
+   This will open the modal to customize the Softawre System at the Project level.
 
-3. **Save the New Software Item**  
-   Once you've completed, click the **"Save Changes"** button at the end of the modal to save the new system version setting.
+2. **Customize the Software System** 
+   In the modal, select/deselect the Projects to define your Software System.
 
-:::tip
-   - The exclusion/inclusion in system version setting is valid only for software item project level.
-   - If a software item has the design, it can’t be excluded from system version.
-   - All the not-designed software items can be excluded from system versio.
+3. **Save the customized Software System**  
+   Saving customization, the changes will be immediately apply on your Software System.
+
+:::info
+   - The exclusion of a Project is only possible when there is no associated design.
+   - The customization is only valid for the selected Sofatware System Version
 ::: 
 
 ## Fields description
