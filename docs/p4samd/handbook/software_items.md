@@ -6,7 +6,7 @@ sidebar_label: Overview
 
 The section allows users to view, create, and edit software items in the Software System Version. It provides an intuitive interface for managing software items, including detailed views, adding new entries, and updating existing records. Additionally, using the console, software items are also detected automatically, ensuring efficient and seamless handling of software-related data.
 
-The Software Items are described by **General** and **Specific** properties: the former are reporting the item information, not related to the usage or system dependency (such as name of Manufacturer for a SOUP-type SWI); the latter refers to properties related to the SWI parent and specific usage in the software system version. 
+The Software Items are described by **General** and **Specific** properties: the former are reporting the item information, shared with all the possible instances of the item (e.g. name of Manufacturer for a SOUP-type SWI); the latter refers to properties related to the instances of the SWI, considering the location in the software system, parent and specific usage. 
 
 ## 1. Create Software Item Design 
 
