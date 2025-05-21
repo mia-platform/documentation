@@ -4,9 +4,7 @@ title: Software Items
 sidebar_label: Overview
 ---
 
-The section allows users to view, create, and edit software items in the Software System Version. It provides an intuitive interface for managing software items, including detailed views, adding new entries, and updating existing records. Additionally, using the console, software items are also detected automatically, ensuring efficient and seamless handling of software-related data.
-
-The Software Items are described by **General** and **Specific** properties: the former are reporting the item information, shared with all the possible instances of the item (e.g. name of Manufacturer for a SOUP-type SWI); the latter refers to properties related to the instances of the SWI, considering the location in the software system, parent and specific usage. 
+The section allows users to view, create, and edit software items. It provides an intuitive interface for managing software items, including detailed views, adding new entries, and updating existing records. Additionally, using the console, software items are also detected automatically, ensuring efficient and seamless handling of software-related data.
 
 ## Create Software Item Design 
 
@@ -99,7 +97,7 @@ From here, you can approve or disapprove a Software Item. <br/>Additionally, all
 This is divided into multiple tabs:
 - **Detail**: Displays all the fields entered ([Fields description](#fields-description)) for the Software Item.
 - **Traceability**: Shows the linked issues (Requirements, Risks, Integration Tests, Changes), which are clickable.
-- **Suggestions**: Displays a list of suggestions, if any, to ensure the Software Item meets the reference standards.
+- **Suggestions**: Displays a list of suggestions, if any, to ensure the Software Item meets the ISO standards.
 
 | # | Reference Requirement | Title | Description |
 |-----|-------|-----------|----------|
@@ -122,27 +120,6 @@ This is divided into multiple tabs:
 :::warning
 If a Software Item is not designed but detected by the system, a warning will appear, and you can proceed with its creation.
 :::
-
-## 5. Software Items settings 
-P4SaMD detects the implementation of the Software Items, considering all the Projects belonging to your Company by default. You can customize your Software System, excluding detected Projects so that they and all of their SWI children will not appear in the SWI table and will not be taken into account in the Software System documentation. It applies, for example, on test/POC projects which are not part of your software product.
-   
-
-![alt text](img/system_versions_setting.png)
-The settings modal is availble in the SWI tab, for each version when they are not released
-
-1. **Click the "Settings" Button**  
-   This will open the modal to customize the Softawre System at the Project level.
-
-2. **Customize the Software System** 
-   In the modal, select/deselect the Projects to define your Software System.
-
-3. **Save the customized Software System**  
-   Saving customization, the changes will be immediately apply on your Software System.
-
-:::info
-   - The exclusion of a Project is only possible when there is no associated design.
-   - The customization is only valid for the selected Sofatware System Version
-::: 
 
 ## Fields description
 
@@ -208,8 +185,11 @@ If you select **Is AI**, the following additional fields are available:
 - **AI Risk Classification description**: additional information about the risk level for the AI system.
 
 :::warning
-To **Approve** a Software Item all his children should be approved.
+Each Software Item is a design of an **instance**; every edit, approval, or disapproval **will be applied to all instances**.
+
+For this reason, you **cannot** create two Software Items with the same `name` and `version`, in that case an error will be displayed. 
 :::
 
 :::warning
 To **Approve** a Software Item all his children should be approved.
+:::
