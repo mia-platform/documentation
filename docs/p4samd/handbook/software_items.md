@@ -123,33 +123,33 @@ This is divided into multiple tabs:
 If a Software Item is not designed but detected by the system, a warning will appear, and you can proceed with its creation.
 :::
 
-## 5. Edit Flow
+## Software Item Edit Flow
 
 When the **Edit** button is clicked, an edit modal will appear:
 
 ![Edit Modal](img/swi_edit_modal.png)
 
-## Behavior of Edits by Tab
+### Behavior of Edits by Tab
 
-### Specific Properties Tab
+#### Specific Properties Tab
 
 Changes made **exclusively** in the **Specific Properties** tab will affect **only this instance** of the software item.
 
-###  General Properties Tab and Switches
+#### General Properties Tab and Switches
 
 Changes made in the **General Properties** tab and/or to the switches:
 
-- **Soup**
+- **SOUP**
 - **Based on AI technology**
 
 will be **propagated to all software items** that share this instance.  
 This will cause **disapproval** of their associated tree structures.
 
-## Special Case: Version Change
+### Special Case: Version Change
 
 When changing the **version** of a software item, there are two possible outcomes:
 
-###  1. No Existing Instance Matches
+####  1. No Existing Instance Matches
 
 If **no instance exists** with the same name and the new version:
 
@@ -157,7 +157,7 @@ If **no instance exists** with the same name and the new version:
 - A **new instance** will be created and associated.
 - Other existing instances remain **unaffected**.
 
-### 2. An Instance Already Exists with the New Version
+#### 2. An Instance Already Exists with the New Version
 
 If an instance **already exists** with the same name and the new version, the user will be prompted to choose how to proceed:
 
@@ -171,20 +171,40 @@ The modal displays two options:
 - **New software item**  
   Reflects the changes made in the **General Properties** tab.
 
-#### Selecting "Existing software item":
+##### Selecting "Existing software item":
 - No changes are applied to other instances.
 - The current software item is linked to the existing instance.
 
-#### Selecting "New software item":
+##### Selecting "New software item":
 - All changes made to General Properties will be **propagated** to other instances.
 - The associated tree structures will be **disapproved**.
-
 
 :::warning
  Be mindful of which tab you're editing. Only changes in Specific Properties are instance-specific. All others may have broader implications.
 :::
 
 
+## Software Items settings 
+
+P4SaMD detects the implementation of the Software Items, considering all the Projects belonging to your Company by default. You can customize your Software System, excluding detected Projects so that they and all of their SWI children will not appear in the SWI table and will not be taken into account in the Software System documentation. It applies, for example, on test/POC projects which are not part of your software product.
+   
+
+![alt text](img/system_versions_setting.png)
+The settings modal is available in the SWI tab, for each version when they are not released
+
+1. **Click the "Settings" Button**  
+   This will open the modal to customize the Software System at the Project level.
+
+2. **Customize the Software System** 
+   In the modal, select/deselect the Projects to define your Software System.
+
+3. **Save the customized Software System**  
+   Saving customization, the changes will be immediately apply on your Software System.
+
+:::info
+   - The exclusion of a Project is only possible when there is no associated design.
+   - The customization is only valid for the selected Software System Version
+::: 
 
 ## Fields description
 
@@ -252,3 +272,6 @@ If you select **Is AI**, the following additional fields are available:
 :::warning
 To **Approve** a Software Item all his children should be approved.
 :::
+
+:::warning
+To **Approve** a Software Item all his children should be approved.
