@@ -18,6 +18,11 @@
           "id": "p4samd/configuration",
           "label": "Configuration",
           "type": "doc"
+        },
+        {
+          "id": "p4samd/monitoring",
+          "label": "Monitoring",
+          "type": "doc"
         }
       ]
     },
@@ -53,6 +58,11 @@
               "id": "p4samd/handbook/reports",
               "label": "Reports",
               "type": "doc"
+            },
+            {
+              "id": "p4samd/handbook/references",
+              "label": "References",
+              "type": "doc"
             }
           ]
         },
@@ -71,6 +81,11 @@
               "type": "doc"
             }
           ]
+        },
+        {
+          "id": "p4samd/handbook/requirements",
+          "label": "Requirements",
+          "type": "doc"
         },
         {
           "id": "p4samd/handbook/risks",
