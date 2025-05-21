@@ -2,7 +2,14 @@
   "version": "0.2",
   "language": "en",
   "words": [
-    "GMLP"
+    "GMLP",
+    "IMDRF",
+    "rgba",
+    "SDLC",
+    "syft",
+    "Traefik",
+    "Velero",
+    "Fluentd"
   ],
   "ignoreWords": [],
   "dictionaries": [

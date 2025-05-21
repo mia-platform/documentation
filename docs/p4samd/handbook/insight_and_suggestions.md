@@ -21,7 +21,7 @@ Each suggestion includes:
 
 ## Suggestions Rules
 
-For Software Items suggestions, visit the [Software Items](./software_items#software-item-drawer) page.
+For Software Items suggestions, visit the [Software Items](./software_items.md#software-item-drawer) page.
 
 | IEC 62304 Reference Requirement | Title | Description |
 |-----------|-----------|----------|

@@ -73,7 +73,7 @@ This tab shows the linked issues of the requirement grouped by:
 - **[Software Items](./software_items.md)**
 - **[Risks](./risks.md)**
 - **[Tests](./verification.md)** 
-- **[Changes](./changes)**
+- **[Changes](./changes.md)**
 
 ### Suggestions
 
