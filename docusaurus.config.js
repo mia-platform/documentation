@@ -210,7 +210,7 @@ async function createConfig() {
               },
               "2.0.x": {
                 label: "2.0.x",
-                path: "",
+                path: "2.0.x",
                 banner: "none"
               },
             },
