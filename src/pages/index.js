@@ -60,8 +60,8 @@ const features = [
       {
         icon: "globe",
         target: "_blank",
-        href: "https://mia-platform.eu/mia-platform-v13/",
-        label: "Discover Mia-Platform v13 🎉",
+        href: "https://mia-platform.eu/mia-platform-v14/",
+        label: "Discover Mia-Platform v14 🎉",
       },
     ],
   },
@@ -207,10 +207,10 @@ function Home() {
             <div className="container">
               {<div className="row">
                 <VersionBanner
-                  link="docs/next/release-notes/v14-overview"
-                  majorVersion="14-preview"
+                  link="docs/release-notes/v14-overview"
+                  majorVersion="14"
                   subTitle="Click here for further information"
-                  title="Mia-Platform v14 is now in Preview!"
+                  title="Mia-Platform v14 is now generally available!"
                 />
               </div>}
 
