@@ -133,7 +133,7 @@ When the **Edit** button is clicked, an edit modal will appear:
 
 #### Specific Properties Tab
 
-Changes made **exclusively** in the **Specific Properties** tab will affect **only this instance** of the software item.
+Changes made **exclusively** in the **Specific Properties** tab will affect **only the current instance** of the software item.
 
 #### General Properties Tab and Switches
 
@@ -143,41 +143,37 @@ Changes made in the **General Properties** tab and/or to the switches:
 - **Based on AI technology**
 
 will be **propagated to all software items** that share this instance.  
-This will cause **disapproval** of their associated tree structures.
+This will cause **disapproval** of their associated tree structures (parents).
 
 ### Special Case: Version Change
 
 When changing the **version** of a software item, there are two possible outcomes:
 
-####  1. No Existing Instance Matches
+####  1. No Existing Software Item with matching version
 
-If **no instance exists** with the same name and the new version:
+If **no Software Item exists** with the same name and the new version:
 
-- The current software item will be **disassociated** from the existing instance.
-- A **new instance** will be created and associated.
-- Other existing instances remain **unaffected**.
+- The current instance under modification will be **disassociated** from the existing Software Item.
+- A **new SWI** will be created.
+- Other existing instances of the starting SWI remain **unaffected**.
 
-#### 2. An Instance Already Exists with the New Version
+#### 2. A Software Item Already Exists with the New Version
 
-If an instance **already exists** with the same name and the new version, the user will be prompted to choose how to proceed:
+If a Software Item **already exists** with the same name and the new version, the user will be prompted to choose how to proceed:
 
 ![Version Conflict Modal](img/swi_edit_modal_compare.png)
 
 The modal displays two options:
 
 - **Existing software item**  
-  Refers to the already existing instance in the system.
+  Refers to the already existing Software Item and instances in the system.
+  Selecting this option, no changes are applied to other instances and the current instance is linked to the existing SWI.
 
 - **New software item**  
-  Reflects the changes made in the **General Properties** tab.
-
-##### Selecting "Existing software item":
-- No changes are applied to other instances.
-- The current software item is linked to the existing instance.
-
-##### Selecting "New software item":
-- All changes made to General Properties will be **propagated** to other instances.
-- The associated tree structures will be **disapproved**.
+  Uses the current information in the modal for updating the existing SWI.
+  Selecting this option, the current info in **General Properties** are propagated to the existing instances of the SWI.
+  _NB. Editing the general properties of SWI will revert the approval of the related instances and their tree structure (parents chain)_
+  
 
 :::warning
  Be mindful of which tab you're editing. Only changes in Specific Properties are instance-specific. All others may have broader implications.
@@ -273,5 +269,3 @@ If you select **Is AI**, the following additional fields are available:
 To **Approve** a Software Item all his children should be approved.
 :::
 
-:::warning
-To **Approve** a Software Item all his children should be approved.
