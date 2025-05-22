@@ -24,7 +24,7 @@ The Software Items are described by **General** and **Specific** properties: the
    Once you've completed the form, click the **"Add software item design"** button at the end of the modal to create and save the new Software Item in the system.
 
 :::tip
-You can create a new Software Item starting from an older one: simply select it from the dropdown, then modify the `name` and other fields.
+You can create a new Software Item starting from an existing one. Simply select it from the dropdown, modify the `name` and other fields as needed, it will be added as a *new* instance within the current system version.
 ::: 
 
 ## Software Items Visualization
@@ -123,6 +123,63 @@ This is divided into multiple tabs:
 If a Software Item is not designed but detected by the system, a warning will appear, and you can proceed with its creation.
 :::
 
+## Edit Software Item
+
+When the **Edit** button is clicked, an edit modal will appear:
+
+![Edit Modal](img/swi_edit_modal.png)
+
+### Behavior of Edits by Tab
+
+#### Specific Properties Tab
+
+Changes made **exclusively** in the **Specific Properties** tab will affect **only the current instance** of the software item.
+
+#### General Properties Tab and Switches
+
+Changes made in the **General Properties** tab and/or to the switches:
+
+- **SOUP**
+- **Based on AI technology**
+
+will be **propagated to all software items** that share this instance.  
+This will cause **disapproval** of their associated tree structures (parents).
+
+### Special Case: Version Change
+
+When changing the **version** of a software item, there are two possible outcomes:
+
+####  1. No Existing Software Item with matching version
+
+If **no Software Item exists** with the same name and the new version:
+
+- The current instance under modification will be **disassociated** from the existing Software Item.
+- A **new SWI** will be created.
+- Other existing instances of the starting SWI remain **unaffected**.
+
+#### 2. A Software Item Already Exists with the New Version
+
+If a Software Item **already exists** with the same name and the new version, the user will be prompted to choose how to proceed:
+
+![Version Conflict Modal](img/swi_edit_modal_compare.png)
+
+The modal displays two options:
+
+- **Existing software item**  
+  Refers to the already existing Software Item and instances in the system.
+  Selecting this option, no changes are applied to other instances and the current instance is linked to the existing SWI.
+
+- **New software item**  
+  Uses the current information in the modal for updating the existing SWI.
+  Selecting this option, the current info in **General Properties** are propagated to the existing instances of the SWI.
+  _NB. Editing the general properties of SWI will revert the approval of the related instances and their tree structure (parents chain)_
+  
+
+:::warning
+ Be mindful of which tab you're editing. Only changes in Specific Properties are instance-specific. All others may have broader implications.
+:::
+
+
 ## Software Items settings 
 
 P4SaMD detects the implementation of the Software Items, considering all the Projects belonging to your Company by default. You can customize your Software System, excluding detected Projects so that they and all of their SWI children will not appear in the SWI table and will not be taken into account in the Software System documentation. It applies, for example, on test/POC projects which are not part of your software product.
@@ -212,5 +269,3 @@ If you select **Is AI**, the following additional fields are available:
 To **Approve** a Software Item all his children should be approved.
 :::
 
-:::warning
-To **Approve** a Software Item all his children should be approved.

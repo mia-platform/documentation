@@ -39,7 +39,7 @@ async function createConfig() {
           src: "img/logo.png",
           width: 120,
           height: 32,
-          style: {padding: '2px 5px' }
+          style: {padding: '2px 5px'}
         },
         items: [
         {
@@ -201,7 +201,7 @@ async function createConfig() {
             editUrl: createEditUrl,
             sidebarPath: require.resolve("./sidebars.js"),
             lastVersion: "2.1.x",
-            includeCurrentVersion: false,
+            includeCurrentVersion: true,
             versions: {
               "2.1.x": {
                 label: "2.1.x (Current)",
