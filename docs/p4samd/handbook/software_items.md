@@ -118,6 +118,7 @@ This is divided into multiple tabs:
 | 13 | [EU AI Act / GMLP] Model Location & Data Treatment Requirement | Missing model location details | AI-based Software Items must specify where the AI model and its data are hosted. |
 | 14 | [EU AI Act / FDA / GMLP] Risk Classification Requirement | Missing risk classification | AI-based Software Items must have a risk classification based on defined risk levels. |
 | 15 | [EU AI Act / FDA / GMLP] Risk Control Measures Documentation | Missing risk control rationale | AI-based Software Items must include a documented rationale and control measures for risk mitigation. |
+| 16 | - | Missing repository ID | ID of the repository associated with the Software Item is needed to correctly detect software item implementation. |
 
 :::warning
 If a Software Item is not designed but detected by the system, a warning will appear, and you can proceed with its creation.
@@ -183,9 +184,9 @@ The modal displays two options:
 ## Software Items settings 
 
 P4SaMD detects the implementation of the Software Items, considering all the Projects belonging to your Company by default. You can customize your Software System, excluding detected Projects so that they and all of their SWI children will not appear in the SWI table and will not be taken into account in the Software System documentation. It applies, for example, on test/POC projects which are not part of your software product.
-   
 
 ![alt text](img/system_versions_setting.png)
+
 The settings modal is available in the SWI tab, for each version when they are not released
 
 1. **Click the "Settings" Button**  
