@@ -242,6 +242,7 @@ If you select **Is medical device**, the following additional fields are availab
 
 - **Software safety classification**: Safety class of the medical device.
    - Available options: `A`, `B`, `C`.
+- **Software safety classification reason**: The reason of the Safety classification of the medical device.
 - **Detailed design reference**: Link to the detailed design documentation.
 - **Detailed interface architecture reference**: Link to the detailed interface architecture documentation.
 
