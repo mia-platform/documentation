@@ -18,7 +18,7 @@ It actively guides users towards reference standards and regulation compliance, 
 
 Provides complete tracking of software specifications, from the design to the implementation and release. The end-to-end traceability is provided by links between Software Requirements, Software Items (SWIs) belonging to the Software System, verification and validation tasks such as tests, Risks affecting the system and the Changes. The tool maintains the real-time traceability matrix, that also ensures full traceability within and across software system versions.
 
-### Software Design Management
+### Design Control
 
 Facilitates structured software system design by defining a hierarchy of the software components of the Software System: the Software Items (SWI) and linking architectural references. Enables comprehensive management of SWI, including specification and classification based on safety requirements and identification of Software of Unknown Provenance (SOUPs). Offers support for SWI design based on implementation and provides additional support for AI-based SWI, simplifying their management and assessment for usage.
 

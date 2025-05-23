@@ -1914,5 +1914,97 @@
   "/docs/next/runtime_suite_applications/api-documentation-aggregator/changelog": {
     "destination": "/docs/next/runtime_suite_applications/api-documentation-aggregator/overview",
     "addedOn": "2025-05-15"
+  },
+  "/docs/software-catalog/manage-items/software-catalog-ui/ui": {
+    "destination": "/docs/software-catalog/items-management/ui",
+    "addedOn": "2025-05-21"
+  },
+  "/docs/software-catalog/manage-items/overview-manage-items": {
+    "destination": "/docs/software-catalog/items-management/overview",
+    "addedOn": "2025-05-21"
+  },
+  "/docs/software-catalog/manage-items/software-catalog-ui/create/overview-software-catalog-create": {
+    "destination": "/docs/software-catalog/items-management/ui#create-item",
+    "addedOn": "2025-05-21"
+  },
+  "/docs/software-catalog/manage-items/software-catalog-ui/update/overview-software-catalog-update": {
+    "destination": "/docs/software-catalog/items-management/ui#edit-item",
+    "addedOn": "2025-05-21"
+  },
+  "/docs/software-catalog/manage-items/software-catalog-ui/delete/overview-software-catalog-delete": {
+    "destination": "/docs/software-catalog/items-management/ui#delete-item",
+    "addedOn": "2025-05-21"
+  },
+  "/docs/software-catalog/manage-items/mia-ctl/overview-miactl": {
+    "destination": "/docs/software-catalog/items-management/miactl",
+    "addedOn": "2025-05-21"
+  },
+  "/docs/software-catalog/manage-items/mia-ctl/create/overview-mia-ctl-create": {
+    "destination": "/docs/cli/miactl/commands#catalog",
+    "addedOn": "2025-05-21"
+  },
+  "/docs/software-catalog/manage-items/mia-ctl/create/create-item-by-type/create_plugin": {
+    "destination": "/docs/cli/miactl/commands#apply-2",
+    "addedOn": "2025-05-21"
+  },
+  "/docs/software-catalog/manage-items/mia-ctl/create/create-item-by-type/create_template_or_example": {
+    "destination": "/docs/cli/miactl/commands#apply-2",
+    "addedOn": "2025-05-21"
+  },
+  "/docs/software-catalog/manage-items/mia-ctl/create/create-item-by-type/create_application": {
+    "destination": "/docs/cli/miactl/commands#apply-2",
+    "addedOn": "2025-05-21"
+  },
+  "/docs/software-catalog/manage-items/mia-ctl/create/create-item-by-type/create_sidecar": {
+    "destination": "/docs/cli/miactl/commands#apply-2",
+    "addedOn": "2025-05-21"
+  },
+  "/docs/software-catalog/manage-items/mia-ctl/create/create-item-by-type/create_infrastructure_resource": {
+    "destination": "/docs/cli/miactl/commands#apply-2",
+    "addedOn": "2025-05-21"
+  },
+  "/docs/software-catalog/manage-items/mia-ctl/update/overview-mia-ctl-update": {
+    "destination": "/docs/cli/miactl/commands#apply-2",
+    "addedOn": "2025-05-21"
+  },
+  "/docs/software-catalog/manage-items/mia-ctl/delete/overview-mia-ctl-delete": {
+    "destination": "/docs/cli/miactl/commands#delete-2",
+    "addedOn": "2025-05-21"
+  },
+  "/docs/software-catalog/manage-items/declarative-approach": {
+    "destination": "/docs/software-catalog/items-management/miactl#declarative-approach",
+    "addedOn": "2025-05-21"
+  },
+  "/docs/software-catalog/catalog-and-marketplace/overview-catalog-and-marketplace": {
+    "destination": "/docs/software-catalog/basic-concepts/items-visibility",
+    "addedOn": "2025-05-21"
+  },
+  "/docs/marketplace/overview_marketplace": {
+    "destination": "/docs/software-catalog/basic-concepts/items-lifecycle",
+    "addedOn": "2025-05-21"
+  },
+  "/docs/software-catalog/tutorials/software-catalog": {
+    "destination": "/docs/software-catalog/tutorials/software-catalog",
+    "addedOn": "2025-05-21"
+  },
+  "/docs/libraries/overview_service_libraries": {
+    "destination": "/docs/runtime_suite_libraries/custom-plugin-lib/apidoc",
+    "addedOn": "2025-05-21"
+  },
+  "/docs/development_suite/api-console/api-design/plugin_baas_4": {
+    "destination": "/docs/runtime_suite_libraries/custom-plugin-lib/apidoc",
+    "addedOn": "2025-05-21"
+  },
+  "/docs/libraries/kafka2rest": {
+    "destination": "/docs/runtime_suite_libraries/kafka2rest/overview",
+    "addedOn": "2025-05-21"
+  },
+  "/docs/libraries/rest2kafka": {
+    "destination": "/docs/runtime_suite_libraries/rest2kafka/overview",
+    "addedOn": "2025-05-21"
+  },
+  "/docs/tools/overview_service_tools": {
+    "destination": "/docs/runtime_suite_tools/mlp/overview",
+    "addedOn": "2025-05-21"
   }
 }
