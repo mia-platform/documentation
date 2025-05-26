@@ -42,12 +42,15 @@ On this page we keep you aligned on the most important issues:
     - Integration with other tools (Jira, Github, ...) to gather metrics
 - **Mia-Platform Data Fabric**
   - _Fast Data_
-    - New Fast data pipeline UX configuration in Design Area
-    - Fast Data Control Plane at Company level
-    - Pre/Post data filtering logics on Fast Data pipelines
+    - New AI-Native Data Pipeline configurator
+    - Runtime aggregation performance improvements for Fast Data
+    - Data processing functions generation & testing with AI support
+    - MongoDB-Kafka Connector
   - _Data Catalog_
-    - Data Catalog application new features
-    - Data Lineage solution with Fast Data integration
+    - Export Data Catalog assets at scale
+    - Unlock bulk metadata enrichment updates from spreadsheets
+  - _Database Management_
+    - Improved management of schema validation and indexes for MongoDB assets
 - **Mia-Platform Marketplace**
   - Improved Marketplace Governance
   - Marketplace management through Miactl
