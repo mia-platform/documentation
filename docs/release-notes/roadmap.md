@@ -48,7 +48,7 @@ On this page we keep you aligned on the most important issues:
     - MongoDB-Kafka Connector
   - _Data Catalog_
     - Export Data Catalog assets at scale
-    - Unlock bulk metadata enrichment updates from spreadsheets
+    - Excel integration for bulk metadata enrichment and sync with the Catalog
   - _Database Management_
     - Improved management of schema validation and indexes for MongoDB assets
 - **Mia-Platform Marketplace**
