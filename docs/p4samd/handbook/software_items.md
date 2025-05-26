@@ -119,6 +119,7 @@ This is divided into multiple tabs:
 | 14 | [EU AI Act / FDA / GMLP] Risk Classification Requirement | Missing risk classification | AI-based Software Items must have a risk classification based on defined risk levels. |
 | 15 | [EU AI Act / FDA / GMLP] Risk Control Measures Documentation | Missing risk control rationale | AI-based Software Items must include a documented rationale and control measures for risk mitigation. |
 | 16 | - | Missing repository ID | ID of the repository associated with the Software Item is needed to correctly detect software item implementation. |
+| 16 |[IEC 62304 **4.3**] | Undocumented SWI Reclassification | Please justify the re-classification of the SWI with a rationale in the dedicated classification reason field, describing how the new SOFTWARE ITEMS are segregated so that they may be classified separately. |
 
 :::warning
 If a Software Item is not designed but detected by the system, a warning will appear, and you can proceed with its creation.
