@@ -4,64 +4,574 @@ title: Getting started
 sidebar_label: Create your extension
 ---
 
-# Create your extension
+This tutorial is dedicated to the management of [extensions](/console/company-configuration/extensions.md), a feature that allows you to customize your company and/or your projects
+inside the Mia-Platform Console by including customized pages inside your Company page, the Project overview page or the Project Runtime page.
 
-Following this tutorial you will learn how to add the Backoffice as an extension within a Project, in order to consult it directly from the Console.
+It explains how to create and configure a new extension using the dedicated feature of the Mia-Platform Console, with an additional guide on how to perform these operations using [miactl](/cli/miactl/10_overview.md).
+## What you will build
+
+You are going to customize the sidebar of a Mia-Platform project by adding a new menu and a new link that, when clicked, will show an integrated Composer page.
+For this example, this new Mia-Platform Console section will include a table with data extracted from an API coming from another project that uses the [Integration Connector Agent](https://github.com/mia-platform/integration-connector-agent/blob/main/docs/10_overview.md), in order to connect to a [Jira](https://www.atlassian.com/software/jira) Data Source.
+
+Please note that in order to make the _Integration Connector Agent_ work properly, you need a pre-configured account on Jira, as well as a [MongoDB instance](https://www.mongodb.com/) already available as a database support for the service.
+
+This tutorial will explain how to create an extension using the Mia-Platform Console, but there will be also small instruction using [`miactl`](/cli/miactl/10_overview.md),
+the official command line interface to access with the Mia-Platform APIs.
 
 ## Prerequisites
 
-This guide requires that you have:
+This guide requires that you have full access to a Company in which you are Company Owner.
+The Company should include a project reachable externally (you can set up one by following the instructions in this [guide](/console/project-configuration/create-a-project.mdx))
+that will be configured to include the _Integration Connector Agent_.
 
-- A Company on which you are Company Owner. Its identifier should be used each time there is the `my-tenant-id` occurrence.
-- The Company has a project reachable externally, otherwise create one by referring to this [guide](/console/project-configuration/create-a-project.mdx).
-- The `Microfrontend Composer Toolkit` application created and exposed to view the Backoffice frontend. Follow this section of the [guide](/microfrontend-composer/tutorials/basics.mdx#setup-the-microservices) to do so.
-- The response from the Backoffice endpoint can be embedded within an iframe. See this [link](/development_suite/api-console/api-design/endpoints.md#manage-advanced-endpoint-parameters) for more information.
-- Miactl tool installed consulting the guide on this [link](/cli/miactl/20_setup.md)
+## Steps
 
+### 1. Prepare the Integration Connector Agent in your Project
 
-## 1. Register Backoffice Extension
+The first part of the tutorial is not related to the extensions, but to prepare the project that you will use to connect with and to extract the Jira documents from.
 
-Once that all requisites are satisfied, you can register the Backoffice as an extension using the following command:
+The project requires the following services:
 
-```sh
-miactl extensions apply --endpoint https://<my-console-domain>/ --company-id my-tenant-id -f ./<relative-path>/my-extension.json
-```
+- the _Integration Connector Agent_ service, available, configured as explained in [the related documentation](https://github.com/mia-platform/integration-connector-agent/blob/main/docs/20_install.md)
+- the [_API Gateway_](/runtime_suite/api-gateway/10_overview.md) service, to expose the API that the extension will call.
+- the [_CRUD Service_](/runtime_suite/crud-service/10_overview_and_usage.md) to expose the endpoint used by the extension and to allow you to call it with some appropriate filters.
 
-where in the file `my-extension.json` there are the info to register:
+All the three services are available on the Mia-Platform [Marketplace](/marketplace/overview_marketplace.md): you can select the latest available version of each service without issues.
+
+Moreover, it is important to create the following endpoints:
+
+- an endpoint connected to the _Integration Connector Agent_, with the [Jira webhook](https://developer.atlassian.com/server/jira/platform/webhooks/) as base path, created to communicate with the Jira APIs (e.g. `agent/webhook/jira`)
+- an endpoint connected to the _CRUD Service_, pointing to the CRUD collection that will store the documents extracted from Jira (e.g. `/jira-issues`);
+also consider if you need to have this endpoint can be protected by authentication or not.
+
+:::info
+Remember to configure the project to correctly use the Ingress Route to expose the APIs, using [Traefik](/infrastructure/paas/tools/traefik.md) as example.
+:::
+
+Finally, deploy the project and check that the services are up and running to be sure that the APIs are exposed and ready to communicate with the extension.
+
+### 2. Create the extension
+
+Once that all requisites are satisfied and the API is ready to be called, you can create the extension.
+You can do that by accessing to your company page and, in the sidebar menu, clicking the `Extensions` option.
+
+![Create your first extension](./img/extensions-create.png)
+
+From this page you will see the list of existing extensions, if there are, otherwise you'll be see a screen that suggest you to create your first extension.
+In both cases, a button _Add extension_ is available and, after clicking on it, a menu will show up to allow you to choose which type of extension you want to create.
+
+In this case, you will go with the _Create with Composer_ option.
+
+In the modal that will show up, you can create the extension by choosing:
+
+- the name of the extension (e.g. _My Jira Extension_)
+- the _Template_, which is a starting template for your composer page (you can start with a table by selecting _Table: base table_)
+- the _Destination Area_, in which section of the Console the extension will be visible (e.g., select _Company Overview_ to make it visible in the Company page)
+- the _Category_, which is the group where the extension will be located (e.g., select _Administration_)
+
+The _Visibility_ should be automatically selected to _Whole Company_ to indicate that the extension is visible for those who will access to the Company page.
+
+Finally, click on _Add extension_ to create your first extension and to be automatically redirected to its detail page.
+
+![Details of the extension](./img/extensions-detail.png)
+
+The page will recap some information regarding the new extension, such its name, its identifier and where it will be shown.
+Also, you might notice that a new voice is available in the page sidebar, under the "ADMINISTRATOR" menu and it has the same name of the extension.
+
+This menu item is in fact the extension you have just created. You can access to it, to show an empty table with a loader that, unfortunately, will not load anything.
+This happens because, right now, the table have no indication on where to find the data to show.
+But you are going to fix that by moving on the next step.
+
+### 3. Configure the Outbound calls
+
+First of all, you need to configure the extension to ensure that it can execute server requests to the API connected to the _Integration Connector Agent_, created [in the project that we previously configured](#1-prepare-the-integration-connector-agent-in-your-project).
+
+To do that, you need to return to the page with the detail of the extension.
+If you are not there anymore, you can return there clicking to the _Extensions_ voice in the sidebar, then clicking on the name of the extension you just created.
+
+When you are there, click on the tab _Outbound calls_.
+It will open a new page where you can configure calls to external APIs, such as the CRUD collection endpoint of the project connected to Jira.
+
+![Empty page of the Outbound calls configuration](./img/extensions-outbound-calls-empty.png)
+
+To configure such calls, you need to click on the _Setup outbounds calls_ button. A modal will show up, prompting you to add the following information:
+
+- _Destination URL_: it is the URL that includes the API to call. In this case, it is the URL of the project connected to Jira which depends on how you configured the project (e.g. `https://jira-issues.console.gcp.mia-platform.eu/`)
+- _Authentication required_: if activated, requires authentication to communicate with the API. If the endpoint requires authentication then leave it activated, otherwise you can disable it.
+
+If the authentication is required you will be required to include:
+
+- _Authentication endpoint_: the full URL of the endpoint to send the credentials to authenticate
+- _Authentication Type_: the type of authentication between those available:
+  - _Client ID / Client Secret_: using client credentials, other two fields will be available where you will be prompted to add the _Client ID_ and the _Client Secret_
+  - _Username / Password_: easily understandable, you will also have to include username and password before to create the configuration
+
+Once you selected anything you need to successfully communicate with your external API, you can click on _Save Changes_ and right away see the configuration of the outbound calls updated.
+
+![Extension configured outbound calls](./img/extensions-outbound-calls-detail.png)
+
+You will notice right away that a new URL will be shown in this page that you have not configured by yourself, right below the label _Base URL to contact your APIs_.
+
+In fact, when you will configure the Composer page to call the API, you will not use the URL of the external service, but a specific Mia-Platform Console API
+(that will include the `/proxy/extensions/` path) that will act as a proxy: a request will be sent to a specific endpoint of the Mia-Platform Console
+that will handle the authentication by calling the _Authentication Endpoint_ including the credentials configured, and then it will forward the original request to the external API.
+
+The URL ends with the `<YOUR_API>` letters, to be replaced with the endpoint you want to connect to (in this case to `/v2/jira-issues`). This will allow you to call any endpoint of the API.
+
+### 4. Update the Composer page
+
+Now that we can finally connect to the API, it is finally time to update the Composer page to ensure it will load the data from the API.
+In order to do so, it is required to include the [CRUD Client component](/microfrontend-composer/back-kit/60_components/100_crud_client.md) to allow the table to fetch the data to show.
+
+From the extension detail page, go back to the _General_ tab to see to the details of the extension and click to the _Edit with Composer_ button.
+From there, you will be redirected to a page where you can see the current configuration of the composer page.
+
+From the `Advanced` section, find the list of the table elements, which should be located on the `content.content` path, and add the following JSON configuration:
 
 ```json
 {
-  "name": "Integrated Backoffice",
-  "description": "Extension to integrate Backoffice on Console",
-  "entry": "https://<my-domain>/mfe-application/home",
-  "type": "iframe",
-  "destination": {
-    "id": "project",
-    "path": "/backoffice"
-  },
-  "activationContexts": [
-    "project"
-  ],
-  "iconName": "PiProjectorScreenChartLight",
-  "menu": {
-    "id": "backoffice-route",
-    "labelIntl": {
-      "en": "Integrated Backoffice",
-      "it": "Backoffice integrato"
+    "tag": "bk-crud-client",
+    "properties": {
+        "basePath": "/proxy/extensions/123456789012345678901234/v2/jira-issues",
+        "dataSchema": {
+            "$ref": "#/definitions/dataSchema"
+        }
+    },
+    "attributes": {
+        "data-mia-label": "CRUD Client"
+    }
+}
+```
+
+The entire configuration of the default table template with the CRUD Client will look like this:
+
+<details>
+    <summary>Composer configuration</summary>
+
+```json
+{
+  "definitions": {
+    "dataSchema": {
+      "type": "object",
+      "properties": {
+        "_id": {
+          "type": "string",
+          "label": "ID"
+        },
+        "key": {
+          "type": "string",
+          "label": "Key"
+        },
+        "summary": {
+          "type": "string",
+          "label": "Summary"
+        },
+        "description": {
+          "type": "string",
+          "label": "Description"
+        },
+        "_eventId": {
+          "type": "string",
+          "label": "Event ID"
+        },
+        "priority": {
+          "type": "object",
+          "label": "Priority"
+        },
+        "__STATE__": {
+          "type": "string",
+          "label": "State",
+          "enum": [
+            "PUBLIC",
+            "DRAFT",
+            "TRASH",
+            "DELETED"
+          ]
+        }
+      }
     }
   },
-  "category": {
-    "id": "my-menu-group",
-    "labelIntl": {
-      "en": "My Menu Group",
-      "it": "Il mio gruppo menu"
+  "content": {
+    "content": [
+      {
+        "content": [
+          {
+            "tag": "div",
+            "content": [
+              {
+                "properties": {
+                  "content": "My Jira Extension"
+                },
+                "tag": "bk-title"
+              },
+              {
+                "tag": "bk-refresh-button",
+                "attributes": {
+                  "style": "margin-left: 14px; align-self: end;"
+                }
+              },
+              {
+                "tag": "div",
+                "attributes": {
+                  "style": "flex-grow: 1;"
+                }
+              },
+              {
+                "properties": {
+                  "placeholder": "Search..."
+                },
+                "tag": "bk-search-bar"
+              },
+              {
+                "tag": "bk-add-new-button",
+                "attributes": {
+                  "style": "display: none;"
+                }
+              },
+              {
+                "attributes": {
+                  "data-mia-label": "Filters button"
+                },
+                "properties": {
+                  "content": "",
+                  "clickConfig": {
+                    "type": "event",
+                    "actionConfig": {
+                      "label": "filter",
+                      "payload": {}
+                    }
+                  },
+                  "type": "outlined",
+                  "iconId": "FunnelPlotOutlined"
+                },
+                "tag": "bk-button"
+              }
+            ],
+            "attributes": {
+              "style": "display: flex; flex-direction: row; gap: 10px; padding: 0 20px;"
+            }
+          },
+          {
+            "tag": "div",
+            "attributes": {
+              "style": "width: 100%; display: flex; justify-content: space-between;"
+            },
+            "content": [
+              {
+                "attributes": {
+                  "style": "flex-grow: 1; display: none;"
+                },
+                "properties": {
+                  "tabs": [
+                    {
+                      "key": "tab-1",
+                      "title": "Tab 1"
+                    }
+                  ]
+                },
+                "tag": "bk-tabs"
+              },
+              {
+                "attributes": {
+                  "style": "margin-right: 4px"
+                },
+                "properties": {
+                  "dataSchema": {
+                    "$ref": "#/definitions/dataSchema"
+                  },
+                  "filters": []
+                },
+                "tag": "bk-filters-manager"
+              }
+            ]
+          },
+          {
+            "tag": "div",
+            "attributes": {
+              "style": "padding: 0 20px;"
+            },
+            "content": {
+              "tag": "bk-breadcrumbs",
+              "properties": {
+                "dataSchema": {
+                  "$ref": "#/definitions/dataSchema"
+                }
+              },
+              "attributes": {
+                "style": "display: none;"
+              }
+            }
+          }
+        ],
+        "tag": "header",
+        "attributes": {
+          "style": "display: flex; flex-direction: column; padding-top: 10px; background-color: white;"
+        }
+      },
+      {
+        "content": [
+          {
+            "properties": {
+              "dataSchema": {
+                "$ref": "#/definitions/dataSchema"
+              },
+              "maxLines": 1000,
+              "rowActions": {
+                "kind": "icons",
+                "actions": [
+                  {
+                    "label": "Delete",
+                    "icon": "fas fa-trash",
+                    "kind": "event",
+                    "content": "delete-data",
+                    "meta": {
+                      "actionId": "delete-data"
+                    },
+                    "requireConfirm": true
+                  }
+                ]
+              },
+              "fitParentContainer": false
+            },
+            "tag": "bk-table"
+          },
+          {
+            "properties": {
+              "requireConfirm": {
+                "onClose": true,
+                "onSave": true
+              },
+              "dataSchema": {
+                "$ref": "#/definitions/dataSchema"
+              },
+              "width": "70vw",
+              "allowObjectAsTable": false,
+              "readonlyOnView": true
+            },
+            "tag": "bk-form-modal"
+          },
+          {
+            "tag": "bk-confirmation-modal"
+          },
+          {
+            "properties": {
+              "rootElementSelectors": "main.micro-lc-layout-content",
+              "successEventMap": {
+                "create-data": {
+                  "title": "Success",
+                  "content": "Data successfully created",
+                  "type": "success"
+                },
+                "update-data": {
+                  "title": "Success",
+                  "content": "Data successfully updated",
+                  "type": "success"
+                },
+                "delete-data": {
+                  "title": "Success",
+                  "content": "Data successfully deleted",
+                  "type": "success"
+                }
+              },
+              "errorEventMap": {
+                "create-data": {
+                  "title": "Error",
+                  "content": "An error occurred during order creation",
+                  "type": "error"
+                },
+                "update-data": {
+                  "title": "Error",
+                  "content": "An error occurred during order updated",
+                  "type": "error"
+                },
+                "delete-data": {
+                  "title": "Error",
+                  "content": "An error occurred during order deletion",
+                  "type": "error"
+                }
+              }
+            },
+            "tag": "bk-notifications"
+          }
+        ],
+        "tag": "main",
+        "attributes": {
+          "style": "flex-grow: 1; background-color: #f0f2f5; padding: 20px; overflow-y: auto;",
+          "data-mia-label": "Main"
+        }
+      },
+      {
+        "content": [
+          {
+            "properties": {
+              "dataSchema": {
+                "$ref": "#/definitions/dataSchema"
+              },
+              "width": "40vw"
+            },
+            "tag": "bk-filter-drawer"
+          }
+        ],
+        "tag": "aside"
+      },
+      {
+        "content": [
+          {
+            "tag": "bk-bulk-delete"
+          },
+          {
+            "tag": "bk-bulk-actions",
+            "properties": {
+              "dataSchema": {
+                "$ref": "#/definitions/dataSchema"
+              }
+            }
+          },
+          {
+            "tag": "div",
+            "attributes": {
+              "style": "flex-grow: 1;"
+            }
+          },
+          {
+            "tag": "bk-footer",
+            "attributes": {
+              "style": "display: flex; justify-content: end; align-items: center;"
+            }
+          },
+          {
+            "tag": "bk-pagination",
+            "properties": {
+              "pageSize": 10
+            }
+          }
+        ],
+        "tag": "footer",
+        "attributes": {
+          "style": "display: flex; flex-direction: row; flex-wrap: wrap; padding: 10px 20px; background-color: white; gap: 10px; position: sticky; bottom: 0; z-index: 10"
+        }
+      },
+      {
+        "properties": {
+          "basePath": "/proxy/extensions/123456789012345678901234/v2/jira-issues",
+          "dataSchema": {
+            "$ref": "#/definitions/dataSchema"
+          }
+        },
+        "tag": "bk-crud-client",
+        "attributes": {
+          "data-mia-label": "CRUD Client"
+        }
+      }
+    ],
+    "tag": "div",
+    "attributes": {
+      "style": "width: 100%; height: 100%; display: flex; flex-direction: column; position: relative;"
+    }
+  },
+  "sources": [
+    "https://cdn.mia-platform.eu/backoffice/bk-web-components/1.5.9/dist/bk-web-components.esm.js"
+  ]
+}
+```
+</details>
+
+This will attach the _CRUD Client_ component to the table, by fetching data from an URL defined in the `basePath` property (remember to update its value with the proxy URL created by the extension),
+and using as a data schema the schema automatically defined in the _Shared Properties_ tab.
+
+:::info
+You can update the Data Schema whenever you want by moving to the _Shared Properties_ tab and selecting _Data Schema_ from the table.
+An editor will show up allowing you to edit the schema by adding and updating the properties.
+
+A suitable example of data schema for this example is the following:
+
+```json
+{
+  "type": "object",
+  "properties": {
+    "_id": { "type": "string", "label": "ID" },
+    "key": { "type": "string", "label": "Key" },
+    "summary": { "type": "string", "label": "Summary" },
+    "description": { "type": "string", "label": "Description" },
+    "_eventId": { "type": "string", "label": "Event ID" },
+    "priority": { "type": "object", "label": "Priority" },
+    "__STATE__": {
+      "type": "string",
+      "label": "State",
+      "enum": [ "PUBLIC", "DRAFT", "TRASH", "DELETED" ]
     }
   }
 }
 ```
 
+:::
+
+Remember to save your changes by clicking the _Apply_ button from the _Advanced_ tab when you finish these updates,
+then to finalize the configuration of the Composer page with the _Publish all changes_ button at the top-right side of the page.
+
 :::tip
-You can limit extension visibility based on Console User Capabilities; for instance, if you want to show your extension only to users who can deploy a project, you can configure the `permissions` key defined in this way:
+Before to move on, you now have the chance to further customize the page.
+While you have now included only the CRUD Client component, you can add more components to the page, as well as change options and the style of the page itself.
+
+You can refer to the [Microfrontend Composer documentation](/microfrontend-composer/what-is.md),
+and specifically to the[documentation of Back-kit](/microfrontend-composer/back-kit/10_overview.md) for more information on components, actions and their properties.
+:::
+
+### 5. Call the extension
+
+After every update, the extension is automatically updated.
+After updating the Composer page, we can finally move to the Extension and see the table with all data coming from Jira.
+
+![The extension shows the table with the Jira information](./img/extensions-final-result.png)
+
+## Additional guide: manage extensions with miactl
+
+In this section, we will explain how to create, review and activate extensions using [miactl](/cli/miactl/10_overview.md).
+
+Remember to install the CLI if you haven't done it yet by following the instructions in the [CLI installation](/cli/miactl/20_setup.md)section and
+to [set up the context](/cli/miactl/30_commands.md#context) with the Company ID where you want to create the extension.
+
+### Create and activate the extension
+
+You can also replicate the tutorial by creating the extension via _miactl_. In your CLI type the following command:
+
+```sh
+miactl extensions apply --endpoint https://<my-console-domain>/ --company-id my-tenant-id -f ./<relative-path>/my-extension.json
+```
+
+where `my-tenant-id` is the identifier of the company, and the `my-extension.json` is a JSON file includes the following content:
+
+```json
+{
+  "name": "My Extension",
+  "type": "composer-page",
+  "destination": {
+    "id": "tenant",
+    "path": "/"
+  },
+  "activationContexts": [
+    "company"
+  ],
+  "iconName": "PiProjectorScreenChartLight",
+  "configuration": "{\"version\": \"0.1.0\", ...",
+  "menu": {
+    "id": "jira-issues",
+    "labelIntl": {
+      "en": "My Jira Extension",
+      "it": "Issue su Jira"
+    }
+  },
+  "category": {
+    "id": "administration",
+  }
+}
+```
+
+You must ensure that the `configuration` field includes a valid Composer configuration for the page you want to show.
+
+:::tip
+You can limit extension visibility based on Console User Capabilities;
+for instance, if you want to show your extension only to users who can deploy a project, you can configure the `permissions` key defined in this way:
 
 ```js
 {
@@ -72,136 +582,58 @@ You can limit extension visibility based on Console User Capabilities; for insta
 You can find out available capabilities in the [Identity and access management page](/development_suite/identity-and-access-management/console-levels-and-permission-management.md#identity-capabilities-inside-console).
 :::
 
-:::info
-These registered routes are rendered as a menu item with label `Integrated Backoffice` that is attached to a `category` menu group with label `My menu group`. If you do not want to create new menu group, you can 
-- define the `category.id` value using an [existing menu groups](/console/console-extensibility/locations.md) corresponding to the chosen location applied as `destination.id` (e.g. `runtime` for the project location). In this case the `category.labelIntl` and `category.order` should be undefined.
-- not define the `category` field, so that the menu item will not be attached on any menu group 
-:::
-
-
-**Response on success**
-```markdown
-Successfully applied extension with id `my-extension-id`
-```
-
-### Edit the registered extension
-
-If you need to correct or modify your newly registered extension, you can do so using the same miactl command and specifing the extension ID with the proper flag:
+After the creation, you have to activate the extension.
+While this command is automatically executed from the Mia-Platform Console, if you use _miactl_ you have to manually launch it using the `activate` command:
 
 ```sh
-miactl extensions apply --endpoint https://<my-console-domain>/ --company-id my-tenant-id -f ./<relative-path>/my-extension.json --extension-id my-extension-id 
+miactl extensions activate --endpoint https://<my-console-domain>/ --company-id my-tenant-id --extension-id extension-id
 ```
 
-<details>
-  <summary>See the complete example</summary>
+Replacing `my-tenant-id` and `extension-id` with the identifier of your company and the identifier of your extension.
 
-The `my-extension.json` file should always contains all the extension info, both those to edit and both those that are already registered:
+:::info
+It is not possible for now, to include the configuration of outbounds calls and inbound calls in JSON files to be used with miactl.
+:::
 
-```json
-{
-  "name": "Integrated Backoffice",
-  "description": "Extension to integrate Backoffice on Console",
-  "entry": "https://<my-domain>/mfe-application/home",
-  "type": "iframe",
-  "destination": {
-    "id": "project",
-    "path": "/backoffice"
-  },
-  "activationContexts": [
-    "project"
-  ],
-  "iconName": "PiProjectorScreenChartLight",
-  "menu": {
-    "id": "backoffice-route,",
-    "labelIntl": {
-      "en": "Edited Integrated Backoffice",
-      "it": "Backoffice Integrato Modificato"
-    }
-  },
-  "category": {
-    "id": "my-menu-group,",
-    "labelIntl": {
-      "en": "My Menu Group",
-      "it": "Il mio gruppo menu"
-    }
-  }
-}
+:::tip
+
+In case you need to update the extension using _miactl_, you can always use the `apply` command by including the `--extension-id` flag:
+
+```sh
+miactl extensions apply --endpoint https://<my-console-domain>/ --company-id my-tenant-id -f ./<relative-path>/my-extension.json --extension-id extension-id 
 ```
 
-**Response on success**: 
-```markdown
-Successfully applied extension with id `my-extension-id`
-```
+:::
 
-In this example, the `labelIntl` of the menu item has been modified.
-
-</details>
-
-## 2. Check that the new extension is registered
+### Check if the extension exists
 
 You can use the `list` and `get` commands to verify that the registration is done correctly:
 
-**List command**
 ```sh
+# Show the list of all extensions
 miactl extensions list --endpoint https://<my-console-domain>/ --company-id my-tenant-id
+
+# Show the extension by specific id
+miactl extensions get --endpoint https://<my-console-domain>/ --company-id my-tenant-id --extension-id extension-id
 ```
 
-**Get command**
-```sh
-miactl extensions get --endpoint https://<my-console-domain>/ --company-id my-tenant-id --extension-id my-extension-id
-```
+You can use these commands any time you need to check what extensions exists and are activated to further check if create/delete operations executed have been successful.
 
-where the `list` command returns all the registered extensions on the company `my-tenant-id`, instead the `get` command returns only the requested extension with all its info.
+### Deactivate and delete extensions
 
-## 3. Activate the extension
+To remove extensions, you can decide to _deactivate_ them (the extension still exists but it is not visible in Console anymore) or to definitely _delete_ them.
 
-After registering you can proceed with its activation on a project using the `activate` command:
-
-```sh
-miactl extensions activate --endpoint https://<my-console-domain>/ --company-id my-tenant-id --project-id my-project-id --extension-id my-extension-id
-```
-
-**Response on success**
-```markdown
-Successfully activated extension `my-extension-id` for project: `my-project-id`
-```
-
-:::info
-The extension can be activated on any projects inside the Company `my-tenant-id` changing the project ID in the miactl context.
-:::
-
-## 4. Enjoy the final result
-
-Once that the new extension is correctly registered and activated, the final result should be similar to this:
-
-![backoffice extension overview](img/backofficeExtensionTutorial.png)
-
-## 5. Deactivate the Backoffice extension
-
-To restore the initial state of the Console, you can deactivate the new extension using the `deactivate` command:
+To deactivate the extension, you can use the `deactivate` command:
 
 ```sh
-miactl extensions deactivate --endpoint https://<my-console-domain>/ --company-id my-tenant-id --project-id my-project-id --extension-id my-extension-id
-```
-
-**Response on success**
-```markdown
-Successfully deactivated extension `my-extension-id` for project: `my-project-id`
+miactl extensions deactivate --endpoint https://<my-console-domain>/ --company-id my-tenant-id --project-id my-project-id --extension-id extension-id
 ```
 
 Now, the extension should no longer be visible in the Console.
-
-## 6. Remove definitely the Backoffice extension
-
-To perform a complete cleanup and remove the newly registered extension, you can use the `delete` command:
+To completely remove the extension, you can use the `delete` command:
 
 ```sh
-miactl extensions delete --endpoint https://<my-console-domain>/ --company-id my-tenant-id --extension-id my-extension-id
+miactl extensions delete --endpoint https://<my-console-domain>/ --company-id my-tenant-id --extension-id extension-id
 ```
 
-**Response on success**
-```markdown
-Successfully deleted extension from Company
-```
-
-You can repeat [step 2](#2-check-that-the-new-extension-is-registered) to verify that the extension has been successfully removed.
+You can use [the `list` and `get` command](#check-if-the-extension-exists) to verify that the extension has been successfully removed.
