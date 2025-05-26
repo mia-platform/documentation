@@ -95,7 +95,7 @@ Blanks cell in the following table are for tools that do not require a specific 
       </tr>
       <tr>
          <td><img src="/img/bitbucket-server.ico" width="15" height="15"/> Bitbucket Server</td>
-         <td>&gt; 8.x</td>
+         <td>&lt;= 8.x</td>
          <td>2 cores</td>
          <td>3 GB</td>
       </tr>
@@ -154,7 +154,7 @@ Blanks cell in the following table are for tools that do not require a specific 
       <tr>
          <td><strong>Runtime</strong></td>
          <td><img src="/img/kubernetes.png" width="15" height="15"/> Kubernetes</td>
-         <td>&gt;= 1.21<br/>&lt;= 1.30</td>
+         <td>&gt;= 1.21<br/>&lt;= 1.31</td>
          <td>2 CPU requests</td>
          <td>4 GiB Memory requests</td>
       </tr>
