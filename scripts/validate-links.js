@@ -15,6 +15,7 @@ const excludePath = (path) => {
         'docs/microfrontend-composer/back-kit',
         'docs/microfrontend-composer/composer',
         'docs/cli',
+        'docs/mcp',
     ];
 
     if (pathToExclude.some(s => path.toLowerCase().includes(s))) return true;
