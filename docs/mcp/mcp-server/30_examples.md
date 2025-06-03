@@ -10,7 +10,7 @@ DO NOT MODIFY IT BY HAND.
 Instead, modify the source file and run the aggregator to regenerate this file.
 -->
 
-Here you can see some propmts that you can ask to the `mcp-server`.  
+Here you can see some prompts that you can ask to the `mcp-server`.  
 Remember to change the values inside the curly braces `{}` with your specific information.
 
 ## Project Creation

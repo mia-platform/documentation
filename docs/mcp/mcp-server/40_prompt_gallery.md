@@ -570,7 +570,7 @@ Implement chaos testing in the DEV environment for project {projectName} to veri
 
 ## Example of conversations
 
-You may start with a prompt and tham within the context continue the conversations. Some examples
+You may start with a prompt and then within the context continue the conversations. Some examples
 
 ```txt
 Create the project Demo Projects in my preferred tenant using all defaults
