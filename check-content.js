@@ -11,6 +11,7 @@ const filesToExcludeFromSidebarCheck = [
   "monitoring/paas_alerting_rules",
   "info/licenses-reports/.gitkeep",
   'cli/miactl/*',
+  'mcp/mcp-serer/*',
   "info/licenses/*",
   "runtime_suite/*",
   "runtime_suite_applications/*",
