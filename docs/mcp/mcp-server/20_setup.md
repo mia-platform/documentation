@@ -31,10 +31,10 @@ called `.vscode/mcp.json` in your workspace.
 
 Once you have done it, toggle Agent mode (located by the Copilot Chat text input) and the server will start.
 
-> [!NOTE]
->
-> The `mcp` key is not needed in the `.vscode/mcp.json` file.  
-> Also note that you can change the host of the Console instance to your custom installation
+:::note
+The `mcp` key is not needed in the `.vscode/mcp.json` file.  
+Also note that you can change the host of the Console instance to your custom installation
+:::
 
 ```json
 {
@@ -80,11 +80,13 @@ Once you have done it, toggle Agent mode (located by the Copilot Chat text input
 }
 ```
 
-> [!TIP]
-> If you want to use User-based authentication with [`miactl`][miactl] you have to omit from the env object:
->
-> - `MIA_PLATFORM_CLIENT_ID`
-> - `MIA_PLATFORM_CLIENT_SECRET`
+:::tip
+If you want to use User-based authentication with [`miactl`][miactl] you have to omit from the env object:
+
+- `MIA_PLATFORM_CLIENT_ID`
+- `MIA_PLATFORM_CLIENT_SECRET`
+
+:::
 
 More about using MCP server tools in [VS Code's agent mode documentation].
 
