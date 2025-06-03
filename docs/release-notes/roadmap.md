@@ -22,9 +22,7 @@ On this page we keep you aligned on the most important issues:
 
 - **Mia-Platform Console**:
   - _Governance_  
-    - Empowered IAM
     - Company/Profile management optimization
-    - Enhanced Runtime Resources Monitoring and management
     - Extended FinOps integration
     - Customizable Home Page
     - Customizable metrics dashboards
@@ -33,13 +31,9 @@ On this page we keep you aligned on the most important issues:
     - Enhanced Pair with AI
     - Improved Vault integrations
   - _Extensibility_
-    - New K8s auth
     - Better integration with 3rd party plugins
-    - Support Ingress Controller
-    - Extend your Console with Microfrontend Composer
     - New Dev Portal for public API reference
     - Native Multi-runtime and Serverless support (e.g. Lambda)
-    - Integration with other tools (Jira, Github, ...) to gather metrics
 - **Mia-Platform Data Fabric**
   - _Fast Data_
     - New AI-Native Data Pipeline configurator
@@ -51,12 +45,13 @@ On this page we keep you aligned on the most important issues:
     - Excel integration for bulk metadata enrichment and sync with the Catalog
   - _Database Management_
     - Improved management of schema validation and indexes for MongoDB assets
-- **Mia-Platform Marketplace**
-  - Improved Marketplace Governance
-  - Marketplace management through Miactl
-  - Improved Marketplace Monitoring
+- **Software Catalog**
+  - Improved Governance
   - Enhanced PBC (Application) Lifecycle
   - Modular PBCs
+  - Catalog Items Enrichment
+  - Catalog integration with third-party tools
+  - AI-driven Catalog Items discovery
 - **Components**
   - _Microfrontend Composer_
     - Custom Template Management
@@ -64,7 +59,6 @@ On this page we keep you aligned on the most important issues:
     - New Component Library
   - _Flow Manager_
     - Enhanced No Code configuration
-    - Retry functionality
 
 ## How to contribute to the roadmap
 
