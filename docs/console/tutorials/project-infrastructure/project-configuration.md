@@ -10,6 +10,7 @@ sidebar_order: 1
 ## Introduction
 The "Infrastructure Project" is a new type of project that allows centralized management of infrastructure resources.
 This type of project is exclusively dedicated to managing infrastructure resources and offers specific functionalities for creating, deploying, and managing these resources.
+You can find the feature documentation on [Infrastructure Project](https://docs.mia-platform.eu/docs/console/project-configuration/infrastructure-project) page.
 
 ## Creating a Infrastructure Project
 
@@ -52,13 +53,13 @@ In the future, it will be possible to create a new resource from a Marketplace o
 
 In the resource creation screen, the following must be specified:
 - Resource name: the name to assign to the resource
-- Repository URL: the git repository containing the terraform code of the resource
-- Git ref name: the branch in the git repository where the terraform code is located
+- Repository URL: the git repository containing the OpenTofu/Terraform code of the resource
+- Git ref name: the branch in the git repository where the OpenTofu/Terraform code is located
 - Repository project ID: the project ID of the git repository
 
 ## Repository example Cloud Storage Bucket
 
-In the following sections, we will provide an example of a git repository containing terraform code for creating a Google Cloud Storage bucket.
+In the following sections, we will provide an example of a git repository containing OpenTofu/Terraform code for creating a Google Cloud Storage bucket.
 
 :::info
 These are example snippets. Always adapt them to your specific requirements, thoroughly validate all settings (especially variables and secrets), and remember that many effective solutions can be designed differently.
@@ -230,7 +231,7 @@ From the Deploy section, you can deploy infrastructure resources.
 
 Inside, you can see a table listing the created infrastructure resources, with their name and git repository.
 
-The "Start Plan" button performs a plan operation on the resource, which analyzes the terraform code in the repository and shows what would happen if the described changes were applied.
+The "Start Plan" button performs a plan operation on the resource, which analyzes the OpenTofu/Terraform code in the repository and shows what would happen if the described changes were applied.
 
 The plan essentially informs what will be created, modified, or destroyed in case of applying the resource.
 
@@ -250,7 +251,7 @@ These are example snippets. Always adapt them to your specific requirements, tho
 
 ```yaml
 
-# GitLab CI/CD Terraform Pipeline: Your Lean Starting Point
+# GitLab CI/CD OpenTofu/Terraform Pipeline: Your Lean Starting Point
 #
 # Hey there! This pipeline is your foundation for automating Terraform with GitLab.
 # We're covering the essentials: validating your code, planning changes, and
@@ -368,29 +369,26 @@ apply:
 
 ## Infrastructure Resource Repository
 
-As already mentioned, the infrastructure resource repository is a git repository that contains the terraform code of the resource and the pipelines needed to deploy it.
-
-Here is a link to the "TFHello World" repository which contains example code useful for this how-to: [TFHello World](https://git.tools.mia-platform.eu/clients/mia-platform/platform-development/infrastructure-playground/tf-hello-world)
+As already mentioned, the infrastructure resource repository is a git repository that contains the OpenTofu/Terraform code of the resource and the pipelines needed to deploy it.
 
 Some key files in this repository are:
-- main.tf: the main terraform file, which contains the resource definition and variables required for deployment.
-- .gitlab-ci.yml: the GitLab pipeline configuration file, which contains the necessary pipelines to deploy the resource.
-- scripts (folder): contains utility scripts necessary for the proper functioning of the project in the console.
+- main.tf: the main OpenTofu/Terraform file, which contains the resource definition and variables required for deployment.
+- .gitlab-ci.yml: the GitLab pipeline configuration file, which contains the necessary pipelines to deploy the resource, the pipeline must mandatorily contain a "plan" and an "apply" stage.
 
 ### Scripts folder utility 
 
 The scripts folder can contains utility scripts that are used in the GitLab CI pipeline to perform various tasks, such as:
 
 * Automate GitLab interactions: Programmatically trigger pipelines, monitor job statuses (like "plan" and "apply"), and fetch logs.
-* Simplify Terraform output analysis: Scripts can display "plan" logs directly in the Console. This is crucial for reviewing proposed infrastructure changes before confirming an "apply". 
+* Simplify OpenTofu/Terraform output analysis: Scripts can display "plan" logs directly in the Console. This is crucial for reviewing proposed infrastructure changes before confirming an "apply". 
 * Enable a controlled deployment workflow: After reviewing the plan, the deployment automation prompts the user for confirmation before proceeding with applying changes, ensuring a deliberate and informed deployment process.
-* Centralize configuration and utilities: This includes managing API tokens, initializing Terraform with the correct backend settings, and providing reusable utility functions and type definitions.
+* Centralize configuration and utilities: This includes managing API tokens, initializing OpenTofu/Terraform with the correct backend settings, and providing reusable utility functions and type definitions.
 
 ## Troubleshooting
 
 If you encounter issues during the deployment process, consider the following steps:
 
-- Ensure your Git repository is accessible and contains valid Terraform code.
+- Ensure your Git repository is accessible and contains valid OpenTofu/Terraform code.
 - Check if the Git ref (branch or tag) exists and is spelled correctly.
 - Review the output of the plan for any potential conflicts or errors.
 - Confirm that the `.gitlab-ci.yml` includes all required jobs for the deployment process.
