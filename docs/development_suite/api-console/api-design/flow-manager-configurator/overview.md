@@ -82,7 +82,7 @@ The highlight mode allows the user to focus on a subset of states, logic blocks,
 This feature is available from Console version `14.0.1`.
 :::
 
-Starting from version `2.7.0`, Flow Manager service supports [secrets resolution](/docs/runtime_suite/flow-manager-service/30_configuration.md#secrets-resolution) in various parts of the config.
+Starting from version `2.7.0`, Flow Manager service supports [secrets resolution](/runtime_suite/flow-manager-service/30_configuration.md#secrets-resolution) in various parts of the config.
 
 The Configurator offers the possibility to configure secrets with a UI like this:
 
