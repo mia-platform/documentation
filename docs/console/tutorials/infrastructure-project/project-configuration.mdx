@@ -64,6 +64,10 @@ In the following sections, we will provide an example of a git repository contai
 These are example snippets. Always adapt them to your specific requirements, thoroughly validate all settings (especially variables and secrets), and remember that many effective solutions can be designed differently.
 :::
 
+<details>
+<summary>Cloud Storage Bucket</summary>
+<p>
+
 ```
 # Specify the Google Cloud provider
 provider "google" {
@@ -95,6 +99,9 @@ resource "google_storage_bucket" "demo_bucket" {
 }
 ```
 
+</p>
+</details>
+
 ## Example of a terraform code for creating a GKE Cluster in Google
 
 In the following sections, we will provide an example of a git repository containing terraform code for creating a GKE Cluster in Google.
@@ -103,6 +110,10 @@ In the following sections, we will provide an example of a git repository contai
 These are example snippets. Always adapt them to your specific requirements, thoroughly validate all settings (especially variables and secrets), and remember that many effective solutions can be designed differently.
 :::
 
+
+<details>
+<summary>GKE Cluster</summary>
+<p>
 ```
 # Configure the Google Cloud provider provider
 provider "google" {
@@ -153,6 +164,8 @@ resource "google_container_node_pool" "demo_nodes" {
 }
 
 ```
+</p>
+</details>
 
 ## Example of a terraform code for creating a database MongoDB Atlas
 
@@ -161,6 +174,10 @@ In the following sections, we will provide an example of a git repository contai
 :::info
 These are example snippets. Always adapt them to your specific requirements, thoroughly validate all settings (especially variables and secrets), and remember that many effective solutions can be designed differently.
 :::
+
+<details>
+<summary>MongoDB Atlas</summary>
+<p>
 
 ```
 ## Configure the MongoDB Atlas provider
@@ -195,7 +212,7 @@ resource "mongodbatlas_cluster" "demo_cluster" {
   replication_factor          = 3                           # Number of nodes in replica set
   disk_size_gb                = 20                          # Storage per node
   auto_scaling_disk_gb_enabled = true                      # Enable disk auto-scaling
-  
+
   # For M10 and higher tiers, auto_scaling_compute_enabled might also be desired for compute scaling
   # auto_scaling_compute_enabled = true
   # provider_auto_scaling_compute_min_instance_size = "M10"
@@ -220,6 +237,8 @@ resource "mongodbatlas_database_user" "app_user" {
 }
 
 ```
+</p>
+</details>
 
 ## Deploying the Infrastructure Resource
 
@@ -247,6 +266,9 @@ Of course, the GitLab CI pipeline is essential for deploying the resources. In t
 These are example snippets. Always adapt them to your specific requirements, thoroughly validate all settings (especially CI/CD variables and secrets), and remember that many effective solutions can be designed differently.
 :::
 
+<details>
+<summary>Pipeline</summary>
+<p>
 ```yaml
 # GitLab CI/CD OpenTofu Pipeline: Your Lean Starting Point
 #
@@ -364,6 +386,9 @@ apply:
 
 ```
 
+</p>
+<details>
+
 ## Infrastructure Resource Repository
 
 As already mentioned, the infrastructure resource repository is a git repository that contains the terraform code of the resource and the pipelines needed to deploy it.
@@ -375,12 +400,12 @@ Some key files in this repository are:
 - .gitlab-ci.yml: the GitLab pipeline configuration file, which contains the necessary pipelines to deploy the resource.
 - scripts (folder): contains utility scripts necessary for the proper functioning of the project in the console.
 
-### Scripts folder utility 
+### Scripts folder utility
 
 The scripts folder can contains utility scripts that are used in the GitLab CI pipeline to perform various tasks, such as:
 
 * Automate GitLab interactions: Programmatically trigger pipelines, monitor job statuses (like "plan" and "apply"), and fetch logs.
-* Simplify Terraform output analysis: Scripts can display "plan" logs directly in the Console. This is crucial for reviewing proposed infrastructure changes before confirming an "apply". 
+* Simplify Terraform output analysis: Scripts can display "plan" logs directly in the Console. This is crucial for reviewing proposed infrastructure changes before confirming an "apply".
 * Enable a controlled deployment workflow: After reviewing the plan, the deployment automation prompts the user for confirmation before proceeding with applying changes, ensuring a deliberate and informed deployment process.
 * Centralize configuration and utilities: This includes managing API tokens, initializing Terraform with the correct backend settings, and providing reusable utility functions and type definitions.
 
