@@ -1,17 +1,17 @@
 ---
 id: project-configuration
-title: Project Infrastructure Tutorial
-sidebar_label: Project Infrastructure Tutorial
+title: Infrastructure Project Tutorial
+sidebar_label: Infrastructure Project Tutorial
 sidebar_order: 1
 ---
 
-# Project Infrastructure How To
+# Infrastructure Project How To
 
 ## Introduction
-The "Project Infrastructure" is a new type of project that allows centralized management of infrastructure resources.
+The "Infrastructure Project" is a new type of project that allows centralized management of infrastructure resources.
 This type of project is exclusively dedicated to managing infrastructure resources and offers specific functionalities for creating, deploying, and managing these resources.
 
-## Creating a Project Infrastructure
+## Creating a Infrastructure Project
 
 ![IMG 1](./img/1.png)
 
