@@ -2006,5 +2006,11 @@
   "/docs/tools/overview_service_tools": {
     "destination": "/docs/runtime_suite_tools/mlp/overview",
     "addedOn": "2025-05-21"
+  },
+    "/docs/runtime_suite/audit-trail/security": {
+    "destination": "/docs/runtime_suite_sidecars/audit-trail/security",
+    "addedOn": "2025-06-05"
   }
 }
+
+
