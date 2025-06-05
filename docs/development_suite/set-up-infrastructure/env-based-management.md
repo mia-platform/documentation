@@ -69,7 +69,7 @@ During the manual migration, you'll have the opportunity to carefully select and
 
 The Environment Configuration Promotion feature enables you to efficiently synchronize configurations across your environments. Whether you're working with virtual or runtime environments, you can seamlessly propagate configuration changes to maintain consistency throughout your project.
 
-<div style={{width: '400px', maxWidth: '100%', display: 'flex', alighItems: 'center', borderRadius: '4px', overflow: 'hidden'}}>
+<div style={{width: '400px', maxWidth: '100%', display: 'flex', alignItems: 'center', borderRadius: '4px', overflow: 'hidden'}}>
 
 ![Promotion](img/promotion.png)
 
@@ -99,7 +99,7 @@ This mode will overwrite any manual changes made on the target environment.
 It is possible to promote an Environment using the manual mode.
 This mode allows you to granularly control, once the Public variables have been chosen, what is brought to the target environment, allowing you to manage any conflicts.
 
-<div style={{width: '700px', maxWidth: '100%', display: 'flex', alighItems: 'center', border: '2px solid grey', borderRadius: '4px', overflow: 'hidden'}}>
+<div style={{width: '700px', maxWidth: '100%', display: 'flex', alignItems: 'center', border: '2px solid grey', borderRadius: '4px', overflow: 'hidden'}}>
 
 ![Manual Promotion](img/manual-promotion.png)
 
