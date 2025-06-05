@@ -88,7 +88,7 @@ This streamlined process helps ensure configuration consistency while giving you
 
 It is possible to promote an Environment using the simplified mode.
 This mode is useful for speeding up the promotion of changes.
-When this mode is selected, once the Public variables have been chosen, the changes of the chosen Environment will be applied in the target Environment.
+When this mode is selected, once the Public variables have been chosen, the changes of the chosen Environment will be directly applied in the target Environment.
 
 :::note
 This mode will overwrite any manual changes made on the target environment.
@@ -96,8 +96,8 @@ This mode will overwrite any manual changes made on the target environment.
 
 ### Manual mode
 
-It is possible to promote an Environment using the manual mode.
-This mode allows you to granularly control, once the Public variables have been chosen, what is brought to the target environment, allowing you to manage any conflicts.
+Alternatively to the Simplified mode, it is possible to promote an Environment also using the Manual mode.
+This mode allows you to granularly control, once the Public variables have been chosen, what is brought to the target environment, allowing you to manage any conflicts before promoting the configuration.
 
 <div style={{width: '700px', maxWidth: '100%', display: 'flex', alignItems: 'center', border: '2px solid grey', borderRadius: '4px', overflow: 'hidden'}}>
 
