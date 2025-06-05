@@ -67,9 +67,13 @@ During the manual migration, you'll have the opportunity to carefully select and
 
 ## Environment Configuration Promotion
 
+The Environment Configuration Promotion feature enables you to efficiently synchronize configurations across your environments. Whether you're working with virtual or runtime environments, you can seamlessly propagate configuration changes to maintain consistency throughout your project.
+
+<div style={{width: '400px', maxWidth: '100%', display: 'flex', alignItems: 'center', borderRadius: '4px', overflow: 'hidden'}}>
+
 ![Promotion](img/promotion.png)
 
-The Environment Configuration Promotion feature enables you to efficiently synchronize configurations across your environments. Whether you're working with virtual or runtime environments, you can seamlessly propagate configuration changes to maintain consistency throughout your project.
+</div>
 
 Key capabilities:
 
@@ -79,3 +83,24 @@ Key capabilities:
 - Maintain granular control over which settings to keep or update in target environments
 
 This streamlined process helps ensure configuration consistency while giving you full control over the promotion workflow.
+
+### Simplified mode
+
+It is possible to promote an Environment using the simplified mode.
+This mode is useful for speeding up the promotion of changes.
+When this mode is selected, once the Public variables have been chosen, the changes of the chosen Environment will be directly applied in the target Environment.
+
+:::note
+This mode will overwrite any manual changes made on the target environment.
+:::
+
+### Manual mode
+
+Alternatively to the Simplified mode, it is possible to promote an Environment also using the Manual mode.
+This mode allows you to granularly control, once the Public variables have been chosen, what is brought to the target environment, allowing you to manage any conflicts before promoting the configuration.
+
+<div style={{width: '700px', maxWidth: '100%', display: 'flex', alignItems: 'center', border: '2px solid grey', borderRadius: '4px', overflow: 'hidden'}}>
+
+![Manual Promotion](img/manual-promotion.png)
+
+</div>
