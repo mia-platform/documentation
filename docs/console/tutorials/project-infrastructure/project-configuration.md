@@ -15,7 +15,7 @@ This type of project is exclusively dedicated to managing infrastructure resourc
 
 ![IMG 1](./img/1.png)
 
-In console instances where the feature is enabled, it is now possible to create a new type of project called "Project Infrastructure".
+From v14 it is possible to create a new type of Project called "Infrastructure Project".
 To create a new project, simply access the Console, enter a specific Company, and click on "Create Project".
 
 ![IMG 2](./img/2.png)
