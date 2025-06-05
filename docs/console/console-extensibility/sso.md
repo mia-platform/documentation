@@ -83,7 +83,7 @@ It doesn't matter which of these techniques you will choose. What matters is tha
 
 The Console endpoint that handles extension authorization is the following one, preceded by the Console base URL:
 
-`/tenants/{tenantId}/extension/{extensionId}/authz?state={state}`
+`/oauth/authorize?tenantId={tenantId}&extensionId={extensionId}&state={state}`
 
 Here an example of a frontend page that starts the login flow when the user clicks on a Login button:
 
@@ -95,7 +95,9 @@ function performExtensionLogin() {
    // Remember to store the state and validate it throughout the login flow
    const state = crypto.randomUUID()
    
-   window.location.replace(`https://<CONSOLE_URL>/tenants/${tenantId}/extension/${extensionId}/authz?state=${state}`)
+   window.location.replace(
+     `https://<CONSOLE_URL>/oauth/authorize?tenantId=${tenantId}&extensionId=${extensionId}&state=${state}`
+   )
 }
 ```
 
