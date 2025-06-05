@@ -2010,5 +2010,17 @@
     "/docs/runtime_suite/audit-trail/security": {
     "destination": "/docs/runtime_suite_sidecars/audit-trail/security",
     "addedOn": "2025-06-05"
+  },
+  "/docs/runtime_suite/audit-trail/overview": {
+    "destination": "/docs/runtime_suite_sidecars/audit-trail/overview",
+    "addedOn": "2025-06-05"
+  },
+  "/docs/runtime_suite/audit-trail/configuration": {
+    "destination": "/docs/runtime_suite_sidecars/audit-trail/configuration",
+    "addedOn": "2025-06-05"
+  },
+  "/docs/runtime_suite/audit-trail/changelog": {
+    "destination": "/docs/runtime_suite_sidecars/audit-trail/changelog",
+    "addedOn": "2025-06-05"
   }
 }
