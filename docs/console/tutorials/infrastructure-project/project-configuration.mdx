@@ -16,7 +16,7 @@ This type of project is exclusively dedicated to managing infrastructure resourc
 
 ![IMG 1](./img/1.png)
 
-In console instances where the feature is enabled, it is now possible to create a new type of project called "Infrastructure Project".
+From v14 it is possible to create a new type of Project called "Infrastructure Project".
 To create a new project, simply access the Console, enter a specific Company, and click on "Create Project".
 
 ![IMG 2](./img/2.png)
@@ -53,13 +53,13 @@ In the future, it will be possible to create a new resource from a Marketplace o
 
 In the resource creation screen, the following must be specified:
 - Resource name: the name to assign to the resource
-- Repository URL: the git repository containing the terraform code of the resource
-- Git ref name: the branch in the git repository where the terraform code is located
+- Repository URL: the git repository containing the Terraform/OpenTofu code of the resource
+- Git ref name: the branch in the git repository where the Terraform/OpenTofu code is located
 - Repository project ID: the project ID of the git repository
 
 ## Repository example Cloud Storage Bucket
 
-In the following sections, we will provide an example of a git repository containing terraform code for creating a Google Cloud Storage bucket.
+In the following sections, we will provide an example of a git repository containing Terraform/OpenTofu code for creating a Google Cloud Storage bucket.
 
 :::info
 These are example snippets. Always adapt them to your specific requirements, thoroughly validate all settings (especially variables and secrets), and remember that many effective solutions can be designed differently.
@@ -419,6 +419,3 @@ If you encounter issues during the deployment process, consider the following st
 - Check if the Git ref (branch or tag) exists and is spelled correctly.
 - Review the output of the plan for any potential conflicts or errors.
 - Confirm that the .gitlab-ci.yml includes all required jobs for the deployment process.
-
-
-/Users/michelmurabito/Code/documentation/docs/console/tutorials/infrastructure-project/project-configuration.mdx
