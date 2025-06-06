@@ -5,6 +5,7 @@ sidebar_label: Infrastructure Project Tutorial
 sidebar_order: 1
 ---
 
+
 # Infrastructure Project How To
 
 ## Introduction
@@ -22,7 +23,7 @@ To create a new project, simply access the Console, enter a specific Company, an
 
 In the General step, under "Project type", select the "Infrastructure" option.
 
-This will change the standard project creation flow (the Environments step will no longer be present), though it will still be possible to configure the repository and its visibility.
+This choice modifies the standard project creation flow, omitting the Environments step. Unlike traditional Application Projects, an Infrastructure project is not based on a single central repository. Instead, configuration occurs at the group level (or folder level, for providers like GitLab that support this structure). This group serves as a logical container for all repositories associated with the infrastructure project you are creating. You will still be able to configure the visibility of this group.
 
 ![IMG 3](./img/3.png)
 
@@ -114,6 +115,7 @@ These are example snippets. Always adapt them to your specific requirements, tho
 <details>
 <summary>GKE Cluster</summary>
 <p>
+
 ```
 # Configure the Google Cloud provider provider
 provider "google" {
@@ -164,6 +166,7 @@ resource "google_container_node_pool" "demo_nodes" {
 }
 
 ```
+
 </p>
 </details>
 
@@ -269,7 +272,8 @@ These are example snippets. Always adapt them to your specific requirements, tho
 <details>
 <summary>Pipeline</summary>
 <p>
-```yaml
+
+```
 # GitLab CI/CD OpenTofu Pipeline: Your Lean Starting Point
 #
 # Hey there! This pipeline is your foundation for automating OpenTofu with GitLab.
@@ -292,7 +296,7 @@ workflow:
     - if: $CI_MERGE_REQUEST_ID
 
 default:
-  image: ghcr.io/opentofu/opentofu:1.8.2 # <-- SET YOUR PREFERRED OPENTOFU VERSION HERE
+  image: ghcr.io/opentofu/opentofu:1.8.2 # SET YOUR PREFERRED OPENTOFU VERSION HERE
 
   before_script:
     - |
@@ -337,8 +341,8 @@ validate:
   extends: .opentofu_cache # Changed extends
   script:
     - tofu init -reconfigure -input=false -no-color # Changed 'terraform' to 'tofu'
-    # Puoi inserire qui script per analisi statica o linter aggiuntivi prima di `fmt` e `validate`
-    # Esempio: tfsec . --no-color
+    # You can insert additional static analysis or linter scripts here before `fmt` and `validate`.
+    # Example: tfsec . --no-color
     - tofu fmt -check -recursive -diff -no-color # Changed 'terraform' to 'tofu'
     - tofu validate -no-color # Changed 'terraform' to 'tofu'
   rules:
@@ -351,12 +355,12 @@ plan:
   script:
     - tofu init -reconfigure -input=false -no-color # Changed 'terraform' to 'tofu'
     - |
-      # Assicura che il workspace di destinazione esista
+      # Ensure the target workspace exists
       if ! tofu workspace select "${TF_WORKSPACE}" -no-color; then # Changed 'terraform' to 'tofu'
         tofu workspace new "${TF_WORKSPACE}" -no-color # Changed 'terraform' to 'tofu'
       fi
-    # Qui potresti aggiungere script per generare file .tfvars dinamici o altre preparazioni
-    # Esempio: ./scripts/generate-tfvars.sh > environment.auto.tfvars
+    # Here you could add scripts to dynamically generate .tfvars files or other preparations.
+    # Example: ./scripts/generate-tfvars.sh > environment.auto.tfvars
     - tofu plan -out=tfplan -input=false -no-color # Changed 'terraform' to 'tofu'
   artifacts:
     paths:
@@ -372,11 +376,11 @@ apply:
   script:
     - tofu init -reconfigure -input=false -no-color # Changed 'terraform' to 'tofu'
     - tofu workspace select "${TF_WORKSPACE}" -no-color # Changed 'terraform' to 'tofu'
-    # Comandi personalizzati pre-apply (es. notifiche, ultimi controlli di policy) potrebbero andare qui
-    # Esempio: ./scripts/notify-pre-apply.sh
+    # Custom pre-apply commands (e.g., notifications, last policy controls)
+    # Example: ./scripts/notify-pre-apply.sh
     - tofu apply -auto-approve "tfplan" -input=false -no-color # Changed 'terraform' to 'tofu'
-    # Comandi personalizzati post-apply (es. aggiornamento CMDB, test di fumo, notifiche) qui
-    # Esempio: ./scripts/run-smoke-tests.sh
+    # Custom post-apply commands (e.g., CMDB updates, notifications)
+    # Example: ./scripts/run-smoke-tests.sh
   dependencies:
     - plan
   rules:
@@ -387,7 +391,7 @@ apply:
 ```
 
 </p>
-<details>
+</details>
 
 ## Infrastructure Resource Repository
 
@@ -416,4 +420,4 @@ If you encounter issues during the deployment process, consider the following st
 - Ensure your Git repository is accessible and contains valid Terraform code.
 - Check if the Git ref (branch or tag) exists and is spelled correctly.
 - Review the output of the plan for any potential conflicts or errors.
-- Confirm that the `.gitlab-ci.yml` includes all required jobs for the deployment process.
+- Confirm that the .gitlab-ci.yml includes all required jobs for the deployment process.
