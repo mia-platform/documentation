@@ -15,6 +15,16 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.5.18] - 2025-06-06
+
+### Added
+
+- added prop interpolation with HTTP response values in `bk-notifications` component.
+
+### Fixed
+
+- Fixed `bk-table` columns when Chrome version is 136 or above.
+
 ## [1.5.17] - 2025-05-07
 
 ### Fixed
@@ -80,7 +90,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
-- fixed csv export option of column names as field IDs of labels 
+- fixed csv export option of column names as field IDs of labels
 
 ## [1.5.7] - 2024-09-20
 
@@ -349,7 +359,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Manifest of component `bk-expanded-filters` includes property `readFromUrl`
 - Manifest of component `bk-file-picker-modal` is available
-
 
 ## [1.3.14] - 2023-06-15
 
