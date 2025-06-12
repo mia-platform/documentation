@@ -94,6 +94,10 @@
         {
           "id": "console/tutorials/visualize-infrastructure-project-components-runtime-data-in-console",
           "type": "doc"
+        },
+        {
+          "id": "console/tutorials/infrastructure-project/project-configuration",
+          "type": "doc"
         }
       ]
     },
