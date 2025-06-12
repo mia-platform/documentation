@@ -76,18 +76,6 @@ The channel properties are the following:
       }
       ```
 
-      or
-
-      ```json
-      {
-        "brokers": [
-          {
-            "type": "file",
-            "path": "/secrets/brokers"
-          }
-        ]
-      }
-      ```
     :::
   - **inputTopics**: a list of strings that contains the topics to subscribe to consume messages; **NB.** this property is **required** if the property *outputTopics* is missing
   - **outputTopics**: a list of strings that contains the topics to send messages; **NB.** this property is **required** if the property *inputTopics* is missing
@@ -96,12 +84,12 @@ The channel properties are the following:
 
     :::info
       Since version `2.7.0`, the following keys of this property support [secrets resolution](#secrets-resolution):
-      - `ssl.ca`
-      - `ssl.key`
-      - `ssl.passphrase`
-      - `ssl.cert`
-      - `sasl.username`
-      - `sasl.password`
+        - `ssl.ca`
+        - `ssl.key`
+        - `ssl.passphrase`
+        - `ssl.cert`
+        - `sasl.username`
+        - `sasl.password`
 
       E.g.,
 
@@ -122,6 +110,7 @@ The channel properties are the following:
         }
       }
       ```
+
       :::
 
 The *Flow Manager* behavior will be the following:
@@ -724,7 +713,7 @@ The resolution mechanism allows injecting secrets within the configuration file 
 Secrets can be injected via secret resolution as:
 
 - [plain text](#plain-text), that is providing the real or interpolated value, or
-- [reference to a file](#file-reference), either its full content or the internal key of a `.ini` file.
+- [reference to a file](#file-reference).
 
 Consequently, the JSON schema of the properties supporting secrets resolution is the following:
 
