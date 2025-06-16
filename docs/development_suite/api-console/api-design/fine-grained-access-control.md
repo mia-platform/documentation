@@ -84,24 +84,7 @@ The `ruleId` references a rule from a predefined set of rules, that define a spe
 | ------------------------- | --------------------------------------------------------------------------------------------------- |
 | `endpoints.security.edit` | Controls edit of the fields [`public`, `acl`, `secreted`] of `endpoints` and `routes` inside endpoints |
 
-## Fetching and configuring rules with `miactl`
-
-:::tip
-The following commands are available from [miactl v0.16.0](https://github.com/mia-platform/miactl/releases/tag/v0.16.0), make sure you upgrade.
-
-For the full command specification, please refer to the [related miactl documentation](/cli/miactl/30_commands.md#rules).
-:::
-
-Command examples:
-
-```bash
-miactl company rules list --company-id=my-company
-miactl company rules list --company-id=my-company --project-id=my-project
-miactl company rules update --company-id=my-company  -f ~/my-rules.json
-miactl company rules update --company-id=my-company --project-id=my-project  -f ~/my-rules.json
-```
-
-## Examples of file `my-rules.json` for allow and disallow rules
+## Examples of allow and disallow rules
 
 Below are examples of request bodies for the Update Rules API. The request body format is identical for both the Update Project and Update Company APIs.  
 Each example is shown for both `allowedRuleSet` (to explicitly allow an action) and `disallowedRuleSet` (to explicitly disallow an action).
@@ -266,6 +249,23 @@ _Allow: only allow edit_
 > When using only `allowedRuleSet`, all actions are denied except those explicitly allowed.  
 > When using only `disallowedRuleSet`, all actions are allowed except those explicitly disallowed.  
 > If both are specified, disallow rules take precedence: if a disallow rule violation is found, allow rules are not evaluated for that action.
+
+## Fetching and configuring rules with `miactl`
+
+:::tip
+The following commands are available from [miactl v0.16.0](https://github.com/mia-platform/miactl/releases/tag/v0.16.0), make sure you upgrade.
+
+For the full command specification, please refer to the [related miactl documentation](/cli/miactl/30_commands.md#rules).
+:::
+
+Command examples:
+
+```bash
+miactl company rules list --company-id=my-company
+miactl company rules list --company-id=my-company --project-id=my-project
+miactl company rules update --company-id=my-company  -f ~/my-rules.json
+miactl company rules update --company-id=my-company --project-id=my-project  -f ~/my-rules.json
+```
 
 ## Configuring rules via API
 
