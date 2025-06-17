@@ -90,7 +90,8 @@ The following examples illustrate how to configure both `allowedRuleSet` and `di
 
 - **Control edit of the `dockerImage` of all services for the role `maintainer`**
 
-_Disallow: prevent editing_
+*Disallow: prevent editing*
+
 ```json
 {
   "configurationManagement": {
@@ -107,7 +108,9 @@ _Disallow: prevent editing_
   }
 }
 ```
-_Allow: only allow editing_
+
+*Allow: only allow editing*
+
 ```json
 {
   "configurationManagement": {
@@ -127,7 +130,8 @@ _Allow: only allow editing_
 
 - **Control creation and deletion of the resource `collections` for the role `maintainer`**
 
-_Disallow: prevent creation and deletion_
+*Disallow: prevent creation and deletion*
+
 ```json
 {
   "configurationManagement": {
@@ -147,7 +151,9 @@ _Disallow: prevent creation and deletion_
   }
 }
 ```
-_Allow: only allow creation and deletion_
+
+*Allow: only allow creation and deletion*
+
 ```json
 {
   "configurationManagement": {
@@ -170,7 +176,8 @@ _Allow: only allow creation and deletion_
 
 - **Control creation and deletion of services of a specific type (`custom-resource`) for the role `maintainer`**
 
-_Disallow: prevent creation and deletion_
+*Disallow: prevent creation and deletion*
+
 ```json
 {
   "configurationManagement": {
@@ -188,7 +195,9 @@ _Disallow: prevent creation and deletion_
   }
 }
 ```
-_Allow: only allow creation and deletion_
+
+*Allow: only allow creation and deletion*
+
 ```json
 {
   "configurationManagement": {
@@ -209,7 +218,8 @@ _Allow: only allow creation and deletion_
 
 - **Configure the predefined rule with `ruleId` "endpoints.security.edit" for the role `maintainer`**
 
-_Disallow: prevent specified fields edit
+*Disallow: prevent specified fields edit*
+
 ```json
 {
   "configurationManagement": {
@@ -226,7 +236,9 @@ _Disallow: prevent specified fields edit
   }
 }
 ```
-_Allow: only specified fields edit_
+
+*Allow: only specified fields edit*
+
 ```json
 {
   "configurationManagement": {
