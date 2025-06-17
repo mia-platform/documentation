@@ -66,6 +66,19 @@ From within your Project, you can manage the deployment flow of your infrastruct
 
 This enables control and consistency in your infrastructure.
 
+### Deploy History
+
+Within the Deploy area of **Infrastructure Projects**, there's also a dedicated section for the **Deploy History** that provides full visibility into the actions executed for each infrastructure component of your Project. For each recorded operation, the following information is displayed:
+
+- **Status of the operation** (e.g., success, failed, running)  
+- **Name of the deployed component**  
+- **Date and Time** of the deployment  
+- **Git commit** used for the deployment  
+- **Duration** of the operation  
+- **Direct link to logs** via `View Log`, making it easy to troubleshoot or audit directly on the Provider 
+
+This section is designed to offer **full traceability and immediate understanding** of what was deployed, when, by whom, and in what state.
+
 ## Runtime Visibility
 
 After the deployment of your infrastructure components, runtime data retrieval can be integrated in the Console by leveraging the [Infrastructure Component Runtime Software Catalog item type](/software-catalog/items-manifest/infrastructure-component-runtime.md).
