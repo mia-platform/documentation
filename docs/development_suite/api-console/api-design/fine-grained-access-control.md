@@ -14,18 +14,18 @@ This feature introduces a mechanism for managing user interactions within the ap
 
 If a user attempts to save a configuration after performing some changes that are forbidden by the configured rules, the saving is blocked and an error is returned.
 
-*Rules* and *user roles* can be configured at both the Project and the Company levels.
-The following logic is applied:
+*Rules* and *user roles* can be configured at both the Project and Company levels. The following logic applies:
 
 **Rules:**  
-Project and Company rules are combined together. Both allow and disallow rules can be used.  
-- Allow rules (`allowedRuleSet`) start from a default state where no action is permitted. This means that only actions explicitly allowed by the rules are permitted; all other actions are denied.  
-- Disallow rules (`disallowedRuleSet`) start from a default state where all actions are permitted. In this case, only actions explicitly disallowed by the rules are denied; all other actions are allowed.  
+Project and Company rules are evaluated together, supporting both "allow" and "disallow" types:
 
-When evaluating rules, disallow rules are always checked first. If a violation in a disallow rule is found, the allow rules are not evaluated for that action.
+- **Allow rules (`allowedRuleSet`)**: If at least one allow rule is defined, only actions explicitly permitted by these rules are allowed; all others are denied.
+- **Disallow rules (`disallowedRuleSet`)**: Only actions explicitly denied by these rules are blocked; all others are allowed.
+
+Disallow rules are always evaluated first. If an action matches a disallow rule, it is denied immediately and allow rules are not checked.
 
 **User Roles:**  
-If a user has roles assigned at the Project level, only those roles are used to find the applicable rules. If no Project-level roles are assigned, the roles defined at the Company level are used instead.
+If a user has roles assigned at the Project level, only those roles are used to determine applicable rules. If no Project-level roles are assigned, the roles defined at the Company level are used instead.
 
 ## Configuration definition
 
@@ -86,8 +86,7 @@ The `ruleId` references a rule from a predefined set of rules, that define a spe
 
 ## Examples of allow and disallow rules
 
-Below are examples of request bodies for the Update Rules API. The request body format is identical for both the Update Project and Update Company APIs.  
-Each example is shown for both `allowedRuleSet` (to explicitly allow an action) and `disallowedRuleSet` (to explicitly disallow an action).
+The following examples illustrate how to configure both `allowedRuleSet` and `disallowedRuleSet` for common scenarios. Each example demonstrates how to explicitly allow or disallow specific actions for a given user role. You can use these examples as templates when defining your own rules in the configuration or when constructing the body of API requests or the miactl files (see sections [Fetching and configuring rules with `miactl`](#fetching-and-configuring-rules-with-miactl) and [Configuring rules via API](#configuring-rules-via-api)
 
 - **Control edit of the `dockerImage` of all services for the role `maintainer`**
 
@@ -291,7 +290,7 @@ This API is meant for internal use and will be subject to breaking changes.
 
 ##### Body
 
-The **body** of the request has the structure described in [Configuration definition](#configuration-definition)
+The **body** of the request has the structure described in [Configuration definition](#configuration-definition), and shown in  [Examples of allow and disallow rules](#examples-of-allow-and-disallow-rules)
 
 ### Updating rules on a Company
 
