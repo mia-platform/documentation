@@ -86,7 +86,7 @@ The `ruleId` references a rule from a predefined set of rules, that define a spe
 
 ## Examples of allow and disallow rules
 
-The following examples illustrate how to configure both `allowedRuleSet` and `disallowedRuleSet` for common scenarios. Each example demonstrates how to explicitly allow or disallow specific actions for a given user role. You can use these examples as templates when defining your own rules in the configuration or when constructing the body of API requests or the miactl files (see sections [Fetching and configuring rules with `miactl`](#fetching-and-configuring-rules-with-miactl) and [Configuring rules via API](#configuring-rules-via-api)
+The following examples illustrate how to configure both `allowedRuleSet` and `disallowedRuleSet` for common scenarios. Each example demonstrates how to explicitly allow or disallow specific actions for a given user role. You can use these examples as templates when defining your own rules in the configuration or when constructing the body of API requests (see [Configuring rules via API](#configuring-rules-via-api))
 
 - **Control edit of the `dockerImage` of all services for the role `maintainer`**
 
@@ -125,7 +125,7 @@ _Allow: only allow editing_
 }
 ```
 
-- **Control creation of the resource `collections` for the role `maintainer`**
+- **Control creation and deletion of the resource `collections` for the role `maintainer`**
 
 _Disallow: prevent creation and deletion_
 ```json
@@ -168,7 +168,7 @@ _Allow: only allow creation and deletion_
 }
 ```
 
-- **Control creation of services of a specific type (`custom-resource`) for the role `maintainer`**
+- **Control creation and deletion of services of a specific type (`custom-resource`) for the role `maintainer`**
 
 _Disallow: prevent creation and deletion_
 ```json
@@ -209,7 +209,7 @@ _Allow: only allow creation and deletion_
 
 - **Configure the predefined rule with `ruleId` "endpoints.security.edit" for the role `maintainer`**
 
-_Disallow: prevent edit_
+_Disallow: prevent specified fields edit
 ```json
 {
   "configurationManagement": {
@@ -226,7 +226,7 @@ _Disallow: prevent edit_
   }
 }
 ```
-_Allow: only allow edit_
+_Allow: only specified fields edit_
 ```json
 {
   "configurationManagement": {
@@ -264,6 +264,19 @@ miactl company rules list --company-id=my-company
 miactl company rules list --company-id=my-company --project-id=my-project
 miactl company rules update --company-id=my-company  -f ~/my-rules.json
 miactl company rules update --company-id=my-company --project-id=my-project  -f ~/my-rules.json
+```
+
+Example for the file `my-rules.json`:
+
+```json
+[
+ {
+  "roleIds": ["developer"],
+  "disallowedRuleSet": [
+   {"ruleId": "endpoint.security.edit"}
+  ]
+ }
+]
 ```
 
 ## Configuring rules via API
@@ -314,4 +327,4 @@ This API is meant for internal use and will be subject to breaking changes.
 
 ##### Body
 
-The **body** of the request the structure described in [Configuration definition](#configuration-definition)
+The **body** of the request is identical for the Project and Company update. The body structure is described in [Configuration definition](#configuration-definition). Examples can be seen in [Examples of allow and disallow rules](#examples-of-allow-and-disallow-rules)
