@@ -29,11 +29,10 @@ On this page we keep you aligned on the most important issues:
   - _DevX_
     - Enhanced CLI
     - Enhanced Pair with AI
-    - Improved Vault integrations
+    - Improved Secret Managers integrations
   - _Extensibility_
-    - Better integration with 3rd party plugins
-    - New Dev Portal for public API reference
-    - Native Multi-runtime and Serverless support (e.g. Lambda)
+    - Console public API reference documentation
+    - Extended support for Infrastructure Management
 - **Mia-Platform Data Fabric**
   - _Fast Data_
     - New AI-Native Data Pipeline configurator
@@ -54,11 +53,11 @@ On this page we keep you aligned on the most important issues:
   - AI-driven Catalog Items discovery
 - **Components**
   - _Microfrontend Composer_
-    - Custom Template Management
     - Drag & Drop components
     - New Component Library
   - _Flow Manager_
-    - Enhanced No Code configuration
+    - AI-Native Flows configuration
+    - Guided sagas and state machines Flow configuration
 
 ## How to contribute to the roadmap
 
