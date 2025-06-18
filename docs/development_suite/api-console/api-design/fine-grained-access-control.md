@@ -27,10 +27,11 @@ Disallow rules are always evaluated first. If an action matches a disallow rule,
 **User Roles:**  
 If a user has roles assigned at the Project level, only those roles are used to determine applicable rules. If no Project-level roles are assigned, the roles defined at the Company level are used instead.
 
-> **Important:**  
-> Rules defined at the Company and Project levels are combined, but with an important distinction:  
-> - For **allow** rules: if an allow rule is assigned to a specific role at the Company level, any allow rules for the same role at the Project level are ignored. This ensures that permissions granted at the Project level cannot exceed those defined at the Company level for that role.  
-> - For **disallow** rules: both Company-level and Project-level disallow rules for the same role are applied together as Project-level disallow rules can only further restrict what is denied at the Company level.
+:::info  
+Rules defined at the Company and Project levels are combined, but with an important distinction:  
+- For **allow** rules: if an allow rule is assigned to a specific role at the Company level, any allow rules for the same role at the Project level are ignored. This ensures that permissions granted at the Project level cannot exceed those defined at the Company level for that role.  
+- For **disallow** rules: both Company-level and Project-level disallow rules for the same role are applied together. Project-level disallow rules can only further restrict what is denied at the Company level.
+:::
 
 ## Configuration definition
 
@@ -76,8 +77,9 @@ The `ProcessingOption` object has the following structure:
 | `actions`    | `string[]`   | Actions to be controlled on the resource defined via the jsonPath. Possible values: `create`, `delete`. You can specify more than one action in the array. | ❌       |
 | `primaryKey` | `String`     | Primary key of the resource captured by the jsonPath. Mandatory if resource is of array type             | ✅       |
 
-> **Note:**  
-> The `actions` field replaces the previous `action` field and must be an array. You can specify multiple actions to be controlled by the rule.
+:::note   
+The `actions` field replaces the previous `action` field and must be an array. You can specify multiple actions to be controlled by the rule.
+:::
 
 ### Via `ruleId`
 
@@ -261,10 +263,11 @@ The following examples illustrate how to configure both `allowedRuleSet` and `di
 }
 ```
 
-> **Note:**  
-> When using only `allowedRuleSet`, all actions are denied except those explicitly allowed.  
-> When using only `disallowedRuleSet`, all actions are allowed except those explicitly disallowed.  
-> If both are specified, disallow rules take precedence: if a disallow rule violation is found, allow rules are not evaluated for that action.
+:::note  
+When using only `allowedRuleSet`, all actions are denied except those explicitly allowed.  
+When using only `disallowedRuleSet`, all actions are allowed except those explicitly disallowed.  
+If both are specified, disallow rules take precedence: if a disallow rule violation is found, allow rules are not evaluated for that action.
+:::
 
 ## Fetching and configuring rules with `miactl`
 
