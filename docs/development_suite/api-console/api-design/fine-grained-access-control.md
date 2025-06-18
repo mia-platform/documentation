@@ -43,8 +43,9 @@ To enable this feature the `Project` or `Company` `configurationManagement.saveC
 | `allowedRuleSet`    | `RuleSet[]` | list of rules that allow a specific action    | See note |
 | `roleIds`           | `String[]`  | List of user roles to which the rules apply   | ❌       |
 
-> **Note:**  
-> At least one of `disallowedRuleSet` or `allowedRuleSet` must be specified. You can provide either or both these fields.
+:::note  
+At least one of `disallowedRuleSet` or `allowedRuleSet` must be specified. You can provide either or both these fields.
+:::
 
 The `RuleSet` object has these fields:
 
@@ -77,7 +78,7 @@ The `ProcessingOption` object has the following structure:
 | `actions`    | `string[]`   | Actions to be controlled on the resource defined via the jsonPath. Possible values: `create`, `delete`. You can specify more than one action in the array. | ❌       |
 | `primaryKey` | `String`     | Primary key of the resource captured by the jsonPath. Mandatory if resource is of array type             | ✅       |
 
-:::note   
+:::caution   
 The `actions` field replaces the previous `action` field and must be an array. You can specify multiple actions to be controlled by the rule.
 :::
 
