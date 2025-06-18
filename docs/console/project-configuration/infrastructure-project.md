@@ -68,16 +68,22 @@ This enables control and consistency in your infrastructure.
 
 ### Deploy History
 
-Within the Deploy area of **Infrastructure Projects**, there's also a dedicated section for the **Deploy History** that provides full visibility into the actions executed for each infrastructure component of your Project. For each recorded operation, the following information is displayed:
+The **Deploy History** page is useful to better understand which actions have been executed for each infrastructure component of your Project.  
+In particular this view traces which component has been deployed, togheter with some additional information.
 
-- **Status of the operation** (e.g., success, failed, running)  
-- **Name of the deployed component**  
-- **Date and Time** of the deployment  
-- **Git commit** used for the deployment  
-- **Duration** of the operation  
-- **Direct link to logs** via `View Log`, making it easy to troubleshoot or audit directly on the Provider 
+![Infrastructure project deploy history](img/infrastructure-project-deploy-history.png)
 
-This section is designed to offer **full traceability and immediate understanding** of what was deployed, when, by whom, and in what state.
+#### Pipeline Webhook
+
+In order to correctly fill up the Deploy History view, an Infrastructure Component must have a webhook associated to its repository on the git Provider.
+
+The webhook is automatically created upon the Infrastructure Component creation. However, in case the webhook creation fails, a warning message will inform to manually retry the webhook creation from the Infrastructure Components Overview page.
+
+![Pipeline webhook warning message](img/pipeline-webhook-warning.png)
+
+If an Infrastructure Component is missing the related webhook on the git Provider, the Component will show highlighted to inform of this issue. On the right side of the Component row, a dedicated action appears to manually retry the webhook creation.
+
+![Manually create webhook](img/webhook-manual-creation.png)
 
 ## Runtime Visibility
 
