@@ -43,7 +43,7 @@ To enable this feature the `Project` or `Company` `configurationManagement.saveC
 | `allowedRuleSet`    | `RuleSet[]` | list of rules that allow a specific action    | See note |
 | `roleIds`           | `String[]`  | List of user roles to which the rules apply   | ❌       |
 
-:::note  
+:::info  
 At least one of `disallowedRuleSet` or `allowedRuleSet` must be specified. You can provide either or both these fields.
 :::
 
