@@ -17,15 +17,20 @@ If a user attempts to save a configuration after performing some changes that ar
 *Rules* and *user roles* can be configured at both the Project and Company levels. The following logic applies:
 
 **Rules:**  
-Project and Company rules are evaluated together, supporting both "allow" and "disallow" types:
+It is possible to define both Project and Company rules, supporting both "allow" and "disallow" types:
 
-- **Allow rules (`allowedRuleSet`)**: If at least one allow rule is defined, only actions explicitly permitted by these rules are allowed; all others are denied.
-- **Disallow rules (`disallowedRuleSet`)**: Only actions explicitly denied by these rules are blocked; all others are allowed.
+- **Allow rules (`allowedRuleSet`)**: Only changes explicitly permitted by these rules are allowed; all others are denied.
+- **Disallow rules (`disallowedRuleSet`)**: Only changes explicitly denied by these rules are blocked; all others are allowed.
 
 Disallow rules are always evaluated first. If an action matches a disallow rule, it is denied immediately and allow rules are not checked.
 
 **User Roles:**  
 If a user has roles assigned at the Project level, only those roles are used to determine applicable rules. If no Project-level roles are assigned, the roles defined at the Company level are used instead.
+
+> **Important:**  
+> Rules defined at the Company and Project levels are combined, but with an important distinction:  
+> - For **allow** rules: if an allow rule is assigned to a specific role at the Company level, any allow rules for the same role at the Project level are ignored. This ensures that permissions granted at the Project level cannot exceed those defined at the Company level for that role.  
+> - For **disallow** rules: both Company-level and Project-level disallow rules for the same role are applied together as Project-level disallow rules can only further restrict what is denied at the Company level.
 
 ## Configuration definition
 
@@ -339,4 +344,5 @@ This API is meant for internal use and will be subject to breaking changes.
 
 ##### Body
 
+The **body** of the request is identical for the Project and Company update. The body structure is described in [Configuration definition](#configuration-definition). Examples can be seen in [Examples of allow and disallow rules](#examples-of-allow-and-disallow-rules)
 The **body** of the request is identical for the Project and Company update. The body structure is described in [Configuration definition](#configuration-definition). Examples can be seen in [Examples of allow and disallow rules](#examples-of-allow-and-disallow-rules)
