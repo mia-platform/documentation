@@ -69,7 +69,7 @@ This enables control and consistency in your infrastructure.
 ### Deploy History
 
 The **Deploy History** page is useful to better understand which actions have been executed for each infrastructure component of your Project.  
-In particular this view traces which component has been deployed, togheter with some additional information.
+In particular this view traces which component has been deployed, together with some additional information.
 
 ![Infrastructure project deploy history](img/infrastructure-project-deploy-history.png)
 
