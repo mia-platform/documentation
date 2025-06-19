@@ -66,6 +66,25 @@ From within your Project, you can manage the deployment flow of your infrastruct
 
 This enables control and consistency in your infrastructure.
 
+### Deploy History
+
+The **Deploy History** page is useful to better understand which actions have been executed for each infrastructure component of your Project.  
+In particular this view traces which component has been deployed, together with some additional information.
+
+![Infrastructure project deploy history](img/infrastructure-project-deploy-history.png)
+
+#### Pipeline Webhook
+
+In order to correctly fill up the Deploy History view, an Infrastructure Component must have a webhook associated to its repository on the git Provider.
+
+The webhook is automatically created upon the Infrastructure Component creation. However, in case the webhook creation fails, a warning message will inform to manually retry the webhook creation from the Infrastructure Components Overview page.
+
+![Pipeline webhook warning message](img/pipeline-webhook-warning.png)
+
+If an Infrastructure Component is missing the related webhook on the git Provider, the Component will show highlighted to inform of this issue. On the right side of the Component row, a dedicated action appears to manually retry the webhook creation.
+
+![Manually create webhook](img/webhook-manual-creation.png)
+
 ## Runtime Visibility
 
 After the deployment of your infrastructure components, runtime data retrieval can be integrated in the Console by leveraging the [Infrastructure Component Runtime Software Catalog item type](/software-catalog/items-manifest/infrastructure-component-runtime.md).
