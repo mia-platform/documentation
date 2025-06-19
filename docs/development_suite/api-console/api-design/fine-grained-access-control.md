@@ -79,7 +79,7 @@ The `ProcessingOption` object has the following structure:
 | `primaryKey` | `String`     | Primary key of the resource captured by the jsonPath. Mandatory if resource is of array type             | ✅       |
 
 :::caution   
-The `actions` field replaces the previous `action` field and must be an array. You can specify multiple actions to be controlled by the rule.
+The `actions` field replaces the previous `action` field and **must be an array**. You can specify multiple actions to be controlled by the rule.
 :::
 
 ### Via `ruleId`
