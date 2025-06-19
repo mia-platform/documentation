@@ -25,7 +25,7 @@ The OAuth login site can be used in conjunction with the Mia-Platform authentica
 
 Since the v8.0.0, such services need to be properly configured to work with the login site, as explained in the following paragraphs.
 
-### Preliminar configuration
+### Preliminary configuration
 
 The login sites exposes the `/web-login` endpoint: you need to publicly expose it in your project.
 

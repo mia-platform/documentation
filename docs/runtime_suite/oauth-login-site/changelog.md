@@ -32,7 +32,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Fixed
 
-- state persistance during authorize flow is now consistent with used tab
+- state persistence during authorize flow is now consistent with used tab
 
 ## 8.1.0 - 07-05-2024
 
@@ -46,7 +46,7 @@ when calling the login entrypoint or implicitly when embedding the frontend in a
 
 ### Added
 
-- pass the version to the `/authorize` endopoints
+- pass the version to the `/authorize` endpoints
 
 ### BREAKING
 
