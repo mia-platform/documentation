@@ -22,3 +22,4 @@ The supported processors are:
 - [**Filter**](./15_filter.md): Filter the event based on a condition. If the event is filtered,
 it will not be sent to the sink.
 - [**Mapper**](./20_mapper.md): Transform the data to an output event, based on the input.
+- [**RPC Plugin**](./30_rpc_plugin.md): Transform data to the desired output using a custom-built RPC Plugin ([example usage](../../examples/rpc-processor-plugin/plugin.go)).
