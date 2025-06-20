@@ -310,7 +310,7 @@ Then the user can choose which fields are to be bulk edited: you can select the 
 
 In particular, for each selected field, the user can choose to clear the field value on all those selected assets, or to overwrite the any already existent value with a new one set by the user during the bulk edit flow.
 
-### Export metadata
+## Export metadata
 
 The Data Catalog offers a robust export feature, enabling users to extract metadata from various data assets directly from the user interface. The supported export format is `.csv`, ideal for tabular data and easy integration with tools like Excel, Google Spreadsheets and business intelligence software.
 This feature is particularly useful to share metadata outside the Data Catalog, such as for offline analysis and for third-party stakeholders that may not have access to the Data Catalog instance itself.  
@@ -326,10 +326,11 @@ The exported `.csv` file is characterized by a standard structure, involving the
 :::
 
 :::info
-It is no necessary to have populated all the default asset fields for each row of the exported file. It depends on the asset type and on the type of connection provider of the SoR from which the asset belongs.
+Depending on the asset type, some of the default asset fields may not be available for that specific row.
+In addition, `Catalog Name` and `Schema` fields receive a corresponding value in each asset row only for selected connection provider.
 :::
 
-#### Export from Asset Detail Pages
+### Export from Asset Detail Pages
 
 Within both Sor and table detail pages, users can export the metadata associated with the relative children. In particular:
 
@@ -344,7 +345,7 @@ Within both Sor and table detail pages, users can export the metadata associated
   </div>
 </div>
 
-#### Export from Search Results
+### Export from Search Results
 
 From the search results page, users can export metadata for all assets returned by the search query. This includes all SoRs, tables, and columns that match the search criteria.  
 To export the entire list of returned assets, user have to select all the listed assets, then click to `Export metadata` button.  
