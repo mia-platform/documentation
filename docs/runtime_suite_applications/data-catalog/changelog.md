@@ -15,6 +15,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.3.2] - 2025-06-20
+
+- Bump service `fabric-bff@0.3.4`
+- Bump service `open-lineage@0.3.6`
+- Bump service `job-runner@0.2.3`
+- Bump service `data-catalog-fe@0.3.3`
+
 ## [1.3.1] - 2025-03-27
 
 - Bump service `fabric-bff@0.3.3`
