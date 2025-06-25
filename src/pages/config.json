@@ -1,0 +1,99 @@
+{
+  "hero": {
+    "title": "Welcome on Mia-Platform Docs!",
+    "subtitle": "Learn how Mia-Platform can help you to develop your business",
+    "searchPlaceholder": "Search for terms, features and more...",
+    "logoText": {
+      "main": "Mia-Platform",
+      "secondary": ""
+    },
+    "backgroundImage": "/img/home-page-banner.png",
+    "searchIcon": "/placeholder.svg?width=24&height=24",
+    "logoIcon": "/img/mia-platform-logo.png"
+  },
+  "notification": {
+    "title": "Mia Platform v13 is now available!",
+    "subtitle": "Compose Your Platform",
+    "buttons": [
+      { "text": "View roadmap", "href": "#", "variant": "primary" },
+      { "text": "View release note", "href": "#", "variant": "primary" }
+    ]
+  },
+  "features": [
+    {
+      "icon": "/placeholder.svg?width=32&height=32",
+      "title": "Platform Engineering Enablement",
+      "description": "Discover how to establish clear governance with golden paths for software delivery"
+    },
+    {
+      "icon": "/placeholder.svg?width=32&height=32",
+      "title": "Self-service Application Development",
+      "description": "Discover how the console solves problems in Platform Engineering"
+    },
+    {
+      "icon": "/placeholder.svg?width=32&height=32",
+      "title": "Real-Time Data Integration",
+      "description": "Find out how to connect any data source and deliver it to cloud-native applications in near real-time"
+    },
+    {
+      "icon": "/placeholder.svg?width=32&height=32",
+      "title": "Secure Platform Operations",
+      "description": "Learn how to connect to any cloud-native infrastructure and manage workloads across any runtime"
+    },
+    {
+      "icon": "/placeholder.svg?width=32&height=32",
+      "title": "AI Agent Lifecycle Management",
+      "description": "Learn how to enable the creation and orchestration of AI Agents within the platform experience"
+    },
+    {
+      "icon": "/placeholder.svg?width=32&height=32",
+      "title": "AI-Native DevX",
+      "description": "Integrate AI-native capabilities throughout the software lifecycle",
+      "backgroundImage": "/placeholder.svg?width=600&height=200"
+    }
+  ],
+  "beginners": {
+    "title": "Mia-Platform for beginners!",
+    "description": "New to Mia-Platform ecosystem?\nDiscover how and where to start.",
+    "image": "/placeholder.svg?width=600&height=400",
+    "linkText": "Get started"
+  },
+  "communityLinks": [
+    {
+      "icon": "/placeholder.svg?width=32&height=32",
+      "text": "Join our GitHub Community",
+      "href": "#"
+    },
+    {
+      "icon": "/placeholder.svg?width=32&height=32",
+      "text": "Join our Expert Program",
+      "href": "#"
+    }
+  ],
+  "keepInTouch": {
+    "title": "Let's keep in touch!",
+    "subtitle": "Visit our website",
+    "socialLinks": [
+      {
+        "icon": "/placeholder.svg?width=24&height=24",
+        "href": "#",
+        "label": "Website"
+      },
+      {
+        "icon": "/placeholder.svg?width=24&height=24",
+        "href": "#",
+        "label": "GitHub"
+      },
+      {
+        "icon": "/placeholder.svg?width=24&height=24",
+        "href": "#",
+        "label": "LinkedIn"
+      },
+      {
+        "icon": "/placeholder.svg?width=24&height=24",
+        "href": "#",
+        "label": "Instagram"
+      }
+    ]
+  }
+}
