@@ -2023,7 +2023,7 @@
     "destination": "/docs/runtime_suite_sidecars/audit-trail/changelog",
     "addedOn": "2025-06-05"
   },
-  "marketplace/tutorials/create-a-rag-application": {
+  "/docs/marketplace/tutorials/create-a-rag-application": {
     "destination": "/docs/console/tutorials/create-a-rag-application",
     "addedOn": "2025-06-25"
   }
