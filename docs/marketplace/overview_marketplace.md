@@ -11,8 +11,42 @@ Each component is designed to solve specific runtime needs, from service communi
 
 All components are maintained by **Mia-Platform** or trusted **technology partners**, and are published in the public 👉 [GitHub repository](https://github.com/mia-platform-marketplace/public-catalog)
 
-### Want to propose a change or add a new item?
+#### Want to propose a change or add a new item?
 
 All updates must go submitted via a Pull Request (PR) on the [public-catalog](https://github.com/mia-platform-marketplace/public-catalog) repository — ensuring transparency and consistency across the Catalog.
 
 Explore the sections below to discover what’s available and how to use each component effectively.
+
+### Edit Mia-Platform Catalog items
+
+:::caution
+This section only applies to **on-prem Console installations**.
+:::
+
+There may be cases in which you need to make changes to the Mia-Platform-supported Catalog items (e.g., you want to change the registry of a plugin's Docker image).
+
+Even if they are provided automatically on Console installations and updates, Mia-Platform items are still standard Catalog items. This means that they belong to a specific Company, and thus can be edited through the [Software Catalog](/software-catalog/overview.md) of that Company.
+
+The Company in question is the **default one** of the Console installation, specified in the the `configurations.miaPlatformDefaultCompanyId` key of the [installation Helm chart](/infrastructure/self-hosted/installation-chart/helm-values/10_installation-chart-example.md) (defaults to `mia-platform`). However, by default, nobody has access to this default Company: a **binding** need to be created on the **Console Backoffice** to give access to a user who can then add other users through the IAM section of the Company.
+
+Specifically, the steps to achieve this are:
+
+1. identify the name of the default Company by looking at the Chart key (if it's not present, the value is `mia-platform`), and
+2. create a new binding in the `Bindings` page of the Console CMS with:
+   - `binding Identifier` set to any unique code,
+   - `roles` set to `Company Owner`,
+   - `subjects` set the first user you want to be Company Owner of the default Company, and
+   - `resources` set to
+
+      ```json
+      {
+        "resourceType": "company",
+        "resourceId": "default_company_name"
+      }
+      ```
+
+Once the binding is added, the chosen user should be able to see with the default Company in the Console and interact with its Catalog to change any of the Mia-Platform items.
+
+:::danger
+Any change made to Mia-Platform items will be **reverted** by the synchronization job on the next Console update.
+:::
