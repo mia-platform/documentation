@@ -309,3 +309,54 @@ Then the user can choose which fields are to be bulk edited: you can select the 
 </div>
 
 In particular, for each selected field, the user can choose to clear the field value on all those selected assets, or to overwrite the any already existent value with a new one set by the user during the bulk edit flow.
+
+## Export metadata
+
+The Data Catalog offers a robust export feature, enabling users to extract metadata from various data assets directly from the user interface. The supported export format is `.csv`, ideal for tabular data and easy integration with tools like Excel, Google Spreadsheets and business intelligence software.
+This feature is particularly useful to share metadata outside the Data Catalog, such as for offline analysis and for third-party stakeholders that may not have access to the Data Catalog instance itself.  
+The export metadata feature is designed to be intuitive and accessible from key navigation points: the search assets page, and within the specific asset detail page.
+The exported `.csv` file is characterized by a standard structure, involving the following information displayed in the file header:
+
+  * **Default asset fields**, useful to univocally identify a specific asset (`Asset Type`,`System of Record`,`Catalog Name`,`Schema`,`Table`,`Column`)
+  * **Common standard properties**, `description`, `tags`, as they are in common for all Data Catalog asset types
+  * **Custom properties**, based on the custom properties management and metadata enrichment performed by users. The exported file will include all custom properties valorized in the assets which have been exported. For each custom property, in the `.csv` file is also reported the `custom property type`. This allows users to better understand the context of each custom property in relation to the asset.
+:::note
+When importing the `.csv` file into a spreadsheet, please ensure you set the delimiter to *semicolon (;)* for correct parsing of the file structure.
+:::
+:::caution
+*Unknown custom properties* found during the export process will be included in the `.csv` file too, but no `custom property type` will be present for them.
+:::
+
+:::info
+Depending on the asset type, some of the default asset fields may not be available for that specific row.
+In addition, `Catalog Name` and `Schema` fields receive a corresponding value in each asset row only for selected connection provider.
+:::
+
+### Export from Asset Detail Pages
+
+Within both Sor and table detail pages, users can export the metadata associated with the relative children. In particular:
+
+  * in the **SoR Detail Page**, accessing the `Tables` tab, user can export the list of all tables metadata which belongs to the SoR.
+  * in the **Table Detail Page**, accessing the `Columns` tab, user can export the list of all columns metadata belonging to the table.
+
+<div style={{display: 'flex', justifyContent: 'center'}}>
+  <div style={{display: 'flex', width: '700px'}}>
+
+![Export from Asset Detail Pages](./../img/export_from_detail_page.png)
+
+  </div>
+</div>
+
+### Export from Search Results
+
+From the search results page, users can export metadata for all assets returned by the search query. This includes all SoRs, tables, and columns that match the search criteria.  
+To export the entire list of returned assets, user have to select all the listed assets, then click to `Export metadata` button.  
+Alternatively, it is also possible to select only some of the returned assets and then click the `Export metadata` button, in order to obtain a more granular exported content.
+
+<div style={{display: 'flex', justifyContent: 'center'}}>
+  <div style={{display: 'flex', width: '700px'}}>
+
+![Export from Search Results](./../img/export_search_results.png)
+
+  </div>
+</div>
