@@ -10,4 +10,3 @@ slug: "/release-notes/versions"
 | v14.0.2 | [Read the release notes](/release-notes/v14.0.2.md) |
 | v14.0.1 | [Read the release notes](/release-notes/v14.0.1.md) |
 | v14.0.0 | [Read the release notes](/release-notes/v14.0.0.mdx) |
-
