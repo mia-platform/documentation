@@ -12,6 +12,10 @@ Instead, modify the source file and run the aggregator to regenerate this file.
 
 The Oauth Login Site plugin provides you the infrastructure to manage the login process of your application.
 
+:::caution
+This plugin will be generally available starting from the release in production of v14.0.2 of Mia-Platform Console (on July 10th)
+:::
+
 This service will handle the OAuth login flow for a user with managed redirection to your identity provider authorization page (where the user can enter the correct credentials) and the callback page where the flow is completed by invoking the standard `/oauth/token`.
 
 In this way, you just have to define the flow of your login process and Oauth Login Site will take care of the rest.
