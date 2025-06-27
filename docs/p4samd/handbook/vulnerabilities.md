@@ -6,7 +6,7 @@ sidebar_label: Vulnerabilities
 
 ## Vulnerabilities Overview
 
-The **Vulnerabilities** section allows users to monitor, analyze, and manage vulnerabilities detected in the Software Items of the Software System Version. Vulnerabilities are automatically detected using [Trivy](https://trivy.dev/) for software items that have a repository ID and import the P4SAmD pipelines `cve-generation-trivy.yml` and `send-cve-to-p4samd-webhook.yml`.
+The **Vulnerabilities** section allows users to monitor, analyze, and manage vulnerabilities detected in the Software Items of the Software System Version. Vulnerabilities are automatically detected using [Trivy](https://trivy.dev/) for software items that have a repository ID and import the P4SaMD pipelines `cve-generation-trivy.yml` and `send-cve-to-p4samd-webhook.yml`.
 
 
 ### Vulnerabilities Table
