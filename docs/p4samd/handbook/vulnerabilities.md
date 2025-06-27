@@ -63,7 +63,7 @@ This tab shows the linked issues, grouped by:
 
 ### Accepting or Reverting a Vulnerability
 
-#### Accept Vulnerability Modal
+#### Accept Vulnerability Flow
 
 ![alt text](img/vulnerability_accept_modal.png)
 
