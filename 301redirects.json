@@ -2026,5 +2026,9 @@
   "/docs/marketplace/tutorials/create-a-rag-application": {
     "destination": "/docs/console/tutorials/create-a-rag-application",
     "addedOn": "2025-06-25"
+  },
+  "/docs/self_hosted/installation-chart/overview": {
+    "destination": "/docs/infrastructure/self-hosted/installation-chart/getting-started",
+    "addedOn": "2025-06-27"
   }
 }
