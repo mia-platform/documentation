@@ -17,8 +17,11 @@ The GitHub source allows the integration-connector-agent to receive events from 
 The GitHub source integrates with webhooks by exposing an endpoint at `/github/webhook` (configurable).
 When a webhook event is received, the following steps are performed:
 
-1. **Validation**: The request is validated using the secret passed by the Webhook (HMAC SHA256 signature, as per GitHub's requirements).
-2. **Event Handling**: The event type is extracted from the `X-GitHub-Event` header and injected into the event payload for routing. The event is then sent to the pipeline. The operation (e.g., `Write`) is determined based on the event type and action.
+1. **Validation**: The request is validated using the secret passed by the Webhook (HMAC SHA256 signature, as per
+  GitHub's requirements).
+1. **Event Handling**: The event type is extracted from the `X-GitHub-Event` header and injected into the event payload
+  for routing. The event is then sent to the pipeline. The operation (e.g., `Write`) is determined based on the event
+  type and action.
 
 ### Service Configuration
 
@@ -63,7 +66,8 @@ The GitHub source currently supports the following webhook event:
 | pull request  | `pull_request`     | [link](#pull-request-event-payload) | Write     |
 
 :::info
-The **event type** is extracted from the `X-GitHub-Event` header and injected into the payload as `eventType` for downstream processing.
+The **event type** is extracted from the `X-GitHub-Event` header and injected into the payload as `eventType` for
+downstream processing.
 :::
 
 The operation is used by the sink to determine if the event should be inserted/updated or deleted.
@@ -108,5 +112,7 @@ The following is an example of a `pull_request` event payload:
 
 ### Extending Event Support
 
-Refer to the [GitHub webhook event types documentation](https://docs.github.com/en/developers/webhooks-and-events/webhooks/webhook-events-and-payloads) for a full list of available events.
-To add support to another event, open a pull request to [this repo](https://github.com/mia-platform/integration-connector-agent), changing the [supported events mapping](https://github.com/mia-platform/integration-connector-agent/blob/main/internal/sources/github/events.go).
+Refer to the [GitHub webhook event types documentation](https://docs.github.com/en/developers/webhooks-and-events/webhooks/webhook-events-and-payloads)
+for a full list of available events.
+To add support to another event, open a pull request to [this repo](https://github.com/mia-platform/integration-connector-agent),
+changing the [supported events mapping](https://github.com/mia-platform/integration-connector-agent/blob/main/internal/sources/github/events.go).
