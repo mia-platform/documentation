@@ -2022,5 +2022,9 @@
   "/docs/runtime_suite/audit-trail/changelog": {
     "destination": "/docs/runtime_suite_sidecars/audit-trail/changelog",
     "addedOn": "2025-06-05"
+  },
+  "/docs/self_hosted/installation-chart/overview": {
+    "destination": "/docs/infrastructure/self-hosted/installation-chart/getting-started",
+    "addedOn": "2025-06-27"
   }
 }
