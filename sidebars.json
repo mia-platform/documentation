@@ -79,6 +79,11 @@
               "id": "p4samd/handbook/sbom",
               "label": "Software Bill Of Materials (SBOM)",
               "type": "doc"
+            },
+            {
+              "id": "p4samd/handbook/vulnerabilities",
+              "label": "Vulnerabilities",
+              "type": "doc"
             }
           ]
         },
