@@ -17,7 +17,7 @@ The Software Items are described by **General** and **Specific** properties: the
    In the modal, you will be prompted to fill out the **Software Item Name** field.  
    When you click on this field, a dropdown will appear. In the dropdown, you can either:  
    - **Enter a new Software Item name**: Type the name you want to assign to the new Software Item and select **Create new**.
-   - **Select an existing Software Item**: If a Software Item with the same name and version already exists in the system, you can select it from the list. This will automatically prefill the form with the details of the selected Software Item.
+   - **Select an existing Software Item**: If a Software Item with the same name, type and version already exists in the system, you can select it from the list. This will automatically prefill the form with the details of the selected Software Item.
    Fill in the required fields as needed ([Fields description](#fields-description))
 
 3. **Save the New Software Item**  
@@ -27,6 +27,23 @@ The Software Items are described by **General** and **Specific** properties: the
 You can create a new Software Item starting from an existing one. Simply select it from the dropdown, modify the `name` and other fields as needed, it will be added as a *new* instance within the current system version.
 ::: 
 
+### Existing software item
+
+If you choose a new software item name, but a software item **already exists** with the same name, type and version, the user will be prompted to choose how to proceed:
+
+![Version Conflict Modal](img/swi_create_modal_compare.png)
+
+The modal displays two options:
+
+- **Existing software item**  
+  Refers to the already existing Software Item and instances in the system.
+  Selecting this option, no changes are applied to other instances and the current instance is linked to the existing SWI.
+
+- **New software item**  
+  Uses the current information in the modal for updating the existing SWI.
+  Selecting this option, the current info in **General Properties** are propagated to the existing instances of the SWI.
+  _NB. Editing the general properties of a SWI will revert the approval of the related instances and their tree structure (parents chain)_
+  
 ## Software Items Visualization
 
 ### Table
