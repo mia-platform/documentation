@@ -47,7 +47,9 @@ The table shows basic info of the tree of software items:
    - **Download**: Opens a menu to download History and/or Changelog.
    - **Delete item**: Opens a confirmation modal to delete the item.
 
-If vulnerabilities are detected in an implementation of a software item that differs from the one linked to the design, they will still be reported with a warning badge. This is because vulnerabilities are associated via the repository ID field.
+:::warning
+When **missing implementation** or **mismatch** status of SWI, the vulnerabilities of the designed SWI are not counted in the table. However, if the Repository ID is present and P4SaMD could access to pipeline information related to the implementation, the vulnerability column in table shows a warning badge if the scanning has detected at least one vulnerability in the associated repo. 
+:::
 
 **N.B.** Every edit of the software item is reflected in all instances.
 
