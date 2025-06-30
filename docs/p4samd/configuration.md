@@ -6,7 +6,7 @@ sidebar_label: Configuration
 
 After the installation of Mia-Care P4SaMD, the configuration activities are carried out by **Mia-Care qualified personnel** to adapt the system to the customer’s specific requirements. This ensures seamless integration and functionality within the customer’s environment.
 
-### **Configuration Activities** 
+### **Configuration Activities**
 
 1. **JIRA Integration (Mandatory)**: The integration with JIRA is a critical configuration step to enable data synchronization between JIRA and Mia-Care P4SaMD. This includes:
     - **Mapping JIRA Issue Fields:** Aligning the JIRA issue fields with the P4SaMD data model to reflect the customer’s unique configuration.
