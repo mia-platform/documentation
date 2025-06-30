@@ -155,7 +155,7 @@ When changing the **version** of a software item, there are two possible outcome
 
 ####  1. No Existing Software Item with matching version
 
-If **no Software Item exists** with the same name and the new version:
+If **no Software Item exists** with the same name and type and the new version:
 
 - The current instance under modification will be **disassociated** from the existing Software Item.
 - A **new SWI** will be created.
@@ -163,7 +163,7 @@ If **no Software Item exists** with the same name and the new version:
 
 #### 2. A Software Item Already Exists with the New Version
 
-If a Software Item **already exists** with the same name and the new version, the user will be prompted to choose how to proceed:
+If a Software Item **already exists** with the same name and type and the new version, the user will be prompted to choose how to proceed:
 
 ![Version Conflict Modal](img/swi_edit_modal_compare.png)
 
@@ -245,7 +245,7 @@ If you select **Is medical device**, the following additional fields are availab
 
 - **Software safety classification**: Safety class of the medical device.
    - Available options: `A`, `B`, `C`.
-- **Software safety classification reason**: The reason of the Safety classification of the medical device.
+- **Software safety classification reason**: The rationale behind the safety classification of the medical device.
 - **Detailed design reference**: Link to the detailed design documentation.
 - **Detailed interface architecture reference**: Link to the detailed interface architecture documentation.
 
