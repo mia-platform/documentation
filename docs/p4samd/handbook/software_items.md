@@ -49,20 +49,24 @@ The modal displays two options:
 ### Table
 
 ![alt text](img/swi_table.png)
-
 The table shows basic info of the tree of software items:
 
 1. **+/-**: Expand/Collapse Software Item children
 2. **Software Item**: Name of the Software Item, clickable if the `Implementation link` is filled.
-3. **Suggestions**: Count of the suggestions, hover to show a dropdown with a number of how much is in error and in warning. Clicking open modal in the suggestion tab.
+3. **Suggestions**: Count of the suggestions, hover to show a dropdown with a number of how much is in error, in warning and in info. Clicking open drawer in the suggestion tab.
 4. **SOUP**: Show a label if the Software Item `Is SOUP` is filled or the number of SOUPS children if there are
 5. **Safety**: Show a label containing the Software item Safety class 
 6. **Design**: Show design status and version
 7. **Implementation**: Show Implementation status and detected version
-8. `Fast Action | Detail | Three dots`: 
+8. **Vulnerabilities**: Count of the vulnerabilities found, hover to show a dropdown with a number of how much are accepted and how much are still open. Clicking open drawer in the vulnerabilities tab.
+9. `Fast Action | Vulnerabilities Details | Three dots`: 
    - **Edit software item design**: Opens a modal to edit the item, following the guidelines in the ([Fields description](#fields-description)).
    - **Download**: Opens a menu to download History and/or Changelog.
    - **Delete item**: Opens a confirmation modal to delete the item.
+
+:::warning
+When **missing implementation** or **mismatch** status of SWI, the vulnerabilities of the designed SWI are not counted in the table. However, if the Repository ID is present and P4SaMD could access to pipeline information related to the implementation, the vulnerability column in table shows a warning badge if the scanning has detected at least one vulnerability in the associated repo. 
+:::
 
 **N.B.** Every edit of the software item is reflected in all instances.
 
@@ -117,6 +121,7 @@ This is divided into multiple tabs:
 - **Detail**: Displays all the fields entered ([Fields description](#fields-description)) for the Software Item.
 - **Traceability**: Shows the linked issues (Requirements, Risks, Integration Tests, Changes), which are clickable.
 - **Suggestions**: Displays a list of suggestions, if any, to ensure the Software Item meets the reference standards.
+- **Vulnerabilities**: Displays a list of vulnerabilities, if any.
 
 | # | Reference Requirement | Title | Description |
 |-----|-------|-----------|----------|
@@ -201,28 +206,6 @@ The modal displays two options:
 :::
 
 
-## Software Items settings 
-
-P4SaMD detects the implementation of the Software Items, considering all the Projects belonging to your Company by default. You can customize your Software System, excluding detected Projects so that they and all of their SWI children will not appear in the SWI table and will not be taken into account in the Software System documentation. It applies, for example, on test/POC projects which are not part of your software product.
-
-![alt text](img/system_versions_setting.png)
-
-The settings modal is available in the SWI tab, for each version when they are not released
-
-1. **Click the "Settings" Button**  
-   This will open the modal to customize the Software System at the Project level.
-
-2. **Customize the Software System** 
-   In the modal, select/deselect the Projects to define your Software System.
-
-3. **Save the customized Software System**  
-   Saving customization, the changes will be immediately apply on your Software System.
-
-:::info
-   - The exclusion of a Project is only possible when there is no associated design.
-   - The customization is only valid for the selected Software System Version
-::: 
-
 ## Fields description
 
 - **Software item name**:  Name of Software Item.
@@ -291,3 +274,24 @@ If you select **Is AI**, the following additional fields are available:
 To **Approve** a Software Item all his children should be approved.
 :::
 
+## Software Items settings 
+
+P4SaMD detects the implementation of the Software Items, considering all the Projects belonging to your Company by default. You can customize your Software System, excluding detected Projects so that they and all of their SWI children will not appear in the SWI table and will not be taken into account in the Software System documentation. It applies, for example, on test/POC projects which are not part of your software product.
+
+![alt text](img/system_versions_setting.png)
+
+The settings modal is available in the SWI tab, for each version when they are not released
+
+1. **Click the "Settings" Button**  
+   This will open the modal to customize the Software System at the Project level.
+
+2. **Customize the Software System** 
+   In the modal, select/deselect the Projects to define your Software System.
+
+3. **Save the customized Software System**  
+   Saving customization, the changes will be immediately apply on your Software System.
+
+:::info
+   - The exclusion of a Project is only possible when there is no associated design.
+   - The customization is only valid for the selected Software System Version
+::: 
