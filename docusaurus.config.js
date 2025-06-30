@@ -200,12 +200,17 @@ async function createConfig() {
             }],
             editUrl: createEditUrl,
             sidebarPath: require.resolve("./sidebars.js"),
-            lastVersion: "2.1.x",
-            includeCurrentVersion: true,
+            lastVersion: "2.2.x",
+            includeCurrentVersion: false,
             versions: {
-              "2.1.x": {
-                label: "2.1.x (Current)",
+              "2.2.x": {
+                label: "2.2.x (Current)",
                 path: "",
+                banner: "none"
+              },
+              "2.1.x": {
+                label: "2.1.x",
+                path: "2.1.x",
                 banner: "none"
               },
               "2.0.x": {
