@@ -19,7 +19,7 @@ The vulnerabilities table provides an overview of all vulnerabilities related to
 - **Reported On**: Date when the vulnerability was reported.
 - **Last Pipeline Run**: Date of the last pipeline execution that detected the vulnerability.
 - **Software Item Version**: Version of the Software Item where the vulnerability was found.
-- **Branch**: Branch where the vulnerability was found.
+- **Branch**: Repository branch where the vulnerability was found.
 - **CVSS**: Trivy severity score and categorization.
 - **Affected Library**: Library where the vulnerability was found.
 - **Risks**: Number of risks connected to the acceptance of the vulnerability.

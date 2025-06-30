@@ -36,16 +36,18 @@ The table shows basic info of the tree of software items:
 
 1. **+/-**: Expand/Collapse Software Item children
 2. **Software Item**: Name of the Software Item, clickable if the `Implementation link` is filled.
-3. **Suggestions**: Count of the suggestions, hover to show a dropdown with a number of how much is in error and in warning. Clicking open modal in the suggestion tab.
+3. **Suggestions**: Count of the suggestions, hover to show a dropdown with a number of how much is in error, in warning and in info. Clicking open drawer in the suggestion tab.
 4. **SOUP**: Show a label if the Software Item `Is SOUP` is filled or the number of SOUPS children if there are
 5. **Safety**: Show a label containing the Software item Safety class 
 6. **Design**: Show design status and version
 7. **Implementation**: Show Implementation status and detected version
-8. **Vulnerabilities**: Show detected vulnerabilities
+8. **Vulnerabilities**: Count of the vulnerabilities found, hover to show a dropdown with a number of how much are accepted and how much are still open. Clicking open drawer in the vulnerabilities tab.
 9. `Fast Action | Vulnerabilities Details | Three dots`: 
    - **Edit software item design**: Opens a modal to edit the item, following the guidelines in the ([Fields description](#fields-description)).
    - **Download**: Opens a menu to download History and/or Changelog.
    - **Delete item**: Opens a confirmation modal to delete the item.
+
+If vulnerabilities are detected in an implementation of a software item that differs from the one linked to the design, they will still be reported with a warning badge. This is because vulnerabilities are associated via the repository ID field.
 
 **N.B.** Every edit of the software item is reflected in all instances.
 
