@@ -74,7 +74,7 @@ body {
 
 /* --- HOMEPAGE HEADER --- */
 .homepage-header {
-    background: linear-gradient(to right, rgb(28, 50, 108), rgb(39, 68, 136));
+    background-color: rgb(28, 50, 110, 1);
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
