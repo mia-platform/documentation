@@ -27,7 +27,7 @@ const HomepageHeader = ({data}) => (
     <header className="homepage-header" style={{backgroundImage: `url(${data.backgroundImageUrl})`}}>
         <div className="container hero-container">
             <div className="hero-branding">
-                <img alt="Mia Platform Logo" src={data.logoUrl} className="hero-logo"/>
+                <img alt="Mia Platform Logo" className="hero-logo" src={data.logoUrl}/>
                 <h1 className="hero-title">{data.title}</h1>
             </div>
             <p className="hero-subtitle">{data.subtitle}</p>
@@ -119,7 +119,7 @@ const FeatureGrid = ({features}) => (
                         <CustomLink className="feature-card-link" href={feature.link} key={feature.title} target={feature.target}>
                             <div className="card-container feature-card">
                                 <div className="feature-card-icon-wrapper">
-                                    <img alt={feature.title} src={feature.icon} className="feature-card-icon"/>
+                                    <img alt={feature.title} className="feature-card-icon" src={feature.icon}/>
                                 </div>
                                 <div className="card-content">
                                     <h3 className="feature-card-title">{feature.title}</h3>
@@ -188,7 +188,7 @@ const CommunitySection = ({data}) => (
                 {data.map(item => (
                     <CustomLink className="community-card-link" href={item.link} key={item.title} target={item.target}>
                         <div className="community-card">
-                            <img alt={item.title} src={item.icon} className="community-card-icon"/>
+                            <img alt={item.title} className="community-card-icon" src={item.icon}/>
                             <h3 className="community-card-title">{item.title}</h3>
                         </div>
                     </CustomLink>
@@ -216,8 +216,8 @@ const TouchFooter = ({data}) => (
             <h2 className="footer-title">{data.title}</h2>
             <div className="socials-container">
                 {data.socials.map(social => (
-                    <a href={social.link} key={social.name} className="social-link" rel="noreferrer" target="_blank">
-                        <img alt={social.name} src={social.imageUrl} className="social-icon" title={social.name}/>
+                    <a className="social-link" href={social.link} key={social.name} rel="noreferrer" target="_blank">
+                        <img alt={social.name} className="social-icon" src={social.imageUrl} title={social.name}/>
                     </a>
                 ))}
             </div>
