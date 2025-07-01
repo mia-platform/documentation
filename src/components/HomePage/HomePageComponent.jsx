@@ -24,24 +24,26 @@ CustomLink.propTypes = {
  * Renders the main hero section of the page.
  */
 const HomepageHeader = ({data}) => (
-    <header className="homepage-header" style={{backgroundImage: `url(${data.backgroundImageUrl})`}}>
-        <div className="container hero-container">
-            <div className="hero-branding">
-                <img alt="Mia Platform Logo" className="hero-logo" src={data.logoUrl}/>
-                <h1 className="hero-title">{data.title}</h1>
-            </div>
-            <p className="hero-subtitle">{data.subtitle}</p>
-            <p className="hero-description">{data.description}</p>
-            <div className="hero-search-bar-container">
-                <div className="hero-search-bar-wrapper">
-                    <SearchBar
-                        avoidKeyboardShortcuts
-                        customStyle={{
-                            height: '32px',
-                            maxWidth: '90%',
-                            width: '380px',
-                        }}
-                    />
+    <header className="homepage-header">
+        <div className="homepage-header-background" style={{backgroundImage: `url(${data.backgroundImageUrl})`}}>
+            <div className="container hero-container">
+                <div className="hero-branding">
+                    <img alt="Mia Platform Logo" className="hero-logo" src={data.logoUrl}/>
+                    <h1 className="hero-title">{data.title}</h1>
+                </div>
+                <p className="hero-subtitle">{data.subtitle}</p>
+                <p className="hero-description">{data.description}</p>
+                <div className="hero-search-bar-container">
+                    <div className="hero-search-bar-wrapper">
+                        <SearchBar
+                            avoidKeyboardShortcuts
+                            customStyle={{
+                                height: '32px',
+                                maxWidth: '90%',
+                                width: '480px'
+                            }}
+                        />
+                    </div>
                 </div>
             </div>
         </div>
@@ -98,41 +100,46 @@ AnnouncementBanner.propTypes = {
 /**
  * A responsive grid of feature cards.
  */
-const FeatureGrid = ({features}) => (
-    <section className="section feature-grid-section">
-        <div className="container">
-            <div className="feature-grid">
-                {features.map((feature) => {
-                    if (feature.type === 'image') {
+const FeatureGrid = ({features}) => {
+    return (
+        <section className="section feature-grid-section">
+            <div className="container">
+                <div className="feature-grid">
+                    {features.map((feature) => {
+                        if (feature.type === 'image') {
+                            return (
+                                <CustomLink className="feature-card-link" href={feature.link} key={feature.title}
+                                            target={feature.target}>
+                                    <div className="card-container image-card"
+                                         style={{backgroundImage: `linear-gradient(rgba(0,0,100,0.4), rgba(0,0,0,0.4)), url(${feature.backgroundImage})`}}>
+                                        <div className="card-content">
+                                            <h3 className="image-card-title">{feature.title}</h3>
+                                            <p className="image-card-description">{feature.description}</p>
+                                        </div>
+                                    </div>
+                                </CustomLink>
+                            );
+                        }
                         return (
-                            <CustomLink className="feature-card-link" href={feature.link} key={feature.title} target={feature.target}>
-                                <div className="card-container image-card" style={{backgroundImage: `linear-gradient(rgba(0,0,100,0.4), rgba(0,0,0,0.4)), url(${feature.backgroundImage})`}}>
+                            <CustomLink className="feature-card-link" href={feature.link} key={feature.title}
+                                        target={feature.target}>
+                                <div className="card-container feature-card">
+                                    <div className="feature-card-icon-wrapper">
+                                        <img alt={feature.title} className="feature-card-icon" src={feature.icon}/>
+                                    </div>
                                     <div className="card-content">
-                                        <h3 className="image-card-title">{feature.title}</h3>
-                                        <p className="image-card-description">{feature.description}</p>
+                                        <h3 className="feature-card-title">{feature.title}</h3>
+                                        <p className="feature-card-description">{feature.description}</p>
                                     </div>
                                 </div>
                             </CustomLink>
                         );
-                    }
-                    return (
-                        <CustomLink className="feature-card-link" href={feature.link} key={feature.title} target={feature.target}>
-                            <div className="card-container feature-card">
-                                <div className="feature-card-icon-wrapper">
-                                    <img alt={feature.title} className="feature-card-icon" src={feature.icon}/>
-                                </div>
-                                <div className="card-content">
-                                    <h3 className="feature-card-title">{feature.title}</h3>
-                                    <p className="feature-card-description">{feature.description}</p>
-                                </div>
-                            </div>
-                        </CustomLink>
-                    );
-                })}
+                    })}
+                </div>
             </div>
-        </div>
-    </section>
-);
+        </section>
+    );
+}
 
 FeatureGrid.propTypes = {
     features: PropTypes.arrayOf(PropTypes.shape({
@@ -151,19 +158,21 @@ FeatureGrid.propTypes = {
 const BeginnersSection = ({data}) => (
     <section className="section beginners-section">
         <div className="container">
-            <div className="beginners-grid">
-                <div className="beginners-content">
-                    <h2 className="beginners-title">{data.title}</h2>
-                    <p className="beginners-description">
-                        {data.description}
-                        <br/>
-                        {data.subtitle}
-                    </p>
+            <CustomLink className="beginners-card-link" href={data.link.url} key={data.title} target={data.link.target}>
+                <div className="beginners-grid">
+                    <div className="beginners-content">
+                        <h2 className="beginners-title">{data.title}</h2>
+                        <p className="beginners-description">
+                            {data.description}
+                            <br/>
+                            {data.subtitle}
+                        </p>
+                    </div>
+                    <div className="beginners-image-container" style={{backgroundImage: `url(${data.imageUrl})`}}>
+                        <div className="beginners-image-gradient"></div>
+                    </div>
                 </div>
-                <div className="beginners-image-container" style={{backgroundImage: `url(${data.imageUrl})`}}>
-                    <div className="beginners-image-gradient"></div>
-                </div>
-            </div>
+            </CustomLink>
         </div>
     </section>
 );
@@ -172,7 +181,10 @@ BeginnersSection.propTypes = {
     data: PropTypes.shape({
         description: PropTypes.string.isRequired,
         imageUrl: PropTypes.string.isRequired,
-        link: PropTypes.shape({url: PropTypes.string.isRequired}).isRequired,
+        link: PropTypes.shape({
+            url: PropTypes.string.isRequired,
+            target: PropTypes.string.isRequired,
+        }).isRequired,
         subtitle: PropTypes.string.isRequired,
         title: PropTypes.string.isRequired,
     }).isRequired,
@@ -210,8 +222,8 @@ CommunitySection.propTypes = {
  * The footer section with social media links.
  */
 const TouchFooter = ({data}) => (
-    <div className="touch-footer" style={{backgroundImage: `url(${data.backgroundImageUrl})`}}>
-        <div className="footer-overlay"></div>
+    <div className="touch-footer">
+        <div className="footer-overlay" style={{backgroundImage: `url(${data.backgroundImageUrl})`}}></div>
         <div className="container footer-container">
             <h2 className="footer-title">{data.title}</h2>
             <div className="socials-container">

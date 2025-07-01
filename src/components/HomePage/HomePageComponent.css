@@ -5,11 +5,13 @@
     --mia-primary: #4453FE;
     --mia-primary-light: #F1F3FF;
     --mia-text-light: #AAB3E4;
-    --mia-card-border: #E5E7EB;
     --mia-card-bg: #ffffff;
     --mia-section-bg: #FFFFFF;
     --mia-text-primary: #111827;
     --mia-text-secondary: #6B7280;
+    --mia-section-hero-bg: linear-gradient(to right, #002E6E, #004AAA);
+    --mia-text-primary-announcement: #111827;
+    --mia-text-secondary-announcement: #6B7280;
     --ifm-font-family-base: 'Inter', sans-serif;
     --mia-announcement-bg: linear-gradient(to right, #D0C5F0, #F7D3DB);
     --mia-button-secondary-bg: #FFFFFF;
@@ -18,29 +20,40 @@
     --mia-feature-card-bg: #F5FAFF;
     --mia-feature-card-bg-hover: #E5F0FC;
     --mia-feature-card-title: #00448C;
+    --mia-feature-card-description: #6B7280;
     --mia-beginners-bg: #F9F9F9;
-    --mia-footer-title: #004AAA;
-    --mia-footer-overlay: transparent;
-    --mia-card-shadow-hover: 0 8px 16px rgba(17, 24, 39, 0.05);
+    --mia-beginners-bg-hover: rgba(230, 230, 230, 1);
+    --mia-footer-title: rgba(70, 70, 70, 1);
+    --mia-footer-overlay: rgba(242, 242, 242, 1);
+    --mia-card-shadow-hover: 0 8px 16px rgba(249, 249, 249, 1);
+    --mia-card-bg-hover: rgba(230, 230, 230, 1);
+    --boarder-card-community: 1px solid #E5E7EB;
+    --mia-card-community-bg-hover: #E5E5E5;
 }
 
 [data-theme="dark"] {
-    --mia-card-border: #374151;
-    --mia-card-bg: #1F2937;
-    --mia-section-bg: #111827;
+    --mia-section-bg: #181818;
     --mia-text-primary: #F9FAFB;
     --mia-text-secondary: #9CA3AF;
-    --mia-announcement-bg: linear-gradient(to right, #2c1e4a, #4a2c34);
+    --mia-section-hero-bg: linear-gradient(to right, #181818, #3D3D3D);
+    --mia-text-primary-announcement: #111827;
+    --mia-text-secondary-announcement: #6B7280;
     --mia-button-secondary-bg: #374151;
     --mia-button-secondary-border: #4B5563;
     --mia-button-secondary-bg-hover: #4B5563;
-    --mia-feature-card-bg: #1F2937;
-    --mia-feature-card-bg-hover: #374151;
-    --mia-feature-card-title: #A5C9FF;
+    --mia-feature-card-bg: rgba(137, 137, 137, 0.32);
+    --mia-feature-card-bg-hover: rgba(137, 137, 137, 0.64);
+    --mia-feature-card-title: #CDCDCD;
+    --mia-feature-card-description: #FFFFFF;
     --mia-beginners-bg: #1F2937;
-    --mia-footer-title: #A5C9FF;
-    --mia-footer-overlay: rgba(0, 0, 0, 0.5);
+    --mia-beginners-bg-hover: #18354F;
+    --mia-footer-title: #FFFFFF;
+    --mia-footer-overlay: rgba(43, 43, 43, 1);
     --mia-card-shadow-hover: 0 8px 16px rgba(0, 0, 0, 0.2);
+    --mia-card-bg: rgba(137, 137, 137, 0.32);
+    --mia-card-bg-hover: rgba(24, 144, 255, 0.24);
+    --boarder-card-community: 0px solid #E5E7EB;
+    --mia-card-community-bg-hover: rgba(137, 137, 137, 0.64);
 }
 
 body {
@@ -74,7 +87,11 @@ body {
 
 /* --- HOMEPAGE HEADER --- */
 .homepage-header {
-    background-color: rgb(28, 50, 110, 1);
+    background: var(--mia-section-hero-bg);
+
+}
+
+.homepage-header-background {
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -136,7 +153,6 @@ body {
 .announcement-banner {
     align-items: center;
     background: var(--mia-announcement-bg);
-    border: 1px solid var(--mia-card-border);
     border-radius: 12px;
     display: flex;
     flex-wrap: wrap;
@@ -146,14 +162,14 @@ body {
 }
 
 .announcement-title {
-    color: var(--mia-text-primary);
+    color: var(--mia-text-primary-announcement);
     font-size: 1.125rem;
     font-weight: 600;
     margin: 0 0 4px 0;
 }
 
 .announcement-description {
-    color: var(--mia-text-secondary);
+    color: var(--mia-text-secondary-announcement);
     font-size: 0.875rem;
     margin: 0;
 }
@@ -211,7 +227,6 @@ body {
 }
 
 .card-container {
-    border: 1px solid var(--mia-card-border);
     border-radius: 12px;
     box-sizing: border-box;
     display: flex;
@@ -228,6 +243,7 @@ body {
     background-color: #374151;
     flex-direction: column;
     justify-content: flex-end;
+    background-image: var(--mia-feature-card-image)
 }
 
 .image-card-title {
@@ -266,7 +282,7 @@ body {
 }
 
 .feature-card-description {
-    color: var(--mia-text-secondary);
+    color: var(--mia-feature-card-description);
     font-size: 0.875rem;
     line-height: 1.6;
     margin: 0;
@@ -289,8 +305,16 @@ body {
 .beginners-grid {
     align-items: center;
     background-color: var(--mia-beginners-bg);
-    border: 1px solid var(--mia-card-border);
-    border-radius: 16px;
+    border-radius: 12px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    overflow: hidden;
+}
+
+.beginners-grid:hover {
+    align-items: center;
+    background-color: var(--mia-beginners-bg-hover);
+    border-radius: 12px;
     display: grid;
     grid-template-columns: 1fr 1fr;
     overflow: hidden;
@@ -330,6 +354,15 @@ body {
     width: 50%;
 }
 
+.beginners-card-link:hover .beginners-image-gradient {
+    background: linear-gradient(to right, var(--mia-beginners-bg-hover), transparent);
+}
+
+.beginners-card-link:hover > .beginners-grid {
+    box-shadow: var(--mia-card-shadow-hover);
+    transform: translateY(-4px);
+}
+
 /* --- COMMUNITY SECTION --- */
 .community-grid {
     display: grid;
@@ -339,7 +372,7 @@ body {
 
 .community-card {
     align-items: center;
-    border: 1px solid var(--mia-card-border);
+    border: var(--boarder-card-community);
     border-radius: 12px;
     display: flex;
     gap: 16px;
@@ -348,6 +381,11 @@ body {
     text-align: center;
     transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
     background-color: var(--mia-card-bg);
+}
+
+.community-card:hover {
+    background-color: var(--mia-card-community-bg-hover);
+    border: var(--boarder-card-community);
 }
 
 .community-card-icon {
@@ -364,7 +402,7 @@ body {
 .community-card-link:hover > .community-card {
     box-shadow: var(--mia-card-shadow-hover);
     transform: translateY(-4px);
-    background-color: var(--mia-card-bg-hover);
+    background-color: var(--mia-card-community-bg-hover);
 }
 
 
@@ -383,6 +421,9 @@ body {
 
 .footer-overlay {
     background-color: var(--mia-footer-overlay);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
     bottom: 0;
     left: 0;
     position: absolute;
@@ -477,6 +518,10 @@ body {
 
 [data-theme="dark"] .community-card img[alt*="GitHub"] {
     filter: invert(1);
+}
+
+[data-theme="dark"] .feature-card-icon-wrapper  {
+    color: red;
 }
 
 

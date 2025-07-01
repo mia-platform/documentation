@@ -1,6 +1,6 @@
 {
   "hero": {
-    "backgroundImageUrl": "/img/homepage/mia-platform-banner-top.jpg",
+    "backgroundImageUrl": "/img/homepage/mia-platform-banner-top.png",
     "description": "Learn how Mia-Platform can help you to develop your business",
     "logoUrl": "img/homepage/mia-platform-logo.png",
     "subtitle": "Welcome on Mia-Platform Docs!",
@@ -70,9 +70,13 @@
     }
   ],
   "beginnersSection": {
+
     "description": "New to Mia-Platform ecosystem?",
     "imageUrl": "/img/homepage/beginners.png",
-    "link": {"url": "/docs/getting-started"},
+    "link": {
+      "url": "/docs/getting-started/tutorials/",
+      "target": "_self"
+    },
     "subtitle": "Discover how and where to start.",
     "title": "Mia-Platform for beginners!"
   },
@@ -91,7 +95,7 @@
     }
   ],
   "footer": {
-    "backgroundImageUrl": "/img/homepage/mia-platform-banner-bottom.jpg",
+    "backgroundImageUrl": "/img/homepage/mia-platform-banner-bottom.png",
     "socials": [
       {"imageUrl": "/img/homepage/website-button.svg", "link": "https://mia-platform.eu/", "name": "Website"},
       {"imageUrl": "/img/homepage/github-button.svg", "link": "https://github.com/mia-platform/", "name": "GitHub"},
