@@ -113,17 +113,8 @@ const AnnouncementBanner = ({data}) => (
                 <div style={{display: 'flex', gap: '12px'}}>
                     {data.buttons.map(button => (
                         <CustomLink href={button.link} key={button.label} target={button.target}>
-                            <button style={{
-                                backgroundColor: button.primary ? '#1261E4' : '#FFFFFF',
-                                border: button.primary ? '1px solid var(--mia-primary)' : '1px solid #D1D5DB',
-                                borderRadius: '8px',
-                                color: button.primary ? 'white' : 'var(--mia-text-primary)',
-                                cursor: 'pointer',
-                                fontSize: '14px',
-                                fontWeight: 400,
-                                padding: '10px 16px',
-                                transition: 'all 0.2s ease',
-                            }}
+                            <button
+                                className={`announcement-button ${button.primary ? 'primary' : 'secondary'}`}
                             >
                                 {button.label}
                             </button>
@@ -132,6 +123,42 @@ const AnnouncementBanner = ({data}) => (
                 </div>
             </div>
         </div>
+        <style>{`
+            .announcement-button {
+                border-radius: 8px;
+                cursor: pointer;
+                font-size: 14px;
+                font-weight: 400;
+                padding: 10px 16px;
+                transition: all 0.2s ease;
+                border: none;
+            }
+
+            .announcement-button.primary {
+                background-color: #1261E4;
+                border: 1px solid var(--mia-primary);
+                color: white;
+            }
+
+            .announcement-button.secondary {
+                background-color: #FFFFFF;
+                border: 1px solid #D1D5DB;
+                color: var(--mia-text-primary);
+            }
+
+            .announcement-button:hover {
+                transform: translateY(-1px);
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            }
+
+            .announcement-button.primary:hover {
+                background-color: #1890FF;
+            }
+
+            .announcement-button.secondary:hover {
+                background-color: #F3F4F6;
+            }
+        `}</style>
     </div>
 );
 
@@ -421,7 +448,7 @@ CommunitySection.propTypes = {
  */
 const TouchFooter = ({data}) => (
     <div
-className="section" style={{
+        className="section" style={{
         backgroundImage: `url(${data.backgroundImageUrl})`,
         backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat',
@@ -447,7 +474,7 @@ className="section" style={{
             <h2 style={{color: "#004AAA", fontSize: '24px', fontWeight: 700, margin: '0 0 32px 0'}}>
                 {data.title}
             </h2>
-            <div className="socials-container" style={{display: 'flex', gap: '24px', justifyContent: 'center'}}>
+            <div className="socials-container">
                 {data.socials.map(social => (
                     <a
                         href={social.link}
@@ -476,12 +503,31 @@ className="section" style={{
         </div>
         {/* Scoped styles for mobile responsiveness */}
         <style>{`
+            .socials-container {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(64px, 1fr)); /* Default: fluid columns based on item size */
+                gap: 24px;
+                justify-items: center; /* Center items within their grid cells */
+                max-width: 400px; /* Ridotto per raggruppare le icone su schermi larghi */
+                margin: 0 auto; /* Centra il contenitore */
+            }
+
             @media (max-width: 768px) {
                 .socials-container {
-                    /* On mobile, stack icons vertically */
-                    align-items: center !important;
-                    flex-direction: column !important;
+                    grid-template-columns: repeat(2, 1fr); /* 2 colonne per schermi fino a 768px */
+                    max-width: 100%; /* Permette di occupare tutta la larghezza disponibile su schermi più piccoli */
                 }
+            }
+
+            @media (max-width: 480px) {
+                .socials-container {
+                    grid-template-columns: repeat(4, 1fr); /* 4 colonne per schermi fino a 480px */
+                }
+            }
+
+            /* Opzionale: Per assicurarsi che i link stessi siano centrati all'interno delle loro celle di griglia */
+            .socials-container a {
+                justify-self: center;
             }
         `}</style>
     </div>
