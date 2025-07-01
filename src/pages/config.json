@@ -8,8 +8,18 @@
   },
   "announcement": {
     "buttons": [
-      {"label": "View roadmap", "link": "/docs/release-notes/roadmap", "primary": true},
-      {"label": "View release note", "link": "/docs/release-notes/v14-overview", "primary": true}
+      {
+        "label": "View roadmap",
+        "link": "/docs/release-notes/roadmap",
+        "primary": true,
+        "target": "_self"
+      },
+      {
+        "label": "View release note",
+        "link": "/docs/release-notes/v14-overview",
+        "primary": true,
+        "target": "_self"
+      }
     ],
     "description": "Compose Your Platform",
     "title": "Mia Platform v14 is now available!"
@@ -19,30 +29,35 @@
       "description": "Discover how to govern and industrialize your entire cloud-native development and operations lifecycle.",
       "icon": "/img/homepage/platform-engineering-enablement.svg",
       "link": "/docs/development_suite/overview-dev-suite",
+      "target": "_self",
       "title": "Mia-Platform Console"
     },
     {
       "description": "Learn how to visually build and orchestrate microfrontends for modern, scalable web applications.",
       "icon": "/img/homepage/self-service-application-development.svg",
       "link": "/docs/microfrontend-composer/what-is",
+      "target": "_self",
       "title": "Microfrontend Composer"
     },
     {
       "description": "Find out how to make real-time, data-driven decisions with always-on, constantly updated data.",
       "icon": "/img/homepage/real-time-data-integration.svg",
       "link": "/docs/fast_data/what_is_fast_data",
+      "target": "_self",
       "title": "Mia-Platform Fast Data"
     },
     {
       "description": "Discover how to easily find, understand, and effectively govern all of your company's data assets.",
       "icon": "/img/homepage/secure-platform-operations.svg",
       "link": "/docs/data_catalog/overview_data_catalog",
+      "target": "_self",
       "title": "Data Catalog"
     },
     {
       "description": "Explore how to manage and reuse software components, APIs, and microservices via a self-service catalog.",
       "icon": "/img/homepage/ai-agent-lifecycle-management.svg",
       "link": "/docs/software-catalog/overview",
+      "target": "_self",
       "title": "Software Catalog"
     },
     {
@@ -50,6 +65,7 @@
       "description": "Find out how to efficiently orchestrate, monitor, and manage your runtime environments with ready-to-use components.",
       "link": "/docs/marketplace/overview_marketplace",
       "title": "Runtime Components",
+      "target": "_self",
       "type": "image"
     }
   ],

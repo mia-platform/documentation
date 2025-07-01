@@ -112,7 +112,7 @@ const AnnouncementBanner = ({data}) => (
                 </div>
                 <div style={{display: 'flex', gap: '12px'}}>
                     {data.buttons.map(button => (
-                        <CustomLink href={button.link} key={button.label}>
+                        <CustomLink href={button.link} key={button.label} target={button.target}>
                             <button style={{
                                 backgroundColor: button.primary ? '#1261E4' : '#FFFFFF',
                                 border: button.primary ? '1px solid var(--mia-primary)' : '1px solid #D1D5DB',
@@ -164,7 +164,7 @@ const FeatureGrid = ({features}) => (
                 {features.map((feature) => {
                     if (feature.type === 'image') {
                         return (
-                            <CustomLink className="feature-card-link" href={feature.link} key={feature.title}>
+                            <CustomLink className="feature-card-link" href={feature.link} key={feature.title} target={feature.target}>
                                 <div
 className="card-container" style={{
                                     backgroundImage: `linear-gradient(rgba(0,0,100,0.4), rgba(0,0,0,0.4)), url(${feature.backgroundImage})`,
@@ -205,7 +205,7 @@ className="card-container" style={{
                         );
                     }
                     return (
-                        <CustomLink className="feature-card-link" href={feature.link} key={feature.title}>
+                        <CustomLink className="feature-card-link" href={feature.link} key={feature.title} target={feature.target}>
                             <div
 className="feature-card card-container" style={{
                                 alignItems: 'flex-start',
@@ -454,6 +454,7 @@ className="section" style={{
                         key={social.name}
                         onMouseOut={e => e.currentTarget.style.transform = 'scale(1)'}
                         onMouseOver={e => e.currentTarget.style.transform = 'scale(1.05)'}
+                        rel="noreferrer"
                         style={{
                             borderRadius: '50%',
                             display: 'block',
