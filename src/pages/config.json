@@ -1,99 +1,87 @@
 {
   "hero": {
-    "title": "Welcome on Mia-Platform Docs!",
-    "subtitle": "Learn how Mia-Platform can help you to develop your business",
-    "searchPlaceholder": "Search for terms, features and more...",
-    "logoText": {
-      "main": "Mia-Platform",
-      "secondary": ""
-    },
-    "backgroundImage": "/img/home-page-banner.png",
-    "searchIcon": "/placeholder.svg?width=24&height=24",
-    "logoIcon": "/img/mia-platform-logo.png"
+    "backgroundImageUrl": "/img/homepage/mia-platform-banner-top.jpg",
+    "description": "Learn how Mia-Platform can help you to develop your business",
+    "logoUrl": "img/homepage/mia-platform-logo.png",
+    "subtitle": "Welcome on Mia-Platform Docs!",
+    "title": ""
   },
-  "notification": {
-    "title": "Mia Platform v13 is now available!",
-    "subtitle": "Compose Your Platform",
+  "announcement": {
     "buttons": [
-      { "text": "View roadmap", "href": "#", "variant": "primary" },
-      { "text": "View release note", "href": "#", "variant": "primary" }
-    ]
+      {"label": "View roadmap", "link": "/docs/release-notes/roadmap", "primary": true},
+      {"label": "View release note", "link": "/docs/release-notes/v14-overview", "primary": true}
+    ],
+    "description": "Compose Your Platform",
+    "title": "Mia Platform v14 is now available!"
   },
-  "features": [
+  "featureGrid": [
     {
-      "icon": "/placeholder.svg?width=32&height=32",
-      "title": "Platform Engineering Enablement",
-      "description": "Discover how to establish clear governance with golden paths for software delivery"
+      "description": "Discover how to govern and industrialize your entire cloud-native development and operations lifecycle.",
+      "icon": "/img/homepage/platform-engineering-enablement.svg",
+      "link": "/docs/development_suite/overview-dev-suite",
+      "title": "Mia-Platform Console"
     },
     {
-      "icon": "/placeholder.svg?width=32&height=32",
-      "title": "Self-service Application Development",
-      "description": "Discover how the console solves problems in Platform Engineering"
+      "description": "Learn how to visually build and orchestrate microfrontends for modern, scalable web applications.",
+      "icon": "/img/homepage/self-service-application-development.svg",
+      "link": "/docs/microfrontend-composer/what-is",
+      "title": "Microfrontend Composer"
     },
     {
-      "icon": "/placeholder.svg?width=32&height=32",
-      "title": "Real-Time Data Integration",
-      "description": "Find out how to connect any data source and deliver it to cloud-native applications in near real-time"
+      "description": "Find out how to make real-time, data-driven decisions with always-on, constantly updated data.",
+      "icon": "/img/homepage/real-time-data-integration.svg",
+      "link": "/docs/fast_data/what_is_fast_data",
+      "title": "Mia-Platform Fast Data"
     },
     {
-      "icon": "/placeholder.svg?width=32&height=32",
-      "title": "Secure Platform Operations",
-      "description": "Learn how to connect to any cloud-native infrastructure and manage workloads across any runtime"
+      "description": "Discover how to easily find, understand, and effectively govern all of your company's data assets.",
+      "icon": "/img/homepage/secure-platform-operations.svg",
+      "link": "/docs/data_catalog/overview_data_catalog",
+      "title": "Data Catalog"
     },
     {
-      "icon": "/placeholder.svg?width=32&height=32",
-      "title": "AI Agent Lifecycle Management",
-      "description": "Learn how to enable the creation and orchestration of AI Agents within the platform experience"
+      "description": "Explore how to manage and reuse software components, APIs, and microservices via a self-service catalog.",
+      "icon": "/img/homepage/ai-agent-lifecycle-management.svg",
+      "link": "/docs/software-catalog/overview",
+      "title": "Software Catalog"
     },
     {
-      "icon": "/placeholder.svg?width=32&height=32",
-      "title": "AI-Native DevX",
-      "description": "Integrate AI-native capabilities throughout the software lifecycle",
-      "backgroundImage": "/placeholder.svg?width=600&height=200"
+      "backgroundImage": "/img/homepage/ai.jpg",
+      "description": "Find out how to efficiently orchestrate, monitor, and manage your runtime environments with ready-to-use components.",
+      "link": "/docs/marketplace/overview_marketplace",
+      "title": "Runtime Components",
+      "type": "image"
     }
   ],
-  "beginners": {
-    "title": "Mia-Platform for beginners!",
-    "description": "New to Mia-Platform ecosystem?\nDiscover how and where to start.",
-    "image": "/placeholder.svg?width=600&height=400",
-    "linkText": "Get started"
+  "beginnersSection": {
+    "description": "New to Mia-Platform ecosystem?",
+    "imageUrl": "/img/homepage/beginners.png",
+    "link": {"url": "/docs/getting-started"},
+    "subtitle": "Discover how and where to start.",
+    "title": "Mia-Platform for beginners!"
   },
-  "communityLinks": [
+  "communitySection": [
     {
-      "icon": "/placeholder.svg?width=32&height=32",
-      "text": "Join our GitHub Community",
-      "href": "#"
+      "icon": "/img/homepage/github.svg",
+      "link": "https://github.com/mia-platform/community/discussions",
+      "target": "_blank",
+      "title": "Join our GitHub Community"
     },
     {
-      "icon": "/placeholder.svg?width=32&height=32",
-      "text": "Join our Expert Program",
-      "href": "#"
+      "icon": "/img/homepage/expert.svg",
+      "link": "https://events.mia-platform.eu/mia-platform-expert-community",
+      "target": "_blank",
+      "title": "Join our Expert Program"
     }
   ],
-  "keepInTouch": {
-    "title": "Let's keep in touch!",
-    "subtitle": "Visit our website",
-    "socialLinks": [
-      {
-        "icon": "/placeholder.svg?width=24&height=24",
-        "href": "#",
-        "label": "Website"
-      },
-      {
-        "icon": "/placeholder.svg?width=24&height=24",
-        "href": "#",
-        "label": "GitHub"
-      },
-      {
-        "icon": "/placeholder.svg?width=24&height=24",
-        "href": "#",
-        "label": "LinkedIn"
-      },
-      {
-        "icon": "/placeholder.svg?width=24&height=24",
-        "href": "#",
-        "label": "Instagram"
-      }
-    ]
+  "footer": {
+    "backgroundImageUrl": "/img/homepage/mia-platform-banner-bottom.jpg",
+    "socials": [
+      {"imageUrl": "/img/homepage/website-button.svg", "link": "https://mia-platform.eu/", "name": "Website"},
+      {"imageUrl": "/img/homepage/github-button.svg", "link": "https://github.com/mia-platform/", "name": "GitHub"},
+      {"imageUrl": "/img/homepage/linkedin-button.svg", "link": "https://www.linkedin.com/company/mia-platform/", "name": "LinkedIn"},
+      {"imageUrl": "/img/homepage/instagram-button.svg", "link": "https://www.instagram.com/miaplatform/", "name": "Instagram"}
+    ],
+    "title": "Let's keep in touch!"
   }
 }

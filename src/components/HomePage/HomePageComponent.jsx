@@ -2,93 +2,11 @@ import React from 'react';
 import PropTypes from "prop-types";
 import SearchBar from "@theme/SearchBar";
 
-// --- CONFIGURATION FILE ---
-// All data for the homepage is centralized here for easy management.
-const homepageData = {
-    hero: {
-        backgroundImageUrl: "/img/homepage/mia-platform-banner-top.jpg",
-        description: "Learn how Mia-Platform can help you to develop your business",
-        logoUrl: "img/homepage/mia-platform-logo.png",
-        subtitle: "Welcome on Mia-Platform Docs!",
-        title: "",
-    },
-    announcement: {
-        buttons: [
-            {label: "View roadmap", link: "/roadmap", primary: false},
-            {label: "View release note", link: "/release-notes", primary: true}
-        ],
-        description: "Compose Your Platform",
-        title: "Mia Platform v13 is now available!",
-    },
-    featureGrid: [
-        {
-            description: "Discover how to establish clear governance with golden paths for software delivery",
-            icon: "/img/homepage/platform-engineering-enablement.svg",
-            link: "/docs/platform-engineering",
-            title: "Platform Engineering Enablement",
-        },
-        {
-            description: "Discover how the console solves problems in Platform Engineering",
-            icon: "/img/homepage/self-service-application-development.svg",
-            link: "/docs/self-service-dev",
-            title: "Self-service Application Development",
-        },
-        {
-            description: "Find out how to connect any data source and deliver it to cloud-native applications in near real-time",
-            icon: "/img/homepage/real-time-data-integration.svg",
-            link: "/docs/real-time-data",
-            title: "Real-Time Data Integration",
-        },
-        {
-            description: "Learn how to connect to any cloud-native infrastructure and manage workloads across any runtime",
-            icon: "/img/homepage/secure-platform-operations.svg",
-            link: "/docs/secure-operations",
-            title: "Secure Platform Operations",
-        },
-        {
-            description: "Learn how to enable the creation and orchestration of AI Agents within the platform experience",
-            icon: "/img/homepage/ai-agent-lifecycle-management.svg",
-            link: "/docs/ai-lifecycle",
-            title: "AI Agent Lifecycle Management",
-        },
-        {
-            backgroundImage: "/img/homepage/ai.jpg",
-            description: "Integrate AI-native capabilities throughout the software lifecycle",
-            link: "/docs/ai-devx",
-            title: "AI-Native DevX",
-            type: 'image',
-        }
-    ],
-    beginnersSection: {
-        description: "New to Mia-Platform ecosystem?",
-        imageUrl: "/img/homepage/beginners.png",
-        link: {url: "/docs/getting-started"},
-        subtitle: "Discover how and where to start.",
-        title: "Mia-Platform for beginners!",
-    },
-    communitySection: [
-        {icon: "/img/homepage/github.svg", link: "https://github.com/mia-platform", title: "Join our GitHub Community"},
-        {icon: "/img/homepage/expert.svg", link: "/expert-program", title: "Join our Expert Program"}
-    ],
-    footer: {
-        backgroundImageUrl: '/img/homepage/mia-platform-banner-bottom.jpg',
-        socials: [
-            {imageUrl: '/img/homepage/website-button.svg', link: '#', name: 'Website'},
-            {imageUrl: '/img/homepage/github-button.svg', link: '#', name: 'GitHub'},
-            {imageUrl: '/img/homepage/linkedin-button.svg', link: '#', name: 'LinkedIn'},
-            {imageUrl: '/img/homepage/instagram-button.svg', link: '#', name: 'Instagram'}
-        ],
-        title: "Let's keep in touch!",
-    }
-};
-
-// --- REACT COMPONENTS ---
-
 /**
  * A reusable link component to avoid repetitive styling on anchor tags.
  */
-const CustomLink = ({children, className, href, style}) => (
-    <a className={className} href={href} style={{color: 'inherit', textDecoration: 'none', ...style}}>
+const CustomLink = ({children, className, href, style, target}) => (
+    <a className={className} href={href} style={{color: 'inherit', textDecoration: 'none', ...style}} target={target} >
         {children}
     </a>
 );
@@ -98,6 +16,7 @@ CustomLink.propTypes = {
     className: PropTypes.string,
     href: PropTypes.string.isRequired,
     style: PropTypes.object,
+    target: PropTypes.string.isRequired
 };
 
 /**
@@ -415,7 +334,7 @@ className="beginners-grid" style={{
                 </div>
             </div>
             {/* Scoped styles for mobile responsiveness */}
-            <style jsx>{`
+            <style>{`
                 @media (max-width: 996px) {
                     .beginners-grid {
                         grid-template-columns: 1fr !important;
@@ -453,7 +372,7 @@ const CommunitySection = ({data}) => (
             }}
             >
                 {data.map(item => (
-                    <CustomLink className="community-card-link" href={item.link} key={item.title}>
+                    <CustomLink className="community-card-link" href={item.link} key={item.title} target={item.target}>
                         <div style={{
                             alignItems: 'center',
                             border: '1px solid var(--mia-card-border)',
@@ -479,7 +398,7 @@ const CommunitySection = ({data}) => (
                 ))}
             </div>
             {/* Scoped styles for hover effects */}
-            <style jsx>{`
+            <style>{`
                 .community-card-link:hover > div {
                     box-shadow: 0 8px 16px rgba(17, 24, 39, 0.05);
                     transform: translateY(-4px);
@@ -542,6 +461,7 @@ className="section" style={{
                             overflow: 'hidden',
                             width: '64px',
                         }}
+                        target="_blank"
                     >
                         <img
                             alt={social.name}
@@ -554,7 +474,7 @@ className="section" style={{
             </div>
         </div>
         {/* Scoped styles for mobile responsiveness */}
-        <style jsx>{`
+        <style>{`
             @media (max-width: 768px) {
                 .socials-container {
                     /* On mobile, stack icons vertically */
@@ -582,7 +502,7 @@ TouchFooter.propTypes = {
  * Global styles component to provide base variables and styles for the page.
  */
 const GlobalStyles = () => (
-    <style global jsx>{`
+    <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
         :root {
@@ -633,22 +553,72 @@ const GlobalStyles = () => (
 
 // --- MAIN APP COMPONENT ---
 // This component assembles the entire page structure.
-export default function HomePageComponent() {
+export default function HomePageComponent({configuration}) {
     return (
         <>
             <GlobalStyles/>
             <div className="homepage-wrapper">
-                <HomepageHeader data={homepageData.hero}/>
+                <HomepageHeader data={configuration.hero}/>
                 <main>
-                    <AnnouncementBanner data={homepageData.announcement}/>
-                    <FeatureGrid features={homepageData.featureGrid}/>
-                    <BeginnersSection data={homepageData.beginnersSection}/>
-                    <CommunitySection data={homepageData.communitySection}/>
-                    <TouchFooter data={homepageData.footer}/>
+                    <AnnouncementBanner data={configuration.announcement}/>
+                    <FeatureGrid features={configuration.featureGrid}/>
+                    <BeginnersSection data={configuration.beginnersSection}/>
+                    <CommunitySection data={configuration.communitySection}/>
+                    <TouchFooter data={configuration.footer}/>
                 </main>
             </div>
         </>
     );
 }
 
-HomePageComponent.propTypes = {};
+HomePageComponent.propTypes = {
+    configuration: PropTypes.shape({
+        hero: PropTypes.shape({
+            backgroundImageUrl: PropTypes.string.isRequired,
+            description: PropTypes.string.isRequired,
+            logoUrl: PropTypes.string.isRequired,
+            subtitle: PropTypes.string.isRequired,
+            title: PropTypes.string.isRequired,
+        }).isRequired,
+        announcement: PropTypes.shape({
+            buttons: PropTypes.arrayOf(PropTypes.shape({
+                label: PropTypes.string.isRequired,
+                link: PropTypes.string.isRequired,
+                primary: PropTypes.bool.isRequired,
+            })).isRequired,
+            description: PropTypes.string.isRequired,
+            title: PropTypes.string.isRequired,
+        }).isRequired,
+        featureGrid: PropTypes.arrayOf(PropTypes.shape({
+            description: PropTypes.string.isRequired,
+            icon: PropTypes.string, // Opzionale
+            link: PropTypes.string.isRequired,
+            title: PropTypes.string.isRequired,
+            backgroundImage: PropTypes.string, // Opzionale
+            type: PropTypes.string, // Opzionale
+        })).isRequired,
+        beginnersSection: PropTypes.shape({
+            description: PropTypes.string.isRequired,
+            imageUrl: PropTypes.string.isRequired,
+            link: PropTypes.shape({
+                url: PropTypes.string.isRequired,
+            }).isRequired,
+            subtitle: PropTypes.string.isRequired,
+            title: PropTypes.string.isRequired,
+        }).isRequired,
+        communitySection: PropTypes.arrayOf(PropTypes.shape({
+            icon: PropTypes.string.isRequired,
+            link: PropTypes.string.isRequired,
+            title: PropTypes.string.isRequired,
+        })).isRequired,
+        footer: PropTypes.shape({
+            backgroundImageUrl: PropTypes.string.isRequired,
+            socials: PropTypes.arrayOf(PropTypes.shape({
+                imageUrl: PropTypes.string.isRequired,
+                link: PropTypes.string.isRequired,
+                name: PropTypes.string.isRequired,
+            })).isRequired,
+            title: PropTypes.string.isRequired,
+        }).isRequired,
+    }).isRequired,
+};

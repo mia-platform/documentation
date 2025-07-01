@@ -1,6 +1,7 @@
 import React from "react";
 import Layout from "@theme/Layout";
-import HomePage from "../components/HomePage/HomePage";
+import HomePageComponent from "../components/HomePage/HomePageComponent";
+import configuration from "./config.json";
 
 
 function Home() {
@@ -11,7 +12,7 @@ function Home() {
             title={"Documentation - Mia-Platform"}
         >
             <main>
-                <HomePage />
+                <HomePageComponent configuration={configuration} />
             </main>
         </Layout>
     );
