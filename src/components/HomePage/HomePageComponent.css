@@ -29,6 +29,8 @@
     --mia-card-bg-hover: rgba(230, 230, 230, 1);
     --boarder-card-community: 1px solid #E5E7EB;
     --mia-card-community-bg-hover: #E5E5E5;
+    --icon-hexagon: #AAD1FF;
+    --icon-main: #004AAA;
 }
 
 [data-theme="dark"] {
@@ -54,6 +56,8 @@
     --mia-card-bg-hover: rgba(24, 144, 255, 0.24);
     --boarder-card-community: 0px solid #E5E7EB;
     --mia-card-community-bg-hover: rgba(137, 137, 137, 0.64);
+    --icon-hexagon: rgba(24, 144, 255, 0.24);
+    --icon-main: #F9F9F9;
 }
 
 body {
@@ -520,8 +524,12 @@ body {
     filter: invert(1);
 }
 
-[data-theme="dark"] .feature-card-icon-wrapper  {
-    color: red;
+[fill="#AAD1FF"] {
+    fill: var(--icon-hexagon);
+}
+
+[fill="#004AAA"] {
+    fill: var(--icon-main);
 }
 
 
