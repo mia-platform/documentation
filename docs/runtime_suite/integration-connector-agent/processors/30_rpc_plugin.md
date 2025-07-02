@@ -36,7 +36,7 @@ In order to create custom RPC plugin you need to:
 
 To implement the `Processor` interface, you need to define a struct that implements the following methods:
 
-- `Init(config map[string]interface{}) error`: This method is called to initialize the plugin with the provided
+- `Init(config []byte) error`: This method is called to initialize the plugin with the provided
 configuration options.
 - `Process(input entities.PipelineEvent) (entities.PipelineEvent, error)`: This method is called to process the input event.
 
@@ -60,7 +60,7 @@ type MyProcessor struct {
 	// Add any fields you need for your plugin
 }
 
-func (p *MyProcessor) Init(config map[string]interface{}) error {
+func (p *MyProcessor) Init(config []byte) error {
 	// Initialize your plugin with the provided options
 	return nil
 }
