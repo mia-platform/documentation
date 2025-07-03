@@ -116,7 +116,9 @@ const HomepageHeader = ({data}) => (
                             customStyle={{
                                 height: '32px',
                                 maxWidth: '90%',
-                                width: '480px'
+                                width: '480px',
+                                border: '1px solid white',
+                                color: 'white'
                             }}
                         />
                     </div>

@@ -63,7 +63,7 @@
     {
       "description": "Find out how to efficiently orchestrate, monitor, and manage your runtime environments with ready-to-use components.",
       "icon": "runtime-environment",
-      "link": "/docs/software-catalog/overview",
+      "link": "/docs/marketplace/overview_marketplace",
       "target": "_self",
       "title": "Runtime Components"
     }
