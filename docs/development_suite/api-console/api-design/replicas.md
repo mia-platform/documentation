@@ -13,9 +13,8 @@ Based on your release pipeline, the `ENABLE_HPA` environment variable could need
 :::
 
 :::danger
-The replicas configured will not work properly if the [static replicas](/development_suite/api-console/api-design/services.md#microservice-configuration) is set to 0.
-
-Setting both static replicas and HPA Replicas may lead to undefined behaviors
+When the HPA is not active, the static replicas setting will determine the number of replicas. 
+If the HPA is active, the [static replicas](/development_suite/api-console/api-design/services.md#microservice-configuration) setting will serve as a baseline, but it must be configured with a non-zero value to ensure a minimum number of replicas.
 :::
 
 ## Configure Replicas
