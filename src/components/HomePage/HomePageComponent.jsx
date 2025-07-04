@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from "prop-types";
 import SearchBar from "@theme/SearchBar";
+import {useColorMode} from '@docusaurus/theme-common';
 import './HomePageComponent.css';
 
 /**
@@ -99,34 +100,39 @@ GetIcons.propTypes = {
 /**
  * Renders the main hero section of the page.
  */
-const HomepageHeader = ({data}) => (
-    <header className="homepage-header">
-        <div className="homepage-header-background" style={{backgroundImage: `url(${data.backgroundImageUrl})`}}>
-            <div className="container hero-container">
-                <div className="hero-branding">
-                    <img alt="Mia Platform Logo" className="hero-logo" src={data.logoUrl}/>
-                    <h1 className="hero-title">{data.title}</h1>
-                </div>
-                <p className="hero-subtitle">{data.subtitle}</p>
-                <p className="hero-description">{data.description}</p>
-                <div className="hero-search-bar-container">
-                    <div className="hero-search-bar-wrapper">
-                        <SearchBar
-                            avoidKeyboardShortcuts
-                            customStyle={{
-                                height: '32px',
-                                maxWidth: '90%',
-                                width: '480px',
-                                border: '1px solid white',
-                                color: 'white'
-                            }}
-                        />
+const HomepageHeader = ({data}) => {
+    const {colorMode} = useColorMode();
+    return (
+        <header className="homepage-header">
+            <div className="homepage-header-background" style={{backgroundImage: `url(${data.backgroundImageUrl})`}}>
+                <div className="container hero-container">
+                    <div className="hero-branding">
+                        <img alt="Mia Platform Logo" className="hero-logo" src={data.logoUrl}/>
+                        <h1 className="hero-title">{data.title}</h1>
+                    </div>
+                    <p className="hero-subtitle">{data.subtitle}</p>
+                    <p className="hero-description">{data.description}</p>
+                    <div className="hero-search-bar-container">
+                        <div className="hero-search-bar-wrapper">
+                            <SearchBar
+                                avoidKeyboardShortcuts
+                                customStyle={{
+                                    height: '32px',
+                                    maxWidth: '90%',
+                                    width: '480px',
+                                    ...(colorMode === 'dark' && {
+                                        border: '1px solid white',
+                                        color: 'white'
+                                    })
+                                }}
+                            />
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </header>
-);
+        </header>
+    )
+};
 
 HomepageHeader.propTypes = {
     data: PropTypes.shape({
