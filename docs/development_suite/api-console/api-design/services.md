@@ -531,6 +531,24 @@ You need to give **additional permissions** to the console service account in or
 
 It is also possible to use Kubernetes secrets to setup specific environment variables, follow this [link](/development_suite/api-console/api-design/services.md#environment-variable-configuration) to understand how to do so.  
 
+#### Empty dirs
+
+You can use this section to define special mounting points in your services.  
+This mountpoints can be used to create an actual empty directory on the generated Kubernetes pod. This can be useful if
+the service run with low privileges and cannot change anything in its default file system because the generated folder
+will be readwritable by the process.  
+Another common use case is to allow sharing data between the different containers of the service, because if you use
+the same empty dir in one or more container of the same service. This can be useful if one of the container can generate
+files that must be consumed by another container.
+
+![Empty dir](img/empty-dir.png)
+
+You can create two different types of empty dirs, the first one will use space on the disks of the kubernetes node where
+the workload will run or using the part of the dedicated memory to the service saving the data directly in the RAM.
+
+The main difference is that using the RAM is faster and the data will be lost after a pod restart, using the file system
+will preserve the data between pod crashes but the speed of the read writes are tied to the medium used by the node disk.
+
 ### Provide a CA Certificate to a custom service
 
 In an enterprise environment, to encrypt SSL connections, there could be a set of custom certificates signed by one or more trusted certificates.
