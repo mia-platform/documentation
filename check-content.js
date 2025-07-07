@@ -80,19 +80,28 @@ async function checkSidebar(folder, sidebarFilePath, sidebarBasePath, removeImag
 
     const content = fs.readFileSync(file.path, 'utf8')
     const header = content.match(checkIdRegexp)
+
+    // Remove codeblocks from content before checking for images
+    const contentWithoutCodeblocks = content.replace(/^```[\s\S]*?^```/gm, '')
+
     const manageMatchedImage = img => {
+      if (!img || img.startsWith('http')) {
+        return
+      }
       const absolutePath = path.resolve(path.parse(file.path).dir, img)
       images[absolutePath.replace(absolutePathPrefix, '')] = {
         file: absolutePath,
         isUsed: true
       }
     }
-    content.match(checkImg)?.map(img => img.replace(/^\[.*\]\(/, '').replace(/\)$/, '')).forEach(manageMatchedImage)
-    content.match(checkImgTag)
+
+    // Perform image checks on content without codeblocks
+    contentWithoutCodeblocks.match(checkImg)?.map(img => img.replace(/^\[.*\]\(/, '').replace(/\)$/, '')).forEach(manageMatchedImage)
+    contentWithoutCodeblocks.match(checkImgTag)
     ?.map(img => img.replace("<img src=\"", "").replace("\" />", "").trim())
     .forEach(manageMatchedImage)
 
-    const imagesFromImport = [...content.matchAll(checkImportImg)].map(match => match[1])
+    const imagesFromImport = [...contentWithoutCodeblocks.matchAll(checkImportImg)].map(match => match[1])
     imagesFromImport.forEach(manageMatchedImage)
 
     let filePath = file.path
