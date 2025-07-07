@@ -33,6 +33,7 @@ Directly beneath the overall progress bar, a **select dropdown menu** enables us
 - **SOUP Report**: Details the use of all Software of Unknown Provenance (SOUP).
 - **Changelogs**: A folder containing the changelogs of each custom software components.
 - **Unit Tests**: Presents the outcomes and coverage of unit tests performed on custom software components.
+- **Vulnerability Report**: Provides a summary and details of detected vulnerabilities for the specific system version.
 
 These reports ensure compliance, traceability, and readiness for audits or external reviews.
 
