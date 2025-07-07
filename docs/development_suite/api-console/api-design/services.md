@@ -534,10 +534,10 @@ It is also possible to use Kubernetes secrets to setup specific environment vari
 #### Empty dirs
 
 You can use this section to define special mounting points in your services.  
-This mountpoints can be used to create an actual empty directory on the genereated kuberntes pod. This can be useful if
+This mountpoints can be used to create an actual empty directory on the generated Kubernetes pod. This can be useful if
 the service run with low privileges and cannot change anything in its default file system because the generated folder
 will be readwritable by the process.  
-Another common use case is to allow sharing data between the different containers of the service, becuase if you use
+Another common use case is to allow sharing data between the different containers of the service, because if you use
 the same empty dir in one or more container of the same service. This can be useful if one of the container can generate
 files that must be consumed by another container.
 
