@@ -1150,7 +1150,7 @@ Now that our services are up and running we just have to create the **extension*
 3. On the `Add iframe extension` modal fill the following fields:
 	- **Extension name**: with the value `Jira Extension`
 	- **Entry URL**: with the value `<your-frontend-url>`
-	- **Desination Area**: with the value `Company Overview`
+	- **Destination Area**: with the value `Company Overview`
 	- **Category**: with the value `GENERAL`
 	- Keep the `Whole Company` flagged
 4. Now in the bottom of the extension page you have to click the `Edit` button in the `Console Single-Sign-On` section
