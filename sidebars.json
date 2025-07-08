@@ -66,6 +66,20 @@
               ]
             }
           ]
+        },{
+          "collapsed": true,
+          "type": "category",
+          "label": "Infrastructure Project",
+          "items": [
+            {
+              "id": "console/tutorials/infrastructure-project/create-project-configuration",
+              "type": "doc"
+            },
+            {
+              "id": "console/tutorials/infrastructure-project/visualize-infrastructure-project-components-runtime-data-in-console",
+              "type": "doc"
+            }
+          ]
         },
         {
           "id": "console/tutorials/microservice-from-docker-image",
@@ -92,7 +106,7 @@
           "type": "doc"
         },
         {
-          "id": "console/tutorials/visualize-infrastructure-project-components-runtime-data-in-console",
+          "id": "console/company-configuration/providers/project-configuration",
           "type": "doc"
         }
       ]
