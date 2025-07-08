@@ -87,7 +87,9 @@ const linksWithErrors = readFiles(docsFolder+'/docs/')
     .filter(f => f.endsWith('.md') || f.endsWith('.mdx'))
     .reduce((pages, pageLink) => {
         const content = fs.readFileSync(pageLink, 'utf8');
-        const links = content.match(/!?\[([^\]]*)\]\(([^)]+)\)/gm);
+        // Remove codeblocks from content before checking for links
+        const contentWithoutCodeblocks = content.replace(/^```[\s\S]*?^```/gm, '');
+        const links = contentWithoutCodeblocks.match(/!?\[([^\]]*)\]\(([^)]+)\)/gm);
         const errors = links ? links
             .map(l => l.match(/\[.*\]\((.*)\)/)[1])
             .filter(linkToCheck)
