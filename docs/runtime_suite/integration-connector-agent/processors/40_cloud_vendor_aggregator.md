@@ -15,7 +15,7 @@ various cloud vendors into a standardized asset shape.
 This processor is particularly useful for organizations that need to manage and analyze assets across multiple cloud environments.
 
 :::info
-This processor is tighly coupled with the Cloud vendor-specific sources.
+This processor is tightly coupled with the Cloud vendor-specific sources.
 
 It's usage is recommended only if you are using the following sources:
 

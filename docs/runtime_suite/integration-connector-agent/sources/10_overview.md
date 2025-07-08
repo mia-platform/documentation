@@ -20,7 +20,7 @@ The supported sources are:
 - [**GitHub**](20_github.md): The GitHub source allows you to receive events from repositories and other GitHub assets.
 - [**Google Cloud Asset Inventory API Pub/Sub**](30_gcp_pubsub_asset_inventory.md): This source allows the integration
   connector agent to receive events from the Google Cloud Asset Inventory API through the Pub/Sub service.
-- [**Micosoft Azure Activity Log Event Hub**](40_azure_activity_log_event_hub.md): This source allows the integration
+- [**Microsoft Azure Activity Log Event Hub**](40_azure_activity_log_event_hub.md): This source allows the integration
   connector agent to receive events from the Microsoft Azure Monitor Activity Log through the EventHub service.
 - [**AWS CloudTrail SQS**](50_aws_cloudtrail_sqs.md): This source allows the integration
   connector agent to receive events from AWS CloudTrail published to SQS using Amazon EventBridge.

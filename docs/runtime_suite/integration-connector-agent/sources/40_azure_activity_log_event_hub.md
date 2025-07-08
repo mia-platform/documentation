@@ -11,7 +11,7 @@ Instead, modify the source file and run the aggregator to regenerate this file.
 -->
 
 This source allows the integration connector agent to receive the Monitor Activity Log of an Azure subscription
-throught the Event Hub service.
+through the Event Hub service.
 
 ## Microsoft Azure Setup
 
@@ -63,11 +63,11 @@ configuration file:
 ## Single Authentication
 
 In addition to these settings to allow the application to authenticate to the Microsoft Azure subscription you can set
-the following environment varibales instead of the equivalent source configuration:
+the following environment variables instead of the equivalent source configuration:
 
 - `AZURE_TENANT_ID`: The tenant ID of the Azure Entra ID where the entity used to authenticate is located inside
   the subscription
 - `AZURE_CLIENT_ID`: The client ID of the entity used to authenticate
 - `AZURE_CLIENT_SECRET`: The client secret of the entity used to authenticate
 
-The values set in the configuration block will take precendece over the env variables.
+The values set in the configuration block will take precedence over the env variables.
