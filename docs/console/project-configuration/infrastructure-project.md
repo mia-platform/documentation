@@ -80,7 +80,7 @@ To retrieve the information of the available [Infrastructure Component Runtime S
 ```
 curl -X GET \
   -H "Authorization: Bearer <YOUR_TOKEN>" \
-  '<console-url>/api/tenants/<company-id>/marketplace/items'
+  '<console-url>/api/marketplace?tenantId=<your-tenant-id>&types=infrastructure-component-runtime'
 ```  
 :::
 
