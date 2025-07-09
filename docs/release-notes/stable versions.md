@@ -31,7 +31,7 @@ As the transition period from one MTW to the next approaches, more precise dates
 |  Quarter  | Stable Version* |      Start MTW       |       End MTW        |
 |-----------|----------------|----------------------|----------------------|
 | Q4 - 2025 |    v14.1.x     | _October 23rd, 2025_  | _January 15th, 2026_ |
-| Q1 - 2026 |    v14.4.x     | _January 15th, 2026_  | _April 16th, 2026_  |
+| Q1 - 2026 |    v14.3.x     | _January 15th, 2026_  | _April 16th, 2026_  |
 | Q2 - 2026 |    v14.7.x     | _April 16th, 2026_ | _July 16th, 2026_ |
 | Q3 - 2026 |    v15.0.x     |  _July 16th, 2026_  | _October 22nd, 2026_ |
 | Q4 - 2026 |    v15.3.x     | _October 22nd, 2026_  | _January 14th, 2027_ |
