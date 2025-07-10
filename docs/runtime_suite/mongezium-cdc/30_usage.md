@@ -20,7 +20,7 @@ each collection selecting the desired `snapshot` mode.
 
 > **⚠️ CAUTION**
 >
-> To let Mongezium resume change stream events, the header of each mongezium message contains [the resume token](https://www.mongodb.com/docs/manual/changeStreams/#resume-tokens). At startup, the service will read the latest message and create the change stream with the given resume token.
+> To let Mongezium resume change stream events, the header of each Mongezium message contains [the resume token](https://www.mongodb.com/docs/manual/changeStreams/#resume-tokens). At startup, the service will read the latest message and create the change stream with the given resume token.
 >
 > It may happen that the `oplog.rs` collection grows in size and certain resume token may disappear.  
 > In such case, a new change stream will be opened, listening for new changes

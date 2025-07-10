@@ -72,7 +72,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- Add authoFlushMs configuration variable to define flush interval. Defaults to 1 second.
+- Add `authoFlushMs` configuration variable to define flush interval. Defaults to 1 second.
 - Add metrics and healthcheck endpoints
 
 ### Fixed
