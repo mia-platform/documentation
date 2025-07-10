@@ -66,6 +66,20 @@
               ]
             }
           ]
+        },{
+          "collapsed": true,
+          "type": "category",
+          "label": "Infrastructure Project",
+          "items": [
+            {
+              "id": "console/tutorials/infrastructure-project/create-project-configuration",
+              "type": "doc"
+            },
+            {
+              "id": "console/tutorials/infrastructure-project/visualize-infrastructure-project-components-runtime-data-in-console",
+              "type": "doc"
+            }
+          ]
         },
         {
           "id": "console/tutorials/microservice-from-docker-image",
@@ -92,7 +106,11 @@
           "type": "doc"
         },
         {
-          "id": "console/tutorials/visualize-infrastructure-project-components-runtime-data-in-console",
+          "id": "console/company-configuration/providers/project-configuration",
+          "type": "doc"
+        },
+        {
+          "id": "console/tutorials/create-extension-with-sso",
           "type": "doc"
         }
       ]
@@ -1846,6 +1864,7 @@
         "id": "release-notes/versions"
       },
       "items": [
+        { "id": "release-notes/v14.0.3", "type": "doc" },
         { "id": "release-notes/v14.0.2", "type": "doc" },
         { "id": "release-notes/v14.0.1", "type": "doc" },
         { "id": "release-notes/v14.0.0", "type": "doc" }

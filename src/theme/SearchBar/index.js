@@ -47,16 +47,11 @@ function mergeFacetFilters(f1, f2) {
     typeof f === 'string' ? [f] : f;
   return [...normalize(f1), ...normalize(f2)]
 }
-function DocSearch({
-  contextualSearch,
-  externalUrlRegex,
-  ...props
-}) {
+function DocSearch({contextualSearch, externalUrlRegex, customStyle = {}, placeholder = 'Search', ...props}) {
   const {siteMetadata} = useDocusaurusContext();
   const processSearchResultUrl = useSearchResultUrlProcessor();
 
-  const contextualSearchFacetFilters =
-    useAlgoliaContextualFacetFilters();
+  const contextualSearchFacetFilters = useAlgoliaContextualFacetFilters();
 
   const configFacetFilters =
     props.searchParameters?.facetFilters ?? [];
@@ -187,7 +182,9 @@ function DocSearch({
         onFocus={importDocSearchModalIfNeeded}
         onMouseOver={importDocSearchModalIfNeeded}
         onTouchStart={importDocSearchModalIfNeeded}
+        placeholder={placeholder}
         ref={searchButtonRef}
+        style={{...customStyle}}
         translations={translations.button}
       />
 
@@ -219,7 +216,7 @@ function DocSearch({
 
 // This component add the `avoidKeyboardShortcuts` prop to the default SearchBar component.
 // In our use case, it avoid a double search bar using `cmd+k` in homepage (which has two different search bar)
-export default function SearchBar({avoidKeyboardShortcuts}) {
+export default function SearchBar({avoidKeyboardShortcuts, customStyle, placeholder}) {
   const {siteConfig} = useDocusaurusContext();
-  return <DocSearch {...siteConfig.themeConfig.algolia} avoidKeyboardShortcuts={avoidKeyboardShortcuts} />;
+  return <DocSearch {...siteConfig.themeConfig.algolia} avoidKeyboardShortcuts={avoidKeyboardShortcuts} customStyle={customStyle} placeholder={placeholder} />;
 }

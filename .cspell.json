@@ -149,6 +149,8 @@
     "millicpus",
     "mkbaas",
     "mkdir",
+    "Mongezium",
+    "mongezium",
     "mongocryptd",
     "mqragguagliati",
     "mTLS",
@@ -370,7 +372,8 @@
     "saphana",
     "Medisanté",
     "SDLC",
-    "IMDRF"
+    "IMDRF",
+    "autho"
   ],
   "dictionaries": [
     "softwareTerms",
