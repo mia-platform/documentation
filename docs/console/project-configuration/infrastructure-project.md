@@ -44,11 +44,11 @@ In the near future components will be available in the [Software Catalog](/softw
 these configurations with other users.
 :::
 
-To create a new infrastructure component from scratch, you need to provide several information, which depdends on the type of provider of the project.
+To create a new infrastructure component from scratch, you need to provide several information, which depends on the type of provider of the project.
 
 <Tabs>
 <TabItem value="GitLab-Example" label="GitLab" default>
-If you have a project using GitLab as a provider, these are the informations that are required to add a component:
+If you have a project using GitLab as a provider, these are the information that are required to add a component:
 
 - **Name**: The name of the component.  
 - **Repository URL**: The URL of the Git repository where the component's code is hosted. This is used to provide a reference to the user.
@@ -57,7 +57,7 @@ If you have a project using GitLab as a provider, these are the informations tha
 
 ![Add Infrastructure Component](./img/add-infrastructure-component-gitlab.png)
 
-As exmaple:
+As example:
 
 - **Repository URL**: `https://my.gitlab.host/some/repo`
 - **Branch/tag name**: `main`
@@ -68,7 +68,7 @@ As a _Repository Project ID_, you can use the relative path of the repository or
 :::
 
 </TabItem>
-If you have a project using Azure DevOps as a provider, these are the informations that are required to add a component:
+If you have a project using Azure DevOps as a provider, these are the information that are required to add a component:
 
 - **Name**: The name of the component.  
 - **Repository URL**: The URL of the Git repository where the component's code is hosted. This is used to provide a reference to the user.
@@ -79,7 +79,7 @@ If you have a project using Azure DevOps as a provider, these are the informatio
 
 ![Add Infrastructure Component](./img/add-infrastructure-component-azure.png)
 
-As exmaple:
+As example:
 
 - **Repository URL**: `https://dev.azure.com/my-organization/my-project`
 - **Branch/tag name**: `main`
