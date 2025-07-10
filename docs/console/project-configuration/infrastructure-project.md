@@ -68,6 +68,8 @@ As a _Repository Project ID_, you can use the relative path of the repository or
 :::
 
 </TabItem>
+
+<TabItem value="Azure-Example" label="Azure DevOps">
 If you have a project using Azure DevOps as a provider, these are the information that are required to add a component:
 
 - **Name**: The name of the component.  
@@ -92,8 +94,6 @@ The _Repository Pipeline ID_ is not the name of the pipeline, but the identifier
 
 You can alternatively find it by navigating into your pipeline page: on the address bar the `definitionId` value is the pipeline identifier.
 :::
-<TabItem value="Azure-Example" label="Azure DevOps">
-
 </TabItem>
 </Tabs>
 
