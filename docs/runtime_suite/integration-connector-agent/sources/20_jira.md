@@ -81,10 +81,6 @@ The Jira source supports the following webhook events:
 The operation will be used by the sink which supports the upsert of the data to decide if
 the event should be inserted/updated or deleted.
 
-:::info
-The **event ID** used in the webhook payload is extracted from the `issue.id` field.
-:::
-
 ### Known Issues
 
 - The archived version is not correctly handled by the Webhook, so when archiving a version the WebHook is correctly
@@ -95,6 +91,10 @@ triggered but the `archived` field is always `false`. [Here the opened issue](ht
 For the issue events, it is possible to set a filter to receive only the events related to the issues that match the filter.
 
 Example of a filter is `project = "My Project"`.
+
+:::info
+The **event ID** used in the webhook payload is extracted from the `issue.id` field.
+:::
 
 #### Issue Event payload
 
