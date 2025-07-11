@@ -152,4 +152,4 @@ All of the following limitations will be soon resolved
     - the GitLab CI pipeline must be composed of two separate jobs named `plan` and `apply`
   - _Azure_ and use _Azure Pipelines_
     - the Azure pipeline must be composed of three stages: the first stage has to be named `plan`, the second stage must be a `ManualApproval`, and the thirs stage must be named `apply`
-- since it is not possible to create components from Marketplace, so you need to create your repository beforehand
+- creation from Marketplace is not supported yet, so you need to create your repository beforehand
