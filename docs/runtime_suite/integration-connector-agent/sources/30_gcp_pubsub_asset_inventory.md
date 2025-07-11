@@ -28,6 +28,11 @@ To configure the Google Cloud Asset Inventory API Pub/Sub source, you need to:
 Find out more about how to [monitor asset changes](https://cloud.google.com/asset-inventory/docs/monitor-asset-changes).
 :::
 
+### Full import
+
+This source supports a full import of all assets in the Google Cloud project.
+To trigger a full import, you can send a `POST` request to the webhook path configured in the service configuration.
+
 ## Service Configuration
 
 When configuring the Google Cloud Asset Inventory API Pub/Sub source,
@@ -41,6 +46,10 @@ will use to receive events, if the subscription does not exist it will be create
 - `ackDeadlineSeconds` (*integer*, optional): The acknowledgment deadline for the subscription, in seconds.
 This is the time within which the integration connector agent must acknowledge the received messages.
 If not specified, it defaults to 10 seconds.
+- `webhookPath` (*string*, optional): The path for the webhook expoed to trigger a full import.
+- `authentication` (*object*, options): The authentication configuration
+  - **secret** ([*SecretSource*](../20_install.md#secretsource)): The secret used to validate the incoming webhook requests
+  - **headerName** (*string*, optional): The name of the header used to validate the incoming webhook requests.
 
 ### Example
 
@@ -50,6 +59,7 @@ If not specified, it defaults to 10 seconds.
 	"projectId" : "my-gcp-project-id",
 	"topicName" : "my-assets-inventory-topic",
 	"subscriptionId" : "ica-subscription",
-	"ackDeadlineSeconds" : 10
+	"ackDeadlineSeconds" : 10,
+	"webhookPath": "/gcp-inventory-pubsub/import"
 }
 ```
