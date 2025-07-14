@@ -60,6 +60,6 @@ If not specified, it defaults to 10 seconds.
 	"topicName" : "my-assets-inventory-topic",
 	"subscriptionId" : "ica-subscription",
 	"ackDeadlineSeconds" : 10,
-	"webhookPath": "/gcp-inventory-pubsub/import"
+	"webhookPath": "/gcp/import"
 }
 ```

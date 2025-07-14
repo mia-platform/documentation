@@ -25,6 +25,11 @@ To configure AWS, you need to:
 - create an [EventBridge](https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-setup.html) rule that maps
   the desired sources and sends them to the SQS queue
 
+### Full import
+
+This source supports a full import of all assets in the AWS project.
+To trigger a full import, you can send a `POST` request to the webhook path configured in the service configuration.
+
 ## Service Configuration
 
 When configuring the AWS CloudTrail SQS source, you need to provide the following parameters in your configuration file:
@@ -35,6 +40,10 @@ When configuring the AWS CloudTrail SQS source, you need to provide the followin
 - `accessKeyId` (*string*): access key ID from AWS
 - `secretAccessKey` ([*SecretSource*](../20_install.md#secretsource)): secret access key from AWS
 - `sessionToken` ([*SecretSource*](../20_install.md#secretsource)): session token from AWS
+- `webhookPath` (*string*, optional): The path for the webhook expoed to trigger a full import.
+- `authentication` (*object*, options): The authentication configuration
+  - **secret** ([*SecretSource*](../20_install.md#secretsource)): The secret used to validate the incoming webhook requests
+  - **headerName** (*string*, optional): The name of the header used to validate the incoming webhook requests.
 
 ### Example
 
@@ -45,6 +54,7 @@ When configuring the AWS CloudTrail SQS source, you need to provide the followin
 	"accessKeyId": "",
 	"secretAccessKey": {"fromEnv": "AWS_SQS_SECRET_ACCESS_KEY"},
 	"sessionToken": {"fromEnv": "AWS_SQS_SESSION_TOKEN"},
+	"webhookPath": "/åws/import"
 }
 ```
 
