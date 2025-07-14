@@ -4,87 +4,107 @@ title: Mia-Platform Overview
 sidebar_label: Mia-Platform Overview
 ---
 
-## What is Mia-Platform?
+## Mia-Platform Overview: Accelerating Your Digital Future
 
-Mia-Platform is a cloud-native Platform Builder that helps you to build and manage your digital platform. By streamlining the **Developer Experience**, Mia-Platform allows organizations to **reduce cognitive load** on cloud-native complexity, increase software engineering productivity, and reach DevOps at scale, providing **golden paths** for a wide range of CNCF-landscape technologies.
+In an ever-evolving digital landscape, speed of innovation, operational efficiency and the ability to leverage the true potential of data are fundamental for competitiveness. **Mia-Platform is your cloud-native Platform Builder for building and managing your custom digital platform**, designed to eliminate complexities and accelerate your journey towards digital excellence.
 
-With Mia-Platform, you can **standardize and reuse your code**, enabling you to adopt [composability](#enabling-a-composable-approach) in your organization. Accelerate your products' development and deployment by composing existing modules, relying on a flexible and consistent architecture.
-
-To further foster composability, Mia-Platform features a **software catalog** full of ready-to-use components that you can plug into your software. Among these components, one of the most important is Mia-Platform Fast Data, a data management layer that can be used to build a **Digital Integration Hub**. Thanks to this solution, you can connect your cloud-native platform with existing systems, decouple and offload legacy systems, and serve real-time data 24/7. Thus, you can fully benefit from the [true power of your data](#unleash-the-true-power-of-your-data).
-
-Mia-Platform products are built **by developers for developers**, and you can [actively contribute](/#more-resources). Our main purpose is to streamline the software development lifecycle, and we do so by collecting all the tools you need in a single place.
+Developed **by developers for developers**, Mia-Platform consolidates all necessary tools into a single ecosystem, offering **guided paths ("golden paths")** through the complex landscape of cloud-native technologies. Our goal is simple: **simplify the software development lifecycle (SDLC)**, allowing you to focus on business logic rather than infrastructure.
 
 ![Mia-Platform](img/mia-technologies.png)
 
-*The image does not provide an exhaustive list of the technologies used in Mia-Platform. New technologies are constantly added.*
+### 1. Application Development: Develop Faster, with Intelligence
 
-**In a single place Mia-Platform** enables you to:
+**The challenge:** Building scalable, reusable and performant cloud-native applications is often a slow and fragmented process, requiring an enormous amount of time and resources to manage underlying complexities.
 
-- Create **modular and reusable microservices** with a couple of clicks starting from templates or importing them from a artifact registry;
-- Take advantage of an **ever-expanding software catalog** full of plugins, templates, applications, and much more to speed up the development of your products;
-- Define and manage **environmental variables** at different levels, with full control over user permissions and visibility;
-- Manage **all configurations** abstracting the complexity of your microservices by taking advantage of **low-code and no-code features**;
-- Deploy your microservices in a few clicks on **multiple cloud providers** (multi cloud) and on-premise environments and monitor them;
-- Monitor runtime resources usage and optimize them;
-- Expose all the APIs through an API Gateway of your choice, in an easy and secure way;
-- Leverage a Data Fabric solution to govern the entire **data lifecycle**. Project data from your legacy systems and create single views - i.e. unified views of a subset of data with a specific purpose - to reduce access latency, and increase data availability;
-- Create and evolve an entire **Microfrontend Composer application** like a backoffice application (and much more)* in a few clicks using the low-code features to read and write your data.
+**The Mia-Platform solution:** Mia-Platform transforms application development into a **self-service and AI-Native experience**. Forget bottlenecks and duplicated efforts. With Mia-Platform, you can:
 
-## Why Mia-Platform?
+* **Create modular and reusable microservices** with a few clicks, starting from predefined templates or importing them from an artifact registry, ensuring standardization and quality from day one.
 
-Mia-Platform supports you in creating, maintaining, and evolving your own digital platform tailored to your business.
+* Leverage an **ever-expanding software catalog** (the Runtime Components) full of ready-to-use plugins, templates, and applications, drastically accelerating the development of your products.
 
-![Mia-Platform](img/digitalplatform.png)
+* Design and orchestrate **Microfrontend Composer applications** (such as backoffices or complex user interfaces) in a few clicks, using low-code functionalities to read and write data in real-time.
 
-### Platform Engineering is reshaping the IT landscape
+* Manage the entire **end-to-end lifecycle of cloud-native applications** with full autonomy and security, from design to configuration, all the way to deployment.
 
-By helping you build your Internal Developer Platform, Mia-Platform opens the doors of **Platform Engineering** to your organization. According to Gartner, “Platform Engineering is the discipline of building and operating self-service internal developer platforms (IDPs) for software delivery and life cycle management”. As software becomes more important for businesses to expand their services, **Platform Engineering enables the industrialization of software development and deployment**.
+**The result:** Increased productivity for development teams, reduced time-to-market and the freedom to innovate with agility, building applications that respond rapidly to business needs.
 
-### Enabling a composable approach
+### 2. Platform Engineering: Industrialize Software Delivery with Governance
 
-By abstracting away most of the complexity related to microservices architecture, Mia-Platform enables the adoption of a **composable approach**. The deployment of new features and products can be further accelerated thanks to a software catalog of ready-to-use microservices and applications. The catalog also fosters **developer self-service, reusing existing assets, and helps standardization through different products**.
+**The challenge:** Managing complex cloud-native infrastructures and ensuring a fluid Developer Experience (DevX) are arduous tasks that often heavily burden Platform Engineering and DevOps teams, increasing cognitive load and slowing down delivery.
 
-Thanks to the composable architecture, you can also easily create and connect existing Packaged Business Capabilities (PBCs) - i.e. projects running at runtime to perform a specific business task. This helps you to **reduce the time-to-market of your new products and features**, to avoid redundant and duplicated efforts, and ensures clear governance throughout the entire organization.
+**The Mia-Platform solution:** By enabling the construction of your **Internal Developer Platform (IDP)**, Mia-Platform allows you to industrialize software development and deployment. Through a Platform Engineering approach, Mia-Platform enables you to:
 
-By using Mia-Platform, you can **define standards** such as templates, plugins, etc., and make them available to all development teams within your organization.
+* **Reduce cognitive load** on cloud-native complexity, providing an abstract and intuitive environment for developers.
 
-### Unleash the true power of your data
+* **Define and manage environment variables** at different levels, with full control over user permissions and visibility, ensuring security and consistency.
 
-With Mia-Platform, you will be able to build your **Digital Integration Hub** relying on a solution that has repeatedly been [mentioned](https://mia-platform.eu/company/newsroom/?news-q=Gartner&news-year=#Press%20release) by Gartner® as a sample implementation. This solution is a great example of **cohabitation between the paradigms of Data Mesh and Data Fabric**, featuring the best attributes of each approach.
+* **Manage all configurations** of your microservices, abstracting their complexity thanks to powerful **low-code and no-code functionalities**.
 
-This layer ingests data from different sources, aggregates it in single views according to business needs, and makes it available in near real-time. In this way, organizations can improve data availability, while also offloading legacy systems and decoupling them from external consumers.
+* **Automate the deployment** of your microservices on **multi-cloud providers** and on-premise environments with a few clicks, monitoring their resource usage in real-time to optimize performance.
 
-## Mia-Platform products
+* **Expose all APIs** through an API Gateway of your choice, in a simple and secure way, ensuring controlled and governed access.
 
-Mia-Platform provides you with a suite of several products that supports you in governing your platform, tackling composable business, and making legacy systems coexist.
+**The result:** Greater visibility, traceability and monitoring of the entire DevOps cycle. Your Platform Engineering teams can establish standards, ensure governance and make infrastructure transparent, allowing developers to focus on value creation.
 
-The products can be divided into two main categories: **core products** and **additional components**.
+### 3. Data Integration: Unlock the True Power of Your Data in Real-Time
 
-### Core products
+**The challenge:** Integrating data from disparate sources, ensuring quality and real-time availability are common obstacles that prevent organizations from gaining a unified view and fully leveraging the value of their information assets.
 
-These products are the backbone of Mia-Platform, and constitute the main solutions that our customers use on a daily basis. The core products are:
+**The Mia-Platform solution:** Mia-Platform allows you to build your **Digital Integration Hub (DIH)**, a cutting-edge solution as a reference implementation. This unique architecture combines the best of **Data Mesh** and **Data Fabric**, offering a holistic approach to data management. With Mia-Platform, you can:
 
-- [Mia-Platform Console](/development_suite/overview-dev-suite.md): industrialize and govern cloud-native development and operations, optimizing DevX and accelerating product teams’ delivery
-- [Mia-Platform Marketplace](/marketplace/overview_marketplace.md): speed up the creation of new applications with reuse and composition.
-- [Mia-Platform Fast Data](/fast_data/what_is_fast_data.md): adopt a Digital Integration Hub architecture and create your DIH-enabled API code Platform.
+* **Leverage a Data Fabric solution** to govern the entire data lifecycle, from collection to exposure.
 
-### Additional components
+* **Project data from your legacy systems** and create **Single Views**, unified views of a data subset with a specific purpose, to reduce access latency and increase data availability.
 
-These components contribute to the realization of some specific tasks within your products. They are available through Mia-Platform Marketplace, and they are:
+* **Connect your cloud-native platform** with existing systems, decoupling and offloading legacy systems, and serving real-time data 24/7.
 
-- [Mia-Platform Microfrontend Composer](/microfrontend-composer/what-is.md): create custom CMSs, or generic User Interfaces, with the ability to compose custom pages, putting whatever web component coming from the back-kit library or from a custom component library.
-- [Mia-Platform External Developer Portal](/runtime_suite/api-portal/10_overview.md): a complete access point to your companies’ APIs for your partners and providers, containing live and testable API documentation and allowing standardization in the methods of use.
-- [Mia-Platform Flow Manager](/runtime_suite/flow-manager-service/10_overview.md): a saga orchestrator, capable to manage flows structured by using the architectural pattern named Saga Pattern and, in particular, the Command/Orchestration approach.
+* **Aggregate data from different sources** and make it available in near real-time, improving the availability and accessibility of crucial business information.
 
-Along with the components above, you can also find Mia-Platform’s **open-source projects**:
+**The result:** Aggregated data available in real-time, a unified business view, and the ability to power strategic decisions and AI-native applications with always up-to-date information.
 
-- [Rönd](https://github.com/rond-authz/rond): a lightweight container that distributes security policy enforcement throughout your application.
-- [kube-green](https://github.com/kube-green/kube-green): the Kubernetes operator to reduce the CO2 footprint of your clusters - built by Davide Bianchi, Senior Technical Leader at Mia-Platform.
-- [micro-lc](https://github.com/micro-lc): the micro-frontend orchestrator for building flexible, multi-tenant frontend applications.
-- [MongoDB CRUD Service](https://github.com/mia-platform/crud-service): a CRUD Service specifically designed for interacting with MongoDB collections.
+### Why Mia-Platform?
 
-## How can I get Mia-Platform?
+Mia-Platform supports you in creating, maintaining, and evolving your digital platform tailored to your business. Our platform is the catalyst for:
+
+* **Platform Engineering:** Industrializing software development and reducing cognitive load by building your Internal Developer Platform.
+
+* **Composable Approach:** Accelerating the deployment of new features and products thanks to a software catalog of ready-to-use microservices and applications, promoting self-service and reuse of existing assets. This helps you **reduce time-to-market** and ensure clear governance.
+
+* **The True Power of Data:** Building a Digital Integration Hub based on Fast Data, ensuring real-time data ingestion, aggregation, and availability from various sources, decoupling legacy systems, and improving information availability.
+
+### Mia-Platform Products: Your Integrated Ecosystem
+
+Mia-Platform provides you with a suite of products that support platform governance, enable composable business, and facilitate coexistence with legacy systems.
+
+**Core Products:**
+These products form the backbone of Mia-Platform and are the main solutions used daily by our customers:
+
+* [**Mia-Platform Console**](/development_suite/overview-dev-suite.md): Industrialize and govern cloud-native development and operations, optimizing DevX and accelerating product teams' delivery.
+
+* [**Mia-Platform Runtime Components**](/marketplace/overview_marketplace.md): Accelerate the creation of new applications through reuse and composition of components.
+
+* [**Mia-Platform Fast Data**](/fast_data/what_is_fast_data.md): Adopt a Digital Integration Hub architecture and create your DIH-enabled API code Platform.
+
+**Additional Components:**
+These components contribute to the realization of specific tasks within your products and are available through Mia-Platform Runtime Components:
+
+* [**Mia-Platform Microfrontend Composer**](/microfrontend-composer/what-is.md): Create custom CMSs, or generic User Interfaces, with the ability to compose custom pages, putting whatever web component coming from the back-kit library or from a custom component library.
+
+* [**Mia-Platform External Developer Portal**](/runtime_suite/api-portal/10_overview.md): A complete access point to your company's APIs for your partners and providers, containing live and testable API documentation and allowing standardization in usage methods.
+
+* [**Mia-Platform Flow Manager**](/runtime_suite/flow-manager-service/10_overview.md): A saga orchestrator, capable of managing flows structured using the architectural pattern named Saga Pattern, particularly the Command/Orchestration approach.
+
+In addition to the components above, you can also find Mia-Platform's **open-source projects**:
+
+* [**Rönd**](https://github.com/rond-authz/rond): A lightweight container that distributes security policy enforcement throughout your application.
+
+* [**kube-green**](https://github.com/kube-green/kube-green): The Kubernetes operator to reduce the CO2 footprint of your clusters.
+
+* [**micro-lc**](https://github.com/micro-lc): The micro-frontend orchestrator for building flexible, multi-tenant frontend applications.
+
+* [**MongoDB CRUD Service**](https://github.com/mia-platform/crud-service): A CRUD Service specifically designed for interacting with MongoDB collections.
+
+### How to get Mia-Platform?
 
 Mia-Platform is available for purchase in three different ways: SaaS, PaaS, and On-Premises.
-
 For further details on the distribution model, please refer to [this page](/infrastructure/overview.md).
