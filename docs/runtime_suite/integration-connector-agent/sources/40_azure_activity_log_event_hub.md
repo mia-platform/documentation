@@ -29,6 +29,11 @@ To configure the Azure Activity Log Event Hub source, you need to:
 Find out more about how to [export activity log to Azure Event Hubs](https://learn.microsoft.com/en-gb/azure/azure-monitor/platform/activity-log?tabs=powershell#send-to-azure-event-hubs)
 :::
 
+## Full Import
+
+This source supports a full import of all assets in an Azure subscription.  
+To trigger a full import, you can send a `POST` request to the webhook path configured in the service configuration.
+
 ## Service Configuration
 
 When configuring the Azure Activity Log Event Hub source, you need to provide the following parameters in your
@@ -46,17 +51,22 @@ configuration file:
   the subscription
 - `clientId` ([*SecretSource*](../20_install.md#secretsource)): The client ID of the entity used to authenticate
 - `clientSecret` ([*SecretSource*](../20_install.md#secretsource)): The client secret of the entity used to authenticate
+- `webhookPath` (*string*, optional): The path for the webhook expoed to trigger a full import.
+- `authentication` (*object*, options): The authentication configuration
+  - **secret** ([*SecretSource*](../20_install.md#secretsource)): The secret used to validate the incoming webhook requests
+  - **headerName** (*string*, optional): The name of the header used to validate the incoming webhook requests.
 
 ### Example
 
 ```json
 {
-  "type": "azure-activity-log-event-hub",
-  "subscriptionId": "00000000-0000-0000-0000-000000000000",
-  "eventHubNamespace": "my-event-hub-namespace",
-  "eventHubName": "my-event-hub-name",
-  "checkpointStorageAccountName": "my-storage-account-name",
-  "checkpointStorageContainerName": "my-storage-container-name"
+	"type": "azure-activity-log-event-hub",
+	"subscriptionId": "00000000-0000-0000-0000-000000000000",
+	"eventHubNamespace": "my-event-hub-namespace",
+	"eventHubName": "my-event-hub-name",
+	"checkpointStorageAccountName": "my-storage-account-name",
+	"checkpointStorageContainerName": "my-storage-container-name",
+	"webhookPath": "/azure/import"
 }
 ```
 
