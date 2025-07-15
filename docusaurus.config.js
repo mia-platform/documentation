@@ -33,7 +33,7 @@ async function createConfig() {
       },
       navbar: {
         hideOnScroll: false,
-        title: "Mia-Care Docs",
+        title: "Mia-Care P4SaMD",
         logo: {
           alt: "Mia-Care logo",
           src: "img/logo.png",
@@ -43,17 +43,16 @@ async function createConfig() {
         },
         items: [
         {
-          label: "Products",
+          label: "Product",
           position: "left",
-          activeBaseRegex: "(docs|docs/\\d.x)/(development_suite|marketplace|libraries|tools|runtime_suite|microfrontend-composer|fast_data|dev_portal)",
-          type: "dropdown",
-          items: [{
-            type: 'doc',
-            docId: "p4samd/overview",
-            label: "P4SaMD",
-            activeBaseRegex: "(docs|docs/\\d.x)/p4samd"
-          }
-          ]
+          type: "doc",
+          docId: "p4samd/overview",
+        },
+        {
+          label: "Release Notes",
+          position: "left",
+          type: "doc",
+          docId: "p4samd/release_notes",
         },
         {
           href: "https://mia-care.io/competence-center/video/mia-care-product-demo-platform-for-software-as-a-medical-device/",
