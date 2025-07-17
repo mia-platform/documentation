@@ -39,6 +39,97 @@ The Chart version follows [semver](https://semver.org/) policy so any breaking c
 
 ## Console v13 - version upgrades
 
+### Upgrade from v13.7.1 to v14.1.0
+
+With Console v14.1.0, the Mia-Assistant evolves! In particular it adds:
+
+- support to multiple LLM models
+- support to MCP server
+
+For this reason few changes are necessary to configure it properly.
+
+#### Multiple LLM configurations
+
+First of all, `configurations.assistant.llm` is now `configurations.assistant.llms` (note the final `s`) and is now accepting a list of llm configurations.  
+Update the already configured LLM to be an item in this list
+
+e.g., (before)
+
+```yaml
+configurations:
+  # ...
+  assistant:
+    llm:
+      type: "azure"
+      apiVersion: "..."
+      # ...
+```
+
+e.g., (after)
+
+```yaml
+configurations:
+  # ...
+  assistant:
+    llms: # note the final 's'
+      - type: "azure" # note the '-'
+        apiVersion: "..." # note the increased indentation
+        # ...
+```
+
+#### LLM DisplayName
+
+`configurations.assistant.llm` items now require a `displayName` field to be set. This value is shown to the user when selecting the related model on the Mia-Assistant chat panel.
+
+![llm selection](img/llm-selection.png)
+
+Make sure to include this field in all the configured models.
+
+```diff
+configurations:
+  # ...
+  assistant:
+    llms:
+      - type: "azure"
+        apiVersion: "..."
++       displayName: "GPT-4o Mini"
+        # ...
+```
+
+#### Assistant Keys
+
+1. `configuration.assistant.keys.embeddings` field has been moved into `configuration.assistant.embeddings.apiKey`
+
+```diff
+configurations:
+  # ...
+  assistant:
+    keys:
+-     embeddings: "embeddings-apiKey"
+    llms:
+      # ...
+    embeddings:
+      type: "azure"
++     apiKey: "embeddings-apiKey"
+      # ...
+```
+
+2. `configuration.assistant.keys.llm` field is now split to support credentials for multiple providers:
+
+- `configuration.assistant.keys.azureLlmApiKey`
+- `configuration.assistant.keys.openaiLlmApiKey`
+- `configuration.assistant.keys.vertexAICredentials`
+
+Ensure to move the apiKey used before into the correct field 
+
+Follow the [Assistant documentation](./helm-values/75_assistant.md#llm-and-embeddings-model-configuration) to learn more about how to configure it.
+
+#### Specific upgrade for LLM/Embeddings using `vertex` models
+
+If you currently configured Mia-Assistant to use models from VertexAI you should now specify the `configuration.assistant.keys.vertexAICredentials` field.
+
+This field automatically creates a Secret on k8s with specified credentials and mounts it in the mia-assistant container.
+
 ### Upgrade from v13.7.0 to v13.7.1
 
 With Console v13.7.1, the Mia-Assistant can be configured to use any of the supported LLM/Embedding models.
