@@ -22,7 +22,8 @@
       "uuidgen",
       "micro-lc",
       "microlc",
-      "dockerconfigjson"
+      "dockerconfigjson",
+      "llms"
     ],
     "flagWords": [],
     "ignorePaths": [],
