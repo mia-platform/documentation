@@ -20,7 +20,7 @@ For instance, users can easily find answers to questions like:
 By enabling non-technical users to independently retrieve this essential information for compliance, audits, and documentation, the *AI Assistant significantly reduces the reliance on technical teams*;
 in fact, it frees up valuable time and resources for technical teams by enabling other stakeholders to self-serve their data-related information needs.
 
-Ultimately, this fosters better communication and collaboration between legal, compliance, and data teams, creating a more inclusive, efficient, and effective data governance framework.
+This fosters better communication and collaboration between legal, compliance, and data teams, creating a more inclusive, efficient, and effective data governance framework.
 
 ## How it Works
 
