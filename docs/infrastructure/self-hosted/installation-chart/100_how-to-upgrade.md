@@ -15,7 +15,7 @@ In order to upgrade Mia-Platform Console, all you need to do is to update the `m
 :::tip
 When upgrading Mia-Platform Console to a new major release, always remember that updates must be performed one major at a time. Therefore, in order to upgrade from v12 to v14 you must first upgrade to the latest v13 version.
 
-To find out how to upgrade your installation to the latest version of v13, visit the [following documentation](/docs/infrastructure/self-hosted/installation-chart/how-to-upgrade).
+To find out how to upgrade your installation to the latest version of v13, visit the [following documentation](../../../13.x/infrastructure/self-hosted/installation-chart/how-to-upgrade).
 :::
 
 ```yaml title="Chart.yaml" {9} showLineNumbers
@@ -37,15 +37,11 @@ When upgrading also make sure to check if any new configuration option is availa
 The Chart version follows [semver](https://semver.org/) policy so any breaking change with the Chart will always be followed by a Major release. Minor releases may include new configuration options while as a general rule of thumb, patches never holds new configuration options but only internal updates and fixes.
 :::
 
-## Console v13 - version upgrades
+## Console v14 - version upgrades
 
-### Upgrade from v13.7.1 to v14.1.0
+### Upgrade from v14.0.3 to v14.1.0
 
-With Console v14.1.0, the Mia-Assistant evolves! In particular it adds:
-
-- support to multiple LLM models
-- support to MCP server
-
+With Console v14.1.0, the Mia-Assistant evolves and now supports multiple LLM models!  
 For this reason few changes are necessary to configure it properly.
 
 #### Multiple LLM configurations
@@ -130,40 +126,6 @@ If you currently configured Mia-Assistant to use models from VertexAI you should
 
 This field automatically creates a Secret on k8s with specified credentials and mounts it in the mia-assistant container.
 
-### Upgrade from v13.7.0 to v13.7.1
+### Upgrade from last Console v13 to v14.0.0
 
-With Console v13.7.1, the Mia-Assistant can be configured to use any of the supported LLM/Embedding models.
-
-You can choose between:
-
-- azure
-- openai
-- vertex
-
-Follow the [Assistant documentation](./helm-values/75_assistant.md#llm-and-embeddings-model-configuration) to learn more about how to configure it.
-
-### Upgrade from v13.6.2 to v13.7.0
-
-With Console v13.7.0, the new Audit Logs feature is available. A new **required value** has been added to the configuration that lets you configure the audit storage.
-
-See the [Audit Section](./helm-values/20_general-settings.md#audit-logs-configuration) in the General settings page to find out how to configure it.
-
-:::tip
-As a best practice it is advised to store Audit logs in a different Database than application data. The `configurations.audit.mongodbUrl` allows you to configure a different connection string for this purpose.
-:::
-
-### Upgrade from v13.5.3 to v13.6.0
-
-With v13.6.0 a new microservice has been added to the Console application, you can configure it using the `catalogService` value to better suite your scaling needs
-
-:::tip
-Refer to the [Service Specific configuration](./helm-values/30_service-specific-configurations.md) documentation page for further details on available values.
-:::
-
-### Upgrade from last Console v12 to v13.0.0
-
-With v13 a new microservice has been added to the Console application, you can configure it using the `extensibilityManagerService` value to better suite your scaling needs
-
-:::tip
-Refer to the [Service Specific configuration](./helm-values/30_service-specific-configurations.md) documentation page for further details on available values.
-:::
+No further changes are needed for the upgrade. Enjoy ;)
