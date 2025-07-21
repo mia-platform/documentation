@@ -95,7 +95,7 @@ This processor will transform GCP events into a standardized format containing:
 
 Configure the sink to save data to the CRUD Service collection.
 
-For more details on this sink type, see the [CRUD Service Sink](../sinks/30_crudservice.md) documentation.
+For more details on this sink type, see the [CRUD Service Sink](../../sinks/30_crudservice.md) documentation.
 
 ```json
 {
