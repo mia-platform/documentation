@@ -19,9 +19,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Updated
 
-- @fastify/multipart
+- @fastify/multipart: v7.7.3 -> v8.3.1
 - changed `uploadFile` and `uploadFileBulk` to use new fastify/multipart methods
-- removed 1 file upload limit from fastify/multipart configuration as it now would block mutiple file uploads in `uploadFileBulk`
+- removed 1 file upload limit from fastify/multipart configuration as it now would block multiple file uploads in `uploadFileBulk`
 
 ## 2.10.3 - 2025-04-17
 
