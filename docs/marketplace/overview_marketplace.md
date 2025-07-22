@@ -17,13 +17,26 @@ All updates must go submitted via a Pull Request (PR) on the [public-catalog](ht
 
 Explore the sections below to discover what’s available and how to use each component effectively.
 
-### Edit Mia-Platform Catalog items
+## Edit Mia-Platform Catalog items
 
 :::caution
 This section only applies to **on-prem Console installations**.
 :::
 
 There may be cases in which you need to make changes to the Mia-Platform-supported Catalog items (e.g., you want to change the registry of a plugin's Docker image).
+
+This can be accomplished through two different approaches:
+
+- **Global customization**: Applied during **Console installation**, affecting all Companies
+- **Runtime modification**: Performed by users through the **Console interface** for specific Companies
+
+### Via Console Installation
+
+There are update scripts that allow you to customize the resources of the **public catalog**. One particular customization is the modification of the image registry, which can be done through full path rewriting or regex usage for greater flexibility.
+
+More information about this type of customization can be found in the [marketplace][resources-customization] related documentation page, and additional examples and usage details are available in the [public catalog][public-catalog] repository.
+
+### Via Console Interface
 
 Even if they are provided automatically on Console installations and updates, Mia-Platform items are still standard Catalog items. This means that they belong to a specific Company, and thus can be edited through the [Software Catalog](/software-catalog/overview.md) of that Company.
 
@@ -50,3 +63,6 @@ Once the binding is added, the chosen user should be able to see with the defaul
 :::danger
 Any change made to Mia-Platform items will be **reverted** by the synchronization job on the next Console update.
 :::
+
+[resources-customization]: ../infrastructure/self-hosted/installation-chart/helm-values/45_marketplace.md
+[public-catalog]: https://github.com/mia-platform-marketplace/public-catalog
