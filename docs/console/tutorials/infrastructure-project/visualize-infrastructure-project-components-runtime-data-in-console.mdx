@@ -316,3 +316,18 @@ Now that we have configured everything needed to gather runtime data and push it
 You can create a new [Composer page Extension](/console/company-configuration/extensions.md) in your Company using the *Infrastructure Component Runtime Catalog Table* template.
 
 ![Create composer extension modal highlighting Infrastructure Component Runtime Catalog Table template](./img/visualize-infra-composer-extension-creation.png)
+
+:::caution
+The *Infrastructure Component Runtime Catalog Table* template is meant to consume resources from the Catalog of a specific tenant,
+therefore you will have to set the `tenantId` filter in order for the page to work properly.
+
+You **MUST** set the filter value in the `Runtime` Tab filters settings, to get there you need to
+
+- click on `Tabs` in the layout page left sidebar
+- in the right sidebar, under Content, press `Edit property`
+- this will open a modal where you can see the list of the available Tabs, select `Runtime`
+- now press the `Edit property` button in the *filters* sections
+- you should now see the preset filters (see the screenshot below), one being `tenantId` with a placeholder value, change it according to your actual Company ID
+
+![Runtime Tab filters](./img/visualize-infra-composer-extension-creation-runtime-tab.png)
+:::
