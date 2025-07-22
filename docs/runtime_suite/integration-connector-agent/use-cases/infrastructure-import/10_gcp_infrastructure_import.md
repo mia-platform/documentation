@@ -1,7 +1,7 @@
 ---
 id: gcp_infrastructure_import
 title: Google Cloud Platform Infrastructure Import
-sidebar_label: Gcp infrastructure import
+sidebar_label: GCP infrastructure import
 ---
 
 <!--

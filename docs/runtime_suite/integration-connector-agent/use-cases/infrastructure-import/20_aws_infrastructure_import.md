@@ -1,7 +1,7 @@
 ---
 id: aws_infrastructure_import
 title: AWS Infrastructure Import
-sidebar_label: Aws infrastructure import
+sidebar_label: AWS infrastructure import
 ---
 
 <!--
