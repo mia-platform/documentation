@@ -64,5 +64,5 @@ Once the binding is added, the chosen user should be able to see with the defaul
 Any change made to Mia-Platform items will be **reverted** by the synchronization job on the next Console update.
 :::
 
-[resources-customization]: ../infrastructure/self-hosted/installation-chart/helm-values/45_marketplace.md
+[resources-customization]: /infrastructure/self-hosted/installation-chart/helm-values/45_marketplace.md
 [public-catalog]: https://github.com/mia-platform-marketplace/public-catalog
