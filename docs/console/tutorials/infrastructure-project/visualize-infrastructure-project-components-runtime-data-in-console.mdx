@@ -18,31 +18,31 @@ The tutorial assumes you have the following prerequisites in place:
 
 The objective of this tutorial is to:
 
-- use the Integration Connector Agent to collect runtime data from your cloud provider and save them within the Mia-Platform Catalog
-- display the runtime data in the Console using Platforge Composer-based extensions.
+- use the Integration Connector Agent to collect runtime data from your cloud provider and save it within the Mia-Platform Catalog
+- display the runtime data in the Console using Platforge Composer-based extensions
 
 Data will be processed by the Integration Connector Agent following an event-driven approach,
-which means that the agent will listen to events coming from the Cloud Provider and will process them to update the runtime data in the Catalog.
+which means that the agent will listen to events coming from the Cloud Provider and process them to update the runtime data in the Catalog.
 
-To receive events from the Cloud Provider, we will create a bunch of resources in the Cloud Provider first (such as a Pub/Sub topic in GCP, and EventBridge rule in AWS or an EventHub in Azure),
+To receive events from the Cloud Provider, we will create a set of resources in the Cloud Provider first (such as a Pub/Sub topic in GCP, an EventBridge rule in AWS, or an EventHub in Azure),
 then we will configure the Integration Connector Agent to listen to these events and process them.
 
-Therefore, to reach this goal, we will have to setup the following components:
+Therefore, to reach this goal, we will have to set up the following components:
 
-- setup Cloud Provider to send events
+- set up the Cloud Provider to send events
 - configure the Integration Connector Agent to listen to these events and save them in the Catalog
 - create a Platforge Composer-based extension to visualize the data in the Console
 
 ![Architectural overview](./img/visualize-infra-ica-architecture.png)
 
-### Setup Cloud Provider integration
+### Set up Cloud Provider integration
 
 As mentioned above, we will need to create some resources in the Cloud Provider to receive events from it.
 
-Every Cloud Provider has its own way to send events, so you will have to follow the specific instructions for your Cloud Provider.
+Each Cloud Provider has its own way to send events, so you will have to follow the specific instructions for your Cloud Provider.
 
 :::tip
-In order to create such resources we have created a set of Terraform modules that will help you preparing the cloud provider environment.
+To create such resources, we have created a set of Terraform modules that will help you prepare the cloud provider environment.
 
 Ask your Mia-Platform referent to get access to it!
 :::
@@ -51,9 +51,9 @@ Ask your Mia-Platform referent to get access to it!
 <TabItem value="aws" label="AWS" default>
 You will need to:
 
-- create a new CloudTrail;
-- create a new SQS queue that will be used to receive events by the Integration Connector Agent;
-- create a new EventBridge rule that will listen to the CloudTrail events and send them to the SQS queue.
+- create a new CloudTrail
+- create a new SQS queue that will be used to receive events by the Integration Connector Agent
+- create a new EventBridge rule that will listen to the CloudTrail events and send them to the SQS queue
 
 :::info
 Find out more about the specific steps to create these resources in the [Integration Connector Agent documentation](/runtime_suite/integration-connector-agent/use-cases/infrastructure-import/20_aws_infrastructure_import.md).
@@ -64,9 +64,9 @@ Find out more about the specific steps to create these resources in the [Integra
 <TabItem value="gcp" label="GCP">
 You will need to:
 
-- enable the Cloud Asset Management API;
-- create a Pub/Sub topic that will be used to receive events by the Integration Connector Agent;
-- create a feed to send events from the Asset Management API to the Pub/Sub topic.
+- enable the Cloud Asset Management API
+- create a Pub/Sub topic that will be used to receive events by the Integration Connector Agent
+- create a feed to send events from the Asset Management API to the Pub/Sub topic
 
 :::info
 Find out more about the specific steps to create these resources in the [Integration Connector Agent documentation](/runtime_suite/integration-connector-agent/use-cases/infrastructure-import/10_gcp_infrastructure_import.md).
@@ -76,7 +76,11 @@ Find out more about the specific steps to create these resources in the [Integra
 
 <TabItem value="azure" label="Azure">
 
-TODO
+You will need to:
+
+- create a new eventhub
+- create a monitor diagnostic settings for exporting administrative log to the created eventhub
+- create a storage account with a blob container
 
 :::info
 Find out more about the specific steps to create these resources in the [Integration Connector Agent documentation](/runtime_suite/integration-connector-agent/use-cases/infrastructure-import/30_azure_infrastructure_import.md).
@@ -87,30 +91,31 @@ Find out more about the specific steps to create these resources in the [Integra
 
 ### Configure the Integration Connector Agent
 
-Now that we are done with the Cloud Provider, we can configure the Integration Connector Agent to listen to the events coming from the Cloud Provider and save them in the Catalog.
+Now that we have configured the Cloud Provider, we can configure the Integration Connector Agent to listen to the events coming from the Cloud Provider and save them in the Catalog.
 
-To do so you can create a new microservice in your Project starting from the [Integration Connector Agent](/runtime_suite/integration-connector-agent/10_overview.md) plugin.
+To do so, you can create a new microservice in your Project starting from the [Integration Connector Agent](/runtime_suite/integration-connector-agent/10_overview.md) plugin.
 
 ![Created Integration Connector Agent based microservice in design section](./img/visualize-infra-ica-design-example.png)
 
-Based on the Cloud Provider you are using some configurations may differ, in the example below you can find a configuration example for AWS, GCP and Azure.
+Depending on the Cloud Provider you are using, some configurations may differ. In the example below, you can find configuration examples for AWS, GCP, and Azure.
 
-To create the Integration Connector Agent data pipeline we are going to user the following components:
+To create the Integration Connector Agent data pipeline, we are going to use the following components:
 
 - vendor-specific source: there are three different sources depending on the Cloud Provider you are using:
   - `aws-cloudtrail-sqs` for AWS
   - `gcp-cloud-asset-pubsub` for GCP
   - `azure-event-hub` for Azure
-  All of them will listen to the events coming from the Cloud Provider and will produce events that will be processed by the Integration Connector Agent.
-  Furthermore they also provide a webhook that can be used to trigger a full import
-- `cloud-vendor-aggregator` processor: this processor will aggregate the events coming from the Cloud Provider and will produce a single event for each resource.
-- `mapper` processor: this processor will map the event produced by the `cloud-vendor-aggregator` processor to the format expected by the Catalog.
-- `console-catalog` sink: this sink will save the event in the Catalog, using the `infrastructure-component-runtime` item type.
+  
+  All of them will listen to the events coming from the Cloud Provider and produce events that will be processed by the Integration Connector Agent.
+  Additionally, they also provide a webhook that can be used to trigger a full import.
+- `cloud-vendor-aggregator` processor: this processor will aggregate the events coming from the Cloud Provider and produce a single event for each resource
+- `mapper` processor: this processor will map the event produced by the `cloud-vendor-aggregator` processor to the format expected by the Catalog
+- `console-catalog` sink: this sink will save the event in the Catalog, using the `infrastructure-component-runtime` item type
 
 :::note
-We are saving the items using the `infrastructure-component-runtime` item type, which is a specific item type that is used to store runtime data for infrastructure components.
+We are saving the items using the `infrastructure-component-runtime` item type, which is a specific item type used to store runtime data for infrastructure components.
 
-You can find out more information about this item type in the [Catalog documentation](/software-catalog/items-manifest/infrastructure-component-runtime.md).
+You can find more information about this item type in the [Catalog documentation](/software-catalog/items-manifest/infrastructure-component-runtime.md).
 :::
 
 <Tabs>
