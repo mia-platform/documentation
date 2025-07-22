@@ -27,8 +27,8 @@ There may be cases in which you need to make changes to the Mia-Platform-support
 
 This can be accomplished through two different approaches:
 
-- **Global customization**: Applied during **Console installation**, affecting all Companies
-- **Runtime modification**: Performed by users through the **Console interface** for specific Companies
+- **Startup modification**: Applied during **Console installation**, does not require the concept of Company to apply modifications
+- **Runtime modification**: Performed by users through the **Console interface** using specific Companies, changes are still global to Console
 
 ### Via Console Installation
 
