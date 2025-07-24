@@ -4,6 +4,10 @@ title: Environment Based Configuration Management
 sidebar_label: Environment Based Configuration Management
 ---
 
+:::info
+This feature is currently available exclusively as a **Closed Preview** and is not yet generally available. For more information and to request its activation for your Company, please contact your Mia-Platform referent.
+:::
+
 Environment Based Configuration Management represents a significant evolution in project management, introducing a unified approach that seamlessly integrates Project Revisions with Project Environments. This thoughtful integration transforms Project Environments into a comprehensive solution for managing both Project Configuration and Runtime operations, streamlining the entire development workflow.
 
 ## Key Concepts and Overview
