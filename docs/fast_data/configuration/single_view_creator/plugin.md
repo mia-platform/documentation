@@ -166,7 +166,7 @@ module.exports = () => {
       logger.info('starting connection to second db')
       dbConnection.secondMongoClient = new MongoClient(MONGODB_URL_2)
       await dbConnection.secondMongoClient.connect()
-      dbConnection.secondMongoDb = secondMongoClient.db(MONGODB_NAME_2)
+      dbConnection.secondMongoDb = dbConnection.secondMongoClient.db(MONGODB_NAME_2)
     }
 
     return dbConnection
@@ -193,7 +193,7 @@ const secondMongoDB = require('./secondMongoDB.js')
 const getSecondMongoDB = secondMongoDB()
 
 module.exports = async function (logger, db, dependenciesMap){
-    const { secondMongoClient, secondMongoDb } = await getSecondMongoDB()
+    const { secondMongoClient, secondMongoDb } = await getSecondMongoDB(logger)
     try {
       return secondMongoDb.collection('my-collection').findOne({/** */})
     } catch(err) {

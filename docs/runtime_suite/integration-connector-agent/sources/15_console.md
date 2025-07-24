@@ -50,9 +50,10 @@ To configure a webhook in Console, follow the steps described in [the documentat
 
 For the fields, you should set:
 
-- **Target URL**: the URL where the Webhook will send the events. For the Console integration, the URL should be `http://<your-agent-host>[/optional-base-path]/console/webhook`;
+- **Target URL**: the URL where the Webhook will send the events. For the Console integration, the URL should be
+  `http://<your-agent-host>[/optional-base-path]/console/webhook`;
 - **Secret**: the secret used to validate incoming webhook requests. This secret should be the same
-as the one set in the authentication configuration.
+  as the one set in the authentication configuration.
 
 ## Supported Events
 

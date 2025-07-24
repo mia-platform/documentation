@@ -126,7 +126,14 @@ The table shows a compatibility matrix for MongoDB versions support of Marketpla
         <td>❌</td>
     </tr>
     <tr>
-        <td rowspan="2"><a href="../../runtime_suite/auth0-client/overview">Auth0 Client</a></td>
+        <td rowspan="3"><a href="../../runtime_suite/auth0-client/overview">Auth0 Client</a></td>
+        <td>v3.9.0</td>
+        <td>✅</td>
+        <td>✅</td>
+        <td>✅</td>
+        <td>✅</td>
+    </tr>
+    <tr>
         <td>v3.0.0</td>
         <td>✅</td>
         <td>✅</td>
