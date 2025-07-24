@@ -23,13 +23,10 @@ If the setting is enabled on the Company, it cannot be overridden at Project lev
 
 #### AI Settings
 
-The **AI Settings** rule allows the user to manage the **AI Settings** for all Projects in the Company.  
-In particular, Company Owners can decide to enable or disable the AI agentic features for all Projects in the Company.
+Enable **AI Settings** for the Company to grant Mia-Assistant the permission to use data from your Company and Projects to become even more powerful!  
+When this setting is enabled, Mia-Assistant can help you performing a wide set of tasks, from inspecting Projects insights to manage user access or even deploy your Projects in production!
+
+Learn more on the [Agentic Features documentation](/console/assistant/overview.md#agentic-features-are-coming).
+
 
 ![ai settings](./img/settings-ai.png)
-
-:::info
-The agentic features are the ones that allow the AI to take actions on behalf of the user, accessing Company data.
-
-An example of an agentic feature is the **Debug** command. Other features in [Mia Assistant documentation](/console/assistant/overview.md).
-:::

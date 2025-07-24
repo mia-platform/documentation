@@ -10,15 +10,30 @@ It can also help you with documentation, searching for information, and answerin
 
 ![ai-assistant](./img/ai-assistant.png)
 
-## Commands
+## Agentic Features are coming!
+
+With Mia Assistant AI-powered features, you can leverage advanced capabilities that extend far beyond mere documentation lookup. Here some common use cases:
+
+- **Gain insights on your data**: ask Mia Assistant to show comprehensive insights from your Company and Projects data, with contextual information and analytics
+- **Edit Projects intelligently**: Use AI features to manage and configure your Projects with intelligent suggestions and automated assistance
+- **Explore Marketplace**: Receive suggestions and solutions tailored to your specific project context and requirements
+- **Debug efficiently**: Utilize the debug command to troubleshoot your Runtime environment, analyze logs, and quickly identify issues affecting your services
 
 :::info
-Commands can be enabled by Company settings, see [Company Settings](/console/company-configuration/settings.md) for more information.
+In order to use AI-powered features, enable them from the Company settings page. See [Company Settings](/console/company-configuration/settings.md) for more information.
 :::
 
-The supported commands are the following. If no command is specified, the assistant will search in the documentation to provide you with the best answer.
+### MCP Server
 
-### Debug
+Mia-Assistant is now empowered with the [Mia-Platform MCP Server](https://github.com/mia-platform/console-mcp-server)!
+
+This MCP Server exposes a handful set of tools that allows to retrieve information and operate against your Company/Projects by just chatting with the Mia-Assistant. Here some tasks you can do with the power of these tools:
+
+- **inspect insights** from your Tenants and Projects
+- **deploy** your Project directly on any Environment
+- **debug** services at runtime by inspecting logs and service status and receiving suggestions from the Assistant
+
+### Debug Command
 
 The `/debug` command allows you to debug the Runtime of your Project. It fetches the Runtime logs and provides you a response to the query you provided.
 It is possible to filter by service name and request id to get more specific information.
