@@ -28,7 +28,7 @@ To configure the Console Catalog sink, you need to provide the following paramet
 - `itemType` (*string*): The type of the generated catalog item.
 - `clientId` (*string*): The client ID to use for authentication with the Console Catalog API.
 - `clientSecret` ([*SecretSource*](../20_install.md#secretsource)): The client secret to use for authentication with the Console Catalog API.
-- `itemIDTemplate` (*string*): A [template](#template-processing) used to generate the item ID for the catalog item.
+- `itemIDTemplate` (*string*, optional): A [template](#template-processing) used to generate the item ID for the catalog item. When not provided the itemId is derived from the event Primary Keys.
 - `itemNameTemplate` (*string*): A [template](#template-processing) used to generate the name for the catalog item.
 
 ### Example Configuration
