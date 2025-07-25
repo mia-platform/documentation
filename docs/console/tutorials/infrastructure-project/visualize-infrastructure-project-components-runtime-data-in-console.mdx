@@ -46,11 +46,6 @@ To set up the Cloud Provider resources that will send events to your Integration
 you can find them in the [GitHub Mia-Platform Terraform Integration Connector Agent](https://github.com/mia-platform/terraform-integration-connector-agent) repository.
 :::
 
-:::tip
-You can use an [Infrastructure Project](/console/project-configuration/infrastructure-project.md) to
-provision these resources in your Cloud Provider, just like you would do with any other terraform module.
-:::
-
 <Tabs>
 <TabItem value="aws" label="AWS" default>
 You will need to:
@@ -72,6 +67,20 @@ module "aws" {
   sqs_queue_name = "awesome-queue-name"
 }
 ```
+
+:::tip
+To provision the resources you can use an [Infrastructure Project](/console/project-configuration/infrastructure-project.md), just like you would do with any other terraform module.
+
+You can also simply run
+
+```bash
+terraform init
+terraform plan
+terraform apply
+```
+
+Check out the full example in the [repository example directory](https://github.com/mia-platform/terraform-integration-connector-agent/tree/main/examples/aws).
+:::
 
 :::info
 Find out more about the specific steps to create these resources in the [Integration Connector Agent documentation](/runtime_suite/integration-connector-agent/use-cases/infrastructure-import/20_aws_infrastructure_import.md).
@@ -96,6 +105,20 @@ module "gcp" {
   cloud_asset_feed_id = "awesome-feed-id"
 }
 ```
+
+:::tip
+To provision the resources you can use an [Infrastructure Project](/console/project-configuration/infrastructure-project.md), just like you would do with any other terraform module.
+
+You can also simply run
+
+```bash
+terraform init
+terraform plan
+terraform apply
+```
+
+Check out the full example in the [repository example directory](https://github.com/mia-platform/terraform-integration-connector-agent/tree/main/examples/gcp).
+:::
 
 :::info
 Find out more about the specific steps to create these resources in the [Integration Connector Agent documentation](/runtime_suite/integration-connector-agent/use-cases/infrastructure-import/10_gcp_infrastructure_import.md).
@@ -126,6 +149,20 @@ module "azure" {
   eventhub_checkpoint_storage_name = "awesome-storage-account-name"
 }
 ```
+
+:::tip
+To provision the resources you can use an [Infrastructure Project](/console/project-configuration/infrastructure-project.md), just like you would do with any other terraform module.
+
+You can also simply run
+
+```bash
+terraform init
+terraform plan
+terraform apply
+```
+
+Check out the full example in the [repository example directory](https://github.com/mia-platform/terraform-integration-connector-agent/tree/main/examples/azure).
+:::
 
 :::info
 Find out more about the specific steps to create these resources in the [Integration Connector Agent documentation](/runtime_suite/integration-connector-agent/use-cases/infrastructure-import/30_azure_infrastructure_import.md).
@@ -214,7 +251,6 @@ You can find more information about this item type in the [Catalog documentation
               "clientId": "CLIENT_ID",
               "clientSecret": { "fromEnv": "CONSOLE_SERVICE_ACCOUNT_CLIENT_SECRET" },
               "itemType": "infrastructure-component-runtime",
-              "itemIdTemplate": "{{runtimeData.provider}}-{{runtimeData.name}}-{{runtimeData.type}}",
               "itemNameTemplate": "{{name}} ({{runtimeData.provider}})"
             }
           ]
@@ -276,7 +312,6 @@ You can find more information about this item type in the [Catalog documentation
               "clientId": "CLIENT_ID",
               "clientSecret": { "fromEnv": "CONSOLE_SERVICE_ACCOUNT_CLIENT_SECRET" },
               "itemType": "infrastructure-component-runtime",
-              "itemIdTemplate": "{{runtimeData.provider}}-{{runtimeData.name}}-{{runtimeData.type}}",
               "itemNameTemplate": "{{name}} ({{runtimeData.provider}})"
             }
           ]
@@ -343,7 +378,6 @@ You can find more information about this item type in the [Catalog documentation
               "clientId": "CLIENT_ID",
               "clientSecret": { "fromEnv": "CONSOLE_SERVICE_ACCOUNT_CLIENT_SECRET" },
               "itemType": "infrastructure-component-runtime",
-              "itemIdTemplate": "{{runtimeData.provider}}-{{runtimeData.name}}-{{runtimeData.type}}",
               "itemNameTemplate": "{{name}} ({{runtimeData.provider}})"
             }
           ]
