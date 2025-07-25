@@ -179,23 +179,34 @@ To do so, you can create a new microservice in your Project starting from the [I
 
 ![Created Integration Connector Agent based microservice in design section](./img/visualize-infra-ica-design-example.png)
 
-Depending on the Cloud Provider you are using, some configurations may differ. In the example below, you can find configuration examples for AWS, GCP, and Azure.
+Now that the Integration Connector Agent microservice is created, we can configure the data pipeline that will be used to process the events coming from the Cloud Provider and save them in the Catalog.
 
-To create the Integration Connector Agent data pipeline, we are going to use the following components:
+The Data Pipeline will be configured using already available Integration Connector Agent components, and it will be defined
+by a specific [source](/runtime_suite/integration-connector-agent/sources/10_overview.md),
+a set of [processors](/runtime_suite/integration-connector-agent/processors/10_overview.md),
+and a [sink](/runtime_suite/integration-connector-agent/sinks/10_overview.md) that allows the service.
 
-- vendor-specific source: there are three different sources depending on the Cloud Provider you are using:
-  - `aws-cloudtrail-sqs` for AWS
-  - `gcp-cloud-asset-pubsub` for GCP
-  - `azure-event-hub` for Azure
-  
+![Data Pipeline visualization](./img/visualize-infra-ica-data-pipeline.png)
+
+The components that we will use in the Data Pipeline are:
+
+- Vendor-specific source: there are three different sources depending on the Cloud Provider you are using:
+  - [`aws-cloudtrail-sqs`](/runtime_suite/integration-connector-agent/sources/50_aws_cloudtrail_sqs.md) for AWS
+  - [`gcp-cloud-asset-pubsub`](/runtime_suite/integration-connector-agent/sources/30_gcp_pubsub_asset_inventory.md) for GCP
+  - [`azure-event-hub`](/runtime_suite/integration-connector-agent/sources/40_azure_activity_log_event_hub.md) for Azure
+
   All of them will listen to the events coming from the Cloud Provider and produce events that will be processed by the Integration Connector Agent.
   Additionally, they also provide a webhook that can be used to trigger a full import.
-- `cloud-vendor-aggregator` processor: this processor will aggregate the events coming from the Cloud Provider and produce a single event for each resource
-- `mapper` processor: this processor will map the event produced by the `cloud-vendor-aggregator` processor to the format expected by the Catalog
-- `console-catalog` sink: this sink will save the event in the Catalog, using the `infrastructure-component-runtime` item type
+- [`cloud-vendor-aggregator` processor](/runtime_suite/integration-connector-agent/processors/40_cloud_vendor_aggregator.md):
+this component will aggregate the events coming from the Cloud Provider and produce a single event for each resource
+- [`mapper` processor](/runtime_suite/integration-connector-agent/processors/20_mapper.md): this component will map the event produced by the [`cloud-vendor-aggregator` processor](/runtime_suite/integration-connector-agent/processors/40_cloud_vendor_aggregator.md)
+to a format that complies with the [`infrastructure-component-runtime`](/software-catalog/items-manifest/infrastructure-component-runtime.md) item type in the Catalog.
+- [`console-catalog` sink](/runtime_suite/integration-connector-agent/sinks/15_console-catalog.md): this sink will save the event in the Catalog,
+using the [`infrastructure-component-runtime`](/software-catalog/items-manifest/infrastructure-component-runtime.md) item type
 
-:::note
-We are saving the items using the `infrastructure-component-runtime` item type, which is a specific item type used to store runtime data for infrastructure components.
+:::info
+We are saving the items using the [`infrastructure-component-runtime`](/software-catalog/items-manifest/infrastructure-component-runtime.md) item type,
+which is a specific item type used to store runtime data for infrastructure components.
 
 You can find more information about this item type in the [Catalog documentation](/software-catalog/items-manifest/infrastructure-component-runtime.md).
 :::
