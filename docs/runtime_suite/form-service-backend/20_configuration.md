@@ -174,7 +174,7 @@ In addition (`from Form Service Backend v1.1.1`), you can add the following opti
 
 - **options**, of type *object*, to save an additional `JSON` of options to further customize the visualization of a submitted form in the Form Visualizer. The available options can be found in the [form.io documentation](https://help.form.io/developers/form-renderer#form-renderer-options).
 
-The options can be updated for example updated with a [POST decorator](/runtime_suite_libraries/custom-plugin-lib/decorators.md) after the submission of a new form.
+The options can be updated for example updated with a [POST decorator](../../development_suite/api-console/api-design/plugin_baas_4#pre-and-post-decorators) after the submission of a new form.
 
 :::caution
 
