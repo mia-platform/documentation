@@ -29,3 +29,14 @@ There are several ways to manage Software Catalog items and their versions, depe
 - [**`miactl`**](/software-catalog/items-management/miactl.md), the official Mia-Platform command-line tool. Perfect for automation, scripting, and advanced workflows,
 - [**Mia-Platform GitHub Community**](https://github.com/mia-platform/community): for community-driven contributions or support requests — such as proposing new items or requesting changes — you can open an issue on the [dedicated page](https://github.com/mia-platform/community), and
 - [**API Access**](/software-catalog/items-management/api.md): you can interact directly with the underlying APIs to perform programmatic changes.
+
+### Permissions
+
+To create or edit items, users must have the [role](/development_suite/identity-and-access-management/console-levels-and-permission-management.md#identity-capabilities-inside-console) of **Company Owner** or **Project Administrator** in the Company the item belongs to.
+
+On top of that, the specific permission [**`marketplace.root.manage`**](/development_suite/identity-and-access-management/console-levels-and-permission-management.md#console-root-level-permissions) is needed to set or edit these restricted properties:
+
+- `publishOnMiaDocumentation`
+- `supportedBy`
+- `supportedByImage`
+- `visibility`
