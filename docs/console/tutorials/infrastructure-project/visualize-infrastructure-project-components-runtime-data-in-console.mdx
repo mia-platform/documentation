@@ -403,7 +403,11 @@ You can create a new [Composer page Extension](/console/company-configuration/ex
 The *Infrastructure Component Runtime Catalog Table* template is meant to consume resources from the Catalog of a specific tenant,
 therefore you will have to set the `tenantId` filter in order for the page to work properly.
 
-You **MUST** set the filter value in the `Runtime` Tab filters settings, to get there you need to
+You **MUST** set the filter value in the `Runtime` Tab filters settings,
+you can do this via UI or by manually editing the Advanced configuration:
+
+<Tabs>
+<TabItem value="ui" label="UI">
 
 - click on `Tabs` in the layout page left sidebar
 - in the right sidebar, under Content, press `Edit property`
@@ -412,4 +416,47 @@ You **MUST** set the filter value in the `Runtime` Tab filters settings, to get 
 - you should now see the preset filters (see the screenshot below), one being `tenantId` with a placeholder value, change it according to your actual Company ID
 
 ![Runtime Tab filters](./img/visualize-infra-composer-extension-creation-runtime-tab.png)
+
+</TabItem>
+<TabItem value="advanced" label="Advanced">
+
+Switch to the Advanced tab and search for the `YOUR_TENANT_ID` placeholder string to change it.
+
+![Advanced configuration of Runtime Tab filters](./img/visualize-infra-composer-extension-creation-advanced-tenantid.png)
+</TabItem>
+
+</Tabs>
 :::
+
+#### Add custom columns
+
+The asset data contained by catalog items contains several information that are solely displayed in a Modal.
+
+You can add custom columns to the table by adding a new field in the `dataSchema` property via the Advanced configuration.
+
+For example, if you want to add a column for the `runtimeData.location` field, you can add the following code in the `dataSchema` property:
+
+```json
+{
+  // ... other data schema properties,
+  "resLocation": {
+    "type": "string",
+    "label": "Location",
+    "order": 20,
+    "formOptions": {
+      "readOnly": true,
+      "hidden": true
+    },
+    "visualizationOptions": {
+      "tag": "div",
+      "properties": {
+        "innerHTML": "{{args.[1].resources.runtimeData.location}}"
+      },
+      "sortable": false
+    }
+  }
+  // ...
+}
+```
+
+![Add Column](./img/visualize-infra-composer-extension-add-column-advanced.png)
