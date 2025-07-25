@@ -7,7 +7,7 @@ sidebar_label: View Infrastructure Project Runtime
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-This tutorial will show you how to collect runtime data from your cloud provider and make it available to the your final user in Console.
+This tutorial will show you how to collect runtime data from your cloud provider and make it available to your final user in Console.
 
 The tutorial assumes you have the following prerequisites in place:
 
@@ -184,7 +184,7 @@ Now that the Integration Connector Agent microservice is created, we can configu
 The Data Pipeline will be configured using already available Integration Connector Agent components, and it will be defined
 by a specific [source](/runtime_suite/integration-connector-agent/sources/10_overview.md),
 a set of [processors](/runtime_suite/integration-connector-agent/processors/10_overview.md),
-and a [sink](/runtime_suite/integration-connector-agent/sinks/10_overview.md) that allows the service.
+and a [sink](/runtime_suite/integration-connector-agent/sinks/10_overview.md) that handles the data processing.
 
 ![Data Pipeline visualization](./img/visualize-infra-ica-data-pipeline.png)
 
@@ -441,7 +441,7 @@ Switch to the Advanced tab and search for the `YOUR_TENANT_ID` placeholder strin
 
 #### Add custom columns
 
-The asset data contained by catalog items contains several information that are solely displayed in a Modal.
+The asset data contained by catalog items contains several pieces of information that are only displayed in a Modal.
 
 You can add custom columns to the table by adding a new field in the `dataSchema` property via the Advanced configuration.
 
@@ -480,7 +480,7 @@ Since we are using the `cloud-vendor-aggregator` Integration Connector Agent Pr
 In certain cases, you may want to enrich the data with additional information, such as information relevant to
 the same infrastructure component but coming from a different tool (e.g. a monitoring tool that provides additional information about the infrastructure component).
 
-In this cases you can build a custom [RPC Processor](/runtime_suite/integration-connector-agent/processors/30_rpc_plugin.md) that will act within the
+In these cases you can build a custom [RPC Processor](/runtime_suite/integration-connector-agent/processors/30_rpc_plugin.md) that will act within the
 Integration Connector Agent data pipeline and enrich the data with additional information.
 
 :::tip
