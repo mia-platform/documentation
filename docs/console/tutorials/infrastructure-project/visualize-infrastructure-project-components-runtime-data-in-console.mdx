@@ -37,14 +37,13 @@ Therefore, to reach this goal, we will have to set up the following components:
 
 ### Set up Cloud Provider integration
 
-As mentioned above, we will need to create some resources in the Cloud Provider to receive events from it.
+As mentioned above, we will need to create some resources in the Cloud Provider in order to receive events from it.
 
 Each Cloud Provider has its own way to send events, so you will have to follow the specific instructions for your Cloud Provider.
 
-:::tip
-To create such resources, we have created a set of Terraform modules that will help you prepare the cloud provider environment.
-
-Ask your Mia-Platform referent to get access to it!
+:::info
+To set up the Cloud Provider resources that will send events to your Integration Connector Agent instance, we have prepared a set of Terraform modules that will assist you,
+you can find them in the [GitHub Mia-Platform Terraform Integration Connector Agent](https://github.com/mia-platform/terraform-integration-connector-agent) repository.
 :::
 
 <Tabs>
@@ -54,6 +53,34 @@ You will need to:
 - create a new CloudTrail
 - create a new SQS queue that will be used to receive events by the Integration Connector Agent
 - create a new EventBridge rule that will listen to the CloudTrail events and send them to the SQS queue
+
+Create your terraform module using the following code snippet:
+
+```go
+module "aws" {
+  source = "github.com/mia-platform/terraform-integration-connector-agent//modules/aws"
+
+  cloudtrail_name = "awesome-cloudtrail-name"
+  cloudtrail_bucket_name = "awesome-bucket-name"
+
+  eventbridge_rule_name = "awesome-rule-name"
+  sqs_queue_name = "awesome-queue-name"
+}
+```
+
+:::tip
+To provision the resources you can use an [Infrastructure Project](/console/project-configuration/infrastructure-project.md), just like you would do with any other terraform module.
+
+You can also simply run
+
+```bash
+terraform init
+terraform plan
+terraform apply
+```
+
+Check out the full example in the [repository example directory](https://github.com/mia-platform/terraform-integration-connector-agent/tree/main/examples/aws).
+:::
 
 :::info
 Find out more about the specific steps to create these resources in the [Integration Connector Agent documentation](/runtime_suite/integration-connector-agent/use-cases/infrastructure-import/20_aws_infrastructure_import.md).
@@ -68,6 +95,31 @@ You will need to:
 - create a Pub/Sub topic that will be used to receive events by the Integration Connector Agent
 - create a feed to send events from the Asset Management API to the Pub/Sub topic
 
+Create your terraform module using the following code snippet:
+
+```go
+module "gcp" {
+  source = "github.com/mia-platform/terraform-integration-connector-agent//modules/google"
+
+  pubsub_topic_name = "awesome-topic-name"
+  cloud_asset_feed_id = "awesome-feed-id"
+}
+```
+
+:::tip
+To provision the resources you can use an [Infrastructure Project](/console/project-configuration/infrastructure-project.md), just like you would do with any other terraform module.
+
+You can also simply run
+
+```bash
+terraform init
+terraform plan
+terraform apply
+```
+
+Check out the full example in the [repository example directory](https://github.com/mia-platform/terraform-integration-connector-agent/tree/main/examples/gcp).
+:::
+
 :::info
 Find out more about the specific steps to create these resources in the [Integration Connector Agent documentation](/runtime_suite/integration-connector-agent/use-cases/infrastructure-import/10_gcp_infrastructure_import.md).
 :::
@@ -81,6 +133,36 @@ You will need to:
 - create a new eventhub
 - create a monitor diagnostic settings for exporting administrative log to the created eventhub
 - create a storage account with a blob container
+
+Create your terraform module using the following code snippet:
+
+```go
+module "azure" {
+  source = "github.com/mia-platform/terraform-integration-connector-agent//modules/azurerm"
+
+  resource_group = "awesome-resource-group"
+  activity_log_diagnostic_setting_name = "awesome-diagnostic-setting-name"
+
+  eventhub_namespace_name = "awesome-eventhub-namespace"
+  eventhub_name = "awesome-eventhub-name"
+
+  eventhub_checkpoint_storage_name = "awesome-storage-account-name"
+}
+```
+
+:::tip
+To provision the resources you can use an [Infrastructure Project](/console/project-configuration/infrastructure-project.md), just like you would do with any other terraform module.
+
+You can also simply run
+
+```bash
+terraform init
+terraform plan
+terraform apply
+```
+
+Check out the full example in the [repository example directory](https://github.com/mia-platform/terraform-integration-connector-agent/tree/main/examples/azure).
+:::
 
 :::info
 Find out more about the specific steps to create these resources in the [Integration Connector Agent documentation](/runtime_suite/integration-connector-agent/use-cases/infrastructure-import/30_azure_infrastructure_import.md).
@@ -128,7 +210,7 @@ You can find more information about this item type in the [Catalog documentation
     {
       "source": {
         "type": "aws-cloudtrail-sqs",
-        "queueUrl": "https://sqs.REGION.amazonaws.com/ACCOUNT_ID/QUEUE_NAME",
+        "queueUrl": "https://sqs.REGION.amazonaws.com/ACCOUNT_ID/awesome-queue-name",
         "region": "REGION",
         "accessKeyId": "{{AWS_ACCESS_KEY_ID}}",
         "secretAccessKey": { "fromEnv": "AWS_SECRET_ACCESS_KEY" },
@@ -169,7 +251,6 @@ You can find more information about this item type in the [Catalog documentation
               "clientId": "CLIENT_ID",
               "clientSecret": { "fromEnv": "CONSOLE_SERVICE_ACCOUNT_CLIENT_SECRET" },
               "itemType": "infrastructure-component-runtime",
-              "itemIdTemplate": "{{runtimeData.provider}}-{{runtimeData.name}}-{{runtimeData.type}}",
               "itemNameTemplate": "{{name}} ({{runtimeData.provider}})"
             }
           ]
@@ -191,7 +272,7 @@ You can find more information about this item type in the [Catalog documentation
       "source": {
         "type": "gcp-inventory-pubsub",
         "projectId": "GCP_PROJECT_ID",
-        "topicName": "GPC_PUBSUB_TOPIC_NAME",
+        "topicName": "awesome-topic-name",
         "subscriptionId": "GCP_PUBSUB_SUBSCRIPTION_ID",
         "ackDeadlineSeconds": 15,
         "credentialsJson": { "fromEnv": "GCP_CREDENTIALS_JSON" },
@@ -231,7 +312,6 @@ You can find more information about this item type in the [Catalog documentation
               "clientId": "CLIENT_ID",
               "clientSecret": { "fromEnv": "CONSOLE_SERVICE_ACCOUNT_CLIENT_SECRET" },
               "itemType": "infrastructure-component-runtime",
-              "itemIdTemplate": "{{runtimeData.provider}}-{{runtimeData.name}}-{{runtimeData.type}}",
               "itemNameTemplate": "{{name}} ({{runtimeData.provider}})"
             }
           ]
@@ -253,10 +333,10 @@ You can find more information about this item type in the [Catalog documentation
       "source": {
         "type": "azure-activity-log-event-hub",
         "subscriptionId": "AZURE_SUBSCRIPTION_ID",
-        "eventHubNamespace": "AZURE_EVENT_HUB_NAMESPACE",
-        "eventHubName": "AZURE_EVENT_HUB_NAME",
-        "checkpointStorageAccountName": "AZURE_CHECKPOINT_STORAGE_ACCOUNT_NAME",
-        "checkpointStorageContainerName": "AZURE_CHECKPOINT_STORAGE_CONTAINER_NAME",
+        "eventHubNamespace": "awesome-eventhub-namespace",
+        "eventHubName": "awesome-eventhub-name",
+        "checkpointStorageAccountName": "awesome-storage-account-name",
+        "checkpointStorageContainerName": "awesome-storage-container-name",
         "tenantId": "AZURE_TENANT_ID",
         "clientId": { "fromEnv": "AZURE_CLIENT_ID" },
         "clientSecret": { "fromEnv": "AZURE_CLIENT_SECRET" },
@@ -298,7 +378,6 @@ You can find more information about this item type in the [Catalog documentation
               "clientId": "CLIENT_ID",
               "clientSecret": { "fromEnv": "CONSOLE_SERVICE_ACCOUNT_CLIENT_SECRET" },
               "itemType": "infrastructure-component-runtime",
-              "itemIdTemplate": "{{runtimeData.provider}}-{{runtimeData.name}}-{{runtimeData.type}}",
               "itemNameTemplate": "{{name}} ({{runtimeData.provider}})"
             }
           ]
@@ -324,7 +403,11 @@ You can create a new [Composer page Extension](/console/company-configuration/ex
 The *Infrastructure Component Runtime Catalog Table* template is meant to consume resources from the Catalog of a specific tenant,
 therefore you will have to set the `tenantId` filter in order for the page to work properly.
 
-You **MUST** set the filter value in the `Runtime` Tab filters settings, to get there you need to
+You **MUST** set the filter value in the `Runtime` Tab filters settings,
+you can do this via UI or by manually editing the Advanced configuration:
+
+<Tabs>
+<TabItem value="ui" label="UI">
 
 - click on `Tabs` in the layout page left sidebar
 - in the right sidebar, under Content, press `Edit property`
@@ -333,4 +416,47 @@ You **MUST** set the filter value in the `Runtime` Tab filters settings, to get 
 - you should now see the preset filters (see the screenshot below), one being `tenantId` with a placeholder value, change it according to your actual Company ID
 
 ![Runtime Tab filters](./img/visualize-infra-composer-extension-creation-runtime-tab.png)
+
+</TabItem>
+<TabItem value="advanced" label="Advanced">
+
+Switch to the Advanced tab and search for the `YOUR_TENANT_ID` placeholder string to change it.
+
+![Advanced configuration of Runtime Tab filters](./img/visualize-infra-composer-extension-creation-advanced-tenantid.png)
+</TabItem>
+
+</Tabs>
 :::
+
+#### Add custom columns
+
+The asset data contained by catalog items contains several information that are solely displayed in a Modal.
+
+You can add custom columns to the table by adding a new field in the `dataSchema` property via the Advanced configuration.
+
+For example, if you want to add a column for the `runtimeData.location` field, you can add the following code in the `dataSchema` property:
+
+```json
+{
+  // ... other data schema properties,
+  "resLocation": {
+    "type": "string",
+    "label": "Location",
+    "order": 20,
+    "formOptions": {
+      "readOnly": true,
+      "hidden": true
+    },
+    "visualizationOptions": {
+      "tag": "div",
+      "properties": {
+        "innerHTML": "{{args.[1].resources.runtimeData.location}}"
+      },
+      "sortable": false
+    }
+  }
+  // ...
+}
+```
+
+![Add Column](./img/visualize-infra-composer-extension-add-column-advanced.png)
