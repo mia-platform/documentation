@@ -460,3 +460,79 @@ For example, if you want to add a column for the `runtimeData.location` field, y
 ```
 
 ![Add Column](./img/visualize-infra-composer-extension-add-column-advanced.png)
+
+### Extend asset data
+
+Since we are using the `cloud-vendor-aggregator` Integration Connector Agent Processor the data contained within the event is the
+[Asset defined by the processor itself](/runtime_suite/integration-connector-agent/processors/40_cloud_vendor_aggregator.md#processor-overview).
+
+In certain cases, you may want to enrich the data with additional information, such as information relevant to
+the same infrastructure component but coming from a different tool (e.g. a monitoring tool that provides additional information about the infrastructure component).
+
+In this cases you can build a custom [RPC Processor](/runtime_suite/integration-connector-agent/processors/30_rpc_plugin.md) that will act within the
+Integration Connector Agent data pipeline and enrich the data with additional information.
+
+:::tip
+For such a use case consider using the [Integration Connector Agent RPC Plugin Processor Template](https://github.com/mia-platform-marketplace/integration-connector-agent-processor)
+to create a new repository containing all the necessary files to build a custom Integration Connector agent image
+already paired with a custom RPC Plugin Processor.
+:::
+
+In short your Processor implementation could be something like:
+
+```go
+package main
+import (
+  "context"
+
+  "github.com/mia-platform/integration-connector-agent/entities"
+)
+
+type Asset struct {
+  Name          string            `json:"name"`
+  Type          string            `json:"type"`
+  Provider      string            `json:"provider"`
+  Location      string            `json:"location"`
+  Relationships []string          `json:"relationships"`
+  Tags          map[string]string `json:"tags"`
+  RawData       []byte            `json:"rawData"`
+  Timestamp     time.Time         `json:"timestamp"`
+}
+
+type AssetWithCustomData struct {
+  Asset
+  MyCustomField string `json:"myCustomField"`
+}
+
+type MyProcessor struct {
+  // Add any fields you need for your plugin
+}
+
+func (p *MyProcessor) Init(config []byte) error {
+  return nil
+}
+
+func (p *MyProcessor) Process(input entities.PipelineEvent) (entities.PipelineEvent, error) {
+  originalData := input.Data()
+
+  var originalAsset Asset
+  if err := json.Unmarshal(originalData, &originalAsset); err != nil {
+    g.logger.WithError(err).Error("Failed to unmarshal original asset data")
+    return input, err
+  }
+
+  newAsset := AssetWithCustomData{
+    Asset:         originalAsset,
+    MyCustomField: "This is a custom field",
+  }
+  newPayload, err := json.Marshal(newAsset)
+  if err != nil {
+    g.logger.WithError(err).Error("Failed to marshal new asset data")
+    return nil, err
+  }
+
+  output := input.Clone()
+  output.WithData(newPayload)
+  return output, nil
+}
+```
