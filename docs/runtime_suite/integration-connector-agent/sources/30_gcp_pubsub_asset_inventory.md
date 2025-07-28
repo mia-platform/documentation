@@ -28,6 +28,14 @@ To configure the Google Cloud Asset Inventory API Pub/Sub source, you need to:
 Find out more about how to [monitor asset changes](https://cloud.google.com/asset-inventory/docs/monitor-asset-changes).
 :::
 
+:::caution
+Currently, this source only supports the following resource types:
+
+- Bucket storage (`storage.googleapis.com/Bucket`)
+- Cloud Run services (`run.googleapis.com/Service`)
+
+:::
+
 ### Full import
 
 This source supports a full import of all assets in the Google Cloud project.
