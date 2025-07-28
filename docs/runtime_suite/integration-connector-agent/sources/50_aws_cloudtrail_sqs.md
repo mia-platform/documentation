@@ -25,6 +25,14 @@ To configure AWS, you need to:
 - create an [EventBridge](https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-setup.html) rule that maps
   the desired sources and sends them to the SQS queue
 
+:::caution
+Currently, this source only supports the following resource types:
+
+- S3 bucket (`aws.s3`)
+- Lambda function (`aws.lambda`)
+
+:::
+
 ### Full import
 
 This source supports a full import of all assets in the AWS project.

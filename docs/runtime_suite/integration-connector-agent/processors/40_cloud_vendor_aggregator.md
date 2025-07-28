@@ -42,6 +42,31 @@ The Processor is designed to produce a standardized asset shape that has the fol
 | `timestamp` | *string* | The timestamp of the generated asset, the string follows the ISO format |
 | `rawData` | *string* | The event raw data from the cloud vendor, containing all the fields that were present in the original event. Note: this value is a base64 representation of the original binary data |
 
+### Supported vendor Resources
+
+Each vendor has currently a limited set of supported resources.
+
+#### Google Cloud Platform (GCP)
+
+- Bucket storage (`storage.googleapis.com/Bucket`)
+- Cloud Run function (`run.googleapis.com/Service`)
+
+#### AWS
+
+- S3 bucket (`aws.s3`)
+- Lambda function (`aws.lambda`)
+
+#### Azure
+
+- Storage Account (`Microsoft.Storage/storageAccounts`)
+- App Function and App Service (`Microsoft.Web/sites`)
+- Virtual Machine (`Microsoft.Compute/virtualMachines`)
+- Disk (`Microsoft.Compute/disks`)
+- Virtual Network (`Microsoft.Network/virtualNetworks`)
+- Network Interface (`Microsoft.Network/networkInterfaces`)
+- Network Security Group (`Microsoft.Network/networkSecurityGroups`)
+- Public IP Address (`Microsoft.Network/publicIPAddresses`)
+
 ## Configuration
 
 When configuring the Cloud Vendor Aggregator processor,
