@@ -549,6 +549,8 @@ property in the [Users CRUD][crud-users] does not have a value.
 If you use an alphanumeric sender ID please avoid generic names (e.g. SMS, Info...), otherwise the SMS provider may return an error like [*Invalid 'From' Number*][twilio-invalid-number]. Please check the [SMS Service documentation][sms-service] for more details about supported providers. 
 :::
 
+- **email** - `object` (available since version 2.4.4): the configuration for the email channel.
+    - **escapeNewlines** - `string`: escape newlines characters with \<br\> tag in HTML email templates. Disabled by default, available options are: `enabled`, `disabled` (default).
 - **voice** - `object`: the configuration for the outbound calls used for voice notifications.
     - **retryCount** - `integer`: the number of retries that can be made until a timeout is reached if the initial call fails to connect.
   The default retry count is 0 and the maximum count is 2. Any value higher than 2 will be considered 2.
