@@ -83,20 +83,56 @@ In order for the service to correctly start up, please ensure the following prop
 | Name | Type | Description | Default | Required |
 |:----:|:----:|:-----------:|:-------:|:--------:|
 | `enabled`         | boolean | If set to `true`, the Mia-Assistant will be enabled               | `false` | ❌ |
-| `keys.llm`        | string  | The API key for the Large Language Model                          |         | ✅ |
-| `keys.embeddings` | string  | The API key for the Embedding Model                               |         | ✅ |
+| `keys`             | object  | The configuration for the API Keys and Credentials for specified Models          |         | ✅ |
 | `llm`             | object  | The configuration of the related LLM used under the hood          |         | ✅ |
 | `embeddings`      | object  | The configuration of the related Embeddings used under the hood   |         | ✅ |
 
 ### LLM and Embeddings Model Configuration
 
-You can choose any LLMs/Embedding provider to be used under the hood from the supported ones:
+You can choose one or multiple LLMs providers to be used from the Mia-Assistant. The supported ones are:
+
+- `azure`
+- `openai`
+- `vertex`
+- `google_anthropic_vertex`
+
+As Embedding model you can choose one of the following supported types:
 
 - `azure`
 - `openai`
 - `vertex`
 
-Here an example to configure LLM/Embedding with different providers:
+Note that both `vertex` and `google_anthropic_vertex` cannot be configured to use different credentials for LLM and Embeddings models. Credentials for these models is defined in the field `keys.vertexAICredentials`.
+
+Here an example to configure Mia-Assistant with different LLM providers:
+
+```yaml
+mia-console:
+  configurations:
+    # ...
+    assistant:
+      enabled: true,
+      keys:
+        azureLlmApiKey: "azure-apiKey"
+        vertexAICredentials: "vertex-credentials"
+      llms:
+        - type: "azure", # this model uses keys.azureLlmApiKey
+          displayName: "GPT-4o Mini"
+          apiVersion": "2025-01-01-preview",
+          deploymentName": "gpt-4o-mini",
+          name": "gpt-4o-mini",
+          url": "https://test.openai.azure.com/"
+        - type: "google_anthropic_vertex", # this model uses keys.vertexAICredentials
+          name": "claude-sonnet-4@20250514",
+          # ...
+      embeddings:
+        type: "azure",
+        apiKey: "embeddings-apiKey"
+        apiVersion": "2025-01-01-preview",
+        deploymentName": "text-embedding-3-large",
+        name": "text-embedding-3-large",
+        url": "https://test.openai.azure.com/"
+```
 
 Azure:
 
@@ -107,18 +143,17 @@ mia-console:
     assistant:
       enabled: true,
       # ...
-      llm:
-        type": "azure",
-        apiVersion": "2025-01-01-preview",
-        deploymentName": "gpt-4o-mini",
-        name": "gpt-4o-mini",
-        url": "https://test.openai.azure.com/"
+      keys:
+        azureLlmApiKey: "your-apiKey"
+      llms:
+        - type": "azure",
+          name": "gpt-4o-mini",
+          # ...
       embeddings:
         type": "azure",
-        apiVersion": "2025-01-01-preview",
-        deploymentName": "text-embedding-3-large",
+        apiKey: "azure-embeddings-apiKey"
         name": "text-embedding-3-large",
-        url": "https://test.openai.azure.com/"
+        # ...
 ```
 
 OpenAI:
@@ -130,12 +165,17 @@ mia-console:
     assistant:
       enabled: true,
       # ...
-      llm:
-        type": "openai",
-        name": "gpt-4o-mini",
+      keys:
+        openaiLlmApiKey: "your-apiKey"
+      llms:
+        - type": "openai",
+          name": "gpt-4o-mini",
+          # ...
       embeddings:
         type": "openai",
+        apiKey: "openai-embeddings-apiKey"
         name": "text-embedding-3-large",
+        # ...
 ```
 
 Vertex:
@@ -147,10 +187,35 @@ mia-console:
     assistant:
       enabled: true,
       # ...
-      llm:
-        type": "vertex",
-        name": "gpt-4o-mini",
+      keys:
+        vertexAICredentials: "vertex-ai-credentials"
+      llms:
+        - type": "vertex",
+          name": "gpt-4o-mini",
+          # ...
       embeddings:
         type": "vertex",
-        name": "text-embedding-3-large",
+        name": "text-embedding-004",
+        # ...
+```
+
+Anthropic models on Vertex:
+
+```yaml
+mia-console:
+  configurations:
+    # ...
+    assistant:
+      enabled: true,
+      # ...
+      keys:
+        vertexAICredentials: "vertex-ai-credentials"
+      llms:
+        - type": "google_anthropic_vertex",
+          name": "claude-sonnet-4@20250514",
+          # ...
+      embeddings:
+        type": "vertex",
+        name": "text-embedding-004",
+        # ...
 ```

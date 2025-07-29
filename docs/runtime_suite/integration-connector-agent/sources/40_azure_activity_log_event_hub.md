@@ -29,6 +29,20 @@ To configure the Azure Activity Log Event Hub source, you need to:
 Find out more about how to [export activity log to Azure Event Hubs](https://learn.microsoft.com/en-gb/azure/azure-monitor/platform/activity-log?tabs=powershell#send-to-azure-event-hubs)
 :::
 
+:::caution
+Currently, this source only supports the following resource types:
+
+- Storage Account (`Microsoft.Storage/storageAccounts`)
+- App Function and App Service (`Microsoft.Web/sites`)
+- Virtual Machine (`Microsoft.Compute/virtualMachines`)
+- Disk (`Microsoft.Compute/disks`)
+- Virtual Network (`Microsoft.Network/virtualNetworks`)
+- Network Interface (`Microsoft.Network/networkInterfaces`)
+- Network Security Group (`Microsoft.Network/networkSecurityGroups`)
+- Public IP Address (`Microsoft.Network/publicIPAddresses`)
+
+:::
+
 ## Full Import
 
 This source supports a full import of all assets in an Azure subscription.  
