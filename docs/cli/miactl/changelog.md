@@ -29,7 +29,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - added `project describe` command. It supports `--revision`, `--version` flags for enhanced workflow projects and
 	`--branch`, `--tag` flags for standard workflow projects.
-- added `project apply` command. It supports `--revision` flag as only ehnanced workflow is supported for project appy
+- added `project apply` command. It supports `--revision` flag as only enhanced workflow is supported for project apply
 
 ## [v0.19.0] - 2025-06-18
 
