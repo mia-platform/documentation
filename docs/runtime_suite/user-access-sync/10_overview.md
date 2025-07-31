@@ -115,3 +115,45 @@ At the end of each action and for each provider you can find a log in the follow
     "required": ["message", "summary"]
 }
 ```
+
+## Use Cases
+
+The *User Access Sync* service enables automatic synchronization of user permissions across various tools in your DevSecOps toolchain. Here are some common use cases:
+
+### Identity Provider to Platform Onboarding
+When a new user is added to your identity provider (e.g., Okta), the service can automatically:
+- Add the user to one or more Mia-Platform Console companies
+- Assign appropriate roles and permissions based on predefined rules
+- Send welcome notifications or setup instructions
+
+### Platform to Development Tools Integration
+When a user is added to a Mia-Platform company, the service can automatically:
+- Add the user to corresponding GitLab groups with appropriate access levels
+- Invite the user to relevant GitHub organizations and teams
+- Grant access to other development tools and repositories based on their role
+
+### Cross-Platform Permission Management
+When user permissions change in one system, the service can:
+- Synchronize role changes across all connected platforms
+- Ensure consistent access levels between Mia-Platform Console and external tools
+- Maintain security compliance by applying the same permission policies everywhere
+
+### User Lifecycle Management
+The service can handle the complete user lifecycle:
+- **Onboarding**: Automatically provision access to all necessary tools when a user joins
+- **Role Changes**: Update permissions across all platforms when a user's role changes
+- **Offboarding**: Remove access from all connected systems when a user leaves the organization
+
+### Environment-Specific Access Control
+Based on project and environment configurations, the service can:
+- Grant production access only to authorized personnel
+- Provide different access levels for development, staging, and production environments
+- Automatically adjust permissions based on project assignments
+
+### Compliance and Audit
+The service helps maintain compliance by:
+- Ensuring consistent permission policies across all tools
+- Providing audit logs of all permission changes
+- Automatically enforcing security policies and access controls
+
+These use cases demonstrate how the *User Access Sync* service reduces manual overhead for DevOps teams while ensuring consistent and secure access management across your entire toolchain.
