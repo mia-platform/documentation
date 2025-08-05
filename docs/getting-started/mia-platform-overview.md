@@ -125,14 +125,14 @@ These products form the backbone of Mia-Platform and are the main solutions used
 
 * [**Mia-Platform Runtime Components**](/marketplace/overview_marketplace.md): Accelerate the creation of new applications through reuse and composition of components.
 
-* [**Software Catalog**](/software-catalog/overview): A centralized solution for tracking and managing all software within your organization's ecosystem. It includes a public catalog of ready-to-use components and a private catalog for internal, reusable assets.
+* [**Software Catalog**](/software-catalog/overview.md): A centralized solution for tracking and managing all software within your organization's ecosystem. It includes a public catalog of ready-to-use components and a private catalog for internal, reusable assets.
 
 * [**Mia-Platform Fast Data**](/fast_data/what_is_fast_data.md): Adopt a **Digital Integration Hub** architecture with a **Data Fabric** approach to unlock the full potential of real-time data. It provides a unified data control plane, enabling data ingestion from any source, data synchronization and the creation of data products and APIs for rapid, secure data access.
 
 **Additional Components:**
 These components contribute to the realization of specific tasks within your products and are available through Mia-Platform Runtime Components:
 
-* **API Management**: With [**API Gateway**](/runtime_suite/api-gateway/overview) and [**API Portal**](/runtime_suite/api-portal/overview) you can simplify API management, routing requests, applying security policies, and offering a self-service interface for documentation and testing.
+* **API Management**: With [**API Gateway**](/runtime_suite/api-gateway/10_overview.md) and [**API Portal**](/runtime_suite/api-portal/10_overview.md) you can simplify API management, routing requests, applying security policies, and offering a self-service interface for documentation and testing.
 
 * [**Mia-Platform Microfrontend Composer**](/microfrontend-composer/what-is.md): Create custom CMSs, or generic User Interfaces, with the ability to compose custom pages, putting whatever web component coming from the back-kit library or from a custom component library.
 
