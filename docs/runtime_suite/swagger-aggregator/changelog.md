@@ -10,6 +10,15 @@ DO NOT MODIFY IT BY HAND.
 Instead, modify the source file and run the aggregator to regenerate this file.
 -->
 
+## [3.9.5-rc.0] 2025-07-23
+
+## [3.9.5] 2025-07-23
+
+### Updated
+
+- Updated node.js to version `24`
+- Dev environment updated
+
 ## [3.9.4] 2024-05-14
 
 ### Updated

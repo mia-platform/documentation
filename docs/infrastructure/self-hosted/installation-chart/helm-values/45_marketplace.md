@@ -26,6 +26,7 @@ The Marketplace receives updates with every Mia-Platform Console upgrade but can
 |`marketplaceSyncFilters`| `string` | A comma separated list of services types that needs to be updated (possible values are plugin,template,example,application,sidecar). | `plugin` | ✅ |
 |`enableProvidersSync` | `boolean` | Enable Providers Sync hook for runtime service providers updates. | `true` | ✅ |
 |`registry` | `string` | Allows for the definition of a custom registry host to be used for all marketplace-managed plugins |  | ✅ |
+|`softwareCatalogSyncCustomizations` | `object` | The actual customizations that software-catalog-sync will use to fully customize dockerImage fields |  | ✅ |
 
 :::caution
 If `marketplaceSyncFilters` is set to an empty string (`""`) the script will be deployed but it will immediately exit: if you plan to avoid marketplace synchronization please consider using the `enableMarketplaceSync` set to `false`.
@@ -49,4 +50,18 @@ mia-console:
   configurations:
     ...
     marketplaceSyncFilters: "plugin,sidecar"
+```
+
+### Configure software-catalog-sync dockerImage customization
+
+```yaml
+mia-console:
+  configurations:
+    ...
+    softwareCatalogSyncCustomizations:
+      dockerImageFilterList:
+        - filter: "nexus.example/plugins/(.*)"
+          replace: "my-registry-example.com/$1"
+        - filter: "nexus.example/core/(.*)"
+          replace: "my-registry-example-2.com/$1"
 ```
