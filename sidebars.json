@@ -112,6 +112,10 @@
         {
           "id": "console/tutorials/create-extension-with-sso",
           "type": "doc"
+        },
+        {
+          "id": "console/tutorials/create-scorecards",
+          "type": "doc"
         }
       ]
     },
