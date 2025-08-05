@@ -10,6 +10,14 @@ This tutorial will show you how to build a powerful, automated system to check i
 
 In this guide, a scorecard is a [custom extension](/console/company-configuration/extensions.md) you will build and add to the Mia-Platform Console. It is not just a static checklist. It is a dynamic dashboard that uses real, live data from your cloud infrastructure to automatically evaluate your services.
 
+### Use Cases
+
+The primary goal of building this system is to gain centralized visibility into all our technical assets, from the infrastructure they run on to the processes used to deploy them. By following this tutorial, we will enable a powerful monitoring capability that covers two critical domains:
+
+1. **Monitoring our existing infrastructure** across different cloud providers, giving us a single pane of glass for all our cloud resources.
+
+2. **Monitoring our DevOps systems**, allowing us to track the status, configuration, and health of essential tools like CI/CD pipelines.
+
 ## The Overall Workflow
 
 This tutorial will guide you through the entire process, which can be broken down into three main steps:
@@ -38,7 +46,7 @@ To follow this tutorial, you'll need:
 The first step is to configure the **Integration Connector Agent**.
 For detailed instructions on how to set up the agent and configure scraping for different cloud providers, follow the [official service documentation](/runtime_suite/integration-connector-agent/10_overview.md) and this [tutorial](/console/tutorials/infrastructure-project/visualize-infrastructure-project-components-runtime-data-in-console.mdx).
 
-For the purpose of our tutorial, we will configure the **Integration Connector Agen**t to interact with an *Azure subscription* and scrape information from **Azure Cloud** and **Azure DevOps**.
+For the purpose of our tutorial, we will configure the **Integration Connector Agent**t to interact with an *Azure subscription* and scrape information from **Azure Cloud** and **Azure DevOps**.
 
 To get data from your configured resources in Azure, we will use the [Azure Activity Log](https://learn.microsoft.com/en-us/azure/azure-monitor/platform/activity-log?tabs=log-analytics) configured to save data to an **Azure Event Hub**. For more information on how to configure the Integration Connector Agent with Azure, refer to this [documentation](/runtime_suite/integration-connector-agent/sources/40_azure_activity_log_event_hub.md).
 
