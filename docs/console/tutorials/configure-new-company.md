@@ -153,7 +153,7 @@ Navigate to **Project Blueprint** > **Environments** and click **Add new environ
 
 ![Environments page with a call to action to add a new environment.](./img/tutorial-configure-new-company/configure-environments-1.png)
 
-In the configuration window, fill in the required fields, including the **Name**, **Environment ID**, and the **Cluster ID** to associate the environment with. The **Cluster namespace** field supports input variables like `%projectId%` to create dynamic and isolated namespaces. Upon creation, the platform will also generate a set of specific output variables for the cluster connection, which will be visible on the details page. For more details on all the available configuration options, you can refer to the [official documentation on environments](/console/company-configuration/project-blueprint).
+In the configuration window, fill in the required fields, including the **Name**, **Environment ID**, and the **Cluster ID** to associate the environment with. The **Cluster namespace** field supports input variables like `%projectId%` to create dynamic and isolated namespaces. Upon creation, the platform will also generate a set of specific output variables for the cluster connection, which will be visible on the details page. For more details on all the available configuration options, you can refer to the [official documentation on environments](/console/company-configuration/project-blueprint.md).
 
 ![Modal to configure a new runtime environment.](./img/tutorial-configure-new-company/configure-environments-2.png)
 
