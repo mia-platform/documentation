@@ -1,23 +1,38 @@
 ---
 id: configure-new-company
-title: Configure a New Company
-sidebar_label: Configure a New Company
+title: 'Onboarding Guide: Company Setup in Console'
+sidebar_label: Company Setup in Console
 ---
 
-# How to: Configure a New Company
+# Onboarding Guide: Company Setup in Console
 
-## Introduction
+## Onboarding Tutorial Introduction 
 
 Configuring a **Company** is the initial process required to set up the platform's operational foundation. A Company acts as an isolated tenant that serves as the root for governance, representing your organization or a specific business unit. Within it, all centralized resources (such as infrastructure, tools and standards) are defined to enable development teams to operate autonomously, quickly and securely.
 
 Before any project can be created or deployed, this initial setup must be completed. It consists of four sequential phases:
 
 1.  **Configure Cluster**: Connect the Kubernetes infrastructure that will host the applications.
-2.  **Configure Providers**: Integrate external tools for code, secret and pipeline management.
+2.  **Configure Providers**: Integrate external tools (defined as **Providers**) for code, secret and pipeline management.
 3.  **Configure Environments**: Define logical deployment destinations (e.g., Development, Production).
 4.  **Configure Blueprints**: Standardize the creation of new projects through pre-configured templates.
 
-This tutorial guides the user through each phase to make the Company fully operational. For an overview of the Console's architecture, you can consult the [general overview](https://docs.mia-platform.eu/docs/console/overview).
+This tutorial guides the user through each phase to make the Company fully operational. For an overview of the Console's architecture, you can consult the [general overview](/development_suite/overview-dev-suite.md).
+
+### Prerequisites
+
+Before starting, ensure you have the following:
+* An active and functioning Kubernetes cluster. We recommend a version between **1.25** and **1.33**. For more details on specific requirements, you can consult the [architectural prerequisites](/infrastructure/self-hosted/self-hosted-requirements.md#architectural-prerequisites).
+* A Git provider (e.g., GitLab, GitHub) with an account that has sufficient permissions to generate access tokens.
+* The necessary credentials and endpoints for all the external tools you intend to connect.
+
+:::info
+**Scope of this Tutorial**
+
+This guide illustrates a "Bring Your Own Infrastructure" (BYOI) scenario. We will use a pre-existing **Azure Kubernetes Service (AKS)** cluster and a single **GitLab** instance acting as Git Provider, CI/CD Tool, and Secret Manager.
+
+The configuration process may vary slightly for other providers or cluster types. Configuring a Company on a PaaS version of the platform might require a support ticket, while a self-hosted Console installation could have different initial conditions.
+:::
 
 ---
 
@@ -29,13 +44,6 @@ The first step is to connect a Kubernetes cluster. This cluster will be the runt
 The Console also allows you to create new infrastructure, including clusters, through the [**Infrastructure Project**](/console/project-configuration/infrastructure-project.md) feature. However, for the purpose of this onboarding tutorial, we will assume that a pre-configured cluster already exists.
 :::
 
-**Prerequisites**
-Before proceeding, ensure you have:
-* An active and functioning Kubernetes cluster.
-* The cluster's API server URL.
-* The necessary credentials to allow the Console to authenticate and operate on the cluster.
-* Network connectivity between the Console instance and the cluster's API server.
-
 ### Connect a new cluster
 
 Inside your Company, navigate to **Infrastructure** > **Clusters** and click **New cluster connection**.
@@ -46,7 +54,7 @@ A wizard will open. In the first step, **Runtime Service**, you need to specify 
 
 ![New cluster connection wizard, Runtime Service step.](./img/tutorial-configure-new-company/configure-cluster-2.png)
 
-In the **Details** step, you will enter the basic information to identify the cluster. You can use any name to the **Cluster ID**, this will be the unique and human-readable identifier used by the Console for its future management. The **Cluster URL** is the actual API server endpoint. The other two fields, Geographics (to specify the geographical region of the cluster) and Description (to provide more context on its purpose) are optional.
+The other two fields are optional: **Geographics** serves as a metadata label to indicate the cluster's geographical region (note that this does not control the actual region, which is managed by your cloud provider), while **Description** can provide more context on its purpose.
 
 ![New cluster connection wizard, Details step.](./img/tutorial-configure-new-company/configure-cluster-3.png)
 
@@ -71,6 +79,8 @@ You will be redirected to the cluster's detail page, where you can view a summar
 ## Step 2: Configure Providers
 
 The next step is to configure **Providers**: connections to external services essential for the software lifecycle, such as Git providers, secret managers, or CI/CD tools.
+
+For a complete list of supported providers and their specific requirements, please refer to the [official documentation](/console/company-configuration/providers/overview.md).
 
 ### Connect a new Provider
 
@@ -143,7 +153,7 @@ Navigate to **Project Blueprint** > **Environments** and click **Add new environ
 
 ![Environments page with a call to action to add a new environment.](./img/tutorial-configure-new-company/configure-environments-1.png)
 
-In the configuration window, fill in the required fields, including the **Name**, **Environment ID**, and the **Cluster ID** to associate the environment with. The **Cluster namespace** field supports variables like `%projectId%` to create dynamic and isolated namespaces. For more details on all the available configuration options, you can refer to the [official documentation on environments](/console/company-configuration/project-blueprint).
+In the configuration window, fill in the required fields, including the **Name**, **Environment ID**, and the **Cluster ID** to associate the environment with. The **Cluster namespace** field supports input variables like `%projectId%` to create dynamic and isolated namespaces. Upon creation, the platform will also generate a set of specific output variables for the cluster connection, which will be visible on the details page. For more details on all the available configuration options, you can refer to the [official documentation on environments](/console/company-configuration/project-blueprint).
 
 ![Modal to configure a new runtime environment.](./img/tutorial-configure-new-company/configure-environments-2.png)
 
@@ -155,7 +165,7 @@ You will also notice a warning message, which serves as an important reminder: f
 
 ![Success message confirming the environment creation.](./img/tutorial-configure-new-company/configure-environments-3.png)
 
-The detail page displays the **Cluster Interpolation Variables**. These are variables (e.g., `KUBE_URL`) that the platform exposes to be used in CI/CD pipelines, automating authentication and deployment to the correct cluster.
+The detail page displays the **Cluster Interpolation Variables**. These are output variables (e.g., `KUBE_URL`) that the platform exposes to be used in CI/CD pipelines, automating authentication and deployment to the correct cluster.
 
 ![Environment details page showing Cluster Interpolation Variables.](./img/tutorial-configure-new-company/configure-environments-4.png)
 
