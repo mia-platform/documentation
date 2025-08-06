@@ -82,6 +82,10 @@
           ]
         },
         {
+          "id": "console/tutorials/configure-new-company",
+          "type": "doc"
+        },
+        {
           "id": "console/tutorials/microservice-from-docker-image",
           "type": "doc"
         },
