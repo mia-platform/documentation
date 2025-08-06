@@ -240,6 +240,7 @@ Once the project is created, you can proceed with deploying a service to ensure 
 For a detailed guide, refer to the [documentation on creating a project](/console/project-configuration/create-a-project.mdx).
 :::
 
+
 ## Conclusion
 
 By following these steps, you have configured your Company's operational foundation. The infrastructure is connected, tools are integrated, deployment environments are defined and project standards are set via Blueprints.
