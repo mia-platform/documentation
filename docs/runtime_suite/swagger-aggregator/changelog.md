@@ -10,6 +10,10 @@ DO NOT MODIFY IT BY HAND.
 Instead, modify the source file and run the aggregator to regenerate this file.
 -->
 
+## [3.9.6] 2025-07-25
+
+- Updated node.js docker image to version `node:24.4-alpine`
+
 ## [3.9.5-rc.0] 2025-07-23
 
 ## [3.9.5] 2025-07-23
