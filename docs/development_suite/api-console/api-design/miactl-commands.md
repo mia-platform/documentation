@@ -12,7 +12,7 @@ This is particularly useful in a few scenarios, such as:
 - create templates bundling together workload configurations to quickly kickstart similar Projects
 - use AI to edit configuration or fix misconfigurations
 
-To make these and many more operations possible through the `miactl project describe` and `miactl project apply` commands.
+You can make these and many more operations possible by using the `miactl project describe` and `miactl project apply` commands.
 
 ## Describe
 
@@ -30,9 +30,10 @@ miactl project describe --project-id <PROJECT_ID> --revision main -o yaml > my-p
 This command only supports Application Projects using Enhanced Workflow. 
 :::
 
-With the `miactl project apply` command you can apply a configuration from a local file on top of an already existing Application Project. Both `json` and `yaml` file format are supported.
+With the `miactl project apply` command you can apply a configuration from a local file to update an already existing Application Project.  
+Executing this command overrides the Project configuration with the provided one. A new snapshot is created and set as latest for the specified revision. You can see it from the [Revision History page][docs-revision-history].
 
-Executing this command saves the provided configuration as latest snapshot for the specified revision. You can see it from the [Revision History page][docs-revision-history].
+More details in the [command documentation][docs-miactl-project-apply].
 
 ```bash
 miactl project apply --project-id <PROJECT_ID> --revision main -f my-project.yaml
