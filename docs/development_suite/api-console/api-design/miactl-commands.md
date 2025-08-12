@@ -41,7 +41,7 @@ miactl project apply --project-id <PROJECT_ID> --revision <REVISION_NAME> -f my-
 
 For more details on how to use this command, check out the [command documentation][docs-miactl-project-apply].
 
-## Examples
+## Use cases
 
 ### Migrate a Project from a Company to another one
 
