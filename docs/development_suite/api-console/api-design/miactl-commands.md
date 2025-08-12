@@ -21,7 +21,7 @@ The `miactl project describe` command shows the current configuration of a speci
 Specify the target ref, using the relative [command arguments][docs-miactl-project-describe] depending on whether the Application Project is using the Enhanced Workflow or not as shown in the example below:
 
 ```bash
-miactl project describe --project-id <PROJECT_ID> --revision main -o yaml > my-project.yaml
+miactl project describe --project-id <PROJECT_ID> --revision <REVISION_NAME> -o yaml > my-project.yaml
 ```
 
 ## Apply
