@@ -492,6 +492,10 @@
           "type": "doc"
         },
         {
+          "id": "development_suite/api-console/api-design/miactl-commands",
+          "type": "doc"
+        },
+        {
           "id": "development_suite/api-console/api-design/crud_advanced",
           "type": "doc"
         },
