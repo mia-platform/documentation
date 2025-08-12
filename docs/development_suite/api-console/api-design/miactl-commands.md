@@ -18,7 +18,7 @@ You can make these and many more operations possible by using the `miactl projec
 
 The `miactl project describe` command shows the current configuration of a specific revision of an Application Project. More details in the [command documentation][docs-miactl-project-describe].
 
-Specify the target `revision`, `version`, `branch` or `tag` depending on whether the Application Project is using the Enhanced Workflow or not, to get the entire `json` or `yaml` configuration for that Application Project.
+Specify the target ref, using the relative [command arguments][docs-miactl-project-describe] depending on whether the Application Project is using the Enhanced Workflow or not as shown in the example below:
 
 ```bash
 miactl project describe --project-id <PROJECT_ID> --revision main -o yaml > my-project.yaml
@@ -31,13 +31,15 @@ This command only supports Application Projects using Enhanced Workflow.
 :::
 
 With the `miactl project apply` command you can apply a configuration from a local file to update an already existing Application Project.  
-Executing this command overrides the Project configuration with the provided one. A new snapshot is created and set as latest for the specified revision. You can see it from the [Revision History page][docs-revision-history].
-
-More details in the [command documentation][docs-miactl-project-apply].
+Executing this command overrides the Project configuration with the provided one. A new snapshot is created and it is visible from the [Revision History page][docs-revision-history].
 
 ```bash
-miactl project apply --project-id <PROJECT_ID> --revision main -f my-project.yaml
+miactl project apply --project-id <PROJECT_ID> --revision main -f my-project.yaml -m "[miactl]: increased crud service replicas to 2"
 ```
+
+![miactl project apply snapshot is shown on revision history](img/miactl-project-apply.png)
+
+For more details on how to use this command, check out the [command documentation][docs-miactl-project-apply].
 
 ## Examples
 
