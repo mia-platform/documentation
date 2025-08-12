@@ -56,7 +56,7 @@ miactl project apply --project-id <PROJECT_ID_B> --revision main -f project-to-m
 ```
 
 :::info
-In order to make the new Project working as expected, ensure to migrate Providers, Secrets, ..., in the new Company as well.
+In order to make the new Project work as expected, ensure to correctly configure Providers, Secrets and Environments in the new Company as well.
 :::
 
 [docs-miactl]: ../../../cli/miactl/overview
