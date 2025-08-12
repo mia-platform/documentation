@@ -31,10 +31,10 @@ This command only supports Application Projects using Enhanced Workflow.
 :::
 
 With the `miactl project apply` command you can apply a configuration from a local file to update an already existing Application Project.  
-Executing this command overrides the Project configuration with the provided one. A new snapshot is created and it is visible from the [Revision History page][docs-revision-history].
+Executing this command overrides the Project configuration with the provided one. A new snapshot is created and it is visible from the [Revision History page][docs-revision-history] as shown in the example below:
 
 ```bash
-miactl project apply --project-id <PROJECT_ID> --revision main -f my-project.yaml -m "[miactl]: increased crud service replicas to 2"
+miactl project apply --project-id <PROJECT_ID> --revision <REVISION_NAME> -f my-project.yaml -m "[miactl]: increased crud service replicas to 2"
 ```
 
 ![miactl project apply snapshot is shown on revision history](img/miactl-project-apply.png)
