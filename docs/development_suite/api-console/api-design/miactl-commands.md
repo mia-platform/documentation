@@ -37,7 +37,7 @@ Executing this command overrides the Project configuration with the provided one
 miactl project apply --project-id <PROJECT_ID> --revision <REVISION_NAME> -f my-project.yaml -m "[miactl]: increased crud service replicas to 2"
 ```
 
-![miactl project apply snapshot is shown on revision history](img/miactl-project-apply.png)
+![miactl project apply snapshot is shown on revision history](./img/miactl-project-apply.png)
 
 For more details on how to use this command, check out the [command documentation][docs-miactl-project-apply].
 
