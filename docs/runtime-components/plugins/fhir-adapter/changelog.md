@@ -11,9 +11,17 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## v1.3.0 - 2025-08-14
+
+## Changed
+- Updated to Node.js 22
+- Updated custom-plugin-lib to v7.0.1
+- Updated routes schema definition according to [FSTDEP021](https://fastify.dev/docs/v5.0.x/Guides/Migration-Guide-V5/#full-json-schema-is-now-required-for-querystring-params-and-body-and-response-schemas) deprecation warning for Fastify@v5 Support
+- Updated @fastify/multipart to v8.3.1
+
 ## [1.2.0] 2025-05-15
 
-# Added
+## Added
 
 - Added support for managing **Bundle transactions**: is it possible to configure them in the configmap and to invoke them via the API `POST /transaction/:transactionId`
 
