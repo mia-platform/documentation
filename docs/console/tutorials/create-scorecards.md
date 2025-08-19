@@ -36,7 +36,7 @@ By following this guide, you will create a fully automated system that not only 
 
 To follow this tutorial, you'll need:
 
-1. A Mia-Platform Console project updated to at least **v.14**.
+1. A Mia-Platform Console project updated to at least **v.14.0.x**.
 2. It's recommended to read the official documentation on configuring and using the [Integration Connector Agent](/runtime_suite/integration-connector-agent/10_overview.md).
 3. A **Azure Subscription** available
 
@@ -46,7 +46,7 @@ To follow this tutorial, you'll need:
 The first step is to configure the **Integration Connector Agent**.
 For detailed instructions on how to set up the agent and configure scraping for different cloud providers, follow the [official service documentation](/runtime_suite/integration-connector-agent/10_overview.md) and this [tutorial](/console/tutorials/infrastructure-project/visualize-infrastructure-project-components-runtime-data-in-console.mdx).
 
-For the purpose of our tutorial, we will configure the **Integration Connector Agent**t to interact with an *Azure subscription* and scrape information from **Azure Cloud** and **Azure DevOps**.
+For the purpose of our tutorial, we will configure the **Integration Connector Agent** to interact with an *Azure subscription* and scrape information from **Azure Cloud** and **Azure DevOps**.
 
 To get data from your configured resources in Azure, we will use the [Azure Activity Log](https://learn.microsoft.com/en-us/azure/azure-monitor/platform/activity-log?tabs=log-analytics) configured to save data to an **Azure Event Hub**. For more information on how to configure the Integration Connector Agent with Azure, refer to this [documentation](/runtime_suite/integration-connector-agent/sources/40_azure_activity_log_event_hub.md).
 
@@ -279,6 +279,10 @@ For this tutorial, we will create a simple Composer extension. To do so, follow 
   }
 }
 ```
+
+That's the result:
+
+![scorecard-result](img/scorecards-result.png)
 
 ## Conclusion
 
