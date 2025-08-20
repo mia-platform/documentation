@@ -15,13 +15,13 @@ Instead, modify the source file and run the aggregator to regenerate this file.
 ### Prerequisites
 
 1. To run the server in a container, you will need to have [Docker] installed.
-1. Once Docker is installed, you will also need to ensure Docker is running.
-1. Lastly you will need to a way ot authenticate to your Mia-Platform Console installation, you either have to:
-    - [Create a Mia-Platform Service Account] with `Client Secret Basic`
-    authorization mode (the only one supported at this time)
-  the `Client Secret Basic` one.
-    - Use miactl authentication: if you have [`miactl`][miactl] installed you can run any command to login,
-     the same session will then be used by the mcp server to authenticate.
+2. Once Docker is installed, you will also need to ensure Docker is running.
+3. Pull the docker image `docker pull ghcr.io/mia-platform/console-mcp-server`
+4. Login to Mia-Platform. You have two options:
+  - (a) *User Authentication* - Use miactl authentication: if you have [`miactl`][miactl] installed you can login and
+     the same session will then be used by the mcp server to authenticate. To login just type `miactl company list`, or any other miactl command, the browser will be opened and you can use your credentatials to login. You will be able to access to all companies and projects that have been granted to your user.
+  - (b) *Service Account* - [Create a Mia-Platform Service Account] with `Client Secret Basic` authorization mode (the only one supported at this time) the `Client Secret Basic` one. In that case you can access to just one company at a time.
+    
 
 ### VS Code
 
@@ -35,6 +35,35 @@ Once you have done it, toggle Agent mode (located by the Copilot Chat text input
 The `mcp` key is not needed in the `.vscode/mcp.json` file.  
 Also note that you can change the host of the Console instance to your custom installation
 :::
+
+This is the configuration if you are using mictl (a)
+
+```json
+{
+    "servers": {
+        "mia-platform-mcp": {
+            "command": "docker",
+            "args": [
+                "run",
+                "-i",
+                "--rm",
+                "-v",
+                "~/.cache/miactl:/home/node/.cache/miactl",
+                "ghcr.io/mia-platform/console-mcp-server",
+                "mcp-server",
+                "start",
+                "--stdio",
+                "--host=https://demo.console.gcp.mia-platform.eu/"
+            ],
+            "type": "stdio"
+        }
+    },
+    "inputs": []
+}
+```
+
+
+This is the configuration if you are using Service Account (b)
 
 ```json
 {
