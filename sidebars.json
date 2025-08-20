@@ -1616,8 +1616,39 @@
       "type": "doc"
     },
     {
-      "id": "getting-started/faqs",
-      "type": "doc"
+      "collapsed": true,
+      "type": "category",
+      "label": "Faqs",
+      "link": {
+        "type": "doc",
+        "id": "getting-started/mia-platform-faqs"
+      },
+      "items": [
+        {
+          "id": "getting-started/faqs/mia-platform-console-faqs",
+          "type": "doc"
+        },
+        {
+          "id": "getting-started/faqs/mia-platform-fast-data-faqs",
+          "type": "doc"
+        },
+        {
+          "id": "getting-started/faqs/mia-platform-data-catalog-faqs",
+          "type": "doc"
+        },
+        {
+          "id": "getting-started/faqs/mia-platform-microfrontend-composer-faqs",
+          "type": "doc"
+        },
+        {
+          "id": "getting-started/faqs/mia-platform-software-catalog-faqs",
+          "type": "doc"
+        },
+        {
+          "id": "getting-started/faqs/mia-platform-runtime-components-faqs",
+          "type": "doc"
+        }
+      ]
     }
   ],
   "governance": [

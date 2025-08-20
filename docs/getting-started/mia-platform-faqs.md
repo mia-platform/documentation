@@ -1,5 +1,5 @@
 ---
-id: faqs
+id: mia-platform-faqs
 title: Mia-Platform FAQs
 sidebar_label: Mia-Platform FAQs
 ---
@@ -12,7 +12,7 @@ Mia-Platform Console is a Platform Builder used to create and manage a custom In
 #### What are the main benefits of using the Console?
 The main benefits are improved governance, developer self-service, and a lower cognitive load. It empowers development teams with self-service capabilities, abstracts away cloud-native complexity, and allows platform engineering teams to enforce standards and best practices, creating "golden paths" for developers.
 
-For a more detailed list of questions and answers about this product, see the [dedicated FAQ section](/getting-started/faqs/console.md).
+For a more detailed list of questions and answers about this product, see the [dedicated FAQ section](/getting-started/faqs/mia-platform-console-faqs.md).
 
 ***
 
@@ -24,7 +24,7 @@ Mia-Platform Fast Data is a solution for building a **Digital Integration Hub (D
 #### Why would an organization use Fast Data?
 Organizations use Fast Data to create a high-performance, real-time data layer that decouples modern applications from legacy systems. This approach offloads legacy systems, ensures data is consistently available 24/7, and provides an up-to-date, aggregated view of fast-changing data to be consumed by APIs and applications with low latency.
 
-For a more detailed list of questions and answers about this product, see the [dedicated FAQ section](/getting-started/faqs/fast-data.md).
+For a more detailed list of questions and answers about this product, see the [dedicated FAQ section](/getting-started/faqs/mia-platform-fast-data-faqs.md).
 
 ***
 
@@ -36,7 +36,7 @@ The Microfrontend Composer is a low-code/no-code tool within the Console for bui
 #### How does it work and what are its key components?
 The Composer is powered by **micro-lc**, an open-source microfrontend orchestrator that renders the final application. Pages are typically built using **Back-Kit**, a library of pre-built web components (tables, forms, buttons) that communicate with each other through an event-driven system. The entire application configuration is served by a lightweight web server.
 
-For a more detailed list of questions and answers about this product, see the [dedicated FAQ section](/getting-started/faqs/microfrontend-composer.md).
+For a more detailed list of questions and answers about this product, see the [dedicated FAQ section](/getting-started/faqs/mia-platform-microfrontend-composer-faqs.md).
 
 ***
 
@@ -48,7 +48,7 @@ The Data Catalog is a centralized solution for discovering, understanding, and g
 #### What kind of information can I find in the Data Catalog?
 For each data asset (like a database table or a Fast Data Projection), you can find detailed metadata, including its schema, a business description, owners, and tags. A key feature is **Data Lineage**, which provides a visual graph showing the data's origin and how it flows and transforms across different systems.
 
-For a more detailed list of questions and answers about this product, see the [dedicated FAQ section](/getting-started/faqs/data-catalog.md).
+For a more detailed list of questions and answers about this product, see the [dedicated FAQ section](/getting-started/faqs/mia-platform-data-catalog-faqs.md).
 
 ***
 
@@ -60,7 +60,7 @@ The **Software Catalog** is the backend management solution used by platform eng
 #### Why is the Software Catalog important for a Platform Engineering team?
 It is a crucial tool for implementing an effective Internal Developer Platform (IDP). It allows a platform team to enforce standardization and best practices by providing a curated library of approved components. This promotes reusability, accelerates development by offering "golden paths," and ensures governance over the software assets used across the organization.
 
-For a more detailed list of questions and answers about this product, see the [dedicated FAQ section](/getting-started/faqs/software-catalog.md).
+For a more detailed list of questions and answers about this product, see the [dedicated FAQ section](/getting-started/faqs/mia-platform-software-catalog-faqs.md).
 
 ***
 
@@ -73,4 +73,4 @@ Runtime Components are ready-to-use software assets available in the Marketplace
 * A **Plugin** is a pre-built, ready-to-use Docker image that functions like a "black box." You configure it but do not modify its source code. It's used for common, standardized functionalities.
 * A **Template** is a boilerplate Git repository that serves as a starting point. It gets cloned into your project, giving you full ownership of the code to modify and extend as needed. It's used for building custom services.
 
-For a more detailed list of questions and answers about this product, see the [dedicated FAQ section](/getting-started/faqs/runtime-components.md).
+For a more detailed list of questions and answers about this product, see the [dedicated FAQ section](/getting-started/faqs/mia-platform-runtime-components-faqs.md).
