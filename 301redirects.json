@@ -2026,5 +2026,10 @@
   "/docs/self_hosted/installation-chart/overview": {
     "destination": "/docs/infrastructure/self-hosted/installation-chart/getting-started",
     "addedOn": "2025-06-27"
+  },
+
+  "/docs/getting-started/faqs": {
+    "destination": "/docs/getting-started/faqs/mia-platform-faqs",
+    "addedOn": "2025-08-20"
   }
 }
