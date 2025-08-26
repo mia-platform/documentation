@@ -13,14 +13,11 @@ Versioning allows teams to:
 - support multiple iterations of the same item simultaneously.
 
 :::caution
-Versioning is currently supported by a subset of [item types][items-type], namely:
+Versioning is currently supported by a subset of [well-known item types](./10_items-types.md#well-known-itds). All the information presented below applies **only to items of these types**.
 
-- **plugins**,
-- **infrastructure resources**,
-- **templates**, and
-- **examples**.
+Refer to the [manifest page](../manifests/item/overview.md) of an item type to check whether it supports versioning.
 
-All the information presented below applies **only to items of these types**.
+For the time being, custom-made [ITDs](./10_items-types.md) **cannot support versioning**.
 :::
 
 As [already explained][items-data-structure], an item is univocally associated with a combination of its identifier (field `itemId`), and the identified of the Company it belongs to (field `tenantId`). The concept of versioning, however, introduces a scenario where multiple instances of the same item exist together, albeit at diffent versions. Hence, the version (field `version.name`) is part of the **primary key** of an item, meaning that, at a given point in time, there can be only one item with a specific combination of `itemId`, `tenantId`, and `version.name`.
@@ -53,10 +50,11 @@ Namely, the following fields are considered immutable, and **cannot be changed**
 - `itemId`
 - `tenantId`
 - `version.name`
+- `itemTypeDefinitionRef`
 - `type`
 - `resources`
 
-The first two field (`itemId` and `tenantId`) are what links the version to the actual item, the field `version.name` is the unique identifier of the version, and the field `type` is the [item type][items-type], which must stay the same across all versions. 
+The first two field (`itemId` and `tenantId`) are what links the version to the actual item, the field `version.name` is the unique identifier of the version, and the field `itemTypeDefinitionRef` is the [ITD reference][items-type], which must stay the same across all versions. 
 
 Finally, is the immutability of the field `resources` (which contains the item's assets) what guaranties that the **runtime behavior** of a version doesn't change over time. Attempting to modify the assets of an existing versioned item will result in an error, meaning that each edit must correspond to the explicit publication of a **new version** of the same item.
 
@@ -92,4 +90,4 @@ If any resource attached to a Marketplace item has an available update, the Cons
 [items-data-structure]: ./05_items-data-structure.md
 [items-type]: ./10_items-types.md
 [items-lifecycle]: ./30_items-lifecycle.md
-[items-management]: ../items-management/overview.md
+[items-management]: ../management/overview.md

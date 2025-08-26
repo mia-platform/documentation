@@ -13,7 +13,7 @@ Manifests top-level structure is the same for any item, while the content of the
 What follows is the formal definition of a generic manifest, with the other pages of this section documenting how the **assets** (field `resources`) should be shaped for each type.
 
 :::tip
-The full JSON schema is available [on GitHub](https://raw.githubusercontent.com/mia-platform/console-sdk/refs/heads/main/packages/console-types/schemas/catalog/item-manifest.schema.json).
+The full JSON schema is available [on GitHub](https://raw.githubusercontent.com/mia-platform/console-sdk/refs/tags/%40mia-platform/console-types%400.38.11/packages/console-types/schemas/catalog/item-manifest.schema.json).
 :::
 
 <SchemaViewer schema={catalogItemManifestSchema} />
@@ -24,4 +24,4 @@ Items can be organized in categories with the field `catagoryId`. The available 
 
 [items-data-structure]: ../basic-concepts/05_items-data-structure.md
 [items-type]: ../basic-concepts/10_items-types.md
-[items-managements]: ../items-management/overview.md
+[items-managements]: ../management/overview.md

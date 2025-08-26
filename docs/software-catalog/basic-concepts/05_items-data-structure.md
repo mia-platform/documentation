@@ -1,6 +1,6 @@
 ---
 id: items-data-structure
-title: Items data structure
+title: Items
 ---
 
 import { catalogItemSchema } from "@mia-platform/console-types"
@@ -16,7 +16,8 @@ On top of that, items have **[versions][items-versioning]** (filed `version.name
 To summarize, an item is **univocally defined** by the combination of its **`tenantId`**, **`itemId`**, and **`version.name`** fields.
 :::
 
-Another defining property of an item is the **[type][items-type]** (field `type`) that determines how the item is handled by the Console.
+Another defining property of an item is the **type** (field `type` and `itemTypeDefinitionRef`) that determines how the item is handled by the Console. Types are defined and described by **[Item Type Definitions][items-type]**, another kind of user-controlled core Catalog entity.
+
 Linked to the type are the **assets** (field `resources`), type-specific information needed to work with an item (e.g., the Docker image of a plugin, or the endpoints exposed by an application).
 
 An item lives through different **[development phases][items-lifecycle]** (field `lifecycleStatus`), and its **[availability][items-visibility]** (field `visibility`) can be controlled for a better distribution.
@@ -26,7 +27,7 @@ An item lives through different **[development phases][items-lifecycle]** (field
 Practically speaking, an item is a **JSON document** containing some defining keys, a set of metadata, and the resources needed to make use of it.
 
 :::tip
-The full JSON schema is available [on GitHub](https://raw.githubusercontent.com/mia-platform/console-sdk/refs/heads/main/packages/console-types/schemas/catalog/item.schema.json).
+The full JSON schema is available [on GitHub](https://raw.githubusercontent.com/mia-platform/console-sdk/refs/tags/%40mia-platform/console-types%400.38.11/packages/console-types/schemas/catalog/item.schema.json).
 :::
 
 <SchemaViewer schema={catalogItemSchema} />

@@ -1919,22 +1919,22 @@
     {
       "type": "category",
       "collapsed": true,
-      "label": "Items management",
+      "label": "Catalog management",
       "link": {
-        "id": "software-catalog/items-management/overview",
+        "id": "software-catalog/management/overview",
         "type": "doc"
       },
       "items": [
         {
-          "id": "software-catalog/items-management/ui",
+          "id": "software-catalog/management/ui",
           "type": "doc"
         },
         {
-          "id": "software-catalog/items-management/miactl",
+          "id": "software-catalog/management/miactl",
           "type": "doc"
         },
         {
-          "id": "software-catalog/items-management/api",
+          "id": "software-catalog/management/api",
           "type": "doc"
         }
       ]
@@ -1942,47 +1942,62 @@
     {
       "type": "category",
       "collapsed": true,
-      "label": "Items manifest",
+      "label": "Catalog manifests",
       "link": {
-        "id": "software-catalog/items-manifest/overview",
+        "id": "software-catalog/manifests/overview",
         "type": "doc"
       },
       "items": [
         {
           "type": "doc",
-          "id": "software-catalog/items-manifest/application"
+          "id": "software-catalog/manifests/item-type-definition"
         },
         {
-          "type": "doc",
-          "id": "software-catalog/items-manifest/example"
-        },
-        {
-          "type": "doc",
-          "id": "software-catalog/items-manifest/extension"
-        },
-        {
-          "type": "doc",
-          "id": "software-catalog/items-manifest/infrastructure-resource"
-        },
-        {
-          "type": "doc",
-          "id": "software-catalog/items-manifest/infrastructure-component-runtime"
-        },
-        {
-          "type": "doc",
-          "id": "software-catalog/items-manifest/plugin"
-        },
-        {
-          "type": "doc",
-          "id": "software-catalog/items-manifest/proxy"
-        },
-        {
-          "type": "doc",
-          "id": "software-catalog/items-manifest/sidecar"
-        },
-        {
-          "type": "doc",
-          "id": "software-catalog/items-manifest/template"
+          "type": "category",
+          "collapsed": true,
+          "label": "Items",
+          "link": {
+            "id": "software-catalog/manifests/item/overview",
+            "type": "doc"
+          },
+          "items": [
+            {
+              "type": "doc",
+              "id": "software-catalog/manifests/item/application"
+            },
+            {
+              "type": "doc",
+              "id": "software-catalog/manifests/item/example"
+            },
+            {
+              "type": "doc",
+              "id": "software-catalog/manifests/item/extension"
+            },
+            {
+              "type": "doc",
+              "id": "software-catalog/manifests/item/infrastructure-resource"
+            },
+            {
+              "type": "doc",
+              "id": "software-catalog/manifests/item/infrastructure-component-runtime"
+            },
+            {
+              "type": "doc",
+              "id": "software-catalog/manifests/item/plugin"
+            },
+            {
+              "type": "doc",
+              "id": "software-catalog/manifests/item/proxy"
+            },
+            {
+              "type": "doc",
+              "id": "software-catalog/manifests/item/sidecar"
+            },
+            {
+              "type": "doc",
+              "id": "software-catalog/manifests/item/template"
+            }
+          ]
         }
       ]
     },

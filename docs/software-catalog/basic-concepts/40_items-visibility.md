@@ -31,7 +31,11 @@ The `visibility` field is an object that adheres to the following schema:
 }
 ```
 
-Changing the values of the properties you can achieve one of the three possible states of visibility of an item.
+Changing the values of the properties you can achieve one of the three possible states of visibility of an item: *private*, *all companies*, and *public*.
+
+:::caution
+An item based on a **private [ITD](./10_items-types.md)** can only have **private visibility**.
+:::
 
 #### Private
 

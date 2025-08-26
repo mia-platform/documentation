@@ -47,7 +47,7 @@ To create a new item in the Catalog using the **Software Catalog UI**, follow th
    7. `Release Note Type` - choose if you want to handle the releases notes using `Markdown` or `External Link`
    8. `Repository URL` - add the link to the item's source code.
 
-For a detailed explanation of the required metadata please refere to [this guide](/software-catalog/items-manifest/overview.md).
+For a detailed explanation of the required metadata please refere to [this guide](../manifests/item/overview.md).
 
 1. **Define the item's assets** - which are the information needed by the Mia-Platform console to start-up and deploy your item on the runtime properly, like:
    1. `Container Ports` for each service included in the plugin (typically a plugin contains only one service)
@@ -222,7 +222,7 @@ To create a new version of a component using the Software Catalog, follow these 
 
 Once updated, save and publish the new version as needed.
 
-To know more about how to create new version for Catalog read the dedicated [documentation page](/software-catalog/items-management/ui.md#create-a-new-version).
+To know more about how to create new version for Catalog read the dedicated [documentation page](/software-catalog/management/ui.md#create-a-new-version).
 
 ### Using miactl
 
@@ -257,7 +257,7 @@ If everything works well you will see the following outcome:
 
 ```
 
-To know more about how to update a Catalog component using miactl read this [documentation page](/software-catalog/items-management/miactl.md).
+To know more about how to update a Catalog component using miactl read this [documentation page](/software-catalog/management/miactl.md).
 
 ## Conclusion
 
@@ -265,7 +265,7 @@ In this tutorial, we explored the differences between managing a Catalog compone
 
 The Software Catalog offers a significant advantage in terms of ease of use and accessibility. Through its graphical interface, you can quickly view, modify, and create Catalog items without complexity.
 
-However, as the number of components grows, managing everything manually becomes impractical. In such cases, miactl enables a [declarative and automated approach](/software-catalog/items-management/miactl.md#declarative-approach) to handling all Catalog components efficiently.
+However, as the number of components grows, managing everything manually becomes impractical. In such cases, miactl enables a [declarative and automated approach](/software-catalog/management/miactl.md#declarative-approach) to handling all Catalog components efficiently.
 
 Both approaches are valuable:
 
