@@ -149,6 +149,38 @@ More about using MCP server tools in [VS Code's agent mode documentation].
 }
 ```
 
+### Gemini CLI
+Add `mia-platform-console` in `mcpServers` in file `~/.gemini/settings.json`.
+```json
+{
+  "mcpServers": {
+    "mia-platform-console": {
+      "command": "docker",
+      "args": [
+        "run",
+        "-i",
+        "--rm",
+        "-e",
+        "MIA_PLATFORM_CLIENT_ID",
+        "-e",
+        "MIA_PLATFORM_CLIENT_SECRET",
+        "ghcr.io/mia-platform/console-mcp-server",
+        "mcp-server",
+        "start",
+        "--stdio",
+        "--host=https://console.cloud.mia-platform.eu"
+      ],
+      "env": {
+        "MIA_PLATFORM_CLIENT_ID": "<YOUR_CLIENT_ID>",
+        "MIA_PLATFORM_CLIENT_SECRET": "<YOUR_CLIEND_SECRET>"
+      }
+    }
+    ...
+  }
+  ...
+}
+```
+
 [Docker]: https://www.docker.com/
 [miactl]: https://github.com/mia-platform/miactl
 [VS Code's agent mode documentation]: https://code.visualstudio.com/docs/copilot/chat/mcp-servers
