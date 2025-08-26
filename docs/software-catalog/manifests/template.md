@@ -13,7 +13,7 @@ Teamplates can be instantiated in Console the same as plugins. The difference is
 
 Templates are meant to be **starting points** with the bear minimum needed to start a service. Just like plugins, templates may also come with some predefined configurations.
 
-To [create or edit](/software-catalog/management/overview.md) a template, you need to provide a [manifest](./overview.md), whose `resources` property should adhere to the following JSON schema.
+To [create or edit](/software-catalog/management/overview.md) a template, you need to provide a [manifest](/software-catalog/manifests/overview.md), whose `resources` property should adhere to the following JSON schema.
 
 :::tip
 The JSON schemas of the [template resources](https://raw.githubusercontent.com/mia-platform/console-sdk/refs/tags/%40mia-platform/console-types%400.38.11/packages/console-types/schemas/catalog/template.resources.schema.json) and of the [full template manifest](https://raw.githubusercontent.com/mia-platform/console-sdk/refs/tags/%40mia-platform/console-types%400.38.11/packages/console-types/schemas/catalog/template.manifest.schema.json) are available on GitHub.
@@ -37,7 +37,7 @@ If the repository is public and openly accessible (i.e., **open source**), no fu
 
 However, if the item is stored in a **private repository**, some additional configurations are required to ensure the Console can access it.
 
-Namely, you need to [create a provider for the Catalog](/console/company-configuration/providers/configure-marketplace-provider.mdx), where you'll configure the credentials required to access your Git Provider, and link the provider to the item through the [`providerId` field](./overview.md).
+Namely, you need to [create a provider for the Catalog](/console/company-configuration/providers/configure-marketplace-provider.mdx), where you'll configure the credentials required to access your Git Provider, and link the provider to the item through the [`providerId` field](/software-catalog/manifests/overview.md).
 
 :::tip
 To make Software Catalog resources **accessible to other Companies**, you must enable the "Allow access to all the Companies" option in the Provider settings, as explained [here](/console/company-configuration/providers/configure-marketplace-provider.mdx#step-2-provider-details). This ensures the Console can access the item’s resources even when it belongs to a project in a different Company.

@@ -13,11 +13,11 @@ Versioning allows teams to:
 - support multiple iterations of the same item simultaneously.
 
 :::caution
-Versioning is currently supported by a subset of [well-known item types](./10_items-types.md#well-known-itds). All the information presented below applies **only to items of these types**.
+Versioning is currently supported by a subset of [well-known item types](/software-catalog/basic-concepts/10_items-types.md#well-known-itds). All the information presented below applies **only to items of these types**.
 
-Refer to the [manifest page](../manifests/overview.md) of an item type to check whether it supports versioning.
+Refer to the [manifest page](/software-catalog/manifests/overview.md) of an item type to check whether it supports versioning.
 
-For the time being, custom-made [ITDs](./10_items-types.md) **cannot support versioning**.
+For the time being, custom-made [ITDs](/software-catalog/basic-concepts/10_items-types.md) **cannot support versioning**.
 :::
 
 As [already explained][items-data-structure], an item is univocally associated with a combination of its identifier (field `itemId`), and the identified of the Company it belongs to (field `tenantId`). The concept of versioning, however, introduces a scenario where multiple instances of the same item exist together, albeit at diffent versions. Hence, the version (field `version.name`) is part of the **primary key** of an item, meaning that, at a given point in time, there can be only one item with a specific combination of `itemId`, `tenantId`, and `version.name`.

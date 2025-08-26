@@ -3,7 +3,7 @@ id: overview
 title: Catalog management
 ---
 
-Managing your Catalog boils down to permforming CRUD operations on [Item Type Definitions](../basic-concepts/10_items-types.md) and [items](../basic-concepts/05_items-data-structure.md).
+Managing your Catalog boils down to permforming CRUD operations on [Item Type Definitions](/software-catalog/basic-concepts/10_items-types.md) and [items](/software-catalog/basic-concepts/05_items-data-structure.md).
 
 There are several ways to manage Software Catalog entities, depending on your preferred workflow and level of control:
 

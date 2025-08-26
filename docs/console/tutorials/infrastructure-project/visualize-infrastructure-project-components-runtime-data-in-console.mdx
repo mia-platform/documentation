@@ -200,15 +200,15 @@ The components that we will use in the Data Pipeline are:
 - [`cloud-vendor-aggregator` processor](/runtime_suite/integration-connector-agent/processors/40_cloud_vendor_aggregator.md):
 this component will aggregate the events coming from the Cloud Provider and produce a single event for each resource
 - [`mapper` processor](/runtime_suite/integration-connector-agent/processors/20_mapper.md): this component will map the event produced by the [`cloud-vendor-aggregator` processor](/runtime_suite/integration-connector-agent/processors/40_cloud_vendor_aggregator.md)
-to a format that complies with the [`infrastructure-component-runtime`](/software-catalog/items-manifest/infrastructure-component-runtime.md) item type in the Catalog.
+to a format that complies with the [`infrastructure-component-runtime`](/software-catalog/manifests/infrastructure-component-runtime.md) item type in the Catalog.
 - [`console-catalog` sink](/runtime_suite/integration-connector-agent/sinks/15_console-catalog.md): this sink will save the event in the Catalog,
-using the [`infrastructure-component-runtime`](/software-catalog/items-manifest/infrastructure-component-runtime.md) item type
+using the [`infrastructure-component-runtime`](/software-catalog/manifests/infrastructure-component-runtime.md) item type
 
 :::info
-We are saving the items using the [`infrastructure-component-runtime`](/software-catalog/items-manifest/infrastructure-component-runtime.md) item type,
+We are saving the items using the [`infrastructure-component-runtime`](/software-catalog/manifests/infrastructure-component-runtime.md) item type,
 which is a specific item type used to store runtime data for infrastructure components.
 
-You can find more information about this item type in the [Catalog documentation](/software-catalog/items-manifest/infrastructure-component-runtime.md).
+You can find more information about this item type in the [Catalog documentation](/software-catalog/manifests/infrastructure-component-runtime.md).
 :::
 
 <Tabs>
