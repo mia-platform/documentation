@@ -1950,54 +1950,35 @@
       "items": [
         {
           "type": "doc",
-          "id": "software-catalog/manifests/item-type-definition"
+          "id": "software-catalog/manifests/example"
         },
         {
-          "type": "category",
-          "collapsed": true,
-          "label": "Items",
-          "link": {
-            "id": "software-catalog/manifests/item/overview",
-            "type": "doc"
-          },
-          "items": [
-            {
-              "type": "doc",
-              "id": "software-catalog/manifests/item/application"
-            },
-            {
-              "type": "doc",
-              "id": "software-catalog/manifests/item/example"
-            },
-            {
-              "type": "doc",
-              "id": "software-catalog/manifests/item/extension"
-            },
-            {
-              "type": "doc",
-              "id": "software-catalog/manifests/item/infrastructure-resource"
-            },
-            {
-              "type": "doc",
-              "id": "software-catalog/manifests/item/infrastructure-component-runtime"
-            },
-            {
-              "type": "doc",
-              "id": "software-catalog/manifests/item/plugin"
-            },
-            {
-              "type": "doc",
-              "id": "software-catalog/manifests/item/proxy"
-            },
-            {
-              "type": "doc",
-              "id": "software-catalog/manifests/item/sidecar"
-            },
-            {
-              "type": "doc",
-              "id": "software-catalog/manifests/item/template"
-            }
-          ]
+          "type": "doc",
+          "id": "software-catalog/manifests/extension"
+        },
+        {
+          "type": "doc",
+          "id": "software-catalog/manifests/infrastructure-resource"
+        },
+        {
+          "type": "doc",
+          "id": "software-catalog/manifests/infrastructure-component-runtime"
+        },
+        {
+          "type": "doc",
+          "id": "software-catalog/manifests/plugin"
+        },
+        {
+          "type": "doc",
+          "id": "software-catalog/manifests/proxy"
+        },
+        {
+          "type": "doc",
+          "id": "software-catalog/manifests/sidecar"
+        },
+        {
+          "type": "doc",
+          "id": "software-catalog/manifests/template"
         }
       ]
     },

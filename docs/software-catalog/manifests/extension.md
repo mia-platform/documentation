@@ -5,7 +5,7 @@ sidebar_label: Extension
 ---
 
 import { catalogWellKnownItems } from "@mia-platform/console-types";
-import SchemaViewer from "../../snippets/schema_viewer.mdx";
+import SchemaViewer from "../snippets/schema_viewer.mdx";
 
 Extensions are **custom pages** that enhances Console capabilities by integrating it into the sidebar navigation.
 

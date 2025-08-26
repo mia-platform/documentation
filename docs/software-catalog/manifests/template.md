@@ -5,7 +5,7 @@ sidebar_label: Template
 ---
 
 import { catalogWellKnownItems } from "@mia-platform/console-types";
-import SchemaViewer from "../../snippets/schema_viewer.mdx";
+import SchemaViewer from "../snippets/schema_viewer.mdx";
 
 A Template is a **base repository** from which users can build a new Microservice.
 

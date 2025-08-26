@@ -5,7 +5,7 @@ sidebar_label: Plugin
 ---
 
 import { catalogWellKnownItems } from "@mia-platform/console-types";
-import SchemaViewer from "../../snippets/schema_viewer.mdx";
+import SchemaViewer from "../snippets/schema_viewer.mdx";
 
 Plugins are services that can be instantiated from the [microservices](/development_suite/api-console/api-design/services.md) section of the Console Design area.
 Practically speaking, plugins are **Docker images** that comes with some predefined configurations to make them work in Console projects (e.g., environment variables, config maps, probes...).

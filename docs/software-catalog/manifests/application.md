@@ -5,7 +5,7 @@ sidebar_label: Application
 ---
 
 import { catalogWellKnownItems } from "@mia-platform/console-types";
-import SchemaViewer from "../../snippets/schema_viewer.mdx";
+import SchemaViewer from "../snippets/schema_viewer.mdx";
 
 Applications are **bundles of resources** that brings together [services](/development_suite/api-console/api-design/services.md) (i.e., plugins, templates, and examples), [endpoints](/development_suite/api-console/api-design/endpoints.md), [CRUD collections](/development_suite/api-console/api-design/crud_advanced.md), and [public variables](/development_suite/api-console/api-design/public_variables.md) to ease the setup of large-scale artifacts.
 

@@ -8,7 +8,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 import { catalogWellKnownItems } from "@mia-platform/console-types";
-import SchemaViewer from "../../snippets/schema_viewer.mdx";
+import SchemaViewer from "../snippets/schema_viewer.mdx";
 
 Infrastructure Component Runtime items are meant to be used in the context of an [Infrastructure Project](/console/project-configuration/infrastructure-project.md)
 to be able to collect [runtime data](/console/project-configuration/infrastructure-project.md#runtime-visibility) for visualization within Console.

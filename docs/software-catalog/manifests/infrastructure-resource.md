@@ -8,7 +8,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 import { catalogWellKnownItems } from "@mia-platform/console-types";
-import SchemaViewer from "../../snippets/schema_viewer.mdx";
+import SchemaViewer from "../snippets/schema_viewer.mdx";
 
 Infrastructure resources are **custom objects** that are not part of the standard Console supported resources. They can be managed from the [dedicated section](/console/design-your-projects/custom-resources/custom-resources.md) of the Console Design area.
 

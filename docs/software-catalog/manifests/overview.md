@@ -1,14 +1,26 @@
 ---
 id: overview
-title: Items manifest
+title: Catalog manifests
 ---
 
-import { catalogItemManifestSchema } from "@mia-platform/console-types"
+import { catalogItemTypeDefinitionSchema, catalogItemManifestSchema } from "@mia-platform/console-types";
 import SchemaViewer from "../snippets/schema_viewer.mdx";
 
-The information needed to [create or edit an item][items-managements] (or, better yet, an item release) must be provided through a **manifest**, a JSON representation of the [data][items-data-structure] to store on the database.
+A **manifest** is a JSON representation of an entity that can be [applied](../management/overview.md) to the Catalog.
 
-Manifests top-level structure is the same for any item, while the content of the `resources` property is specific for each [item type][items-type].
+## Item Type Definition
+
+The manifest of an [ITD](../basic-concepts/10_items-types.md) contains metadata about the definition itself and specifications regarding the items of the defined type.
+
+:::tip
+The full JSON schema is available [on GitHub](https://raw.githubusercontent.com/mia-platform/console-sdk/refs/tags/%40mia-platform/console-types%400.38.11/packages/console-types/schemas/catalog/item-type-definition.schema.json).
+:::
+
+<SchemaViewer schema={catalogItemTypeDefinitionSchema} />
+
+## Item
+
+[Item](../basic-concepts/05_items-data-structure.md) manifests partially varies based on the referenced ITD: the **top-level structure** of the manifest is the same for any item, while the content of the **`resources` property** is specific for each ITD.
 
 What follows is the formal definition of a generic manifest, with the other pages of this section documenting how the **assets** (field `resources`) should be shaped for each type.
 
@@ -18,10 +30,6 @@ The full JSON schema is available [on GitHub](https://raw.githubusercontent.com/
 
 <SchemaViewer schema={catalogItemManifestSchema} />
 
-## Categories
+### Categories
 
 Items can be organized in categories with the field `catagoryId`. The available categories are pre-defined, and can be found [here](https://raw.githubusercontent.com/mia-platform-marketplace/public-catalog/refs/heads/main/assets/categories.json).
-
-[items-data-structure]: ../basic-concepts/05_items-data-structure.md
-[items-type]: ../basic-concepts/10_items-types.md
-[items-managements]: ../management/overview.md

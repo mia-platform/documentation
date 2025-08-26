@@ -89,4 +89,4 @@ Both actions are irreversible, so be sure to confirm your decision before procee
 
 [items-data-structure]: ../basic-concepts/05_items-data-structure.md
 [items-type]: ../basic-concepts/10_items-types.md
-[items-manifest]: ../manifests/item/overview.md
+[items-manifest]: ../manifests/overview.md

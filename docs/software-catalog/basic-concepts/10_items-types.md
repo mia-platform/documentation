@@ -28,7 +28,7 @@ The full JSON schema is available [on GitHub](https://raw.githubusercontent.com/
 
 The Catalog is shipped with a set of ITDs **essential for the operation of the Console** that are maintained directly by Mia-Platform.
 
-The full list of well-known ITDs can be found in the [items manifest](../manifests/item/overview.md) section.
+The full list of well-known ITDs can be found in the [items manifest](../manifests/overview.md) section.
 
 :::warning
 The well-known ITDs are protected by a strict layer of permissions. In any case, please **refrain from tampering with them** in any way to avoid disrupting the correct functioning of the Console.

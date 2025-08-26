@@ -5,7 +5,7 @@ sidebar_label: Proxy
 ---
 
 import { catalogWellKnownItems } from "@mia-platform/console-types";
-import SchemaViewer from "../../snippets/schema_viewer.mdx";
+import SchemaViewer from "../snippets/schema_viewer.mdx";
 
 Proxies are **specific configurations** used to invoke APIs that are not part of the current project but may be exposed by an external provider or another project. Proxies can be instantiated from the [dedicated section](/development_suite/api-console/api-design/proxy.md) of the Console Design area.
 

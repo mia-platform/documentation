@@ -5,7 +5,7 @@ sidebar_label: Example
 ---
 
 import { catalogWellKnownItems } from "@mia-platform/console-types";
-import SchemaViewer from "../../snippets/schema_viewer.mdx";
+import SchemaViewer from "../snippets/schema_viewer.mdx";
 
 Examples works no differently than [templates](./template.md), in the sense that they too provide an **archive** with base configurations. Unlike templates, examples should come with some features already implemented and tailored to help the user better familiarize with the development environment.
 
