@@ -524,6 +524,50 @@ Available flags for the command:
 - `--context`, to specify a different context from the currently selected one
 - `--company-id`, to set the ID of the desired Company
 
+### describe
+
+The `project describe` subcommand allows you to inspect the current configuration of an Application Project in Console.
+
+Specify the correct flags to indicate which revision/version/branch/tag to describe.
+
+For Application Projects using Enhanced Workflow specify either the `revision` or `version` flag. For Projects using the standard workflow specify either the `branch` or `tag` flag.
+
+If no configuration is found for the specified revision/version/branch/tag flag, an empty configuration is returned.
+
+Usage:
+
+```sh
+miactl project describe [flags]
+```
+
+Flags available for this command:
+
+- `--project-id`: required. The ID of the Application Project to describe 
+- `--revision`: for projects using Enhanced Workflow. The revision of the Application Project to describe 
+- `--version`: for projects using Enhanced Workflow. The version of the Application Project to describe 
+- `--branch`: for projects using the standard workflow. The branch of the Application Project to describe 
+- `--tag`: for projects using the standard workflow. The tag of the Application Project to describe 
+- `--output` or `-o`: output format. Allowed values: json, yaml (default is "json")
+
+### apply
+
+The `project apply` subcommand allows you to update an already existing Application Project configuration by providing a valid configuration file from your local machine. This command creates a new snapshot for the specified ref using the provided configuration overriding the previous configuration.
+
+This feature is available only for Application Projects using Enhanced Workflow.
+
+Usage:
+
+```sh
+miactl project apply [flags]
+```
+
+Flags available for this command:
+
+- `--project-id`: required. The ID of the Application Project
+- `--revision`: required. The revision of the Application Project
+- `--file` or `-f`: required. The path to the configuration file. Supported formats for configuration file are yaml and json
+- `--message` or `-m`: the custom message used to save the configuration. If not specified, a default message is used
+
 ### iam
 
 The `project iam` subcommands are used for managing the RBAC permissions associated with a project. Only
@@ -610,8 +654,7 @@ Available flags for the command:
 
 ### import
 
-The `project import` subcommand allows you to import kubernetes resource yaml definition in an empty Mia-Platform Console
-project.
+The `project import` subcommand allows you to import kubernetes resource yaml definition in an empty Mia-Platform Console project.
 
 The import function is lossy and some advanced configuration can be lost. We recommend to check the generated file
 before trying a deploy to check if anything is amiss.
