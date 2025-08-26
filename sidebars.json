@@ -1950,6 +1950,10 @@
       "items": [
         {
           "type": "doc",
+          "id": "software-catalog/manifests/application"
+        },
+        {
+          "type": "doc",
           "id": "software-catalog/manifests/example"
         },
         {

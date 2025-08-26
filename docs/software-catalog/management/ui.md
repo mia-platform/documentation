@@ -8,7 +8,11 @@ sidebar_label: Software Catalog UI
 You need to have *Company Owner* or *Project Administrator* role at Company level to perform the following actions
 :::
 
-## List item
+## Item Type Definitions
+
+## Items
+
+### List items
 
 Go to **Software Catalog > All Items** to view and explore catalog items.
 
@@ -27,7 +31,7 @@ Each item has a detail page with two tabs:
 - **General**: this tab presents an initial Details section containing [metadata][items-data-structure] about the item, including its name, general information, and useful links.
 - **Assets**: this tab displays a JSON representation of the [`resources` property][items-manifest] specific to the item.
 
-### Versions
+#### Versions
 
 If versioning is supported, the first page lists all versions with release dates and notes.
 
@@ -35,7 +39,7 @@ If versioning is supported, the first page lists all versions with release dates
 
 Selecting a version opens its details. Breadcrumbs at the top help navigate between versions and related items.
 
-## Create item
+### Create items
 
 To create a new item in the catalog, click on the "Add Item" button. This will open a user interface that guides you through the item creation process. The process is divided into the following steps:
 
@@ -54,16 +58,18 @@ Once all steps are completed, you can save and submit the item to be added to th
 Create a new version is available only for items that support versioning. You can start the creation of a new version from either of the following options:
 
 ##### From the Version Overview Page
+
 On the item’s overview page, you can create a new version by selecting the "Add new version" option. Here, you can choose whether to start from an existing version or create the new version from scratch.
 
 ![create new version](./img/software-catalog-create-new-version.png)
 
 ##### From the Version Detail Page
+
 You can also create a new version directly from the version detail page. Click on the button with the three dots to open the option to create a new version based on the version you are currently viewing.
 
 ![create new version](./img/software-catalog-create-version-from-this.png)
 
-## Edit item
+### Edit items
 
 To edit an item, an `Edit` button is available in the relevant tab (such as metadata or assets). The availability of this button depends on whether the item is versioned and which section you're attempting to edit.
 
@@ -77,7 +83,7 @@ If you need to update or change the `assets` of a versioned item, you must creat
 
 Even in cases where the version is marked as `N/A`, it behaves the same as any other version — only metadata can be edited, and assets cannot be modified.
 
-## Delete item
+### Delete items
 
 If an item is versionable, you can delete any specific version of the item by using the dedicated `Delete` button available for each version. This allows you to remove individual versions without affecting the entire item or other versions.
 
