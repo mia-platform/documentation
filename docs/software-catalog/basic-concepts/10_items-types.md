@@ -3,9 +3,6 @@ id: items-types
 title: Item Type Definitions
 ---
 
-import { catalogItemTypeDefinitionSchema } from "@mia-platform/console-types";
-import SchemaViewer from "../snippets/schema_viewer.mdx";
-
 Each item of the Catalog has a certain **type**. Different types represents different artifacts that are handled in specific ways by the Console.
 
 The Catalog comes with a set of pre-defined [well-known types](#well-known-itds), but users can extend the Catalog capabilities setting up custom types through **Item Type Definitions** (*ITDs* from now on). An ITD is an entity that both *makes a new type available for use* and *outlines how items of that type should look like*.
@@ -14,15 +11,7 @@ As for items, an ITD exists in the context of a **specific Company** (field `met
 
 Through the content of the `spec` field, an ITD provides details on how the items of its type should behave. The most important information are conveyed by the field `spec.isVersioningSupported`, which specifies whether items support [versioning](/software-catalog/basic-concepts/20_items-versioning.md), and by the field `spec.validation` that shapes and validates the content of the items `resources` field.
 
-## ITD fields
-
-As for items, ITDs are **JSON documents** containing metadata about the definition itself and specifications regarding the items of the defined type.
-
-:::tip
-The full JSON schema is available [on GitHub](https://raw.githubusercontent.com/mia-platform/console-sdk/refs/tags/%40mia-platform/console-types%400.38.11/packages/console-types/schemas/catalog/item-type-definition.schema.json).
-:::
-
-<SchemaViewer schema={catalogItemTypeDefinitionSchema} />
+For a full overview of the ITD data structure, refer to the [manifest page](/software-catalog/manifests/overview.md#item-type-definition)
 
 ## Well-known ITDs
 

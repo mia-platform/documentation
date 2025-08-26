@@ -10,23 +10,65 @@ You need to have *Company Owner* or *Project Administrator* role at Company leve
 
 ## Item Type Definitions
 
+Go to **Software Catalog > Type Definitions** to view and explore Catalog [Item Type Definition](/software-catalog/basic-concepts/10_items-types.md).
+
+![List of Software Catalog ITDs](./img/software-catalog-itd-list.png)
+
+The ITDs Catalog page includes a search bar and advanced filters to narrow results by:
+
+- **availability**: this filter determines whether an ITD is accessible to all Companies, or restricted to the current Company only.
+
+Additionally, users can also toggle between Company-specific and all available ITDs.
+
+Each ITD has a detail page with three tabs.
+
+- **Metadata**: this tab presents general information regarding the definition.
+- **Spec**: this tab displays a JSON representation of the definition [`spec` property](/software-catalog/manifests/overview.md#item-type-definition).
+- **Labels and Annotation**: this tab displays the labels and annotations of the ITD.
+
+### Create ITDs
+
+To create a new ITD in the Catalog, click on the "Add definition" button. This will open a user interface that guides you through the ITD creation process.
+
+![Create Software Catalog ITDs](./img/software-catalog-create-itd.png)
+
+### Edit ITDs
+
+To edit an ITD, an `Edit` button is available in the relevant tab. The availability of this button depends on whether the item belongs to your Company, as well as on your permissions inside that company.
+
+![Edit Software Catalog ITDs](./img/software-catalog-edit-itd.png)
+
+:::warning
+Editing the validation of an ITD may cause the items referring it to go in a state of error where their assets **do not comply** with the ITD validation schema anymore.
+:::
+
+### Delete ITDs
+
+You can delete an ITD using the `Delete type definition` button. This will permanently remove the ITD from the Catalog. The action is irreversible, so be sure to confirm your decision before proceeding with deletion.
+
+![Delete Software Catalog ITDs](./img/software-catalog-delete-itd.png)
+
+:::warning
+Deleting an ITD that is referenced by some items will cause them to be considered of an **unknown type**. While in this state, their assets will not be editable.
+:::
+
 ## Items
 
 ### List items
 
-Go to **Software Catalog > All Items** to view and explore catalog items.
+Go to **Software Catalog > Items** to view and explore Catalog [items](/software-catalog/basic-concepts/05_items-data-structure.md).
 
 ![List of software catalog items](./img/software-catalog-overview.png)
 
-The main catalog page includes a search bar and advanced filters to narrow results by:
+The items Catalog page includes a search bar and advanced filters to narrow results by:
 
 - **type**: filter item by their specific type
 - **lifecycle status**: e.g., Coming Soon, Draft, Published, etc..
-- **availability**: this filter determines whether an item is public, accessible to all companies, or restricted to the current company only.
+- **availability**: this filter determines whether an item is public, accessible to all Companies, or restricted to the current Company only.
 
-Additionally, users can also toggle between company-specific and all available items.
+Additionally, users can also toggle between Company-specific and all available items.
 
-Each item has a detail page with two tabs:
+Each item has a detail page with two tabs.
 
 - **General**: this tab presents an initial Details section containing [metadata][items-data-structure] about the item, including its name, general information, and useful links.
 - **Assets**: this tab displays a JSON representation of the [`resources` property][items-manifest] specific to the item.
@@ -41,7 +83,7 @@ Selecting a version opens its details. Breadcrumbs at the top help navigate betw
 
 ### Create items
 
-To create a new item in the catalog, click on the "Add Item" button. This will open a user interface that guides you through the item creation process. The process is divided into the following steps:
+To create a new item in the Catalog, click on the "Add Item" button. This will open a user interface that guides you through the item creation process. The process is divided into the following steps:
 
 1. **select the [item type][items-type]**: choose the type of item you want to create from the available options. This will determine the set of fields and attributes you need to provide during the creation process;
 
@@ -49,7 +91,7 @@ To create a new item in the catalog, click on the "Add Item" button. This will o
 
 3. **enter [assets][items-manifest]**: after entering the metadata, you will need to specify additional details (`resources` property) for the item type. A default schema of resources will be provided to assist you in adding the relevant specifics. This schema serves as a template to help ensure all necessary information is included and formatted correctly.
 
-Once all steps are completed, you can save and submit the item to be added to the catalog.
+Once all steps are completed, you can save and submit the item to be added to the Catalog.
 
 ![create item](./img/software-catalog-create-item.png)
 
@@ -89,7 +131,7 @@ If an item is versionable, you can delete any specific version of the item by us
 
 ![delete version](./img/delete-version.png)
 
-For items that are not versionable, you can delete the entire item by using the `Delete Item` button. This will permanently remove the item from the catalog.
+For items that are not versionable, you can delete the entire item by using the `Delete Item` button. This will permanently remove the item from the Catalog.
 
 Both actions are irreversible, so be sure to confirm your decision before proceeding with deletion.
 
