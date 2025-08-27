@@ -8,7 +8,7 @@ sidebar_label: Fine-Grained Access Control
 
 :::info
 This feature is currently available exclusively as a **Closed Preview** and is not yet generally available.
-This feature is available through the activation of the `ENABLE_DESIGN_CONFIGURATION_RULE_VALIDATION` feature toggle at Project / Company level through the Mia-Platform management Back Office (it will be available directly in the Console soon).
+This feature is available through the activation of the `ENABLE_DESIGN_CONFIGURATION_RULE_VALIDATION` feature toggle at Project / Company level through the Mia-Platform CMS.
 
 For more information and to request its activation for your Company, please contact your Mia-Platform referent.
 :::
