@@ -7,10 +7,10 @@ Managing your Catalog boils down to permforming CRUD operations on [Item Type De
 
 There are several ways to manage Software Catalog entities, depending on your preferred workflow and level of control:
 
-- [**Software Catalog UI**](/software-catalog/management/ui.md): a user-friendly graphical interface within the Console, ideal for manual and quick operations,
-- [**`miactl`**](/software-catalog/management/miactl.md), the official Mia-Platform command-line tool. Perfect for automation, scripting, and advanced workflows,
+- [**Software Catalog UI**](/software-catalog/items-management/ui.md): a user-friendly graphical interface within the Console, ideal for manual and quick operations,
+- [**`miactl`**](/software-catalog/items-management/miactl.md), the official Mia-Platform command-line tool. Perfect for automation, scripting, and advanced workflows,
 - [**Mia-Platform GitHub Community**](https://github.com/mia-platform/community): for community-driven contributions or support requests — such as proposing new items or requesting changes — you can open an issue on the [dedicated page](https://github.com/mia-platform/community), and
-- [**API Access**](/software-catalog/management/api.md): you can interact directly with the underlying APIs to perform programmatic changes.
+- [**API Access**](/software-catalog/items-management/api.md): you can interact directly with the underlying APIs to perform programmatic changes.
 
 ## Permissions
 

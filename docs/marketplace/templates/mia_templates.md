@@ -21,4 +21,4 @@ Mia-Platforms currently supports the following examples:
 | [Ktor template](https://github.com/mia-platform-marketplace/Ktor-Template)                            | Ktor, Kotlin                                                       |
 | [Ktor multi module template](https://github.com/mia-platform-marketplace/Ktor-Multi-Module-Template)  | Ktor, Kotlin                                                       | . |
 
-You can also [build a template](/software-catalog/management/overview.md) by yourself.
+You can also [build a template](/software-catalog/items-management/overview.md) by yourself.

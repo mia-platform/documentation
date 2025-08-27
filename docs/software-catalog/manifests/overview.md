@@ -6,7 +6,7 @@ title: Catalog manifests
 import { catalogItemTypeDefinitionSchema, catalogItemManifestSchema } from "@mia-platform/console-types";
 import SchemaViewer from "../snippets/schema_viewer.mdx";
 
-A **manifest** is a JSON representation of an entity that can be [applied](/software-catalog/management/overview.md) to the Catalog.
+A **manifest** is a JSON representation of an entity that can be [applied](/software-catalog/items-management/overview.md) to the Catalog.
 
 ## Item Type Definition
 

@@ -1921,20 +1921,20 @@
       "collapsed": true,
       "label": "Catalog management",
       "link": {
-        "id": "software-catalog/management/overview",
+        "id": "software-catalog/items-management/overview",
         "type": "doc"
       },
       "items": [
         {
-          "id": "software-catalog/management/ui",
+          "id": "software-catalog/items-management/ui",
           "type": "doc"
         },
         {
-          "id": "software-catalog/management/miactl",
+          "id": "software-catalog/items-management/miactl",
           "type": "doc"
         },
         {
-          "id": "software-catalog/management/api",
+          "id": "software-catalog/items-management/api",
           "type": "doc"
         }
       ]

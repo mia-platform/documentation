@@ -12,7 +12,7 @@ import SchemaViewer from "../snippets/schema_viewer.mdx";
 
 Infrastructure resources are **custom objects** that are not part of the standard Console supported resources. They can be managed from the [dedicated section](/console/design-your-projects/custom-resources/custom-resources.md) of the Console Design area.
 
-To [create or edit](/software-catalog/management/overview.md) an infrastructure resource, you need to provide a [manifest](/software-catalog/manifests/overview.md), whose `resources` property should adhere to the following JSON schema.
+To [create or edit](/software-catalog/items-management/overview.md) an infrastructure resource, you need to provide a [manifest](/software-catalog/manifests/overview.md), whose `resources` property should adhere to the following JSON schema.
 
 :::tip
 The JSON schemas of the [infrastructure resource resources](https://raw.githubusercontent.com/mia-platform/console-sdk/refs/tags/%40mia-platform/console-types%400.38.11/packages/console-types/schemas/catalog/custom-resource.resources.schema.json) and of the [full infrastructure resource manifest](https://raw.githubusercontent.com/mia-platform/console-sdk/refs/tags/%40mia-platform/console-types%400.38.11/packages/console-types/schemas/catalog/custom-resource.manifest.schema.json) are available on GitHub.
@@ -22,7 +22,7 @@ The JSON schemas of the [infrastructure resource resources](https://raw.githubus
 
 ## Monitor a Custom Kubernetes Resource in the Runtime area
 
-If you've upgraded to Console release `v13.3.0`, you can now view the status of your Current Kubernetes Resources directly in the Runtime section. To enable this feature, [publish a new version](/software-catalog/management/ui.md#create-a-new-version) of your infrastructure resource that include the fields `runtime`.
+If you've upgraded to Console release `v13.3.0`, you can now view the status of your Current Kubernetes Resources directly in the Runtime section. To enable this feature, [publish a new version](/software-catalog/items-management/ui.md#create-a-new-version) of your infrastructure resource that include the fields `runtime`.
 
 ## Generate dynamic form to customize validation
 

@@ -222,7 +222,7 @@ To create a new version of a component using the Software Catalog, follow these 
 
 Once updated, save and publish the new version as needed.
 
-To know more about how to create new version for Catalog read the dedicated [documentation page](/software-catalog/management/ui.md#create-a-new-version).
+To know more about how to create new version for Catalog read the dedicated [documentation page](/software-catalog/items-management/ui.md#create-a-new-version).
 
 ### Using miactl
 
@@ -257,7 +257,7 @@ If everything works well you will see the following outcome:
 
 ```
 
-To know more about how to update a Catalog component using miactl read this [documentation page](/software-catalog/management/miactl.md).
+To know more about how to update a Catalog component using miactl read this [documentation page](/software-catalog/items-management/miactl.md).
 
 ## Conclusion
 
@@ -265,7 +265,7 @@ In this tutorial, we explored the differences between managing a Catalog compone
 
 The Software Catalog offers a significant advantage in terms of ease of use and accessibility. Through its graphical interface, you can quickly view, modify, and create Catalog items without complexity.
 
-However, as the number of components grows, managing everything manually becomes impractical. In such cases, miactl enables a [declarative and automated approach](/software-catalog/management/miactl.md#declarative-approach) to handling all Catalog components efficiently.
+However, as the number of components grows, managing everything manually becomes impractical. In such cases, miactl enables a [declarative and automated approach](/software-catalog/items-management/miactl.md#declarative-approach) to handling all Catalog components efficiently.
 
 Both approaches are valuable:
 
