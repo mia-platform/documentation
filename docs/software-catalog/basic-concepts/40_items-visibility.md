@@ -48,7 +48,7 @@ A private item can **only be accessed by users of the company** it belongs to. T
 }
 ```
 
-Since the `visibility` field is not mandatory in the [item data structure][items-data-structure], an item without it is considered to be private.
+Since the `visibility` field is not mandatory in the [item data structure](/software-catalog/basic-concepts/05_items-data-structure.md), an item without it is considered to be private.
 
 #### All companies
 
@@ -71,5 +71,3 @@ A public item can be **accessed by anyone**, even non-authenticated users. It co
   "allTenants": false // or true, or undefined
 }
 ```
-
-[items-data-structure]: ./05_items-data-structure.md

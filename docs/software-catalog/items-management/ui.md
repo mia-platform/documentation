@@ -70,8 +70,8 @@ Additionally, users can also toggle between Company-specific and all available i
 
 Each item has a detail page with two tabs.
 
-- **General**: this tab presents an initial Details section containing [metadata][items-data-structure] about the item, including its name, general information, and useful links.
-- **Assets**: this tab displays a JSON representation of the [`resources` property][items-manifest] specific to the item.
+- **General**: this tab presents an initial Details section containing [metadata](/software-catalog/basic-concepts/05_items-data-structure.md) about the item, including its name, general information, and useful links.
+- **Assets**: this tab displays a JSON representation of the [`resources` property](/software-catalog/items-manifest/overview.md) specific to the item.
 
 #### Versions
 
@@ -85,11 +85,11 @@ Selecting a version opens its details. Breadcrumbs at the top help navigate betw
 
 To create a new item in the Catalog, click on the "Add Item" button. This will open a user interface that guides you through the item creation process. The process is divided into the following steps:
 
-1. **select the [item type][items-type]**: choose the type of item you want to create from the available options. This will determine the set of fields and attributes you need to provide during the creation process;
+1. **select the [item type](/software-catalog/basic-concepts/10_items-types.md)**: choose the type of item you want to create from the available options. This will determine the set of fields and attributes you need to provide during the creation process;
 
-2. **enter [metadata][items-data-structure]**: fill in the necessary metadata for the item. This typically includes basic information such as the name, description, category, and any other required attributes;
+2. **enter [metadata](/software-catalog/basic-concepts/05_items-data-structure.md)**: fill in the necessary metadata for the item. This typically includes basic information such as the name, description, category, and any other required attributes;
 
-3. **enter [assets][items-manifest]**: after entering the metadata, you will need to specify additional details (`resources` property) for the item type. A default schema of resources will be provided to assist you in adding the relevant specifics. This schema serves as a template to help ensure all necessary information is included and formatted correctly.
+3. **enter [assets](/software-catalog/items-manifest/overview.md)**: after entering the metadata, you will need to specify additional details (`resources` property) for the item type. A default schema of resources will be provided to assist you in adding the relevant specifics. This schema serves as a template to help ensure all necessary information is included and formatted correctly.
 
 Once all steps are completed, you can save and submit the item to be added to the Catalog.
 
@@ -134,7 +134,3 @@ If an item is versionable, you can delete any specific version of the item by us
 For items that are not versionable, you can delete the entire item by using the `Delete Item` button. This will permanently remove the item from the Catalog.
 
 Both actions are irreversible, so be sure to confirm your decision before proceeding with deletion.
-
-[items-data-structure]: ../basic-concepts/05_items-data-structure.md
-[items-type]: ../basic-concepts/10_items-types.md
-[items-manifest]: ../manifests/overview.md
