@@ -1944,45 +1944,45 @@
       "collapsed": true,
       "label": "Catalog manifests",
       "link": {
-        "id": "software-catalog/manifests/overview",
+        "id": "software-catalog/items-manifest/overview",
         "type": "doc"
       },
       "items": [
         {
           "type": "doc",
-          "id": "software-catalog/manifests/application"
+          "id": "software-catalog/items-manifest/application"
         },
         {
           "type": "doc",
-          "id": "software-catalog/manifests/example"
+          "id": "software-catalog/items-manifest/example"
         },
         {
           "type": "doc",
-          "id": "software-catalog/manifests/extension"
+          "id": "software-catalog/items-manifest/extension"
         },
         {
           "type": "doc",
-          "id": "software-catalog/manifests/infrastructure-resource"
+          "id": "software-catalog/items-manifest/infrastructure-resource"
         },
         {
           "type": "doc",
-          "id": "software-catalog/manifests/infrastructure-component-runtime"
+          "id": "software-catalog/items-manifest/infrastructure-component-runtime"
         },
         {
           "type": "doc",
-          "id": "software-catalog/manifests/plugin"
+          "id": "software-catalog/items-manifest/plugin"
         },
         {
           "type": "doc",
-          "id": "software-catalog/manifests/proxy"
+          "id": "software-catalog/items-manifest/proxy"
         },
         {
           "type": "doc",
-          "id": "software-catalog/manifests/sidecar"
+          "id": "software-catalog/items-manifest/sidecar"
         },
         {
           "type": "doc",
-          "id": "software-catalog/manifests/template"
+          "id": "software-catalog/items-manifest/template"
         }
       ]
     },

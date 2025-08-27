@@ -15,7 +15,7 @@ Versioning allows teams to:
 :::caution
 Versioning is currently supported by a subset of [well-known item types](/software-catalog/basic-concepts/10_items-types.md#well-known-itds). All the information presented below applies **only to items of these types**.
 
-Refer to the [manifest page](/software-catalog/manifests/overview.md) of an item type to check whether it supports versioning.
+Refer to the [manifest page](/software-catalog/items-manifest/overview.md) of an item type to check whether it supports versioning.
 
 For the time being, custom-made [ITDs](/software-catalog/basic-concepts/10_items-types.md) **cannot support versioning**.
 :::

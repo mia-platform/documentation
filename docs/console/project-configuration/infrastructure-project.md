@@ -128,7 +128,7 @@ If an Infrastructure Component is missing the related webhook on the git Provide
 
 ## Runtime Visibility
 
-After the deployment of your infrastructure components, runtime data retrieval can be integrated in the Console by leveraging the [Infrastructure Component Runtime Software Catalog item type](/software-catalog/manifests/infrastructure-component-runtime.md).
+After the deployment of your infrastructure components, runtime data retrieval can be integrated in the Console by leveraging the [Infrastructure Component Runtime Software Catalog item type](/software-catalog/items-manifest/infrastructure-component-runtime.md).
 
 :::tip
 You can later access the data via API or by creating a custom extension using the [Composer extensions](/console/company-configuration/extensions.md#add-new-extension)

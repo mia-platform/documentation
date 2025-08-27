@@ -23,7 +23,7 @@ Additionally, users can also toggle between Company-specific and all available I
 Each ITD has a detail page with three tabs.
 
 - **Metadata**: this tab presents general information regarding the definition.
-- **Spec**: this tab displays a JSON representation of the definition [`spec` property](/software-catalog/manifests/overview.md#item-type-definition).
+- **Spec**: this tab displays a JSON representation of the definition [`spec` property](/software-catalog/items-manifest/overview.md#item-type-definition).
 - **Labels and Annotation**: this tab displays the labels and annotations of the ITD.
 
 ### Create ITDs

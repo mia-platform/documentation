@@ -11,13 +11,13 @@ As for items, an ITD exists in the context of a **specific Company** (field `met
 
 Through the content of the `spec` field, an ITD provides details on how the items of its type should behave. The most important information are conveyed by the field `spec.isVersioningSupported`, which specifies whether items support [versioning](/software-catalog/basic-concepts/20_items-versioning.md), and by the field `spec.validation` that shapes and validates the content of the items `resources` field.
 
-For a full overview of the ITD data structure, refer to the [manifest page](/software-catalog/manifests/overview.md#item-type-definition)
+For a full overview of the ITD data structure, refer to the [manifest page](/software-catalog/items-manifest/overview.md#item-type-definition)
 
 ## Well-known ITDs
 
 The Catalog is shipped with a set of ITDs **essential for the operation of the Console** that are maintained directly by Mia-Platform.
 
-The full list of well-known ITDs can be found in the [items manifest](/software-catalog/manifests/overview.md) section.
+The full list of well-known ITDs can be found in the [items manifest](/software-catalog/items-manifest/overview.md) section.
 
 :::warning
 The well-known ITDs are protected by a strict layer of permissions. In any case, please **refrain from tampering with them** in any way to avoid disrupting the correct functioning of the Console.

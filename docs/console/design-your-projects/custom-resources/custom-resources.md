@@ -152,7 +152,7 @@ resources:
     archive: https://example.com/path/to/archive.zip
 ...
 ```
-Refer to [Infrastructure Resource definition](/software-catalog/manifests/infrastructure-resource.md) schema
+Refer to [Infrastructure Resource definition](/software-catalog/items-manifest/infrastructure-resource.md) schema
 :::
 
 
