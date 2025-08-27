@@ -16,8 +16,8 @@ to be able to collect [runtime data](/console/project-configuration/infrastructu
 To [create or edit](/software-catalog/items-management/overview.md) an infrastructure Component Runtime item, you need to provide a [manifest](/software-catalog/items-manifest/overview.md), whose `resources` property should adhere to the following JSON schema.
 
 :::tip
-The JSON schemas of the [infrastructure Component Runtime item](https://raw.githubusercontent.com/mia-platform/console-sdk/refs/heads/main/packages/console-types/schemas/catalog/infrastructure-component-runtime.resources.schema.json)
-and its [full manifest](https://raw.githubusercontent.com/mia-platform/console-sdk/refs/heads/main/packages/console-types/schemas/catalog/infrastructure-component-runtime.manifest.schema.json)
+The JSON schemas of the [infrastructure Component Runtime item](https://raw.githubusercontent.com/mia-platform/console-sdk/refs/tags/%40mia-platform/console-types%400.38.11/packages/console-types/schemas/catalog/infrastructure-component-runtime.resources.schema.json)
+and its [full manifest](https://raw.githubusercontent.com/mia-platform/console-sdk/refs/tags/%40mia-platform/console-types%400.38.11/packages/console-types/schemas/catalog/infrastructure-component-runtime.manifest.schema.json)
 are available on GitHub.
 :::
 

@@ -1923,7 +1923,7 @@
     {
       "type": "category",
       "collapsed": true,
-      "label": "Items management",
+      "label": "Catalog management",
       "link": {
         "id": "software-catalog/items-management/overview",
         "type": "doc"
@@ -1946,7 +1946,7 @@
     {
       "type": "category",
       "collapsed": true,
-      "label": "Items manifest",
+      "label": "Catalog manifests",
       "link": {
         "id": "software-catalog/items-manifest/overview",
         "type": "doc"

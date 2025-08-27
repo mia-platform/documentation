@@ -16,7 +16,7 @@ Any additional information presented in the [template section](/software-catalog
 To [create or edit](/software-catalog/items-management/overview.md) an example, you need to provide a [manifest](/software-catalog/items-manifest/overview.md), whose `resources` property should adhere to the following JSON schema.
 
 :::tip
-The JSON schemas of the [example resources](https://raw.githubusercontent.com/mia-platform/console-sdk/refs/heads/main/packages/console-types/schemas/catalog/example.resources.schema.json) and of the [full example manifest](https://raw.githubusercontent.com/mia-platform/console-sdk/refs/heads/main/packages/console-types/schemas/catalog/example.manifest.schema.json) are available on GitHub.
+The JSON schemas of the [example resources](https://raw.githubusercontent.com/mia-platform/console-sdk/refs/tags/%40mia-platform/console-types%400.38.11/packages/console-types/schemas/catalog/example.resources.schema.json) and of the [full example manifest](https://raw.githubusercontent.com/mia-platform/console-sdk/refs/tags/%40mia-platform/console-types%400.38.11/packages/console-types/schemas/catalog/example.manifest.schema.json) are available on GitHub.
 :::
 
 <SchemaViewer schema={catalogWellKnownItems['example'].resourcesSchema} />
