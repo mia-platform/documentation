@@ -1,6 +1,7 @@
 ---
 id: overview
-title: Catalog manifests
+title: Software Catalog manifests
+sidebar_label: Catalog manifests
 ---
 
 import { catalogItemTypeDefinitionSchema, catalogItemManifestSchema } from "@mia-platform/console-types";

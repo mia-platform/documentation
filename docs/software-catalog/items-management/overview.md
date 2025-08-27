@@ -1,6 +1,7 @@
 ---
 id: overview
-title: Catalog management
+title: Software Catalog management
+sidebar_label: Catalog management
 ---
 
 Managing your Catalog boils down to permforming CRUD operations on [Item Type Definitions](/software-catalog/basic-concepts/10_items-types.md) and [items](/software-catalog/basic-concepts/05_items-data-structure.md).
