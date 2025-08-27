@@ -7,7 +7,10 @@ sidebar_label: Fine-Grained Access Control
 # Fine-Grained Access Control in Design
 
 :::info
-This feature is currently available exclusively as a **Closed Preview** and is not yet generally available. For more information and to request its activation for your Company, please contact your Mia-Platform referent.
+This feature is currently available exclusively as a **Closed Preview** and is not yet generally available.
+This feature is available through the activation of the `ENABLE_DESIGN_CONFIGURATION_RULE_VALIDATION` feature toggle at Project / Company level through the Mia-Platform management Back Office (it will be available directly in the Console soon).
+
+For more information and to request its activation for your Company, please contact your Mia-Platform referent.
 :::
 
 This feature introduces a mechanism for managing user interactions within the application by restricting specific actions based on user roles and specified rules in the Design section.
@@ -32,6 +35,9 @@ Rules defined at the Company and Project levels are combined, but with an import
 - For **allow** rules: if an allow rule is assigned to a specific role at the Company level, any allow rules for the same role at the Project level are ignored. This ensures that permissions granted at the Project level cannot exceed those defined at the Company level for that role.  
 - For **disallow** rules: both Company-level and Project-level disallow rules for the same role are applied together. Project-level disallow rules can only further restrict what is denied at the Company level.
 :::
+
+**Rules validation flow:**
+![fine-grained-rules-validation-flow](img/fine-grained-rules-validation-flow.png)
 
 ## Configuration definition
 
@@ -65,6 +71,10 @@ A `RuleSet` can be configured in 3 ways, and these apply to both `allowedRuleSet
 ### Via `jsonPath`
 
 The `jsonPath` field is used to extract a target resource by applying a JSONPath expression on the JSON structure of the configuration. The rule will control (allow or disallow) any updates on the extracted resource, depending on whether it is in the `allowedRuleSet` or `disallowedRuleSet`.
+
+:::info
+The `jsonPath` field must contain a string based on the `jsonPath` standard ([RFC 9535](https://datatracker.ietf.org/doc/html/rfc9535)), who allows basic and complex queries too.
+:::
 
 ### Via `jsonPath` and `processingOptions`
 
