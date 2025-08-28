@@ -63,7 +63,7 @@ Yes. If an item has multiple versions, you can select the specific version you w
 Each item in the Marketplace has a detail page that provides comprehensive metadata, including:
 * A detailed description of its functionality.
 * Links to its official documentation.
-* Information about its version, category, and author.
+* Information about its version, category, and owner.
   This allows developers to understand the purpose and usage of an asset before adding it to their project.
   [Discover more](/marketplace/overview_marketplace.md)
 
