@@ -16,7 +16,7 @@ A **Company** is the highest-level organizational unit in the Console. It acts a
 
 #### What is the difference between a Project and an Environment?
 * A **Project** is where you build your services. It contains all the necessary configurations, including microservices, APIs, data models (CRUDs), and public variables. Each Project belongs to a Company.
-* An **Environment** represents a specific deployment stage within a Project, such as `Development`, `Staging`, or `Production`. Each environment is mapped to a unique namespace in a Kubernetes cluster, allowing you to deploy and test your configurations in isolated runtime contexts.
+* An **Environment** represents a specific deployment stage within a Project, such as `Development`, `Staging`, or `Production`. Each environment is mapped to a unique namespace in a Kubernetes cluster, allowing you to deploy and test your services in isolated runtime contexts.
   [Discover more](/console/project-configuration/application-project.md)
 
 #### What is a "Project Template" and why is it important?
