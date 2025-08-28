@@ -108,10 +108,6 @@ In the microservice's detail page, go to the **ConfigMaps & Secrets** tab. Here 
 Yes, Kustomize is fully supported. When you enable it for a project, an `overlays` directory is created in your configuration repository. Inside this directory, you can create a folder for each environment (e.g., `production`) containing patch files and a `kustomization.yaml`. These patches are applied over the base configuration at deployment time, allowing you to declaratively modify resources for specific environments.
 [Discover more](/console/project-configuration/kustomize-your-configurations/index.md)
 
-#### What is the purpose of the Design Overview?
-The Design Overview is a powerful governance tool at the Company level. It provides an aggregated, cross-project view of all configured resources like Endpoints, Microservices, and CRUDs. It allows **platform engineers** to filter and analyze configurations across the entire company to enforce standards, identify security risks (e.g., unprotected endpoints), or track resource usage.
-[Discover more](/console/company-configuration/design-overview.md)
-
 ---
 ### Deployment & Runtime
 
