@@ -11,7 +11,7 @@ The Mia-Platform Console is a cloud-native Platform Builder that functions as an
 [Discover more](/development_suite/overview-dev-suite.md)
 
 #### What is a "Company" in the Mia-Platform Console?
-A **Company** is the highest-level organizational unit in the Console. It acts as a container for multiple **Projects** and provides centralized governance. At the Company level, you configure shared resources that are inherited by all its projects, such as Kubernetes cluster connections, **Providers** (like Git providers and secret managers), and default project templates. This structure allows an organization to manage different business units or teams in an isolated and organized manner.
+A **Company** is the highest-level organizational unit in the Mia-Platform Console. It acts as a container for multiple **Projects** and provides centralized governance. At the Company level, you configure shared resources that are inherited by all its projects, such as Kubernetes cluster connections, **Providers** (like Git providers and secret managers), and default project templates. This structure allows an organization to manage different business units or teams in an isolated and organized manner.
 [Discover more](/console/company-configuration/create-company.md)
 
 #### What is the difference between a Project and an Environment?
