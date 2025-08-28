@@ -7,7 +7,7 @@ sidebar_label: Console FAQs
 ### General Concepts & Project Management
 
 #### What is the Mia-Platform Console?
-The Mia-Platform Console is a cloud-native Platform Builder that functions as an **internal developer platform** (**IDP platform**). It's designed to help organizations industrialize and govern the entire software development lifecycle. By providing a centralized **developer portal**, it simplifies cloud-native complexity, empowers development teams with self-service capabilities, and allows **platform engineers** to enforce governance and **platform engineering best practices**. The Console manages everything from infrastructure connection to API design, deployment, and monitoring.
+The Mia-Platform Console is a cloud-native Platform Builder that functions as an **Internal Developer Platform (IDP)**. It's designed to help organizations industrialize and govern the entire software development lifecycle. By providing a centralized **developer hub**, it simplifies cloud-native complexity, empowers development teams with self-service capabilities, and allows **platform engineers** to enforce governance and **platform engineering best practices**. The Mia-Platform Console manages everything from infrastructure connection to API design, deployment, and monitoring.
 [Discover more](/development_suite/overview-dev-suite.md)
 
 #### What is a "Company" in the Mia-Platform Console?
