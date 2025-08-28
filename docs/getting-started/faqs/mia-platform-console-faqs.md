@@ -24,7 +24,7 @@ A **Project Template** is a pre-configured Git repository that serves as a start
 [Discover more](/console/company-configuration/project-blueprint.md)
 
 #### How do I create a new Project?
-To create a new Project, you must first have a Company, a Git Provider, and a Project Template configured. From the Console homepage, click "Create Project" and follow the three-step wizard:
+To create a new Project, you must first have a Company, a Git Provider, a CI/CD Provider, a Secret Management Provider and a Project Template configured. From the Console homepage, click "Create Project" and follow the three-step wizard:
 1.  **General**: Provide a name, description, and choose the project workflow (Standard or Enhanced).
 2.  **Repository**: Select a Git Provider, define the repository path, set visibility, and choose a starting template.
 3.  **Environments**: Review the environments that will be automatically configured based on the Company's defaults.
