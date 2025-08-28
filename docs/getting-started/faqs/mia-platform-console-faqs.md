@@ -19,8 +19,8 @@ A **Company** is the highest-level organizational unit in the Mia-Platform Conso
 * An **Environment** represents a specific deployment stage within a Project, such as `Development`, `Staging`, or `Production`. Each environment is mapped to a unique namespace in a Kubernetes cluster, allowing you to deploy and test your services in isolated runtime contexts.
   [Discover more](/console/project-configuration/application-project.md)
 
-#### What is a "Project Template" and why is it important?
-A **Project Template** is a pre-configured Git repository that serves as a starting point for creating new Projects. It includes a default structure, sample configurations, and often pre-defined **CI/CD** pipelines. Using templates is a core aspect of **platform engineering best practices** because it enforces standardization, ensures consistency across projects, and dramatically speeds up the onboarding of new applications by providing developers with a "golden path".
+#### What is a "Project Blueprint" and why is it important?
+A **Project Blueprint** is a pre-configured Git repository that serves as a starting point for creating new Projects. It includes a default structure, sample configurations, and often pre-defined **CI/CD** pipelines. Using templates is a core aspect of **platform engineering best practices** because it enforces standardization, ensures consistency across projects, and dramatically speeds up the onboarding of new applications by providing developers with a "golden path".
 [Discover more](/console/company-configuration/project-blueprint.md)
 
 #### How do I create a new Project?
@@ -232,7 +232,7 @@ Webhooks allow you to subscribe to events within the Console, such as "Project C
 Mia-Platform follows semantic versioning with a `MAJOR.MINOR.PATCH` format:
 * **MAJOR** (e.g., v14.0.0): Increased for significant new functionality or backward-incompatible changes.
 * **MINOR** (e.g., v14.1.0): Increased for new features and functional improvements.
-* **PATCH** (e.g., v14.1.1): Increased for bug fixes, stability, and performance improvements.
+* **PATCH** (e.g., v14.1.1): Increased for bug fixes, stability, performance or small improvements.
   The documentation also specifies which features are in `Beta` or `Preview`.
   [Discover more](/info/version_policy.md)
 
