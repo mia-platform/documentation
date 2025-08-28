@@ -40,7 +40,7 @@ The Enhanced Project Workflow is a significant evolution from the standard, Git-
   [Discover more](/development_suite/set-up-infrastructure/revisions-and-versions.md)
 
 #### How do I save my configuration changes in the Design area?
-In the top-right corner of the Design area, click on the branch/revision name to open the management popover. If you have unsaved changes, a "Save configuration" button will be active. Clicking it opens a modal where you must provide a commit title and an optional message. This action creates a new commit (in Standard Workflow) or a new snapshot (in Enhanced Workflow).
+In the top-right corner of the Design area, click on the branch/revision name to open the management popover. If you have unsaved changes, a "Save configuration" button will be active. Clicking it opens a modal where you must provide a commit title and an optional message. This action creates a new commit (in Standard Workflow) or a new snapshot (in Enhanced Workflow). if there are remote changes and you want to make your changes too, a warning shows up when opening the action popover, telling the users that they have current local changes but there are also remote changes that should be addressed
 [Discover more](/development_suite/api-console/api-design/overview.md)
 
 #### How can I merge configurations between two branches or revisions?

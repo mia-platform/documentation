@@ -31,7 +31,11 @@ The Software Catalog is designed to manage a wide variety of software assets, in
 * **Templates**: Boilerplate code repositories for creating new microservices.
 * **Examples**: Complete, working examples of applications.
 * **Applications**: Pre-composed sets of services and configurations.
-* **Docker Images**: References to existing container images.
+* **Sidecars**: Auxiliary containers that add functionality to primary container.
+* **Proxies**: Specific configurations used to invoke APIs that are not part of the current project but may be exposed by an external provider or another project
+* **Infrastructure resources**: Kubernetes manifests for infrastructure components.
+* **Extensions**: Custom extensions to the Mia-Platform Console.
+* **Infrastructure Component runtime**: Pre-packaged infrastructure components.
   [Discover more](/software-catalog/items-manifest/overview.md)
 
 #### How does the Software Catalog support a composable architecture?
@@ -68,7 +72,7 @@ Each item in the Marketplace has a detail page that provides comprehensive metad
   [Discover more](/marketplace/overview_marketplace.md)
 
 #### Where can I see the items I've already added to my project?
-The microservices, plugins, and other components you've added to your project from the Marketplace will appear in the **Microservices** list within the **Design** section of your project.
+Based on the type of item instantiated (e.g., microservices, sidecars, etc), it will appear in the corresponding list within the Design section of your project.
 [Discover more](/development_suite/api-console/api-design/overview.md)
 
 ### Creating & Managing Catalog Items
@@ -78,19 +82,18 @@ Typically, creating and managing catalog items is a responsibility of the **plat
 [Discover more](/software-catalog/items-management/overview.md)
 
 #### How do I create a new item in the Software Catalog?
-You can create a new item from the **Software Catalog -> All Items** section in the Console.
-1. Click "Add Item".
-2. Select the item type (e.g., Template, Plugin).
-3. Fill in the metadata, such as name, description, category, and an optional icon URL.
-4. Provide the item's **manifest**, which contains the technical details for that item type.
-[Discover more](/software-catalog/items-management/ui.md#create-item)
+There are several ways to create Software Catalog items and their versions:
+* [Software Catalog UI](/software-catalog/items-management/ui.md): a user-friendly graphical interface within the Console, ideal for manual and quick operations,
+* [miactl](/software-catalog/items-management/miactl.md), the official Mia-Platform command-line tool. Perfect for automation, scripting, and advanced workflows,
+* [Mia-Platform GitHub Community](https://github.com/mia-platform/community): for community-driven contributions or support requests — such as proposing new items or requesting changes — you can open an issue on the dedicated page, and
+* [API Access](/software-catalog/items-management/api.md): you can interact directly with the underlying APIs to perform programmatic changes.
 
 #### What is an "Item Manifest"?
-The **manifest** is a JSON or YAML file that contains the technical definition of a catalog item. Its structure depends on the item type.
-* For a **Template**, the manifest contains the URL and provider details for the source Git repository.
-* For a **Plugin**, it contains the Docker image name, default environment variables, and resource settings.
-* For an **Application**, it contains the template for the `mia-platform.yaml` file that defines the composition of services.
-  [Discover more](/software-catalog/items-manifest/overview.md)
+An Item Manifest is a JSON file that defines all the necessary information required to create or update an item — more specifically, an item release — in the system.
+The manifest follows a standard top-level structure across all item types. However, the resources section within the manifest is customized based on the specific item type you are working with.
+To better understand how a manifest should be structured:
+
+[Discover more](/software-catalog/items-manifest/overview.md) or use the specific pages in this section to learn how the resources field should be formatted for each item type.
 
 #### Can I manage the Software Catalog declaratively using GitOps?
 Yes, and this is the recommended approach for production environments. You can manage your item manifests as YAML files in a dedicated Git repository. Then, you can set up a **CI/CD** pipeline that uses the `miactl` command-line tool to apply these manifests to the Software Catalog. The command `miactl catalog apply -f <path-to-manifests>` synchronizes the state of the catalog with your Git repository.
@@ -110,11 +113,10 @@ Categories are user-defined labels (e.g., "Database", "Messaging", "AI") that yo
 
 #### How does versioning work for catalog items?
 Items like Plugins and Templates support versioning. When you create or edit an item, you can create a new version. Each version has its own immutable manifest (`resources`). This means to update a Plugin's Docker image or a Template's source, you must create a new version. The general metadata (like description and category) is shared across all versions of an item.
-[Discover more](/software-catalog/items-management/ui.md#versions)
+[Discover more](/software-catalog/basic-concepts/20_items-versioning.md) 
 
 #### How do I delete an item from the catalog?
-You can delete an item from its detail page in the Software Catalog UI. This action requires high-level permissions. Note that deleting an item from the catalog does not affect any projects that are already using it.
-[Discover more](/software-catalog/items-management/ui.md#delete-item)
+You can delete an item from its detail page in the [Software Catalog UI](/software-catalog/items-management/ui.md#delete-item), with [miactl](/software-catalog/items-management/miactl.md) or [API access](/software-catalog/items-management/api.md). This action requires high-level permissions. Note that deleting an item from the catalog does not affect any projects that are already using it.
 
 ### Item Types Explained
 
@@ -125,8 +127,10 @@ You can delete an item from its detail page in the Software Catalog UI. This act
   [Discover more](/marketplace/overview_marketplace.md)
 
 #### What is an "Application" item type?
-An **Application** is a pre-composed set of services and configurations. Its manifest contains a template for the project's `mia-platform.yaml` file. When a developer creates a project from an Application template, their project is automatically bootstrapped with all the microservices, endpoints, and environment variables defined in the Application, creating a ready-to-run system.
+Applications are bundles of resources that brings together services (i.e., plugins, templates, and examples), endpoints, CRUD collections, and public variables to ease the setup of large-scale artifacts.
 [Discover more](/software-catalog/items-manifest/application.md)
+
+
 
 #### When should I create a Plugin instead of a Template?
 Create a **Plugin** when you have a piece of functionality that is:
@@ -186,6 +190,7 @@ Yes, the item manifest has a `documentation` field where you can provide a URL t
 3. **Versioning**: As you make improvements, release new versions of the item. Don't make breaking changes in patch releases.
 4. **Deprecation**: When an item is outdated, you can mark it as deprecated in the catalog. This signals to developers that they should migrate to a newer version or an alternative.
 5. **Deletion**: Remove the item from the catalog only when you are sure no one should be using it anymore.
+[Discover more](/software-catalog/basic-concepts/30_items-lifecycle.md)
 
 #### Is it better to have many small, focused templates or a few large, generic ones?
 This is a key question for **platform engineers**. The best practice is generally to favor **smaller, more focused templates**. A template for a "Go event consumer" is better than a generic "Go service" template that tries to do everything. Focused templates are easier to understand, maintain, and use, and they lead to more consistent and specialized services. This aligns with the principles of a good **service oriented architecture**.

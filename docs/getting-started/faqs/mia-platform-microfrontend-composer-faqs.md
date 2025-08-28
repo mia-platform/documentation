@@ -32,7 +32,7 @@ A Web Component is a standardized way to create custom, reusable HTML tags. They
 [Discover more](/microfrontend-composer/back-kit/10_overview.md)
 
 #### What is the difference between a "compose" page and a "microfrontend" page?
-* A **Compose Page** is built visually within the Composer by dragging, dropping, and configuring web components (like those from Back-Kit). This is the low-code approach.
+* A **Compose Page** is built visually within the Composer configuring web components (like those from Back-Kit). This is the low-code approach.
 * A **Microfrontend Page** is used to integrate an entire, independently developed microfrontend application (e.g., a React or Angular app). You provide the URL to the microfrontend's entrypoint, and the orchestrator loads it into the page.
   [Discover more](/microfrontend-composer/composer/10_structure.md#page-types)
 
@@ -47,7 +47,7 @@ Back-Kit components are decoupled and communicate with each other using an **eve
 ### Getting Started & Basic Configuration
 
 #### How do I create my first application with the Microfrontend Composer?
-You can create a frontend application from the **Design** area of a project in the Mia-Platform Console. Navigate to **Microfrontend Composer**, and if no application exists, you can create one from a template. The "Backoffice Template" is a great starting point, as it comes with a pre-configured layout and several example pages.
+You can create a frontend application from the **Design** area of a project in the Mia-Platform Console. Navigate to **Microfrontend Composer**, and if no application exists, you can create one from a template. The "Microfrontend Composer Toolkit" is a great starting point, as it comes with a pre-configured layout and several example pages.
 [Discover more](/microfrontend-composer/tutorials/basics.mdx)
 
 #### How do I create a new page?
