@@ -18,10 +18,6 @@ The quality of an AI system is directly proportional to the quality of its data.
 
 Moving beyond single-shot prompts, Mia-Platform enables the design, coordination, and monitoring of complex workflows where multiple AI agents collaborate to execute distributed tasks. This allows for the creation of sophisticated systems that can solve multifaceted business problems by breaking them down into smaller, manageable steps handled by specialized agents.
 
-### Govern Every Interaction with a Centralized AI Gateway
-
-To ensure security, compliance, and cost-efficiency, all interactions with internal or external AI models must be managed through a unified control plane. Mia-Platform provides a centralized AI Gateway to secure, manage, and optimize these interactions. It offers standardized interfaces to the market's leading foundation models (FMs), giving you a single point of control for governance, monitoring, and policy enforcement.
-
 ### Achieve Digital Sovereignty with Self-Hosted LLMs
 
 For organizations that require absolute control over their data and intellectual property, Mia-Platform supports the deployment and management of LLMs within your own private infrastructure. This approach to digital sovereignty ensures that sensitive information never leaves your trusted environment, meeting the strictest security and compliance requirements.
