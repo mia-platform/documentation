@@ -25,9 +25,9 @@ Please ensure that versions shown in the matrix are respected in your deployed e
 #### 2025-09-04 | v14.2.0
 
 | Service                                                      | Version |
-| ------------------------------------------------------------ | ------- |
+|--------------------------------------------------------------|---------|
 | [Fabric BFF](/data_catalog/data_catalog_fabric_bff.mdx)      | 0.3.4   |
-| [Open Lineage](/data_catalog/data_catalog_open_lineage.mdx)  | 0.3.9   |
+| [Open Lineage](/data_catalog/data_catalog_open_lineage.mdx)  | 0.3.8   |
 | [Job Runner](/data_catalog/data_catalog_job_runner.mdx)      | 0.2.5   |
 | [Data Catalog Frontend](/data_catalog/frontend/overview.mdx) | 0.3.4   |
 | [Fabric Admin](/data_catalog/database_setup.mdx)             | 0.5.3   |
