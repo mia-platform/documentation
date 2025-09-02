@@ -27,7 +27,7 @@
     "@mia-platform/console-types": "^0.38.11",
     "@staticdeploy/cli": "^0.15.5",
     "clsx": "^2.1.1",
-    "cspell": "^8.17.3",
+    "cspell": "^9.2.1",
     "docusaurus-json-schema-plugin": "^1.13.0",
     "klaw": "^4.1.0",
     "mdx-mermaid": "^v1.3.2",
