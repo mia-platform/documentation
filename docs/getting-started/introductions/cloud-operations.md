@@ -40,8 +40,6 @@ Security is not an afterthought but is embedded into the fabric of the platform.
 
 * [**Fine-Grained Access Control**](/development_suite/api-console/api-design/authorization)**:** Utilize **Rönd**, a lightweight sidecar, to distribute security policy enforcement throughout your application, ensuring that access to sensitive data and operations is strictly controlled.
 
-* [**Secret Scanning and Management**](/infrastructure/paas/secret-scanning)**:** Integrate secret scanning into your CI/CD pipelines to prevent accidental exposure of sensitive credentials, and manage secrets securely through providers like HashiCorp Vault or GitLab.
-
 ### Cloud Economics and Sustainability (FinOps & GreenOps)
 
 Take command of your cloud spend and drive environmental sustainability by reducing the carbon footprint of your operations.

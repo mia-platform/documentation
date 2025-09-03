@@ -10,11 +10,11 @@ Mia-Platform is a Platform Builder designed to help organizations create their o
 
 ### Self-Service and Developer Autonomy
 
-A key goal of Platform Engineering is to empower developers. Mia-Platform achieves this by offering a [self-service portal](/development_suite/overview-dev-suite) where development teams can independently manage the entire lifecycle of their applications. This includes:
+A key goal of Platform Engineering is to empower developers. Mia-Platform achieves this by offering a [self-service platform](/development_suite/overview-dev-suite) where development teams can independently manage the entire lifecycle of their applications. This includes:
 
 * **Creating and configuring environments** for testing and deployment.
 * **Developing microservices** with [standardized, pre-configured CI/CD pipelines](/development_suite/deploy/overview).
-* **Accessing essential resources** like [logging and monitoring](/development_suite/monitoring/introduction) and databases without opening tickets or waiting for other teams.
+* **Accessing essential resources** like [logging and monitoring](/development_suite/monitoring/introduction) and infrastructure components without opening tickets or waiting for other teams.
 
 This self-service model eliminates organizational bottlenecks, reduces friction, and allows developers to focus on writing code and delivering business value.
 

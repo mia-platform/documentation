@@ -1,6 +1,6 @@
 # Data Integration
 
-Data Integration within the Mia-Platform ecosystem is architected around the concept of a [**Digital Integration Hub (DIH)**](/fast_data/what_is_fast_data), a cutting-edge solution designed to address the common challenges of data fragmentation, legacy system bottlenecks, and the need for real-time information. The primary goal is to decouple data from disparate sources, known as **Systems of Record (SoRs)**, and make it consistently available, 24/7, for any digital channel or application. This is achieved by creating a high-performance, consolidated data layer that provides a unified, 360-degree view of business entities.
+Data Integration within the Mia-Platform ecosystem is architected around the concept of a [**Data Fabric**](/fast_data/what_is_fast_data), a cutting-edge solution designed to address the common challenges of data fragmentation, legacy system bottlenecks, and the need for real-time information. The primary goal is to decouple data from disparate sources, known as **Systems of Record (SoRs)**, and make it consistently available, 24/7, for any digital channel or application. This is achieved by creating a high-performance, consolidated data layer that provides a unified, 360-degree view of business entities.
 
 Mia-Platform's approach combines the principles of **Data Mesh** and **Data Fabric**, enabling organizations to manage the entire data lifecycle, from collection to exposure, with agility and governance.
 
@@ -50,7 +50,7 @@ The typical data integration flow is as follows:
 
 * **Legacy System Offloading:** Reduces the load on critical source systems by moving read traffic to the highly scalable Single View layer.
 
-* **24/7 Data Availability:** The DIH provides a persistent data layer that remains available even if source systems are down for maintenance.
+* **24/7 Data Availability:** The Data Fabric provides a persistent data layer that remains available even if source systems are down for maintenance.
 
 * **Real-Time Data Access:** The event-driven architecture ensures that data is synchronized and aggregated in near real-time, enabling reactive and data-intensive applications.
 
