@@ -15,6 +15,22 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [v0.20.0] - 2025-07-28
+
+### Changed
+
+- update go version to 1.24.5
+- update pflag to 1.0.7
+- update sync to 0.16.0
+- update text to 0.27.0
+- update kyaml to 0.20.1
+
+### Added
+
+- added `project describe` command. It supports `--revision`, `--version` flags for enhanced workflow projects and
+	`--branch`, `--tag` flags for standard workflow projects.
+- added `project apply` command. It supports `--revision` flag as only enhanced workflow is supported for project apply
+
 ## [v0.19.0] - 2025-06-18
 
 ### Changed
@@ -386,7 +402,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - create cli sdk
 - create cli renderer
 
-[unreleased]: https://github.com/mia-platform/miactl/compare/v0.19.0...HEAD
+[unreleased]: https://github.com/mia-platform/miactl/compare/v0.20.0...HEAD
+[v0.20.0]: https://github.com/mia-platform/miactl/compare/v0.19.0...v0.20.0
 [v0.19.0]: https://github.com/mia-platform/miactl/compare/v0.18.0...v0.19.0
 [v0.18.0]: https://github.com/mia-platform/miactl/compare/v0.17.3...v0.18.0
 [v0.17.3]: https://github.com/mia-platform/miactl/compare/v0.17.2...v0.17.3
