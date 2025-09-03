@@ -47,6 +47,7 @@ By reducing the cognitive load on developers, Mia-Platform enables them to be mo
 Mia-Platform serves as the foundation for building a robust IDP tailored to your organization's specific needs. An IDP built with Mia-Platform centralizes all necessary tools and resources, providing a unified and cohesive developer experience. Key components include:
 
 * **A Centralized Console:** A single point of control for designing, deploying, and monitoring applications and infrastructure.
+* **An Internal Developer Portal:** The interactive, intelligent interface that allows developers to access platform tools, resources, documentation and services in self-service fashion.
 * **A Software Catalog:** A marketplace of curated and reusable software components.
 * **Automated CI/CD Pipelines:** Integrated and standardized pipelines for continuous integration and delivery.
 * **Observability Tools:** Built-in features for monitoring, logging, and tracing.
