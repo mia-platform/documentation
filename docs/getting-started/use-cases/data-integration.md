@@ -6,7 +6,7 @@ sidebar_label: Data Integration
 
 # Data Integration
 
-Data Integration within the Mia-Platform ecosystem is architected around the concept of a [**Data Fabric**](/fast_data/what_is_fast_data.md), a cutting-edge solution designed to address the common challenges of data fragmentation, legacy system bottlenecks, and the need for real-time information. The primary goal is to decouple data from disparate sources, known as **Systems of Record (SoRs)**, and make it consistently available, 24/7, for any digital channel or application. This is achieved by creating a high-performance, consolidated data layer that provides a unified, 360-degree view of business entities.
+Mia-Platform achieves Data Integration with an architectural approach named [**Data Fabric**](/fast_data/what_is_fast_data), i.e. a cutting-edge solution designed to address common challenges related to data, such as fragmentation, tight coupling, legacy system bottlenecks, and the need for access to real-time information. The primary goal is to decouple data from disparate sources, known as **Systems of Record (SoRs)**, and make it available 24/7, for any digital channel or application. This is achieved by creating a high-performance, consolidated data layer that provides a unified, 360-degree view of business entities.
 
 Mia-Platform's approach combines the principles of **Data Mesh** and **Data Fabric**, enabling organizations to manage the entire data lifecycle, from collection to exposure, with agility and governance.
 
@@ -26,17 +26,17 @@ Directly querying and aggregating data from these systems on-demand is inefficie
 
 ## Mia-Platform's Solution: The Fast Data Architecture
 
-To solve these challenges, Mia-Platform provides [**Fast Data**](/fast_data/what_is_fast_data.md), a suite of highly configurable, event-driven components that industrialize the process of data integration. The architecture is designed to create a persistent, low-latency data layer that is always available and easy to consume.
+To solve these challenges, Mia-Platform provides [**Fast Data**](/fast_data/what_is_fast_data), a suite of highly configurable, event-driven components that industrialize the process of data integration. The architecture is designed to create a persistent, low-latency data layer that is always available and easy to consume.
 
 ### Building Blocks of Data Integration
 
 The data integration process in Mia-Platform is built upon a few key concepts and components:
 
-1. [**Connectors and Change Data Capture (CDC)**](/fast_data/concepts/the_basics.md#change-data-capture-cdc)**:** The process begins with ingesting data from the Systems of Record. This is typically achieved using CDC connectors, which capture changes (creations, updates, deletions) in the source databases in near real-time and stream them as events into an event streaming platform like Apache Kafka. This event-driven approach ensures that legacy systems are only touched when data actually changes, effectively offloading them.
+1. [**Connectors and Change Data Capture (CDC)**](/fast_data/concepts/the_basics%23change-data-capture-cdc)**:** The process begins with ingesting data from the Systems of Record. This is typically achieved using CDC connectors, which capture changes (creations, updates, deletions) in the source databases in near real-time and stream them as events into an event streaming platform like Apache Kafka. This event-driven approach ensures that legacy systems are only touched when data actually changes, effectively offloading them.
 
-2. [**Projections**](/fast_data/concepts/the_basics.md#projection)**:** Once the data events are in Kafka, they are consumed by services like the [**Real-Time Updater**](/fast_data/realtime_updater.md). This service is responsible for creating **Projections**, which are standardized, cleaned, and filtered representations of the source data. Projections contain only the fields relevant to the business domain and are stored in a highly scalable NoSQL database like MongoDB. This step ensures data standardization, as different source formats can be cast into a consistent model.
+2. [**Projections**](/fast_data/concepts/the_basics%23projection)**:** Once the data events are in Kafka, they are consumed by services like the [**Real-Time Updater**](/fast_data/realtime_updater). This service is responsible for creating **Projections**, which are standardized, cleaned, and filtered representations of the source data. Projections contain only the fields relevant to the business domain and are stored in a highly scalable NoSQL database like MongoDB. This step ensures data standardization, as different source formats can be cast into a consistent model.
 
-3. [**Single Views**](/fast_data/concepts/the_basics.md#single-view-sv)**:** The ultimate goal of the integration process is to create **Single Views**. A Single View is a pre-aggregated document that combines data from multiple Projections to provide a holistic, 360-degree view of a business entity (e.g., a customer, a product, an order). The [**Single View Creator**](/fast_data/single_view_creator.md) service is responsible for this aggregation. Because the data is aggregated on write (i.e., as soon as a related Projection changes) rather than on read, read operations on Single Views are exceptionally fast and efficient.
+3. [**Single Views**](/fast_data/concepts/the_basics%23single-view-sv)**:** The ultimate goal of the integration process is to create **Single Views**. A Single View is a pre-aggregated document that combines data from multiple Projections to provide a holistic, 360-degree view of a business entity (e.g., a customer, a product, an order). The [**Single View Creator**](/fast_data/single_view_creator) service is responsible for this aggregation. Because the data is aggregated on write (i.e., as soon as a related Projection changes) rather than on read, read operations on Single Views are exceptionally fast and efficient.
 
 ### The Data Flow
 
