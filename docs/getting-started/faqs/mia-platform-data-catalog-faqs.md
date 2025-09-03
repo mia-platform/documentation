@@ -111,7 +111,7 @@ Alternatively, the Lineage canvas inside Data Catalog allows users to create [vi
 3.  **Deploy Core Services**: Deploy the Data Catalog Application, Fabric BFF, Job Runner, and Open Lineage services to your Kubernetes cluster.
 4.  **Configure Services**: Provide the necessary environment variables and configuration files for each service (e.g., database connection strings).
 5.  **Configure Connections**: Setup connections to external System of Records and trigger the scan&sync jobs to retrieve data assets from that specific connections.
-[Discover more](/data_catalog/overview_data_catalog.mdx#setup-mia-platform-data-catalog)
+[Discover more](/data_catalog/overview.mdx#setup-mia-platform-data-catalog)
 
 #### What is the role of the Fabric Admin service?
 The **Fabric Admin** service is a command-line utility used for managing the lifecycle of the Data Catalog's database. Its primary use is during the initial setup to create all the necessary MongoDB collections and indexes. It is also used for performing database migrations when upgrading to a new version of the Data Catalog.
@@ -170,6 +170,6 @@ From the Connection tab, start creating all the necessary connections from which
 [Discover more](/data_catalog/frontend/data_catalog_connections.mdx)
 
 #### How do I upgrade the Data Catalog to a new version?
-Update the versions for all the Data Catalog services (Open Lineage, Job Runner, etc.) by following the [Compatibility matrix](/data_catalog/data_catalog_compatibility_matrix.mdx) of the Data Catalog Application, that keep up-to-date the Service Latest Versions list.
+Update the versions for all the Data Catalog services (Open Lineage, Job Runner, etc.) by following the [Compatibility matrix](/data_catalog/compatibility_matrix.md) of the Data Catalog Application, that keep up-to-date the Service Latest Versions list.
 Moreover, follow what reported on the Migration Guides available on the detail pages of the Data Catalog Application in order to correctly handle some requested migrations.
-[Discover more](/data_catalog/data_catalog_compatibility_matrix.mdx)
+[Discover more](/data_catalog/compatibility_matrix.md)
