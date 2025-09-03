@@ -11,7 +11,7 @@ Mia-Platform Fast Data is a solution designed to build a **Digital Integration H
 [Discover more](/fast_data/what_is_fast_data.md)
 
 #### What is a System of Record (SoR)?
-A System of Record (SoR) is the authoritative data source for a specific piece of information. In a Fast Data context, these are the original systems (like databases, CRMs, or legacy applications) from which data is ingested. Fast Data listens to changes in these SoRs to keep its own data representations synchronized.
+A System of Record (SoR) is the authoritative data source for a specific piece of information. In a Fast Data context, these are the original systems (like databases, CRMs, or legacy applications) from which data is ingested. Through a Change Data Capture (CDC) system, Fast Data can start processing incoming change events on SoRs and implements event-driven data pipelins.
 [Discover more](/fast_data/concepts/the_basics.md#system-of-record-sor)
 
 #### What is a Projection?
@@ -19,7 +19,7 @@ A **Projection** is a standardized representation of data from a single System o
 [Discover more](/fast_data/concepts/the_basics.md#projection)
 
 #### What is a Single View (SV)?
-A **Single View** is a denormalized, pre-aggregated document that combines data from one or more Projections. It is designed to provide a business-centric, 360-degree view of an entity (like a customer or a product) and is optimized for fast read operations. For instance, an `sv_customer_orders` Single View could combine data from a `pr_customers` projection and a `pr_orders` projection.
+A **Single View** is a denormalized, pre-aggregated document that combines data from one or more Projections to create a Data Product. It is designed to provide a business-centric, 360-degree view of an entity (like a customer or a product) and is optimized for fast read operations. Single Views embody Data Product principles by being discoverable, addressable, trustworthy, and self-describing. For instance, an `sv_customer_orders` Single View could combine data from a `pr_customers` projection and a `pr_orders` projection to create a comprehensive customer Data Product.
 [Discover more](/fast_data/concepts/the_basics.md#single-view-sv)
 
 #### What is the difference between a Projection and a Single View?
@@ -40,7 +40,7 @@ Change Data Capture (CDC) is a design pattern used to track changes in a data so
 [Discover more](/fast_data/concepts/the_basics.md#strategies)
 
 #### What is the purpose of a Cast Function?
-A **Cast Function** is a JavaScript function used during data ingestion to transform and standardize data from a System of Record before it's saved into a Projection. For example, you can use a cast function to convert a date string from a proprietary format into a standard ISO 8601 format, ensuring data consistency across all your Projections.
+A **Cast Function** is a JavaScript function used during data ingestion to transform and standardize data from a System of Record before it is saved into a Projection. For example, you can use a cast function to convert a date string from a proprietary format into a standard ISO 8601 format, ensuring data consistency across all your Projections.
 [Discover more](/fast_data/configuration/cast_functions.md)
 
 #### What is a Digital Integration Hub and how does Fast Data help build one?
@@ -54,7 +54,8 @@ The core services are:
 * **Real-Time Updater (RTU)** or **Projection Storer (PS)**: Ingests data from Kafka and updates Projections.
 * **Single View Trigger Generator (SVTG)**: (Event-Driven Architecture only) Executes strategies to determine which Single Views to update.
 * **Single View Creator (SVC)**: Performs the data aggregation and writes the final Single View document to MongoDB.
-  These services form a pipeline that transforms raw change events into ready-to-use aggregated data.
+  
+These services form a pipeline that transforms raw change events into ready-to-use aggregated data.
 [Discover more](/fast_data/concepts/architecture.md)
 
 #### What is the role of the Real-Time Updater (RTU)?
@@ -66,19 +67,19 @@ The **Projection Storer (PS)** is a more modern and streamlined alternative to t
 [Discover more](/fast_data/projection_storer.md)
 
 #### What is the difference between the Real-Time Updater and the Projection Storer?
-The main difference is their scope of responsibility. The **RTU** can be a monolithic service that handles both projection updates and strategy execution (in the Standard Architecture). The **Projection Storer** is a more focused service that *only* handles projection updates and is designed for the decoupled, event-driven flow, leaving strategy execution to the [Single View Trigger Generator](/fast_data/single_view_trigger_generator.md).
+The main difference is their scope of responsibility. The **RTU** can be a service that handles both projection updates and strategy execution (in the Standard Architecture). The **Projection Storer** is a more focused service that *only* handles projection updates and is designed for the decoupled, event-driven flow, leaving strategy execution to the [Single View Trigger Generator](/fast_data/single_view_trigger_generator.md).
 [Discover more](/fast_data/projection_storer.md#comparison-with-real-time-updater)
 
-#### What is the role of the Single View Creator (SVC)?
-The **Single View Creator (SVC)** is the service responsible for building the final Single View documents. It listens for triggers (either by polling the Projection Changes collection in MongoDB or by consuming `sv-trigger` events from Kafka) and, when triggered, executes the MongoDB aggregation pipeline defined in the `aggregation.json` file to create or update a Single View.
-[Discover more](/fast_data/single_view_creator.md)
-
 #### What is the Single View Trigger Generator (SVTG) and why would I use it?
-The **Single View Trigger Generator (SVTG)** is a service used in the Event-Driven Architecture. It consumes `pr-update` events from the RTU/PS, executes the configured **Strategies** to identify which Single Views are affected, and then produces `sv-trigger` events. Using the SVTG decouples the ingestion logic from the business logic of strategies, leading to better scalability and easier management of data loading processes.
+The **Single View Trigger Generator (SVTG)** is a service used in the Event-Driven Architecture. It consumes `pr-update` events from the RTU/PS, executes the configured **Strategies** to identify which Single Views are affected by a specific change event, and then produces `sv-trigger` events. Using the SVTG decouples the ingestion logic from the business logic of strategies, leading to better scalability and easier management of data loading processes.
 [Discover more](/fast_data/single_view_trigger_generator.md)
 
+#### What is the role of the Single View Creator (SVC)?
+The **Single View Creator (SVC)** is the service responsible for aggregating data to build the final Single View documents. It listens for triggers (either by polling the Projection Changes collection in MongoDB or by consuming `sv-trigger` events from Kafka) and, when triggered, executes the MongoDB aggregation pipeline defined in the `aggregation.json` file to create or update a Single View.
+[Discover more](/fast_data/single_view_creator.md)
+
 #### What is the difference between the Standard Architecture and the Event-Driven Architecture?
-* **Standard Architecture**: A more monolithic flow where the [Real-Time Updater](/fast_data/realtime_updater.md) handles both projection updates and strategy execution, writing triggers (Projection Changes) directly to MongoDB. The [Single View Creator](/fast_data/single_view_creator.md) polls MongoDB for work.
+* **Standard Architecture**: A more monolithic flow where the [Real-Time Updater](/fast_data/realtime_updater.md) handles both projection updates and strategy execution, writing triggers (Projection Changes) directly to MongoDB. The [Single View Creator](/fast_data/single_view_creator.md) polls MongoDB in order to perform data aggregation.
 * **Event-Driven Architecture**: A decoupled, fully event-based flow. The [Projection Storer](/fast_data/projection_storer.md) updates projections and emits an event. The [Single View Trigger Generator](/fast_data/single_view_trigger_generator.md) consumes this event, runs strategies, and emits another event. The [Single View Creator](/fast_data/single_view_creator.md) consumes this final event. This architecture is more scalable and resilient.
 [Discover more](/fast_data/concepts/architecture.md)
 
@@ -96,14 +97,10 @@ Communication depends on the architecture:
 Fast Data is a prime example of a **service oriented architecture** (SOA). It is composed of small, independent, and decoupled microservices (RTU, SVTG, SVC) that communicate through well-defined interfaces (Kafka topics or MongoDB collections). Each service has a single responsibility, which allows them to be developed, deployed, and scaled independently, promoting flexibility and resilience.
 [Discover more](/fast_data/what_is_fast_data.md)
 
-#### Can Fast Data services be deployed on serverless platforms like Google Cloud Run?
-Yes. Since Fast Data services are containerized applications, they can be deployed on various container platforms, including **serverless** environments like **Google Cloud Run** or **aws fargate**. This can offer benefits like automatic scaling (including scaling to zero) and reduced operational overhead, though you would need to ensure the platform can handle the persistent connections required for Kafka consumers.
-[Discover more](/getting-started/mia-platform-overview.md)
-
 ### Configuration (Low-Code/No-Code)
 
 #### What is the ER Schema (`erSchema.json`) and what is it used for?
-The **ER Schema** is a JSON file that defines the relationships between your Projections. It's like a traditional Entity-Relationship diagram but in a declarative format. You define `outgoing` relationships from one collection to another and specify the `condition` (i.e., the fields to join on). This schema is crucial for both the automatic strategy generation and the aggregation process.
+The **ER Schema** defines the relationships between your data assets. It's like a traditional Entity-Relationship diagram but in a declarative format. You define `outgoing` relationships from one collection to another and specify the `condition` (i.e., the fields to join on). This schema is crucial for both the automatic strategy generation and the aggregation process.
 [Discover more](/fast_data/configuration/config_maps/erSchema.md)
 
 #### How do I define a one-to-many relationship in the ER Schema?
@@ -116,24 +113,26 @@ You need to define relationships bidirectionally because they are used for two d
 2.  **Strategy Execution (RTU/SVTG)**: Traverses the relationship inwards from an updated projection to find the base projection (e.g., from `pr_orders` to `pr_registry`).
   [Discover more](/fast_data/configuration/config_maps/erSchema.md#direction-of-the-relationships)
 
-#### What is the Aggregation configuration (`aggregation.json`)?
+#### What is the Aggregation configuration?
 The `aggregation.json` is a declarative file that instructs the [Single View Creator](/fast_data/single_view_creator.md) on how to build a Single View. It specifies the `dependencies` (which Projections to fetch data from, based on the ER Schema) and the `mapping` (how to map fields from the source Projections to the fields of the target Single View).
 [Discover more](/fast_data/configuration/config_maps/aggregation.md)
 
 #### How do I map a field from a Projection to a Single View field in the aggregation?
-In the `mapping` section of your `aggregation.json`, you create a key-value pair. The key is the name of the field in your Single View, and the value is a string in dot notation pointing to the field in the source projection, prefixed with the dependency name. For example: `"customerName": "registry.name"`.
+In the `mapping` tab of your aggregation section, the page will now show the list of fields, as defined in the Single View Data Model page. You can even navigate in the nested structure of fields between fields of type `object` or `array of objects` to see the child fields and manage them as well.
+
+Clicking on a field will open a drawer to the right side of the panel that allows you to map this field, by allowing the selection of an existing dependency and a field.
 [Discover more](/fast_data/configuration/config_maps/aggregation.md#mapping)
 
 #### How do I join data from multiple Projections in an aggregation?
 You define multiple `dependencies` in your `aggregation.json`. Each dependency specifies a projection to fetch and the relationship to follow from the ER Schema (e.g., `"on": "registry_to_order"`). The SVC will then execute the necessary lookups to fetch documents from all specified projections, making them available for mapping into the Single View.
 [Discover more](/fast_data/configuration/config_maps/aggregation.md#dependencies)
 
-#### What is the Projection Changes Schema (`projectionChangesSchema.json`)?
+#### What is the Projection Changes Schema?
 This file is used by the automatic strategy generation mechanism. It defines the `paths` that the strategy should follow through the ER Schema to get from any given **Initial Projection** back to the **Base Projection** of a Single View. This allows the system to automatically generate the correct identifier for the Single View that needs to be updated.
 [Discover more](/fast_data/configuration/config_maps/projection_changes_schema.md)
 
 #### How does the `__automatic__` strategy work in the Kafka Projection Updates configuration?
-When you set `strategy` to `__automatic__` for a projection in the `kafkaProjectionUpdates.json` file, you are telling the [Real-Time Updater](/fast_data/realtime_updater.md) or [SVTG](/fast_data/single_view_trigger_generator.md) to use the Low-Code strategy engine. This engine will use the **ER Schema** and the **Projection Changes Schema** to automatically determine the correct Single View identifiers without requiring you to write any custom JavaScript code.
+When you set `strategy` to `__automatic__` for a projection, you are telling the [RTU](/fast_data/realtime_updater.md) or [SVTG](/fast_data/single_view_trigger_generator.md) to use the Low-Code strategy engine. This engine will use the **ER Schema** and the **Projection Changes Schema** to automatically determine the correct Single View identifiers without requiring you to write any custom JavaScript code.
 [Discover more](/fast_data/configuration/config_maps/kafka_projection_updates.mdx)
 
 #### How can I write a custom manual strategy function?
@@ -141,7 +140,7 @@ If the automatic strategy is not sufficient, you can specify a JavaScript file u
 [Discover more](/fast_data/configuration/config_maps/kafka_projection_updates.mdx#manual)
 
 #### What is the Single View Key configuration used for?
-The `singleViewKey.json` file tells the [Single View Creator](/fast_data/single_view_creator.md) how to map the fields from a Projection Change identifier to the primary key fields of the Single View collection. This is how the SVC knows which specific Single View document to `upsert` in MongoDB.
+The Single View Key tells the [Single View Creator](/fast_data/single_view_creator.md) how to map the fields from a Projection Change identifier to the primary key fields of the Single View collection. This is how the SVC knows which specific Single View document to `upsert` in MongoDB.
 [Discover more](/fast_data/configuration/config_maps/singleViewKey.md)
 
 #### How can I test my Low-Code configurations before deployment?
@@ -155,15 +154,29 @@ Yes. The `aggregation.json` file supports a `__fromFile__` keyword in the `mappi
 ### Data Loading & Operations
 
 #### What is an "Initial Load" and when is it necessary?
-An **Initial Load** is the process of populating Fast Data **Projections** for the first time. It involves streaming all existing records from a source table in a System of Record to its corresponding ingestion topic. This is necessary when you first set up your Fast Data system or when a major schema change requires a full resynchronization.
+An **Initial Load** is the process that involves streaming all existing records from a source table in a System of Record to its corresponding ingestion topic. This is necessary when you first set up your Fast Data system or when a data model schema change requires a full resynchronization.
 [Discover more](/fast_data/concepts/data_loading.mdx#initial-load)
 
 #### What are the best practices for performing an Initial Load to avoid performance issues?
 During an Initial Load, a large volume of messages is processed. To manage this effectively:
-1.  **Disable strategy execution**: Temporarily disable the generation of Single View triggers in the [Real-Time Updater](/fast_data/realtime_updater.md) or pause the [Single View Trigger Generator](/fast_data/single_view_trigger_generator.md) to prevent overwhelming the [Single View Creator](/fast_data/single_view_creator.md).
-2.  **Scale up services**: Temporarily increase the replicas of the RTU/PS to handle the high message throughput.
-3.  **Monitor Kafka and MongoDB**: Keep an eye on consumer lag in Kafka and resource utilization in MongoDB to ensure the system remains stable.
-  [Discover more](/fast_data/concepts/data_loading.mdx#best-practices)
+
+1. **Use the Control Plane**: Leverage [Fast Data Control Plane](/fast_data/runtime_management/overview.mdx), the Mia-Platform runtime management solution for Fast Data to govern the Initial Load process without changing runtime configurations. It allows to:
+  - Pause/resume specific stages of your pipeline through a visual interface
+  - Control resource allocation dynamically
+
+2. **Follow the process**:
+  - First, pause the Single View generation stages
+  - Start the ingestion process for your data
+  - Once ingestion is complete, resume Single View generation
+  - Monitor the process through the Control Plane UI
+
+3. **Technical considerations**:
+  - Scale up RTU/PS replicas to handle high message throughput
+  - Monitor Kafka consumer lag and MongoDB resource utilization
+  - Ensure proper indexes are in place before starting
+
+This approach ensures optimal resource utilization and system stability during large-scale data operations.
+[Discover more](/fast_data/concepts/data_loading.mdx#best-practices)
 
 #### What is a "Full Refresh" of a Single View?
 A **Full Refresh** is the process of regenerating all the documents in a specific **Single View** collection. This is done by generating a trigger for every base projection document, causing the [Single View Creator](/fast_data/single_view_creator.md) to re-run the aggregation for every Single View instance.
@@ -171,15 +184,15 @@ A **Full Refresh** is the process of regenerating all the documents in a specifi
 
 #### What is the difference between an Initial Load and a Full Refresh?
 * An **Initial Load** populates the **Projections** with data from the source systems. It's about getting the raw, standardized data into Fast Data.
-* A **Full Refresh** repopulates a **Single View** with data that is already in the Projections. It's about re-running the aggregation logic to ensure the Single View is consistent with the latest projection data and aggregation rules.
+* A **Full Refresh** repopulates a **Single View** with data that often is already in the Projections. It's about re-running the aggregation logic to ensure the Single View is consistent with the latest projection data and aggregation rules.
 [Discover more](/fast_data/concepts/data_loading.mdx)
 
 #### How do I perform a Full Refresh for a Single View?
-To perform a Full Refresh, you first need to disable strategy execution to prevent real-time updates from interfering. Then, you need to generate a trigger for every document in the base projection. This can be done with a custom script that reads all documents from the base projection's MongoDB collection and produces either a Projection Change record or an `sv-trigger` message for each one.
+To perform a Full Refresh, you first need to disable strategy execution to prevent real-time updates from interfering. Alternatively, thanks to Mia-Platform Control Plane, it is possible to pause all steps in pipeline that involves strategy executions. Then, you need to generate a trigger for every document in the base projection. This can be done with a custom script that reads all documents from the base projection's MongoDB collection and produces either a Projection Change record or an `sv-trigger` message for each one.
 [Discover more](/fast_data/concepts/data_loading.mdx#full-refresh)
 
 #### How does Fast Data handle ingestion messages from different CDC systems like Debezium or Oracle Golden Gate?
-Fast Data uses a system of **Kafka Message Adapters** in the [Real-Time Updater](/fast_data/realtime_updater.md) or [Projection Storer](/fast_data/projection_storer.md). These adapters are responsible for parsing the specific JSON format produced by different CDC tools. Fast Data comes with built-in adapters for common formats like Debezium, Golden Gate, and DB2. If your CDC produces a different format, you can write a custom JavaScript adapter to parse it.
+Fast Data allows to configure **Message Adapters** in the [Real-Time Updater](/fast_data/realtime_updater.md) or [Projection Storer](/fast_data/projection_storer.md). These adapters are responsible for parsing the specific JSON format produced by different CDC tools. Fast Data comes with built-in adapters for common formats like Debezium, Golden Gate, and DB2. If your CDC produces a different format, you can write a custom JavaScript adapter to parse it.
 [Discover more](/fast_data/concepts/inputs_and_outputs.md#ingestion-message)
 
 ### Connectors & Integration
@@ -204,14 +217,14 @@ The `topic.prefix` is a string that Debezium prepends to the name of all Kafka t
 The standalone **Debezium Server** (unlike the Kafka Connect version) needs an external store to keep track of its progress (offsets) and the database schema history. Using **Redis** for this purpose ensures that if the Debezium server restarts, it can resume processing from where it left off without losing data or needing to perform a full snapshot again.
 [Discover more](/fast_data/connectors/debezium_cdc.md#offsets-management)
 
-### Advanced Features
+### Other Features
 
 #### What is the Bucket Storage Support feature?
-Bucket Storage Support is an optional feature that allows you to archive messages from Kafka topics to a long-term, cost-effective object storage system like **aws s3** or Google Cloud Storage. It's useful for compliance, auditing, or for re-processing historical data.
+Bucket Storage Support is a feature that allows you to archive messages from Kafka topics to a long-term, cost-effective object storage system like **AWS s3** or **Google Cloud Storage**. It is useful for compliance, auditing, or for re-processing historical data.
 [Discover more](/fast_data/bucket_storage_support/overview.md)
 
 #### How does the Ingestion Storer save messages to an S3 bucket?
-The **Ingestion Storer** service consumes messages from one or more Kafka topics. It batches these messages together and writes them as files (typically line-delimited JSON) to the configured bucket (e.g., an **aws s3** bucket). It also emits an event to a Kafka topic to notify other systems that a new file has been successfully stored.
+The **Ingestion Storer** service consumes messages from one or more Kafka topics. It batches these messages together and writes them as files to the configured bucket (e.g., an **AWS s3** bucket). It also emits an event to a Kafka topic to notify other systems that a new file has been successfully stored.
 [Discover more](/fast_data/bucket_storage_support/configuration/ingestion_storer.md)
 
 #### How can I re-ingest data from a bucket using the Ingestion Reloader?
@@ -227,7 +240,7 @@ The Control Plane UI provides a visual representation of your data pipelines. On
 [Discover more](/fast_data/runtime_management/control_plane_frontend.mdx#pause-and-resume)
 
 #### What is a Single View Patch and when should I use it?
-A **Single View Patch** is an alternative, more efficient way to update a Single View. Instead of re-running the entire aggregation, it performs a direct, targeted MongoDB update on the Single View document. This is highly recommended for updates that affect a small, specific part of the Single View, especially when a change in one projection (like a product's category) would otherwise trigger a full re-aggregation for thousands of Single Views.
+A **Single View Patch** can be, in some cases, a more efficient alternative to update a Single View. Instead of re-running the entire aggregation, it performs a direct, targeted MongoDB update on the Single View document. This is highly recommended for updates that affect a small, specific part of the Single View, especially when a change in one projection (like a product's category) would otherwise trigger a full re-aggregation for thousands of Single Views.
 [Discover more](/fast_data/configuration/single_view_creator/patch.md)
 
 ### Troubleshooting & Best Practices
@@ -250,7 +263,7 @@ Fast Data is designed for resilience:
 [Discover more](/fast_data/faq/failure_handling.md)
 
 #### What are the recommended resources (CPU/Memory) for Fast Data services during an Initial Load?
-During an Initial Load, the **Real-Time Updater** or **Projection Storer** will require significantly more resources. A good starting point for a single replica is a request of `200m` CPU and `150MiB` memory, with limits set higher (e.g., `600m` CPU, `350MiB` memory). However, these values are highly dependent on the message volume and complexity, so it's crucial to monitor performance and adjust accordingly.
+Especially when using the Standard architecture, during an Initial Load, the **Real-Time Updater** will require significantly more resources. A good starting point for a single replica is a request of `200m` CPU and `150MiB` memory, with limits set higher (e.g., `600m` CPU, `350MiB` memory). However, these values are highly dependent on the message volume and complexity, so it is crucial to monitor performance and adjust accordingly.
 [Discover more](/fast_data/faq/bootstrapping_fast_data.md#how-should-i-set-the-resource-limits-of-the-real-time-updater-rtu)
 
 #### I see an `FD_PS_E4001` error in my Projection Storer logs. What does it mean?
@@ -259,9 +272,13 @@ The error code `FD_PS_E4001` means that the list of projection operations provid
 
 #### How can I monitor the performance of my Fast Data pipelines?
 Mia-Platform provides a set of pre-configured **Grafana** dashboards that connect to Prometheus. These dashboards visualize key metrics exposed by the Fast Data services, such as:
-* `kafka_consumergroup_lag`: To monitor if your services are keeping up with the message volume.
-* Strategy execution time and Single View creation time.
-* I/O message rates for each service.
-* CPU and memory usage of the service pods.
-  Monitoring these dashboards is essential for identifying bottlenecks and ensuring the health of your system.
+* **Consumer Group Lag**: Monitor if services are keeping up with message volume using `kafka_consumergroup_lag` metrics
+* **Processing Times**: Track strategy execution and Single View creation latencies
+* **Message Throughput**: Measure I/O message rates for each service
+* **Resource Usage**: Monitor CPU and memory utilization of service pods
+* **MongoDB Query Performance**: Track query execution times and index usage
+* **Kafka Topic Metrics**: Monitor message rates and partition health
+* **Service Health**: Track service uptime and error rates
+  
+Monitoring these dashboards is essential for identifying bottlenecks and ensuring the health of your system.
 [Discover more](/fast_data/monitoring/overview.md)
