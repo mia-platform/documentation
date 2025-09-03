@@ -1,3 +1,9 @@
+---
+id: application-development
+title: Application Development
+sidebar_label: Application Development
+---
+
 # Application Development
 
 Application development within the Mia-Platform ecosystem is engineered to be a self-service and AI-native experience, transforming a traditionally slow and fragmented process into a streamlined, intelligent workflow. The core challenge in modern software creation is the immense time and resources spent managing underlying complexities rather than focusing on business logic. Mia-Platform addresses this by providing developers with a unified environment and guided paths ("golden paths") to build, manage, and deploy scalable, reusable, and high-performance cloud-native applications with unprecedented speed and efficiency.

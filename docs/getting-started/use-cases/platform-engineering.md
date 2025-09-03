@@ -1,3 +1,9 @@
+---
+id: platform-engineering
+title: Platform Engineering
+sidebar_label: Platform Engineering
+---
+
 # Platform Engineering
 
 Platform Engineering is the discipline of designing, building, and maintaining self-service toolchains and workflows that enable development teams to build and deliver software. At its core is the creation of an [**Internal Developer Platform (IDP)**](/getting-started/mia-platform-overview), which acts as a guided path ("paved road") for developers, allowing them to release applications faster, more reliably, and with greater autonomy. By treating the platform as a product and developers as its customers, Platform Engineering optimizes the software development lifecycle (SDLC), reduces cognitive load, and enforces governance without sacrificing speed.

@@ -1,3 +1,9 @@
+---
+id: cloud-operations
+title: Cloud Operations
+sidebar_label: Cloud Operations
+---
+
 # Cloud Operations
 
 Cloud Operations encompass the practices and tools required to manage, monitor, and optimize complex multi-cloud and hybrid environments. The primary challenge is taming the inherent chaos of distributed systems, controlling operational overhead, enforcing security consistently, and optimizing costs without stifling innovation. Mia-Platform addresses these challenges by providing a centralized command center that masters cloud-native infrastructure, embedding best practices for security, reliability, and efficiency by default.
