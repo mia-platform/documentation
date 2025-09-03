@@ -48,7 +48,7 @@ Mia-Platform serves as the foundation for building a robust IDP tailored to your
 
 * **A Centralized Console:** A single point of control for designing, deploying, and monitoring applications and infrastructure.
 * **An Internal Developer Portal:** The interactive, intelligent interface that allows developers to access platform tools, resources, documentation and services in self-service fashion.
-* **A Software Catalog:** A marketplace of curated and reusable software components.
+* **A Software Catalog:** A comprehensive registry of all available software components, services, APIs, and microservices within the platform. It helps developers discover and reuse existing assets, but it also feeds AI with contextual knowledge.
 * **Automated CI/CD Pipelines:** Integrated and standardized pipelines for continuous integration and delivery.
 * **Observability Tools:** Built-in features for monitoring, logging, and tracing.
 * **Secure API Management:** Tools for exposing, securing, and managing APIs.
