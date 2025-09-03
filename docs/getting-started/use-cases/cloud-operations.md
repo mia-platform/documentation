@@ -24,13 +24,13 @@ Mia-Platform champions the Infrastructure as Code (IaC) paradigm, allowing teams
 
 ### Multi & Hybrid Cloud Fleet Command
 
-From a single pane of glass, Mia-Platform allows you to control and orchestrate resources across multiple cloud providers and on-premises environments.
+Mia-Platform allows you to single-handedly control and orchestrate resources across multiple cloud providers, on-premises environments, and even across a combination of both.
 
 * [**Cluster Management**](/console/company-configuration/clusters-management/connect-and-manage-cluster)**:** Connect and manage any Kubernetes cluster, whether it's on a major cloud provider (GKE, EKS, AKS) or on-premise. This unified view simplifies the management of distributed infrastructure and enables true hybrid and multi-cloud flexibility.
 
 ### End-to-End Observability
 
-Gaining deep, actionable insights into the health, performance, and security of your platform and applications is critical. Mia-Platform turns data into decisive operational intelligence.
+Gaining deep, actionable insights into the health, performance, and security of your platform and applications is critical. Mia-Platform turns data into decisive operational intelligence and strategic decision-making.
 
 * [**Integrated Monitoring and Logging**](/development_suite/monitoring/introduction)**:** The **Runtime Area** of the Console provides a real-time view of all deployed resources, including pods, deployments, and services. It offers direct access to logs, events, and resource metrics.
 
@@ -50,7 +50,7 @@ Security is not an afterthought but is embedded into the fabric of the platform.
 
 Take command of your cloud spend and drive environmental sustainability by reducing the carbon footprint of your operations.
 
-* [**Resource Optimization**](/console/tutorials/set-requests-limits-of-a-microservice)**:** The Console provides tools to set and monitor CPU and memory requests and limits for each microservice, preventing resource waste and optimizing costs.
+* [**Resource Optimization**](/console/tutorials/set-requests-limits-of-a-microservice)**:** The Console provides tools to set and monitor CPU and memory requests, including limits for each microservice, eventually preventing resource waste while optimizing costs.
 
 * [**Automated Environment Shutdown with Kube-Green**](/infrastructure/paas/tools/kube-green)**:** Reduce the CO2 footprint of your clusters by automatically shutting down non-production environments (e.g., development, testing) during non-working hours, significantly cutting down on energy consumption and costs.
 

@@ -6,17 +6,17 @@ sidebar_label: Platform Engineering
 
 # Platform Engineering
 
-Platform Engineering is the discipline of designing, building, and maintaining self-service toolchains and workflows that enable development teams to build and deliver software. At its core is the creation of an [**Internal Developer Platform (IDP)**](/getting-started/mia-platform-overview), which acts as a guided path ("paved road") for developers, allowing them to release applications faster, more reliably, and with greater autonomy. By treating the platform as a product and developers as its customers, Platform Engineering optimizes the software development lifecycle (SDLC), reduces cognitive load, and enforces governance without sacrificing speed.
+Platform Engineering is the discipline of designing, building, and maintaining self-service toolchains and workflows that enable development teams to build and deliver software. At its core there is the [**Internal Developer Platform (IDP)**](/getting-started/mia-platform-overview), a foundational ecosystem that acts as a centralized hub with self-service access to tools and services, and embedded best-practices, recommendations and guardrails for developers. This allows to release applications faster, more reliably, and with greater autonomy. By treating the platform as a product and developers as its customers, Platform Engineering optimizes the whole software development lifecycle (SDLC), reduces cognitive load, and enforces governance without sacrificing speed.
 
 This approach evolved from DevOps principles, aiming to solve the complexities of modern cloud-native environments. While DevOps focuses on the cultural and methodological fusion of development and operations, Platform Engineering provides the tangible infrastructure and automated pathways to make those principles a reality.
 
 ## Core Principles of Platform Engineering with Mia-Platform
 
-Mia-Platform is a Platform Builder designed to help organizations create their own customized IDP. It embodies the core principles of Platform Engineering by providing a centralized yet flexible environment that industrializes and governs cloud-native development.
+Mia-Platform is an AI-Native Developer Platform Foundation that empowers organizations to scale agile and Platform Engineering practices, drive automation and software reuse, streamline data delivery and harness the full potential of AI.
 
 ### Self-Service and Developer Autonomy
 
-A key goal of Platform Engineering is to empower developers. Mia-Platform achieves this by offering a [self-service platform](/development_suite/overview-dev-suite) where development teams can independently manage the entire lifecycle of their applications. This includes:
+A key goal of Platform Engineering is to empower developers with tools and procedures that compress the SDLC, thus enabling faster value generation. Mia-Platform achieves this by offering a [self-service platform](/development_suite/overview-dev-suite) where development teams can independently manage the entire lifecycle of their applications. This includes:
 
 * **Creating and configuring environments** for testing and deployment.
 * **Developing microservices** with [standardized, pre-configured CI/CD pipelines](/development_suite/deploy/overview).
@@ -26,7 +26,7 @@ This self-service model eliminates organizational bottlenecks, reduces friction,
 
 ### Golden Paths and Standardization
 
-Platform Engineering promotes the concept of "golden paths" or "paved roads"—well-defined, supported workflows for creating and deploying software. Mia-Platform facilitates the creation of these paths through:
+Platform Engineering, through Internal Developer Platforms (IDPs), encompasses well-defined, built-in workflows, i.e. best practices, recommendations, and security measures for creating and deploying software. Mia-Platform promotes and facilitates the creation of these "golden paths", "paved roads" and "guardrails" through:
 
 * [**Project Templates**](/console/company-configuration/project-blueprint)**:** New projects can be started in a few clicks, inheriting pre-configured settings, tools, and CI/CD pipelines. This ensures consistency and adherence to best practices from day one.
 * **Reusable Components:** A [software catalog of plugins, templates, and applications](/marketplace/overview_marketplace) accelerates development and promotes the reuse of proven solutions across the organization.

@@ -6,7 +6,7 @@ sidebar_label: Data Integration
 
 # Data Integration
 
-Data Integration within the Mia-Platform ecosystem is architected around the concept of a [**Data Fabric**](/fast_data/what_is_fast_data), a cutting-edge solution designed to address the common challenges of data fragmentation, legacy system bottlenecks, and the need for real-time information. The primary goal is to decouple data from disparate sources, known as **Systems of Record (SoRs)**, and make it consistently available, 24/7, for any digital channel or application. This is achieved by creating a high-performance, consolidated data layer that provides a unified, 360-degree view of business entities.
+Mia-Platform achieves Data Integration with an architectural approach named [**Data Fabric**](/fast_data/what_is_fast_data), i.e. a cutting-edge solution designed to address common challenges related to data, such as fragmentation, tight coupling, legacy system bottlenecks, and the need for access to real-time information. The primary goal is to decouple data from disparate sources, known as **Systems of Record (SoRs)**, and make it available 24/7, for any digital channel or application. This is achieved by creating a high-performance, consolidated data layer that provides a unified, 360-degree view of business entities.
 
 Mia-Platform's approach combines the principles of **Data Mesh** and **Data Fabric**, enabling organizations to manage the entire data lifecycle, from collection to exposure, with agility and governance.
 
