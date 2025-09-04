@@ -93,9 +93,9 @@ APIs configured with Mia-Platform can be consumed with any technology that suppo
 
 In the examples for brevity we will use curl. The following are the typical operations that can be done with an APIRestful FHIR Adapter created with Mia-Platform.
 
-All examples are sent to <https://your-url> Mia-Platfrom instance. We assume that the endpoints are only protected by API Key.
+All examples are sent to `<https://your-url>` Mia-Platfrom instance. We assume that the endpoints are only protected by API Key.
 
-```json
+```
 client-key: client-key
 ```
 

@@ -163,15 +163,15 @@ Add to `bk-notifications` the following error trigger
 
 ### Properties & Attributes
 
-| property               | attribute                 | type                                         | default | description                                                                       |
-| ---------------------- | ------------------------- | -------------------------------------------- | ------- | --------------------------------------------------------------------------------- |
-| `basePath`             | -                         | string                                       | -       | the URL base path to which to send HTTP requests                                  |
-| `headers`              | -                         | {[key: string]: string}                      | -       | headers to add when an HTTP request is sent                                       |
-| `credentials`          | -                         | 'include'\|'omit'\|'same-origin'             | -       | credentials policy to apply to HTTP requests                                      |
-| `exportInternalUrl`    | `export-internal-url`     | string                                       | -       | url to be called internally to get `jsonl` formatted data                         |
-| `primaryKey`           | `primary-key`             | string                                       | '_id'   | primary key to filter selected data when `selected only export` option is enabled |
-| `streamSaverIFrameSrc` | `stream-saver-iframe-src` | string                                       | -       | location where stream saver service worker files are served                       |
-| `dataSchema`           | -                         | [ExtendedJSONSchema7Definition][data-schema] | -       | data-schema describing the fields structure of the CRUD collection                |
+| property               | attribute                 | type                                          | default | description                                                                       |
+| ---------------------- | ------------------------- |-----------------------------------------------| ------- | --------------------------------------------------------------------------------- |
+| `basePath`             | -                         | string                                        | -       | the URL base path to which to send HTTP requests                                  |
+| `headers`              | -                         | `{[key: string]: string}`                     | -       | headers to add when an HTTP request is sent                                       |
+| `credentials`          | -                         | 'include'\|'omit'\|'same-origin'              | -       | credentials policy to apply to HTTP requests                                      |
+| `exportInternalUrl`    | `export-internal-url`     | string                                        | -       | url to be called internally to get `jsonl` formatted data                         |
+| `primaryKey`           | `primary-key`             | string                                        | '_id'   | primary key to filter selected data when `selected only export` option is enabled |
+| `streamSaverIFrameSrc` | `stream-saver-iframe-src` | string                                        | -       | location where stream saver service worker files are served                       |
+| `dataSchema`           | -                         | [ExtendedJSONSchema7Definition][data-schema]  | -       | data-schema describing the fields structure of the CRUD collection                |
 
 ### Listens to
 

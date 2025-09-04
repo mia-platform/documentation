@@ -35,7 +35,7 @@ You should now see the *Console SSO* enabled for your extension.
 ## OAuth 2.0 Flow: Authorization Code Grant
 
 *Console SSO* for an extension implements the OAuth 2.0 flow with *Authorization Code Grant*. This means that under the hood, the login flow follows the scheme below. Learn more about OAuth 2.0 and this specific flow on the [RFC-6749][ietf-oauth-2-auth-code-grant].
-
+```
      +----------+
      | Resource |
      |   Owner  |
@@ -61,7 +61,7 @@ You should now see the *Console SSO* enabled for your extension.
      |         |                                             |
      |         |<---(E)----- Access Token -------------------'
      +---------+       (w/ Optional Refresh Token)
-
+```
 :::info
 When accessing an extension from within the Mia-Platform Console, the user is already logged in the system thus, when starting a new OAuth 2.0 flow for an extension, the user grant is considered implicit and no further action is expected from the user.
 

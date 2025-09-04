@@ -144,10 +144,10 @@ type Locale = {
 
 ### Properties & Attributes
 
-| property            | attribute | type             | default | description                                 |
-| ------------------- | --------- | ---------------- | ------- | ------------------------------------------- |
-| dateFormatOptions   |     -     | Option[] | [{value: '%Y-%m-%d', label: 'YYYY-MM-DD'}, {value: '%Y-%m-%d %H:%M', label: 'YYYY-MM-DD HH:mm'}] | The list of options for the date format select |
-| dateTimeZoneOptions |     -     | Option[] | [{value: '\<the-current-timezone\>', label: '\<the-current-timezone-name\>'}] | The list of options for the date time zone select |
+| property            | attribute | type              | default                                                                                            | description                                       |
+| ------------------- | --------- |-------------------|----------------------------------------------------------------------------------------------------|---------------------------------------------------|
+| dateFormatOptions   |     -     | Option[]          | `[{value: '%Y-%m-%d', label: 'YYYY-MM-DD'}, {value: '%Y-%m-%d %H:%M', label: 'YYYY-MM-DD HH:mm'}]` | The list of options for the date format select    |
+| dateTimeZoneOptions |     -     | Option[]          | `[{value: '\<the-current-timezone\>', label: '\<the-current-timezone-name\>'}]`                    | The list of options for the date time zone select |
 
 ### Listens to
 

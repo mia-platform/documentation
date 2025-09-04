@@ -247,15 +247,15 @@ curl --request GET \
 
 You can use more filters in query **_q**. Here is the complete list with the corresponding SQL operator.
 
-| Filter | SQL operator  |
-|:-------|:-------------:|
-| $eq    |       =       |
-| $ne    |      <\>       |
-| $regex |     LIKE      |
-| $lt    |       <       |
-| $lte   |      <=       |
-| $gt    |      \>       |
-| $gte   |      >=       |
+| Filter  |  SQL operator  |
+|:--------|:--------------:|
+| $eq     |       =        |
+| $ne     |     `<\>`      |
+| $regex  |      LIKE      |
+| $lt     |      `<`       |
+| $lte    |      `<=`      |
+| $gt     |      `\>`      |
+| $gte    |      `>=`      |
 
 :::note
 `$regex` is mapped to the operator `LIKE` replacing `.*`, `^` and `$` with `%`

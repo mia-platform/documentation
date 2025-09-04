@@ -317,7 +317,7 @@ All of these examples can be tested using the API Portal of Mia-Platform. The Po
 
 Let's see how to perform C-R-U-D operations.
 
-All examples are sent to <https://your-url> Mia-Platform instance. We assume that the endpoints are only protected by API Key.
+All examples are sent to `<https://your-url>` Mia-Platform instance. We assume that the endpoints are only protected by API Key.
 
 ```
 client-key: client-key
@@ -485,7 +485,7 @@ curl -X GET https://your-url/v2/plates/ \
 ```
 
 :::warning
-Always end you request with a slash.  <https://your-url/plates/> is correct.  <https://your-url/plates> is wrong.
+Always end you request with a slash. `<https://your-url/plates/>` is correct. `<https://your-url/plates>` is wrong.
 :::
 
 In response of this request, you will get a JSON array that contains all the documents of the collection. The sorting is by insertion. The request return only documents with ```__STATE__``` equal to PUBLIC. To retrieve other documents you must set `STATE` to DRAFT.
@@ -1411,7 +1411,7 @@ So the field *metadata* will be exactly:
 ```
 
 Values will be casted based on the JSON Schema.  
-So, if *childNumber* is *{ "type": "number" }*, it will be casted from string *9* to number *9*.
+So, if *childNumber* is *`{ "type": "number" }`*, it will be casted from string *9* to number *9*.
 
 :::note
 In the `$unset` operation of nested properties there is no validation that the properties you are unsetting are required or not, and the unset of a required property will be an error getting the document. Be careful when you use `$unset` on nested properties.
@@ -1460,11 +1460,11 @@ curl --location --request PATCH 'demo.mia-platform.eu/v2/books/bulk' \
 }'
 ```
 
-This will update the item of the collection *books* with *_id* equals to 111111111111111111111111 and that have an item of the array *somethingArrayObject* inside *metadata* equals to *{"anotherNumber": 3, "somethingElse": "foo"}*.
-It will be set to 5 the field *anotherNumber* of the item of *somethingArrayObject* that have matched the query of the filter (so that was equals to *{"anotherNumber": 3, "somethingElse": "foo"}*)
+This will update the item of the collection *books* with *_id* equals to 111111111111111111111111 and that have an item of the array *somethingArrayObject* inside *metadata* equals to *`{"anotherNumber": 3, "somethingElse": "foo"}`*.
+It will be set to 5 the field *anotherNumber* of the item of *somethingArrayObject* that have matched the query of the filter (so that was equals to *`{"anotherNumber": 3, "somethingElse": "foo"}`*)
 
 :::warning
-The values of **$.replace** and **$.merge** does not support "dot notation". So you cannot do: *"something.$.merge": {"foo.bar.lorem": 5}*
+The values of **$.replace** and **$.merge** does not support "dot notation". So you cannot do: *`"something.$.merge": {"foo.bar.lorem": 5}`*
 :::
 
 ### CRUD Limits

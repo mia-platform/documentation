@@ -789,7 +789,7 @@ Changes that have landed in master but are not yet released.
 - `array.$.replace` Replace entirely the query-matching array item with the content passed as value.
 - `array.$.merge` Edits only the specified fields of the query-matching array item with the content passed as value.
 
-See below for some sample cURLs for **/PATCH** _/books-endpoint/{:id}_ where `_q={"attachments.name": "John Doe", _st: "PUBLIC"}`
+See below for some sample cURLs for **/PATCH** _`/books-endpoint/{:id}`_ where `_q={"attachments.name": "John Doe", _st: "PUBLIC"}`
 
 **Case Merge**
 

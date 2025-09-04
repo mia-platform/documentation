@@ -103,7 +103,7 @@ This version contains a bug when it's configured a required env var with a defau
 ### BREAKING CHANGES
 
 - upgrade lc39 to v6
-- drop Node support <14
+- drop Node support `<14`
 
 ### Added
 

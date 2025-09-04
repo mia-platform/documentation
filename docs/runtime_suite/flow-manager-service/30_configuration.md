@@ -24,7 +24,7 @@ Most configurations (almost all actually) are taken from the configurations file
 ## Configurations file
 
 :::tip
-A full JSON schema of the configuration file can be found at <https://cdn.mia-platform.eu/runtime/flow-manager/service_version/schemas/config.schema.json>.
+A full JSON schema of the configuration file can be found at `<https://cdn.mia-platform.eu/runtime/flow-manager/service_version/schemas/config.schema.json>`.
 :::
 
 The configurations file required by the *Flow Manager* is in the JSON format and is divided in three sections:

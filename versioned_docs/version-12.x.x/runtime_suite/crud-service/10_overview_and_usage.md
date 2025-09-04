@@ -1335,7 +1335,7 @@ So the field *metadata* will be exactly:
 ```
 
 Values will be casted based on the JSON Schema.  
-So, if *childNumber* is *{ "type": "number" }*, it will be casted from string *9* to number *9*.
+So, if _childNumber_ is _`{ "type": "number" }`_, it will be casted from string _9_ to number _9_.
 
 :::note
 In the `$unset` operation of nested properties there is no validation that the properties you are unsetting are required or not, and the unset of a required property will be an error getting the document. Be careful when you use `$unset` on nested properties.
@@ -1384,11 +1384,11 @@ curl --location --request PATCH 'demo.mia-platform.eu/v2/books/bulk' \
 }'
 ```
 
-This will update the item of the collection *books* with *_id* equals to 111111111111111111111111 and that have an item of the array *somethingArrayObject* inside *metadata* equals to *{"anotherNumber": 3, "somethingElse": "foo"}*.
-It will be set to 5 the field *anotherNumber* of the item of *somethingArrayObject* that have matched the query of the filter (so that was equals to *{"anotherNumber": 3, "somethingElse": "foo"}*)
+This will update the item of the collection *books* with *_id* equals to 111111111111111111111111 and that have an item of the array *somethingArrayObject* inside *metadata* equals to *`{"anotherNumber": 3, "somethingElse": "foo"}`*.
+It will be set to 5 the field *anotherNumber* of the item of *somethingArrayObject* that have matched the query of the filter (so that was equals to *`{"anotherNumber": 3, "somethingElse": "foo"}`*)
 
 :::warning
-The values of **$.replace** and **$.merge** does not support "dot notation". So you cannot do: *"something.$.merge": {"foo.bar.lorem": 5}*
+The values of **$.replace** and **$.merge** does not support "dot notation". So you cannot do: *`"something.$.merge": {"foo.bar.lorem": 5}`*
 :::
 
 ### CRUD Limits

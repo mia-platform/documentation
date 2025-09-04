@@ -169,17 +169,17 @@ Otherwise, a result event is emitted right after the download request has been i
 
 ### Properties & Attributes
 
-| property                   | attribute                    | type                                         | default | description                                                                     |
-| -------------------------- | ---------------------------- | -------------------------------------------- | ------- | ------------------------------------------------------------------------------- |
-| `basePath`                 | -                            | string                                       | -       | the URL base path to which to send HTTP requests                                |
-| `headers`                  | -                            | {[key: string]: string}                      | -       | headers to add when an HTTP request is sent                                     |
-| `credentials`              | -                            | 'include'\|'omit'\|'same-origin'             | -       | credentials policy to apply to HTTP requests                                    |
-| `dataSchema`               | -                            | [ExtendedJSONSchema7Definition][data-schema] | -       | data-schema describing which field to retrieve from CRUD collection             |
-| `nativeDownload`           | `native-download`            | boolean                                      | -       | when `true` it skips frontend blob parsing and uses browser native download API |
-| `shouldIncludeProjections` | `should-include-projections` | boolean                                      | false   | should append projection when exporting from CRUD service                       |
-| `streamSaverIFrameSrc`     | `stream-saver-iframe-src`    | string                                       | -       | location where stream saver service worker files are served                     |
-| `userConfig`               | `user-config`                | boolean                                      | false   | whether to listen to `awaiting-for-export-configuration` or not. It must be true to use it with bk-export-modal. |
-| `primaryKey`               | `primary-key`                | string                                       | `_id`   | primary key to filter selected data when `selected only export` in bk-export-modal option is enabled. `userConfig` must be true. |
+| property                   | attribute                    | type                                          | default | description                                                                     |
+| -------------------------- | ---------------------------- |-----------------------------------------------| ------- | ------------------------------------------------------------------------------- |
+| `basePath`                 | -                            | string                                        | -       | the URL base path to which to send HTTP requests                                |
+| `headers`                  | -                            | `{[key: string]: string}`                     | -       | headers to add when an HTTP request is sent                                     |
+| `credentials`              | -                            | 'include'\|'omit'\|'same-origin'              | -       | credentials policy to apply to HTTP requests                                    |
+| `dataSchema`               | -                            | [ExtendedJSONSchema7Definition][data-schema]  | -       | data-schema describing which field to retrieve from CRUD collection             |
+| `nativeDownload`           | `native-download`            | boolean                                       | -       | when `true` it skips frontend blob parsing and uses browser native download API |
+| `shouldIncludeProjections` | `should-include-projections` | boolean                                       | false   | should append projection when exporting from CRUD service                       |
+| `streamSaverIFrameSrc`     | `stream-saver-iframe-src`    | string                                        | -       | location where stream saver service worker files are served                     |
+| `userConfig`               | `user-config`                | boolean                                       | false   | whether to listen to `awaiting-for-export-configuration` or not. It must be true to use it with bk-export-modal. |
+| `primaryKey`               | `primary-key`                | string                                        | `_id`   | primary key to filter selected data when `selected only export` in bk-export-modal option is enabled. `userConfig` must be true. |
 
 
 ### Listens to

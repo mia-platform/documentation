@@ -60,13 +60,13 @@ In order to implement the flow depicted above, you can perform the following ste
     - Click on `Create`
     - Update the values of the following environment variables:
 
-      | Variable                       | Value                                                                        |
-      | -------------------------------| ---------------------------------------------------------------------------  |
-      | USERINFO_URL                   | http://authentication-service/userinfo                                       |
-      | CUSTOM_USER_ID_KEY             | userID                                                                       |
-      | HEADERS_TO_PROXY               | <header of the client's request containing the token> (e.g. `Authorization`) |
-      | AUTHORIZATION_HEADERS_TO_PROXY | <header of the client's request containing the token> (e.g. `Authorization`) |
-      | USER_PROPERTIES_TO_PROXY       | userID,groups                                                                |
+      | Variable                       | Value                                                                          |
+      | -------------------------------|--------------------------------------------------------------------------------|
+      | USERINFO_URL                   | http://authentication-service/userinfo                                         |
+      | CUSTOM_USER_ID_KEY             | userID                                                                         |
+      | HEADERS_TO_PROXY               | `<header of the client's request containing the token>` (e.g. `Authorization`) |
+      | AUTHORIZATION_HEADERS_TO_PROXY | `<header of the client's request containing the token>` (e.g. `Authorization`) |
+      | USER_PROPERTIES_TO_PROXY       | userID,groups                                                                  |
 
 3. Secure the endpoint
     - Select the endpoint you want to secure in the `Endpoints` section of your project

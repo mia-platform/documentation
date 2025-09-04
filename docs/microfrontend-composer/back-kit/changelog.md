@@ -339,7 +339,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
-- `phosphor` icons render tags such as `rect` or `circle` via `@micro-lc/iconic@1.3.1` (<https://github.com/micro-lc/micro-lc/pull/796>)
+- `phosphor` icons render tags such as `rect` or `circle` via `@micro-lc/iconic@1.3.1` (`<https://github.com/micro-lc/micro-lc/pull/796>`)
 
 ## [1.3.17] - 2023-07-14
 

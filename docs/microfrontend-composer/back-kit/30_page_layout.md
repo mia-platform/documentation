@@ -395,16 +395,16 @@ Visualization options concern any web component that is going to render a given 
 }
 ```
 
-| `visualizationOptions` option | type                            | description                                                                                       |
-| ----------------------------- | ------------------------------- | ------------------------------------------------------------------------------------------------- |
-| `hidden`                      | `boolean`                       | whether the property is shown within the form component                                           |
-| `hiddenLabel`                 | `boolean`                       | whether the label of the property is shown within the header of the table component               |
-| `sortable`                    | `boolean`                       | whether the property can be sorted within the header of the table component                       |
-| `iconMap`                     | `object`                        | defines a map of basic shaped icons to be shown with the item and where the key is the item value |
-| `template`                    | [LocalizedText][localized-text] | template of how to visualize the value in the cell                                                |
-| `joinDelimiter`               | `string`                        | delimiter to visualize array items as a single string                                             |
-| `tag`                         | `string`                        | tag to use when embedding a custom component                                                      |
-| `properties`                  | { [x: string]: any }            | properties for the embedded custom component                                                      |
+| `visualizationOptions` option | type                             | description                                                                                       |
+| ----------------------------- |----------------------------------| ------------------------------------------------------------------------------------------------- |
+| `hidden`                      | `boolean`                        | whether the property is shown within the form component                                           |
+| `hiddenLabel`                 | `boolean`                        | whether the label of the property is shown within the header of the table component               |
+| `sortable`                    | `boolean`                        | whether the property can be sorted within the header of the table component                       |
+| `iconMap`                     | `object`                         | defines a map of basic shaped icons to be shown with the item and where the key is the item value |
+| `template`                    | [LocalizedText][localized-text]  | template of how to visualize the value in the cell                                                |
+| `joinDelimiter`               | `string`                         | delimiter to visualize array items as a single string                                             |
+| `tag`                         | `string`                         | tag to use when embedding a custom component                                                      |
+| `properties`                  | `{ [x: string]: any }`           | properties for the embedded custom component                                                      |
 
 | `iconMap` option | values                    | description       |
 | ---------------- | ------------------------- | ----------------- |

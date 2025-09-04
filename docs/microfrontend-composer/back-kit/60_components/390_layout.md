@@ -39,7 +39,7 @@ Displays a menu, analogous to the [micro-lc] (version 2.0.0+) menu, which allows
 
 
 :::caution
-The Layout component is not supported by [micro-lc] version <2.0.0. `micro-lc` version 2.0.0+ (or a custom rendering engine) should be used.
+The Layout component is not supported by [micro-lc] version `<2.0.0.` `micro-lc` version 2.0.0+ (or a custom rendering engine) should be used.
 :::
 
 

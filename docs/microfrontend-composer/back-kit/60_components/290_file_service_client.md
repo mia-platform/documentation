@@ -382,13 +382,13 @@ The HTTP request to upload a file would normally be a POST call directed to "/fi
 
 ### Properties & Attributes
 
-| property         | attribute | type                              | default                                                             | description                                                                                    |
-| ---------------- | --------- | --------------------------------- | ------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- |
-| `basePath`       | -         | string                            | -                                                                   | the URL base path to which to send HTTP requests                                               |
-| `headers`        | -         | {[key: string]: string}           | -                                                                   | headers to add when an HTTP request is sent                                                    |
-| `credentials`    | -         | 'include'\|'omit'\|'same-origin'  | -                                                                   | credentials policy to apply to HTTP requests                                                   |
-| `queryParams`    | -         | [QueryParams](#queryparams)       | {"download": 1,"downloadWithOriginalName": 1, "useOriginalName": 1} | query parameters to be passed to the Files Service, according to [its interface][query-params] |
-| `reroutingRules` | -         | [ReroutingRule](#reroutingrule)[] | -                                                                   | rules to redirect HTTP request to new routes                                                   |
+| property         | attribute | type                               | default                                                               | description                                                                                    |
+| ---------------- | --------- |------------------------------------|-----------------------------------------------------------------------| ---------------------------------------------------------------------------------------------- |
+| `basePath`       | -         | string                             | -                                                                     | the URL base path to which to send HTTP requests                                               |
+| `headers`        | -         | `{[key: string]: string}`          | -                                                                     | headers to add when an HTTP request is sent                                                    |
+| `credentials`    | -         | 'include'\|'omit'\|'same-origin'   | -                                                                     | credentials policy to apply to HTTP requests                                                   |
+| `queryParams`    | -         | [QueryParams](#queryparams)        | `{"download": 1,"downloadWithOriginalName": 1, "useOriginalName": 1}` | query parameters to be passed to the Files Service, according to [its interface][query-params] |
+| `reroutingRules` | -         | [ReroutingRule](#reroutingrule)[]  | -                                                                     | rules to redirect HTTP request to new routes                                                   |
 
 #### QueryParams
 
