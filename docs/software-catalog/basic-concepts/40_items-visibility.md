@@ -31,7 +31,11 @@ The `visibility` field is an object that adheres to the following schema:
 }
 ```
 
-Changing the values of the properties you can achieve one of the three possible states of visibility of an item.
+Changing the values of the properties you can achieve one of the three possible states of visibility of an item: *private*, *all companies*, and *public*.
+
+:::caution
+An item based on a **private [ITD](/software-catalog/basic-concepts/10_items-types.md)** can only have **private visibility**.
+:::
 
 #### Private
 
@@ -44,7 +48,7 @@ A private item can **only be accessed by users of the company** it belongs to. T
 }
 ```
 
-Since the `visibility` field is not mandatory in the [item data structure][items-data-structure], an item without it is considered to be private.
+Since the `visibility` field is not mandatory in the [item data structure](/software-catalog/basic-concepts/05_items-data-structure.md), an item without it is considered to be private.
 
 #### All companies
 
@@ -67,5 +71,3 @@ A public item can be **accessed by anyone**, even non-authenticated users. It co
   "allTenants": false // or true, or undefined
 }
 ```
-
-[items-data-structure]: ./05_items-data-structure.md

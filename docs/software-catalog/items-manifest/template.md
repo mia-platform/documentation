@@ -16,7 +16,7 @@ Templates are meant to be **starting points** with the bear minimum needed to st
 To [create or edit](/software-catalog/items-management/overview.md) a template, you need to provide a [manifest](/software-catalog/items-manifest/overview.md), whose `resources` property should adhere to the following JSON schema.
 
 :::tip
-The JSON schemas of the [template resources](https://raw.githubusercontent.com/mia-platform/console-sdk/refs/heads/main/packages/console-types/schemas/catalog/template.resources.schema.json) and of the [full template manifest](https://raw.githubusercontent.com/mia-platform/console-sdk/refs/heads/main/packages/console-types/schemas/catalog/template.manifest.schema.json) are available on GitHub.
+The JSON schemas of the [template resources](https://raw.githubusercontent.com/mia-platform/console-sdk/refs/tags/%40mia-platform/console-types%400.38.11/packages/console-types/schemas/catalog/template.resources.schema.json) and of the [full template manifest](https://raw.githubusercontent.com/mia-platform/console-sdk/refs/tags/%40mia-platform/console-types%400.38.11/packages/console-types/schemas/catalog/template.manifest.schema.json) are available on GitHub.
 :::
 
 <SchemaViewer schema={catalogWellKnownItems['template'].resourcesSchema} />

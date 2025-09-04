@@ -82,6 +82,10 @@
           ]
         },
         {
+          "id": "console/tutorials/configure-new-company",
+          "type": "doc"
+        },
+        {
           "id": "console/tutorials/microservice-from-docker-image",
           "type": "doc"
         },
@@ -111,6 +115,10 @@
         },
         {
           "id": "console/tutorials/create-extension-with-sso",
+          "type": "doc"
+        },
+        {
+          "id": "console/tutorials/create-scorecards",
           "type": "doc"
         }
       ]
@@ -485,6 +493,10 @@
         },
         {
           "id": "development_suite/api-console/api-design/overview",
+          "type": "doc"
+        },
+        {
+          "id": "development_suite/api-console/api-design/miactl-commands",
           "type": "doc"
         },
         {
@@ -1596,6 +1608,37 @@
       "type": "doc"
     },
     {
+      "type": "category",
+      "label": "Use Cases",
+      "collapsed": true,
+      "items": [
+        {
+          "id": "getting-started/use-cases/application-development",
+          "type": "doc"
+        },
+        {
+          "id": "getting-started/use-cases/platform-engineering",
+          "type": "doc"
+        },
+        {
+          "id": "getting-started/use-cases/application-development",
+          "type": "doc"
+        },
+        {
+          "id": "getting-started/use-cases/ai-agent-lifecycle",
+          "type": "doc"
+        },
+        {
+          "id": "getting-started/use-cases/cloud-operations",
+          "type": "doc"
+        },
+        {
+          "id": "getting-started/use-cases/data-integration",
+          "type": "doc"
+        }
+      ]
+    },
+    {
       "type": "doc",
       "id": "getting-started/tutorials/tutorials"
     },
@@ -1608,8 +1651,39 @@
       "type": "doc"
     },
     {
-      "id": "getting-started/faqs",
-      "type": "doc"
+      "collapsed": true,
+      "type": "category",
+      "label": "Faqs",
+      "link": {
+        "type": "doc",
+        "id": "getting-started/faqs"
+      },
+      "items": [
+        {
+          "id": "getting-started/faqs/mia-platform-console-faqs",
+          "type": "doc"
+        },
+        {
+          "id": "getting-started/faqs/mia-platform-fast-data-faqs",
+          "type": "doc"
+        },
+        {
+          "id": "getting-started/faqs/mia-platform-data-catalog-faqs",
+          "type": "doc"
+        },
+        {
+          "id": "getting-started/faqs/mia-platform-microfrontend-composer-faqs",
+          "type": "doc"
+        },
+        {
+          "id": "getting-started/faqs/mia-platform-software-catalog-faqs",
+          "type": "doc"
+        },
+        {
+          "id": "getting-started/faqs/mia-platform-runtime-components-faqs",
+          "type": "doc"
+        }
+      ]
     }
   ],
   "governance": [
@@ -1911,7 +1985,7 @@
     {
       "type": "category",
       "collapsed": true,
-      "label": "Items management",
+      "label": "Catalog management",
       "link": {
         "id": "software-catalog/items-management/overview",
         "type": "doc"
@@ -1934,7 +2008,7 @@
     {
       "type": "category",
       "collapsed": true,
-      "label": "Items manifest",
+      "label": "Catalog manifests",
       "link": {
         "id": "software-catalog/items-manifest/overview",
         "type": "doc"

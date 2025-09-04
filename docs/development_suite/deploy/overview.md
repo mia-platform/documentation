@@ -196,7 +196,8 @@ On the bottom, a button allows you to download the configurations files as a `.t
 
 ## History
 
-The History Page is the second area of the Deploy section. In this tab it will be possible to visualize all the released deploy.
+The History Page is the second area of the Deploy section.
+In this tab it will be possible to visualize all the released deploy.
 
 ![History](img/history.png)
 
@@ -210,3 +211,4 @@ In the History table the user will be able to visualize the following informatio
 * How long was the deploy;
 * How much time ago the deploy was released;
 * Link to Git to visualize the logs of the past deploy.
+* Action to Redeploy past configuration

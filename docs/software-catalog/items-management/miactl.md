@@ -28,7 +28,7 @@ For a thorough explanation on supported Providers and how to configure them in t
 
 ### Creation of the repository
 
-The center of our journey is a **Git repository** that will store the [manifests][items-manifest] of the Catalog items, alongside any additional resource they might need (e.g., items logos).
+The center of our journey is a **Git repository** that will store the [manifests](/software-catalog/items-manifest/overview.md) of the Catalog items, alongside any additional resource they might need (e.g., items logos).
 
 The structure of the repository can vary, but a good setup may be something like the following one (actually taken from [Mia-Platform Public Catalog](https://github.com/mia-platform-marketplace/public-catalog) repository).
 
@@ -49,7 +49,7 @@ Root
 └── ...
 ```
 
-The folders hierarchical structure reflects that fact that each item has a **type**, at least one **version**, and, possibly, some **assets**. The JSON and YAML files inside the `versions` folders are the items [manifests][items-manifest].
+The folders hierarchical structure reflects that fact that each item has a **type**, at least one **version**, and, possibly, some **assets**. The JSON and YAML files inside the `versions` folders are the items [manifests](/software-catalog/items-manifest/overview.md).
 
 Keeping in mind that the item names are purely indicative, this may be an example:
 
