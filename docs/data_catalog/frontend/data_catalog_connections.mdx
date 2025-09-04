@@ -6,7 +6,7 @@ sidebar_label: Connections Management
 
 ## Introduction to Connections
 
-Connections represent the source of truth of the Data Catalog. By retrieving their metadata, is possible use their assets 
+Connections represent the source of truth of the Data Catalog. By retrieving their metadata, is possible use their assets
 to perform actions such as [Asset Discovery](/data_catalog/frontend/data_catalog_assets.mdx) and [Lineage](/data_catalog/frontend/data_lineage.mdx).
 
 <div style={{display: 'flex', justifyContent: 'center'}}>
@@ -27,8 +27,8 @@ The __Connections Panel__ provides the following features:
 :::caution
 This section of Data Catalog should be accessible only by administrators that have access to the connection credentials of external sources.
 
-For such reasons, the Data Catalog application will give the permissions `admin:connections` to the underlying endpoints of the Connections Panel. 
-See the [Secure Access section](/data_catalog/secure_access.mdx) to learn more about the authorization process.  
+For such reasons, the Data Catalog application will give the permissions `admin:connections` to the underlying endpoints of the Connections Panel.
+See the [Secure Access section](/data_catalog/secure_access.mdx) to learn more about the authorization process.
 :::
 
 ### Input Management
@@ -106,7 +106,7 @@ Before configuring an ODBC Connection, be sure that the Job Runner Service has b
 
 For more details, [see the dedicated section](/data_catalog/data_catalog_job_runner.mdx#odbc-configuration).
 :::
-ODBC Providers can have two types of mode to perform the connection. 
+ODBC Providers can have two types of mode to perform the connection.
 
 - __Connection String__: users need only to pick a secret name referencing a connection string in the Job Runner Service.
   <div style={{display: 'flex', justifyContent: 'center'}}>
@@ -116,8 +116,8 @@ ODBC Providers can have two types of mode to perform the connection.
 
     </div>
   </div>
-- __Data Source Name (DSN)__: users can choose between the available DSN configured in the Job Runner Service. 
-  Users can also configure the DSN's username and password if those information are not available inside the DSN. 
+- __Data Source Name (DSN)__: users can choose between the available DSN configured in the Job Runner Service.
+  Users can also configure the DSN's username and password if those information are not available inside the DSN.
   Be aware that username and password are __mandatory__ for connections such as __MSSQL__ or __SAP HANA__.
 
   <div style={{display: 'flex', justifyContent: 'center'}}>
@@ -133,14 +133,14 @@ ODBC Providers can have two types of mode to perform the connection.
 __Oracle DB__ has also a section which can change the behavior of the underlying queries that the _Data Catalog Sync_ will
 perform while retrieving assets information. The following parameters can be tuned:
 
-- __Compatibility__: if the data source is an `ORACLE 11g` database, 
-  this check should be active since the database [does not support](https://docs.oracle.com/database/121/LNPLS/release_changes.htm#LNPLS113) pagination via `OFFSET ? ROWS FETCH FIRST ? ROWS ONLY`;  
+- __Compatibility__: if the data source is an `ORACLE 11g` database,
+  this check should be active since the database [does not support](https://docs.oracle.com/database/121/LNPLS/release_changes.htm#LNPLS113) pagination via `OFFSET ? ROWS FETCH FIRST ? ROWS ONLY`;
 - __Query Mode__: based on this option, the [Data Catalog Sync Job](/data_catalog/data_catalog_job_runner.mdx#data-catalog-sync) will perform the scan query on a different set of views provided by Oracle. Three options are available:
 
   - __User__: tables `user_tables`, `user_views` and `user_mviews` will be used. This represents the __default mode__ if no option has been provided;
-  - __All__: tables `all_tables`, `all_views` and `all_mviews` will be used. 
+  - __All__: tables `all_tables`, `all_views` and `all_mviews` will be used.
     It is __strongly suggested__ to add a comma-separeted list of schemas in the dedicated field to only pick the tables of interest;
-  - __DBA__: tables `dba_tables`, `dba_views` and `dba_mviews` will be used. 
+  - __DBA__: tables `dba_tables`, `dba_views` and `dba_mviews` will be used.
     It is __strongly suggested__ to add a comma-separeted list of schemas in the dedicated field to only pick the tables of interest.
 
 ---
@@ -160,8 +160,8 @@ you need the basic information of the Salesforce instance, such as its __Url__ a
 
 > The range of supported `apiVersion` goes from `31.0` to `59.0`.
 
-<details>
-<summary>SObjects Permissions</summary>
+
+SObjects Permissions
 
 Make sure the user configured in the [Authentication card](#authentication) has the right permissions to retrieve all the `SObject`s you need.
 
@@ -185,7 +185,7 @@ If not all the `SObjects` are retrieved you will have to follow these steps to e
 - Click on `Object Settings` inside the new Permission Set, then, for each standard SObject, update the visibility in the desired way (e.g. View All, Modify All)
 - Assign the new Permission Set to the user with `Salesforce Integration` user license and `Salesforce API Only System Integrations` profile
 
-</details>
+
 
 ##### Authentication
 
@@ -194,13 +194,13 @@ To configure a **Salesforce SObjects** connection you can use two authentication
 * __Private Key__, which configures the [OAuth2 JWT flow](https://help.salesforce.com/s/articleView?id=sf.remoteaccess_oauth_jwt_flow.htm&type=5) with the following fields:
   - `clientId`: either _plain_ or its _secret name_;
   - `username`: either _plain_ or its _secret name_;
-  - `privateKey`: represents the path where the certificate is stored inside the Job Runner, it can either be _plain_ or a _secret name_ 
-  
-  <details>
-  <summary>Enable JWT Authentication on Salesforce</summary>
+  - `privateKey`: represents the path where the certificate is stored inside the Job Runner, it can either be _plain_ or a _secret name_
+
+
+  Enable JWT Authentication on Salesforce
 
   To be able to connect to the Salesforce API using the JWT Bearer flow you will need to follow the next steps.
-  
+
   1. Follow the steps one and two from this guide: https://help.salesforce.com/s/articleView?id=sf.connected_app_create_api_integration.htm&type=5
   2. Then you'll need to upload your self-signed certificate in PEM format (step 5 from the guide). If you do not have a certificate follow these instructions:
      1. Generate a rsa key with the command `openssl genrsa -out tls/key.pem`
@@ -209,9 +209,9 @@ To configure a **Salesforce SObjects** connection you can use two authentication
      4. Upload the generated certificate (`tls/sf_connect.crt`)
   3. Now you need to enable the OAuth2 mechanism following the 10th step from the guide, creating a connected app and all.
   4. Finally you need to enable the JWT access with the step 14 of the guide.
-     
+
   Now you should have everything you need to fill out the configuration parameters.
-  </details>
+
 * __Credentials__, which configures the [**deprecated** OAuth2 username-password flow](https://help.salesforce.com/s/articleView?id=sf.remoteaccess_oauth_username_password_flow.htm&type=5), with the following fields:
   - `clientId`: either _plain_ or its _secret name_;
   - `clientSecret`: can only be a _secret name_;
@@ -258,15 +258,15 @@ If Console communication has not been enabled or the Company you want to set is 
 
 Users can also add additional headers to the request that will be executed by the Connection to retrieve assets.
 
-To do so, click on the `Add Header` button to choose a key-value pair to add to the headers list. The value can also be a _secret name_ reference. 
+To do so, click on the `Add Header` button to choose a key-value pair to add to the headers list. The value can also be a _secret name_ reference.
 
 :::info
-There is no need to add the header `"accept": "application/x-ndjson"` since it's managed internally by the Job Runner service. 
+There is no need to add the header `"accept": "application/x-ndjson"` since it's managed internally by the Job Runner service.
 :::
 
 ##### TLS
 
-In case the CRUD Service needs a custom root CA or an insecure HTTPS connection, 
+In case the CRUD Service needs a custom root CA or an insecure HTTPS connection,
 it's possible to set the connection as `insecure` and set a custom certificate if needed.
 
 ---
@@ -287,7 +287,7 @@ Users can create a connection directly to __MongoDB__ using the dedicated provid
 Since __MongoDB__ is a NoSQL database there is no concept of schema for a collection. However when a [JSON Schema validation](https://www.mongodb.com/docs/manual/core/schema-validation/) is available
 it may make sense to detect fields and types for a collection.
 
-Types from `MongoDB` are directly picked from the [BSON Type specification](https://www.mongodb.com/docs/manual/reference/operator/query/jsonSchema/#mongodb-query-op.-jsonSchema). 
+Types from `MongoDB` are directly picked from the [BSON Type specification](https://www.mongodb.com/docs/manual/reference/operator/query/jsonSchema/#mongodb-query-op.-jsonSchema).
 During the retrieval phase, the agent follows these rules to parse the validation object:
 
 - when BSON and JSON schemas overlap (please refer to [this table](https://docs.rs/jsonutil/latest/jsonutil/index.html) for a comparison list used by the inner library), then the JSON schema is included;
@@ -316,7 +316,7 @@ To define which databases the agent will retrieve when scanning models, the foll
 * __Strict Discard Default__ (default option): the agent will try to retrieve the assets from any non-admin database;
 * __Strict__: the agent will try to retrieve assets from the database specified in the connection string;
 * __All__: the agent will try to retrieve assets from every available database the user has access to;
-* __Whitelist__: the user can specify a comma-separated list of databases from which the agent will try to retrieve assets. 
+* __Whitelist__: the user can specify a comma-separated list of databases from which the agent will try to retrieve assets.
 
 ##### MongoDB Collections Settings
 
@@ -325,14 +325,14 @@ Similarly, the collection retrieval can be tuned with the following options:
 * __Strict and Validated__ (default and recommended option): the agent will retrieve only collections that have a `validator.$jsonSchema` creation option;
 * __Strict__: the agent will try to retrieve the assets of the collections except the system's collections;
 * __All__: the agent will try to retrieve any collection of the databases;
-* __Whitelist__: the user can specify a comma-separated list of collections from which the agent will try to retrieve assets. 
+* __Whitelist__: the user can specify a comma-separated list of collections from which the agent will try to retrieve assets.
 
 ---
 
 ### Agent Settings
 
 :::info
-These settings can be configured for all connections __excepts__ _Mia-Platform CRUD_ and _MongoDB_. 
+These settings can be configured for all connections __excepts__ _Mia-Platform CRUD_ and _MongoDB_.
 :::
 
 Once the main details of a connection has been defined, you can also tune runtime parameters
@@ -341,10 +341,10 @@ of the [Agent Dataset Scan Job](/data_catalog/data_catalog_job_runner.mdx#agent-
 - the __Batch Size__, a number that defines the number of assets that can be paginated in a query;
 - the __Column Batch Size__, a number that defines the amount of columns that are expected to be processed by each batch iteration.
 
-This section comes already with the values that will used by default in the Job Runner. 
+This section comes already with the values that will used by default in the Job Runner.
 
 Once you have clicked on the `Finish button`,
-a success message will redirect you to the [Connection Overview](#connection-overview) of the newly connection.  
+a success message will redirect you to the [Connection Overview](#connection-overview) of the newly connection.
 
 <div style={{display: 'flex', justifyContent: 'center'}}>
   <div style={{display: 'flex', width: '100%'}}>
@@ -356,7 +356,7 @@ a success message will redirect you to the [Connection Overview](#connection-ove
 
 ## Access Connection details
 
-After having created the connection, it is reachable inside the list of connections displayed in the Connection Panel.  
+After having created the connection, it is reachable inside the list of connections displayed in the Connection Panel.
 Then it is possible to access its Details page.
 
 <div style={{display: 'flex', justifyContent: 'center'}}>
@@ -367,13 +367,13 @@ Then it is possible to access its Details page.
   </div>
 </div>
 
-Here, you can edit both [Connection Details](#connection-details) and [Agent Settings](#agent-settings) by choosing the appropriate tab: 
-when a field is changed correctly, the connection will be updated accordingly and the next execution of the Job Runner will use the latest 
-parameters provided by the user. 
+Here, you can edit both [Connection Details](#connection-details) and [Agent Settings](#agent-settings) by choosing the appropriate tab:
+when a field is changed correctly, the connection will be updated accordingly and the next execution of the Job Runner will use the latest
+parameters provided by the user.
 
 ### Delete Connection
 
-From the menu button on the top-right corner of the page, it is possible to click `Delete Connection` 
+From the menu button on the top-right corner of the page, it is possible to click `Delete Connection`
 and start the procedure to remove a connection from the Data Catalog.
 
 <div style={{display: 'flex', justifyContent: 'center'}}>
@@ -385,7 +385,7 @@ and start the procedure to remove a connection from the Data Catalog.
 </div>
 
 :::danger
-This action __will remove any assets that has been imported from that connection in the Data Catalog__, by leveraging the [Connection Cleanup Job](/data_catalog/data_catalog_job_runner.mdx#connection-cleanup) of the Job Runner.  
+This action __will remove any assets that has been imported from that connection in the Data Catalog__, by leveraging the [Connection Cleanup Job](/data_catalog/data_catalog_job_runner.mdx#connection-cleanup) of the Job Runner.
 Please be careful when performing this action.
 :::
 
@@ -394,7 +394,7 @@ Please be careful when performing this action.
 Once a connection has been properly defined, the connection administrator can start importing its data assets into the Data Catalog.
 
 In the overview of the Connections Panel where all available connections are listed, user can click the `sync button` and schedule an [Agent Dataset Scan Job](/data_catalog/data_catalog_job_runner.mdx#agent-dataset-scan) from the Job Runner.
-Once the action has been executed, the table entry of that connection will be accordingly updated by the Job Runner with information about the triggered job status. 
+Once the action has been executed, the table entry of that connection will be accordingly updated by the Job Runner with information about the triggered job status.
 
 <div style={{display: 'flex', justifyContent: 'center'}}>
   <div style={{display: 'flex', width: '100%'}}>
@@ -404,7 +404,7 @@ Once the action has been executed, the table entry of that connection will be ac
   </div>
 </div>
 
-Once the _[Agent Dataset Scan Job](/data_catalog/data_catalog_job_runner.mdx#agent-dataset-scan)_ is completed, a _[Data Catalog Sync Job](/data_catalog/data_catalog_job_runner.mdx#data-catalog-sync)_ will be executed automatically to store the assets retrieved from the data source into the Data Catalog.  
+Once the _[Agent Dataset Scan Job](/data_catalog/data_catalog_job_runner.mdx#agent-dataset-scan)_ is completed, a _[Data Catalog Sync Job](/data_catalog/data_catalog_job_runner.mdx#data-catalog-sync)_ will be executed automatically to store the assets retrieved from the data source into the Data Catalog.
 
 Only one connection at a time will perform the synchronization. If more than one connection is synced at the same time, the ones that are still not executed will be in a `Queue` state.
 
@@ -416,7 +416,7 @@ Only one connection at a time will perform the synchronization. If more than one
   </div>
 </div>
 
-You can also stop the synchronization process by clicking the `Stop button`. This action will cancel both _[Agent Dataset Scan](/data_catalog/data_catalog_job_runner.mdx#agent-dataset-scan)_ and _[Data Catalog Sync](/data_catalog/data_catalog_job_runner.mdx#data-catalog-sync)_ jobs.  
+You can also stop the synchronization process by clicking the `Stop button`. This action will cancel both _[Agent Dataset Scan](/data_catalog/data_catalog_job_runner.mdx#agent-dataset-scan)_ and _[Data Catalog Sync](/data_catalog/data_catalog_job_runner.mdx#data-catalog-sync)_ jobs.
 
 Once the synchronization has been completed, user has evidence about the Job completion. Moreover, it is possible to have evidence of the last sync time.
 

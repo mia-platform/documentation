@@ -345,11 +345,11 @@ These endpoints return 400 and a body with the structure shown below if one of f
 ```
 
 If the **NOTIFICATION_MANAGER_URL** environment variable is correctly set, the handler will send a request to the `POST /notification-events/` endpoint of the Notification Manager, including the following information in the request body:
-- **key**(*string*): the identifier for the updated therapy or monitoring.
-- **name**(*string*):  the event name, which is `TMM/TherapyUpdated/v1` for therapies and `TMM/MonitoringUpdated/v1` for monitorings.
-- **payload**(*object*):
-  - <**originalTherapy**||**originalMonitoring**>(*object*): The original therapy  or monitoring (before the update).
-  - <**currentTherapy**||**currentMonitoring**>(*object*): The updated therapy or monitoring (after the update).
+- **key**(_string_): the identifier for the updated therapy or monitoring.
+- **name**(_string_):  the event name, which is `TMM/TherapyUpdated/v1` for therapies and `TMM/MonitoringUpdated/v1` for monitorings.
+- **payload**(_object_):
+- **originalTherapy**||**originalMonitoring**(_object_): The original therapy  or monitoring (before the update).
+- **currentTherapy**||**currentMonitoring**(_object_): The updated therapy or monitoring (after the update).
 
 ### `DELETE /<therapies|monitorings>/:id`
 

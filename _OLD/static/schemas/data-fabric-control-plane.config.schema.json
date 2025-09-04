@@ -1,0 +1,196 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Configuration",
+  "type": "object",
+  "required": [
+    "cache",
+    "persistence"
+  ],
+  "properties": {
+    "cache": {
+      "$ref": "#/definitions/Cache"
+    },
+    "persistence": {
+      "$ref": "#/definitions/Persistence"
+    },
+    "settings": {
+      "$ref": "#/definitions/Settings"
+    }
+  },
+  "examples": [
+    {
+      "cache": {
+        "type": "redis",
+        "configuration": {
+          "url": {
+            "type": "file",
+            "path": "/run/secrets/data-fabric/control-plane.ini",
+            "key": "REDIS_URL"
+          }
+        }
+      },
+      "persistence": {
+        "type": "mongodb",
+        "configuration": {
+          "type": "file",
+          "path": "/run/secrets/data-fabric/control-plane.ini",
+          "key": "MONGODB_URL"
+        }
+      },
+      "settings": {
+        "apiPrefix": "/api"
+      }
+    }
+  ],
+  "definitions": {
+    "Cache": {
+      "oneOf": [
+        {
+          "type": "object",
+          "required": [
+            "configuration",
+            "type"
+          ],
+          "properties": {
+            "configuration": {
+              "$ref": "#/definitions/RedisCache"
+            },
+            "type": {
+              "type": "string",
+              "enum": [
+                "redis"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "MongodbPersistence": {
+      "type": "object",
+      "required": [
+        "url"
+      ],
+      "properties": {
+        "database": {
+          "description": "Optional database name. It selects which database to be employed for storing data (it overrides the one provided in the connection string when it is set)",
+          "default": null,
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "url": {
+          "description": "MongoDB connection string",
+          "allOf": [
+            {
+              "$ref": "#/definitions/secret"
+            }
+          ]
+        }
+      }
+    },
+    "Persistence": {
+      "oneOf": [
+        {
+          "type": "object",
+          "required": [
+            "configuration",
+            "type"
+          ],
+          "properties": {
+            "configuration": {
+              "$ref": "#/definitions/MongodbPersistence"
+            },
+            "type": {
+              "type": "string",
+              "enum": [
+                "mongodb"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "RedisCache": {
+      "type": "object",
+      "required": [
+        "url"
+      ],
+      "properties": {
+        "url": {
+          "$ref": "#/definitions/secret"
+        }
+      }
+    },
+    "Settings": {
+      "description": "Service specific configurations",
+      "type": "object",
+      "properties": {
+        "apiPrefix": {
+          "description": "Prefix path that it is applied to all the exposed APIs, except from the status ones",
+          "default": "",
+          "type": "string"
+        },
+        "auditUserHeader": {
+          "description": "Header containing the user unique identifier",
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      }
+    },
+    "secret": {
+      "oneOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "object",
+          "required": [
+            "key",
+            "type"
+          ],
+          "properties": {
+            "encoding": {
+              "type": "string",
+              "enum": [
+                "base64"
+              ]
+            },
+            "key": {
+              "type": "string"
+            },
+            "type": {
+              "const": "env"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "required": [
+            "path",
+            "type"
+          ],
+          "properties": {
+            "encoding": {
+              "type": "string",
+              "enum": [
+                "base64"
+              ]
+            },
+            "key": {
+              "type": "string"
+            },
+            "path": {
+              "type": "string"
+            },
+            "type": {
+              "const": "file"
+            }
+          }
+        }
+      ]
+    }
+  }
+}

@@ -1,47 +1,44 @@
-const createRedirects = require("./createRedirects");
-const createEditUrl = require("./createEditUrl");
+const createEditUrl = require("./scripts/createEditUrl");
 
-async function createConfig() {
-  const mdxMermaid = await import('mdx-mermaid')
-
-  return {
-    title: "Mia-Platform Documentation",
-    tagline: "Learn how Mia-Platform can help you to develop your business",
-    url: "https://docs.mia-platform.eu",
-    baseUrl: "/",
-    onBrokenLinks: "throw",
-    onBrokenMarkdownLinks: 'throw',
-    favicon: "img/favicon.ico",
-    organizationName: "Mia-Platform", // Usually your GitHub org/user name.
-    projectName: "Mia-Platform", // Usually your repo name.
-    themes: ["docusaurus-json-schema-plugin"],
-    themeConfig: {
-      prism: {
-        additionalLanguages: ['rego', 'java', 'csharp', 'kotlin', 'nginx', 'docker', 'ini'],
+/** @type {import('@docusaurus/types').Config} */
+const config = {
+  title: "Mia-Platform Documentation",
+  tagline: "Learn how Mia-Platform can help you to develop your business",
+  favicon: "img/favicon.ico",
+  url: "https://docs.mia-platform.eu",
+  baseUrl: "/",
+  organizationName: "Mia-Platform",
+  projectName: "Mia-Platform",
+  onBrokenLinks: "throw",
+  onBrokenMarkdownLinks: 'throw',
+  themes: ["docusaurus-json-schema-plugin"],
+  themeConfig: {
+    prism: {
+      additionalLanguages: ['rego', 'java', 'csharp', 'kotlin', 'nginx', 'docker', 'ini'],
+    },
+    image: "img/documentation-link-preview.png",
+    algolia: {
+      placeholder: "Search for terms, features and more...",
+      apiKey: "602a752c6342891e2488bea38b0d9292",
+      appId: "58NJDUVYVW",
+      indexName: "mia-platform-docs",
+      contextualSearch: true,
+    },
+    colorMode: {
+      // "light" | "dark"
+      defaultMode: "light",
+    },
+    navbar: {
+      hideOnScroll: false,
+      title: "Mia-Platform Docs",
+      logo: {alt: "Mia_Platform logo", src: "img/logo.png"},
+      items: [{
+        type: 'doc',
+        docId: "getting-started/mia-platform-overview",
+        label: "Getting Started",
+        position: "left",
+        activeBaseRegex: "(docs|docs/\\d.x)/(getting_started/monitoring-dashboard|getting_started/performance-test|getting_started|overview|guidelines|tutorial)"
       },
-      image: "img/documentation-link-preview.png",
-      algolia: {
-        placeholder: "Search for terms, features and more...",
-        apiKey: "602a752c6342891e2488bea38b0d9292",
-        appId: "58NJDUVYVW",
-        indexName: "mia-platform-docs",
-        contextualSearch: true,
-      },
-      colorMode: {
-        // "light" | "dark"
-        defaultMode: "light",
-      },
-      navbar: {
-        hideOnScroll: false,
-        title: "Mia-Platform Docs",
-        logo: {alt: "Mia_Platform logo", src: "img/logo.png"},
-        items: [{
-          type: 'doc',
-          docId: "getting-started/mia-platform-overview",
-          label: "Getting Started",
-          position: "left",
-          activeBaseRegex: "(docs|docs/\\d.x)/(getting_started/monitoring-dashboard|getting_started/performance-test|getting_started|overview|guidelines|tutorial)"
-        },
         {
           label: "Products",
           position: "left",
@@ -53,36 +50,36 @@ async function createConfig() {
             label: "Console",
             activeBaseRegex: "(docs|docs/\\d.x)/development_suite"
           },
-          {
-            type: 'doc',
-            docId: "fast_data/what_is_fast_data",
-            label: "Fast Data",
-            activeBaseRegex: "(docs|docs/\\d.x)/fast_data"
-          },
-          {
-            type: 'doc',
-            docId: "data_catalog/overview_data_catalog",
-            label: "Data Catalog",
-            activeBaseRegex: "(docs|docs/\\d.x)/data_catalog"
-          },
-          {
-            type: 'doc',
-            docId: "microfrontend-composer/what-is",
-            label: "Microfrontend Composer",
-            activeBaseRegex: "(docs|docs/\\d.x)/microfrontend-composer"
-          },
-          {
-            type: 'doc',
-            docId: "software-catalog/overview",
-            label: "Software Catalog",
-            activeBaseRegex: "(docs|docs/\\d.x)/software-catalog"
-          },
-          {
-            type: 'doc',
-            docId: "marketplace/overview_marketplace",
-            label: "Runtime components",
-            activeBaseRegex: "(docs|docs/\\d.x)/(marketplace|runtime_suite/|development_suite/api-console/api-design/custom_microservice_get_started|tools|runtime_suite_tools|libraries)"
-          }
+            {
+              type: 'doc',
+              docId: "fast_data/what_is_fast_data",
+              label: "Fast Data",
+              activeBaseRegex: "(docs|docs/\\d.x)/fast_data"
+            },
+            {
+              type: 'doc',
+              docId: "data_catalog/overview_data_catalog",
+              label: "Data Catalog",
+              activeBaseRegex: "(docs|docs/\\d.x)/data_catalog"
+            },
+            {
+              type: 'doc',
+              docId: "microfrontend-composer/what-is",
+              label: "Microfrontend Composer",
+              activeBaseRegex: "(docs|docs/\\d.x)/microfrontend-composer"
+            },
+            {
+              type: 'doc',
+              docId: "software-catalog/overview",
+              label: "Software Catalog",
+              activeBaseRegex: "(docs|docs/\\d.x)/software-catalog"
+            },
+            {
+              type: 'doc',
+              docId: "marketplace/overview_marketplace",
+              label: "Runtime components",
+              activeBaseRegex: "(docs|docs/\\d.x)/(marketplace|runtime_suite/|development_suite/api-console/api-design/custom_microservice_get_started|tools|runtime_suite_tools|libraries)"
+            }
           ]
         },
         {
@@ -115,16 +112,16 @@ async function createConfig() {
           dropdownItemsBefore: [],
           dropdownItemsAfter: []
         }
-        ],
-      },
-      footer: {
-        style: "dark",
-        links: [{
-          title: "Mia-Platform",
-          items: [{
-            label: "How to install",
-            to: "/docs/info/how_to_install",
-          },
+      ],
+    },
+    footer: {
+      style: "dark",
+      links: [{
+        title: "Mia-Platform",
+        items: [{
+          label: "How to install",
+          to: "/docs/info/how_to_install",
+        },
           {
             label: "Bug Policy",
             to: "/docs/info/bug_policy",
@@ -149,34 +146,34 @@ async function createConfig() {
             label: "Audit Process",
             to: "/docs/info/audit_process",
           },
-          ],
-        },
+        ],
+      },
         {
           title: "Company",
           items: [{
             label: "Website",
             href: "https://mia-platform.eu",
           },
-          {
-            label: "About",
-            href: "https://mia-platform.eu/company/about-us/",
-          },
-          {
-            label: "Mission & Vision",
-            href: "https://mia-platform.eu/mission-vision/",
-          },
-          {
-            label: "Blog",
-            href: "https://mia-platform.eu/blog/",
-          },
-          {
-            label: "Events",
-            href: "https://mia-platform.eu/resources/events/",
-          },
-          {
-            label: "Privacy Policy",
-            href: "https://mia-platform.eu/img/Privacy_Policy_Website_EN.pdf",
-          },
+            {
+              label: "About",
+              href: "https://mia-platform.eu/company/about-us/",
+            },
+            {
+              label: "Mission & Vision",
+              href: "https://mia-platform.eu/mission-vision/",
+            },
+            {
+              label: "Blog",
+              href: "https://mia-platform.eu/blog/",
+            },
+            {
+              label: "Events",
+              href: "https://mia-platform.eu/resources/events/",
+            },
+            {
+              label: "Privacy Policy",
+              href: "https://mia-platform.eu/img/Privacy_Policy_Website_EN.pdf",
+            },
           ],
         },
         {
@@ -185,18 +182,18 @@ async function createConfig() {
             label: "Mia-Platform Console",
             href: "https://mia-platform.eu/platform/console/",
           },
-          {
-            label: "Mia-Platform Marketplace",
-            href: "https://mia-platform.eu/platform/mia-platform-marketplace/",
-          },
-          {
-            label: "Mia-Platform Fast Data",
-            href: "https://mia-platform.eu/platform/fast-data/",
-          },
-          {
-            label: "Release Notes",
-            to: "/docs/release-notes/versions",
-          },
+            {
+              label: "Mia-Platform Marketplace",
+              href: "https://mia-platform.eu/platform/mia-platform-marketplace/",
+            },
+            {
+              label: "Mia-Platform Fast Data",
+              href: "https://mia-platform.eu/platform/fast-data/",
+            },
+            {
+              label: "Release Notes",
+              to: "/docs/release-notes/versions",
+            },
           ],
         },
         {
@@ -205,18 +202,18 @@ async function createConfig() {
             label: "Status Page",
             href: "https://status.console.cloud.mia-platform.eu"
           },
-          {
-            label: "Library",
-            href: "https://mia-platform.eu/library/",
-          },
-          {
-            label: "GitHub",
-            href: "https://github.com/mia-platform",
-          },
-          {
-            label: "GitHub Marketplace",
-            href: "https://github.com/mia-platform-marketplace",
-          },
+            {
+              label: "Library",
+              href: "https://mia-platform.eu/library/",
+            },
+            {
+              label: "GitHub",
+              href: "https://github.com/mia-platform",
+            },
+            {
+              label: "GitHub Marketplace",
+              href: "https://github.com/mia-platform-marketplace",
+            },
           ],
         },
         {
@@ -225,114 +222,60 @@ async function createConfig() {
             label: 'Support',
             href: 'https://makeitapp.atlassian.net/servicedesk/customer/portal/21'
           },
-          {
-            label: "Community",
-            to: "https://github.com/mia-platform/community/discussions",
-          },
-          {
-            label: 'FAQ',
-            to: '/docs/getting-started/faqs'
-          },
-          {
-            label: "Getting Started",
-            to: "/docs/getting-started/mia-platform-overview",
-          },
+            {
+              label: "Community",
+              to: "https://github.com/mia-platform/community/discussions",
+            },
+            {
+              label: 'FAQ',
+              to: '/docs/getting-started/faqs'
+            },
+            {
+              label: "Getting Started",
+              to: "/docs/getting-started/mia-platform-overview",
+            },
           ],
         },
-        ],
-        copyright: `Copyright © ${new Date().getFullYear()} Mia srl. All rights reserved. Built with Docusaurus.`,
-      }
-    },
-    presets: [
-      [
-        "@docusaurus/preset-classic",
-        {
-          docs: {
-            remarkPlugins: [mdxMermaid.default, {
-              theme: {
-                light: 'default',
-                dark: 'dark'
-              }
-            }],
-            editUrl: createEditUrl,
-            sidebarPath: require.resolve("./sidebars.js"),
-            lastVersion: "current",
-            versions: {
-              current: {
-                label: "14.x",
-                path: ""
-              },
-              "13.x.x": {
-                label: "13.7",
-                path: "13.x",
-              },
-              "12.x.x": {
-                label: "12.4",
-                path: "12.x",
-              }
-            },
-            async sidebarItemsGenerator({
-              isCategoryIndex: defaultCategoryIndexMatcher,
-              defaultSidebarItemsGenerator,
-              ...args
-            }) {
-              return defaultSidebarItemsGenerator({
-                ...args,
-                isCategoryIndex(params) {
-                  const {
-                    fileName
-                  } = params
-                  return defaultCategoryIndexMatcher(params) || ['overview', '10_overview', '10-overview'].includes(fileName.toLowerCase())
-                },
-              });
-            },
-          },
-          theme: {
-            customCss: require.resolve("./src/css/custom.css"),
-          },
-          sitemap: {
-            changefreq: "weekly",
-            priority: 0.5,
-            ignorePatterns: ['/docs/12.x/**', '/docs/13.x/**'],
-            filename: 'sitemap.xml',
-          }
-        },
       ],
-    ],
-    plugins: [
-      [
-        "@docusaurus/plugin-client-redirects",
-        {
-          fromExtensions: ["html"],
-          createRedirects,
-        },
-      ],
-      [
-        "./src/plugins/gtm",
-        {
-          trackingID: 'GTM-PKKZ6XT',
-        },
-      ],
-      "./src/plugins/image-zoom"
-    ],
-    webpack: {
-      jsLoader: (isServer) => ({
-        loader: require.resolve('swc-loader'),
-        options: {
-          jsc: {
-            parser: {
-              syntax: 'typescript',
-              tsx: true,
-            },
-            target: 'es2017',
-          },
-          module: {
-            type: isServer ? 'commonjs' : 'es6',
-          },
-        },
-      }),
-    },
-  }
-}
+      copyright: `Copyright © ${new Date().getFullYear()} Mia srl. All rights reserved. Built with Docusaurus.`,
+    }
+  },
+  future: {
+    v4: true,
+    experimental_faster: true,
+  },
 
-module.exports = createConfig;
+  i18n: {
+    defaultLocale: 'en',
+    locales: ['en'],
+  },
+
+  presets: [
+    [
+      '@docusaurus/preset-classic',
+      {
+        docs: {
+          sidebarPath: './sidebars.js',
+          editUrl: createEditUrl,
+          lastVersion: "current",
+          versions: {
+            current: {
+              label: "14.x",
+              path: ""
+            },
+            "13.x.x": {
+              label: "13.7",
+              path: "13.x",
+            },
+            "12.x.x": {
+              label: "12.4",
+              path: "12.x",
+            }
+          },
+        }
+      }
+    ],
+  ],
+};
+
+export default config;

@@ -1,0 +1,3836 @@
+{
+  "__inputs": [
+    {
+      "name": "DS_PROMETHEUS",
+      "label": "Prometheus",
+      "description": "",
+      "type": "datasource",
+      "pluginId": "prometheus",
+      "pluginName": "Prometheus"
+    }
+  ],
+  "__elements": {},
+  "__requires": [
+    {
+      "type": "panel",
+      "id": "bargauge",
+      "name": "Bar gauge",
+      "version": ""
+    },
+    {
+      "type": "grafana",
+      "id": "grafana",
+      "name": "Grafana",
+      "version": "9.5.2"
+    },
+    {
+      "type": "datasource",
+      "id": "prometheus",
+      "name": "Prometheus",
+      "version": "1.0.0"
+    },
+    {
+      "type": "panel",
+      "id": "stat",
+      "name": "Stat",
+      "version": ""
+    },
+    {
+      "type": "panel",
+      "id": "timeseries",
+      "name": "Time series",
+      "version": ""
+    }
+  ],
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": {
+          "type": "datasource",
+          "uid": "grafana"
+        },
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "target": {
+          "limit": 100,
+          "matchAny": false,
+          "tags": [],
+          "type": "dashboard"
+        },
+        "type": "dashboard"
+      }
+    ]
+  },
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "graphTooltip": 0,
+  "id": null,
+  "links": [],
+  "liveNow": false,
+  "panels": [
+    {
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 0
+      },
+      "id": 58,
+      "panels": [],
+      "repeat": "resolutionMethod",
+      "repeatDirection": "h",
+      "title": "Single View General stats  [$resolutionMethod]",
+      "type": "row"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_PROMETHEUS}"
+      },
+      "description": "Current number of projection changes that are processed per second to generate Single Views (in the current time-frame)",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "continuous-BlPu"
+          },
+          "decimals": 2,
+          "mappings": [],
+          "max": 80,
+          "min": 0,
+          "noValue": "0",
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 4,
+        "x": 0,
+        "y": 1
+      },
+      "id": 49,
+      "interval": "4m",
+      "links": [],
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "last"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "text": {},
+        "textMode": "auto"
+      },
+      "pluginVersion": "9.5.2",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "sum(rate(svc_pcs_handled_total{k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\", resolutionMethod=~\"$resolutionMethod\"}[$__interval]))",
+          "instant": true,
+          "interval": "",
+          "legendFormat": "",
+          "range": false,
+          "refId": "A"
+        }
+      ],
+      "title": "Current Processing Rate [SV/s]",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_PROMETHEUS}"
+      },
+      "description": "Average number of projection changes that are processed per second to generate Single Views (in the current time-frame)",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "continuous-BlPu"
+          },
+          "decimals": 2,
+          "mappings": [],
+          "max": 80,
+          "min": 0,
+          "noValue": "0",
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 4,
+        "x": 4,
+        "y": 1
+      },
+      "id": 6,
+      "interval": "4m",
+      "links": [],
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "mean"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "text": {},
+        "textMode": "auto"
+      },
+      "pluginVersion": "9.5.2",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "editorMode": "code",
+          "exemplar": true,
+          "expr": "sum(rate(svc_pcs_handled_total{k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\", resolutionMethod=~\"$resolutionMethod\"}[$__interval]))",
+          "instant": false,
+          "interval": "",
+          "legendFormat": "",
+          "refId": "A"
+        }
+      ],
+      "title": "Avg Processing Rate [SV/s]",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_PROMETHEUS}"
+      },
+      "description": "Maximum number of projection changes that are processed per second to generate Single Views (in the current time-frame)",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "continuous-BlPu"
+          },
+          "decimals": 2,
+          "mappings": [],
+          "max": 80,
+          "min": 0,
+          "noValue": "0",
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 4,
+        "x": 8,
+        "y": 1
+      },
+      "id": 8,
+      "interval": "4m",
+      "links": [],
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "max"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "text": {},
+        "textMode": "auto"
+      },
+      "pluginVersion": "9.5.2",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "editorMode": "code",
+          "exemplar": true,
+          "expr": "sum(rate(svc_pcs_handled_total{k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\", resolutionMethod=~\"$resolutionMethod\"}[$__interval]))",
+          "instant": false,
+          "interval": "",
+          "legendFormat": "",
+          "refId": "A"
+        }
+      ],
+      "title": "Max Processing Rate [SV/s]",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_PROMETHEUS}"
+      },
+      "description": "Total amount of Projection Changes processed current time-frame to generate Single Views (approximated)",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "min": 0,
+          "noValue": "0",
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "sum(svc_pcs_handled_total{k8sCluster=~\"$cluster\",namespace=~\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\".*\"})"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "blue",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 4,
+        "x": 12,
+        "y": 1
+      },
+      "id": 10,
+      "interval": "4m",
+      "links": [],
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "delta"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "text": {},
+        "textMode": "auto"
+      },
+      "pluginVersion": "9.5.2",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "editorMode": "code",
+          "exemplar": true,
+          "expr": "sum(svc_pcs_handled_total{k8sCluster=\"$cluster\", namespace=~\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\", resolutionMethod=~\"$resolutionMethod\"})",
+          "instant": false,
+          "interval": "",
+          "legendFormat": "",
+          "refId": "A"
+        }
+      ],
+      "title": "Total # SV processed",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_PROMETHEUS}"
+      },
+      "description": "Total amount of Projection Changes processed current time-frame to generate Single Views (approximated)",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "min": 0,
+          "noValue": "0",
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "blue",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 1
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 4,
+        "x": 16,
+        "y": 1
+      },
+      "id": 11,
+      "interval": "4m",
+      "links": [],
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "delta"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "text": {},
+        "textMode": "auto"
+      },
+      "pluginVersion": "9.5.2",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "editorMode": "code",
+          "exemplar": true,
+          "expr": "sum(svc_error_gen_total{k8sCluster=\"$cluster\", namespace=~\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\", resolutionMethod=~\"$resolutionMethod\", errorType!=\"ERROR_SEND_SVC_EVENT\"})",
+          "instant": false,
+          "interval": "",
+          "legendFormat": "",
+          "refId": "A"
+        }
+      ],
+      "title": "Total # SV Generation Errors",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_PROMETHEUS}"
+      },
+      "description": "Total amount of Projection Changes processed current time-frame to generate Single Views (approximated)",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "min": 0,
+          "noValue": "0",
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "blue",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 1
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 4,
+        "x": 20,
+        "y": 1
+      },
+      "id": 14,
+      "interval": "4m",
+      "links": [],
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "delta"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "text": {},
+        "textMode": "auto"
+      },
+      "pluginVersion": "9.5.2",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "editorMode": "code",
+          "exemplar": true,
+          "expr": "sum(svc_error_gen_total{k8sCluster=\"$cluster\", namespace=~\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\", resolutionMethod=~\"$resolutionMethod\", errorType=\"ERROR_SEND_SVC_EVENT\"})",
+          "instant": false,
+          "interval": "",
+          "legendFormat": "",
+          "refId": "A"
+        }
+      ],
+      "title": "Total # Kafka Production Errors",
+      "type": "stat"
+    },
+    {
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 4
+      },
+      "id": 52,
+      "panels": [],
+      "title": "Strategy Execution Overview",
+      "type": "row"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_PROMETHEUS}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [
+            {
+              "options": {
+                "match": "null+nan",
+                "result": {
+                  "color": "green",
+                  "index": 0,
+                  "text": "0"
+                }
+              },
+              "type": "special"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "orange",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 5
+      },
+      "id": 55,
+      "options": {
+        "displayMode": "gradient",
+        "minVizHeight": 10,
+        "minVizWidth": 0,
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showUnfilled": true,
+        "text": {},
+        "valueMode": "color"
+      },
+      "pluginVersion": "9.5.2",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "editorMode": "code",
+          "exemplar": true,
+          "expr": "round(sum(increase(svtg_strategy_execution_time_bucket{le=\"0.1\", k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range])))",
+          "interval": "",
+          "legendFormat": "< 0.1ms",
+          "range": true,
+          "refId": "A"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "editorMode": "code",
+          "exemplar": true,
+          "expr": "round(sum(increase(strategy_execution_time_bucket{le=\"1\", k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range])) - sum(increase(strategy_execution_time_bucket{le=\"0.1\", k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range])))",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "0.1 - 1 ms",
+          "range": true,
+          "refId": "B"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "editorMode": "code",
+          "exemplar": true,
+          "expr": "round(sum(increase(strategy_execution_time_bucket{le=\"5\", k8sCluster=\"$cluster\", namespace=~\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range])) - sum(increase(strategy_execution_time_bucket{le=\"1\", k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range])))",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "1 - 5 ms",
+          "range": true,
+          "refId": "C"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "editorMode": "code",
+          "exemplar": true,
+          "expr": "round(sum(increase(strategy_execution_time_bucket{le=\"10\", k8sCluster=\"$cluster\", namespace=~\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range])) - sum(increase(strategy_execution_time_bucket{le=\"5\", k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range])))",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "5 - 10ms",
+          "range": true,
+          "refId": "D"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "editorMode": "code",
+          "exemplar": true,
+          "expr": "round(sum(increase(strategy_execution_time_bucket{le=\"50\", k8sCluster=\"$cluster\", namespace=~\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range])) - sum(increase(strategy_execution_time_bucket{le=\"10\", k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range])))",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "10 - 50 ms",
+          "range": true,
+          "refId": "E"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "editorMode": "code",
+          "exemplar": true,
+          "expr": "round(sum(increase(strategy_execution_time_bucket{le=\"100\", k8sCluster=\"$cluster\", namespace=~\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range])) - sum(increase(strategy_execution_time_bucket{le=\"50\", k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range])))",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "50 - 100 ms",
+          "range": true,
+          "refId": "F"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "editorMode": "code",
+          "exemplar": true,
+          "expr": "round(sum(increase(strategy_execution_time_count{k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range]))) - sum(increase(strategy_execution_time_bucket{le=\"100\", k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range]))",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "> 100ms",
+          "range": true,
+          "refId": "H"
+        }
+      ],
+      "title": "Strategy execution time (count)",
+      "type": "bargauge"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_PROMETHEUS}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "decimals": 2,
+          "mappings": [
+            {
+              "options": {
+                "match": "null+nan",
+                "result": {
+                  "color": "green",
+                  "index": 0,
+                  "text": "0"
+                }
+              },
+              "type": "special"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "orange",
+                "value": null
+              }
+            ]
+          },
+          "unit": "percentunit"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 5
+      },
+      "id": 56,
+      "options": {
+        "displayMode": "gradient",
+        "minVizHeight": 10,
+        "minVizWidth": 0,
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showUnfilled": true,
+        "text": {},
+        "valueMode": "color"
+      },
+      "pluginVersion": "9.5.2",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "editorMode": "code",
+          "exemplar": true,
+          "expr": "(sum(increase(svtg_strategy_execution_time_bucket{le=\"0.1\", k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range]))) / sum(increase(svtg_strategy_execution_time_count{k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range]))",
+          "interval": "",
+          "legendFormat": "< 0.1ms",
+          "range": true,
+          "refId": "A"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "editorMode": "code",
+          "exemplar": true,
+          "expr": "(sum(increase(strategy_execution_time_bucket{le=\"1\", k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range])) - sum(increase(strategy_execution_time_bucket{le=\"0.1\", k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range])))  / sum(increase(strategy_execution_time_count{k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range]))",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "0.1 - 1 ms",
+          "range": true,
+          "refId": "B"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "editorMode": "code",
+          "exemplar": true,
+          "expr": "(sum(increase(strategy_execution_time_bucket{le=\"10\", k8sCluster=\"$cluster\", namespace=~\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range])) - sum(increase(strategy_execution_time_bucket{le=\"1\", k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range])))  / sum(increase(strategy_execution_time_count{k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range]))",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "1 - 10 ms",
+          "range": true,
+          "refId": "C"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "editorMode": "code",
+          "exemplar": true,
+          "expr": "(sum(increase(strategy_execution_time_bucket{le=\"100\", k8sCluster=\"$cluster\", namespace=~\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range])) - sum(increase(strategy_execution_time_bucket{le=\"10\", k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range])))  / sum(increase(strategy_execution_time_count{k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range]))",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "10 - 100 ms",
+          "range": true,
+          "refId": "D"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "editorMode": "code",
+          "exemplar": true,
+          "expr": "(sum(increase(strategy_execution_time_count{k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range])) - sum(increase(strategy_execution_time_bucket{le=\"100\", k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range]))) / sum(increase(strategy_execution_time_count{k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range]))",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "> 100ms",
+          "range": true,
+          "refId": "H"
+        }
+      ],
+      "title": "Strategy execution time (%)",
+      "type": "bargauge"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_PROMETHEUS}"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "smooth",
+            "lineStyle": {
+              "fill": "solid"
+            },
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 9,
+        "w": 24,
+        "x": 0,
+        "y": 13
+      },
+      "id": 4,
+      "interval": "4m",
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "9.1.6",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "editorMode": "code",
+          "exemplar": true,
+          "expr": "sum by(service) (rate(svtg_strategy_execution_time_bucket{k8sCluster=\"$cluster\", namespace=~\"$namespace\"}[$__interval])) / sum by(service) (rate(svtg_strategy_execution_time_count{k8sCluster=\"$cluster\", namespace=~\"$namespace\"}[$__interval]))",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "Strategy execution miliseconds in SVTG",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_PROMETHEUS}"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "smooth",
+            "lineStyle": {
+              "fill": "solid"
+            },
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 9,
+        "w": 24,
+        "x": 0,
+        "y": 22
+      },
+      "id": 53,
+      "interval": "4m",
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "9.1.6",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "editorMode": "code",
+          "exemplar": true,
+          "expr": "sum by(projectionName) (rate(svtg_strategy_execution_time_sum{k8sCluster=\"$cluster\", namespace=~\"$namespace\"}[$__interval])) / sum by(projectionName) (rate(svtg_strategy_execution_time_count{k8sCluster=\"$cluster\", namespace=~\"$namespace\"}[$__interval]))",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "Strategy execution miliseconds in SVTG",
+      "type": "timeseries"
+    },
+    {
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 31
+      },
+      "id": 38,
+      "panels": [],
+      "title": "Single Views Overview",
+      "type": "row"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_PROMETHEUS}"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 100,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "smooth",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "normal"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 9,
+        "w": 24,
+        "x": 0,
+        "y": 32
+      },
+      "id": 50,
+      "interval": "4m",
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "8.0.3",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "editorMode": "code",
+          "exemplar": true,
+          "expr": "sum(rate(svc_pcs_handled_total{k8sCluster=\"$cluster\", namespace=~\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\", resolutionMethod=~\"$resolutionMethod\"}[$__interval])) by (portfolioOrigin, svType, resolutionMethod)",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "{{portfolioOrigin}} - {{svType}} - {{resolutionMethod}}",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "SVC Processing Rate",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_PROMETHEUS}"
+      },
+      "description": "Shows the amount of validation errors obtained in the last 2 minutes from generating SV.",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "# Errors / Time",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 100,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "smooth",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "normal"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "short"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 9,
+        "w": 8,
+        "x": 0,
+        "y": 41
+      },
+      "id": 16,
+      "interval": "4m",
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "8.0.3",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "exemplar": true,
+          "expr": "sum(increase(svc_error_gen_total{k8sCluster=\"$cluster\", namespace=~\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\", errorType=\"VALIDATION_ERROR\"}[$__interval])) by (portfolioOrigin)",
+          "interval": "",
+          "legendFormat": "{{portfolioOrigin}}",
+          "refId": "A"
+        }
+      ],
+      "title": "SVC Validation Error",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_PROMETHEUS}"
+      },
+      "description": "Shows the amount of SV not generated in the last 2 minutes due to missing data or other related reasons.",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "# Errors / Time",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 100,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "smooth",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "normal"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "short"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 9,
+        "w": 8,
+        "x": 8,
+        "y": 41
+      },
+      "id": 24,
+      "interval": "4m",
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "8.0.3",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "exemplar": true,
+          "expr": "sum(increase(svc_error_gen_total{k8sCluster=\"$cluster\", namespace=~\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\", errorType=\"NO_SV_GENERATED\"}[$__interval])) by (portfolioOrigin)",
+          "interval": "",
+          "legendFormat": "{{portfolioOrigin}}",
+          "refId": "A"
+        }
+      ],
+      "title": "SVC No Generation Error",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_PROMETHEUS}"
+      },
+      "description": "Shows the amount of error in the last 2 minutes due to a violation of the 1-to-1 relationship between a PC and the generated SV.",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "# Errors / Time",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 100,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "smooth",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "normal"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "short"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 9,
+        "w": 8,
+        "x": 16,
+        "y": 41
+      },
+      "id": 25,
+      "interval": "4m",
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "8.0.3",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "exemplar": true,
+          "expr": "sum(increase(svc_error_gen_total{k8sCluster=\"$cluster\", namespace=~\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\", errorType=\"MORE_SVS_GENERATED_FROM_ONE_PROJECTION_CHANGE\"}[$__interval])) by (portfolioOrigin)",
+          "interval": "",
+          "legendFormat": "{{portfolioOrigin}}",
+          "refId": "A"
+        }
+      ],
+      "title": "SVC single PC to multiple SV Error",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_PROMETHEUS}"
+      },
+      "description": "Shows the amount of max aggregation time error (exceeded allowed computation time) obtained in the last 2 minutes from generating SV.",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "# Errors / Time",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 100,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "smooth",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "normal"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "short"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 9,
+        "w": 8,
+        "x": 0,
+        "y": 50
+      },
+      "id": 27,
+      "interval": "4m",
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "8.0.3",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "exemplar": true,
+          "expr": "sum(increase(svc_error_gen_total{k8sCluster=\"$cluster\", namespace=~\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\", errorType=\"SINGLE_VIEW_AGGREGATION_MAX_TIME\"}[$__interval])) by (portfolioOrigin)",
+          "interval": "",
+          "legendFormat": "{{portfolioOrigin}}",
+          "refId": "A"
+        }
+      ],
+      "title": "SVC Max Aggregation Time Error",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_PROMETHEUS}"
+      },
+      "description": "Shows the amount of unknown errors obtained in the last 2 minutes from generating SV.",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "# Errors / Time",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 100,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "smooth",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "normal"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "short"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 9,
+        "w": 8,
+        "x": 8,
+        "y": 50
+      },
+      "id": 26,
+      "interval": "4m",
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "8.0.3",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "exemplar": true,
+          "expr": "sum(increase(svc_error_gen_total{k8sCluster=\"$cluster\", namespace=~\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\", errorType=\"UNKNOWN_ERROR\"}[$__interval])) by (portfolioOrigin)",
+          "interval": "",
+          "legendFormat": "{{portfolioOrigin}}",
+          "refId": "A"
+        }
+      ],
+      "title": "SVC Unknown Error",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_PROMETHEUS}"
+      },
+      "description": "Shows the amount of errors obtained in the last 2 minutes while producing messages to Kafka.",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "# Errors / Time",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 100,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "smooth",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "normal"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "short"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 9,
+        "w": 8,
+        "x": 16,
+        "y": 50
+      },
+      "id": 21,
+      "interval": "4m",
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "8.0.3",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "exemplar": true,
+          "expr": "sum(increase(svc_error_gen_total{k8sCluster=\"$cluster\", namespace=~\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\", errorType=\"ERROR_SEND_SVC_EVENT\"}[$__interval])) by (portfolioOrigin)",
+          "interval": "",
+          "legendFormat": "{{portfolioOrigin}}",
+          "refId": "A"
+        }
+      ],
+      "title": "SVC Kafka Send Error",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_PROMETHEUS}"
+      },
+      "description": "Shows which kind of operation are performed generating Single Views",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 100,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "smooth",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "normal"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 24,
+        "x": 0,
+        "y": 59
+      },
+      "id": 15,
+      "interval": "4m",
+      "links": [],
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "8.0.3",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "exemplar": true,
+          "expr": "sum(increase(svc_operation_type_total{k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__interval])) by (operationType)",
+          "interval": "",
+          "legendFormat": "{{operationType}}",
+          "refId": "A"
+        }
+      ],
+      "title": "SVC Operation Types",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_PROMETHEUS}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [
+            {
+              "options": {
+                "match": "null+nan",
+                "result": {
+                  "color": "green",
+                  "index": 0,
+                  "text": "0"
+                }
+              },
+              "type": "special"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "orange",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 67
+      },
+      "id": 30,
+      "options": {
+        "displayMode": "gradient",
+        "minVizHeight": 10,
+        "minVizWidth": 0,
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "diff"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showUnfilled": true,
+        "text": {},
+        "valueMode": "color"
+      },
+      "pluginVersion": "9.5.2",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "editorMode": "code",
+          "exemplar": true,
+          "expr": "round(sum(increase(svc_projection_to_single_view_time_bucket{le=\"150\", k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range])))",
+          "interval": "",
+          "legendFormat": "< 150ms",
+          "range": true,
+          "refId": "A"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "editorMode": "code",
+          "exemplar": true,
+          "expr": "round(sum(increase(svc_projection_to_single_view_time_bucket{le=\"2000\", k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range])) - sum(increase(svc_projection_to_single_view_time_bucket{le=\"150\", k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range])))",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "< 2s",
+          "range": true,
+          "refId": "B"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "editorMode": "code",
+          "exemplar": true,
+          "expr": "round(sum(increase(svc_projection_to_single_view_time_bucket{le=\"5000\", k8sCluster=\"$cluster\", namespace=~\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range])) - sum(increase(svc_projection_to_single_view_time_bucket{le=\"2000\", k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range])))",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "< 5s",
+          "range": true,
+          "refId": "C"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "editorMode": "code",
+          "exemplar": true,
+          "expr": "round(sum(increase(svc_projection_to_single_view_time_bucket{le=\"15000\", k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range])) - sum(increase(svc_projection_to_single_view_time_bucket{le=\"5000\", k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range])))",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "< 15s",
+          "range": true,
+          "refId": "D"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "editorMode": "code",
+          "exemplar": true,
+          "expr": "round(sum(increase(svc_projection_to_single_view_time_bucket{le=\"30000\", k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range])) - sum(increase(svc_projection_to_single_view_time_bucket{le=\"15000\", k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range])))",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "< 30s",
+          "range": true,
+          "refId": "E"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "editorMode": "code",
+          "exemplar": true,
+          "expr": "round(sum(increase(svc_projection_to_single_view_time_bucket{le=\"60000\", k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range])) - sum(increase(svc_projection_to_single_view_time_bucket{le=\"30000\", k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range])))",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "< 1m",
+          "range": true,
+          "refId": "F"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "editorMode": "code",
+          "exemplar": true,
+          "expr": "round(sum(increase(svc_projection_to_single_view_time_bucket{le=\"120000\", k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range])) - sum(increase(svc_projection_to_single_view_time_bucket{le=\"60000\", k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range])))",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "< 2m",
+          "range": true,
+          "refId": "G"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "editorMode": "code",
+          "exemplar": true,
+          "expr": "round(sum(increase(svc_projection_to_single_view_time_count{k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range])) - sum(increase(svc_projection_to_single_view_time_bucket{le=\"120000\", k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range])))",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "> 2m",
+          "range": true,
+          "refId": "H"
+        }
+      ],
+      "title": "Projection To Single View Time (count)",
+      "type": "bargauge"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_PROMETHEUS}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "decimals": 2,
+          "mappings": [
+            {
+              "options": {
+                "match": "null+nan",
+                "result": {
+                  "color": "green",
+                  "index": 0,
+                  "text": "0"
+                }
+              },
+              "type": "special"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "orange",
+                "value": null
+              }
+            ]
+          },
+          "unit": "percentunit"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 67
+      },
+      "id": 32,
+      "options": {
+        "displayMode": "gradient",
+        "minVizHeight": 10,
+        "minVizWidth": 0,
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showUnfilled": true,
+        "text": {},
+        "valueMode": "color"
+      },
+      "pluginVersion": "9.5.2",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "editorMode": "code",
+          "exemplar": true,
+          "expr": "(sum(increase(svc_projection_to_single_view_time_bucket{le=\"150\", k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range])))  / sum(increase(svc_projection_to_single_view_time_count{k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range]))",
+          "interval": "",
+          "legendFormat": "< 150ms",
+          "range": true,
+          "refId": "A"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "editorMode": "code",
+          "exemplar": true,
+          "expr": "(sum(increase(svc_projection_to_single_view_time_bucket{le=\"2000\", k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range])) - sum(increase(svc_projection_to_single_view_time_bucket{le=\"150\", k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range])))  / sum(increase(svc_projection_to_single_view_time_count{k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range]))",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "< 2s",
+          "range": true,
+          "refId": "B"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "editorMode": "code",
+          "exemplar": true,
+          "expr": "(sum(increase(svc_projection_to_single_view_time_bucket{le=\"5000\", k8sCluster=\"$cluster\", namespace=~\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range])) - sum(increase(svc_projection_to_single_view_time_bucket{le=\"2000\", k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range])))  / sum(increase(svc_projection_to_single_view_time_count{k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range]))",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "< 5s",
+          "range": true,
+          "refId": "C"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "editorMode": "code",
+          "exemplar": true,
+          "expr": "(sum(increase(svc_projection_to_single_view_time_bucket{le=\"15000\", k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range])) - sum(increase(svc_projection_to_single_view_time_bucket{le=\"5000\", k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range]))) / sum(increase(svc_projection_to_single_view_time_count{k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range]))",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "< 15s",
+          "range": true,
+          "refId": "D"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "editorMode": "code",
+          "exemplar": true,
+          "expr": "(sum(increase(svc_projection_to_single_view_time_bucket{le=\"30000\", k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range])) - sum(increase(svc_projection_to_single_view_time_bucket{le=\"15000\", k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range])))  / sum(increase(svc_projection_to_single_view_time_count{k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range]))",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "< 30s",
+          "range": true,
+          "refId": "E"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "editorMode": "code",
+          "exemplar": true,
+          "expr": "(sum(increase(svc_projection_to_single_view_time_bucket{le=\"60000\", k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range])) - sum(increase(svc_projection_to_single_view_time_bucket{le=\"30000\", k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range]))) /  sum(increase(svc_projection_to_single_view_time_count{k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range]))",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "< 1m",
+          "range": true,
+          "refId": "F"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "editorMode": "code",
+          "exemplar": true,
+          "expr": "(sum(increase(svc_projection_to_single_view_time_bucket{le=\"120000\", k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range])) - sum(increase(svc_projection_to_single_view_time_bucket{le=\"60000\", k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range])))  / sum(increase(svc_projection_to_single_view_time_count{k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range]))",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "< 2m",
+          "range": true,
+          "refId": "G"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "editorMode": "code",
+          "exemplar": true,
+          "expr": "(sum(increase(svc_projection_to_single_view_time_count{k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range])) - sum(increase(svc_projection_to_single_view_time_bucket{le=\"120000\", k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range]))) / sum(increase(svc_projection_to_single_view_time_bucket{k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range]))",
+          "hide": false,
+          "interval": "",
+          "intervalFactor": 10,
+          "legendFormat": "> 2m",
+          "range": true,
+          "refId": "H"
+        }
+      ],
+      "title": "Projection To Single View Time (%)",
+      "type": "bargauge"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_PROMETHEUS}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [
+            {
+              "options": {
+                "match": "null+nan",
+                "result": {
+                  "color": "green",
+                  "index": 0,
+                  "text": "0"
+                }
+              },
+              "type": "special"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "orange",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 75
+      },
+      "id": 31,
+      "options": {
+        "displayMode": "gradient",
+        "minVizHeight": 10,
+        "minVizWidth": 0,
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showUnfilled": true,
+        "text": {},
+        "valueMode": "color"
+      },
+      "pluginVersion": "9.5.2",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "exemplar": true,
+          "expr": "round(sum(increase(svc_pc_total_handle_time_bucket{le=\"150\", k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range])))",
+          "interval": "",
+          "legendFormat": "< 150ms",
+          "refId": "A"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "exemplar": true,
+          "expr": "round(sum(increase(svc_pc_total_handle_time_bucket{le=\"2000\", k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range])) - sum(increase(svc_pc_total_handle_time_bucket{le=\"150\", k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range])))",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "< 2s",
+          "refId": "B"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "exemplar": true,
+          "expr": "round(sum(increase(svc_pc_total_handle_time_bucket{le=\"5000\", k8sCluster=\"$cluster\", namespace=~\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range])) - sum(increase(svc_pc_total_handle_time_bucket{le=\"2000\", k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range])))",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "< 5s",
+          "refId": "C"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "exemplar": true,
+          "expr": "round(sum(increase(svc_pc_total_handle_time_bucket{le=\"15000\", k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range])) - sum(increase(svc_pc_total_handle_time_bucket{le=\"5000\", k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range])))",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "< 15s",
+          "refId": "D"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "exemplar": true,
+          "expr": "round(sum(increase(svc_pc_total_handle_time_bucket{le=\"30000\", k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range])) - sum(increase(svc_pc_total_handle_time_bucket{le=\"15000\", k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range])))",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "< 30s",
+          "refId": "E"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "exemplar": true,
+          "expr": "round(sum(increase(svc_pc_total_handle_time_bucket{le=\"60000\", k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range])) - sum(increase(svc_pc_total_handle_time_bucket{le=\"30000\", k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range])))",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "< 1m",
+          "refId": "F"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "exemplar": true,
+          "expr": "round(sum(increase(svc_pc_total_handle_time_bucket{le=\"120000\", k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range])) - sum(increase(svc_pc_total_handle_time_bucket{le=\"60000\", k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range])))",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "< 2m",
+          "refId": "G"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "exemplar": true,
+          "expr": "round(sum(increase(svc_pc_total_handle_time_count{k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range])) - sum(increase(svc_pc_total_handle_time_bucket{le=\"120000\", k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range])))",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "> 2m",
+          "refId": "H"
+        }
+      ],
+      "title": "PC To Single View Time (count)",
+      "type": "bargauge"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_PROMETHEUS}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "decimals": 2,
+          "mappings": [
+            {
+              "options": {
+                "match": "null+nan",
+                "result": {
+                  "color": "green",
+                  "index": 0,
+                  "text": "0"
+                }
+              },
+              "type": "special"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "orange",
+                "value": null
+              }
+            ]
+          },
+          "unit": "percentunit"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 75
+      },
+      "id": 33,
+      "options": {
+        "displayMode": "gradient",
+        "minVizHeight": 10,
+        "minVizWidth": 0,
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showUnfilled": true,
+        "text": {},
+        "valueMode": "color"
+      },
+      "pluginVersion": "9.5.2",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "exemplar": true,
+          "expr": "(sum(increase(svc_pc_total_handle_time_bucket{le=\"150\", k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range]))) / sum(increase(svc_pc_total_handle_time_count{k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range]))",
+          "interval": "",
+          "legendFormat": "< 150ms",
+          "refId": "A"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "exemplar": true,
+          "expr": "(sum(increase(svc_pc_total_handle_time_bucket{le=\"2000\", k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range])) - sum(increase(svc_pc_total_handle_time_bucket{le=\"150\", k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range])))  / sum(increase(svc_pc_total_handle_time_count{k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range]))",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "< 2s",
+          "refId": "B"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "exemplar": true,
+          "expr": "(sum(increase(svc_pc_total_handle_time_bucket{le=\"5000\", k8sCluster=\"$cluster\", namespace=~\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range])) - sum(increase(svc_pc_total_handle_time_bucket{le=\"2000\", k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range])))  / sum(increase(svc_pc_total_handle_time_count{k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range]))",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "< 5s",
+          "refId": "C"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "exemplar": true,
+          "expr": "(sum(increase(svc_pc_total_handle_time_bucket{le=\"15000\", k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range])) - sum(increase(svc_pc_total_handle_time_bucket{le=\"5000\", k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range])))  / sum(increase(svc_pc_total_handle_time_count{k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range]))",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "< 15s",
+          "refId": "D"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "exemplar": true,
+          "expr": "(sum(increase(svc_pc_total_handle_time_bucket{le=\"30000\", k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range])) - sum(increase(svc_pc_total_handle_time_bucket{le=\"15000\", k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range])))  / sum(increase(svc_pc_total_handle_time_count{k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range]))",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "< 30s",
+          "refId": "E"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "exemplar": true,
+          "expr": "(sum(increase(svc_pc_total_handle_time_bucket{le=\"60000\", k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range])) - sum(increase(svc_pc_total_handle_time_bucket{le=\"30000\", k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range])))  / sum(increase(svc_pc_total_handle_time_count{k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range]))",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "< 1m",
+          "refId": "F"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "exemplar": true,
+          "expr": "(sum(increase(svc_pc_total_handle_time_bucket{le=\"120000\", k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range])) - sum(increase(svc_pc_total_handle_time_bucket{le=\"60000\", k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range]))) / sum(increase(svc_pc_total_handle_time_count{k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range]))",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "< 2m",
+          "refId": "G"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "exemplar": true,
+          "expr": "(sum(increase(svc_pc_total_handle_time_count{k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range])) - sum(increase(svc_pc_total_handle_time_bucket{le=\"120000\", k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range]))) / sum(increase(svc_pc_total_handle_time_count{k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range]))",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "> 2m",
+          "refId": "H"
+        }
+      ],
+      "title": "PC To Single View Time (%)",
+      "type": "bargauge"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_PROMETHEUS}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [
+            {
+              "options": {
+                "match": "null+nan",
+                "result": {
+                  "color": "green",
+                  "index": 0,
+                  "text": "0"
+                }
+              },
+              "type": "special"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "orange",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 83
+      },
+      "id": 29,
+      "options": {
+        "displayMode": "gradient",
+        "minVizHeight": 10,
+        "minVizWidth": 0,
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showUnfilled": true,
+        "text": {},
+        "valueMode": "color"
+      },
+      "pluginVersion": "9.5.2",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "exemplar": true,
+          "expr": "round(sum(increase(svc_creation_time_bucket{le=\"150\", k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range])))",
+          "interval": "",
+          "legendFormat": "creation time below 150ms",
+          "refId": "A"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "exemplar": true,
+          "expr": "round(sum(increase(svc_creation_time_bucket{le=\"2000\", k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range])) - sum(increase(svc_creation_time_bucket{le=\"150\", k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range])))",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "creation time between 150ms and 2s",
+          "refId": "B"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "exemplar": true,
+          "expr": "round(sum(increase(svc_creation_time_bucket{le=\"5000\", k8sCluster=\"$cluster\", namespace=~\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range])) - sum(increase(svc_creation_time_bucket{le=\"2000\", k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range])))",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "creation time between 2s and 5s",
+          "refId": "C"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "exemplar": true,
+          "expr": "round(sum(increase(svc_creation_time_count{k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range])) - sum(increase(svc_creation_time_bucket{le=\"5000\", k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range])))",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "creation time above 5s",
+          "refId": "D"
+        }
+      ],
+      "title": "SV Creation Time (count)",
+      "type": "bargauge"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_PROMETHEUS}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "decimals": 2,
+          "mappings": [
+            {
+              "options": {
+                "match": "null+nan",
+                "result": {
+                  "color": "green",
+                  "index": 0,
+                  "text": "0"
+                }
+              },
+              "type": "special"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "orange",
+                "value": null
+              }
+            ]
+          },
+          "unit": "percentunit"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 83
+      },
+      "id": 34,
+      "options": {
+        "displayMode": "gradient",
+        "minVizHeight": 10,
+        "minVizWidth": 0,
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showUnfilled": true,
+        "text": {},
+        "valueMode": "color"
+      },
+      "pluginVersion": "9.5.2",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "exemplar": true,
+          "expr": "(sum(increase(svc_creation_time_bucket{le=\"150\", k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range]))) / sum(increase(svc_creation_time_count{k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range]))",
+          "interval": "",
+          "legendFormat": "creation time below 150ms",
+          "refId": "A"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "exemplar": true,
+          "expr": "(sum(increase(svc_creation_time_bucket{le=\"2000\", k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range])) - sum(increase(svc_creation_time_bucket{le=\"150\", k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range]))) / sum(increase(svc_creation_time_count{k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range]))",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "creation time between 150ms and 2s",
+          "refId": "B"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "exemplar": true,
+          "expr": "(sum(increase(svc_creation_time_bucket{le=\"5000\", k8sCluster=\"$cluster\", namespace=~\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range])) - sum(increase(svc_creation_time_bucket{le=\"2000\", k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range]))) / sum(increase(svc_creation_time_count{k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range]))",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "creation time between 2s and 5s",
+          "refId": "C"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "exemplar": true,
+          "expr": "(sum(increase(svc_creation_time_count{k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range])) - sum(increase(svc_creation_time_bucket{le=\"5000\", k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range]))) / sum(increase(svc_creation_time_count{k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range]))",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "creation time above 5s",
+          "refId": "D"
+        }
+      ],
+      "title": "SV Creation Time (%)",
+      "type": "bargauge"
+    },
+    {
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 91
+      },
+      "id": 40,
+      "panels": [],
+      "title": "Fast Data Resources Usage",
+      "type": "row"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_PROMETHEUS}"
+      },
+      "description": "Shows how many CPUs (from K8s nodes) Real-Time Updaters services are currently consuming.",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "axisSoftMin": 0,
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 100,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "smooth",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "normal"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "decimals": 3,
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 10,
+        "w": 8,
+        "x": 0,
+        "y": 92
+      },
+      "id": 36,
+      "interval": "1m",
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": false
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "none"
+        }
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "editorMode": "code",
+          "expr": "sum(node_namespace_pod_container:container_cpu_usage_seconds_total:sum_irate{k8sCluster=\"$cluster\", namespace=\"$namespace\", pod=~\".+realtime-updater.+\"}) by (pod)",
+          "hide": false,
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "RTU CPU Usage",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_PROMETHEUS}"
+      },
+      "description": "Shows how many CPUs (from K8s nodes) Single View Triegger Generator services are currently consuming.",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 100,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "smooth",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "normal"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 10,
+        "w": 8,
+        "x": 8,
+        "y": 92
+      },
+      "id": 42,
+      "interval": "1m",
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "9.1.6",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "editorMode": "code",
+          "expr": "sum(node_namespace_pod_container:container_cpu_usage_seconds_total:sum_irate{k8sCluster=\"$cluster\", namespace=\"$namespace\", pod=~\".*single-view-trigger-generator.+\"}) by (pod)",
+          "hide": false,
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "SVTG CPU Usage",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_PROMETHEUS}"
+      },
+      "description": "Shows how many CPUs (from K8s nodes) Single View Creator services are currently consuming.",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "axisSoftMin": 0,
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 100,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "smooth",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "normal"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "decimals": 3,
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 10,
+        "w": 8,
+        "x": 16,
+        "y": 92
+      },
+      "id": 44,
+      "interval": "1m",
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": false
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "none"
+        }
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "editorMode": "code",
+          "expr": "sum(node_namespace_pod_container:container_cpu_usage_seconds_total:sum_irate{k8sCluster=\"$cluster\", namespace=\"$namespace\", pod=~\".*single-view-creator.+\"}) by (pod)",
+          "hide": false,
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "SVC CPU Usage",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_PROMETHEUS}"
+      },
+      "description": "Shows how much memory (from K8s nodes) Real-Time Updaters services are currently consuming.",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "axisSoftMin": 0,
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 100,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "smooth",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "normal"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "decbytes"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 10,
+        "w": 8,
+        "x": 0,
+        "y": 102
+      },
+      "id": 41,
+      "interval": "1m",
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": false
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "none"
+        }
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "editorMode": "code",
+          "expr": "sum(container_memory_working_set_bytes{job=\"kubelet\", k8sCluster=\"$cluster\", namespace=\"$namespace\", container!=\"\", image!=\"\", pod=~\".+realtime-updater.+\"}) by (pod)",
+          "hide": false,
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "RTU Memory Usage",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_PROMETHEUS}"
+      },
+      "description": "Shows how much memory (from K8s nodes) Single View Trigger Generator services are currently consuming.",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 100,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "smooth",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "normal"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 10,
+        "w": 8,
+        "x": 8,
+        "y": 102
+      },
+      "id": 43,
+      "interval": "1m",
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "none"
+        }
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "editorMode": "code",
+          "expr": "sum(container_memory_working_set_bytes{job=\"kubelet\", k8sCluster=\"$cluster\", namespace=\"$namespace\", container!=\"\", image!=\"\", pod=~\".*single-view-trigger-generator.+\"}) by (pod) / 1024 / 1024",
+          "hide": false,
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "SVTG Memory Usage in MB",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_PROMETHEUS}"
+      },
+      "description": "Shows how much memory (from K8s nodes) Single View Creator services are currently consuming.",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "axisSoftMin": 0,
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 100,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "smooth",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "normal"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "decbytes"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 10,
+        "w": 8,
+        "x": 16,
+        "y": 102
+      },
+      "id": 45,
+      "interval": "1m",
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": false
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "none"
+        }
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "editorMode": "code",
+          "expr": "sum(container_memory_working_set_bytes{job=\"kubelet\", k8sCluster=\"$cluster\", namespace=\"$namespace\", container!=\"\", image!=\"\", pod=~\".*single-view-creator.+\"}) by (pod)",
+          "hide": false,
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "SVC Memory Usage",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_PROMETHEUS}"
+      },
+      "description": "Shows how many pods of Real-Time Updater services are currently deployed in the namespace.",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "#28b7e0",
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 100,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "smooth",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "normal"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "blue",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "none"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 10,
+        "w": 8,
+        "x": 0,
+        "y": 112
+      },
+      "id": 46,
+      "interval": "1m",
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": false
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "none"
+        }
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "editorMode": "code",
+          "expr": "sum(kube_deployment_status_replicas{k8sCluster=\"$cluster\", namespace=\"$namespace\", deployment=~\".*realtime-updater.*\"}) by (deployment)",
+          "hide": false,
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "RTU Replicas",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_PROMETHEUS}"
+      },
+      "description": "Shows how many pods of Single View Trigger Generator services are currently deployed in the namespace.",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 100,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "smooth",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "normal"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "noValue": "0",
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 10,
+        "w": 8,
+        "x": 8,
+        "y": 112
+      },
+      "id": 47,
+      "interval": "1m",
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "9.2.3",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "editorMode": "code",
+          "expr": "sum(kube_deployment_status_replicas{k8sCluster=\"$cluster\", namespace=\"$namespace\", deployment=~\".*single-view-trigger-generator.*\"}) by (deployment)",
+          "hide": false,
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "SVTG Replicas",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_PROMETHEUS}"
+      },
+      "description": "Shows how many pods of Single View Creator services are currently deployed in the namespace.",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "#28b7e0",
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 100,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "smooth",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "normal"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "none"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 10,
+        "w": 8,
+        "x": 16,
+        "y": 112
+      },
+      "id": 48,
+      "interval": "1m",
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": false
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "none"
+        }
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "editorMode": "code",
+          "expr": "sum(kube_deployment_status_replicas{k8sCluster=\"$cluster\", namespace=\"$namespace\", deployment=~\".*single-view-creator.*\"}) by (deployment)",
+          "hide": false,
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "SVC Replicas",
+      "type": "timeseries"
+    }
+  ],
+  "refresh": "1m",
+  "schemaVersion": 38,
+  "style": "dark",
+  "tags": [
+    "fast-data"
+  ],
+  "templating": {
+    "list": [
+      {
+        "current": {
+          "selected": false,
+          "text": "Prometheus",
+          "value": "Prometheus"
+        },
+        "hide": 0,
+        "includeAll": false,
+        "multi": false,
+        "name": "datasource",
+        "options": [],
+        "query": "prometheus",
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "type": "datasource"
+      },
+      {
+        "current": {},
+        "datasource": {
+          "type": "prometheus",
+          "uid": "${DS_PROMETHEUS}"
+        },
+        "definition": "label_values(kube_pod_info, k8sCluster)",
+        "hide": 0,
+        "includeAll": false,
+        "multi": false,
+        "name": "cluster",
+        "options": [],
+        "query": {
+          "query": "label_values(kube_pod_info, k8sCluster)",
+          "refId": "StandardVariableQuery"
+        },
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "tagValuesQuery": "",
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      },
+      {
+        "current": {},
+        "datasource": {
+          "type": "prometheus",
+          "uid": "${DS_PROMETHEUS}"
+        },
+        "definition": "label_values(kube_pod_info{k8sCluster=\"$cluster\"}, namespace)",
+        "hide": 0,
+        "includeAll": false,
+        "multi": false,
+        "name": "namespace",
+        "options": [],
+        "query": {
+          "query": "label_values(kube_pod_info{k8sCluster=\"$cluster\"}, namespace)",
+          "refId": "StandardVariableQuery"
+        },
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "type": "query"
+      },
+      {
+        "allValue": ".*",
+        "current": {},
+        "datasource": {
+          "type": "prometheus",
+          "uid": "${DS_PROMETHEUS}"
+        },
+        "definition": "label_values(svc_pcs_handled_total{k8sCluster=\"$cluster\",namespace=\"$namespace\"}, portfolioOrigin)",
+        "hide": 0,
+        "includeAll": true,
+        "multi": true,
+        "name": "portfolioOrigin",
+        "options": [],
+        "query": {
+          "query": "label_values(svc_pcs_handled_total{k8sCluster=\"$cluster\",namespace=\"$namespace\"}, portfolioOrigin)",
+          "refId": "StandardVariableQuery"
+        },
+        "refresh": 2,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "type": "query"
+      },
+      {
+        "allValue": ".*",
+        "current": {},
+        "datasource": {
+          "type": "prometheus",
+          "uid": "${DS_PROMETHEUS}"
+        },
+        "definition": "label_values(svc_pcs_handled_total{k8sCluster=\"$cluster\",namespace=\"$namespace\"}, svType)",
+        "hide": 0,
+        "includeAll": true,
+        "multi": false,
+        "name": "svType",
+        "options": [],
+        "query": {
+          "query": "label_values(svc_pcs_handled_total{k8sCluster=\"$cluster\",namespace=\"$namespace\"}, svType)",
+          "refId": "StandardVariableQuery"
+        },
+        "refresh": 2,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "type": "query"
+      },
+      {
+        "allValue": ".*svc.*",
+        "current": {},
+        "datasource": {
+          "type": "prometheus",
+          "uid": "${DS_PROMETHEUS}"
+        },
+        "definition": "label_values(kube_deployment_status_replicas{k8sCluster=\"$cluster\", namespace=\"$namespace\"}, deployment)",
+        "hide": 2,
+        "includeAll": true,
+        "multi": false,
+        "name": "svcDeployment",
+        "options": [],
+        "query": {
+          "query": "label_values(kube_deployment_status_replicas{k8sCluster=\"$cluster\", namespace=\"$namespace\"}, deployment)",
+          "refId": "StandardVariableQuery"
+        },
+        "refresh": 1,
+        "regex": "/.*svc.*/",
+        "skipUrlSync": false,
+        "sort": 0,
+        "type": "query"
+      },
+      {
+        "current": {
+          "selected": false,
+          "text": ".+realtime-updater.+",
+          "value": ".+realtime-updater.+"
+        },
+        "hide": 2,
+        "includeAll": false,
+        "multi": false,
+        "name": "fastDataServices",
+        "options": [
+          {
+            "selected": true,
+            "text": ".+realtime-updater.+",
+            "value": ".+realtime-updater.+"
+          },
+          {
+            "selected": false,
+            "text": "single-view-trigger.+",
+            "value": "single-view-trigger.+"
+          },
+          {
+            "selected": false,
+            "text": "single-view-creator.+",
+            "value": "single-view-creator.+"
+          }
+        ],
+        "query": ".+realtime-updater.+,single-view-trigger.+,single-view-creator.+",
+        "skipUrlSync": false,
+        "type": "custom"
+      },
+      {
+        "allValue": ".*",
+        "current": {},
+        "datasource": {
+          "type": "prometheus",
+          "uid": "${DS_PROMETHEUS}"
+        },
+        "definition": "label_values(svc_pcs_handled_total{k8sCluster=\"$cluster\",namespace=\"$namespace\"}, resolutionMethod)",
+        "hide": 0,
+        "includeAll": true,
+        "multi": true,
+        "name": "resolutionMethod",
+        "options": [],
+        "query": {
+          "query": "label_values(svc_pcs_handled_total{k8sCluster=\"$cluster\",namespace=\"$namespace\"}, resolutionMethod)",
+          "refId": "StandardVariableQuery"
+        },
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "type": "query"
+      }
+    ]
+  },
+  "time": {
+    "from": "now-1h",
+    "to": "now"
+  },
+  "timepicker": {},
+  "timezone": "browser",
+  "title": "Fast Data - Single Views",
+  "uid": "9a041f86-6f82-44c0-8416-80e377985015",
+  "version": 2,
+  "weekStart": ""
+}

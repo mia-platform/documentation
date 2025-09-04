@@ -1,0 +1,158 @@
+---
+id: multiple-projects
+title: Centralize the authentication in a multi-projects architecture
+sidebar_label: Multiple projects
+---
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+
+## Definition
+
+In this scenario, we present the case where your architecture is composed by multiple Mia-Platform projects. Of course, you could think to treat each project as an independent entity and replicate, in each project, one of the scenarios presented so far.
+
+For example, you could replicate [Scenario 2](/console/tutorials/configure-marketplace-components/auth-architecture/external-idp.md) as in the following schema:
+![Scenario 4](./img/auth-scenario4.png)
+
+However, this replication brings some problems:
+- The authentication service is replicated in every project. This is a waste of resources and it can also lead to problems when the service needs to be updated for some projects
+- In such architecture, it is likely that a service of one project needs to call services of other projects using intra-cluster communication. In this case, the token resolution call would be needlessly repeated.  
+- You may want to centralize the Ingresses management in a single namespace of your cluster. In this way it is easier to verify which are all the FQDNs connected to your Kubernetes clusters.
+
+Therefore, we recommend to introduce in your architecture an `Edge Gateway` project that will be the entry point of all the incoming requests to your company and where you will centralize the token resolution flow.
+
+![Scenario4a](./img/auth-scenario4a.png)
+
+The picture above illustrates the architecture of a company composed by two projects and an `Edge Gateway` project.
+
+The `Edge Gateway` contains the following microservices:
+1. `API Gateway`: Mia-Platform plugin available in [Nginx](/runtime_suite/api-gateway/10_overview.md) or [Envoy](/runtime_suite/envoy-api-gateway/overview.md)
+2. [`Authorization Service`](/runtime_suite/authorization-service/10_overview.md): Mia-Platform plugin
+3. `Authentication Service`: a custom microservice that you need to implement. It must integrate with your external IdP to resolve the user token.
+
+Each project contains the following microservices:
+1. `API Gateway`: Mia-Platform plugin available in [Nginx](/runtime_suite/api-gateway/10_overview.md) or [Envoy](/runtime_suite/envoy-api-gateway/overview.md)
+2. [`Authorization Service`](/runtime_suite/authorization-service/10_overview.md): Mia-Platform plugin
+3. The microservice connected to the endpoint
+
+The picture above illustrates the steps of the auth flow:  
+
+1. The client, be it a web application or backend software, need to implement the authentication flow required by the IdP to obtain a valid token. With this token, the client will be able to call the endpoints of your project.
+2. The client calls the endpoint of your project, including the valid token in the request. Usually this token is placed in the `Authorization` header but it can be placed in other headers or cookies.
+3. The `API Gateway` of the `Edge Gateway` project calls the `Authorization Service` which, in turn, calls the `Authentication Manager` to resolve the token on the external IdP  
+   
+   :::note
+   We suggest to avoid adding the user group expressions in the `Authorization Service` of the Edge Gateway but configuring them in the `Authorization Service` of the project.  
+   In this way the project teams are autonomous in configuring the right group expression to secure their APIs.
+   :::
+
+5. The `Authentication Manager` resolves the token contacting the external IdP and returns the user payload to the `Authorization Service`
+6. The `API Gateway` of the `Edge Gateway` forwards the HTTP request to tha `API Gateway` of right project. The request is decorated with the following HTTP header:
+  
+  | Header              | Description                                                                                |
+  | --------------------| ------------------------------------------------------------------------------------------ |
+  | `Miausergroups`     | comma separated list of the groups the user belongs to                                     |
+  | `Miauserid`         | the ID of the user                                                                         |
+  | `Miauserproperties` | stringified JSON object containing the user payload returned by the Authentication Service |
+7. The `Authorization Service` of the project verifies if the user who made the request is authorized to access to the requested endpoint. To do so, the `Authorization Service` will trust the HTTP headers above.
+8. If the verification performed by the `Authentication Service` is successful, then the `API Gateway` forwards the original HTTP request the right microservice of the project.
+
+## Tutorial steps
+
+In the following tutorial we will specify all the steps to replicate the scenario depicted in the image above, i.e. an architecture with:
+- 2 projects, `Project 1` and `Project 2`
+- an `Edge Gateway`
+- an external IdP
+
+### Edge Gateway configuration
+
+1. Create the `Edge Gateway` project following the [project creation documentation](/console/project-configuration/create-a-project.mdx)
+2. Configure one [cross-project proxy](/development_suite/api-console/api-design/proxy.md#type-cross-projects) for each project
+3. Create one endpoint for each cross-project proxy
+
+  :::note
+  When choosing the name of the endpoints consider that it will be the base path that will included in all the requests directed to a microservice of the project.  
+  A possible naming convention could be `<HOST>/<project-name>/<endpoint>`
+  :::
+
+4. Configure the `API Gateway` to forward the HTTP headers resulting from the authentication flow (`Miauserid`, `Miausergroups`, `Miauserproperties`) to the projects' `API Gateway`
+    - Follow [this guide](/development_suite/api-console/advanced-section/api-gateway/how-to.md#how-to-manage-authorization-in-a-multi-gateway-architecture) if you have Nginx API Gateway
+    - Follow [this guide](/development_suite/api-console/advanced-section/api-gateway-envoy/jwt-authn.md) if you have Envoy API Gateway
+5. Create an authentication manager as described in [Scenario 2](/console/tutorials/configure-marketplace-components/auth-architecture/external-idp.md)
+
+### Projects Configuration
+
+:::note
+We suppose that you have already created an API Gateway in your project and you already have some endpoints you want to securely expose through the Edge Gateway.
+:::
+
+1. Create the [`Authorization Service`](/runtime_suite/authorization-service/10_overview.md) plugin from Marketplace
+    - This step can be done as described in [Scenario 2](/console/tutorials/configure-marketplace-components/auth-architecture/external-idp.md)
+    - The only important difference is that the `Authorization Service` must be configured in ["Trust Mia Headers" mode](/runtime_suite/authorization-service/30_usage.md#trust-mia-platform-user-headers) by setting the `TRUST_MIA_USER_HEADERS` environment variable to `true`
+2. Secure your endpoint as described in [Scenario 2](/console/tutorials/configure-marketplace-components/auth-architecture/external-idp.md)
+
+### Centralize API Keys in the Edge Gateway
+
+You can optionally choose to centralize in the Edge Gateway all the API keys.
+1. Define your API Keys in the `Edge Gateway` as described in [Scenario 1](/console/tutorials/configure-marketplace-components/auth-architecture/static-api-key.md)
+2. Apply advanced configurations on the `API Gateway` of the `Edge Gateway` project 
+
+<Tabs
+  defaultValue="nginx"
+  groupId="multi-project-tutorial"
+  values={[
+      { label: "API Gateway NGINX", value: "nginx", },
+      { label: "API Gateway Envoy", value: "envoy", }
+  ]}
+>
+<TabItem value="nginx">
+
+Add the following Advanced Map Configuration to the `custom-maps-extension.conf` configuration.
+
+```
+map $secret_resolution $proxied_client_key {
+  default "";
+  "secreted" "secreted";
+}
+```
+
+In this way, you are instructing your Nginx `API Gateway` to always forward to the projects' `API Gateway` the HTTP header `Client-Key=secreted`
+</TabItem>
+<TabItem value="envoy">
+
+Define an Advanced Request Script in the `on-requests-script.yaml` where the API keys are manually translated into the `client-key` header.
+
+```lua
+- listener_name: frontend
+  body: |+
+    key_type_map = {
+      ["<YOUR API KEY 1>"]={"all", "secreted"},
+      ["<YOUR API KEY 2>"]={"all", "secreted"}
+    }
+
+    key = request_handle:streamInfo():dynamicMetadata():get("mia.metadata")["client_key"]
+
+    if (key_type_map[key] ~= nil) then
+      request_handle:streamInfo():dynamicMetadata():set("mia.metadata", "client_type", key_type_map[key][1])
+      request_handle:streamInfo():dynamicMetadata():set("mia.metadata", "secret_resolution", key_type_map[key][2])
+      request_handle:headers():replace("client-type", key_type_map[key][1])
+      request_handle:headers():replace("client-key", key_type_map[key][2])
+      request_handle:headers():replace("secret", key_type_map[key][2])
+    else
+      request_handle:streamInfo():dynamicMetadata():set("mia.metadata", "client_type", "")
+      request_handle:streamInfo():dynamicMetadata():set("mia.metadata", "secret_resolution", "unsecreted")
+      request_handle:headers():remove("client-key")
+      request_handle:headers():remove("secret")
+    end
+```
+
+In this way, you are instructing your Envoy `API Gateway` to always forward to the projects' `API Gateway` the HTTP header `Client-Key=secreted`
+
+</TabItem>
+</Tabs>
+
+3. Define an API Key with the `secreted` value in all of your projects  
+
+:::info
+If you choose to centralize the API keys in the Edge Gateway project we suggest to have a project template with the `secreted` API key
+:::

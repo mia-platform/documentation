@@ -1,0 +1,894 @@
+{
+    "type": "object",
+    "title": "Event Store Config",
+    "examples": [
+        {
+            "consumer": {
+                "kafka": {
+                    "brokers": "localhost:9092,localhost:9093",
+                    "clientId": "client-id",
+                    "consumerGroupId": "group-id",
+                    "consumeFromBeginning": true,
+                    "logLevel": "NOTHING"
+                }
+            },
+            "producer": {
+                "mongo": {
+                    "url": "mongodb://localhost:27017",
+                    "dbName": "pc-sv-books-test",
+                    "maxBatchSize": 1000
+                }
+            }
+        }
+    ],
+    "properties": {
+        "consumer": {
+            "title": "Consumer Configuration",
+            "type": "object",
+            "properties": {
+                "kafka": {
+                    "title": "Kafka Consumer Configuration",
+                    "allOf": [
+                        {
+                            "type": "object",
+                            "title": "Kafka Connection Configuration",
+                            "properties": {
+                                "brokers": {
+                                    "anyOf": [
+                                        {
+                                            "type": "string"
+                                        },
+                                        {
+                                            "type": "object",
+                                            "title": "Secret from Env",
+                                            "properties": {
+                                                "encoding": {
+                                                    "type": "string",
+                                                    "enum": [
+                                                        "base64"
+                                                    ]
+                                                },
+                                                "key": {
+                                                    "type": "string"
+                                                },
+                                                "type": {
+                                                    "type": "string",
+                                                    "const": "env"
+                                                }
+                                            },
+                                            "required": [
+                                                "key",
+                                                "type"
+                                            ],
+                                            "additionalProperties": true
+                                        },
+                                        {
+                                            "type": "object",
+                                            "title": "Secret from File",
+                                            "properties": {
+                                                "encoding": {
+                                                    "type": "string",
+                                                    "enum": [
+                                                        "base64"
+                                                    ]
+                                                },
+                                                "key": {
+                                                    "type": "string"
+                                                },
+                                                "path": {
+                                                    "type": "string"
+                                                },
+                                                "type": {
+                                                    "type": "string",
+                                                    "const": "file"
+                                                }
+                                            },
+                                            "required": [
+                                                "path",
+                                                "type"
+                                            ],
+                                            "additionalProperties": true
+                                        }
+                                    ],
+                                    "description": "Kafka brokers"
+                                },
+                                "ssl": {
+                                    "title": "SSL Configuration",
+                                    "anyOf": [
+                                        {
+                                            "type": "boolean"
+                                        },
+                                        {
+                                            "type": "object",
+                                            "properties": {
+                                                "ca": {
+                                                    "type": "string"
+                                                },
+                                                "key": {
+                                                    "type": "string"
+                                                },
+                                                "passphrase": {
+                                                    "anyOf": [
+                                                        {
+                                                            "type": "string"
+                                                        },
+                                                        {
+                                                            "type": "object",
+                                                            "title": "Secret from Env",
+                                                            "properties": {
+                                                                "encoding": {
+                                                                    "type": "string",
+                                                                    "enum": [
+                                                                        "base64"
+                                                                    ]
+                                                                },
+                                                                "key": {
+                                                                    "type": "string"
+                                                                },
+                                                                "type": {
+                                                                    "type": "string",
+                                                                    "const": "env"
+                                                                }
+                                                            },
+                                                            "required": [
+                                                                "key",
+                                                                "type"
+                                                            ],
+                                                            "additionalProperties": true
+                                                        },
+                                                        {
+                                                            "type": "object",
+                                                            "title": "Secret from File",
+                                                            "properties": {
+                                                                "encoding": {
+                                                                    "type": "string",
+                                                                    "enum": [
+                                                                        "base64"
+                                                                    ]
+                                                                },
+                                                                "key": {
+                                                                    "type": "string"
+                                                                },
+                                                                "path": {
+                                                                    "type": "string"
+                                                                },
+                                                                "type": {
+                                                                    "type": "string",
+                                                                    "const": "file"
+                                                                }
+                                                            },
+                                                            "required": [
+                                                                "path",
+                                                                "type"
+                                                            ],
+                                                            "additionalProperties": true
+                                                        }
+                                                    ]
+                                                },
+                                                "cert": {
+                                                    "type": "string"
+                                                }
+                                            },
+                                            "additionalProperties": true
+                                        }
+                                    ],
+                                    "description": "Options for ssl certificates"
+                                },
+                                "sasl": {
+                                    "title": "SASL Configuration",
+                                    "type": "object",
+                                    "properties": {
+                                        "mechanism": {
+                                            "type": "string",
+                                            "enum": [
+                                                "plain",
+                                                "scram-sha-256",
+                                                "scram-sha-512"
+                                            ]
+                                        },
+                                        "username": {
+                                            "anyOf": [
+                                                {
+                                                    "type": "string"
+                                                },
+                                                {
+                                                    "type": "object",
+                                                    "title": "Secret from Env",
+                                                    "properties": {
+                                                        "encoding": {
+                                                            "type": "string",
+                                                            "enum": [
+                                                                "base64"
+                                                            ]
+                                                        },
+                                                        "key": {
+                                                            "type": "string"
+                                                        },
+                                                        "type": {
+                                                            "type": "string",
+                                                            "const": "env"
+                                                        }
+                                                    },
+                                                    "required": [
+                                                        "key",
+                                                        "type"
+                                                    ],
+                                                    "additionalProperties": true
+                                                },
+                                                {
+                                                    "type": "object",
+                                                    "title": "Secret from File",
+                                                    "properties": {
+                                                        "encoding": {
+                                                            "type": "string",
+                                                            "enum": [
+                                                                "base64"
+                                                            ]
+                                                        },
+                                                        "key": {
+                                                            "type": "string"
+                                                        },
+                                                        "path": {
+                                                            "type": "string"
+                                                        },
+                                                        "type": {
+                                                            "type": "string",
+                                                            "const": "file"
+                                                        }
+                                                    },
+                                                    "required": [
+                                                        "path",
+                                                        "type"
+                                                    ],
+                                                    "additionalProperties": true
+                                                }
+                                            ]
+                                        },
+                                        "password": {
+                                            "anyOf": [
+                                                {
+                                                    "type": "string"
+                                                },
+                                                {
+                                                    "type": "object",
+                                                    "title": "Secret from Env",
+                                                    "properties": {
+                                                        "encoding": {
+                                                            "type": "string",
+                                                            "enum": [
+                                                                "base64"
+                                                            ]
+                                                        },
+                                                        "key": {
+                                                            "type": "string"
+                                                        },
+                                                        "type": {
+                                                            "type": "string",
+                                                            "const": "env"
+                                                        }
+                                                    },
+                                                    "required": [
+                                                        "key",
+                                                        "type"
+                                                    ],
+                                                    "additionalProperties": true
+                                                },
+                                                {
+                                                    "type": "object",
+                                                    "title": "Secret from File",
+                                                    "properties": {
+                                                        "encoding": {
+                                                            "type": "string",
+                                                            "enum": [
+                                                                "base64"
+                                                            ]
+                                                        },
+                                                        "key": {
+                                                            "type": "string"
+                                                        },
+                                                        "path": {
+                                                            "type": "string"
+                                                        },
+                                                        "type": {
+                                                            "type": "string",
+                                                            "const": "file"
+                                                        }
+                                                    },
+                                                    "required": [
+                                                        "path",
+                                                        "type"
+                                                    ],
+                                                    "additionalProperties": true
+                                                }
+                                            ]
+                                        }
+                                    },
+                                    "additionalProperties": true,
+                                    "description": "Authentication options"
+                                },
+                                "clientId": {
+                                    "type": "string",
+                                    "description": "Identifier of the application"
+                                },
+                                "connectionTimeout": {
+                                    "type": "number",
+                                    "description": "Time in milliseconds to wait for a successful connection"
+                                },
+                                "authenticationTimeout": {
+                                    "type": "number",
+                                    "description": "Timeout in ms for authentication requests"
+                                },
+                                "reauthenticationThreshold": {
+                                    "type": "number",
+                                    "description": "When periodic reauthentication is configured on the broker side, reauthenticate when reauthenticationThreshold milliseconds remain of session lifetime"
+                                },
+                                "requestTimeout": {
+                                    "type": "number",
+                                    "description": "Time in milliseconds to wait for a successful request"
+                                },
+                                "enforceRequestTimeout": {
+                                    "type": "boolean"
+                                },
+                                "retry": {
+                                    "title": "Retry mechanism Configuration",
+                                    "type": "object",
+                                    "properties": {
+                                        "maxRetryTime": {
+                                            "type": "number"
+                                        },
+                                        "initialRetryTime": {
+                                            "type": "number"
+                                        },
+                                        "factor": {
+                                            "type": "number"
+                                        },
+                                        "multiplier": {
+                                            "type": "number"
+                                        },
+                                        "retries": {
+                                            "type": "number"
+                                        }
+                                    },
+                                    "additionalProperties": true,
+                                    "description": "Retry message options for when message consumption fails, for more info https://kafka.js.org/docs/configuration#default-retry"
+                                },
+                                "logLevel": {
+                                    "type": "string",
+                                    "enum": [
+                                        "NOTHING",
+                                        "ERROR",
+                                        "WARN",
+                                        "INFO",
+                                        "DEBUG"
+                                    ],
+                                    "description": "Logging level for kafka related logs"
+                                }
+                            },
+                            "required": [
+                                "brokers"
+                            ],
+                            "additionalProperties": true
+                        },
+                        {
+                            "title": "Consumer Configuration",
+                            "type": "object",
+                            "properties": {
+                                "consumerGroupId": {
+                                    "type": "string",
+                                    "description": "Consumer group ID"
+                                },
+                                "consumeFromBeginning": {
+                                    "type": "boolean",
+                                    "default": false,
+                                    "description": "This determines whether the consumer will start consuming from offset 0 or it will wait for the next message that comes. This applies only when consumer group does not already have an offset on the topic"
+                                }
+                            },
+                            "required": [
+                                "consumerGroupId"
+                            ],
+                            "additionalProperties": true
+                        }
+                    ]
+                }
+            },
+            "required": [
+                "kafka"
+            ],
+            "additionalProperties": true,
+            "description": "Only one key is allowed in this object as it will be used to determine the consumer's medium"
+        },
+        "producer": {
+            "title": "Producer Configuration",
+            "anyOf": [
+                {
+                    "type": "object",
+                    "title": "Kafka Producer Configuration",
+                    "properties": {
+                        "kafka": {
+                            "allOf": [
+                                {
+                                    "type": "object",
+                                    "title": "Kafka Connection Configuration",
+                                    "properties": {
+                                        "brokers": {
+                                            "anyOf": [
+                                                {
+                                                    "type": "string"
+                                                },
+                                                {
+                                                    "type": "object",
+                                                    "title": "Secret from Env",
+                                                    "properties": {
+                                                        "encoding": {
+                                                            "type": "string",
+                                                            "enum": [
+                                                                "base64"
+                                                            ]
+                                                        },
+                                                        "key": {
+                                                            "type": "string"
+                                                        },
+                                                        "type": {
+                                                            "type": "string",
+                                                            "const": "env"
+                                                        }
+                                                    },
+                                                    "required": [
+                                                        "key",
+                                                        "type"
+                                                    ],
+                                                    "additionalProperties": true
+                                                },
+                                                {
+                                                    "type": "object",
+                                                    "title": "Secret from File",
+                                                    "properties": {
+                                                        "encoding": {
+                                                            "type": "string",
+                                                            "enum": [
+                                                                "base64"
+                                                            ]
+                                                        },
+                                                        "key": {
+                                                            "type": "string"
+                                                        },
+                                                        "path": {
+                                                            "type": "string"
+                                                        },
+                                                        "type": {
+                                                            "type": "string",
+                                                            "const": "file"
+                                                        }
+                                                    },
+                                                    "required": [
+                                                        "path",
+                                                        "type"
+                                                    ],
+                                                    "additionalProperties": true
+                                                }
+                                            ],
+                                            "description": "Kafka brokers"
+                                        },
+                                        "ssl": {
+                                            "title": "SSL Configuration",
+                                            "anyOf": [
+                                                {
+                                                    "type": "boolean"
+                                                },
+                                                {
+                                                    "type": "object",
+                                                    "properties": {
+                                                        "ca": {
+                                                            "type": "string"
+                                                        },
+                                                        "key": {
+                                                            "type": "string"
+                                                        },
+                                                        "passphrase": {
+                                                            "anyOf": [
+                                                                {
+                                                                    "type": "string"
+                                                                },
+                                                                {
+                                                                    "type": "object",
+                                                                    "title": "Secret from Env",
+                                                                    "properties": {
+                                                                        "encoding": {
+                                                                            "type": "string",
+                                                                            "enum": [
+                                                                                "base64"
+                                                                            ]
+                                                                        },
+                                                                        "key": {
+                                                                            "type": "string"
+                                                                        },
+                                                                        "type": {
+                                                                            "type": "string",
+                                                                            "const": "env"
+                                                                        }
+                                                                    },
+                                                                    "required": [
+                                                                        "key",
+                                                                        "type"
+                                                                    ],
+                                                                    "additionalProperties": true
+                                                                },
+                                                                {
+                                                                    "type": "object",
+                                                                    "title": "Secret from File",
+                                                                    "properties": {
+                                                                        "encoding": {
+                                                                            "type": "string",
+                                                                            "enum": [
+                                                                                "base64"
+                                                                            ]
+                                                                        },
+                                                                        "key": {
+                                                                            "type": "string"
+                                                                        },
+                                                                        "path": {
+                                                                            "type": "string"
+                                                                        },
+                                                                        "type": {
+                                                                            "type": "string",
+                                                                            "const": "file"
+                                                                        }
+                                                                    },
+                                                                    "required": [
+                                                                        "path",
+                                                                        "type"
+                                                                    ],
+                                                                    "additionalProperties": true
+                                                                }
+                                                            ]
+                                                        },
+                                                        "cert": {
+                                                            "type": "string"
+                                                        }
+                                                    },
+                                                    "additionalProperties": true
+                                                }
+                                            ],
+                                            "description": "Options for ssl certificates"
+                                        },
+                                        "sasl": {
+                                            "title": "SASL Configuration",
+                                            "type": "object",
+                                            "properties": {
+                                                "mechanism": {
+                                                    "type": "string",
+                                                    "enum": [
+                                                        "plain",
+                                                        "scram-sha-256",
+                                                        "scram-sha-512"
+                                                    ]
+                                                },
+                                                "username": {
+                                                    "anyOf": [
+                                                        {
+                                                            "type": "string",
+                                                            "title": "Secret from string"
+                                                        },
+                                                        {
+                                                            "type": "object",
+                                                            "title": "Secret from Env",
+                                                            "properties": {
+                                                                "encoding": {
+                                                                    "type": "string",
+                                                                    "enum": [
+                                                                        "base64"
+                                                                    ]
+                                                                },
+                                                                "key": {
+                                                                    "type": "string"
+                                                                },
+                                                                "type": {
+                                                                    "type": "string",
+                                                                    "const": "env"
+                                                                }
+                                                            },
+                                                            "required": [
+                                                                "key",
+                                                                "type"
+                                                            ],
+                                                            "additionalProperties": true
+                                                        },
+                                                        {
+                                                            "type": "object",
+                                                            "properties": {
+                                                                "encoding": {
+                                                                    "type": "string",
+                                                                    "enum": [
+                                                                        "base64"
+                                                                    ]
+                                                                },
+                                                                "key": {
+                                                                    "type": "string"
+                                                                },
+                                                                "path": {
+                                                                    "type": "string"
+                                                                },
+                                                                "type": {
+                                                                    "type": "string",
+                                                                    "const": "file"
+                                                                }
+                                                            },
+                                                            "required": [
+                                                                "path",
+                                                                "type"
+                                                            ],
+                                                            "additionalProperties": true
+                                                        }
+                                                    ]
+                                                },
+                                                "password": {
+                                                    "anyOf": [
+                                                        {
+                                                            "type": "string"
+                                                        },
+                                                        {
+                                                            "type": "object",
+                                                            "title": "Secret from Env",
+                                                            "properties": {
+                                                                "encoding": {
+                                                                    "type": "string",
+                                                                    "enum": [
+                                                                        "base64"
+                                                                    ]
+                                                                },
+                                                                "key": {
+                                                                    "type": "string"
+                                                                },
+                                                                "type": {
+                                                                    "type": "string",
+                                                                    "const": "env"
+                                                                }
+                                                            },
+                                                            "required": [
+                                                                "key",
+                                                                "type"
+                                                            ],
+                                                            "additionalProperties": true
+                                                        },
+                                                        {
+                                                            "type": "object",
+                                                            "title": "Secret from File",
+                                                            "properties": {
+                                                                "encoding": {
+                                                                    "type": "string",
+                                                                    "enum": [
+                                                                        "base64"
+                                                                    ]
+                                                                },
+                                                                "key": {
+                                                                    "type": "string"
+                                                                },
+                                                                "path": {
+                                                                    "type": "string"
+                                                                },
+                                                                "type": {
+                                                                    "type": "string",
+                                                                    "const": "file"
+                                                                }
+                                                            },
+                                                            "required": [
+                                                                "path",
+                                                                "type"
+                                                            ],
+                                                            "additionalProperties": true
+                                                        }
+                                                    ]
+                                                }
+                                            },
+                                            "additionalProperties": true,
+                                            "description": "Authentication options"
+                                        },
+                                        "clientId": {
+                                            "type": "string",
+                                            "description": "Identifier of the application"
+                                        },
+                                        "connectionTimeout": {
+                                            "type": "number",
+                                            "description": "Time in milliseconds to wait for a successful connection"
+                                        },
+                                        "authenticationTimeout": {
+                                            "type": "number",
+                                            "description": "Timeout in ms for authentication requests"
+                                        },
+                                        "reauthenticationThreshold": {
+                                            "type": "number",
+                                            "description": "When periodic reauthentication is configured on the broker side, reauthenticate when reauthenticationThreshold milliseconds remain of session lifetime"
+                                        },
+                                        "requestTimeout": {
+                                            "type": "number",
+                                            "description": "Time in milliseconds to wait for a successful request"
+                                        },
+                                        "enforceRequestTimeout": {
+                                            "type": "boolean"
+                                        },
+                                        "retry": {
+                                            "type": "object",
+                                            "title": "Retry Mechanism",
+                                            "properties": {
+                                                "maxRetryTime": {
+                                                    "type": "number"
+                                                },
+                                                "initialRetryTime": {
+                                                    "type": "number"
+                                                },
+                                                "factor": {
+                                                    "type": "number"
+                                                },
+                                                "multiplier": {
+                                                    "type": "number"
+                                                },
+                                                "retries": {
+                                                    "type": "number"
+                                                }
+                                            },
+                                            "additionalProperties": true,
+                                            "description": "Retry message options for when message consumption fails, for more info https://kafka.js.org/docs/configuration#default-retry"
+                                        },
+                                        "logLevel": {
+                                            "type": "string",
+                                            "enum": [
+                                                "NOTHING",
+                                                "ERROR",
+                                                "WARN",
+                                                "INFO",
+                                                "DEBUG"
+                                            ],
+                                            "description": "Logging level for kafka related logs"
+                                        }
+                                    },
+                                    "required": [
+                                        "brokers"
+                                    ],
+                                    "additionalProperties": true
+                                },
+                                {
+                                    "type": "object",
+                                    "title": "Compression",
+                                    "properties": {
+                                        "compressionName": {
+                                            "type": "string",
+                                            "enum": [
+                                                "snappy",
+                                                "gzip",
+                                                "none"
+                                            ],
+                                            "default": "none"
+                                        }
+                                    },
+                                    "additionalProperties": true
+                                },
+                                {
+                                    "type": "object",
+                                    "title": "Additional Configurations",
+                                    "properties": {
+                                        "maxBatchSize": {
+                                            "type": "number",
+                                            "description": "Max number of messages sent in each batch of the producer",
+                                            "default": 500
+                                        }
+                                    },
+                                    "additionalProperties": true
+                                }
+                            ]
+                        }
+                    },
+                    "required": [
+                        "kafka"
+                    ],
+                    "additionalProperties": false
+                },
+                {
+                    "type": "object",
+                    "title": "MongoDB Configuration",
+                    "properties": {
+                        "mongo": {
+                            "allOf": [
+                                {
+                                    "type": "object",
+                                    "title": "MongoDB Connection Configuration",
+                                    "properties": {
+                                        "url": {
+                                            "anyOf": [
+                                                {
+                                                    "type": "string"
+                                                },
+                                                {
+                                                    "type": "object",
+                                                    "title": "Secret from Env",
+                                                    "properties": {
+                                                        "encoding": {
+                                                            "type": "string",
+                                                            "enum": [
+                                                                "base64"
+                                                            ]
+                                                        },
+                                                        "key": {
+                                                            "type": "string"
+                                                        },
+                                                        "type": {
+                                                            "type": "string",
+                                                            "const": "env"
+                                                        }
+                                                    },
+                                                    "required": [
+                                                        "key",
+                                                        "type"
+                                                    ],
+                                                    "additionalProperties": true
+                                                },
+                                                {
+                                                    "type": "object",
+                                                    "title": "Secret from File",
+                                                    "properties": {
+                                                        "encoding": {
+                                                            "type": "string",
+                                                            "enum": [
+                                                                "base64"
+                                                            ]
+                                                        },
+                                                        "key": {
+                                                            "type": "string"
+                                                        },
+                                                        "path": {
+                                                            "type": "string"
+                                                        },
+                                                        "type": {
+                                                            "type": "string",
+                                                            "const": "file"
+                                                        }
+                                                    },
+                                                    "required": [
+                                                        "path",
+                                                        "type"
+                                                    ],
+                                                    "additionalProperties": true
+                                                }
+                                            ],
+                                            "description": "Databse MongoDB URL in `mongodb://` format"
+                                        },
+                                        "dbName": {
+                                            "type": "string",
+                                            "description": "Databse name"
+                                        }
+                                    },
+                                    "required": [
+                                        "url",
+                                        "dbName"
+                                    ],
+                                    "additionalProperties": true
+                                },
+                                {
+                                    "type": "object",
+                                    "title": "Additional Configurations",
+                                    "properties": {
+                                        "maxBatchSize": {
+                                            "type": "number",
+                                            "description": "Max number of messages sent in each batch of the producer",
+                                            "default": 500
+                                        }
+                                    },
+                                    "additionalProperties": true
+                                }
+                            ]
+                        }
+                    },
+                    "required": [
+                        "mongo"
+                    ],
+                    "additionalProperties": false
+                }
+            ],
+            "description": "Only one key is allowed in this object as it will be used to determine the producer's medium"
+        }
+    },
+    "required": [
+        "consumer",
+        "producer"
+    ],
+    "additionalProperties": true
+}

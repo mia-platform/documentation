@@ -1,0 +1,260 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "$id": "fast-data-state.schema.json",
+    "title": "FastDataState",
+    "examples": [
+        {
+            "key": {
+                "id": "854c2285-334e-41d1-bcfc-8c483fafca08"
+            },
+            "value": {
+                "pipelines": {
+                    "state": "resume"
+                }
+            }
+        },
+        {
+            "key": {
+                "id": "d2d4fb77-94e9-45cb-ad2a-4ad09040b796"
+            },
+            "value": {
+                "pipelines": {
+                    "state": "pause"
+                }
+            }
+        },
+        {
+            "key": {
+                "id": "bd1643e1-7f53-4b84-93ce-a979d2a5f9cb"
+            },
+            "value": {
+                "pipelines": {
+                    "state": "pause",
+                    "override": {
+                        "b52c98ec-4910-456a-9ac4-13ad82dac404": {
+                            "state": "resume",
+                            "name": "sv_orders"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "key": {
+                "id": "854c2285-334e-41d1-bcfc-8c483fafca08"
+            },
+            "value": {
+                "pipelines": {
+                    "state": "pause",
+                    "override": {
+                        "b52c98ec-4910-456a-9ac4-13ad82dac404": {
+                            "state": "pause",
+                            "name": "sv_orders",
+                            "override": {
+                                "7e738df3-d963-4554-a8aa-3ca3c55bcf22": {
+                                    "state": "resume",
+                                    "name": "base-prj"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "key": {
+                "id": "854c2285-334e-41d1-bcfc-8c483fafca08"
+            },
+            "value": {
+                "pipelines": {
+                    "state": "pause",
+                    "override": {
+                        "b52c98ec-4910-456a-9ac4-13ad82dac404": {
+                            "state": "pause",
+                            "name": "sv_orders",
+                            "override": {
+                                "7e738df3-d963-4554-a8aa-3ca3c55bcf22": {
+                                    "state": "pause",
+                                    "name": "base-prj",
+                                    "override": {
+                                        "b9dc9fc8-2d06-4be5-9950-dd2088cfc034": {
+                                            "state": "resume",
+                                            "name": "aggregation"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "key": {
+                "id": "854c2285-334e-41d1-bcfc-8c483fafca08"
+            },
+            "value": {
+                "pipelines": {
+                    "state": "pause",
+                    "override": {
+                        "b52c98ec-4910-456a-9ac4-13ad82dac404": {
+                            "state": "pause",
+                            "name": "orders-domain",
+                            "override": {
+                                "ab2703e8-b13b-42a3-af2c-c3c2f7d97792": {
+                                    "state": "pause",
+                                    "name": "proj-a",
+                                    "override": {
+                                        "daeb6959-ddf2-4c03-b237-ff57b2e1ea4d": {
+                                            "state": "resume",
+                                            "name": "mapping"
+                                        },
+                                        "a161dd38-7979-4156-8551-3c8c6386bfc4": {
+                                            "state": "resume",
+                                            "name": "backup"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    ],
+    "definitions": {
+        "activation": {
+            "type": "string",
+            "title": "Activation",
+            "description": "describe the values a pipeline state can take",
+            "enum": [
+                "resume",
+                "pause"
+            ]
+        },
+        "stateful": {
+            "type": "object",
+            "title": "StatefulItem",
+            "required": [
+                "state"
+            ],
+            "properties": {
+                "state": {
+                    "$ref": "#/definitions/activation"
+                }
+            }
+        },
+        "named": {
+            "type": "object",
+            "title": "NamedItem",
+            "required": [
+                "name"
+            ],
+            "properties": {
+                "name": {
+                    "type": "string"
+                }
+            }
+        },
+        "artifactItem": {
+            "title": "ArtifactItem",
+            "allOf": [
+                {
+                    "$ref": "#/definitions/stateful"
+                },
+                {
+                    "$ref": "#/definitions/named"
+                },
+                {
+                    "type": "object",
+                    "properties": {
+                        "override": {
+                            "type": "object",
+                            "description": "mapping between pipeline exec types and their corresponding state override",
+                            "additionalProperties": {
+                                "allOf": [
+                                    {
+                                        "$ref": "#/definitions/stateful"
+                                    },
+                                    {
+                                        "$ref": "#/definitions/named"
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                }
+            ]
+        },
+        "eventPayload": {
+            "type": "object",
+            "title": "FastDataStateValue",
+            "required": [
+                "pipelines"
+            ],
+            "properties": {
+                "pipelines": {
+                    "allOf": [
+                        {
+                            "$ref": "#/definitions/stateful"
+                        },
+                        {
+                            "type": "object",
+                            "properties": {
+                                "override": {
+                                    "type": "object",
+                                    "description": "mapping between pipelines UUID and their corresponding state override",
+                                    "additionalProperties": {
+                                        "allOf": [
+                                            {
+                                                "$ref": "#/definitions/stateful"
+                                            },
+                                            {
+                                                "$ref": "#/definitions/named"
+                                            },
+                                            {
+                                                "type": "object",
+                                                "properties": {
+                                                    "override": {
+                                                        "type": "object",
+                                                        "description": "mapping between pipeline artifact reference and their corresponding state override",
+                                                        "additionalProperties": {
+                                                            "$ref": "#/definitions/artifactItem"
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        ]
+                                    }
+                                }
+                            }
+                        }
+                    ]
+                }
+            }
+        }
+    },
+    "type": "object",
+    "required": [
+        "key",
+        "value"
+    ],
+    "additionalProperties": true,
+    "properties": {
+        "key": {
+            "type": "object",
+            "required": [
+                "id"
+            ],
+            "properties": {
+                "id": {
+                    "type": "string",
+                    "description": "UUID representing a reference to the runtime"
+                }
+            }
+        },
+        "value": {
+            "$ref": "#/definitions/eventPayload"
+        }
+    }
+}

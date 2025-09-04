@@ -4,10 +4,10 @@ title: Orchestrator Generator
 sidebar_label: Orchestrator Generator
 ---
 
-One of the main features of Mia-Platform is the automatic generation of the **orchestrator files**, ready to **be deployed**; these files are saved in the **configuration repository**.  
+One of the main features of Mia-Platform is the automatic generation of the **orchestrator files**, ready to **be deployed**; these files are saved in the **configuration repository**.
 For instance, the Console can generate Kubernetes files and deploy them on your runtime based on the [Design](/development_suite/api-console/api-design/overview.md) configuration you provided.
 
-However, [in some scenarios](/console/company-configuration/providers/extensions/orchestrator-generator/use-cases.md), you may want to generate these files differently: in this case, you have to use an **Orchestrator Generator**.  
+However, [in some scenarios](/console/company-configuration/providers/extensions/orchestrator-generator/use-cases.md), you may want to generate these files differently: in this case, you have to use an **Orchestrator Generator**.
 This enables you to tailor the deployment process to your specific needs and the functionalities offered by your chosen orchestrator, achieving a level of customization not readily available with the default Mia-Platform generation.
 
 When the Orchestrator Generator Extension is enabled, the Console sends a **POST request** to a configured Provider's API Base URL to generate the files to be deployed. The request body contains some information about the Project and the Configuration, and the Console expects to receive, in response, the files to be saved and deployed.
@@ -112,8 +112,8 @@ The payload sent to the Extension is shaped as follows:
 | Field          | Type     | Description | optional |
 |----------------|----------|-------------|----------|
 | `name`         | String   | Name of the service |  |
-| `description`  | String   | Description of the service set in UI | | 
-| `tags`         | String[] | List of tags set in UI | | 
+| `description`  | String   | Description of the service set in UI | |
+| `tags`         | String[] | List of tags set in UI | |
 | `dockerImage`  | String   | Service docker image | |
 | `advanced`     | Boolean  | Flag to distinguish the data model for advanced services (if `true` check the advanced services data model)| ✔️ |
 | `replicas`     | Number   | Number of service static replicas | |
@@ -156,10 +156,10 @@ The `probes` field holds three properties: `readiness`, `liveness` and `startup`
 |---------|----------|-----------------|----------|
 | `path`  | String   | Path to configure the `httpGet` probe   | ✔️ |
 | `port`  | String   | Name of the container port exposing the probe | ✔️ |
-| `initialDelaySeconds` | Number | Value for the `initialDelaySeconds` k8s configuration  | ✔️ | 
-| `periodSeconds` | Number | Value for the `periodSeconds` k8s configuration  | ✔️ | 
-| `timeoutSeconds` | Number | Value for the `timeoutSeconds` k8s configuration  | ✔️ | 
-| `successThreshold` | Number | Value for the `successThreshold` k8s configuration  | ✔️ | 
+| `initialDelaySeconds` | Number | Value for the `initialDelaySeconds` k8s configuration  | ✔️ |
+| `periodSeconds` | Number | Value for the `periodSeconds` k8s configuration  | ✔️ |
+| `timeoutSeconds` | Number | Value for the `timeoutSeconds` k8s configuration  | ✔️ |
+| `successThreshold` | Number | Value for the `successThreshold` k8s configuration  | ✔️ |
 | `failureThreshold` | Number | Value for the `failureThreshold` k8s configuration  | ✔️ |
 
 #### ConfigMount Schema
@@ -180,8 +180,8 @@ Each additional container has a similar shape of the main service, holding the f
 
 #### Service data model example
 
-<details>
-<summary>JSON request body</summary>
+
+JSON request body
 
 ```json
 {
@@ -281,7 +281,7 @@ Each additional container has a similar shape of the main service, holding the f
 }
 ```
 
-</details>
+
 
 ## Response format
 
@@ -301,7 +301,7 @@ If something goes wrong and an error must be produced by the Orchestrator Genera
 ```json
 {
    "error": "some technical error to be traced in service logs",
-   "message": "some user facing error message that is propagated to the final user" 
+   "message": "some user facing error message that is propagated to the final user"
 }
 ```
 
@@ -312,7 +312,7 @@ The user will receive your message in the failed deploy feedback modal
 
 
 <div style={{display: 'flex', justifyContent: 'center'}}>
-  <div style={{display: 'flex', width: '500px'}}> 
+  <div style={{display: 'flex', width: '500px'}}>
 
 ![failed deploy custom message in modal](./img/failed-deploy-custom-message.png)
 

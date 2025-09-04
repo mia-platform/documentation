@@ -291,7 +291,7 @@ All of these examples can be tested using the API Portal of Mia-Platform. The Po
 
 Let's see how to perform C-R-U-D operations.
 
-All examples are sent to <https://your-url> Mia-Platform instance. We assume that the endpoints are only protected by API Key.
+All examples are sent to `<https://your-url>` Mia-Platform instance. We assume that the endpoints are only protected by API Key.
 
 ```
 client-key: client-key
@@ -459,7 +459,7 @@ curl -X GET https://your-url/v2/plates/ \
 ```
 
 :::warning
-Always end you request with a slash.  <https://your-url/plates/> is correct.  <https://your-url/plates> is wrong.
+Always end you request with a slash.  `<https://your-url/plates/>`is correct.  `<https://your-url/plates>` is wrong.
 :::
 
 In response of this request, you will get a JSON array that contains all the documents of the collection. The sorting is by insertion. The request return only documents with ```__STATE__``` equal to PUBLIC. To retrieve other documents you must set `STATE` to DRAFT.

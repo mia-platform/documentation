@@ -1,0 +1,34 @@
+.logoBox {
+  width: 40vh;
+  margin-bottom: 15px;
+  margin-left: auto;
+  margin-right: auto;;
+}
+
+.hexagonOrange{ 
+  fill:#FF9933;
+}
+
+.hexagonRed{
+  fill:#F03F45;
+}
+
+.hexagonBlue {
+  fill:#1890FF;
+}
+
+.hexagonGreen{
+  fill:#2CB47B;
+}
+
+.hexagonPurple {
+  fill:#6536DD;
+}
+
+.letter{
+  fill:#414748;
+}
+
+html[data-theme=dark] .letter {
+    fill:#ffffff;
+}

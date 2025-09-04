@@ -145,7 +145,7 @@ Versions are not mandatory but highly recommended to avoid overwriting existing 
 Please note that differently from other versioned items, template and examples do not support version updates and notifications.
 :::
 
-<details><summary>Example of a Start From Code Template</summary>
+Example of a Start From Code Template
 
 ```json
 {
@@ -221,4 +221,4 @@ Please note that differently from other versioned items, template and examples d
 }
 ```
 
-</details>
+

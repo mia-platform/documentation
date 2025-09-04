@@ -483,8 +483,8 @@ Available flags for the command:
 - `--project-id`, the id of the Project (if provided the command will update the rules for the specified Project only)
 - `-f`, path to the file where the rules are saved
 
-<details>
-<summary>File example</summary>
+
+File example
 
 ```json
 [
@@ -497,7 +497,7 @@ Available flags for the command:
 ]
 ```
 
-</details>
+
 
 ## project
 
@@ -742,8 +742,8 @@ The `extensions apply` command can be used to register new extensions or update
 
 It accepts an Extension Manifest either in `yaml` or `json` format
 
-<details>
-<summary>Example JSON Manifest</summary>
+
+Example JSON Manifest
 
 ```json
 {
@@ -770,10 +770,10 @@ It accepts an Extension Manifest either in `yaml` or `json` format
 }
 ```
 
-</details>
 
-<details>
-<summary>Example YAML Manifest</summary>
+
+
+Example YAML Manifest
 
 ```yaml
 name: Extension 1
@@ -795,7 +795,7 @@ category:
   id: workloads
 ```
 
-</details>
+
 
 Usage:
 

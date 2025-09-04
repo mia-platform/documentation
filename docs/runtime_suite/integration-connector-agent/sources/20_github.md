@@ -80,8 +80,8 @@ The **event ID** used in the webhook payload is extracted from the `pull_request
 
 The following is an example of a `pull_request` event payload:
 
-<details>
-<summary>Pull Request Event Payload</summary>
+
+Pull Request Event Payload
 
 ```json
 {
@@ -108,7 +108,7 @@ The following is an example of a `pull_request` event payload:
 }
 ```
 
-</details>
+
 
 ### Extending Event Support
 

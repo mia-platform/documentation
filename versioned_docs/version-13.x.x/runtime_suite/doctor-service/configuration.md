@@ -32,7 +32,7 @@ The _Doctor Service_ is simply based on one file, the _configurations_ file.
 With the configurations file it's easy to manage all services to `check-up`.
 Specifically, the _Doctor_ allows the user to do two things:
 
-1. `check-up` all services in the configurations file by simply call the _root_ path (e.g. <http://api.foobar.it/playground/check-up>);
+1. `check-up` all services in the configurations file by simply call the _root_ path (e.g. `<http://api.foobar.it/playground/check-up>`);
 1. `check-up` a subgroup of services by specify the tag &rarr; all services can have a list of _tags_ (optional) and the _Doctor_ will expose a dedicated route for each tag, that will return the `check-up` of services with that tag.
 
 :::warning

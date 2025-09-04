@@ -34,7 +34,7 @@ Here is a list of the variables used to configure the service:
 - SES_KEY (string)
 - SES_SECRET (string)
 - SES_REGION (string | default: `us-east-1`)
-- SES_HEADERS (string) example '{"X-SES-CONFIGURATION-SET":"example-configuration-set"}'
+- SES_HEADERS (string) example `'{"X-SES-CONFIGURATION-SET":"example-configuration-set"}'`
 - TRUSTED_PROXIES: (string)
 
 ### SMTP

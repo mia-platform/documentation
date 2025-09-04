@@ -90,7 +90,7 @@ corresponding section, each of them with an empty value.
 Filling the variables listed above allows to generate a complete configuration at deploy time. An example of such configuration for Okta
 can be fond in the panel below.
 
-<details><summary>Authentication Service | Configuration Example (with variables to be interpolated)</summary>
+Authentication Service | Configuration Example (with variables to be interpolated)
 
 ```json title=config.json
 {
@@ -129,7 +129,7 @@ can be fond in the panel below.
 }
 ```
 
-</details>
+
 
 In addition to previous configurations, the service needs to mount a private key as a secret. This key is employed to
 sign JWTs that are set as _session id_ for authenticated users. In case the service has been instantiated through the
@@ -267,8 +267,8 @@ By default the `Fast Data Control Plane` application creates the collection for 
 which is employed by the authentication service to access the collection. Additionally, below it is also provided the
 collection definition ready for being imported, in case it may be necessary to move or replicate the collection in another Console project. 
 
-<details>
-<summary>Control Plane Users Collection Definition (import ready)</summary>
+
+Control Plane Users Collection Definition (import ready)
 
 ```json
 {
@@ -500,7 +500,7 @@ collection definition ready for being imported, in case it may be necessary to m
 }
 ```
 
-</details>
+
 
 ### Advanced
 
@@ -696,8 +696,8 @@ In case you would like to customize those pages here are provided their configur
 the roles and one for their bindings. These configuration can be loaded either as config map of [micro-lc](https://micro-lc.io/docs/) service
 or within the advanced tab of the corresponding page in the Composer.
 
-<details>
-<summary>Control Plane Users Page</summary>
+
+Control Plane Users Page
 
 ```json title=users-config.json
 {
@@ -1186,7 +1186,7 @@ or within the advanced tab of the corresponding page in the Composer.
 }
 ```
 
-</details>
+
 
 ![Screenshot of Microfrontend Composer homepage](img/microfrontend_composer.png)
 

@@ -547,26 +547,26 @@ Note that custom labels are specified for both steps.
 
 ### Properties & Attributes
 
-| Property | Attribute | Type | Default | Description |
-| --- | --- | --- | --- | --- |
-| `rootElementSelector` | `root-element-selector` | string | - | Selector to specify where the container should be appended |
-| `dataSchema` | - | [ExtendedJSONSchema7Definition][data-schema] | - | Data schema describing the fields of the collection to filter |
-| `wizard` | - | [WizardStepSchema](#customize-wizard-steps) | - | Array of options for setting up the wizard steps. A default wizard is utilized is not specified |
-| `width` | - | string \| number | - | Width of the modal |
-| `height` | - | string \| number | - | Height of the modal |
-| `omitSubmit` | `omit-submit` | boolean | false | Whether or not to include the default submit button |
-| `actions` | - | [ButtonWithClose](#buttonwithclose)[] \| {insert: ButtonWithClose[]; select: ButtonWithClose[]} | - | Actions added as buttons to the footer |
-| `liveSearchItemsLimit` | `live-search-items-limit` | number | 10 | Max items to fetch on regex live search |
-| `customLabels` | - | [CustomLabels](#customlabels) \| {insert: CustomLabels, update: CustomLabels} | - | Custom localized texts shown as title and CTA button label |
-| `requireConfirm` | - | boolean \| [RequireConfirmOpts](#requireconfirmopts) \| {onSave: RequireConfirmOpts, onSave: RequireConfirmOpts} | false | Whether or not the component should request confirmation before closing and/or before saving |
-| `onSuccess` | - | [Action][action][] \| {insert: Action[], update: Action[]} | - | Action executed after successful submit |
-| `onFail` | - | [Action][action][] \| {insert: Action[], update: Action[]} | - | Action executed after failing submit |
-| `lookupQueries` | - | [LookupQueries](#lookupqueries) | - | Extra queries when fetching options for lookup fields in [views](#working-with-views) |
-| `conditionalOptions` | - | [ConditionalOption](#conditionaloption)[] | - | Allows specifying dynamic conditions for form-options (hidden / disabled / readonly) to be applied |
-| `conditionalValues` | - | [Condition](#condition)[] | - | Allows specifying dynamic conditions for resetting field |
-| `fileFieldsPreview` | `file-fields-preview` | boolean | - | Enables preview of uploaded files in drag-n-drop file fields |
-| `enableSubmitOnFormUntouched` | `enable-submit-on-form-untouched` | boolean | - | Allows submitting an unedited form |
-| `basePath` | - | string | - | The URL base path to which to send HTTP requests, used when fetching options for lookup field in [views](#working-with-views) |
+| Property                      | Attribute                         | Type                                                                                                               | Default | Description                                                                                                                   |
+|-------------------------------|-----------------------------------|--------------------------------------------------------------------------------------------------------------------|---------|-------------------------------------------------------------------------------------------------------------------------------|
+| `rootElementSelector`         | `root-element-selector`           | string                                                                                                             | -       | Selector to specify where the container should be appended                                                                    |
+| `dataSchema`                  | -                                 | [ExtendedJSONSchema7Definition][data-schema]                                                                       | -       | Data schema describing the fields of the collection to filter                                                                 |
+| `wizard`                      | -                                 | [WizardStepSchema](#customize-wizard-steps)                                                                        | -       | Array of options for setting up the wizard steps. A default wizard is utilized is not specified                               |
+| `width`                       | -                                 | string \| number                                                                                                   | -       | Width of the modal                                                                                                            |
+| `height`                      | -                                 | string \| number                                                                                                   | -       | Height of the modal                                                                                                           |
+| `omitSubmit`                  | `omit-submit`                     | boolean                                                                                                            | false   | Whether or not to include the default submit button                                                                           |
+| `actions`                     | -                                 | [ButtonWithClose](#buttonwithclose)[] \| `{insert: ButtonWithClose[]; select: ButtonWithClose[]}`                  | -       | Actions added as buttons to the footer                                                                                        |
+| `liveSearchItemsLimit`        | `live-search-items-limit`         | number                                                                                                             | 10      | Max items to fetch on regex live search                                                                                       |
+| `customLabels`                | -                                 | [CustomLabels](#customlabels) \| `{insert: CustomLabels, update: CustomLabels}`                                    | -       | Custom localized texts shown as title and CTA button label                                                                    |
+| `requireConfirm`              | -                                 | boolean \| [RequireConfirmOpts](#requireconfirmopts) \| `{onSave: RequireConfirmOpts, onSave: RequireConfirmOpts}` | false   | Whether or not the component should request confirmation before closing and/or before saving                                  |
+| `onSuccess`                   | -                                 | [Action][action][] \| `{insert: Action[], update: Action[]}`                                                       | -       | Action executed after successful submit                                                                                       |
+| `onFail`                      | -                                 | [Action][action][] \| `{insert: Action[], update: Action[]}`                                                       | -       | Action executed after failing submit                                                                                          |
+| `lookupQueries`               | -                                 | [LookupQueries](#lookupqueries)                                                                                    | -       | Extra queries when fetching options for lookup fields in [views](#working-with-views)                                         |
+| `conditionalOptions`          | -                                 | [ConditionalOption](#conditionaloption)[]                                                                          | -       | Allows specifying dynamic conditions for form-options (hidden / disabled / readonly) to be applied                            |
+| `conditionalValues`           | -                                 | [Condition](#condition)[]                                                                                          | -       | Allows specifying dynamic conditions for resetting field                                                                      |
+| `fileFieldsPreview`           | `file-fields-preview`             | boolean                                                                                                            | -       | Enables preview of uploaded files in drag-n-drop file fields                                                                  |
+| `enableSubmitOnFormUntouched` | `enable-submit-on-form-untouched` | boolean                                                                                                            | -       | Allows submitting an unedited form                                                                                            |
+| `basePath`                    | -                                 | string                                                                                                             | -       | The URL base path to which to send HTTP requests, used when fetching options for lookup field in [views](#working-with-views) |
 
 #### ButtonWithClose
 

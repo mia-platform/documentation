@@ -44,8 +44,8 @@ configuration options.
 You can find an example implementation of the `Processor` interface in the [examples/rpc-processor-plugin][example] directory.
 :::
 
-<details>
-<summary>Example Implementation</summary>
+
+Example Implementation
 
 ```go
 package main
@@ -99,7 +99,7 @@ func main() {
 }
 ```
 
-</details>
+
 
 ### Building the Plugin
 

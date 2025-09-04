@@ -44,8 +44,8 @@ The following environment variables are to sync user metadata in a `user` collec
 
 The Auth0-Client service uses a single config map called `auth0-client-config` and the file, `config.json`, containing the configuration must follow this schema:
 
-<details>
-<summary>Click to expand the configuration JSON schema</summary>
+
+Click to expand the configuration JSON schema
 
 ```json
 {
@@ -230,7 +230,7 @@ The Auth0-Client service uses a single config map called `auth0-client-config` a
   }
 }
 ```
-</details>
+
 
 Clients are indexed by their client type name; please note that the default client is only used when there is no specified client in the request and the default client is configured.
 
@@ -394,8 +394,8 @@ Now you have to handle the routing of the request to the auth0-client and oauth-
 
 Put the following code into `auth.json` file of the authorization-service in order to open the routes declared above: 
 
-<details>
-<summary>Click to expand `auth.json` file contents</summary>
+
+Click to expand `auth.json` file contents
 
 
 ```json
@@ -458,7 +458,7 @@ Put the following code into `auth.json` file of the authorization-service in ord
   }
 }
 ```
-</details>
+
 
 Finally, you need to configure auth0-client to be able to use it correctly:
 

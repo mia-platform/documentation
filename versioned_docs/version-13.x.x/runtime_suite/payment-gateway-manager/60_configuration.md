@@ -29,8 +29,8 @@ The **Payment Gateway Manager (PGM)** needs some environment variables to work p
 
 
 The config map located at **EXTERNAL_PROVIDERS_CONFIG** must comply with the following schema
-<details>
-    <summary>Config schema</summary>
+
+    Config schema
 
 ```json
 {
@@ -56,7 +56,7 @@ The config map located at **EXTERNAL_PROVIDERS_CONFIG** must comply with the fol
 }
 ```
 
-</details>
+
 
 ## Provider Specific Environment Variables
 

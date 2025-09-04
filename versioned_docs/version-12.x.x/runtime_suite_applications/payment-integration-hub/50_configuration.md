@@ -150,8 +150,8 @@ The user should perform the additional steps reported below in order to create M
     - create `fm_transactions_view` schema as the schema below
     - paste the following pipeline and fields
 
-    <details>
-      <summary>Pipeline</summary>
+    
+      Pipeline
 
     ```json
     [
@@ -435,10 +435,10 @@ The user should perform the additional steps reported below in order to create M
       }
     ]
     ```
-    </details>
+    
 
-    <details>
-      <summary>Fields</summary>
+    
+      Fields
 
     ```json
     [
@@ -626,7 +626,7 @@ The user should perform the additional steps reported below in order to create M
       }
     ]
     ```
-    </details>
+    
 
 2. Create endpoint for the MongoDB view previously created `fm_transactions_view`
     - Create a new endpoint on the endpoint section `/fm-transactions-view`
@@ -639,8 +639,8 @@ The user should perform the additional steps reported below in order to create M
     - create `subscriptions_view` schema as the schema below
     - paste the following pipeline and fields
 
-    <details>
-      <summary>Pipeline</summary>
+    
+      Pipeline
 
     ```json
     [
@@ -907,10 +907,10 @@ The user should perform the additional steps reported below in order to create M
       }
     ]
     ```
-    </details>
+    
 
-    <details>
-      <summary>Fields</summary>
+    
+      Fields
 
     ```json
     [
@@ -1062,7 +1062,7 @@ The user should perform the additional steps reported below in order to create M
       }
     ]
     ```
-    </details>
+    
 
 4. Create endpoint for the MongoDB view previously created `subscriptions_view`
     - Create a new endpoint on the endpoint section `/subscriptions-view`
@@ -1075,8 +1075,8 @@ The user should perform the additional steps reported below in order to create M
     - create `payment_pending_view` schema as the schema below
     - paste the following pipeline and fields
     
-    <details>
-      <summary>Pipeline</summary>
+    
+      Pipeline
 
     ```json
     [
@@ -1130,10 +1130,10 @@ The user should perform the additional steps reported below in order to create M
       }
     ]
     ```
-    </details>
+    
 
-    <details>
-      <summary>Fields</summary>
+    
+      Fields
 
     ```json
     [
@@ -1333,7 +1333,7 @@ The user should perform the additional steps reported below in order to create M
       }
     ]
     ```
-    </details>
+    
 
 :::note
 There is no reason to expose the `payment_pending_view` with an endpoint because it is used by a BackEnd service.

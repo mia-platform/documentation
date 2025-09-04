@@ -1,0 +1,24 @@
+parameters:
+  - name: ENVIRONMENT_PREFIX
+    type: string
+  - name: KUBE_URL
+    type: string
+  - name: KUBE_TOKEN
+    type: string
+  - name: KUBE_CA_PEM
+    type: string
+
+steps:
+  - script: |
+      echo ${{ parameters.KUBE_CA_PEM }} | base64 -d > /tmp/kube-ca.pem
+      wget https://github.com/mia-platform/mlp/releases/download/${MLP_VERSION}/mlp-linux-amd64 && chmod +x mlp-linux-amd64 && export PATH=$PATH:.
+      export RELEASE_DATE=$(date -I'seconds' -u)
+      mkdir ${DESTINATION_PATH}
+      test -f ${VARIABLES_FILE} && set -a && source ${VARIABLES_FILE}
+      test -f ${GENERATE_FILE} && ./mlp-linux-amd64 generate -c ${GENERATE_FILE} -e ${{ parameters.ENVIRONMENT_PREFIX }} -e ${ENVIRONMENT_VARIABLES_PREFIX} -o ${OVERLAY_PATH}
+      ./mlp-linux-amd64 hydrate ${BASE_PATH} ${OVERLAY_PATH}
+      ./mlp-linux-amd64 interpolate -e ${ENVIRONMENT_PREFIX} -e ${ENVIRONMENT_VARIABLES_PREFIX} -f ${BASE_PATH} -o ${BASE_PATH}
+      ./mlp-linux-amd64 interpolate -e ${ENVIRONMENT_PREFIX} -e ${ENVIRONMENT_VARIABLES_PREFIX} -f ${OVERLAY_PATH} -o ${OVERLAY_PATH}
+      ./mlp-linux-amd64 kustomize ${OVERLAY_PATH} -o ${DESTINATION_PATH}/kustomize-output.yaml
+      ./mlp-linux-amd64 deploy --ensure-namespace=false --server $KUBE_URL --certificate-authority /tmp/kube-ca.pem --token $KUBE_TOKEN --deploy-type ${DEPLOY_TYPE} --force-deploy-when-no-semver=${FORCE_DEPLOY_WHEN_NO_SEMVER} -f ${DESTINATION_PATH} -n ${KUBE_NAMESPACE}
+    name: Deploy

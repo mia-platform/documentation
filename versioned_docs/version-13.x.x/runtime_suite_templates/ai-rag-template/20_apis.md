@@ -20,8 +20,8 @@ The `/chat/completions` endpoint generates responses to user queries based on pr
 
 ***Example***:
 
-<details>
-<summary>Request</summary>
+
+Request
 
 ```curl
 curl 'http://localhost:3000/chat/completions' \
@@ -29,10 +29,10 @@ curl 'http://localhost:3000/chat/completions' \
   --data-raw '{"chat_query":"Design a CRUD schema for an online store selling merchandise items","chat_history":[]}'
 ```
 
-</details>
 
-<details>
-<summary>Response</summary>
+
+
+Response
 
 ```json
 {
@@ -58,7 +58,7 @@ curl 'http://localhost:3000/chat/completions' \
 }
 ```
 
-</details>
+
 
 ### Embedding Endpoints
 
@@ -82,8 +82,8 @@ The `/embeddings/generate` endpoint is a HTTP POST method that takes as input:
 
 ***Eg***:
 
-<details>
-<summary>Request</summary>
+
+Request
 
 ```curl
 curl 'http://localhost:3000/embedding/generate' \
@@ -91,10 +91,10 @@ curl 'http://localhost:3000/embedding/generate' \
   --data-raw '{"url":"https://docs.mia-platform.eu/", "domain": "../../runtime_suite_templates" }'
 ```
 
-</details>
 
-<details>
-<summary>Response in case the runner is idle</summary>
+
+
+Response in case the runner is idle
 
 ```json
 200 OK
@@ -102,10 +102,10 @@ curl 'http://localhost:3000/embedding/generate' \
     "statusOk": "true"
 }
 ```
-</details>
 
-<details>
-<summary>Response in case the runner is running</summary>
+
+
+Response in case the runner is running
 
 ```json
 409 Conflict
@@ -113,7 +113,7 @@ curl 'http://localhost:3000/embedding/generate' \
     "detail": "A process to generate embeddings is already in progress." 
 }
 ```
-</details>
+
 
 #### Generate from file (`/embeddings/generateFromFile`)
 
@@ -137,8 +137,8 @@ For this file, of each file inside the archive, the text will be retrieved, chun
 
 ***Eg***:
 
-<details>
-<summary>Request</summary>
+
+Request
 
 ```curl
 curl -X 'POST' \
@@ -148,10 +148,10 @@ curl -X 'POST' \
   -F 'file=@my-archive.zip;type=application/zip'
 ```
 
-</details>
 
-<details>
-<summary>Response in case the runner is idle</summary>
+
+
+Response in case the runner is idle
 
 ```json
 200 OK
@@ -159,10 +159,10 @@ curl -X 'POST' \
     "statusOk": "true"
 }
 ```
-</details>
 
-<details>
-<summary>Response in case the runner is running</summary>
+
+
+Response in case the runner is running
 
 ```json
 409 Conflict
@@ -170,7 +170,7 @@ curl -X 'POST' \
     "detail": "A process to generate embeddings is already in progress." 
 }
 ```
-</details>
+
 
 #### Generation status (`/embeddings/status`)
 
@@ -178,18 +178,18 @@ This request returns to the user information regarding the [embeddings generatio
 
 ***Eg***:
 
-<details>
-<summary>Request</summary>
+
+Request
 
 ```curl
 curl 'http://localhost:3000/embedding/status' \
   -H 'content-type: application/json' \
 ```
 
-</details>
 
-<details>
-<summary>Response</summary>
+
+
+Response
 
 ```json
 200 OK
@@ -197,7 +197,7 @@ curl 'http://localhost:3000/embedding/status' \
     "status": "idle"
 }
 ```
-</details>
+
 
 ### Metrics Endpoint (`/-/metrics`)
 

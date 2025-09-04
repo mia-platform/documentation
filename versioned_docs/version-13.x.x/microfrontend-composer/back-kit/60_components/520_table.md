@@ -485,10 +485,10 @@ Property `customActions` shape is either an `array` of `tag`-`properties` pairs 
 
 In the first case, each element of the array is a `tag`-`properties` pair, respectively representing the html tag of the component to mount and its properties.
 
-| property     | type                 | values | description                            |
-| ------------ | -------------------- | ------ | -------------------------------------- |
-| `tag`        | string               | string | custom component to mount              |
-| `properties` | {[key: string]: any} | object | properties injected into the component |
+| property     | type      -            | values | description                            |
+| ------------ |------------------------| ------ | -------------------------------------- |
+| `tag`        | string                 | string | custom component to mount              |
+| `properties` | `{[key: string]: any}` | object | properties injected into the component |
 
 It is often useful mounting the [Button][bk-button] components inside the actions columns of the Table because of its flexibility.
 
@@ -693,12 +693,12 @@ The property `browseOnRowSelect` allows to navigate to a specified link when a t
 }
 ```
 
-| property         | type                 | values                    | description                                       |
-| ---------------- | -------------------- | ------------------------- | ------------------------------------------------- |
-| `href`           | string               | -                         | link reference. Only relative links are accepted. |
-| `target`         | string               | -                         | where to open the href. Defaults to "_self"       |
-| `query`          | {[key: string]: any} | -                         | query parameters                                  |
-| `navigationType` | string               | "push", "replace", "href" | method used for navigation if target is "_self"   |
+| property         | type                   | values                    | description                                       |
+| ---------------- |------------------------| ------------------------- | ------------------------------------------------- |
+| `href`           | string                 | -                         | link reference. Only relative links are accepted. |
+| `target`         | string                 | -                         | where to open the href. Defaults to "_self"       |
+| `query`          | `{[key: string]: any}` | -                         | query parameters                                  |
+| `navigationType` | string                 | "push", "replace", "href" | method used for navigation if target is "_self"   |
 
 Where `navigationType` values are mapped to navigation methods as follows:
 
@@ -1542,29 +1542,29 @@ Please remember that `maxLines` and `fitParentContainer` properties cannot be us
 
 ### Properties & Attributes
 
-| property | attribute | type | default | description |
-|----------|-----------|------|---------|-------------|
-|`allowNavigation`|`allow-navigation`|boolean|true|when `true`, it is possible to navigate to nested objects and arrays if a dataSchema is specified|
-|`browseOnRowSelect`| - |[ClickPayload](#clickpayload)| - |if set, a click on a row will navigate you to another location |
-|`customActions`| - |[CustomAction](#customactions)[]| - |list of custom components, rendered in the action column |
-|`customMessageOnAbsentLookup`| - |[LocalizedText][localized-text]| - |override lookup value in case lookup is not resolved due to lack of data |
-|`dataSchema`| - |[ExtendedJSONSchema7Definition][data-schema]| - |data schema describing the fields of the collection to display |
-|`disableRowClick`|`disable-row-click`|boolean|false|when `true`, a click on a row does not trigger an event|
-|`disableRowSelection`|`disable-row-selection`|boolean|false|when `true`, checkbox in the first column will not be displayed|
-|`disableRowSelectionChange`|`disable-row-selection-change`|boolean|false|when `true`, selecting a row through the checkbox in the first column does not trigger an event|
-|`initialSortDirection`| - |"descend" \| "ascend"| - |initial sorting direction to use when component bootstraps |
-|`initialSortProperty`|`initial-sort-property`|string| - | initial property to sort on when component bootstraps, it must be used with `initialSortDirection`. |
-|`loadingOnStart`|`loading-on-start`|boolean|true|whether the table should be in loading state on connection|
-|`maxLines`|`max-lines`|number| - |force lines that will be displayed together. It can't be used with `fitParentContainer` |
-|`fitParentContainer`|`fit-parent-container`|boolean|false|Make the table fit the parent container height. It can't be used with `maxLines`|
-|`navigationRowActions`| - |[NavigationDataActions](#navigationdataactions)| {"kind": "icons", "actions": [{ "requireConfirm": true, "type": "delete", "disableInReadonly": true}]} |actions in nested objects.|
-|`openFileInViewerRegex`| - |[FileInViewerRegex](#fileinviewerregex)| - |regex expressions, matched against file values to request a preview of the file or for it to be downloaded. |
-|`resizableColumns`|`resizable-columns`|boolean|false|whether the table columns can be resized. When `true`, columns can be resized from the table header|
-|`rowActions`| - |[DataActions](#dataactions)| - |list of actions to render per row |
-|`showArrayPopover`|`show-array-popover`|boolean|false|whether to display a popup on mouse-over on array cells, showing their value. Not available for arrays of objects or arrays of arrays.|
-|`fixedColumns`| - | number \| {'left': number; 'right': number} | - |either the number of columns to fix from left or an object containing how many columns to fix from left and/or right|
-|`displayedDataPath`| - | string | - | specify an object path as datasource for displayed data |
-|`highlightedRows`| - | [QueryStyleRule](#querystylerule) \| QueryStyleRule[] | - | highlights rows matched by a mongo-like queries |
+| property                      | attribute                      | type                                                  | default                                                                                                  | description                                                                                                                            |
+|-------------------------------|--------------------------------|-------------------------------------------------------|----------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------|
+| `allowNavigation`             | `allow-navigation`             | boolean                                               | true                                                                                                     | when `true`, it is possible to navigate to nested objects and arrays if a dataSchema is specified                                      |
+| `browseOnRowSelect`           | -                              | [ClickPayload](#clickpayload)                         | -                                                                                                        | if set, a click on a row will navigate you to another location                                                                         |
+| `customActions`               | -                              | [CustomAction](#customactions)[]                      | -                                                                                                        | list of custom components, rendered in the action column                                                                               |
+| `customMessageOnAbsentLookup` | -                              | [LocalizedText][localized-text]                       | -                                                                                                        | override lookup value in case lookup is not resolved due to lack of data                                                               |
+| `dataSchema`                  | -                              | [ExtendedJSONSchema7Definition][data-schema]          | -                                                                                                        | data schema describing the fields of the collection to display                                                                         |
+| `disableRowClick`             | `disable-row-click`            | boolean                                               | false                                                                                                    | when `true`, a click on a row does not trigger an event                                                                                |
+| `disableRowSelection`         | `disable-row-selection`        | boolean                                               | false                                                                                                    | when `true`, checkbox in the first column will not be displayed                                                                        |
+| `disableRowSelectionChange`   | `disable-row-selection-change` | boolean                                               | false                                                                                                    | when `true`, selecting a row through the checkbox in the first column does not trigger an event                                        |
+| `initialSortDirection`        | -                              | "descend" \| "ascend"                                 | -                                                                                                        | initial sorting direction to use when component bootstraps                                                                             |
+| `initialSortProperty`         | `initial-sort-property`        | string                                                | -                                                                                                        | initial property to sort on when component bootstraps, it must be used with `initialSortDirection`.                                    |
+| `loadingOnStart`              | `loading-on-start`             | boolean                                               | true                                                                                                     | whether the table should be in loading state on connection                                                                             |
+| `maxLines`                    | `max-lines`                    | number                                                | -                                                                                                        | force lines that will be displayed together. It can't be used with `fitParentContainer`                                                |
+| `fitParentContainer`          | `fit-parent-container`         | boolean                                               | false                                                                                                    | Make the table fit the parent container height. It can't be used with `maxLines`                                                       |
+| `navigationRowActions`        | -                              | [NavigationDataActions](#navigationdataactions)       | `{"kind": "icons", "actions": [{ "requireConfirm": true, "type": "delete", "disableInReadonly": true}]}` | actions in nested objects.                                                                                                             |
+| `openFileInViewerRegex`       | -                              | [FileInViewerRegex](#fileinviewerregex)               | -                                                                                                        | regex expressions, matched against file values to request a preview of the file or for it to be downloaded.                            |
+| `resizableColumns`            | `resizable-columns`            | boolean                                               | false                                                                                                    | whether the table columns can be resized. When `true`, columns can be resized from the table header                                    |
+| `rowActions`                  | -                              | [DataActions](#dataactions)                           | -                                                                                                        | list of actions to render per row                                                                                                      |
+| `showArrayPopover`            | `show-array-popover`           | boolean                                               | false                                                                                                    | whether to display a popup on mouse-over on array cells, showing their value. Not available for arrays of objects or arrays of arrays. |
+| `fixedColumns`                | -                              | number `\| {'left': number; 'right': number}`         | -                                                                                                        | either the number of columns to fix from left or an object containing how many columns to fix from left and/or right                   |
+| `displayedDataPath`           | -                              | string                                                | -                                                                                                        | specify an object path as datasource for displayed data                                                                                |
+| `highlightedRows`             | -                              | [QueryStyleRule](#querystylerule) \| QueryStyleRule[] | -                                                                                                        | highlights rows matched by a mongo-like queries                                                                                        |
 
 #### ClickPayload
 

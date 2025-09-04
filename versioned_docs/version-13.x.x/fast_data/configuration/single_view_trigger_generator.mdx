@@ -45,7 +45,7 @@ To simplify the configuration of the Single View Trigger Generator service, you 
 
 * create your Single View and attach a _Single View Creator Service_ to it [from the dedicated configuration page](/fast_data/configuration/single_view_creator/index.md#attach_to_single_view). This is necessary because the Single View Trigger Generator can work with only one Single View Creator Service.
 * within the _Single View Creator_ tab of the _Single View_ modal, enter the configuration page of the Single View Creator that you've configured.
-* in the _Single View Trigger Generator_ tab, you can choose a Single View Trigger Generator from the available services. 
+* in the _Single View Trigger Generator_ tab, you can choose a Single View Trigger Generator from the available services.
 
 Once the service has been attached, you can manage the content of the [_Projection Changes Schema config map_](/fast_data/configuration/config_maps/projection_changes_schema.md) and the [_Kafka Projection Updates config map_](/fast_data/configuration/config_maps/kafka_projection_updates.mdx).
 
@@ -54,7 +54,7 @@ Once the service has been attached, you can manage the content of the [_Projecti
 Any updates to these configurations will be reflected in the service config maps after saving the configuration.
 
 :::tip Shared ER Schema
-Additionally, when a service is attached to a Single View, the _ER Schema_ config map will be shared between the Single View Creator and the Single View Trigger Generator. 
+Additionally, when a service is attached to a Single View, the _ER Schema_ config map will be shared between the Single View Creator and the Single View Trigger Generator.
 
 Also, the environment variable `SINGLE_VIEW_NAME` will be set automatically to the name of the Single View.
 :::
@@ -82,7 +82,7 @@ To know more on how to configure the file please go to the [ER Schema](/fast_dat
 
 ### Projection Changes Schema
 
-The Projection Changes Schema config map contains the `projectionChangesSchema.json` file which defines how to get to the base projection of the single view starting from the projection in which we received the ingestion message. 
+The Projection Changes Schema config map contains the `projectionChangesSchema.json` file which defines how to get to the base projection of the single view starting from the projection in which we received the ingestion message.
 
 Remember to copy/paste the mount path into the `PROJECTION_CHANGES_SCHEMA_FOLDER` environment variable so the service can read the file.
 If you need more info on how to configure the `projectionChangesSchema.json` file, please refer to the [Projection Changes Schema](/fast_data/configuration/config_maps/projection_changes_schema.md) page.
@@ -170,9 +170,9 @@ While this option can be useful for messages having a large size, can increase t
 
 Below you can find a list of example configurations, based on the two different types of producers.
 
-<details>
-<summary>Kafka Consumer with MongoDB Producer</summary>
-<p>
+
+Kafka Consumer with MongoDB Producer
+
 
 ```json
 {
@@ -194,12 +194,12 @@ Below you can find a list of example configurations, based on the two different 
 }
 ```
 
-</p>
-</details>
 
-<details>
-<summary>Kafka Consumer with Kafka Producer</summary>
-<p>
+
+
+
+Kafka Consumer with Kafka Producer
+
 
 ```json
 {
@@ -222,12 +222,12 @@ Below you can find a list of example configurations, based on the two different 
 }
 ```
 
-</p>
-</details>
 
-<details>
-<summary>Kafka Consumer with Kafka Producer having Snappy compression</summary>
-<p>
+
+
+
+Kafka Consumer with Kafka Producer having Snappy compression
+
 
 ```json
 {
@@ -251,12 +251,12 @@ Below you can find a list of example configurations, based on the two different 
 }
 ```
 
-</p>
-</details>
 
-<details>
-<summary>Kafka with Authentication</summary>
-<p>
+
+
+
+Kafka with Authentication
+
 
 ```json
 {
@@ -291,8 +291,8 @@ Below you can find a list of example configurations, based on the two different 
 }
 ```
 
-</p>
-</details>
+
+
 
 ## Runtime Management
 
@@ -304,9 +304,9 @@ By specifying the environment variables `CONTROL_PLANE_CONFIG_PATH`, you enable 
 
 :::caution
 By design, every service interacting with the Control Plane starts up in a paused state, unless the Control Plane
-has already resumed the data stream before. 
+has already resumed the data stream before.
 
-Therefore, when the SVTG starts up, the trigger generation will not start automatically. 
+Therefore, when the SVTG starts up, the trigger generation will not start automatically.
 
 In this case, you just need to send a `resume` command to one of the projections managed by the SVTG.
 :::

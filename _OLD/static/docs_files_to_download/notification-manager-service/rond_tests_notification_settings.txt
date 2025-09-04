@@ -1,0 +1,102 @@
+### Mocks for notification-manager policies
+
+find_many(collection, query) = res{
+    query == { "$or":[{"userGroups":{"$in":["superadmin", "doctors"]}},{"userGroups":{"$exists": false}}]}  
+    res:= [
+    {
+        "eventName": "event1"
+    },
+    {
+        "eventName": "event2"
+    }
+  ]
+}
+
+find_one(collection, query) = res{
+  query == {"$expr": { "$eq": [ "$_id", { "$toObjectId": "id1" } ] }}
+  res:= {
+    "eventName": "event1"
+  }
+}{
+  query == {"$expr": { "$eq": [ "$_id", { "$toObjectId": "id2" } ] }}
+  res:= {
+    "eventName": "event3"
+  }
+}{
+  query == {"$expr": { "$eq": [ "$_id", { "$toObjectId": "id3" } ] }}
+  res:= {}
+}
+
+### Test nm_create_notification_settings
+
+test_nm_create_ns_allow_creation{
+  nm_create_notification_settings
+    with input as {
+      "request":{
+        "body":{
+          "eventName": "event1"
+        },
+      },
+      "user":{
+        "groups":["superadmin", "doctors"]
+      }
+    }
+}
+
+test_nm_create_ns_not_allow_creation{
+  not nm_create_notification_settings
+    with input as {
+      "request":{
+        "body":{
+          "eventName": "event3"
+        },
+      },
+      "user":{
+        "groups":["superadmin", "doctors"]
+      }
+    }
+}
+
+### Test nm_update_notification_settings
+
+test_nm_update_ns_allow_update{
+  nm_update_notification_settings
+    with input as{
+      "request":{
+        "pathParams":{
+          "id": "id1"
+        }
+      },
+      "user":{
+        "groups":["superadmin", "doctors"]
+      }
+    }
+}
+
+test_nm_update_ns_not_allow_update{
+  not nm_update_notification_settings
+    with input as{
+      "request":{
+        "pathParams":{
+          "id": "id2"
+        }
+      },
+      "user":{
+        "groups":["superadmin", "doctors"]
+      }
+    }
+}
+
+test_nm_update_ns_not_allow_update_when_resource_not_exist{
+  not nm_update_notification_settings
+    with input as{
+      "request":{
+        "pathParams":{
+          "id": "id3"
+        }
+      },
+      "user":{
+        "groups":["superadmin", "doctors"]
+      }
+    }
+}

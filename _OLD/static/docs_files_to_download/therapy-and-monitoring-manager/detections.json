@@ -1,0 +1,134 @@
+[
+  {
+    "name": "_id",
+    "type": "ObjectId",
+    "required": true,
+    "nullable": false,
+    "description": "_id"
+  },
+  {
+    "name": "creatorId",
+    "type": "string",
+    "required": true,
+    "nullable": false,
+    "description": "creatorId"
+  },
+  {
+    "name": "createdAt",
+    "type": "Date",
+    "required": true,
+    "nullable": false,
+    "description": "createdAt"
+  },
+  {
+    "name": "updaterId",
+    "type": "string",
+    "required": true,
+    "nullable": false,
+    "description": "updaterId"
+  },
+  {
+    "name": "updatedAt",
+    "type": "Date",
+    "required": true,
+    "nullable": false,
+    "description": "updatedAt"
+  },
+  {
+    "name": "__STATE__",
+    "type": "string",
+    "required": true,
+    "nullable": false,
+    "description": "__STATE__"
+  },
+  {
+    "name": "planType",
+    "type": "string",
+    "required": true,
+    "nullable": false,
+    "sensitivityValue": 0,
+    "encryptionEnabled": false,
+    "encryptionSearchable": false
+  },
+  {
+    "name": "planId",
+    "type": "string",
+    "required": true,
+    "nullable": false,
+    "sensitivityValue": 0,
+    "encryptionEnabled": false,
+    "encryptionSearchable": false
+  },
+  {
+    "name": "value",
+    "type": "RawObject",
+    "required": false,
+    "nullable": false,
+    "sensitivityValue": 0,
+    "encryptionEnabled": false,
+    "encryptionSearchable": false
+  },
+  {
+    "name": "doctorId",
+    "type": "string",
+    "required": false,
+    "nullable": false,
+    "sensitivityValue": 0,
+    "encryptionEnabled": false,
+    "encryptionSearchable": false
+  },
+  {
+    "name": "patientId",
+    "type": "string",
+    "required": true,
+    "nullable": false,
+    "sensitivityValue": 0,
+    "encryptionEnabled": false,
+    "encryptionSearchable": false
+  },
+  {
+    "name": "isCompliant",
+    "type": "boolean",
+    "required": false,
+    "nullable": false,
+    "sensitivityValue": 0,
+    "encryptionEnabled": false,
+    "encryptionSearchable": false
+  },
+  {
+    "name": "observedAt",
+    "type": "Date",
+    "required": true,
+    "nullable": false,
+    "sensitivityValue": 0,
+    "encryptionEnabled": false,
+    "encryptionSearchable": false
+  },
+  {
+    "name": "deviceId",
+    "type": "string",
+    "required": false,
+    "nullable": false,
+    "sensitivityValue": 0,
+    "encryptionEnabled": false,
+    "encryptionSearchable": false
+  },
+  {
+    "name": "thresholds",
+    "type": "Array_RawObject",
+    "required": false,
+    "nullable": false,
+    "sensitivityValue": 0,
+    "encryptionEnabled": false,
+    "encryptionSearchable": false
+  },
+  {
+    "name": "thresholdsExceeded",
+    "type": "boolean",
+    "required": false,
+    "nullable": false,
+    "sensitivityValue": 0,
+    "encryptionEnabled": false,
+    "encryptionSearchable": false
+  }
+]

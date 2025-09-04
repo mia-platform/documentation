@@ -129,11 +129,11 @@ upon connection,the State Adapter emits:
 
 ### Properties & Attributes
 
-| property | attribute | type | default | description |
-|----------|-----------|------|---------|-------------|
-|`configMap`| - |{[name: string]: string}|{}|map to configure the adapter casting object properties to events labels |
-|`debounce`|`debounce`|number|500|delay for initial event emission |
-|`initKey`|`init-key`|string|"__BK_INIT"|key for events to emit once upon connection |
+| property             | attribute           | type                         | default     | description                                                             |
+|----------------------|---------------------|------------------------------|-------------|-------------------------------------------------------------------------|
+| `configMap`          | -                   | `{[name: string]: string}`   | `{}`        | map to configure the adapter casting object properties to events labels |
+| `debounce`           | `debounce`          | number                       | 500         | delay for initial event emission                                        |
+| `initKey`            | `init-key`          | string                       | "__BK_INIT" | key for events to emit once upon connection                             |
 
 ### Listens to
 

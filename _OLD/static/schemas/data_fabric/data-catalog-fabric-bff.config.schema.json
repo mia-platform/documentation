@@ -1,0 +1,409 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Configuration",
+  "description": "BFF Service configuration",
+  "type": "object",
+  "required": [
+    "persistence"
+  ],
+  "properties": {
+    "console": {
+      "anyOf": [
+        {
+          "$ref": "#/definitions/ConsoleSettings"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "controlPlane": {
+      "anyOf": [
+        {
+          "$ref": "#/definitions/ControlPlaneSettings"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "jobRunner": {
+      "anyOf": [
+        {
+          "$ref": "#/definitions/JobRunnerSettings"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "openLineage": {
+      "anyOf": [
+        {
+          "$ref": "#/definitions/OpenLineageSettings"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "persistence": {
+      "$ref": "#/definitions/Persistence"
+    },
+    "settings": {
+      "$ref": "#/definitions/Settings"
+    }
+  },
+  "definitions": {
+    "AuthContext": {
+      "oneOf": [
+        {
+          "type": "object",
+          "oneOf": [
+            {
+              "type": "object",
+              "required": [
+                "credentials",
+                "flow",
+                "tokenEndpoint"
+              ],
+              "properties": {
+                "credentials": {
+                  "$ref": "#/definitions/ClientCredentials"
+                },
+                "flow": {
+                  "type": "string",
+                  "enum": [
+                    "client_credentials"
+                  ]
+                },
+                "tokenEndpoint": {
+                  "type": "string"
+                }
+              }
+            }
+          ],
+          "required": [
+            "type"
+          ],
+          "properties": {
+            "type": {
+              "type": "string",
+              "enum": [
+                "oauth2"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "BasicCredentials": {
+      "type": "object",
+      "required": [
+        "clientId",
+        "clientSecret"
+      ],
+      "properties": {
+        "clientId": {
+          "$ref": "#/definitions/secret"
+        },
+        "clientSecret": {
+          "$ref": "#/definitions/secret"
+        }
+      }
+    },
+    "ClientCredentials": {
+      "anyOf": [
+        {
+          "$ref": "#/definitions/JWTBearerCredentials"
+        },
+        {
+          "$ref": "#/definitions/BasicCredentials"
+        }
+      ]
+    },
+    "ConsoleSettings": {
+      "description": "Settings describing the connections with Control Plane service",
+      "type": "object",
+      "required": [
+        "rest"
+      ],
+      "properties": {
+        "rest": {
+          "description": "Configuration related to the exposed REST APIs that are proxied",
+          "allOf": [
+            {
+              "$ref": "#/definitions/RestProxy"
+            }
+          ]
+        }
+      }
+    },
+    "ControlPlaneSettings": {
+      "description": "Settings describing the connections with Control Plane service",
+      "type": "object",
+      "required": [
+        "grpc",
+        "rest"
+      ],
+      "properties": {
+        "grpc": {
+          "description": "Configuration related to the inter-service communication with Control Plane service",
+          "allOf": [
+            {
+              "$ref": "#/definitions/GrpcProxy"
+            }
+          ]
+        },
+        "rest": {
+          "description": "Configuration related to the exposed REST APIs that are proxied",
+          "allOf": [
+            {
+              "$ref": "#/definitions/RestProxy"
+            }
+          ]
+        }
+      }
+    },
+    "GrpcProxy": {
+      "description": "Configuration regarding the GRPC services called by the BFF",
+      "type": "object",
+      "required": [
+        "target"
+      ],
+      "properties": {
+        "target": {
+          "description": "An structured representation of a URI employed internally to contact target services",
+          "type": "string"
+        }
+      }
+    },
+    "JWTBearerCredentials": {
+      "type": "object",
+      "required": [
+        "clientId",
+        "clientKeyId",
+        "privateKey"
+      ],
+      "properties": {
+        "clientId": {
+          "$ref": "#/definitions/secret"
+        },
+        "clientKeyId": {
+          "$ref": "#/definitions/secret"
+        },
+        "privateKey": {
+          "$ref": "#/definitions/secret"
+        }
+      }
+    },
+    "JobRunnerSettings": {
+      "description": "Settings describing the connections with JobRunner service",
+      "type": "object",
+      "required": [
+        "grpc"
+      ],
+      "properties": {
+        "grpc": {
+          "description": "Configuration related to the bulk actions Data Catalog service",
+          "allOf": [
+            {
+              "$ref": "#/definitions/GrpcProxy"
+            }
+          ]
+        }
+      }
+    },
+    "MongodbPersistence": {
+      "type": "object",
+      "required": [
+        "url"
+      ],
+      "properties": {
+        "database": {
+          "description": "Optional database name. It selects which database to be employed for storing data (it overrides the one provided in the connection string when it is set)",
+          "default": null,
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "url": {
+          "description": "MongoDB connection string",
+          "allOf": [
+            {
+              "$ref": "#/definitions/secret"
+            }
+          ]
+        }
+      }
+    },
+    "OpenLineageSettings": {
+      "description": "Settings describing the connections with OpenLineage service",
+      "type": "object",
+      "required": [
+        "grpc",
+        "rest"
+      ],
+      "properties": {
+        "grpc": {
+          "description": "Configuration related to the bulk actions Data Catalog service",
+          "allOf": [
+            {
+              "$ref": "#/definitions/GrpcProxy"
+            }
+          ]
+        },
+        "rest": {
+          "description": "Configuration related to the exposed REST APIs that are proxied",
+          "allOf": [
+            {
+              "$ref": "#/definitions/RestProxy"
+            }
+          ]
+        }
+      }
+    },
+    "Persistence": {
+      "oneOf": [
+        {
+          "type": "object",
+          "required": [
+            "configuration",
+            "type"
+          ],
+          "properties": {
+            "configuration": {
+              "$ref": "#/definitions/MongodbPersistence"
+            },
+            "type": {
+              "type": "string",
+              "enum": [
+                "mongodb"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "RestProxy": {
+      "description": "Configuration regarding the Control Plane APIs that are proxied by the BFF",
+      "type": "object",
+      "required": [
+        "target"
+      ],
+      "properties": {
+        "auth": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/AuthContext"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "target": {
+          "description": "An structured representation of a URI employed internally to contact target services",
+          "type": "string"
+        }
+      }
+    },
+    "Settings": {
+      "description": "Service specific configurations",
+      "type": "object",
+      "properties": {
+        "apiPrefix": {
+          "description": "Prefix path that it is applied to all the exposed APIs, except from the status ones",
+          "default": "",
+          "type": "string"
+        },
+        "auditUserHeader": {
+          "description": "Header containing the user unique identifier",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "tls": {
+          "description": "Client TLS proxy settings",
+          "anyOf": [
+            {
+              "$ref": "#/definitions/TlsOptions"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      }
+    },
+    "TlsOptions": {
+      "type": "object",
+      "properties": {
+        "certificate": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/secret"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      }
+    },
+    "secret": {
+      "oneOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "object",
+          "required": [
+            "key",
+            "type"
+          ],
+          "properties": {
+            "encoding": {
+              "type": "string",
+              "enum": [
+                "base64"
+              ]
+            },
+            "key": {
+              "type": "string"
+            },
+            "type": {
+              "const": "env"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "required": [
+            "path",
+            "type"
+          ],
+          "properties": {
+            "encoding": {
+              "type": "string",
+              "enum": [
+                "base64"
+              ]
+            },
+            "key": {
+              "type": "string"
+            },
+            "path": {
+              "type": "string"
+            },
+            "type": {
+              "const": "file"
+            }
+          }
+        }
+      ]
+    }
+  }
+}

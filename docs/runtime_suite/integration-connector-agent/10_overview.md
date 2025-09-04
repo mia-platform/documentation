@@ -91,8 +91,8 @@ Pipeline workflow:
 1. The MongoDB sink is configured with the URL taken from the environment variable `MONGO_URL`
    to save data into the collection `jira-issues`
 
-<details>
-<summary>Jira + MongoDB Sink Configuration</summary>
+
+Jira + MongoDB Sink Configuration
 
 ```json
 {
@@ -135,4 +135,4 @@ Pipeline workflow:
 }
 ```
 
-</details>
+

@@ -1,0 +1,217 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "$id": "service-feedback.schema.json",
+    "title": "ServiceFeedback",
+    "examples": [
+        {
+            "key": {
+                "pipeline": {
+                    "id": "ec0ae4b1-e8aa-4a82-b5d8-d260e0eed340",
+                    "name": "sv pipeline 1"
+                }
+            },
+            "value": {
+                "edges": [
+                    {
+                        "artifact": {
+                            "id": "7a171212-2da0-4c60-9d7c-67f80eca91cb",
+                            "name": "books_proj"
+                        },
+                        "exec": {
+                            "id": "06e4f2e2-0e0f-4c41-85af-1c6a6075965f",
+                            "name": "mapping"
+                        },
+                        "state": "running"
+                    },
+                    {
+                        "artifact": {
+                            "id": "8de96793-7cef-4867-9ce3-3a2fa23f9cdc",
+                            "name": "orders_proj"
+                        },
+                        "exec": {
+                            "id": "10c1165e-e5b2-4240-8990-c9b8b078c66e",
+                            "name": "mapping"
+                        },
+                        "state": "running"
+                    },
+                    {
+                        "artifact": {
+                            "id": "8de96793-7cef-4867-9ce3-3a2fa23f9cdc",
+                            "name": "orders_proj"
+                        },
+                        "exec": {
+                            "id": "b8c1b719-56bb-421a-b37b-cce472ccfb8f",
+                            "name": "backup"
+                        },
+                        "state": "paused"
+                    }
+                ]
+            },
+            "headers": {
+                "version": "1"
+            }
+        },
+        {
+            "key": {
+                "pipeline": {
+                    "id": "ec0ae4b1-e8aa-4a82-b5d8-d260e0eed340",
+                    "name": "sv pipeline 1"
+                }
+            },
+            "value": {
+                "edges": [
+                    {
+                        "artifact": {
+                            "id": "f719e097-5f06-48e8-9eca-b43b634bf450",
+                            "name": "books_proj"
+                        },
+                        "exec": {
+                            "id": "83f18349-2d2b-4682-ac1c-440b88bf1643",
+                            "name": "aggregation"
+                        },
+                        "state": "paused"
+                    }
+                ]
+            },
+            "headers": {
+                "version": "1"
+            }
+        },
+        {
+            "key": {
+                "pipeline": {
+                    "id": "ec0ae4b1-e8aa-4a82-b5d8-d260e0eed340",
+                    "name": "sv pipeline 1"
+                }
+            },
+            "value": {
+                "edges": [
+                    {
+                        "artifact": {
+                            "id": "f719e097-5f06-48e8-9eca-b43b634bf450",
+                            "name": "books_proj"
+                        },
+                        "exec": {
+                            "id": "83f18349-2d2b-4682-ac1c-440b88bf1643",
+                            "name": "aggregation"
+                        },
+                        "state": "paused",
+                        "metadata": {
+                            "throughput": "{\"value\":342,\"unit\":\"msg/s\"}"
+                        }
+                    }
+                ]
+            },
+            "headers": {
+                "version": "1"
+            }
+        }
+    ],
+    "definitions": {
+        "state": {
+            "type": "string",
+            "title": "RuntimeFeedback",
+            "description": "the actual operation state, extracted from the deployed service that is sending the feedback",
+            "enum": [
+                "running",
+                "paused"
+            ]
+        },
+        "item": {
+            "type": "object",
+            "title": "ItemFeedback",
+            "required": [
+                "id",
+                "name"
+            ],
+            "properties": {
+                "id": {
+                    "type": "string",
+                    "description": "unique identifier of the item"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "human-readable name of the item - based on old Fast Data projection and single view collection identifiers"
+                }
+            }
+        }
+    },
+    "type": "object",
+    "required": [
+        "key",
+        "value"
+    ],
+    "properties": {
+        "key": {
+            "type": "object",
+            "title": "HeartbeatKey",
+            "required": [
+                "pipeline"
+            ],
+            "properties": {
+                "pipeline": {
+                    "type": "object",
+                    "required": [
+                        "id",
+                        "name"
+                    ],
+                    "properties": {
+                        "id": {
+                            "type": "string"
+                        },
+                        "name": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "value": {
+            "type": "object",
+            "title": "HeartbeatPayload",
+            "required": [
+                "edges"
+            ],
+            "properties": {
+                "edges": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "required": [
+                            "artifact",
+                            "exec",
+                            "state"
+                        ],
+                        "properties": {
+                            "artifact": {
+                                "$ref": "#/definitions/item"
+                            },
+                            "exec": {
+                                "$ref": "#/definitions/item"
+                            },
+                            "state": {
+                                "$ref": "#/definitions/state"
+                            },
+                            "metadata": {
+                                "type": "object",
+                                "additionalProperties": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "headers": {
+            "type": "object",
+            "title": "HeartbeatHeaders",
+            "properties": {
+                "version": {
+                    "const": "1"
+                }
+            },
+            "additionalProperties": true
+        }
+    }
+}

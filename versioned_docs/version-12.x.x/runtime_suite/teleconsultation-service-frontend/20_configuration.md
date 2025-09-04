@@ -26,8 +26,8 @@ Example:
 The teleconsultation-service-fe normally does not require any config map. But, if you plan to embed the teleconsultation-service-fe inside an iframe or web-view, you might run into a CSP error ([Content Security Policy][mdn-csp]). To avoid this error you could set the right Content Security Policy through the config map.
 
 
-<details>
-<summary>Example of config map that implement a custom CSP</summary>
+
+Example of config map that implement a custom CSP
 
 ```
 location / {
@@ -40,7 +40,7 @@ location / {
 }
 ```
 
-</details>
+
 
 :::note
 Mount your config map in the right place in order to override the default one, e.g.: `/etc/nginx/conf.d/website.conf`.

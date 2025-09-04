@@ -132,8 +132,8 @@ This feature is available from Form Service Backend v1.2.2.
 
 In addition, you have to also add to your CRUD properties for the additional Form metadata, defined in [form metadata parameters](#form-metadata-parameters-formmetadata) section.
 
-<details>
-<summary>This example show how to use the formVisualizerOptions parameter in the form_schema collection to specify the language for the visualizer in the Form Service Frontend.</summary>
+
+This example show how to use the formVisualizerOptions parameter in the form_schema collection to specify the language for the visualizer in the Form Service Frontend.
 
 ```json
 "formVisualizerOptions": {
@@ -159,7 +159,7 @@ In addition, you have to also add to your CRUD properties for the additional For
 }
 ```
 
-</details>
+
 
 ### Form Schema map CRUD endpoint parameter (`formSchemaMapCrud`)
 

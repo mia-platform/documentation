@@ -16,7 +16,7 @@ Please ensure that versions shown in the matrix are respected in your deployed e
 | [Control Plane](/fast_data/runtime_management/control_plane.mdx)         | 0.1.0   | \>=5.0  | \>=7.0 |
 | [Fabric BFF](/fast_data/runtime_management/control_plane_fabric_bff.mdx) | 0.1.x   | \>=5.0  | __N/A__  |
 | [Fabric Admin](/data_catalog/database_setup.mdx)                         | 0.1.x - 0.4.x   | \>=5.0  | __N/A__  |
-<p><sup>*</sup><em>_N/A_</em> means the service does not depend on the resource</p>
+<sup>*</sup><em>_N/A_</em> means the service does not depend on the resource
 
 ## Fast Data services
 

@@ -100,8 +100,8 @@ Example of a filter is `project = "My Project"`.
 
 The following is an example of an issue event payload.
 
-<details>
-<summary>Issue Event Payload</summary>
+
+Issue Event Payload
 
 ```json
 {
@@ -189,14 +189,14 @@ The following is an example of an issue event payload.
 }
 ```
 
-</details>
+
 
 #### Issue link Event payload
 
 The following is an example of an issue link event payload.
 
-<details>
-<summary>Issue link Event Payload</summary>
+
+Issue link Event Payload
 
 ```json
 {
@@ -216,7 +216,7 @@ The following is an example of an issue link event payload.
 }
 ```
 
-</details>
+
 
 ### Projects Events
 
@@ -226,8 +226,8 @@ For the project events, the following are some example payloads.
 
 The following is an example of a project event payload.
 
-<details>
-<summary>Project Event Payload</summary>
+
+Project Event Payload
 
 ```json
 {
@@ -265,14 +265,14 @@ The following is an example of a project event payload.
 }
 ```
 
-</details>
+
 
 #### Project Version Event payload
 
 The following is an example of a project version event payload.
 
-<details>
-<summary>Project Version Event Payload</summary>
+
+Project Version Event Payload
 
 ```json
 {
@@ -295,15 +295,15 @@ The following is an example of a project version event payload.
 }
 ```
 
-</details>
+
 
 ##### Project Version Merged Event Payload
 
 The `jira:version_deleted` event is used to also notify that a version has been merged into another one.
 In this case, a flag `mergedTo` is added to the payload with the information of the version where the version has been merged.
 
-<details>
-<summary>Project Version Merged Event Payload</summary>
+
+Project Version Merged Event Payload
 
 ```json
 {
@@ -340,4 +340,4 @@ In this case, a flag `mergedTo` is added to the payload with the information of 
 }
 ```
 
-</details>
+

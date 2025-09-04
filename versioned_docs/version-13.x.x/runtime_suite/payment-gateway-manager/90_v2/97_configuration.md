@@ -27,8 +27,8 @@ The **Payment Gateway Manager (PGM)** needs some environment variables to work p
 * **DYNAMIC_PAYMENT_METHOD_CONFIG_PATH**: path to config map defining available payment methods based on rules
 
 The config map located at **DYNAMIC_PAYMENT_METHOD_CONFIG_PATH** must comply with the following schema
-<details>
-    <summary>Config schema</summary>
+
+    Config schema
 
 ```json
 {
@@ -116,7 +116,7 @@ The config map located at **DYNAMIC_PAYMENT_METHOD_CONFIG_PATH** must comply wit
   }
 }
 ```
-</details>
+
 
 ## GestPay (Axerve) Specific Environment Variables
 

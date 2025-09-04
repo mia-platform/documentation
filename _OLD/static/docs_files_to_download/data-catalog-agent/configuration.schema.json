@@ -1,0 +1,877 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "configuration",
+  "examples": [
+    {
+      "connections": {
+        "postgres-16": {
+          "configuration": {
+            "params": {
+              "database": "my-database",
+              "host": "0.0.0.0",
+              "port": 5432,
+              "pwd": "*******",
+              "uid": "my-user"
+            },
+            "vendor": "postgres"
+          },
+          "type": "odbc"
+        }
+      },
+      "target": {
+        "baseUrl": "https://console.cloud.mia-platform.eu",
+        "credentials": {
+          "clientId": "<CLIENT_ID>",
+          "clientKeyId": "<CLIENT_KEY_ID>",
+          "privateKey": "tls/private-key.pem"
+        },
+        "oauthTokenEndpoint": "/api/m2m/oauth/token",
+        "projectId": "1234",
+        "revision": "main",
+        "type": "mia-console"
+      }
+    },
+    {
+      "connections": {
+        "crud-service": {
+          "configuration": {
+            "params": {
+              "baseUrl": "http://mia-crud-service:3000",
+              "endpoint": "/-/schemas",
+              "headers": {
+                "accept": "application/x-ndjson"
+              }
+            },
+            "vendor": "mia-crud-service"
+          },
+          "type": "http"
+        }
+      },
+      "target": {
+        "baseUrl": "https://console.cloud.mia-platform.eu",
+        "credentials": {
+          "clientId": "<CLIENT_ID>",
+          "clientKeyId": "<CLIENT_KEY_ID>",
+          "privateKey": "tls/private-key.pem"
+        },
+        "oauthTokenEndpoint": "/api/m2m/oauth/token",
+        "projectId": "1234",
+        "revision": "main",
+        "type": "mia-console"
+      }
+    }
+  ],
+  "type": "object",
+  "properties": {
+    "connections": {
+      "type": "object",
+      "additionalProperties": {
+        "$ref": "#/definitions/connection"
+      }
+    },
+    "target": {
+      "default": {
+        "type": "stdout"
+      },
+      "allOf": [
+        {
+          "$ref": "#/definitions/target"
+        }
+      ]
+    }
+  },
+  "definitions": {
+    "OracleMode": {
+      "oneOf": [
+        {
+          "type": "string",
+          "enum": [
+            "user"
+          ]
+        },
+        {
+          "type": "object",
+          "required": [
+            "all"
+          ],
+          "properties": {
+            "all": {
+              "type": "object",
+              "properties": {
+                "owners": {
+                  "type": [
+                    "array",
+                    "null"
+                  ],
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "required": [
+            "dba"
+          ],
+          "properties": {
+            "dba": {
+              "type": "object",
+              "properties": {
+                "owners": {
+                  "type": [
+                    "array",
+                    "null"
+                  ],
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "additionalProperties": false
+        }
+      ]
+    },
+    "Settings": {
+      "type": "object",
+      "properties": {
+        "batchSize": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "format": "uint32",
+          "minimum": 0.0
+        },
+        "columnBatchSize": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "format": "uint32",
+          "minimum": 0.0
+        },
+        "connectionName": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      }
+    },
+    "connection": {
+      "oneOf": [
+        {
+          "type": "object",
+          "required": [
+            "configuration",
+            "type"
+          ],
+          "properties": {
+            "configuration": {
+              "$ref": "#/definitions/odbc-configuration"
+            },
+            "type": {
+              "type": "string",
+              "enum": [
+                "odbc"
+              ]
+            }
+          }
+        },
+        {
+          "type": "object",
+          "required": [
+            "configuration",
+            "type"
+          ],
+          "properties": {
+            "configuration": {
+              "$ref": "#/definitions/http-configuration"
+            },
+            "type": {
+              "type": "string",
+              "enum": [
+                "http"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "credentials": {
+      "type": "object",
+      "required": [
+        "clientId",
+        "clientKeyId",
+        "privateKey"
+      ],
+      "properties": {
+        "clientId": {
+          "type": "string"
+        },
+        "clientKeyId": {
+          "$ref": "#/definitions/secret"
+        },
+        "privateKey": {
+          "$ref": "#/definitions/secret"
+        }
+      }
+    },
+    "http-configuration": {
+      "oneOf": [
+        {
+          "type": "object",
+          "required": [
+            "params",
+            "vendor"
+          ],
+          "properties": {
+            "params": {
+              "$ref": "#/definitions/mia-crud-service-params"
+            },
+            "vendor": {
+              "type": "string",
+              "enum": [
+                "mia-crud-service"
+              ]
+            }
+          }
+        },
+        {
+          "type": "object",
+          "required": [
+            "params",
+            "vendor"
+          ],
+          "properties": {
+            "params": {
+              "$ref": "#/definitions/salesforce-params"
+            },
+            "vendor": {
+              "type": "string",
+              "enum": [
+                "salesforce-sobjects"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "mia-crud-service-params": {
+      "type": "object",
+      "required": [
+        "baseUrl"
+      ],
+      "properties": {
+        "baseUrl": {
+          "type": "string"
+        },
+        "endpoint": {
+          "default": "/-/schemas",
+          "type": "string"
+        },
+        "headers": {
+          "default": {
+            "accept": "application/x-ndjson"
+          },
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "healthcheck": {
+          "default": "/-/healthz",
+          "type": "string"
+        },
+        "tls": {
+          "default": {
+            "insecure": false
+          },
+          "allOf": [
+            {
+              "$ref": "#/definitions/tls-params"
+            }
+          ]
+        }
+      }
+    },
+    "mssql-connection-params": {
+      "examples": [
+        {
+          "database": "db",
+          "flags": "TrustServerCertificate=yes;",
+          "host": "0.0.0.0",
+          "port": 1433,
+          "pwd": "*****",
+          "uid": "user"
+        },
+        "Driver=mssql;Server=0.0.0.0,1433;Database=db;Uid=user;Pwd=p4ssw0rd;TrustServerCertificate=yes;"
+      ],
+      "anyOf": [
+        {
+          "$ref": "#/definitions/secret"
+        },
+        {
+          "type": "object",
+          "required": [
+            "database",
+            "pwd",
+            "uid"
+          ],
+          "properties": {
+            "database": {
+              "type": "string"
+            },
+            "driver": {
+              "type": "string"
+            },
+            "flags": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "host": {
+              "default": "0.0.0.0",
+              "type": "string"
+            },
+            "port": {
+              "default": 1433,
+              "type": "integer",
+              "format": "uint16",
+              "minimum": 0.0
+            },
+            "pwd": {
+              "$ref": "#/definitions/secret"
+            },
+            "uid": {
+              "$ref": "#/definitions/secret"
+            }
+          }
+        }
+      ]
+    },
+    "mysql-connection-params": {
+      "examples": [
+        {
+          "database": "db",
+          "host": "0.0.0.0",
+          "port": 3306,
+          "pwd": "*****",
+          "uid": "user"
+        },
+        "DRIVER=mysql;SERVER=0.0.0.0;PORT=3306;DATABASE=db;UID=user;PWD=p4ssw0rd;"
+      ],
+      "anyOf": [
+        {
+          "$ref": "#/definitions/secret"
+        },
+        {
+          "type": "object",
+          "required": [
+            "database",
+            "pwd",
+            "uid"
+          ],
+          "properties": {
+            "database": {
+              "type": "string"
+            },
+            "driver": {
+              "type": "string"
+            },
+            "flags": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "host": {
+              "default": "0.0.0.0",
+              "type": "string"
+            },
+            "port": {
+              "default": 3306,
+              "type": "integer",
+              "format": "uint16",
+              "minimum": 0.0
+            },
+            "pwd": {
+              "$ref": "#/definitions/secret"
+            },
+            "uid": {
+              "$ref": "#/definitions/secret"
+            }
+          }
+        }
+      ]
+    },
+    "odbc-configuration": {
+      "oneOf": [
+        {
+          "type": "object",
+          "required": [
+            "params",
+            "vendor"
+          ],
+          "properties": {
+            "params": {
+              "$ref": "#/definitions/mssql-connection-params"
+            },
+            "vendor": {
+              "type": "string",
+              "enum": [
+                "mssql"
+              ]
+            }
+          }
+        },
+        {
+          "type": "object",
+          "required": [
+            "params",
+            "vendor"
+          ],
+          "properties": {
+            "params": {
+              "$ref": "#/definitions/mysql-connection-params"
+            },
+            "vendor": {
+              "type": "string",
+              "enum": [
+                "mysql"
+              ]
+            }
+          }
+        },
+        {
+          "type": "object",
+          "required": [
+            "params",
+            "vendor"
+          ],
+          "properties": {
+            "options": {
+              "default": "user",
+              "allOf": [
+                {
+                  "$ref": "#/definitions/OracleMode"
+                }
+              ]
+            },
+            "params": {
+              "$ref": "#/definitions/oracle-connection-params"
+            },
+            "vendor": {
+              "type": "string",
+              "enum": [
+                "oracle"
+              ]
+            },
+            "version": {
+              "anyOf": [
+                {
+                  "$ref": "#/definitions/version"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "type": "object",
+          "required": [
+            "params",
+            "vendor"
+          ],
+          "properties": {
+            "params": {
+              "$ref": "#/definitions/postgres-connection-params"
+            },
+            "vendor": {
+              "type": "string",
+              "enum": [
+                "postgres"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "oracle-connection-params": {
+      "examples": [
+        {
+          "dbq": "ORACLE_TEST",
+          "uid": "user",
+          "pwd": "****"
+        },
+        {
+          "dbq": "(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=0.0.0.0)(PORT=1521))(CONNECT_DATA=(SERVER=DEDICATED)(SERVICE_NAME=ORACLE19C_TEST)))",
+          "flags": "DBA=R;",
+          "uid": "user",
+          "pwd": "****"
+        },
+        "DRIVER=oracle;UID=user;PWD=p4ssw0rd;DBQ=(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=0.0.0.0)(PORT=1521))(CONNECT_DATA=(SERVER=DEDICATED)(SERVICE_NAME=ORACLE19C_TEST)))"
+      ],
+      "anyOf": [
+        {
+          "$ref": "#/definitions/secret"
+        },
+        {
+          "type": "object",
+          "required": [
+            "dbq",
+            "pwd",
+            "uid"
+          ],
+          "properties": {
+            "dbq": {
+              "type": "string"
+            },
+            "driver": {
+              "type": "string"
+            },
+            "flags": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "pwd": {
+              "$ref": "#/definitions/secret"
+            },
+            "uid": {
+              "$ref": "#/definitions/secret"
+            }
+          }
+        }
+      ]
+    },
+    "postgres-connection-params": {
+      "examples": [
+        {
+          "database": "db",
+          "host": "0.0.0.0",
+          "port": 5432,
+          "pwd": "*****",
+          "uid": "user"
+        },
+        "DRIVER=postgres;SERVER=0.0.0.0;PORT=5432;DATABASE=db;UID=user;PWD=p4ssw0rd;"
+      ],
+      "anyOf": [
+        {
+          "$ref": "#/definitions/secret"
+        },
+        {
+          "type": "object",
+          "required": [
+            "database",
+            "pwd",
+            "uid"
+          ],
+          "properties": {
+            "database": {
+              "type": "string"
+            },
+            "driver": {
+              "type": "string"
+            },
+            "flags": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "host": {
+              "default": "0.0.0.0",
+              "type": "string"
+            },
+            "port": {
+              "default": 5432,
+              "type": "integer",
+              "format": "uint16",
+              "minimum": 0.0
+            },
+            "pwd": {
+              "$ref": "#/definitions/secret"
+            },
+            "uid": {
+              "$ref": "#/definitions/secret"
+            }
+          }
+        }
+      ]
+    },
+    "salesforce-params": {
+      "oneOf": [
+        {
+          "type": "object",
+          "required": [
+            "apiVersion",
+            "authenticationFlow",
+            "baseUrl",
+            "clientId",
+            "clientSecret",
+            "password",
+            "securityToken",
+            "username"
+          ],
+          "properties": {
+            "apiVersion": {
+              "type": "string"
+            },
+            "authenticationFlow": {
+              "type": "string",
+              "enum": [
+                "username-password"
+              ]
+            },
+            "baseUrl": {
+              "type": "string"
+            },
+            "clientId": {
+              "$ref": "#/definitions/secret"
+            },
+            "clientSecret": {
+              "$ref": "#/definitions/secret"
+            },
+            "password": {
+              "$ref": "#/definitions/secret"
+            },
+            "securityToken": {
+              "$ref": "#/definitions/secret"
+            },
+            "username": {
+              "$ref": "#/definitions/secret"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "required": [
+            "apiVersion",
+            "authenticationFlow",
+            "baseUrl",
+            "clientId",
+            "privateKey",
+            "username"
+          ],
+          "properties": {
+            "apiVersion": {
+              "type": "string"
+            },
+            "authenticationFlow": {
+              "type": "string",
+              "enum": [
+                "jwt-bearer"
+              ]
+            },
+            "baseUrl": {
+              "type": "string"
+            },
+            "clientId": {
+              "$ref": "#/definitions/secret"
+            },
+            "loginUrl": {
+              "default": "https://login.salesforce.com",
+              "type": "string"
+            },
+            "privateKey": {
+              "$ref": "#/definitions/secret"
+            },
+            "username": {
+              "$ref": "#/definitions/secret"
+            }
+          }
+        }
+      ]
+    },
+    "secret": {
+      "oneOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "object",
+          "required": [
+            "key",
+            "type"
+          ],
+          "properties": {
+            "encoding": {
+              "type": "string",
+              "enum": [
+                "base64"
+              ]
+            },
+            "key": {
+              "type": "string"
+            },
+            "type": {
+              "const": "env"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "required": [
+            "path",
+            "type"
+          ],
+          "properties": {
+            "encoding": {
+              "type": "string",
+              "enum": [
+                "base64"
+              ]
+            },
+            "key": {
+              "type": "string"
+            },
+            "path": {
+              "type": "string"
+            },
+            "type": {
+              "const": "file"
+            }
+          }
+        }
+      ]
+    },
+    "target": {
+      "examples": [
+        {
+          "type": "stdout"
+        },
+        {
+          "dir": "/path/to/dir",
+          "type": "file"
+        },
+        {
+          "baseUrl": "https://console.cloud.mia-platform.eu",
+          "credentials": {
+            "clientId": "<CLIENT_ID>",
+            "clientKeyId": "<CLIENT_KEY_ID>",
+            "privateKey": "tls/private-key.pem"
+          },
+          "dataCatalogEndpoint": "/custom",
+          "oauthTokenEndpoint": "/api/m2m/oauth/token",
+          "type": "mia-console"
+        }
+      ],
+      "oneOf": [
+        {
+          "type": "object",
+          "anyOf": [
+            {
+              "type": "object",
+              "required": [
+                "projectId"
+              ],
+              "properties": {
+                "projectId": {
+                  "type": "string"
+                },
+                "revision": {
+                  "default": "main",
+                  "type": "string"
+                }
+              }
+            },
+            {
+              "type": "object",
+              "required": [
+                "dataCatalogEndpoint"
+              ],
+              "properties": {
+                "dataCatalogEndpoint": {
+                  "type": "string"
+                }
+              }
+            }
+          ],
+          "required": [
+            "baseUrl",
+            "credentials",
+            "type"
+          ],
+          "properties": {
+            "baseUrl": {
+              "type": "string"
+            },
+            "credentials": {
+              "$ref": "#/definitions/credentials"
+            },
+            "headers": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "string"
+              }
+            },
+            "oauthTokenEndpoint": {
+              "default": "/api/m2m/oauth/token",
+              "type": "string"
+            },
+            "type": {
+              "type": "string",
+              "enum": [
+                "mia-console"
+              ]
+            }
+          }
+        },
+        {
+          "type": "object",
+          "required": [
+            "type"
+          ],
+          "properties": {
+            "dir": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "type": {
+              "type": "string",
+              "enum": [
+                "file"
+              ]
+            }
+          }
+        },
+        {
+          "type": "object",
+          "required": [
+            "type"
+          ],
+          "properties": {
+            "type": {
+              "type": "string",
+              "enum": [
+                "stdout"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "version": {
+      "type": "string",
+      "enum": [
+        "21",
+        "19",
+        "12",
+        "11"
+      ]
+    }
+  }
+}
