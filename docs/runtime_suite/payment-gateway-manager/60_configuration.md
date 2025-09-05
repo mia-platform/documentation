@@ -89,7 +89,7 @@ The config map located at **EXTERNAL_PROVIDERS_CONFIG** must comply with the fol
 * **FLOWPAY_CHECKOUT_BASE_URL** (required): Base URL of the Checkout page, it is used to redirect the user to complete the payment.
 * **FLOWPAY_CLIENT_ID** (required): Client ID of the FlowPay application.
 * **FLOWPAY_CLIENT_SECRET** (required): Client Secret of the FlowPay application.
-* **FLOWPAY_PUBLIC_KEY** (required): Public Key to verify the [Webhooks signature](https://docs.flowpay.it/#section/Webhooks/Signature.
+* **FLOWPAY_PUBLIC_KEY** (required): Public Key to verify the [Webhooks signature](https://docs.flowpay.it/#section/Webhooks/Signature).
 * **FLOWPAY_CALLBACK_URL** (required): Address to which Flowpay will send webhooks.
 
 ### Fnmpay

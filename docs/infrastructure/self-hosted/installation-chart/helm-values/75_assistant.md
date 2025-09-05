@@ -10,7 +10,7 @@ DO NOT MODIFY IT BY HAND.
 Instead, modify the source file and run the aggregator to regenerate this file.
 -->
 
-Mia-Platform Console includes *Mia Assistant*, an AI-based application that can be interrogated on anything included in the official [Mia-Platform Documentation](https://docs.mia-platform.eu).
+Mia-Platform Console includes *Mia Assistant*, an AI-based application that can be interrogated on anything included in the official [Mia-Platform Documentation](/).
 
 ## MongoDB configuration
 
