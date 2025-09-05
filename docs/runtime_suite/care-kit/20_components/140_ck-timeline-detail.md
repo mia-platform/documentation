@@ -10,7 +10,7 @@ DO NOT MODIFY IT BY HAND.
 Instead, modify the source file and run the aggregator to regenerate this file.
 -->
 
-The `ck-timeline-detail` web component is a component specialized to show events of a user [Appointments](../../therapy-and-monitoring-manager/overview).
+The `ck-timeline-detail` web component is a component specialized to show events of a user [Appointments](/runtime_suite/therapy-and-monitoring-manager/10_overview.md).
 
 ![ck-timeline-detail](../img/ck-timeline-detail.png)
 ## Usage

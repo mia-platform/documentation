@@ -14,7 +14,7 @@ Instead, modify the source file and run the aggregator to regenerate this file.
 
 A Grant-Type property let you define a method from which your application can gain Access Tokens, for a more detailed explanation follow the official [auth0 documentation](https://auth0.com/docs/applications/application-grant-types).
 
-To setup, firstly, you must have a working tenant on Auth0, where your application has enabled different database's connections (e.g. **Username-Password-Authentication**). Then, in the advanced settings of your application, you should enable `Password` in `Grant Types`. You have to add the necessary **Action**, see [Config Auth0](./30_configure_auth0.md).
+To setup, firstly, you must have a working tenant on Auth0, where your application has enabled different database's connections (e.g. **Username-Password-Authentication**). Then, in the advanced settings of your application, you should enable `Password` in `Grant Types`. You have to add the necessary **Action**, see [Config Auth0](/runtime_suite/auth0-client/30_configure_auth0.md).
 
 In Tenant Setting, at **API Authorization Settings** you set a Default Directory and a Default Audience, which is the name of the connection to be use for Password Grant exchanges.
 
@@ -153,7 +153,7 @@ If you want to segregate users for each runtime environment, the simpler solutio
 4. Make sure that `supportedConnections` and `defaultConnection` is declared for `cms` client too, specifying only the connection you want to support in that environment.
 
 :::note
-For more information in regards of the Auth0 Client advanced config checkout out the [configuration documentation page](./configuration#auth0-connection-integration)
+For more information in regards of the Auth0 Client advanced config checkout out the [configuration documentation page](/runtime_suite/auth0-client/20_configuration.md#auth0-connection-integration)
 :::
 
 
@@ -222,7 +222,7 @@ This API can be contacted with the same body accepted by Auth0 [POST /api/v2/use
 
 If none of the above is defined, the api will throw an error.
 
-Refer to the [configuration schema](./20_configuration.md#configuration)
+Refer to the [configuration schema](/runtime_suite/auth0-client/20_configuration.md#configuration)
 
 ### Patch a user
 

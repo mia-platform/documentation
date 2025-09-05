@@ -32,5 +32,5 @@ Check out the [Runtime Management](/fast_data/runtime_management.mdx) documentat
 :::
 
 :::note
-Check the [Configuration](./20_configuration.mdx) section for more information on how to configure the Control Plane application.
+Check the [Configuration](/runtime_suite_applications/fast-data-control-plane/20_configuration.mdx) section for more information on how to configure the Control Plane application.
 :::

@@ -23,7 +23,7 @@ The service use the following environment variables:
 - **LOG_LEVEL** (optional, default to `info`): level of the log. It could be trace, debug, info, warn, error, fatal;
 - **HTTP_PORT** (optional, default to `8080`): port where the web server is exposed;
 - **SERVICE_PREFIX** (optional): path prefix for all the specified endpoints (different from the status routes);
-- **EXPOSE_MANAGEMENT_APIS** (optional, default `false`): allows to control whether or not [management APIs](./20_how_to_use.md#management-api) are exposed by the service (please note that this flag can be used only when running in dynamic configuration mode);
+- **EXPOSE_MANAGEMENT_APIS** (optional, default `false`): allows to control whether or not [management APIs](/runtime_suite/http-proxy-manager/20_how_to_use.md#management-api) are exposed by the service (please note that this flag can be used only when running in dynamic configuration mode);
 - **ALLOW_PROXY_OPTIMIZER** (optional, default to `true`): boolean that enables optimized proxy using reverse proxy and preventing saving body request in memory. Be careful, this optimization does not perform any retry, thus it is strongly suggested to configure the token validation endpoint in your proxy configuration;
 - **DELAY_SHUTDOWN_SECONDS** (optional, default to `10` seconds): seconds to wait before starting the graceful shutdown. This delay is required in k8s to await for the DNS rotation;
 - **DISABLE_PROXY_CACHE** (optional, default `false`): allows to disable the in-memory proxy cache. Such cache is used to prevent excessive CRUD invocations (useful when you want to prevent any possible out-dated cache hit whenever the service is using Dynamic Configuration in the context of a scaled HA architecture)
@@ -37,10 +37,10 @@ The service use the following environment variables:
 ## Static configuration
 
 This service requires a configuration file that provides all the different details regarding the external services to be proxied.
-The configuration file can be mounted into the service either as a *ConfigMap* or as a *Secret* (for more details, please refer to this [documentation](../../development_suite/api-console/api-design/services#custom-configuration)).
+The configuration file can be mounted into the service either as a *ConfigMap* or as a *Secret* (for more details, please refer to this [documentation](/development_suite/api-console/api-design/services.md#custom-configuration)).
 
 :::caution
-In case the former method (*Config Map*) is selected, please use [variables interpolation](../../development_suite/api-console/api-design/services#environment-variable-configuration) for sensitive data, such as:
+In case the former method (*Config Map*) is selected, please use [variables interpolation](/development_suite/api-console/api-design/services.md#environment-variable-configuration) for sensitive data, such as:
 
 - username
 - password

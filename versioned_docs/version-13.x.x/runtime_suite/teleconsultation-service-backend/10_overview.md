@@ -20,7 +20,7 @@ The **Teleconsultation Service Backend** allows you to handle all the necessary 
 In order to use this service, you need first to contact Kaleyra to create a Company, for your product and get the BANDYER_API_SECRET_KEY (for the Teleconsultation Service Backend).
 :::
 
-:::warn
+:::warning
 During the teleconsultation, data is processed by Kaleyra, so please be mindful not to share sensitive or personal information. For more details on data processing, refer to Kaleyra's [Terms of Service](https://www.kaleyra.com/terms-and-conditions/) and [Privacy Policy](https://www.kaleyra.com/privacy-policy-kaleyra/).
 :::
 

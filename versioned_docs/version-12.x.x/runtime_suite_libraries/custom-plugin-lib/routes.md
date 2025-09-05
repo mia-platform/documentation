@@ -23,7 +23,7 @@ whose arguments are, in order
 * `handler` - function that contains the actual behavior. It must respect the same interface defined in the
 documentation of the handlers of [fastify](https://www.fastify.io/docs/latest/Routes/#async-await).
 * `schema` - definition of the request and response data schema.
-The format is the one accepted by [fastify](https://www.fastify.io/docs/latest/Validation-and-Serialization). To further detail see [`related section`](./apidoc.md).
+The format is the one accepted by [fastify](https://www.fastify.io/docs/latest/Validation-and-Serialization). To further detail see [`related section`](/runtime_suite_libraries/custom-plugin-lib/apidoc.md).
 
 To get more info about how to declare a route can you look at the related [Fastify documentation](https://github.com/fastify/fastify/blob/master/docs/Routes.md).
 

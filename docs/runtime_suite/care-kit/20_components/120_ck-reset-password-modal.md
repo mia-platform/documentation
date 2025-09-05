@@ -11,14 +11,14 @@ Instead, modify the source file and run the aggregator to regenerate this file.
 -->
 
 The `ck-reset-password` web component is used for resetting the users password in a bulk activation.
-The operation is done by selecting many records from the corresponding users'table and by clicking on the [ck-reset-password-button](./110_ck-reset-password-button.md).
+The operation is done by selecting many records from the corresponding users'table and by clicking on the [ck-reset-password-button](/runtime_suite/care-kit/20_components/110_ck-reset-password-button.md).
 A job will sequently be created the [user-manager-service][user-manager-service], and the modal will show until the job is not finished.
 
 ![ck-reset-password-modal](../img/ck-reset-password-modal.png)
 
 ## Usage
 
-In order to open the ck-import-users-modal in a Microfrontend Composer, a [ck-reset-password-button](./110_ck-reset-password-button.md) needs to be used on the same page and the minimum configuration of the component must be provided.
+In order to open the ck-import-users-modal in a Microfrontend Composer, a [ck-reset-password-button](/runtime_suite/care-kit/20_components/110_ck-reset-password-button.md) needs to be used on the same page and the minimum configuration of the component must be provided.
 An example configuration follows:
 
 ```
@@ -61,5 +61,5 @@ When the operation completes. A feedback message will be shown indicating the re
 |---------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------|
 | reset-password-modal | Custom event, the payload equals the current state of the modal (open and loading state, percentage completion, the operation result or error). |
 
-[user-manager-service]: ../../user-manager-service/overview
+[user-manager-service]: /runtime_suite/user-manager-service/10_overview.md
 [events]: https://git.tools.mia-platform.eu/mia-care/platform/plugins/notification-manager/-/blob/master/docs/10_overview.md?plain=0#default-events

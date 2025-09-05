@@ -1736,19 +1736,19 @@ When the handler receives such an event it performs the following operations:
 [therapy-monitoring-manager]: /runtime_suite/therapy-and-monitoring-manager/10_overview.md
 [timer-service]: /runtime_suite/timer-service/10_overview.md
 
-[message-interpolation]: ./10_overview.md#messages-interpolation
-[notification-settings]: ./10_overview.md#notification-settings
+[message-interpolation]: /runtime_suite/notification-manager-service/10_overview.md#messages-interpolation
+[notification-settings]: /runtime_suite/notification-manager-service/10_overview.md#notification-settings
 
-[custom-handlers]: ./20_configuration.md#custom-event-handlers
-[environment-variables]: ./20_configuration.md#environment-variables
-[crud-notification-messages]: ./20_configuration.md#notification-messages
-[crud-notification-reminders]: ./20_configuration.md#notification-reminders
-[crud-notification-settings]: ./20_configuration.md#notification-settings-crud
-[crud-notifications]: ./20_configuration.md#notifications-crud
-[crud-event-settings]: ./20_configuration.md#event-settings-crud
-[crud-events]: ./20_configuration.md#events-crud
-[crud-users]: ./20_configuration.md#users-crud
-[service-configuration]: ./20_configuration.md#service-configuration
+[custom-handlers]: /runtime_suite/notification-manager-service/20_configuration.md#custom-event-handlers
+[environment-variables]: /runtime_suite/notification-manager-service/20_configuration.md#environment-variables
+[crud-notification-messages]: /runtime_suite/notification-manager-service/20_configuration.md#notification-messages
+[crud-notification-reminders]: /runtime_suite/notification-manager-service/20_configuration.md#notification-reminders
+[crud-notification-settings]: /runtime_suite/notification-manager-service/20_configuration.md#notification-settings-crud
+[crud-notifications]: /runtime_suite/notification-manager-service/20_configuration.md#notifications-crud
+[crud-event-settings]: /runtime_suite/notification-manager-service/20_configuration.md#event-settings-crud
+[crud-events]: /runtime_suite/notification-manager-service/20_configuration.md#events-crud
+[crud-users]: /runtime_suite/notification-manager-service/20_configuration.md#users-crud
+[service-configuration]: /runtime_suite/notification-manager-service/20_configuration.md#service-configuration
 
 [build-messages]: #buildmessages
 [build-reminders]: #buildreminders

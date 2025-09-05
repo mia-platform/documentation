@@ -75,4 +75,4 @@ This section provides a security checklist to configure providers in order for a
 [twilio-pricing]: https://www.twilio.com/en-us/sms/pricing/
 [twilio-sms-pumping-protection-programmable-messaging]: https://www.twilio.com/docs/messaging/features/sms-pumping-protection-programmable-messaging
 
-[environment-variables]: ./20_configuration.md#Environment-variables "Environment variables | Configuration"
+[environment-variables]: /runtime_suite/sms-service/20_configuration.md#Environment-variables "Environment variables | Configuration"

@@ -34,7 +34,7 @@ Before calling _doPayment_ API the _Payments_ service schedules a **timeout** on
 - expiration_interval_ms &rarr; the milliseconds that must pass from *start_date* for the timeout
 - applicant_service &rarr; the service who schedule the timer
 
-for more details see [usage](./30_usage.md#create-a-timer).
+for more details see [usage](/runtime_suite/timer-service/30_usage.md#create-a-timer).
 
 The _Payments_ service will wait for _timeout_ seconds the result of _doPayment_ on the callback_url.
 If_Payments_receives the callback before the expiration of the timeout, the service calls_Timer Service_abort (_Figure 1_).
@@ -70,6 +70,6 @@ The _Timer Service_ can be used for more purposes, for example:
 
 The _Timer Service_ is easy to use and easy to configure:
 
-- [_Timer Service_ configuration](./20_configuration.md)
+- [_Timer Service_ configuration](/runtime_suite/timer-service/20_configuration.md)
 
-- [_Timer Service_ usage](./30_usage.md)
+- [_Timer Service_ usage](/runtime_suite/timer-service/30_usage.md)

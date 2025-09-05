@@ -442,5 +442,5 @@ The test suite covers the following requests:
 
 [thresholds]: #thresholds "Thresholds | Overview"
 
-[notifications]: ./20_configuration.md#notifications "Notifications | Configuration"
-[thresholds-validation]: ./20_configuration.md#thresholds-validation "Thresholds validation | Configuration"
+[notifications]: /runtime_suite/therapy-and-monitoring-manager/20_configuration.md#notifications "Notifications | Configuration"
+[thresholds-validation]: /runtime_suite/therapy-and-monitoring-manager/20_configuration.md#thresholds-validation "Thresholds validation | Configuration"

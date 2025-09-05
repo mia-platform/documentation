@@ -30,7 +30,7 @@ It is also possible to expose your Swagger Aggregator microservice with multiple
 ## Configuration file
 
 :::tip
-Configure Swagger Aggregator directly from [Console](/development_suite/api-console/advanced-section/swagger-aggregator/configuration)
+Configure Swagger Aggregator directly from [Console](/development_suite/api-console/advanced-section/swagger-aggregator/configuration.md)
 :::
 
 This Microservice is configured via a configuration file similar to this:
@@ -228,7 +228,7 @@ Please be sure to validate the configuration with the following <a download targ
 :::
 
 :::info
-For additional information about more advanced properties that can be defined in the swagger-aggregator configuration (e.g., `subSwaggers` property) visit [this page](/development_suite/api-console/advanced-section/swagger-aggregator/configuration).
+For additional information about more advanced properties that can be defined in the swagger-aggregator configuration (e.g., `subSwaggers` property) visit [this page](/development_suite/api-console/advanced-section/swagger-aggregator/configuration.md).
 :::
 
 ### Security

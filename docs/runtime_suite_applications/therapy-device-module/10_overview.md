@@ -31,7 +31,7 @@ Finally, a BFF is installed to act as the module interface for the external prov
 
 This is an high level overview of the TDM:
 
-![Therapy and Device Module Architecture](img/high-level-architecture.png "Therapy and Device Module Architecture")
+![Therapy and Device Module Architecture](img/high-level-architecture.png)
 
 *Overview of Therapy and Device Module architecture, based on an Http REST interface.*
 
@@ -49,13 +49,13 @@ These are the database collections in Device Manager:
 - Devices
 
 
-[mia-therapy-and-monitoring-manager]: /runtime_suite/therapy-and-monitoring-manager/configuration
-[mia-therapy-and-monitoring-manager-crud]: /runtime_suite/therapy-and-monitoring-manager/configuration#crud-collections
-[mia-device-manager-crud]: /runtime_suite/device-manager/configuration#crud-collections
+[mia-therapy-and-monitoring-manager]: /runtime_suite/therapy-and-monitoring-manager/20_configuration.md
+[mia-therapy-and-monitoring-manager-crud]: /runtime_suite/therapy-and-monitoring-manager/20_configuration.md#crud-collections
+[mia-device-manager-crud]: /runtime_suite/device-manager/20_configuration.md#crud-collections
 
-[mia-therapy-and-monitoring-manager]: /runtime_suite/therapy-and-monitoring-manager/configuration
-[mia-device-manager]: /runtime_suite/device-manager/configuration
-[mia-crud-service]: /runtime_suite/crud-service/overview_and_usage
-[mia-api-gateway]: /runtime_suite/api-gateway/overview
+[mia-therapy-and-monitoring-manager]: /runtime_suite/therapy-and-monitoring-manager/20_configuration.md
+[mia-device-manager]: /runtime_suite/device-manager/20_configuration.md
+[mia-crud-service]: /runtime_suite/crud-service/10_overview_and_usage.md
+[mia-api-gateway]: /runtime_suite/api-gateway/10_overview.md
 
 [mongodb]: https://www.mongodb.com/

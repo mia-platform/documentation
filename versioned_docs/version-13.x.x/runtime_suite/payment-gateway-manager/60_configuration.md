@@ -24,7 +24,7 @@ The **Payment Gateway Manager (PGM)** needs some environment variables to work p
 * **SAGA_CRUD_URL** (required if FLOW_MANAGER_URL is set): url of the saga CRUD collection
 * **EXTERNAL_PROVIDERS_CONFIG**: path to config map defining external services for payments
 * **SUBSCRIPTION_HANDLER_URL**: url to the subscription handler service. Required to handle subscription payment within the Payment Integration Hub
-* **ADAPTIVE_CHECKOUT_CRUD_URL**: url to the Adaptive Checkout rules collection. Its use is discouraged in favor of the [Adaptive Approval Service](../adaptive-approval-service/overview)
+* **ADAPTIVE_CHECKOUT_CRUD_URL**: url to the Adaptive Checkout rules collection. Its use is discouraged in favor of the [Adaptive Approval Service](/runtime_suite/adaptive-approval-service/10_overview.md)
 * **ADAPTIVE_CHECKOUT_CACHE_EXPIRE_MIN**: Duration, in minutes, of Adaptive Checkout rules caching. Defaults to 5
 
 

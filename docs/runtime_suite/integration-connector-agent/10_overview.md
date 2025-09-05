@@ -41,18 +41,18 @@ Examples include:
 
 Currently, the supported **Sources** are:
 
-- [Mia-Platform Console](./sources/15_console.md)
-- [Jira](./sources/20_jira.md)
-- [GitHub](./sources/20_github.md)
-- [GCP Asset Inventory from Pub/Sub](./sources/30_gcp_pubsub_asset_inventory.md)
-- [AWS CloudTrail from SQS](./sources/50_aws_cloudtrail_sqs.md)
-- [Azure Activity Log from EventHub](./sources/40_azure_activity_log_event_hub.md)
+- [Mia-Platform Console](/runtime_suite/integration-connector-agent/sources/15_console.md)
+- [Jira](/runtime_suite/integration-connector-agent/sources/20_jira.md)
+- [GitHub](/runtime_suite/integration-connector-agent/sources/20_github.md)
+- [GCP Asset Inventory from Pub/Sub](/runtime_suite/integration-connector-agent/sources/30_gcp_pubsub_asset_inventory.md)
+- [AWS CloudTrail from SQS](/runtime_suite/integration-connector-agent/sources/50_aws_cloudtrail_sqs.md)
+- [Azure Activity Log from EventHub](/runtime_suite/integration-connector-agent/sources/40_azure_activity_log_event_hub.md)
 
 The supported **Sinks** are:
 
-- [Mia-Platform Console Catalog](./sinks/15_console-catalog.md)
-- [Mia-Platform CRUD Service](./sinks/30_crudservice.md)
-- [MongoDB](./sinks/20_mongodb.md)
+- [Mia-Platform Console Catalog](/runtime_suite/integration-connector-agent/sinks/15_console-catalog.md)
+- [Mia-Platform CRUD Service](/runtime_suite/integration-connector-agent/sinks/30_crudservice.md)
+- [MongoDB](/runtime_suite/integration-connector-agent/sinks/20_mongodb.md)
 
 More sources and sinks are planned for future releases.
 

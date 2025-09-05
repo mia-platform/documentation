@@ -247,15 +247,15 @@ It follows an example of a valid configuration file.
 
 [bcp-47-language-tag]: https://en.wikipedia.org/wiki/IETF_language_tag
 [e164]: https://www.twilio.com/docs/glossary/what-e164
-[files-service]: ../files-service/usage
+[files-service]: /runtime_suite/files-service/usage.mdx
 [kalyera-manage-numbers]: https://eu.kaleyra.io/numbers/manage
 [twilio-invalid-number]: https://www.twilio.com/docs/api/errors/21212
 [twilio-sender-id]: https://www.twilio.com/docs/glossary/what-alphanumeric-sender-id
 
-[message-interpolation]: ./10_overview.md#messages-interpolation
+[message-interpolation]: /runtime_suite/messaging-service/10_overview.md#messages-interpolation
 
 [crud-users]: #users-crud-required
 [environment-variables]: #environment-variables
 [service-configuration]: #service-configuration
 
-[usage-body]: ./30_usage.md#body
+[usage-body]: /runtime_suite/messaging-service/30_usage.md#body

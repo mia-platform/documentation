@@ -26,7 +26,7 @@ It's also possible to set the `Editable form` field from the UI. An editable for
 
 ![Form Visualizer not editable](img/not-editable-form-visualizer.png)
 
-Other users can only view the submitted data in the **Form Visualizer** if their user group is selected from the `Submitted forms viewers` multi-picker. For more information about `groups` (i.e. `admin` `doctor` etc etc) check [here](../auth0-client/configuration) and [here](../auth0-client/configure_auth0#step-8-enable-your-first-user-to-access-cms). Read this [documentation](../auth0-client/enable_auth0#how-to-enable-auth0-as-an-identity-provider-in-your-project) to know how to enable Auth0 as an identity provider.
+Other users can only view the submitted data in the **Form Visualizer** if their user group is selected from the `Submitted forms viewers` multi-picker. For more information about `groups` (i.e. `admin` `doctor` etc etc) check [here](/runtime_suite/auth0-client/20_configuration.md) and [here](/runtime_suite/auth0-client/30_configure_auth0.md#step-8-enable-your-first-user-to-access-cms). Read this [documentation](/runtime_suite/auth0-client/40_enable_auth0.md#how-to-enable-auth0-as-an-identity-provider-in-your-project) to know how to enable Auth0 as an identity provider.
 
 :::info
 
@@ -40,4 +40,4 @@ Leaving the `Submitted forms viewers` field empty will prevent any kind of user 
 
 :::
 
-**Form assignments** require **Form Service Backend** version `1.2.0` (or above). For more information about it's configuration and how to assign a form template to specific users read the [*Form assignments* configuration](../form-service-backend/form_assignments_configuration).
+**Form assignments** require **Form Service Backend** version `1.2.0` (or above). For more information about it's configuration and how to assign a form template to specific users read the [*Form assignments* configuration](/runtime_suite/form-service-backend/30_form_assignments_configuration.md).

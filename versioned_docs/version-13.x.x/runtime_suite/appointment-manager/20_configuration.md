@@ -744,16 +744,16 @@ Since the reminder service in turn requires the messaging service to send remind
 :::
 
 
-[crud-service-doc]: ../crud-service/overview_and_usage "CRUD Service official documentation"
-[messaging-service-doc]: ../messaging-service/overview "Messaging Service official documentation"
-[notification-manager-doc]: ../messaging-service/overview "Notification Manager"
-[timer-service-doc]: ../timer-service/overview "Timer Service official documentation"
-[teleconsultation-service-doc]: ../teleconsultation-service-backend/overview "Teleconsultation Service official documentation"
+[crud-service-doc]: /runtime_suite/crud-service/10_overview_and_usage.md "CRUD Service official documentation"
+[messaging-service-doc]: /runtime_suite/messaging-service/10_overview.md "Messaging Service official documentation"
+[notification-manager-doc]: /runtime_suite/messaging-service/10_overview.md "Notification Manager"
+[timer-service-doc]: /runtime_suite/timer-service/10_overview.md "Timer Service official documentation"
+[teleconsultation-service-doc]: /runtime_suite/teleconsultation-service-backend/10_overview.md "Teleconsultation Service official documentation"
 [fhir-participation-status]: https://www.hl7.org/fhir/valueset-participationstatus.html
 
-[overview]: ./10_overview.md "Overview page"
-[flexible-slots]: ./10_overview.md#flexible-slots "Flexible slots | Availabilities and slots | Overview"
-[participant-status]: ./10_overview.md#participant-status "Participant status | User participants | Appointments | Overview"
+[overview]: /runtime_suite/appointment-manager/10_overview.md "Overview page"
+[flexible-slots]: /runtime_suite/appointment-manager/10_overview.md#flexible-slots "Flexible slots | Availabilities and slots | Overview"
+[participant-status]: /runtime_suite/appointment-manager/10_overview.md#participant-status "Participant status | User participants | Appointments | Overview"
 
 [service-configuration]: #service-configuration "Service configuration | Configuration"
 [environment-variables]: #environment-variables "Environment variables | Configuration"
@@ -767,7 +767,7 @@ Since the reminder service in turn requires the messaging service to send remind
 [is-participant-status-available]: #isparticipantstatusavailable "`isParticipantStatusAvailable` | Service configuration | Configuration"
 [is-user-available]: #isuseravailable
 
-[create-availability]: ./30_usage.md#post-availabilities "POST /availabilities/ | Availabilities | Usage"
-[update-availability]: ./30_usage.md#patch-availabilitiesid "PATCH /availabilities/:id | Availabilities | Usage"
+[create-availability]: /runtime_suite/appointment-manager/30_usage.md#post-availabilities "POST /availabilities/ | Availabilities | Usage"
+[update-availability]: /runtime_suite/appointment-manager/30_usage.md#patch-availabilitiesid "PATCH /availabilities/:id | Availabilities | Usage"
 
 [fhir-participationstatus]: https://www.hl7.org/fhir/valueset-participationstatus.html "Valueset-participationstatus - FHIR v5.0.0"

@@ -10,7 +10,7 @@ DO NOT MODIFY IT BY HAND.
 Instead, modify the source file and run the aggregator to regenerate this file.
 -->
 
-The pages of type [_compose_](./10_structure.md#page-type) can be configured in a **dedicated section** accessible via _edit page_ option in pages [context menu](./10_structure.md#edit-page).
+The pages of type [_compose_](/microfrontend-composer/composer/10_structure.md#page-type) can be configured in a **dedicated section** accessible via _edit page_ option in pages [context menu](/microfrontend-composer/composer/10_structure.md#edit-page).
 
 :::tip
 You can refer the [micro-lc documentation](https://micro-lc.io/docs/guides/applications/compose) on how to properly configure a compose page.
@@ -23,7 +23,7 @@ You can refer the [micro-lc documentation](https://micro-lc.io/docs/guides/appli
 Compose pages can be created starting from a template, which is a pre-defined configuration carring a set of components.
 
 :::tip
-To learn how to use your own custom templates, read the [dedicated documentation](./30_configurator_settings.md#template-sources).
+To learn how to use your own custom templates, read the [dedicated documentation](/microfrontend-composer/composer/30_configurator_settings.md#template-sources).
 ::: 
 
 ### Page with table
@@ -102,7 +102,7 @@ From the first tab you can configure in a no-code fashion the components that **
 
 This section works just as the layout tab: the **left menu** allows viewing, selecting, and hiding the custom components composing the page, the **live central preview** shows how the final page will look like, and from the **right menu** components properties can be consulted and edited.
 
-For more technical insights, visit the [Layout section](./10_structure.md#layout) where all the behaviors are explained in deep.
+For more technical insights, visit the [Layout section](/microfrontend-composer/composer/10_structure.md#layout) where all the behaviors are explained in deep.
 
 ![Compose page layout tab](img/compose-page_layout.png)
 
@@ -130,7 +130,7 @@ When choosing the name of your new shared property, you can also select any defi
 
 Once that the property has been created, it will be visible in the left side menu. It is possible to assign it to a property of a component  in page by selecting it and flagging the checkbox of the relative property.
 
-Alternatively, it is possible to assign a Shared Property to a component property directly in the [Component properties editor](./10_structure.md#components-properties-editor)
+Alternatively, it is possible to assign a Shared Property to a component property directly in the [Component properties editor](/microfrontend-composer/composer/10_structure.md#components-properties-editor)
 
 ![Compose page shared properties tab](img/compose-page_shared-properties-checkbox.png)
 
@@ -160,6 +160,6 @@ If the component already references a shared, the generation process will **comp
 
 ## Advanced
 
-The fourth and last tab works like the advanced tab of the [structure section](./10_structure.md#advanced-configuration): the **whole configuration** of the page can be edited from a code editor with a live preview on the right.
+The fourth and last tab works like the advanced tab of the [structure section](/microfrontend-composer/composer/10_structure.md#advanced-configuration): the **whole configuration** of the page can be edited from a code editor with a live preview on the right.
 
 ![Compose page advanced tab](img/compose-page_advanced.png)

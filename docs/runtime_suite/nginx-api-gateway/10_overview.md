@@ -21,7 +21,7 @@ Its main features are:
 - Rate Limit with Burst
 - Http Secure Headers
 - Request Dispaching
-- [API Key](../../development_suite/api-console/api-design/api_key.md) Management
+- [API Key](/development_suite/api-console/api-design/api_key.md) Management
 - Http Utilities
 - Proxy-Pass Plain
 - URL Rewriting
@@ -48,5 +48,5 @@ Edge Router is part of the API Gateway module and protects the API Gateway guara
 The Edge Router manages the termination of the SSL certificates with auto-renew on Let's Encrypt.
 
 :::info
-Let's check the [configuration directories](./configuration#configuration-directories) and the [advanced configuration](../../development_suite/api-console/advanced-section/api-gateway/how-to) to more details.
+Let's check the [configuration directories](/runtime_suite/nginx-api-gateway/20_configuration.md#configuration-directories) and the [advanced configuration](/development_suite/api-console/advanced-section/api-gateway/how-to.md) to more details.
 :::

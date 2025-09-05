@@ -46,11 +46,11 @@ When configuring the AWS CloudTrail SQS source, you need to provide the followin
 - `queueUrl` (*string*): The URL of the SQS queue to which CloudTrail events are published.
 - `region` (*string*): The AWS region where the SQS queue is located.
 - `accessKeyId` (*string*): access key ID from AWS
-- `secretAccessKey` ([*SecretSource*](../20_install.md#secretsource)): secret access key from AWS
-- `sessionToken` ([*SecretSource*](../20_install.md#secretsource)): session token from AWS
+- `secretAccessKey` ([*SecretSource*](/runtime_suite/integration-connector-agent/20_install.md#secretsource)): secret access key from AWS
+- `sessionToken` ([*SecretSource*](/runtime_suite/integration-connector-agent/20_install.md#secretsource)): session token from AWS
 - `webhookPath` (*string*, optional): The path for the webhook expoed to trigger a full import.
 - `authentication` (*object*, options): The authentication configuration
-  - **secret** ([*SecretSource*](../20_install.md#secretsource)): The secret used to validate the incoming webhook requests
+  - **secret** ([*SecretSource*](/runtime_suite/integration-connector-agent/20_install.md#secretsource)): The secret used to validate the incoming webhook requests
   - **headerName** (*string*, optional): The name of the header used to validate the incoming webhook requests.
 
 ### Example

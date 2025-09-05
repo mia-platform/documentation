@@ -16,7 +16,7 @@ These settings are only related to the Console plugin itself and will not affect
 
 A common use-case when configuring a frontend is to use **interpolated variables** in configuration files (e.g., for the version of a web-components library). The configurator automatically pulls the unsecreted variables of the project and uses them to correctly interpret configurations with interpolated sections.
 
-To manage the variables used by the configurator, a dedicated modal can be opened with the *Variables* button on the top right corner of both the [structure](./10_structure.md) and the [compose configuration](./20_compose_pages.md) pages.
+To manage the variables used by the configurator, a dedicated modal can be opened with the *Variables* button on the top right corner of both the [structure](/microfrontend-composer/composer/10_structure.md) and the [compose configuration](/microfrontend-composer/composer/20_compose_pages.md) pages.
 
 The modal is divided into two section. The *Public* section lists the project unsecreted variables divided for environment (the variables are **readonly**). The environment can be switched to try the configuration with the different variables values.
 
@@ -63,7 +63,7 @@ On top of that, for each pair you can specify any **query** or **header** to be 
 
 ## Template sources
 
-Whenever you [create](./10_structure.md#create-new-page) a compose page you can choose to start from a pre-configured [template](./20_compose_pages.md#templates). Templates are fetched from remote sources, and these sources can be configured in the _Template sources_ tab of the _Configurator Settings_ modal.
+Whenever you [create](/microfrontend-composer/composer/10_structure.md#create-new-page) a compose page you can choose to start from a pre-configured [template](/microfrontend-composer/composer/20_compose_pages.md#templates). Templates are fetched from remote sources, and these sources can be configured in the _Template sources_ tab of the _Configurator Settings_ modal.
 
 ![Template sources](img/configurator-settings_template-sources.png)
 

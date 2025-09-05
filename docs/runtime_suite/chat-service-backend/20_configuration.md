@@ -114,4 +114,4 @@ A reference about grants and default grants can be found [here](https://getstrea
 
 It is possible to edit your client's style server-side by providing a theme object whose root keys are the client type (i.e. `web`, `mobile`, etc.) and values are specific object dependant on the UI SDK you are using.
 
-As described in the [Overview](./10_overview_and_usage.md) section, calling the `/config?clientType=` endpoint with the right client type (e.g. `/config?clientType=web`) the service will return a theme object.
+As described in the [Overview](/runtime_suite/chat-service-backend/10_overview_and_usage.md) section, calling the `/config?clientType=` endpoint with the right client type (e.g. `/config?clientType=web`) the service will return a theme object.

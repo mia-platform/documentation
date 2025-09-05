@@ -32,7 +32,7 @@ This working mode is activated by defining the **CONFIGURATION_PATH** and **CONF
 
 ### Dynamic configuration
 
-In dynamic configuration, proxies are retrieved from a CRUD collection. The service exposes exposes one endpoint with wildcard (`/*`) to match all requests, and a set of special **management routes** to perform CRUD operations on the proxies collection: you can learn more about them in the [dedicated section](./30_configuration.md#proxies-collection-management).
+In dynamic configuration, proxies are retrieved from a CRUD collection. The service exposes exposes one endpoint with wildcard (`/*`) to match all requests, and a set of special **management routes** to perform CRUD operations on the proxies collection: you can learn more about them in the [dedicated section](/runtime_suite/http-proxy-manager/30_configuration.md#proxies-collection-management).
 
 For better performances the service configuration is cached for a time duration set by the environment variable **PROXY_CACHE_TTL**.
 

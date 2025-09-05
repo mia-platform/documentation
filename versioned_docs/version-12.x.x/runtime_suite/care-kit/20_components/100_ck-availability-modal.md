@@ -19,11 +19,11 @@ The `ck-availability-modal` web component is a modal specialized in adding/modif
 The web component consists of a form inside a modal with dynamically generated fields based on a Availability.
 
 
-The web-component also listens to the [add-new](../../../microfrontend-composer/back-kit/events#add-new) event. Upon receiving a `add-new` event, the `ck-availability-modal` opens to create new availability Submitting the form will trigger the post of the availabilities.
+The web-component also listens to the [add-new](/microfrontend-composer/back-kit/70_events.md#add-new) event. Upon receiving a `add-new` event, the `ck-availability-modal` opens to create new availability Submitting the form will trigger the post of the availabilities.
 
-The web-component also listens to the [selected-data](../../../microfrontend-composer/back-kit/events#selected-data) event. Upon receiving a `select-data` event, the `ck-availability-modal` opens in edit mode. For the modal to open correctly, the payload of the event must contain a valid `_id` of the availability that has to be edited. If the modal was opened in edit mode, the submitting of the form will trigger the patch of the selected appointment.
+The web-component also listens to the [selected-data](/microfrontend-composer/back-kit/70_events.md#selected-data) event. Upon receiving a `select-data` event, the `ck-availability-modal` opens in edit mode. For the modal to open correctly, the payload of the event must contain a valid `_id` of the availability that has to be edited. If the modal was opened in edit mode, the submitting of the form will trigger the patch of the selected appointment.
 
-In order to open the `ck-availability-modal` in a Microfrontend Composer, a configuration is needed to configure a button to emit the custom event [`availability-modal`](../30_events.md#availabilitymodal). An example configuration follows: 
+In order to open the `ck-availability-modal` in a Microfrontend Composer, a configuration is needed to configure a button to emit the custom event [`availability-modal`](/runtime_suite/care-kit/30_events.md#availabilitymodal). An example configuration follows: 
 
 ```
 {
@@ -111,7 +111,7 @@ In order to open the `ck-availability-modal` in a Microfrontend Composer, a conf
 | event                                                                          | action                                            | emits              | on error |
 |--------------------------------------------------------------------------------|---------------------------------------------------|--------------------|----------|
 | availability-modal                                                             | Triggers the opening or the closing of the modal. | -                  | -        |
-| [selected-data](../../../microfrontend-composer/back-kit/events#selected-data) | Triggers the opening of the modal in edit mod     | availability-modal | -        |
+| [selected-data](/microfrontend-composer/back-kit/70_events.md#selected-data) | Triggers the opening of the modal in edit mod     | availability-modal | -        |
 | add-new                                                                        | Listens to the add-new event to open modal        | -                  | -        |
 | LookupLiveFound                                                                | Listens to the live lookup data                   | -                  | -        |
 | LookupFound                                                                    | Listens to the lookup data                        | -                  | -        |

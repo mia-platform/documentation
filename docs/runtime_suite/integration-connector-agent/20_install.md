@@ -33,8 +33,8 @@ with, how to process the data, and the sink to store the data.
 It is possible to set more than one integration. Each integration is a data pipeline
 which starts from a source, passes through one or more processors, and store data in one or more sink.
 
-To view the possible configurations for each [source](./sources/10_overview.md),
-[processor](./processors/10_overview.md), and [sink](./sinks/10_overview.md), see the related documentation.
+To view the possible configurations for each [source](/runtime_suite/integration-connector-agent/sources/10_overview.md),
+[processor](/runtime_suite/integration-connector-agent/processors/10_overview.md), and [sink](/runtime_suite/integration-connector-agent/sinks/10_overview.md), see the related documentation.
 
 ### Example Configuration
 

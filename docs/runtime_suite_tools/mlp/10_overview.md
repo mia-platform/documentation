@@ -45,7 +45,7 @@ For more information about the various options available to the various commands
 
 Below, you can find additional documentation for `mlp`:
 
-- [Setup](./20_setup.md)
-- [Generation Configuration](./30_generate.md)
-- [Hydration Logic](./40_hydrate.md)
-- [Interpolatation Template](./50_interpolate.md)
+- [Setup](/runtime_suite_tools/mlp/20_setup.md)
+- [Generation Configuration](/runtime_suite_tools/mlp/30_generate.md)
+- [Hydration Logic](/runtime_suite_tools/mlp/40_hydrate.md)
+- [Interpolatation Template](/runtime_suite_tools/mlp/50_interpolate.md)

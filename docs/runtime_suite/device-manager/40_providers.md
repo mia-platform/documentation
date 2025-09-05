@@ -105,8 +105,8 @@ This endpoint is responsible of vetting incoming health data and transmitting it
 [ums-user-info]: /runtime_suite/user-manager-service/30_usage.md#get-userinfo
 [ums-user-change-password]: /runtime_suite/user-manager-service/30_usage.md#post-userschange-password
 
-[post-devices-assign]: 30_usage.md#post-devicesassign
-[post-health-data-healthkit]: 30_usage.md#post-health-datahealthkitformat
-[post-health-data-medisante]: 30_usage.md#post-health-datamedisanteformat
+[post-devices-assign]: /runtime_suite/device-manager/30_usage.md#post-devicesassign
+[post-health-data-healthkit]: /runtime_suite/device-manager/30_usage.md#post-health-datahealthkitformat
+[post-health-data-medisante]: /runtime_suite/device-manager/30_usage.md#post-health-datamedisanteformat
 
 [post-health-data-format]: #post-health-dataformat

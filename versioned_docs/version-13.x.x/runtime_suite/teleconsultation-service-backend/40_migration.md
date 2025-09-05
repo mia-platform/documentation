@@ -26,4 +26,4 @@ For additional information about environments, please check [official Kaleyra do
 
 [kaleyra-api-key]: https://developers.kaleyra.io/docs/view-api-key-and-sid
 [kaleyra-environments]: https://developers.kaleyra.io/reference/video-environments
-[environment-variables]: ./20_configuration.md#environment-variables
+[environment-variables]: /runtime_suite/teleconsultation-service-backend/20_configuration.md#environment-variables

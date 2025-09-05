@@ -73,7 +73,7 @@ Please note that the **generic2FHIR** and the **FHIR2generic** mappings may diff
 
 ### Composition
 
-A composition object is a JSON object that represents a dependency of the entity you want to save or retrieve from a FHIR Server. In order to better understand the configuration of the **composition** object field, let us recall the example used in the [Overview section](overview_and_usage#overview).
+A composition object is a JSON object that represents a dependency of the entity you want to save or retrieve from a FHIR Server. In order to better understand the configuration of the **composition** object field, let us recall the example used in the [Overview section](/runtime_suite/mia-fhir-adapter/10_overview_and_usage.md#overview).
 
 ![Translation example schema](img/translation-example-schema.png)
 

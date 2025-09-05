@@ -119,7 +119,7 @@ The autosave feature includes a change in the service calls for data storage, wh
 - Update CRUD client GET, DELETE, and POST to match CRUD's endpoint paths.
 
 #### Note
-Caution: be careful that the submitUrl exposes methods correctly. Read documentation for details, in particular the [Form submit urls parameters](./20_configuration.md#form-submit-urls-parameters) section.
+Caution: be careful that the submitUrl exposes methods correctly. Read documentation for details, in particular the [Form submit urls parameters](/runtime_suite/form-service-backend/20_configuration.md#form-submit-urls-parameters) section.
 
 ### Added
 

@@ -387,7 +387,7 @@ The TMM currently generates the following events you can refer in the configurat
 [json-schema-draft7]: https://json-schema.org/draft-07/json-schema-release-notes.html "JSON Schema Draft 7"
 [iana-time-zones]: https://www.iana.org/time-zones "IANA Time Zones"
 
-[overview]: ./10_overview.md "Overview page"
+[overview]: /runtime_suite/therapy-and-monitoring-manager/10_overview.md "Overview page"
 
 [crud-detections]: #detections "Detections | CRUD collections | Configuration"
 [crud-monitorings]: #monitorings "Monitorings | CRUD collections | Configuration"

@@ -806,8 +806,8 @@ sequenceDiagram
 [microfrontend-composer]: /microfrontend-composer/overview.md
 [mongo-unique-index]: https://www.mongodb.com/docs/manual/core/index-unique/ "MongoDB unique index"
 
-[configuration]: ./20_configuration.md
-[environment-variables]: ./20_configuration.md#environment-variables
+[configuration]: /runtime_suite/user-manager-service/20_configuration.md
+[environment-variables]: /runtime_suite/user-manager-service/20_configuration.md#environment-variables
 
 [get-jobs-bulk-activation-id]: #get-jobsbulk-activationid
 [get-jobs-change-password-bulk-id]: #get-jobschange-passwordbulkid

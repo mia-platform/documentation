@@ -12,7 +12,7 @@ Instead, modify the source file and run the aggregator to regenerate this file.
 
 CRUD acronym stays for ***Create-Read-Update-Delete***. The CRUD Service purpose is to abstract a Data Collections allowing developers to expose CRUD APIs over the database in an easy, scalable, and secure way.
 
-Mia-Platform Console takes advantage of the CRUD Service to let you configure CRUDs through a dedicated UI, the [MongoDB CRUD](../../development_suite/api-console/api-design/crud_advanced.md) section.
+Mia-Platform Console takes advantage of the CRUD Service to let you configure CRUDs through a dedicated UI, the [MongoDB CRUD](/development_suite/api-console/api-design/crud_advanced.md) section.
 
 :::note
 At the moment, you can have only one CRUD Service in your branch at a time.
@@ -290,7 +290,7 @@ CRUD must **not** be exposed directly to the Internet. It must **always** be pro
 
 ### API Key
 
-If a CRUD is exposed under an [API Key](../../development_suite/api-console/api-design/api-key) you have to pass the key into the request header with the name `client-key`.
+If a CRUD is exposed under an [API Key](/development_suite/api-console/api-design/api_key.md) you have to pass the key into the request header with the name `client-key`.
 
 Example:
 
@@ -722,7 +722,7 @@ curl --request GET \
 
 #### Filters with MongoDB Query
 
-Documents can be filtered using MongoDB queries. It is possible to filter in and or in cascade quoting all of them the properties of documents. [More details on the MongoDB site for queries on a resource](Https://docs.mongodb.com/manual/tutorial/query-documents/)
+Documents can be filtered using MongoDB queries. It is possible to filter in and or in cascade quoting all of them the properties of documents. [More details on the MongoDB site for queries on a resource](https://docs.mongodb.com/manual/tutorial/query-documents/)
 
 For example, we can look for plates that have a name that begins with V, that have price and two ingredients.
 
@@ -775,7 +775,7 @@ You can use more MongoDB filters in query **_q**. Here is the complete list:
 - `$elemMatch` and `$options`
 - `$text`
 
-Aggregate cannot be used. To use aggregate please see [Mia-Platform MongoDB Reader Service](../mongodb-reader/configuration).
+Aggregate cannot be used. To use aggregate please see [Mia-Platform MongoDB Reader Service](/runtime_suite/mongodb-reader/10_configuration.md).
 
 :::note
 If you have problems with the special characters in the URL encoding, you can try the `json-query-params-encoding` header. More info at ([CRUD Headers](#crud-headers)).

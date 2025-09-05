@@ -21,4 +21,4 @@ If you want to learn how to modify this template and create your node microservi
 [custom-plugin-lib]: https://github.com/mia-platform/custom-plugin-lib
 [node.js]: https://nodejs.org/en/
 
-[walkthrough]: ./20_walkthrough.md
+[walkthrough]: /runtime_suite_templates/node.js-mia-care-samd-template/20_walkthrough.md

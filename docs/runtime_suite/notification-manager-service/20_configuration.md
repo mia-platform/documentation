@@ -917,7 +917,7 @@ The following default reminder event handlers both filter the notification setti
 [sms-service]: /runtime_suite/sms-service/10_overview.md
 [therapy-monitoring-manager]: /runtime_suite/therapy-and-monitoring-manager/10_overview.md
 
-[message-interpolation]: ./10_overview.md#messages-interpolation
+[message-interpolation]: /runtime_suite/notification-manager-service/10_overview.md#messages-interpolation
 
 [crud-events]: #events-crud
 [crud-events-settings]: #event-settings-crud
@@ -927,12 +927,12 @@ The following default reminder event handlers both filter the notification setti
 [environment-variables]: #environment-variables
 [service-configuration]: #service-configuration
 
-[custom-handler-api]: ./30_usage.md#custom-handler-api
-[default-event-handlers]: ./30_usage.md#event-handlers
-[get-user-events]: ./30_usage.md#get-userevents
-[usage-body]: ./30_usage.md#body
-[patch-event-settings]: ./30_usage.md#patch-event-settingsid
-[post-event-settings]: ./30_usage.md#post-event-settings
-[delete-event-settings]: ./30_usage.md#delete-event-settingsid
-[get-notification-messages-count]: ./30_usage.md#get-notification-messagescount
-[get-notification-messages]: ./30_usage.md#get-notification-messages
+[custom-handler-api]: /runtime_suite/notification-manager-service/30_usage.md#custom-handler-api
+[default-event-handlers]: /runtime_suite/notification-manager-service/30_usage.md#event-handlers
+[get-user-events]: /runtime_suite/notification-manager-service/30_usage.md#get-userevents
+[usage-body]: /runtime_suite/notification-manager-service/30_usage.md#body
+[patch-event-settings]: /runtime_suite/notification-manager-service/30_usage.md#patch-event-settingsid
+[post-event-settings]: /runtime_suite/notification-manager-service/30_usage.md#post-event-settings
+[delete-event-settings]: /runtime_suite/notification-manager-service/30_usage.md#delete-event-settingsid
+[get-notification-messages-count]: /runtime_suite/notification-manager-service/30_usage.md#get-notification-messagescount
+[get-notification-messages]: /runtime_suite/notification-manager-service/30_usage.md#get-notification-messages

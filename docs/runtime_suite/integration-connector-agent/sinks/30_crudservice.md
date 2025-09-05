@@ -10,7 +10,7 @@ DO NOT MODIFY IT BY HAND.
 Instead, modify the source file and run the aggregator to regenerate this file.
 -->
 
-The CRUD Service sink allows you to write data to a [Mia-Platform CRUD Service](../../crud-service/overview_and_usage)
+The CRUD Service sink allows you to write data to a [Mia-Platform CRUD Service](/runtime_suite/crud-service/10_overview_and_usage.md)
 instance using its HTTP API.
 It supports upserting data using a specified primary key, or to insert only data without overwriting them.
 

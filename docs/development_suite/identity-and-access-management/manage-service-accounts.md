@@ -122,7 +122,7 @@ For further information about permissions and role inheritance check out the [Co
 
 ## Managing Company-independent Service Accounts
 
-Root service accounts are a special kind of Company-independent service accounts that can be assigned permissions to perform [root-level operations](//development_suite/identity-and-access-management/console-levels-and-permission-management.md#console-root-level-permissions).
+Root service accounts are a special kind of Company-independent service accounts that can be assigned permissions to perform [root-level operations](/development_suite/identity-and-access-management/console-levels-and-permission-management.md#console-root-level-permissions).
 
 :::info
 Only Console Super Users with administrative capabilities can add or delete service accounts independent from the Company, since they are the only ones who can assign root-level permissions to identities. Note that Company-independent service accounts with assigned root-level permissions are only visible and manageable at back-office level, and they will never be visible from a Company IAM portal.

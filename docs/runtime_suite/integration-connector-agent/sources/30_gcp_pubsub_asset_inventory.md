@@ -56,7 +56,7 @@ This is the time within which the integration connector agent must acknowledge t
 If not specified, it defaults to 10 seconds.
 - `webhookPath` (*string*, optional): The path for the webhook expoed to trigger a full import.
 - `authentication` (*object*, options): The authentication configuration
-  - **secret** ([*SecretSource*](../20_install.md#secretsource)): The secret used to validate the incoming webhook requests
+  - **secret** ([*SecretSource*](/runtime_suite/integration-connector-agent/20_install.md#secretsource)): The secret used to validate the incoming webhook requests
   - **headerName** (*string*, optional): The name of the header used to validate the incoming webhook requests.
 
 ### Example

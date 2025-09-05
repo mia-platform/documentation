@@ -13,15 +13,15 @@ Instead, modify the source file and run the aggregator to regenerate this file.
 [window.history.push]: https://developer.mozilla.org/en-US/docs/Web/API/History/pushState
 [window.history.replace]: https://developer.mozilla.org/en-US/docs/Web/API/History/replaceState
 
-[change-query]: ../70_events.md#change-query
+[change-query]: /microfrontend-composer/back-kit/70_events.md#change-query
 
-[bk-url-parameters]: ../60_components//550_url_parameters_adapter.md
-[bk-crud-client]: ../60_components/100_crud_client.md
-[bk-crud-lookup-client]: ../60_components/170_crud_lookup_client.md
-[bk-state-adapter]: ../60_components/510_state_adapter.md
-[bk-button]: ../60_components/90_button.md
+[bk-url-parameters]: /microfrontend-composer/back-kit/60_components/550_url_parameters_adapter.md
+[bk-crud-client]: /microfrontend-composer/back-kit/60_components/100_crud_client.md
+[bk-crud-lookup-client]: /microfrontend-composer/back-kit/60_components/170_crud_lookup_client.md
+[bk-state-adapter]: /microfrontend-composer/back-kit/60_components/510_state_adapter.md
+[bk-button]: /microfrontend-composer/back-kit/60_components/90_button.md
 
-[afterFinishEvents]: ../60_components/340_form_drawer.md#after-submission
+[afterFinishEvents]: /microfrontend-composer/back-kit/60_components/340_form_drawer.md#after-submission
 
 
 

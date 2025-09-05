@@ -267,7 +267,7 @@ As mentioned earlier, you need to process appointments appearing both inside a s
 [protect-endpoints-with-policies]: /console/tutorials/protect-your-endpoints-with-policies.mdx
 [care-kit-am-calendar]: /runtime_suite/care-kit/20_components/10_am-calendar.md
 
-[resource-id]: 10_overview.md#resource
-[custom-user-fields]: ./20_configuration.md#users
-[full-mode]: 20_configuration.md#full-mode
-[usage-get-calendar]: ./30_usage.md#get-calendar
+[resource-id]: /runtime_suite/appointment-manager/10_overview.md#resource
+[custom-user-fields]: /runtime_suite/appointment-manager/20_configuration.md#users
+[full-mode]: /runtime_suite/appointment-manager/20_configuration.md#full-mode
+[usage-get-calendar]: /runtime_suite/appointment-manager/30_usage.md#get-calendar

@@ -57,7 +57,7 @@ In the case above, you must mount the `cert.pem` and `key.pem` files of the iOS 
 
 The service is based on two `CRUD` collections: `devices` and `notifications`
 An additional `users` collection is needed for `/groups` route to work.
-[Here](../../development_suite/api-console/api-design/crud_advanced) you can see how to create a CRUD collection from Mia-Platform Console.
+[Here](/development_suite/api-console/api-design/crud_advanced.md) you can see how to create a CRUD collection from Mia-Platform Console.
 
 ### Devices
 

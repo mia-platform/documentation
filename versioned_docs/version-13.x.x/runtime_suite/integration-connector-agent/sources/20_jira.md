@@ -27,7 +27,7 @@ The following configuration options are supported by the Jira source:
 
 - **type** (*string*): The type of the source, in this case `jira`
 - **authentication** (*object*) *optional*: The authentication configuration
-  - **secret** ([*SecretSource*](../20_install.md#secretsource)): The secret used to validate the incoming webhook requests
+  - **secret** ([*SecretSource*](/runtime_suite/integration-connector-agent/20_install.md#secretsource)): The secret used to validate the incoming webhook requests
 - **webhookPath** (*string*) *optional*: The path where to receive the webhook events. Default to `/jira/webhook`.
 
 #### Example

@@ -379,4 +379,4 @@ The teleconsultations CRUD needs the following service-specific fields:
 
 [configuration]: #teleconsultation-service-backend-configuration
 [environment-variables]: #environment-variables
-[usage-virtual-background]: ./30_usage.md#post-settingsbackground-image
+[usage-virtual-background]: /runtime_suite/teleconsultation-service-backend/30_usage.md#post-settingsbackground-image

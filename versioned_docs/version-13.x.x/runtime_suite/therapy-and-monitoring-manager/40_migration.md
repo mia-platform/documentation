@@ -46,7 +46,7 @@ Add the following fields to the [detections CRUD collection][crud-detections]:
 | assignedDevices | `Array of string` | No                | No                |
 
 
-[crud-detections]: ./20_configuration.md#detections
-[crud-monitorings]: 20_configuration.md#monitorings
+[crud-detections]: /runtime_suite/therapy-and-monitoring-manager/20_configuration.md#detections
+[crud-monitorings]: /runtime_suite/therapy-and-monitoring-manager/20_configuration.md#monitorings
 
 [care-kit-ck-threshold-modal]: /runtime_suite/care-kit/20_components/50_ck-threshold-modal.md

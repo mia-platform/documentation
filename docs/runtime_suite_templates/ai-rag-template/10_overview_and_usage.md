@@ -44,7 +44,7 @@ Please mind that the template does not include embeddings or any logic to create
 
 ### API
 
-Read more at [the related page](./20_apis.md)
+Read more at [the related page](/runtime_suite_templates/ai-rag-template/20_apis.md)
 
 ## Environment Variables
 

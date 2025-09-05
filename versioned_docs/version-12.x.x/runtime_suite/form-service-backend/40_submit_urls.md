@@ -10,7 +10,7 @@ DO NOT MODIFY IT BY HAND.
 Instead, modify the source file and run the aggregator to regenerate this file.
 -->
 
-The *submit URLs* can be either provided with the [CRUD Service](../crud-service/overview_and_usage) or with custom APIs, but it's important that they expose the following methods:
+The *submit URLs* can be either provided with the [CRUD Service](/runtime_suite/crud-service/10_overview_and_usage.md) or with custom APIs, but it's important that they expose the following methods:
 
 - `GET /{id}`
 - `POST /`
@@ -20,7 +20,7 @@ The *submit URLs* can be either provided with the [CRUD Service](../crud-service
 
 :::info
 
-You can configure the **Form Service Backend** to reach the `GET /export` endpoint on a different service than the one targeted by the submit URL by configuring an [export redirect](./20_configuration.md#export-redirects-exportredirects). 
+You can configure the **Form Service Backend** to reach the `GET /export` endpoint on a different service than the one targeted by the submit URL by configuring an [export redirect](/runtime_suite/form-service-backend/20_configuration.md#export-redirects-exportredirects). 
 
 :::
 
@@ -57,7 +57,7 @@ Each property of the `data` object is related to a component of the form.
 ```
 
 ## GET /export route
-The `GET /export` route returns the submitted data of the forms matching the query parameters and must be compatible with the API of the endpoint of the [CRUD Service](../crud-service/overview_and_usage). Specifically, this endpoint must support filtering data using the `_q` query parameter or any form data field.
+The `GET /export` route returns the submitted data of the forms matching the query parameters and must be compatible with the API of the endpoint of the [CRUD Service](/runtime_suite/crud-service/10_overview_and_usage.md). Specifically, this endpoint must support filtering data using the `_q` query parameter or any form data field.
 
 This endpoint must return a list of JSON objects in [newline delimited JSON](https://en.wikipedia.org/wiki/JSON_streaming#Newline-delimited_JSON) format.
 

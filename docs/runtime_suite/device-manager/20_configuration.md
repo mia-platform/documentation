@@ -169,5 +169,5 @@ If you use a different schema the following endpoints may not work as intended:
 [loinc]: https://loinc.org/
 [snomed-ct]: https://www.snomed.org/
 
-[get-chart-data]: 30_usage.md#get-chart-data
-[get-prototypes]: 30_usage.md#get-prototypes
+[get-chart-data]: /runtime_suite/device-manager/30_usage.md#get-chart-data
+[get-prototypes]: /runtime_suite/device-manager/30_usage.md#get-prototypes

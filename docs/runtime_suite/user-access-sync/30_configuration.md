@@ -34,7 +34,7 @@ All the configurations file have the following fields required:
 - *Configuration*: object with provider related information. It is a custom object for each provider.
 
 For further details on how configure each provider you can refer to the dedicated documentation:
-- [Mia Platform Console](./90_providers/91_mia_platform.md)
-- [Okta](./90_providers/92_okta.md)
-- [Gitlab](./90_providers/93_gitlab.md)
-- [GitHub](./90_providers/94_github.md)
+- [Mia Platform Console](/runtime_suite/user-access-sync/90_providers/91_mia_platform.md)
+- [Okta](/runtime_suite/user-access-sync/90_providers/92_okta.md)
+- [Gitlab](/runtime_suite/user-access-sync/90_providers/93_gitlab.md)
+- [GitHub](/runtime_suite/user-access-sync/90_providers/94_github.md)

@@ -325,7 +325,7 @@ The main use cases of the two methods are:
 
 The **persistencyManagement** section must contain a JSON object with the configurations. See the following sections for the details by type.
 
-For more about the *Persistency Manager* look the [**dedicated documentation**](./how_it_works#the-persistency-manager).
+For more about the *Persistency Manager* look the [**dedicated documentation**](/runtime_suite/flow-manager-service/20_how_it_works.md#the-persistency-manager).
 
 #### REST Persistency Manager
 

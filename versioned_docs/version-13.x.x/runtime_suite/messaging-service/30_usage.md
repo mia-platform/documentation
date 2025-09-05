@@ -118,6 +118,6 @@ A successful response (status code `200`) with an empty body is issued if the pr
 
 Moreover, if enabled by [configuration][service-configuration], it sends an event with `successEventlabel` as messageLabel and empty messagePayload. 
 
-[message-interpolation]: ./10_overview.md#messages-interpolation
-[service-configuration]: ./20_configuration.md#service-configuration
-[flow-manager-command]: ../flow-manager-service/configuration#sending-commands-1
+[message-interpolation]: /runtime_suite/messaging-service/10_overview.md#messages-interpolation
+[service-configuration]: /runtime_suite/messaging-service/20_configuration.md#service-configuration
+[flow-manager-command]: /runtime_suite/flow-manager-service/30_configuration.md#sending-commands-1

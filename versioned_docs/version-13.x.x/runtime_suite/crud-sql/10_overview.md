@@ -29,7 +29,7 @@ Via APIs it's possible to:
 CRUD SQL needs an instance of a sql database to connect to. The database must already be configured and must accept 
 connections from outside. All the tables that you want to access through the CRUD SQL must be already present on the DB.
 If you want to keep track of the user who create/update a record and the creation/update time, the corresponding columns must be configured on the tables
-(see  [metadata fields](./20_configuration.md#metadata-fields) form more information).
+(see  [metadata fields](/runtime_suite/crud-sql/20_configuration.md#metadata-fields) form more information).
 
 ## Supported vendors
 Three different vendors are currently supported:

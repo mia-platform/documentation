@@ -10,7 +10,7 @@ DO NOT MODIFY IT BY HAND.
 Instead, modify the source file and run the aggregator to regenerate this file.
 -->
 
-The Console uses external Identity Providers to manage user identities and authentication; configuration details can be found in the Console Installation documentation section dedicated to the [Authentication Provider](./25_authentication-provider.md#supported-authentication-providers).
+The Console uses external Identity Providers to manage user identities and authentication; configuration details can be found in the Console Installation documentation section dedicated to the [Authentication Provider](/infrastructure/self-hosted/installation-chart/helm-values/25_authentication-provider.md#supported-authentication-providers).
 
 # How to setup user synchronization
 

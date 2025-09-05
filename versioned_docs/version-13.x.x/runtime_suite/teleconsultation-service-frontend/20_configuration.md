@@ -21,4 +21,4 @@ In order to make the route accessible to the page where the teleconsultation wil
 Example:
 1. Custom **endpoint** to expose teleconsultation-service-fe: `/telecons-fe`
 
-[teleconsultation-service-be]: ../teleconsultation-service-backend/overview
+[teleconsultation-service-be]: /runtime_suite/teleconsultation-service-backend/10_overview.md

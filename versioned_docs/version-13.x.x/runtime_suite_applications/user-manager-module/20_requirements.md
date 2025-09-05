@@ -34,7 +34,7 @@ Define the network policies necessary to allow traffic between the User Manager 
 - allow ingress and egress traffic between `user-manager-module` and `patient-monitoring-portal`
 - and also one similar policy for each additional internal module...
 
-[mia-crud-service]: /runtime_suite/crud-service/overview_and_usage
+[mia-crud-service]: /runtime_suite/crud-service/10_overview_and_usage.md
 [auth0-configuration]: /runtime_suite/auth0-client/30_configure_auth0.md
-[umm-configuration]: ./30_configuration.md
+[umm-configuration]: /runtime_suite_applications/user-manager-module/30_configuration.md
 [mlp-secrets-example]: https://github.com/mia-platform/mlp/blob/main/examples/example-cm-secret-config.yaml

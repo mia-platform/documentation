@@ -18,7 +18,7 @@ Instead, modify the source file and run the aggregator to regenerate this file.
 
 2. Delete the configuration files of the disabled services;
 
-3. Log into the Console, go to the Design Section -> Advanced section and create the `auth0-client` configuration from scratch as an extension. To configure auth0-client, visit [its configuration page](./20_configuration.md). Configure also the env variables (`REDIS_HOSTS` is required).
+3. Log into the Console, go to the Design Section -> Advanced section and create the `auth0-client` configuration from scratch as an extension. To configure auth0-client, visit [its configuration page](/runtime_suite/auth0-client/20_configuration.md). Configure also the env variables (`REDIS_HOSTS` is required).
 
 4. Link correctly client-type and client-key to use the correct auth0 client.
 

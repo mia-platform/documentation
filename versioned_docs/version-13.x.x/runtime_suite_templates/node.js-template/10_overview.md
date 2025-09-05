@@ -15,4 +15,4 @@ Instead, modify the source file and run the aggregator to regenerate this file.
 This template leverages Mia Platform [custom-plugin-lib](https://github.com/mia-platform/custom-plugin-lib).  
 `custom-plugin-lib` is a [node.js](https://nodejs.org/en/) library developed by Mia-Platform. This library contains configurations and functions that will help you to modify your template with easiness.
 
-If you want to learn how to modify this template and create your node microservice with custom logic, follow this [walkthrough](./walkthrough).
+If you want to learn how to modify this template and create your node microservice with custom logic, follow this [walkthrough](/runtime_suite_templates/node.js-template/20_walkthrough.md).

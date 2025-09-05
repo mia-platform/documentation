@@ -14,7 +14,7 @@ The FHIR Adapter is a microservice that is able to translate a JSON payload, wit
 
 The goal of the FHIR Adapter is to enable the interoperability between systems which implement the FHIR standard and systems which do not. In this way, FHIR standard can be introduced in your ecosystem, without the need to update legacy systems.
 
-The FHIR Adapter has to work with a FHIR Server. In the Mia-Platform [Marketplace](../../marketplace/overview_marketplace) there is a ready to use server, called Mia FHIR Server, that can be associate with the FHIR Adapter. However, any server that implements the FHIR standard can couple with the FHIR Adapter.
+The FHIR Adapter has to work with a FHIR Server. In the Mia-Platform [Marketplace](/marketplace/overview_marketplace.md) there is a ready to use server, called Mia FHIR Server, that can be associate with the FHIR Adapter. However, any server that implements the FHIR standard can couple with the FHIR Adapter.
 
 :::info
 The following documentation is intended for users who have minimal knowledge of the FHIR standard. Therefore, it is kindly recommended to consult the [official FHIR documentation](http://hl7.org/fhir/).
@@ -170,7 +170,7 @@ curl -X GET https://your-url/Patient/?firstName=Luca \
 ```
 
 You can pass as query parameter *_id* or any arbitrary string, as long as it does not start with the underscore character (`_`), since these names are reserved for [sort](#sort), [pagination](#paginate) and other future uses.
-For further info about translating query parameters for FHIR resources, please refer to the [Configuration section](30_configuration.md#search-settings).
+For further info about translating query parameters for FHIR resources, please refer to the [Configuration section](/runtime_suite/fhir-adapter/30_configuration.md#search-settings).
 
 #### Get a single entity by _id
 
@@ -262,7 +262,7 @@ curl --request GET \
 ```
 
 You can pass as query parameter *_id* or any arbitrary string, as long as it does not start with the underscore character (`_`), since these names are reserved for [sort](#sort), [pagination](#paginate) and other future uses.
-For further info about translating query parameters for FHIR resources, please refer to the [Configuration section](30_configuration.md#search-settings).
+For further info about translating query parameters for FHIR resources, please refer to the [Configuration section](/runtime_suite/fhir-adapter/30_configuration.md#search-settings).
 
 ### Update
 
@@ -307,7 +307,7 @@ curl --request GET \
 
 The endpoint accepts the query parameters **_sk** and **_l**, with the same behavior and constraints as for the read operations.
 
-The response is an array where each contained object represents a version of the FHIR resource. This endpoint does not take into consideration the composition of the **entity** and returns the translation only for the main resource. For further info, please refer to the [Configuration section](configuration#translation).
+The response is an array where each contained object represents a version of the FHIR resource. This endpoint does not take into consideration the composition of the **entity** and returns the translation only for the main resource. For further info, please refer to the [Configuration section](/runtime_suite/fhir-adapter/30_configuration.md#translation).
 In addition to the fields contained in the translation configuration, the FHIR Adapter, for each version item, add some metadata fields:
 
 * **lastUpdate**: the datetime of the last update.

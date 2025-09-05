@@ -135,8 +135,8 @@ When the rate limit per second is too high some change-password events fail. Thi
 
 The rate limit value can be configured with the environment variable [**AUTH0_BULK_CHANGE_PASSWORD_RATE_LIMIT_PER_SECOND**][environment-variables]. The default value is equal to 2 requests per second in order to avoid failures due to the Auth0 free tier rate limit. Higher values up to 10 can be set for this variable, but are only safe for bulk operations with few users.
 
-[patch-users-import]: ./30_usage.md#patch-usersimport
-[post-bulk-users-activation]: ./30_usage.md#post-jobsusersbulk-activation
-[post-bulk-change-password]: ./30_usage.md#post-jobschange-passwordbulk
-[environment-variables]: ./20_configuration.md#environment-variables
+[patch-users-import]: /runtime_suite/user-manager-service/30_usage.md#patch-usersimport
+[post-bulk-users-activation]: /runtime_suite/user-manager-service/30_usage.md#post-jobsusersbulk-activation
+[post-bulk-change-password]: /runtime_suite/user-manager-service/30_usage.md#post-jobschange-passwordbulk
+[environment-variables]: /runtime_suite/user-manager-service/20_configuration.md#environment-variables
 [auth0-rate-limit]: https://auth0.com/docs/troubleshoot/customer-support/operational-policies/rate-limit-policy/rate-limit-configurations

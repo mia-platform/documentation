@@ -12,31 +12,31 @@ Instead, modify the source file and run the aggregator to regenerate this file.
 
 [crud-service]: /runtime_suite/crud-service/10_overview_and_usage.md
 
-[data-schema]: ../30_page_layout.md#data-schema
-[schema-formats]: ../30_page_layout.md#formats
-[form-options]: ../30_page_layout.md#form-options
+[data-schema]: /microfrontend-composer/back-kit/30_page_layout.md#data-schema
+[schema-formats]: /microfrontend-composer/back-kit/30_page_layout.md#formats
+[form-options]: /microfrontend-composer/back-kit/30_page_layout.md#form-options
 
-[bk-form-modal]: ../60_components/350_form_modal.md
-[bk-form-drawer]: ../60_components/340_form_drawer.md
-[bk-dynamic-form-modal]: ../60_components/210_dynamic_form_modal.md
-[bk-dynamic-form-drawer]: ../60_components/200_dynamic_form_drawer.md
-[bk-table]: ../60_components/520_table.md
-[bk-pagination]: ../60_components/470_pagination.md
-[bk-breadcrumbs]: ../60_components/60_breadcrumbs.md
-[bk-crud-client]: ../60_components/100_crud_client.md
-[bk-add-new-button]: ../60_components/20_add_new_button.md
-[bk-add-filter-button]: ../60_components/10_add_filter_button.md
-[bk-tabs]: ../60_components/530_tabs.md
-[bk-filter-drawer]: ../60_components/300_filter_drawer.md
-[bk-filters-manager]: ../60_components/310_filters_manager.md
+[bk-form-modal]: /microfrontend-composer/back-kit/60_components/350_form_modal.md
+[bk-form-drawer]: /microfrontend-composer/back-kit/60_components/340_form_drawer.md
+[bk-dynamic-form-modal]: /microfrontend-composer/back-kit/60_components/210_dynamic_form_modal.md
+[bk-dynamic-form-drawer]: /microfrontend-composer/back-kit/60_components/200_dynamic_form_drawer.md
+[bk-table]: /microfrontend-composer/back-kit/60_components/520_table.md
+[bk-pagination]: /microfrontend-composer/back-kit/60_components/470_pagination.md
+[bk-breadcrumbs]: /microfrontend-composer/back-kit/60_components/60_breadcrumbs.md
+[bk-crud-client]: /microfrontend-composer/back-kit/60_components/100_crud_client.md
+[bk-add-new-button]: /microfrontend-composer/back-kit/60_components/20_add_new_button.md
+[bk-add-filter-button]: /microfrontend-composer/back-kit/60_components/10_add_filter_button.md
+[bk-tabs]: /microfrontend-composer/back-kit/60_components/530_tabs.md
+[bk-filter-drawer]: /microfrontend-composer/back-kit/60_components/300_filter_drawer.md
+[bk-filters-manager]: /microfrontend-composer/back-kit/60_components/310_filters_manager.md
 
-[table-actions]: ../60_components/520_table.md#actions
+[table-actions]: /microfrontend-composer/back-kit/60_components/520_table.md#actions
 
-[nested-navigation-state/push]: ../70_events.md#nested-navigation-state---push
-[nested-navigation-state/back]: ../70_events.md#nested-navigation-state---back
-[nested-navigation-state/display]: ../70_events.md#nested-navigation-state---dispaly
-[update-data]: ../70_events.md#update-data
-[display-data]: ../70_events.md#display-data
+[nested-navigation-state/push]: /microfrontend-composer/back-kit/70_events.md#nested-navigation-state---push
+[nested-navigation-state/back]: /microfrontend-composer/back-kit/70_events.md#nested-navigation-state---back
+[nested-navigation-state/display]: /microfrontend-composer/back-kit/70_events.md#nested-navigation-state---dispaly
+[update-data]: /microfrontend-composer/back-kit/70_events.md#update-data
+[display-data]: /microfrontend-composer/back-kit/70_events.md#display-data
 
 
 
@@ -340,7 +340,7 @@ then the rendered table can be represented by an array as:
 ]
 ```
 
-::info
+:::info
 By default, the Table renders array fields as a counter of the number of elements in the array.
 :::
 

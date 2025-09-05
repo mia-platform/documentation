@@ -17,7 +17,7 @@ This section describes in detail the features provided by the microservice:
 
 ## Generate PDF from a template
 This endpoint provides a simple way for generating PDF files from an HTML template. It relies on:
-- [CRUD Service](../crud-service/overview_and_usage);
+- [CRUD Service](/runtime_suite/crud-service/10_overview_and_usage.md);
 - [Puppeteer](https://github.com/GoogleChrome/puppeteer) library;
 - [Handlebars](https://github.com/wycats/handlebars.js/) library.
 
@@ -87,7 +87,7 @@ You can also print a web page in a specified language passing the following head
 - `accept-language`: 'it-IT,it'
 
 :::info
-Version 1.x of this microservice allowed the generation of PDFs from forms constructed via the Form Service [Backend](../form-service-backend/overview) and [Frontend](../form-service-frontend/configuration).
+Version 1.x of this microservice allowed the generation of PDFs from forms constructed via the Form Service [Backend](/runtime_suite/form-service-backend/10_overview.md) and [Frontend](/runtime_suite/form-service-frontend/20_configuration.md).
 
 To reproduce this functionality, use this endpoint passing as URL the reference to the form you want to print.  
 

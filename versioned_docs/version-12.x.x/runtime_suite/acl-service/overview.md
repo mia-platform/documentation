@@ -10,7 +10,7 @@ DO NOT MODIFY IT BY HAND.
 Instead, modify the source file and run the aggregator to regenerate this file.
 -->
 
-The ACL microservice is a [PRE Decorator](../../development_suite/api-console/api-design/decorators) whose purpose is to apply ACL rules for each request to indicate to the CRUD Service which rows or columns to filter.
+The ACL microservice is a [PRE Decorator](/development_suite/api-console/api-design/decorators.md) whose purpose is to apply ACL rules for each request to indicate to the CRUD Service which rows or columns to filter.
 These ACL rules are based on the current user and his membership groups.
 
 Currently two types of ACL are provided by the service:

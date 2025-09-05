@@ -745,10 +745,10 @@ The computation is performed for each plan according to the following algorithm,
 
 [crontab-guru]: https://crontab.guru/ "Crontab.guru"
 
-[overview]: ./10_overview.md "Overview page"
-[adherence-compliance]: ./10_overview.md#adherence-and-compliance "Adherence and compliance | Overview"
+[overview]: /runtime_suite/therapy-and-monitoring-manager/10_overview.md "Overview page"
+[adherence-compliance]: /runtime_suite/therapy-and-monitoring-manager/10_overview.md#adherence-and-compliance "Adherence and compliance | Overview"
 
-[configuration]: ./20_configuration.md "Configuration page"
-[environment-variables]: ./20_configuration.md#environment-variables "Environment variables | Configuration"
+[configuration]: /runtime_suite/therapy-and-monitoring-manager/20_configuration.md "Configuration page"
+[environment-variables]: /runtime_suite/therapy-and-monitoring-manager/20_configuration.md#environment-variables "Environment variables | Configuration"
 
 [therapy-monitoring]: #therapy--monitoring "Therapy & Monitoring | Usage"

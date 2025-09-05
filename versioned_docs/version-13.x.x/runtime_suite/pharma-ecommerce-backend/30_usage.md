@@ -252,7 +252,7 @@ Medicines requiring prescriptions needs only one of `recipeFile` and `prescripti
 
 :::warning
 When `prescriptionId` is defined and the item to be added to the shopping cart requires a prescription, the prescription file will be retrieved from the **DOWNLOAD_PRESCRIPTION_PDF_ENDPOINT** of the **PRESCRIPTION_MANAGER**. Not having this microservice and the specified endpoint in your project will cause an error.
-More details are available in the [prescription-manager](./20_configuration.md#prescription-manager) microservice configuration.
+More details are available in the [prescription-manager](/runtime_suite/pharma-ecommerce-backend/20_configuration.md#prescription-manager) microservice configuration.
 :::
 
 #### Response
@@ -311,7 +311,7 @@ This request accepts the following query parameters:
 
 :::warning
 When `prescriptionId` is defined, the shopping cart will be re-created from a previously stored prescription. Thus, the implementation of the **PRESCRIPTION_ENDPOINT** of the **PRESCRIPTION_MANAGER** is required. Otherwise, the service will throw an error.
-More details are available in the optional [prescription-manager](./20_configuration.md#prescription-manager) microservice configuration.
+More details are available in the optional [prescription-manager](/runtime_suite/pharma-ecommerce-backend/20_configuration.md#prescription-manager) microservice configuration.
 :::
 
 #### Response

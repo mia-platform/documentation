@@ -703,7 +703,7 @@ In case the service is not able to get user authentication from the request head
 [auth0-client]: /runtime_suite/auth0-client/10_overview.md
 [console-mia-headers]: /runtime_suite/authorization-service/30_usage.md#headers-set-by-auth
 
-[environment-variables]: ./20_configuration.md#environment-variables
-[crud-user-id-map]: ./20_configuration.md#user-id-map-crud
+[environment-variables]: /runtime_suite/teleconsultation-service-backend/20_configuration.md#environment-variables
+[crud-user-id-map]: /runtime_suite/teleconsultation-service-backend/20_configuration.md#user-id-map-crud
 
 [get-teleconsultation-room-id]: #get-teleconsultationroomid

@@ -503,8 +503,8 @@ These are the major error codes and causes.
 | 500        | If the posting new detection fails                                                    |
 
 
-[healthkit]: 10_overview.md#apple-healthkit
-[medisante]: 10_overview.md#medisanté
+[healthkit]: /runtime_suite/device-manager/10_overview.md#apple-healthkit
+[medisante]: /runtime_suite/device-manager/10_overview.md#medisanté
 
 [back-kit-filters]: /microfrontend-composer/back-kit/40_core_concepts.md#filters
 [ck-chart]: /runtime_suite/care-kit/20_components/70_ck-chart.md
@@ -517,6 +517,6 @@ These are the major error codes and causes.
 [get-chart-data]: #get-chart-data
 [patch-health-data-medisante-update-normalizeDataid]: #patch-health-data-medisante-update-normalizeDataid
 
-[data-acquisition]: 10_overview.md#data-acquisition
-[crud-health-data]: 20_configuration.md#health-data
-[crud-health-data-types]: 20_configuration.md#health-data-types
+[data-acquisition]: /runtime_suite/device-manager/10_overview.md#data-acquisition
+[crud-health-data]: /runtime_suite/device-manager/20_configuration.md#health-data
+[crud-health-data-types]: /runtime_suite/device-manager/20_configuration.md#health-data-types

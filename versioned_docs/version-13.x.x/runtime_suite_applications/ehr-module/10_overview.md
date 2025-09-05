@@ -24,7 +24,7 @@ This is the list of the installed microservices:
 - [API Gateway][mia-api-gateway]
 
 
-[form-service-be]: /runtime_suite/form-service-backend/overview
-[form-service-fe]: /runtime_suite/form-service-frontend/overview
-[mia-crud-service]: /runtime_suite/crud-service/overview_and_usage
-[mia-api-gateway]: /runtime_suite/api-gateway/overview
+[form-service-be]: /runtime_suite/form-service-backend/10_overview.md
+[form-service-fe]: /runtime_suite/form-service-frontend/10_overview.md
+[mia-crud-service]: /runtime_suite/crud-service/10_overview_and_usage.md
+[mia-api-gateway]: /runtime_suite/api-gateway/10_overview.md

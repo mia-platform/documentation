@@ -92,4 +92,4 @@ Client-side encryption requires an enterprise version of MongoDB supporting [Cli
 [crud-service-google-kms]: /runtime_suite/crud-service/30_encryption_configuration.md#configure-csfle-with-the-google-cloud-platform-gcp
 [kafka2rest]: /runtime_suite/crud-service/10_overview_and_usage.md
 
-[overview-monitoring-alerting]: 10_overview.md#monitoring-and-alerting
+[overview-monitoring-alerting]: /runtime_suite/audit-trail/10_overview.md#monitoring-and-alerting

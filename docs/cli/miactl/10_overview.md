@@ -29,6 +29,6 @@ The `miactl` CLI functionalities can be summarized within its main subcommands:
 
 Below, you can find additional guides for using `miactl`:
 
-- [Setup](./20_setup.md)
-- [Commands](./30_commands.md)
-- [Examples](./40_examples.md)
+- [Setup](/cli/miactl/20_setup.md)
+- [Commands](/cli/miactl/30_commands.md)
+- [Examples](/cli/miactl/40_examples.md)

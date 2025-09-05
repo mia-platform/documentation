@@ -32,10 +32,10 @@ The service use the following environment variable:
 ## Static configuration
 
 This service requires a configuration file that provides all the different details regarding the external services to be proxied.
-The configuration file can be mounted into the service either as a *ConfigMap* or as a *Secret* (for more details, please refer to this [documentation](../../development_suite/api-console/api-design/services#custom-configuration)).
+The configuration file can be mounted into the service either as a *ConfigMap* or as a *Secret* (for more details, please refer to this [documentation](/development_suite/api-console/api-design/services.md#custom-configuration)).
 
 :::caution
-In case the former method (*Config Map*) is selected, please use [variables interpolation](../../development_suite/api-console/api-design/services#environment-variable-configuration) for sensitive data, such as:
+In case the former method (*Config Map*) is selected, please use [variables interpolation](/development_suite/api-console/api-design/services.md#environment-variable-configuration) for sensitive data, such as:
 
 - username
 - password

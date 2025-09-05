@@ -38,4 +38,4 @@ If there is no handler available to process the event, the response has a `400` 
 }
 ```
 
-[mia-notification-manager-usage]: /runtime_suite/notification-manager-service/usage
+[mia-notification-manager-usage]: /runtime_suite/notification-manager-service/30_usage.md

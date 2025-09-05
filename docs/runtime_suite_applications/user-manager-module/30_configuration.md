@@ -88,10 +88,10 @@ For additional details about the **User Manager Module** configuration, please r
 - [API Gateway][mia-api-gateway];
 - [CRUD Service][mia-crud-service].
 
-[mia-user-manager-service]: /runtime_suite/user-manager-service/overview
+[mia-user-manager-service]: /runtime_suite/user-manager-service/10_overview.md
 [mia-auth0-client]: /runtime_suite/auth0-client/10_overview.md
 [mia-authorization-service]: /runtime_suite/authorization-service/10_overview.md
-[mia-api-gateway]: /runtime_suite/api-gateway/overview
-[mia-crud-service]: /runtime_suite/crud-service/overview_and_usage
-[mia-crud-service-csfle]: /runtime_suite/crud-service/encryption_configuration
+[mia-api-gateway]: /runtime_suite/api-gateway/10_overview.md
+[mia-crud-service]: /runtime_suite/crud-service/10_overview_and_usage.md
+[mia-crud-service-csfle]: /runtime_suite/crud-service/30_encryption_configuration.md
 [oauth-login-site]: /runtime_suite_applications/secure-api-gateway/10_overview.md#oauth-login-site

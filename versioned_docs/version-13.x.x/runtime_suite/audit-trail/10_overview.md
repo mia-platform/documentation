@@ -215,7 +215,7 @@ In our plugins, we try to follow the common data schema specified in the table, 
 - `user`: unique identifier of the user who triggered the request.
 
 
-[performance]: 20_configuration.md#performance-tuning
+[performance]: /runtime_suite/audit-trail/20_configuration.md#performance-tuning
 
 [am-calendar]: /runtime_suite/care-kit/20_components/10_am-calendar.md
 [appointment-manager]: /runtime_suite/appointment-manager/10_overview.md

@@ -11,7 +11,7 @@ Instead, modify the source file and run the aggregator to regenerate this file.
 -->
 
 ## Quick start
-After the [installation](./30_setup.md), you can import the library, create the `KafkaJSHealthChecker` object passing it one (or more) consumer or producer to get the methods `isHealthy` and `isReady`. More information about these methods can be found on [Overview](./10_overview.md) page.
+After the [installation](/runtime_suite_libraries/kafka-healthchecker/30_setup.md), you can import the library, create the `KafkaJSHealthChecker` object passing it one (or more) consumer or producer to get the methods `isHealthy` and `isReady`. More information about these methods can be found on [Overview](/runtime_suite_libraries/kafka-healthchecker/10_overview.md) page.
 
 Example:
 

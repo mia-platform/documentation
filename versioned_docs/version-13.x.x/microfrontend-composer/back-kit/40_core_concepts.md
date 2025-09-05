@@ -37,12 +37,12 @@ Instead, modify the source file and run the aggregator to regenerate this file.
 [$regex]: https://www.mongodb.com/docs/manual/reference/operator/query/regex/#mongodb-query-op.-regex
 [$elemMatch]: https://www.mongodb.com/docs/manual/reference/operator/query/elemMatch/#mongodb-query-op.-elemMatch
 
-[data-schema]: ./30_page_layout.md#data-schema
+[data-schema]: /microfrontend-composer/back-kit/30_page_layout.md#data-schema
 
-[change-query]: ./70_events.md#change-query
+[change-query]: /microfrontend-composer/back-kit/70_events.md#change-query
 
-[bk-table]: ./60_components/520_table.md
-[bk-table-locale]: ./60_components/520_table.md#locale
+[bk-table]: /microfrontend-composer/back-kit/60_components/520_table.md
+[bk-table-locale]: /microfrontend-composer/back-kit/60_components/520_table.md#locale
 
 
 

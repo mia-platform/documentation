@@ -16,9 +16,9 @@ In this section, you will learn how to configure the `client-credentials` servic
 
 ## Create the client collection
 
-This service uses a [crud-service](../crud-service/overview_and_usage) collection to handle clients.
+This service uses a [crud-service](/runtime_suite/crud-service/10_overview_and_usage.md) collection to handle clients.
 
-[Create a CRUD collection](../../development_suite/api-console/api-design/crud_advanced) in the MongoDB CRUD section of the Console with the name `clients` (you can choose also another name if already taken in your project), download <a download target="_blank" href="/docs_files_to_download/client-credentials/clients.json">these fields</a>, and import them into the Console (find out how to import fields [here](../../development_suite/api-console/api-design/crud_advanced#how-to-create-the-fields-of-your-crud-by-importing-a-json)).
+[Create a CRUD collection](/development_suite/api-console/api-design/crud_advanced.md) in the MongoDB CRUD section of the Console with the name `clients` (you can choose also another name if already taken in your project), download <a download target="_blank" href="/docs_files_to_download/client-credentials/clients.json">these fields</a>, and import them into the Console (find out how to import fields [here](/development_suite/api-console/api-design/crud_advanced.md#how-to-create-the-fields-of-your-crud-by-importing-a-json)).
 
 :::info
 We suggest that you create a unique index for the `clientId` field (which must not be duplicated).
@@ -65,7 +65,7 @@ The public key can be freely distributed and is used to encrypt messages that ca
 ### Creation
 
 This service accepts a **private RSA key** to sign the generated JWT (JSON Web Token).
-Refer to [the related section](./30_jwt_keys.md#private-key-generation) for an explanation on how to generate it.
+Refer to [the related section](/runtime_suite/client-credentials/30_jwt_keys.md#private-key-generation) for an explanation on how to generate it.
 
 ### Deploy key in the Kubernetes cluster
 
@@ -76,7 +76,7 @@ Once this is done, set the environment variable `PRIVATE_RSA_KEY_FILE_PATH` valu
 
 #### Deploy with mlp
 
-If you use [*mlp*](../../runtime_suite_tools/mlp/overview), the Mia-Platform deploy cli, to release custom secrets add these lines to the `mlp.yaml` file in your project:
+If you use [*mlp*](/runtime_suite_tools/mlp/10_overview.md), the Mia-Platform deploy cli, to release custom secrets add these lines to the `mlp.yaml` file in your project:
 
 ```yaml
 secrets:

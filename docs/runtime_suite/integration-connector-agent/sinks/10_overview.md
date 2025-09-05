@@ -16,7 +16,7 @@ The Integration Connector Agent supports multiple types of sinks, allowing for f
 
 The supported sinks are:
 
-- [**Console Catalog**](15_console-catalog.md): The Console Catalog sink allows you to save data into the Mia-Platform Console Catalog.
-- [**CRUD Service**](30_crudservice.md): Useful to save events using
-- [**MongoDB**](20_mongodb.md): A NoSQL database that stores data in a flexible, JSON-like format.
-  [Mia-Platform CRUD Service](../../crud-service/overview_and_usage) HTTP API.
+- [**Console Catalog**](/runtime_suite/integration-connector-agent/sinks/15_console-catalog.md): The Console Catalog sink allows you to save data into the Mia-Platform Console Catalog.
+- [**CRUD Service**](/runtime_suite/integration-connector-agent/sinks/30_crudservice.md): Useful to save events using
+- [**MongoDB**](/runtime_suite/integration-connector-agent/sinks/20_mongodb.md): A NoSQL database that stores data in a flexible, JSON-like format.
+  [Mia-Platform CRUD Service](/runtime_suite/crud-service/10_overview_and_usage.md) HTTP API.

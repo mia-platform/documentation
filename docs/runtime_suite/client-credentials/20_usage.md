@@ -24,7 +24,7 @@ It returns 201 when credential pair and client is correctly generated, 401 other
 This is a public endpoint meant to allow external applications to create a new client, without the privilege of setting its permissions or audience.  
 
 :::info
-To learn how to set specific authorization properties for the client, such as its permissions or audience, go to the [POST /clients endpoint](./20_usage.md#post-clients) section.
+To learn how to set specific authorization properties for the client, such as its permissions or audience, go to the [POST /clients endpoint](/runtime_suite/client-credentials/20_usage.md#post-clients) section.
 :::
 
 Once the endpoint has been called, the client information will be saved in the CRUD with empty audience and permissions. You can add and change the fields manually on the CRUD or set up a CMS page and update them directly from the CMS.
@@ -35,7 +35,7 @@ The `client_secret basic` method is based on username and password, while the `p
 One client has only one method possible. The default method (if it is not passed during registration) is the `client_secret_basic`.
 
 :::info
-Learn more about the differences between these auth methods in the [Authentication methods](./20_usage.md#authentication-methods) section.
+Learn more about the differences between these auth methods in the [Authentication methods](/runtime_suite/client-credentials/20_usage.md#authentication-methods) section.
 :::
 
 Here are some examples of how to call this endpoint with the two different authentication methods:
@@ -72,7 +72,7 @@ Note that the `client_secret` field will only be available during registration s
 To use this auth method, the `token_endpoint_auth_method` parameter in input should be set to `private_key_jwt`.
 
 :::note
-You can use [this guide](jwt_keys) to generate the necessary JWT public and private keys suitable for this operation.
+You can use [this guide](/runtime_suite/client-credentials/30_jwt_keys.md) to generate the necessary JWT public and private keys suitable for this operation.
 :::
 
 Example cURL request:
@@ -108,7 +108,7 @@ In the login flow, you should call the `/oauth/token` endpoint with method POST 
 Every time a service account receives a new access token, its `lastLogin` field will be set to the time of generation of the token.
 
 :::note
-  Just like the [POST /register](./20_usage.md#post-register) endpoint, the available authentication methods are `client_secret_basic` and `private_key_jwt`.
+  Just like the [POST /register](/runtime_suite/client-credentials/20_usage.md#post-register) endpoint, the available authentication methods are `client_secret_basic` and `private_key_jwt`.
 :::
 
 Here are some examples of how to call the `/oauth/token` endpoint with the two different authentication methods:
@@ -426,7 +426,7 @@ At the moment there's no endpoint exposed by the `client-credentials` service to
 Such an endpoint would be a simple proxy to the `PATCH /clients` endpoint of the `crud-service` that stores clients information in the first place.
 
 For this reason, in order to update client settings, it is recommended to use the `PATCH /clients` endpoint exposed by the `crud-service` that must be deployed together with the `client-credentials` service.
-The `crud-service` documentation is available [here](../crud-service/overview_and_usage).
+The `crud-service` documentation is available [here](/runtime_suite/crud-service/10_overview_and_usage.md).
 
 ## Authentication methods
 

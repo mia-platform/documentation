@@ -44,7 +44,7 @@ For more details on configuration, refer to the [official Google Cloud documenta
 Configure the source to receive events from the Google Cloud Asset Inventory Pub/Sub topic.
 
 For more details on this source type, see the
-[Google Cloud Asset Inventory API Pub/Sub](../../sources/30_gcp_pubsub_asset_inventory.md) documentation.
+[Google Cloud Asset Inventory API Pub/Sub](/runtime_suite/integration-connector-agent/sources/30_gcp_pubsub_asset_inventory.md) documentation.
 
 ```json
 {
@@ -62,7 +62,7 @@ For more details on this source type, see the
 Use the Cloud Vendor Aggregator to standardize GCP resource data.
 
 For more details on this processor, see the
-[Cloud Vendor Aggregator](../../processors/40_cloud_vendor_aggregator.md) documentation.
+[Cloud Vendor Aggregator](/runtime_suite/integration-connector-agent/processors/40_cloud_vendor_aggregator.md) documentation.
 
 :::note
 This processor will transform GCP events into a standardized format that can be easily ingested by other processors
@@ -95,7 +95,7 @@ This processor will transform GCP events into a standardized format containing:
 
 Configure the sink to save data to the CRUD Service collection.
 
-For more details on this sink type, see the [CRUD Service Sink](../../sinks/30_crudservice.md) documentation.
+For more details on this sink type, see the [CRUD Service Sink](/runtime_suite/integration-connector-agent/sinks/30_crudservice.md) documentation.
 
 ```json
 {
@@ -124,7 +124,7 @@ It is recommended to create a unique index on the `name` field to ensure efficie
 ## Visualization with Microfrontend Composer
 
 Once the import flow is configured, you can
-[create a Composer page](../../../../microfrontend-composer/overview) to
+[create a Composer page](/microfrontend-composer/overview.md) to
 display GCP infrastructure resources in an interactive table.
 
 To create a visualization page:

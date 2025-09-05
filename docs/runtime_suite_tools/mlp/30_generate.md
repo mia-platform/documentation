@@ -14,7 +14,7 @@ The `generate` command is used to generate secrets and configmaps from a configu
 with environment variables when necessary and saves the generated files in a specified directory.
 
 The configuration file supports environment variable interpolation following the regular expression `{{[A-Z0-9_]+}}`.
-The interpolation works in the same way described in the [interpolate](./50_interpolate.md) guide.  
+The interpolation works in the same way described in the [interpolate](/runtime_suite_tools/mlp/50_interpolate.md) guide.  
 The file has a `secrets` section where the keys `tls`,`docker`, and`data` are mutually exclusive and a
 `config-maps` section where the only section supported is `data`.
 

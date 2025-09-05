@@ -72,5 +72,5 @@ When the operation completes. A feedback message will be shown indicating the re
 |----------------------|-------------------------------------------------------------------------------------------------------------------------------------------------|
 | reset-password-modal | Custom event, the payload equals the current state of the modal (open and loading state, percentage completion, the operation result or error). |
 
-[user-manager-service]: ../../user-manager-service/overview
+[user-manager-service]: /runtime_suite/user-manager-service/10_overview.md
 [events]: https://git.tools.mia-platform.eu/mia-care/platform/plugins/notification-manager/-/blob/master/docs/10_overview.md?plain=0#default-events

@@ -123,11 +123,11 @@ This version introduces the signing of the JWT token with an asymmetric algorith
 
 From now on, tokens will be signed with a private key that you will need to provide.
 
-Please follow the [Authentication Session signing](./helm-values/25_authentication-provider.md#session-signing) guide for a detailed explanation on how to configure it.
+Please follow the [Authentication Session signing](/infrastructure/self-hosted/installation-chart/helm-values/25_authentication-provider.md#session-signing) guide for a detailed explanation on how to configure it.
 
 #### Open Telemetry preview
 
-This version introduces the possibility to enable the OpenTelemetry tracing feature (in preview). It is possible to enable it by follow the [OpenTelemetry tracing guide](./helm-values/20_general-settings.md#optional-telemetry-configurations).
+This version introduces the possibility to enable the OpenTelemetry tracing feature (in preview). It is possible to enable it by follow the [OpenTelemetry tracing guide](/infrastructure/self-hosted/installation-chart/helm-values/20_general-settings.md#optional-telemetry-configurations).
 
 #### Introduction of Mia-Platform Company
 

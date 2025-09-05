@@ -26,4 +26,4 @@ The PDF Services provides various functionalities to programmatically generate a
 
 ---
 
-For more information, please refer to the [Configuration](./20_configuration.md), [Usage](./30_usage.md), and [Performance](./40_performance.md) sections. If you need additional functionality that is not listed, you have the option to develop it and submit a pull request (PR) or request its development.
+For more information, please refer to the [Configuration](/runtime_suite/pdf-service/20_configuration.md), [Usage](/runtime_suite/pdf-service/30_usage.md), and [Performance](/runtime_suite/pdf-service/40_performance.md) sections. If you need additional functionality that is not listed, you have the option to develop it and submit a pull request (PR) or request its development.

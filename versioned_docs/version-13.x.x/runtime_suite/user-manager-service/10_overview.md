@@ -48,6 +48,6 @@ so the `auth0Client` module is the only one that has been implemented in the Use
 [microfrontend-composer]: /microfrontend-composer/overview.md
 [rond]: https://rond-authz.io/docs/getting-started
 
-[reset-password-endpoint]: ./30_usage.md#post-userschange-password
-[user-management-endpoints]: ./30_usage.md#user-management
-[crud-user-manager-config]: ./20_configuration.md#user-manager-configuration-crud-collection
+[reset-password-endpoint]: /runtime_suite/user-manager-service/30_usage.md#post-userschange-password
+[user-management-endpoints]: /runtime_suite/user-manager-service/30_usage.md#user-management
+[crud-user-manager-config]: /runtime_suite/user-manager-service/20_configuration.md#user-manager-configuration-crud-collection

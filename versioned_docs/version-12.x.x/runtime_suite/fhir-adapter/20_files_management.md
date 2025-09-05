@@ -84,4 +84,4 @@ curl --request GET \
 
 ### Delete
 
-The deletion of a file from the FHIR Server follows the procedure explained in the [API Endpoints section](overview_and_usage).
+The deletion of a file from the FHIR Server follows the procedure explained in the [API Endpoints section](/runtime_suite/fhir-adapter/10_overview_and_usage.md).

@@ -52,7 +52,7 @@ For more details on configuration, refer to the [official AWS CloudTrail documen
 Configure the source to receive events from the AWS CloudTrail SQS queue.
 
 For more details on this source type, see the
-[AWS CloudTrail SQS](../../sources/50_aws_cloudtrail_sqs.md) documentation.
+[AWS CloudTrail SQS](/runtime_suite/integration-connector-agent/sources/50_aws_cloudtrail_sqs.md) documentation.
 
 ```json
 {
@@ -74,7 +74,7 @@ For more details on this source type, see the
 Use the Cloud Vendor Aggregator to standardize AWS resource data.
 
 For more details on this processor, see the
-[Cloud Vendor Aggregator](../../processors/40_cloud_vendor_aggregator.md) documentation.
+[Cloud Vendor Aggregator](/runtime_suite/integration-connector-agent/processors/40_cloud_vendor_aggregator.md) documentation.
 
 :::note
 This processor will transform AWS events into a standardized format that can be easily ingested by other processors
@@ -112,7 +112,7 @@ This processor will transform AWS events into a standardized format containing:
 
 Configure the sink to save data to the CRUD Service collection.
 
-For more details on this sink type, see the [CRUD Service Sink](../../sinks/30_crudservice.md) documentation.
+For more details on this sink type, see the [CRUD Service Sink](/runtime_suite/integration-connector-agent/sinks/30_crudservice.md) documentation.
 
 ```json
 {
@@ -141,7 +141,7 @@ It is recommended to create a unique index on the `name` field to ensure efficie
 ## Visualization with Microfrontend Composer
 
 Once the import flow is configured, you can
-[create a Composer page](../../../../microfrontend-composer/overview) to
+[create a Composer page](/microfrontend-composer/overview.md) to
 display AWS infrastructure resources in an interactive table.
 
 To create a visualization page:

@@ -21,7 +21,7 @@ work with such MongoDB version, it is recommended to upgrade your MongoDB cluste
 to v4.4. or higher to ensure full compatibility with CRUD Service.
 
 For more details on CRUD Service compatibility with MongoDB, please visit the Marketplace
-[_compatibility matrix_](../../../marketplace/compatibility_matrices/mongo_compatibility_matrix).
+[_compatibility matrix_](/marketplace/compatibility_matrices/mongo_compatibility_matrix.md).
 
 ### Duplicated Key Response Error Code [#140](https://github.com/mia-platform/crud-service/pull/140)
 

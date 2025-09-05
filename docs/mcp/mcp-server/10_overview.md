@@ -17,7 +17,7 @@ with Mia-Platform Console APIs, enabling advanced automation and interaction cap
 
 Below, you can find additional guides for using the `mcp-server`:
 
-- [Setup](./20_setup.md)
-- [Examples](./30_examples.md)
+- [Setup](/mcp/mcp-server/20_setup.md)
+- [Examples](/mcp/mcp-server/30_examples.md)
 
 [Model Context Protocol (MCP)]: https://modelcontextprotocol.io/introduction

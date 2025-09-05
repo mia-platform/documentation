@@ -19,9 +19,9 @@ Each iteration of the processor will be applied to the data on the last iteratio
 
 The supported processors are:
 
-- [**Filter**](./15_filter.md): Filter the event based on a condition. If the event is filtered,
+- [**Filter**](/runtime_suite/integration-connector-agent/processors/15_filter.md): Filter the event based on a condition. If the event is filtered,
 it will not be sent to the sink.
-- [**Mapper**](./20_mapper.md): Transform the data to an output event, based on the input.
-- [**RPC Plugin**](./30_rpc_plugin.md): Transform data to the desired output using a custom-built RPC Plugin ([example usage](https://github.com/mia-platform/integration-connector-agent/blob/main/examples/rpc-processor-plugin/plugin.go)).
-- [**Cloud Vendor Aggregator**](./40_cloud_vendor_aggregator.md): Aggregate events from cloud vendors into a standardized
+- [**Mapper**](/runtime_suite/integration-connector-agent/processors/20_mapper.md): Transform the data to an output event, based on the input.
+- [**RPC Plugin**](/runtime_suite/integration-connector-agent/processors/30_rpc_plugin.md): Transform data to the desired output using a custom-built RPC Plugin ([example usage](https://github.com/mia-platform/integration-connector-agent/blob/main/examples/rpc-processor-plugin/plugin.go)).
+- [**Cloud Vendor Aggregator**](/runtime_suite/integration-connector-agent/processors/40_cloud_vendor_aggregator.md): Aggregate events from cloud vendors into a standardized
 asset shape.

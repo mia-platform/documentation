@@ -62,7 +62,7 @@ The first valid rule found will be used to retrieve the needed information. The 
 
 A rule is considered verified if all the keys defined in the object `rules` are present also in the `Main Flow Manager` metadata and the associated values are equals.
 
-More detail about the schema of the configuration file are available on the [dedicated section](./20_configuration.md).
+More detail about the schema of the configuration file are available on the [dedicated section](/runtime_suite/flow-manager-router/20_configuration.md).
 
 ## Metadata Upsert
 The router service perform an upsert on the metadata sent to each flow manager: that means that object not in the first level of the metadata are not overwritten but instead are merged in order to not lost any information between the new metadata in the event and the already existing metadata.

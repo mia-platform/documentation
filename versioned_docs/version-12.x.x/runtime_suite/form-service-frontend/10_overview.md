@@ -20,7 +20,7 @@ The Form Service Frontend as a [micro-lc plugin](https://microlc.io/documentatio
 
 The output of the Form Builder is a JSON configuration of the form that later can be rendered with [formio.js renderer](https://github.com/formio/formio.js/wiki/Form-Renderer) or with the Form Visualizer.
 
-The Mia-Platform Form Builder currently supports Forms and Wizards. An example of Form Builder can be found in the [formio.js demo page](https://formio.github.io/formio.js/app/builder). The image below shows a customized Form Builder (the `JSON` options are the ones found in the example provided [here](configuration#form-builder-options-parameters)).
+The Mia-Platform Form Builder currently supports Forms and Wizards. An example of Form Builder can be found in the [formio.js demo page](https://formio.github.io/formio.js/app/builder). The image below shows a customized Form Builder (the `JSON` options are the ones found in the example provided [here](/runtime_suite/form-service-frontend/20_configuration.md#form-builder-options-parameters)).
 
 ![Form Builder UI](img/form-builder-ui-sandbox.png)
 
@@ -30,7 +30,7 @@ The right side of the image above also shows the created form that can be displa
 
 ## How it works
 
-The **Form Service Frontend** retrive the configuration needed from the the **Form Service Backend**. To know more about the backend service check [this guide](../form-service-backend/overview).
+The **Form Service Frontend** retrive the configuration needed from the the **Form Service Backend**. To know more about the backend service check [this guide](/runtime_suite/form-service-backend/10_overview.md).
 
 The frontend service exposes the following routes:
 
@@ -50,7 +50,7 @@ The `baseUrl` property equal to the URL's origin is injected in the form builder
 - `GET /visualizer/fill-form/{id}`: it allows the end user to submit data on a new form, selected by form template ID;
 - `GET /visualizer/{id}`: returns the submitted data for the specified form ID;
 - `GET /visualizer/print-form/{id}`: (`from version 1.1.0`) returns a printable version of submitted data for a form ID (submit button is removed from Forms and Wizards are displayed as Forms);
-- `GET /visualizer/fill-assignment/{assignmentId}`: (`from version 1.2.0`) it allows the end user to submit data on a new [form assignment](form_assignments), selected by form assignment ID.
+- `GET /visualizer/fill-assignment/{assignmentId}`: (`from version 1.2.0`) it allows the end user to submit data on a new [form assignment](/runtime_suite/form-service-frontend/30_form_assignments.md), selected by form assignment ID.
 
 :::info
 
@@ -91,10 +91,10 @@ When the `_v` parameter is specified, the form is set to `readOnly` mode. This m
 From `version 1.6.0` the Form-Service Frontend supports the possibility to retrieve form drafts. When calling the `GET /visualizer/{id}` endpoint is possible to specify the `_status` parameter. This parameter will be passed to the Form-Service Backend that, if configured properly, will retrieve the draft version of the requested form data.
 
 #### Form Availability and Expiration date support
-From `version 1.10.0` the Form Service enables the configuration of availability and expiration dates for forms via the `builder`. If either of these dates is defined and the relevant conditions are met, the form's `visualizer` will trigger an error message, preventing the form from being presented. You can customize the error message displayed for expired forms through the [configmap in the Form Service Backend](../form-service-backend/configuration).
+From `version 1.10.0` the Form Service enables the configuration of availability and expiration dates for forms via the `builder`. If either of these dates is defined and the relevant conditions are met, the form's `visualizer` will trigger an error message, preventing the form from being presented. You can customize the error message displayed for expired forms through the [configmap in the Form Service Backend](/runtime_suite/form-service-backend/20_configuration.md).
 
 ## Further details
 
 Follow the pages below to know more about the *Form Service Frontend*:
 
-- [*Form Service Frontend* configuration](configuration)
+- [*Form Service Frontend* configuration](/runtime_suite/form-service-frontend/20_configuration.md)

@@ -15,7 +15,7 @@ In order to upgrade Mia-Platform Console, all you need to do is to update the `m
 :::tip
 When upgrading Mia-Platform Console to a new major release, always remember that updates must be performed one major at a time. Therefore, in order to upgrade from v12 to v14 you must first upgrade to the latest v13 version.
 
-To find out how to upgrade your installation to the latest version of v13, visit the [following documentation](../../../13.x/infrastructure/self-hosted/installation-chart/how-to-upgrade).
+To find out how to upgrade your installation to the latest version of v13.
 :::
 
 ```yaml title="Chart.yaml" {9} showLineNumbers
@@ -118,7 +118,7 @@ configurations:
 
 Ensure to move the apiKey used before into the correct field 
 
-Follow the [Assistant documentation](./helm-values/75_assistant.md#llm-and-embeddings-model-configuration) to learn more about how to configure it.
+Follow the [Assistant documentation](/infrastructure/self-hosted/installation-chart/helm-values/75_assistant.md#llm-and-embeddings-model-configuration) to learn more about how to configure it.
 
 #### Specific upgrade for LLM/Embeddings using `vertex` models
 

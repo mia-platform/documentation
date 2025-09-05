@@ -26,4 +26,4 @@ The service needs the following environment variables:
 
 ## CRUD Collection
 
-The **rules service** store rules on a CRUD. You need to create a collection with the same schema of the rule defined in [the previous section](./20_how_to_use.md).
+The **rules service** store rules on a CRUD. You need to create a collection with the same schema of the rule defined in [the previous section](/runtime_suite/adaptive-approval-service/20_how_to_use.md).

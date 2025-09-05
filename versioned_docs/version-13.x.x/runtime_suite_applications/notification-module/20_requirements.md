@@ -53,12 +53,12 @@ Add the following namespaces in the related CMS section. They are required to co
 ]
 ```
 
-[mia-crud-service]: /runtime_suite/crud-service/overview_and_usage
-[mia-notification-manager]: /runtime_suite/notification-manager-service/configuration#channels-configuration
-[mia-notification-manager-env-var]: /runtime_suite/notification-manager-service/configuration#environment-variables
-[mia-sms-service]: /runtime_suite/sms-service/overview
-[mia-mail-service]: /runtime_suite/ses-mail-notification-service/configuration
-[mia-files-service]: /runtime_suite/files-service/configuration
-[mia-timer-service]: /runtime_suite/timer-service/configuration
+[mia-crud-service]: /runtime_suite/crud-service/10_overview_and_usage.md
+[mia-notification-manager]: /runtime_suite/notification-manager-service/20_configuration.md#channels-configuration
+[mia-notification-manager-env-var]: /runtime_suite/notification-manager-service/20_configuration.md#environment-variables
+[mia-sms-service]: /runtime_suite/sms-service/10_overview.md
+[mia-mail-service]: /runtime_suite/ses-mail-notification-service/configuration.md
+[mia-files-service]: /runtime_suite/files-service/configuration.mdx
+[mia-timer-service]: /runtime_suite/timer-service/20_configuration.md
 [mia-mlp]: https://github.com/mia-platform/mlp
 [mlp-secrets-example]: https://github.com/mia-platform/mlp/blob/main/examples/example-cm-secret-config.yaml

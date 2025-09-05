@@ -23,26 +23,26 @@ Instead, modify the source file and run the aggregator to regenerate this file.
 [mia-platform-crud-service]: /runtime_suite/crud-service/10_overview_and_usage.md
 [writable-views]: /runtime_suite/crud-service/50_writable_views.md
 
-[localized-text]: ./40_core_concepts.md#localization-and-i18n
-[nformat]: ./40_core_concepts.md#nformat
-[filters]: ./40_core_concepts.md#filters
-[link]: ./40_core_concepts.md#links
+[localized-text]: /microfrontend-composer/back-kit/40_core_concepts.md#localization-and-i18n
+[nformat]: /microfrontend-composer/back-kit/40_core_concepts.md#nformat
+[filters]: /microfrontend-composer/back-kit/40_core_concepts.md#filters
+[link]: /microfrontend-composer/back-kit/40_core_concepts.md#links
 
-[crud-client]: ./60_components/100_crud_client.md
-[bk-dynamic-form-modal]: ./60_components/210_dynamic_form_modal.md
-[bk-dynamic-form-drawer]: ./60_components/200_dynamic_form_drawer.md
-[bk-form-modal]: ./60_components/350_form_modal.md
-[bk-crud-lookup-client]: ./60_components/170_crud_lookup_client.md
-[bk-form-drawer]: ./60_components/340_form_drawer.md
-[bk-table]: ./60_components/520_table.md
-[bk-filter-drawer]: ./60_components/300_filter_drawer.md
+[crud-client]: /microfrontend-composer/back-kit/60_components/100_crud_client.md
+[bk-dynamic-form-modal]: /microfrontend-composer/back-kit/60_components/210_dynamic_form_modal.md
+[bk-dynamic-form-drawer]: /microfrontend-composer/back-kit/60_components/200_dynamic_form_drawer.md
+[bk-form-modal]: /microfrontend-composer/back-kit/60_components/350_form_modal.md
+[bk-crud-lookup-client]: /microfrontend-composer/back-kit/60_components/170_crud_lookup_client.md
+[bk-form-drawer]: /microfrontend-composer/back-kit/60_components/340_form_drawer.md
+[bk-table]: /microfrontend-composer/back-kit/60_components/520_table.md
+[bk-filter-drawer]: /microfrontend-composer/back-kit/60_components/300_filter_drawer.md
 
-[add-filter]: ./70_events.md#add-filter
-[available-operators]: ./70_events.md#add-filter
-[display-data]: ./70_events.md#display-data
+[add-filter]: /microfrontend-composer/back-kit/70_events.md#add-filter
+[available-operators]: /microfrontend-composer/back-kit/70_events.md#add-filter
+[display-data]: /microfrontend-composer/back-kit/70_events.md#display-data
 
-[lookups-from-views]: ./80_examples/40_lookups.md
-[nested-data]: ./80_examples/20_nested_data.md
+[lookups-from-views]: /microfrontend-composer/back-kit/80_examples/40_lookups.md
+[nested-data]: /microfrontend-composer/back-kit/80_examples/20_nested_data.md
 
 
 

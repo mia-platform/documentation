@@ -5,6 +5,7 @@ const docsFolder = path.resolve(__dirname, '../');
 
 const excludePath = (path) => {
     const pathToExclude = [
+        /*
         'docs/runtime_suite',
         'docs/runtime_suite_examples',
         'docs/runtime_suite_templates',
@@ -16,6 +17,7 @@ const excludePath = (path) => {
         'docs/microfrontend-composer/composer',
         'docs/cli',
         'docs/mcp',
+        */
     ];
 
     if (pathToExclude.some(s => path.toLowerCase().includes(s))) return true;

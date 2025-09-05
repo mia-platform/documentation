@@ -10,14 +10,14 @@ DO NOT MODIFY IT BY HAND.
 Instead, modify the source file and run the aggregator to regenerate this file.
 -->
 
-This service can be added to your project by visiting Mia-Platform [Marketplace](../../marketplace/overview_marketplace.md) and creating a new microservice from the **CRUD Service** plugin.
+This service can be added to your project by visiting Mia-Platform [Marketplace](/marketplace/overview_marketplace.md) and creating a new microservice from the **CRUD Service** plugin.
 
 ## Configure a CRUD Service to use MongoDB CRUD section
 
 In order to start using the MongoDB CRUD section, all you have to do is adding it from the Marketplace: all the ConfigMaps and environment variables it needs will be precompiled with no need to change them.
 
 :::info
-The CRUD Service supports custom CA certs. If you want to learn more about these certificates and how to configure them in your CRUD Service, visit [this page](../../development_suite/api-console/api-design/services#provide-a-ca-certificate-to-a-custom-service).
+The CRUD Service supports custom CA certs. If you want to learn more about these certificates and how to configure them in your CRUD Service, visit [this page](/development_suite/api-console/api-design/services.md#provide-a-ca-certificate-to-a-custom-service).
 :::
 
 ### ConfigMap
@@ -26,7 +26,7 @@ The CRUD Service default ConfigMap is mounted in `/home/node/app/collections`. Y
 
 Furthermore, the ConfigMap is not editable, as it is fundamental for the MongoDB CRUD section to work. It is not possible to add files, edit the mountPath, or delete it.
 
-However, you will find a link that will redirect you to **MongoDB CRUD** dedicated section where you can continue to configure your project [CRUDs](../../development_suite/api-console/api-design/crud_advanced.md). By doing so, you will automatically define the collections that will be handled by the service, which means that there is no need to add any configuration files.
+However, you will find a link that will redirect you to **MongoDB CRUD** dedicated section where you can continue to configure your project [CRUDs](/development_suite/api-console/api-design/crud_advanced.md). By doing so, you will automatically define the collections that will be handled by the service, which means that there is no need to add any configuration files.
 
 ## Environment variables
 
@@ -45,7 +45,7 @@ Below you can find all the environment variables that you can edit.
 | LOG_LEVEL                       | String  | Optional | `info`                                    | Level of the log. It can be one of the following: `trace`, `debug`, `info`, `warn`, `error`, `fatal`.                                                                                                                                     |
 | EXPOSE_METRICS                  | Boolean | Optional | `true`                                   | Specifies if Prometheus metrics should be exposed or not.                                                                                                                                                                                 |
 | ALLOW_DISK_USE_IN_QUERIES       | Boolean | Optional | -                                         | Sets the `allowDiskUse` option in the MongoDB queries. It is useful when working with MongoDB Views requiring heavy aggregations (added in v6.0.2, works with MongoDB >= 4.4).                                                            |
-| ENABLE_TRACING                  | Boolean | Optional | `false`                                   | Specifies if OpenTelemetry tracing should be enabled. It is possible to find more documentation [here](../../runtime_suite_libraries/lc39/main-entrypoint#opentelemetry-tracing-experimental)                 |
+| ENABLE_TRACING                  | Boolean | Optional | `false`                                   | Specifies if OpenTelemetry tracing should be enabled. It is possible to find more documentation [here](/runtime_suite_libraries/lc39/main-entrypoint.md#opentelemetry-tracing-experimental)                 |
 | ENABLE_STRICT_OUTPUT_VALIDATION | Boolean | Optional | `false`                                   | Specifies whether service responses should be strict compliant with the schema (when enabled the service would fail to return values in case underlying collection contains documents not compliant with the schema)                      |
 | MAX_MULTIPART_FILE_BYTES        | Number  | Optional | 100                                       | Sets the max size (Mb) that is possible to process in multipart requests                                                                                                                                                                  |
 | MONGODB_MAX_IDLE_TIME_MS        | Number  | Optional | 0                                         | Controls the MongoDB `maxIdleTimeMs` connection option (default set to 0 for backward compatibility, meaning the opened connection remain opened indefinitely)                                                                            |
@@ -64,5 +64,5 @@ This default behavior can be disabled for _all_ queries by setting `ALLOW_DISK_U
 :::
 
 In case you want to use [Client Side Field Level Encryption](https://docs.mongodb.com/manual/core/security-client-side-encryption/),
-you should also include several specific Environment Variables, either you are using the [encryption with Google Platform Cloud](./30_encryption_configuration.md#configure-csfle-with-the-google-cloud-platform-gcp)
-or a [local key](./30_encryption_configuration.md#configure-csfle-with-local-key).
+you should also include several specific Environment Variables, either you are using the [encryption with Google Platform Cloud](/runtime_suite/crud-service/30_encryption_configuration.md#configure-csfle-with-the-google-cloud-platform-gcp)
+or a [local key](/runtime_suite/crud-service/30_encryption_configuration.md#configure-csfle-with-local-key).

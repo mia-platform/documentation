@@ -692,25 +692,25 @@ The test suite covers the following operations:
 - cancel multiple appointments (`POST /appointments/state`);
 
 
-[crud-service-doc]: ../crud-service/overview_and_usage "CRUD Service"
-[messaging-service-doc]: ../messaging-service/overview "Messaging Service"
-[notification-manager-doc]: ../messaging-service/overview "Notification Manager"
-[timer-service-doc]: ../timer-service/overview "Timer Service"
-[teleconsultation-service-be-doc]: ../teleconsultation-service-backend/overview "Teleconsultation Service BE"
+[crud-service-doc]: /runtime_suite/crud-service/10_overview_and_usage.md "CRUD Service"
+[messaging-service-doc]: /runtime_suite/messaging-service/10_overview.md "Messaging Service"
+[notification-manager-doc]: /runtime_suite/messaging-service/10_overview.md "Notification Manager"
+[timer-service-doc]: /runtime_suite/timer-service/10_overview.md "Timer Service"
+[teleconsultation-service-be-doc]: /runtime_suite/teleconsultation-service-backend/10_overview.md "Teleconsultation Service BE"
 
 [overview-exceptions]: #exceptions "Exceptions | Overview"
 [nm-messages]: #notification-manager
 
-[configuration]: ./20_configuration.md "Configuration page"
-[service-configuration]: ./20_configuration.md#service-configuration "Service configuration | Configuration"
-[users]: ./20_configuration.md#users "`users` | Service configuration | Configuration"
-[participant-status]: ./20_configuration.md#participant-status "Participant status | `users` | Service configuration | Configuration"
-[is-participant-status-available]: ./20_configuration.md#isparticipantstatusavailable "`isParticipantStatusAvailable` | Service configuration | Configuration"
-[is-user-available]: ./20_configuration.md#isuseravailable
-[environment-variables]: ./20_configuration.md#environment-variables "Environment variables | Configuration"
-[reminders-threshold]: ./20_configuration.md#reminderthresholdms "reminderThresholdMs | Service configuration | Configuration"
-[crud-appointments]: ./20_configuration.md#appointments-crud-collection "Appointments CRUD collection | CRUD collections | Configuration"
-[crud-users]: ./20_configuration.md#users-crud-collection
+[configuration]: /runtime_suite/appointment-manager/20_configuration.md "Configuration page"
+[service-configuration]: /runtime_suite/appointment-manager/20_configuration.md#service-configuration "Service configuration | Configuration"
+[users]: /runtime_suite/appointment-manager/20_configuration.md#users "`users` | Service configuration | Configuration"
+[participant-status]: /runtime_suite/appointment-manager/20_configuration.md#participant-status "Participant status | `users` | Service configuration | Configuration"
+[is-participant-status-available]: /runtime_suite/appointment-manager/20_configuration.md#isparticipantstatusavailable "`isParticipantStatusAvailable` | Service configuration | Configuration"
+[is-user-available]: /runtime_suite/appointment-manager/20_configuration.md#isuseravailable
+[environment-variables]: /runtime_suite/appointment-manager/20_configuration.md#environment-variables "Environment variables | Configuration"
+[reminders-threshold]: /runtime_suite/appointment-manager/20_configuration.md#reminderthresholdms "reminderThresholdMs | Service configuration | Configuration"
+[crud-appointments]: /runtime_suite/appointment-manager/20_configuration.md#appointments-crud-collection "Appointments CRUD collection | CRUD collections | Configuration"
+[crud-users]: /runtime_suite/appointment-manager/20_configuration.md#users-crud-collection
 
-[usage]: ./30_usage.md "Usage page"
-[patch-appointment-participant-status]: ./30_usage.md#patch-appointmentsidstatus
+[usage]: /runtime_suite/appointment-manager/30_usage.md "Usage page"
+[patch-appointment-participant-status]: /runtime_suite/appointment-manager/30_usage.md#patch-appointmentsidstatus

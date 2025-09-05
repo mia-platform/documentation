@@ -103,6 +103,6 @@ The application is going to ask you permissions to read different kind of data f
 [tmm-detections]: /runtime_suite/therapy-and-monitoring-manager/10_overview.md#detections
 [tmm-prototypes]: /runtime_suite/therapy-and-monitoring-manager/10_overview.md#prototypes
 
-[crud-health-data]: ./20_configuration.md#health-data
-[post-health-data-medisante]: ./30_usage.md#post-health-datamedisanteformat
-[post-health-data-healthkit]: ./30_usage.md#post-health-datahealthkitformat
+[crud-health-data]: /runtime_suite/device-manager/20_configuration.md#health-data
+[post-health-data-medisante]: /runtime_suite/device-manager/30_usage.md#post-health-datamedisanteformat
+[post-health-data-healthkit]: /runtime_suite/device-manager/30_usage.md#post-health-datahealthkitformat

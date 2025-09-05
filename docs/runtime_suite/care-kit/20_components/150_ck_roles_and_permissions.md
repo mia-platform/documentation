@@ -70,8 +70,8 @@ Upon completing an action, a feedback message will be displayed, indicating succ
 
 | event                                                                          | action                                            | payload               |
 |--------------------------------------------------------------------------------|---------------------------------------------------|----------|
-| [selected-data](../../../microfrontend-composer/back-kit/events#selected-data) | Triggers the opening of the modal in edit mod     | The data of the role. Please note that the `_id` is required.         |
-| [add-new](../../../microfrontend-composer/back-kit/events#add-new)                                                                        | Listens to the add-new event to open modal        | -                   |
+| [selected-data](/microfrontend-composer/back-kit/70_events.md#selected-data) | Triggers the opening of the modal in edit mod     | The data of the role. Please note that the `_id` is required.         |
+| [add-new](/microfrontend-composer/back-kit/70_events.md#add-new)                                                                        | Listens to the add-new event to open modal        | -                   |
 
 
 ## Communication with Endpoints

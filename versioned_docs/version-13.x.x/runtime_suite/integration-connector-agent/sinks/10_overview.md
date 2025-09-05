@@ -16,4 +16,4 @@ The Integration Connector Agent supports multiple types of sinks, allowing for f
 
 The supported sinks are:
 
-- [**MongoDB**](20_mongodb.md): A NoSQL database that stores data in a flexible, JSON-like format.
+- [**MongoDB**](/runtime_suite/integration-connector-agent/sinks/20_mongodb.md): A NoSQL database that stores data in a flexible, JSON-like format.

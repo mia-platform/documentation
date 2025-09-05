@@ -24,8 +24,8 @@ This is the list of the installed microservices:
 - [CRUD Service][mia-crud-service]
 - [API Gateway][mia-api-gateway]
 
-[appointment-manager]: /runtime_suite/appointment-manager/overview
-[teleconsultation-service-be]: /runtime_suite/teleconsultation-service-backend/overview
-[teleconsultation-service-fe]: /runtime_suite/teleconsultation-service-frontend/overview
-[mia-crud-service]: /runtime_suite/crud-service/overview_and_usage
-[mia-api-gateway]: /runtime_suite/api-gateway/overview
+[appointment-manager]: /runtime_suite/appointment-manager/10_overview.md
+[teleconsultation-service-be]: /runtime_suite/teleconsultation-service-backend/10_overview.md
+[teleconsultation-service-fe]: /runtime_suite/teleconsultation-service-frontend/10_overview.md
+[mia-crud-service]: /runtime_suite/crud-service/10_overview_and_usage.md
+[mia-api-gateway]: /runtime_suite/api-gateway/10_overview.md

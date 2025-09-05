@@ -72,4 +72,4 @@ This section provides a security checklist to configure providers in order for a
 [twilio-balance-api]: https://support.twilio.com/hc/en-us/articles/360025294494-Check-Your-Twilio-Account-Balance "Twilio balance api"
 [twilio-geo-permissions]: https://console.twilio.com/us1/develop/sms/settings/geo-permissions?frameUrl=%2Fconsole%2Fsms%2Fsettings%2Fgeo-permissions%3Fx-target-region%3Dus1 "Twilio Geo Permissions"
 
-[environment-variables]: ./20_configuration.md#Environment-variables "Environment variables | Configuration"
+[environment-variables]: /runtime_suite/sms-service/20_configuration.md#Environment-variables "Environment variables | Configuration"

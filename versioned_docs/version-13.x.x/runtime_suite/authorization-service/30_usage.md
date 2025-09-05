@@ -30,7 +30,7 @@ The user structure must contains:
 
 The user structure may also contain a field of choice at the first level to be used as array of user's permissions. The name of the field that the authorization service will consider for permissions can be configured by means of the environment variable `CUSTOM_PERMISSIONS_KEY`.<br/>
 The permissions field must be an array of strings, where each string represent a permission identifier.
-Permissions can then be used in ACL expressions as describe [here](../../development_suite/api-console/api-design/endpoints#manage-the-security-of-your-endpoints).
+Permissions can then be used in ACL expressions as describe [here](/development_suite/api-console/api-design/endpoints.md#manage-the-security-of-your-endpoints).
 
 ### Headers set by `/auth`
 

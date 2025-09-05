@@ -30,7 +30,7 @@ The Auth0-Client service accepts the following environment variables:
 - __ORIGINAL_PROTOCOL_HEADER__ (__required__): defines the original protocol header
 - __SERVICE_CONFIG_FILE_NAME__ (__required__): defines the service config name
 - __SERVICE_CONFIG_PATH__ (__required__): defines the service config path
-- __AUTH0_LOGOUT_CLIENT_ID_ENABLED__ (__default: `false`__): When true, the `client_id` query string is always used when logging auth from Auth0. N.B. Enabling this variable will possibly require some changes on your Auth0 dashboard configuration, please [check this paragraph](./50_usage.md#logout-the-users) for details.
+- __AUTH0_LOGOUT_CLIENT_ID_ENABLED__ (__default: `false`__): When true, the `client_id` query string is always used when logging auth from Auth0. N.B. Enabling this variable will possibly require some changes on your Auth0 dashboard configuration, please [check this paragraph](/runtime_suite/auth0-client/50_usage.md#logout-the-users) for details.
 
 The following environment variables are to sync user metadata in a `user` collection on every token create/update:
 
@@ -357,8 +357,8 @@ This feature is disabled by default, but you could activate it by adding all the
 
 ## How to add a login page to a front-end service
 
-You may want to add a login page to protect your endpoints from unknown users: for example you may need to restrict the access to the [API Portal](../api-portal/overview).   
-The first thing you need to do is to enable the *Authentication Required* [security setting](../../development_suite/api-console/api-design/endpoints#manage-the-security-of-your-endpoints) to the endpoint you want to protect.    
+You may want to add a login page to protect your endpoints from unknown users: for example you may need to restrict the access to the [API Portal](/runtime_suite/api-portal/10_overview.md).   
+The first thing you need to do is to enable the *Authentication Required* [security setting](/development_suite/api-console/api-design/endpoints.md#manage-the-security-of-your-endpoints) to the endpoint you want to protect.    
 Now you have to specify how to handle the 401 status. You have to redirect the user to the login page of auth0. 
 
 Go to the Design area, Advanced section, and then select `api-gateway`. Put the code below in the `server-extension.conf`.

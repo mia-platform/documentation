@@ -430,7 +430,7 @@ curl --request GET \
 
 
 ## Callbacks
-The DICOM Service exposes a callback that the PACS can use to notify the upload of a new exam. This is useful when an exam is uploaded directly from a device or a system outside your application. The method saves the incoming event from the PACS in a dedicated CRUD collection and, optionally, it can proxy the event to custom endpoints specified in the environment variable `CALLBACK_URLS` (see the [Configuration page](./30_configuration.md) for further details).
+The DICOM Service exposes a callback that the PACS can use to notify the upload of a new exam. This is useful when an exam is uploaded directly from a device or a system outside your application. The method saves the incoming event from the PACS in a dedicated CRUD collection and, optionally, it can proxy the event to custom endpoints specified in the environment variable `CALLBACK_URLS` (see the [Configuration page](/runtime_suite/o3-dicom-service/30_configuration.md) for further details).
 
 The callback endpoint is `POST /new-exam-callback` and it accepts a JSON containing the following fields:
 * `SourceID`

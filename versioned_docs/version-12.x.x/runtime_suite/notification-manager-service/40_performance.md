@@ -54,4 +54,4 @@ We recommending adding more replicas of each service, according to your usage sc
 | SMS Service               | 100                  | 100                | 150                    | 150                  | Remember to configure the rate limits appropriately. |
 
 
-[default-events]: 10_overview.md#default-events
+[default-events]: /runtime_suite/notification-manager-service/10_overview.md#default-events

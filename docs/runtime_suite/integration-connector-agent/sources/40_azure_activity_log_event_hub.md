@@ -63,11 +63,11 @@ configuration file:
   are saved
 - `tenantId` (*string*): The tenant ID of the Azure Entra ID where the entity used to authenticate is located inside
   the subscription
-- `clientId` ([*SecretSource*](../20_install.md#secretsource)): The client ID of the entity used to authenticate
-- `clientSecret` ([*SecretSource*](../20_install.md#secretsource)): The client secret of the entity used to authenticate
+- `clientId` ([*SecretSource*](/runtime_suite/integration-connector-agent/20_install.md#secretsource)): The client ID of the entity used to authenticate
+- `clientSecret` ([*SecretSource*](/runtime_suite/integration-connector-agent/20_install.md#secretsource)): The client secret of the entity used to authenticate
 - `webhookPath` (*string*, optional): The path for the webhook expoed to trigger a full import.
 - `authentication` (*object*, options): The authentication configuration
-  - **secret** ([*SecretSource*](../20_install.md#secretsource)): The secret used to validate the incoming webhook requests
+  - **secret** ([*SecretSource*](/runtime_suite/integration-connector-agent/20_install.md#secretsource)): The secret used to validate the incoming webhook requests
   - **headerName** (*string*, optional): The name of the header used to validate the incoming webhook requests.
 
 ### Example

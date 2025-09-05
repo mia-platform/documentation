@@ -29,7 +29,7 @@ variables that should change depending on the namespace. You can still change th
 
 ### Create the Checkpoint CRUD Collection
 
-As described in section [Connector in Depth](./11_connector_in_depth.md), you need to create a CRUD collection named
+As described in section [Connector in Depth](/runtime_suite_applications/salesforce-streaming-api-connector/11_connector_in_depth.md), you need to create a CRUD collection named
 `streamingapi-checkpoints` with the following schema:
 - required, non-null String `topic_name`
 - required, non-null Number `replay_id`

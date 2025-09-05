@@ -33,4 +33,4 @@ This method ensures secure separation of authentication tokens, safeguarding ori
 
 For further information on how to configure it, head to the configuration page:
 
-- [_Authentication service_ configuration](./20_configuration.mdx)
+- [_Authentication service_ configuration](/runtime_suite/authentication-service/20_configuration.mdx)

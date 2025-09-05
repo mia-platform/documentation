@@ -20,7 +20,7 @@ The best way to use **lc39** is using it by CLI, running it with a command like:
 lc39 ./index.js --env-path .env
 ```
 
-with configured options written [here](./cli-flags.md).
+with configured options written [here](/runtime_suite_libraries/lc39/cli-flags.md).
 
 It's also possible to use `lc39` as a function:
 

@@ -19,9 +19,9 @@ This processor is tightly coupled with the Cloud vendor-specific sources.
 
 It's usage is recommended only if you are using the following sources:
 
-- [Google Cloud Asset Inventory API Pub/Sub](../sources/30_gcp_pubsub_asset_inventory.md)
-- [AWS CloudTrail SQS](../sources/50_aws_cloudtrail_sqs.md)
-- [Microsoft Azure Monitor Activity Log Event Hub](../sources/40_azure_activity_log_event_hub.md)
+- [Google Cloud Asset Inventory API Pub/Sub](/runtime_suite/integration-connector-agent/sources/30_gcp_pubsub_asset_inventory.md)
+- [AWS CloudTrail SQS](/runtime_suite/integration-connector-agent/sources/50_aws_cloudtrail_sqs.md)
+- [Microsoft Azure Monitor Activity Log Event Hub](/runtime_suite/integration-connector-agent/sources/40_azure_activity_log_event_hub.md)
 
 In such cases, the processor **MUST** be used as the very first processor in the pipeline
 to ensure that the events are aggregated correctly before being sent to the next pipeline processors and the sink.
@@ -92,15 +92,15 @@ on the source type you are using.
 
 | Field Name | Type | Description |
 |------------|:----:|-------------|
-| `credentialsJson` | [*SecretSource*](../20_install.md#secretsource) | The content of the `credentials.json` provided by GCP, specified as a secret source. |
+| `credentialsJson` | [*SecretSource*](/runtime_suite/integration-connector-agent/20_install.md#secretsource) | The content of the `credentials.json` provided by GCP, specified as a secret source. |
 
 #### AWS
 
 | Field Name | Type | Description |
 |------------|:----:|-------------|
 | `accessKeyId` | *string*   | Access Key ID from AWS. |
-| `secretAccessKey` | [*SecretSource*](../20_install.md#secretsource) | Secret Access Key from AWS, specified as a secret source. |
-| `sessionToken` | [*SecretSource*](../20_install.md#secretsource) | Session Token from AWS, specified as a secret source. |
+| `secretAccessKey` | [*SecretSource*](/runtime_suite/integration-connector-agent/20_install.md#secretsource) | Secret Access Key from AWS, specified as a secret source. |
+| `sessionToken` | [*SecretSource*](/runtime_suite/integration-connector-agent/20_install.md#secretsource) | Session Token from AWS, specified as a secret source. |
 | `region` | *string* (optional)   | The AWS region where the assets are located. |
 
 #### Microsoft Azure
@@ -108,8 +108,8 @@ on the source type you are using.
 | Field Name | Type | Description |
 |------------|:----:|-------------|
 | `tenantId` | *string*   | The Azure tenant ID. |
-| `clientId` | [*SecretSource*](../20_install.md#secretsource) | The Azure client ID, specified as a secret source. |
-| `clientSecret` | [*SecretSource*](../20_install.md#secretsource) | The Azure client secret, specified as a secret source. |
+| `clientId` | [*SecretSource*](/runtime_suite/integration-connector-agent/20_install.md#secretsource) | The Azure client ID, specified as a secret source. |
+| `clientSecret` | [*SecretSource*](/runtime_suite/integration-connector-agent/20_install.md#secretsource) | The Azure client secret, specified as a secret source. |
 
 ### Example
 

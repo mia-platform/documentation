@@ -132,13 +132,13 @@ In this case the `eq` function is provided by the [handlebars-helpers][handlebar
 [handlebars]: https://handlebarsjs.com/guide/#what-is-handlebars
 [handlebars-helpers]: https://github.com/helpers/handlebars-helpers
 
-[ses-mail-notification]: ../ses-mail-notification-service/configuration
-[sms-service]: ../sms-service/configuration
-[kafka2firebase]: ../kafka2firebase/overview
-[flow-manager]: ../flow-manager-service/overview
+[ses-mail-notification]: /runtime_suite/ses-mail-notification-service/configuration.md
+[sms-service]: /runtime_suite/sms-service/20_configuration.md
+[kafka2firebase]: /runtime_suite/kafka2firebase/10_overview.md
+[flow-manager]: /runtime_suite/flow-manager-service/10_overview.md
 
 [message-interpolation]: #messages-interpolation
-[crud-templates]: ./20_configuration.md#templates-crud
-[crud-users]: ./20_configuration.md#users-crud-required
-[configuration-flow-manager]: ./20_configuration.md#service-configuration
-[usage-body]: ./30_usage.md#body
+[crud-templates]: /runtime_suite/messaging-service/20_configuration.md#templates-crud
+[crud-users]: /runtime_suite/messaging-service/20_configuration.md#users-crud-required
+[configuration-flow-manager]: /runtime_suite/messaging-service/20_configuration.md#service-configuration
+[usage-body]: /runtime_suite/messaging-service/30_usage.md#body

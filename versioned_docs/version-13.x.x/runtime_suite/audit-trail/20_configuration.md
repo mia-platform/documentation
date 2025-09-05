@@ -289,11 +289,11 @@ For additional information and guidance, take a look at the [CRUD Service perfor
 [console-kustomize]: /console/project-configuration/kustomize-your-configurations/index.md
 [console-service-raw-manifest-configuration]: /development_suite/api-console/api-design/services.md#raw-manifest-configuration
 [console-managing-sidecars]: /console/design-your-projects/sidecars.md
-[console-microservices-args]: docs/development_suite/api-console/api-design/services.md#microservice-configuration
+[console-microservices-args]: /development_suite/api-console/api-design/services.md#microservice-configuration
 [crud-service]: /runtime_suite/crud-service/10_overview_and_usage.md
 [crud-service-performance]: /runtime_suite/crud-service/40_performance_overview.md
 [kafka2rest]: /runtime_suite/crud-service/10_overview_and_usage.md
 [kafka2rest-body-processor]: /runtime_suite/kafka2rest-service/02_configuration.md#body-processors
 [kafka2rest-validator-processor]: /runtime_suite/kafka2rest-service/02_configuration.md#validator-processors
 
-[overview-data-model]: 10_overview.md#data-model
+[overview-data-model]: /runtime_suite/audit-trail/10_overview.md#data-model

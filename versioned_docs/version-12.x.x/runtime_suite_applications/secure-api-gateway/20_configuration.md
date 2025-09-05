@@ -170,7 +170,7 @@ Open the file **auth.json** and write the following configuration:
 
 ### Tenant
 
-Configure your Auth0 tenant following the [dedicated documentation](../../runtime_suite/auth0-client/configure_auth0).
+Configure your Auth0 tenant following the [dedicated documentation](/runtime_suite/auth0-client/30_configure_auth0.md).
 
 ### Auth0 Client
 
@@ -198,6 +198,6 @@ Set the value for the following environment variables, used by the Auth0 client 
 
 For further configuration on microservices included in the application you can refer to the dedicated documentation:
 
-- [Authorization Service](../../runtime_suite/authorization-service/configuration)
-- [Oauth Login Site](../../runtime_suite_applications/dev_portal/authentication_configuration#configure-login-site)
-- [Auth0 Client](../../runtime_suite/auth0-client/configuration)
+- [Authorization Service](/runtime_suite/authorization-service/20_configuration.md)
+- [Oauth Login Site](/runtime_suite_applications/dev_portal/authentication_configuration.md#configure-login-site)
+- [Auth0 Client](/runtime_suite/auth0-client/20_configuration.md)

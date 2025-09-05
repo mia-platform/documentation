@@ -10,7 +10,7 @@ DO NOT MODIFY IT BY HAND.
 Instead, modify the source file and run the aggregator to regenerate this file.
 -->
 
-This service can be added to your project by visiting Mia-Platform [Marketplace](../../marketplace/overview_marketplace.md)
+This service can be added to your project by visiting Mia-Platform [Marketplace](/marketplace/overview_marketplace.md)
 and creating a new microservice from the **CRUD SQL** plugin (the plugin can be found for both MSSQL and PostgreSQL).
 
 ## Configure a CRUD SQL 

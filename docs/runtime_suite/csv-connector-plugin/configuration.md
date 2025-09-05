@@ -115,7 +115,7 @@ The properties `first_name`, `last_name` and `role` are columns expected to be f
 
 If we now want to add a json schema for another CSV file to process (e.g., for a new entity called `offices`), we need to add a file similar to *employees_schema.json* in the mapping folder. We should then make sure that the **FILES_NAMES_REGEXES** can still apply or add a new one to the list.
 
-:::Caution
+:::caution
 The service will process only the files whose names match **FILES_NAMES_REGEXES** regex expression. If other mapping files are inserted in the mapping folder whose names aren't related to those csv files specified, they will not be taken into account and therefore no CSV files will be read for those specifications.
 :::
 

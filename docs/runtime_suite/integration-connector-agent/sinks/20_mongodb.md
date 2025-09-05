@@ -22,7 +22,7 @@ There are two different flows that can be managed by the sink.
 Each record will be updated based on a unique ID field, which is statically the `_eventId` one.
 
 For each kind of input event, there is a chosen event id. It is possible to see the supported event type
-to which operation are mapped for each kind of event in the [source documentation](../sources/10_overview.md).
+to which operation are mapped for each kind of event in the [source documentation](/runtime_suite/integration-connector-agent/sources/10_overview.md).
 
 Depending on the source event, it is possible to create two different actions:
 
@@ -30,7 +30,7 @@ Depending on the source event, it is possible to create two different actions:
 it is already present. The update is based on the `_eventId` field.
 - **Delete**: The sink will delete the data from the collection. The delete is based on the `_eventId` field.
 
-[See how different events are managed](../sources/10_overview.md)  in the sources documentation.
+[See how different events are managed](/runtime_suite/integration-connector-agent/sources/10_overview.md)  in the sources documentation.
 
 ### Insert Only
 
@@ -42,7 +42,7 @@ It is possible to enable this flow adding the `insertOnly` parameter to the conf
 To configure the MongoDB sink, you need to provide the following parameters in your configuration file:
 
 - `type` (*string*): The type of the sink, which should be set to `mongo`.
-- `url` ([*SecretSource*](../20_install.md#secretsource)): The MongoDB connection URL
+- `url` ([*SecretSource*](/runtime_suite/integration-connector-agent/20_install.md#secretsource)): The MongoDB connection URL
 - `collection` (*string*): The name of the MongoDB collection where data will be stored.
 - `insertOnly` (*boolean*, optional): If set to `true`, the sink will only insert data into the collection,
 and will not update or delete any existing data. Default is `false`.

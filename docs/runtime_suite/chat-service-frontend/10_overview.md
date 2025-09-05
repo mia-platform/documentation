@@ -27,11 +27,11 @@ This frontend application aims to be used as a white-label service to be configu
 ## How it works
 
 The Chat service frontend implementation is given as a Single Page Application rendering the [Stream Chat UI](https://getstream.io/chat/demos/messaging/), where authorization credentials, permission rules and custom theming options come from data retrieved through an endpoint configured on an instance
-[Chat Service Backend](../chat-service-backend/overview_and_usage).
+[Chat Service Backend](/runtime_suite/chat-service-backend/10_overview_and_usage.md).
 
 The service capabilities are reached through the wrapping of the Stream react components given in the Stream react library and the implementation of custom components, both configurable from the backend side of the application.
 
-The data served from the backend allows so the direct connection with the external Stream Chat provider through secured endpoints and websocket connections, granting at the same time interoperability with other Mia-platform Services such as the [Microfrontend Composer](../../microfrontend-composer/overview) and the [Authentication Service](../authentication-service/overview).
+The data served from the backend allows so the direct connection with the external Stream Chat provider through secured endpoints and websocket connections, granting at the same time interoperability with other Mia-platform Services such as the [Microfrontend Composer](/microfrontend-composer/overview.md) and the [Authentication Service](/runtime_suite/authentication-service/10_overview.md).
 
 The expected data for the application to connect the messaging provider are served from the backend at the endpoint `GET /chat/config?clientType=web`, and structured as specified in the given signature:
 
@@ -48,12 +48,12 @@ The expected data for the application to connect the messaging provider are serv
 ```
 
 Other options are passed through the same endpoint configuring the application's appearance and features.
-For them integration of the application as a Backoffice plugin and the offered customization options, refer to the [configuration](./20_configuration.md) and [customization](./30_customization.md) sections.
+For them integration of the application as a Backoffice plugin and the offered customization options, refer to the [configuration](/runtime_suite/chat-service-frontend/20_configuration.md) and [customization](/runtime_suite/chat-service-frontend/30_customization.md) sections.
 
 
 ## Further details
 
 Follow the pages below to know more about the *Form Service Frontend*:
 
-- [Setup the service](./20_configuration.md)
-- [Custom theming and application's options](./30_customization.md)
+- [Setup the service](/runtime_suite/chat-service-frontend/20_configuration.md)
+- [Custom theming and application's options](/runtime_suite/chat-service-frontend/30_customization.md)

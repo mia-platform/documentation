@@ -12,6 +12,7 @@ const config = {
   projectName: "Mia-Platform",
   onBrokenLinks: "throw",
   onBrokenMarkdownLinks: 'throw',
+  onBrokenAnchors: 'ignore',
   themes: ["docusaurus-json-schema-plugin"],
   themeConfig: {
     prism: {

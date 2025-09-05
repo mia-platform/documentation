@@ -26,5 +26,5 @@ If something goes wrong during the request, the response has a `4xx` or `5xx` st
 ```
 
 
-[mia-therapy-and-monitoring-manager-usage]: /runtime_suite/therapy-and-monitoring-manager/overview
-[mia-device-manager]: /runtime_suite/device-manager/overview
+[mia-therapy-and-monitoring-manager-usage]: /runtime_suite/therapy-and-monitoring-manager/10_overview.md
+[mia-device-manager]: /runtime_suite/device-manager/10_overview.md

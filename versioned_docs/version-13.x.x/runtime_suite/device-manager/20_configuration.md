@@ -151,5 +151,5 @@ If you use a different schema the following endpoints may not work as intended:
 | **TMM_SERVICE_URL**                 | Yes      | http://therapy-monitoring-manager | The HTTP(S) URL of the Therapy and Monitoring Manager (TMM) service.                       |
 
 
-[get-chart-data]: 30_usage.md#get-chart-data
-[get-prototypes]: 30_usage.md#get-prototypes
+[get-chart-data]: /runtime_suite/device-manager/30_usage.md#get-chart-data
+[get-prototypes]: /runtime_suite/device-manager/30_usage.md#get-prototypes

@@ -118,7 +118,7 @@ https://cms.<tenant>.test.mia-platform.eu/web-login, https://cms.<tenant>.prepro
 
 ## Step 7: Write the configurations on the Console
 
-Follow this [link](./20_configuration.md) to learn how to configure the Auth0 Client.
+Follow this [link](/runtime_suite/auth0-client/20_configuration.md) to learn how to configure the Auth0 Client.
 
 Remember, when configuring the auth0-client, to reuse the value you used as `MIA_NAMESPACE` in the action configured in the previous point.
 

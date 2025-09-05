@@ -429,7 +429,7 @@ Below, the interface exposed:
 * M2M Callback Transaction Status Verification: `GET /{external}/callback`
 * On-Demand Transaction Status Verification: `GET /{external}/check`
 
-More details about custom external integrations are available on the [dedicated section](30_payment_providers/99_external.md).
+More details about custom external integrations are available on the [dedicated section](/runtime_suite/payment-gateway-manager/30_payment_providers/99_external.md).
 
 ## Payment Saga APIs - Flow Manager Integration
 
@@ -441,7 +441,7 @@ The **Payment Gateway Manager** is able to communicate with Flow Manager service
     * Start *manually* a new Subscription: `POST /saga/subscription/start`
     * Perform *manually* a payment related to a Subscription: `POST /saga/subscription/pay`
 
-More details about flow manager integrations are available on the [dedicated section](./40_flow_manager_integration.md).
+More details about flow manager integrations are available on the [dedicated section](/runtime_suite/payment-gateway-manager/40_flow_manager_integration.md).
 
 ## Documentation
 

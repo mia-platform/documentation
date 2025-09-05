@@ -15,7 +15,7 @@ In order to upgrade Mia-Platform Console, all you need to do is to update the `m
 :::tip
 When upgrading Mia-Platform Console to a new major release, always remember that updates must be performed one major at a time. Therefore, in order to upgrade from v11 to v13 you must first upgrade to the latest v12 version.
 
-To find out how to upgrade your installation to the latest version of v12, visit the [following documentation](/docs/12.x/infrastructure/self-hosted/installation-chart/how-to-upgrade).
+To find out how to upgrade your installation to the latest version of v12.
 :::
 
 ```yaml title="Chart.yaml" {9} showLineNumbers
@@ -49,13 +49,13 @@ You can choose between:
 - openai
 - vertex
 
-Follow the [Assistant documentation](./helm-values/75_assistant.md#llm-and-embeddings-model-configuration) to learn more about how to configure it.
+Follow the [Assistant documentation](/infrastructure/self-hosted/installation-chart/helm-values/75_assistant.md#llm-and-embeddings-model-configuration) to learn more about how to configure it.
 
 ### Upgrade from v13.6.2 to v13.7.0
 
 With Console v13.7.0, the new Audit Logs feature is available. A new **required value** has been added to the configuration that lets you configure the audit storage.
 
-See the [Audit Section](./helm-values/20_general-settings.md#audit-logs-configuration) in the General settings page to find out how to configure it.
+See the [Audit Section](/infrastructure/self-hosted/installation-chart/helm-values/20_general-settings.md#audit-logs-configuration) in the General settings page to find out how to configure it.
 
 :::tip
 As a best practice it is advised to store Audit logs in a different Database than application data. The `configurations.audit.mongodbUrl` allows you to configure a different connection string for this purpose.
@@ -66,7 +66,7 @@ As a best practice it is advised to store Audit logs in a different Database tha
 With v13.6.0 a new microservice has been added to the Console application, you can configure it using the `catalogService` value to better suite your scaling needs
 
 :::tip
-Refer to the [Service Specific configuration](./helm-values/30_service-specific-configurations.md) documentation page for further details on available values.
+Refer to the [Service Specific configuration](/infrastructure/self-hosted/installation-chart/helm-values/30_service-specific-configurations.md) documentation page for further details on available values.
 :::
 
 ### Upgrade from last Console v12 to v13.0.0
@@ -74,5 +74,5 @@ Refer to the [Service Specific configuration](./helm-values/30_service-specific-
 With v13 a new microservice has been added to the Console application, you can configure it using the `extensibilityManagerService` value to better suite your scaling needs
 
 :::tip
-Refer to the [Service Specific configuration](./helm-values/30_service-specific-configurations.md) documentation page for further details on available values.
+Refer to the [Service Specific configuration](/infrastructure/self-hosted/installation-chart/helm-values/30_service-specific-configurations.md) documentation page for further details on available values.
 :::

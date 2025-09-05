@@ -10,7 +10,7 @@ DO NOT MODIFY IT BY HAND.
 Instead, modify the source file and run the aggregator to regenerate this file.
 -->
 
-This service can be added to your project by visiting Mia-Platform [Marketplace](../../marketplace/overview_marketplace.md) and creating a new microservice from the **Mia FHIR Server** plugin.
+This service can be added to your project by visiting Mia-Platform [Marketplace](/marketplace/overview_marketplace.md) and creating a new microservice from the **Mia FHIR Server** plugin.
 
 In order to start using the Mia FHIR Server, all you have to do is adding it from the Marketplace: all the ConfigMaps and environment variables it needs will be precompiled with default values, if available.
 

@@ -26,10 +26,10 @@ The service exposes the API `/export` and its configuration is provided in the b
 A use case would be to export a report containing the aggregation result which is needed in a particular file format like `xlsx`.
 
 First thing is needed a route that returns a `jsonl` with the data to export.
-The CRUD Service `/export` API or the [MongoDB Reader](../mongodb-reader/configuration) can both be useful to this need. 
+The CRUD Service `/export` API or the [MongoDB Reader](/runtime_suite/mongodb-reader/10_configuration.md) can both be useful to this need. 
 Once the jsonl endpoint is available add the `url` in the [configuration](#configuration) of the Export Service. 
 
-In case you want to export a file with a button in the [Headless CMS](../../microfrontend-composer/previous-tools/cms/guide_cms.md) take note that it is only possible to make GET Requests, so you need a custom adapter service that transforms the POST Request to the Export Service and exposes a GET route returning the exported file.
+In case you want to export a file with a button in the [Headless CMS](/microfrontend-composer/previous-tools/cms/guide_cms.md) take note that it is only possible to make GET Requests, so you need a custom adapter service that transforms the POST Request to the Export Service and exposes a GET route returning the exported file.
 
 ## Setup
 
@@ -50,4 +50,4 @@ When your tenant is composed of many projects you may want to share a single exp
  1. decide which should be the project hosting the export-service
  2. in that project, add the export-service plugin from the marketplace and configure it properly
 
-Now that you have created the export-service in one of your projects you can use [cross-project proxies](../../development_suite/api-console/api-design/proxies#create-a-new-cross-projects-proxy) to let other projects, needing export-service capabilities, contact the export-service.
+Now that you have created the export-service in one of your projects you can use [cross-project proxies](/development_suite/api-console/api-design/proxy.md#create-a-new-cross-projects-proxy) to let other projects, needing export-service capabilities, contact the export-service.
