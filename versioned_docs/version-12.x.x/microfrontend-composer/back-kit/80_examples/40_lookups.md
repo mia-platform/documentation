@@ -11,7 +11,7 @@ Instead, modify the source file and run the aggregator to regenerate this file.
 -->
 
 [crud-service]: /runtime_suite/crud-service/10_overview_and_usage.md
-[writable-views]: /runtime_suite/crud-service/writable_views
+[writable-views]: /runtime_suite/crud-service/50_writable_views.md
 
 [data-schema]: ../30_page_layout.md#data-schema
 [visualization-options]: ../30_page_layout.md#visualization-options

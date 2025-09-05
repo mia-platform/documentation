@@ -1,4 +1,5 @@
 const createEditUrl = require("./scripts/createEditUrl");
+const createRedirects = require("./scripts/createRedirects");
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
@@ -244,12 +245,10 @@ const config = {
     v4: true,
     experimental_faster: true,
   },
-
   i18n: {
     defaultLocale: 'en',
     locales: ['en'],
   },
-
   presets: [
     [
       '@docusaurus/preset-classic',
@@ -275,6 +274,22 @@ const config = {
         }
       }
     ],
+  ],
+  plugins: [
+    [
+      "@docusaurus/plugin-client-redirects",
+      {
+        fromExtensions: ["html"],
+        createRedirects,
+      },
+    ],
+    [
+      "./src/plugins/gtm",
+      {
+        trackingID: 'GTM-PKKZ6XT',
+      },
+    ],
+    "./src/plugins/image-zoom"
   ],
 };
 
