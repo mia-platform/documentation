@@ -1379,16 +1379,16 @@ type FormOpeningEvent = 'insert' | 'select'
 
 ### Listens to
 
-| event                             | action                                                                                                                                                                                          |
-| --------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [add-new]                         | opens the modal to create a new item, potentially applying default fields from data schema or data provided in the payload of the event                                                         |
-| [selected-data]                   | opens the modal to edit a selected item, filling in its fields from the data provided in the payload of the event      
-| {custom-event}                  | opens the modal to edit a selected item or create a new item, filling in its fields from the data provided in the payload of the event                                                                            |
-| [nested-navigation-state/push]    | updates internal representation of the current navigation path by adding one step                                                                                                               |
-| [nested-navigation-state/back]    | updates internal representation of the current navigation path by removing the specified number of steps                                                                                        |
+| event                            | action                                                                                                                                                                                          |
+|----------------------------------| ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [add-new]                        | opens the modal to create a new item, potentially applying default fields from data schema or data provided in the payload of the event                                                         |
+| [selected-data]                  | opens the modal to edit a selected item, filling in its fields from the data provided in the payload of the event      
+| `{custom-event}`                   | opens the modal to edit a selected item or create a new item, filling in its fields from the data provided in the payload of the event                                                                            |
+| [nested-navigation-state/push]   | updates internal representation of the current navigation path by adding one step                                                                                                               |
+| [nested-navigation-state/back]   | updates internal representation of the current navigation path by removing the specified number of steps                                                                                        |
 | [nested-navigation-state/display] | updates internal representation of the current navigation and closes the modal                                                                                                                  |
-| [success]                         | notifies correct data update as a result of form submission. Payload holds the response of the associated HTTP call and is accessible by action in `onSuccess` property via `response` keyword. |
-| [error]                           | notifies that something went wrong during form submission. Payload holds the response of the associated HTTP call and is accessible by action in `onFail` property via `response` keyword.      |
+| [success]                        | notifies correct data update as a result of form submission. Payload holds the response of the associated HTTP call and is accessible by action in `onSuccess` property via `response` keyword. |
+| [error]                          | notifies that something went wrong during form submission. Payload holds the response of the associated HTTP call and is accessible by action in `onFail` property via `response` keyword.      |
 
 ### Emits
 

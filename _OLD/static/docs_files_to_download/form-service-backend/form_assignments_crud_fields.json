@@ -1,6 +1,0 @@
-[
-  {"name":"name","type":"string","required":true,"nullable":false,"description":"the name of the form assignments CRUD endpoint"},
-  {"name":"formIdPropName","type":"string","required":true,"nullable":false,"description":"the name of the property that stores the ID of the form template for a form assignment"},
-  {"name":"manualAssignmentsPropName","type":"string","required":true,"nullable":false,"description":"the name of the property that stores user IDs array"},
-  {"name":"automaticAssignmentsPropName","type":"string","required":false,"nullable":true,"description":"the name of the property that store an additional user IDs array"}
-]

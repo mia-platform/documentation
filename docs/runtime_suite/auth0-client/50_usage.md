@@ -228,7 +228,7 @@ Refer to the [configuration schema](./20_configuration.md#configuration)
 
 The endpoint `PATCH /users/:userID` allows to patch a user.
 
-This API can be contacted with the same body accepted by Auth0 [PATCH /api/v2/users/{id}](https://auth0.com/docs/api/management/v2/users/patch-users-by-id) API.
+This API can be contacted with the same body accepted by Auth0 [`PATCH /api/v2/users/{id}`](https://auth0.com/docs/api/management/v2/users/patch-users-by-id) API.
 
 #### Delete a user
 
@@ -262,7 +262,7 @@ Signature `GET /users/import/status/:jobID`
 
 Allows to retrieve import job status.
 
-Returns the same body of Auth0 [GET /api/v2/jobs/{id}](https://auth0.com/docs/api/management/v2/jobs/get-jobs-by-id).
+Returns the same body of Auth0 [`GET /api/v2/jobs/{id}`](https://auth0.com/docs/api/management/v2/jobs/get-jobs-by-id).
 
 #### Get an import job errors
 
@@ -270,7 +270,7 @@ Signature `GET /users/import/status/:jobID/errors`
 
 Allows to retrieve import job errors.
 
-Returns the same body of Auth0 [GET /api/v2/jobs/{id}/errors](https://auth0.com/docs/api/management/v2/jobs/get-errors).
+Returns the same body of Auth0 [`GET /api/v2/jobs/{id}/errors`](https://auth0.com/docs/api/management/v2/jobs/get-errors).
 
 
 ## How to customize Auth0 login page

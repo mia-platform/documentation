@@ -651,7 +651,7 @@ In particular, we can identify:
 :::caution
 These variables will be publicly available once committed. 
 
-If you need to keep this information confidential, you can interpolate these environment variables with double brackets (e.g. {{KAFKA_BROKERS_LIST}}) and set the corresponding value in the Envs section of the console.
+If you need to keep this information confidential, you can interpolate these environment variables with double brackets (e.g. `{{KAFKA_BROKERS_LIST}}`) and set the corresponding value in the Envs section of the console.
 :::
 
 This configuration will be available inside our microservice later on. Each of these variables will be helpful during the implementation of a Kafka client and the creation of messages used to communicate with other saga actors.

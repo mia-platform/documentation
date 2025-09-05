@@ -24,7 +24,7 @@ You can configure the **Form Service Backend** to reach the `GET /export` endpoi
 
 :::
 
-## GET /{id} route
+## GET `/{id}` route
 The `GET /{id}` route returns the submitted data of a form by ID. 
 
 ### Response body schema

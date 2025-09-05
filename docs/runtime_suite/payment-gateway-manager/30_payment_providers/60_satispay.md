@@ -54,7 +54,7 @@ This endpoint allows to create a new payment related to a subscription via the S
 The request body does **not** require any additional data, thus the `providerData` field can be omitted.
 
 :::warning
-Before starting a new subscription, it is necessary to request the authorization token through the /utility/{paymentMethod}/subscription/token endpoint
+Before starting a new subscription, it is necessary to request the authorization token through the `/utility/{paymentMethod}/subscription/token` endpoint
 :::
 
 #### Get Status

@@ -55,7 +55,7 @@ Response
   "type":"searchset"
 }
 ```
-### GET /fhir/Patient/{id}
+### GET `/fhir/Patient/{id}`
 Request
 ```bash
 curl --request GET \
@@ -75,7 +75,7 @@ Response
   "resourceType":"Patient"
 }
 ```
-### GET /fhir/Patient/{id}/_history
+### GET `/fhir/Patient/{id}/_history`
 Request
 ```bash
 curl --request GET \
@@ -123,7 +123,7 @@ Response
 }
 ```
 
-### GET /fhir/Patient/{id}/_history/{vid}
+### GET `/fhir/Patient/{id}/_history/{vid}`
 Request
 ```bash
 curl --request GET \
@@ -174,7 +174,7 @@ Response
   "resourceType":"Patient"}
 ```
 
-### PUT /fhir/Patient/{id}
+### PUT `/fhir/Patient/{id}`
 Request
 ```bash
 curl --request PUT \
@@ -202,7 +202,7 @@ Response
   "resourceType":"Patient"
 }
 ```
-### PATCH /fhir/Patient/{id}
+### PATCH `/fhir/Patient/{id}`
 Request
 ```bash
 curl --request PATCH \
@@ -225,7 +225,7 @@ Response
   "resourceType":"Patient"
 }
 ```
-### DELETE /fhir/Patient/{id}
+### DELETE `/fhir/Patient/{id}`
 Request
 ```bash
 curl --request DELETE \
@@ -236,7 +236,7 @@ Response
 {}
 ```
 
-### DELETE /fhir/Patient/{id}/$purge
+### DELETE `/fhir/Patient/{id}/$purge`
 Request
 ```bash
 curl --request DELETE \
@@ -252,7 +252,7 @@ Response
 ## Independently of active Resources
 The following endpoints can be found in the api portal regardless of the FHIR resources that has been activated.
 
-### GET /fhir/Patient/{id}/$everything
+### GET `/fhir/Patient/{id}/$everything`
 Request
 ```bash
 curl --request GET \

@@ -1,4 +1,0 @@
-[
-    {"name":"formTemplateId","description":"id of the form template of the assignment","type": "ObjectId","required":true,"nullable":false},
-    {"name":"userIds","description":"IDs of users assignd to a form template","type":"ObjectId","required":true,"nullable":false}
-]

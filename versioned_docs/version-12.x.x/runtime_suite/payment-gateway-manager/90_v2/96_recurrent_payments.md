@@ -39,7 +39,7 @@ is successfully completed and returned to the payment system.
 
 To achieve such behavior it is possible to exploit the endpoint dedicated to recurrent payments, that is
 
-    POST /{provider}/{payment-method}/pay/recurrent
+    `POST /{provider}/{payment-method}/pay/recurrent`
 
 This endpoint requires a payload as input, which extends the one of standard payments by adding the `recurrentDetails` property,
 which describes how the recurrence strategy should be configured.

@@ -17,7 +17,7 @@ The template comes with a set of APIs already integrated with Trustfull systems.
 
 This API performs a get request to Trustfull system to check if the user is authenticated correctly. Client information is given by the environment variables `APIKEY`. The service calls the Trustfull API and returns its response.
 
-### GET - /{customerId}
+### GET - `/{customerId}`
 
 This API allows to retrieve a user that was previously data enriched/valuated or validated.
 
