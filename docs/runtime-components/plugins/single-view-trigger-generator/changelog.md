@@ -11,6 +11,39 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [3.5.0] 2025-09-05
+
+### Changed
+
+- introduce support to `null` equality in ER-Schema conditions. For example:
+  ```json title='ER-Schema'
+  {
+    "version": "1.0.0",
+    "config": {
+      "A": {
+        "outgoing": {
+          "B": {
+            "conditions": {
+              "A_to_B": {
+                "condition": {
+                  "A_FIELD_3": null
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  ```
+
+### Dependencies
+
+- updated `fast-data-automation-lib` to version `3.3.2`
+- updated `zod` to version `4`
+- updated `secret-js` to version `0.3.0`
+- replaced `eslint` with `@biomejs/biome`
+
 ## [3.4.1] 2025-04-09
 
 ### Fixed
