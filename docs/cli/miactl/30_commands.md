@@ -542,11 +542,11 @@ miactl project describe [flags]
 
 Flags available for this command:
 
-- `--project-id`: required. The ID of the Application Project to describe 
-- `--revision`: for projects using Enhanced Workflow. The revision of the Application Project to describe 
-- `--version`: for projects using Enhanced Workflow. The version of the Application Project to describe 
-- `--branch`: for projects using the standard workflow. The branch of the Application Project to describe 
-- `--tag`: for projects using the standard workflow. The tag of the Application Project to describe 
+- `--project-id`: required. The ID of the Application Project to describe
+- `--revision`: for projects using Enhanced Workflow. The revision of the Application Project to describe
+- `--version`: for projects using Enhanced Workflow. The version of the Application Project to describe
+- `--branch`: for projects using the standard workflow. The branch of the Application Project to describe
+- `--tag`: for projects using the standard workflow. The tag of the Application Project to describe
 - `--output` or `-o`: output format. Allowed values: json, yaml (default is "json")
 
 ### apply
@@ -1225,7 +1225,7 @@ List Catalog items
 
 #### Synopsis
 
-List the Catalog items that the current user can access.
+List the Catalog items that the current user can access. Results are paginated and by default only the first page is shown.
 
 #### Usage
 
@@ -1235,7 +1235,8 @@ miactl catalog list --company-id company-id [FLAGS]...
 
 #### Flags
 
-- `--public` - if this flag is set, the command fetches not only the items from the requested company, but also the public Catalog items from other companies.
+- `--public` - if this flag is set, the command fetches not only the items from the requested company, but also the public item type definitions from other companies.
+- `--page` - specify the page to fetch, default is 1
 
 ### get
 
@@ -1329,4 +1330,97 @@ The flag `--item-id` or `-i` accepts the `itemId` of the Item.
 
 ```bash
 miactl catalog list-versions -i some-item
+```
+
+## item type definition
+
+:::info
+This command and its subcommands use APIs that are only available from Mia-Platform Console v14.1.0.
+:::
+
+View and manage Item Type Definitions
+
+All the subcommands inherit the following flags:
+
+```sh
+      --auth-name string               the name of the miactl auth to use
+      --certificate-authority string   path to a cert file for the certificate authority for the selected endpoint
+      --company-id string              the ID of the Company
+  -c, --config string                  path to the config file default to $HOME/miactl/config
+      --context string                 the name of the miactl context to use
+      --endpoint string                the address and port of the Mia-Platform Console server
+      --insecure-skip-tls-verify       if true, the server's certificate will not be checked for validity. This will make your HTTPS connections insecure
+  -v  --verbose                        increase the verbosity of the cli output
+```
+
+### list
+
+List Item Type Definitions
+
+#### Synopsis
+
+List the Item Type Definitions that the current user can access. Results are paginated and by default only the first page is shown.
+
+#### Usage
+
+```sh
+miactl itd list --company-id company-id [FLAGS]...
+```
+
+#### Flags
+
+- `--public` - if this flag is set, the command fetches not only the items from the requested company, but also the public Catalog items from other companies.
+- `--page` - specify the page to fetch, default is 1
+
+### get
+
+Get a Catalog item
+
+#### Synopsis
+
+Get an Item Type Definition
+
+You need to specify the name and its tenant namespace, via the respective flags. The company-id flag can be omitted if it is already set in the context.
+
+```bash
+miactl itd get --tenantId tenantId --name name
+```
+
+### delete
+
+Delete an Item Type Definition
+
+#### Synopsis
+
+Delete an Item Type Definition
+
+You need to specify the companyId and the item type definition name via the respective flags (recommended). The company-id flag can be omitted if it is already set in the context.
+
+```bash
+miactl itd delete --name name --version version ...
+```
+
+### put
+
+Create or update an Item Type Definition
+
+#### Synopsis
+
+Create or update an Item Type Definition.
+
+You need to specify the flag --file or -f that accepts a file, and companyId. Supported formats are JSON (.json files) and YAML (.yaml or .yml files).
+
+```bash
+miactl itd put -f file-path
+```
+
+#### Examples
+
+```bash
+
+# Create the item type definition in file myFantasticPluginDefinition.json located in the current directory
+miactl itd put --file myFantasticPluginDefinition.json
+
+# Create the item type definition in file myFantasticPluginDefinition.json, with relative path
+miactl itd put --file ./path/to/myFantasticPluginDefinition.json
 ```
