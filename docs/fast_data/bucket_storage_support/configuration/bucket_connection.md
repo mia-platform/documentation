@@ -23,7 +23,18 @@ The guide is equivalent for all the services belonging to the Bucket Storage Sup
 In order to connect to a Google bucket, after setting the environment variable `BUCKET_TYPE` to `google`, a [secret will have to be created](/development_suite/api-console/api-design/services.md#secrets),
 containing the credentials of the service account necessary for connecting to the Google bucket.
 Once done, the environment variable `GOOGLE_APPLICATION_CREDENTIALS` has to be set with the same value of the mount path defined in the secret.
-The document must be a `json` file, with the following structure
+The JSON document is a Google Service Account key file, which can be obtained as follows:
+
+- Navigate to the Google Cloud Project
+- Go to "IAM & Admin" → "Service Accounts"
+- Create or Select a Service Account
+- If you don't have one, create a new service account
+- Grant it the necessary GCS permissions (typically "Storage Object Admin" or "Storage Admin")
+- Go to the "Keys" tab of the Service Account
+- Click "Add Key" → "Create new key" → "JSON"
+- Download the JSON file
+
+The json should have the following format:
 
 ```json
 {
