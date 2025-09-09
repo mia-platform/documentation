@@ -211,8 +211,8 @@ export default function myEsmMessageAdapter(message, primaryKeys, logger) {
 ```
 :::
 
-<details><summary>Custom Message Adapter Function (messageAdapter.js)</summary>
-<p>
+Custom Message Adapter Function (messageAdapter.js)
+
 
 ```javascript
 'use strict'
@@ -270,11 +270,11 @@ try {
 }
 ```
 
-</p>
-</details>
 
-<details><summary>Custom Message Adapter Function (with empty payload management - messageAdapter.js)</summary>
-<p>
+
+
+Custom Message Adapter Function (with empty payload management - messageAdapter.js)
+
 
 ```javascript
 'use strict'
@@ -320,8 +320,8 @@ try {
 
 ```
 
-</p>
-</details>
+
+
 
 :::caution
 Within the custom message adapter script file it is possible to define multiple functions. 
@@ -402,8 +402,8 @@ export default function myNewCastFunction(messageObject, fieldName, logger) {
 
 Below you can find several examples about implementation of cast functions.
 
-<details><summary>Custom Cast Function (mapToAddressType.js)</summary>
-<p>
+Custom Cast Function (mapToAddressType.js)
+
 
 ```javascript
 const addressMapping = {
@@ -437,11 +437,11 @@ try {
 }
 ```
 
-</p>
-</details>
 
-<details><summary>Custom Cast Function (castToTitleCase.js)</summary>
-<p>
+
+
+Custom Cast Function (castToTitleCase.js)
+
 
 ```javascript
 'use strict'
@@ -468,8 +468,8 @@ try {
 }
 ```
 
-</p>
-</details>
+
+
 
 :::danger
 For those migrating custom cast functions from the ones employed in the Real-Time Updater, please bear in mind that
@@ -859,9 +859,9 @@ the configuration panel is shown in the screenshot here:
 Below is provided an examples of how Control Plane settings can be configured for the Projection Storer service. In particular,
 this leverage a GRPC bidirectional stream as feedback loop, where both Fast Data _state_ and service _feedback_ transit over GRPC communication protocol.
 
-<details><summary>Control Plane Configuration | GRPC feedback loop</summary>
+Control Plane Configuration | GRPC feedback loop
 This configuration enables both state and feedback component to connect to the GRPC server on the Fast Data Control Plane Operator instance.
-<p>
+
 
 ```json
 "controlPlane": {
@@ -885,8 +885,8 @@ This configuration enables both state and feedback component to connect to the G
 }
 ```
 
-</p>
-</details>
+
+
 
 :::caution
 In order for the service to be aware of which Fast Data pipelines [_artifacts_](/fast_data/runtime_management/overview.mdx#artifact)
@@ -904,8 +904,8 @@ so that these bindings do not have be added by the user.
 Below is presented an example of Projection Storer working configuration, both `JSON` and `YAML` formats, which are the ones
 supported by the service.
 
-<details><summary>Projection Storer configuration (JSON)</summary>
-<p>
+Projection Storer configuration (JSON)
+
 
 ```json
 {
@@ -1091,11 +1091,11 @@ supported by the service.
 }
 ```
 
-</p>
-</details>
 
-<details><summary>Projection Storer configuration (YAML)</summary>
-<p>
+
+
+Projection Storer configuration (YAML)
+
 
 ```yaml
 version: 2
@@ -1229,8 +1229,8 @@ controlPlane:
   bindings: {}
 ```
 
-</p>
-</details>
+
+
 
 ## Migration Guide
 

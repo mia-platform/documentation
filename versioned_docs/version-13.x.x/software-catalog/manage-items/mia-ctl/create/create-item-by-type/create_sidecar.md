@@ -106,9 +106,9 @@ In these examples, the configuration defines a very simple sidecar resource by s
 but you can define `ConfigMaps`, `Probes` or `Environment Variables` too.  
 To do this, create a more specific sidecar definition following the `json-schema` below.
 
-<details>
-<summary>Click to view the full JSON Schema.</summary>
-<p>
+
+Click to view the full JSON Schema.
+
 
 ```json
 {
@@ -322,5 +322,5 @@ To do this, create a more specific sidecar definition following the `json-schema
 }
 ```
 
-</p>
-</details>
+
+

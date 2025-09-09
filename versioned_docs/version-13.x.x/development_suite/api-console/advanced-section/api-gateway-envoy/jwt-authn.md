@@ -172,8 +172,8 @@ For more details concerning the filter properties, visit [this section](/runtime
 
 Here you can find some ready to use example of different identity providers that you can use for authentication.
 
-<details><summary><b>Auth0</b></summary>
-<p>
+<b>Auth0</b>
+
 
 ```yaml title=http-filters.yaml
 - listener_name: frontend
@@ -233,11 +233,11 @@ Here you can find some ready to use example of different identity providers that
             filename: /etc/ssl/certs/ca-certificates.crt
 ```
 
-</p>
-</details>
 
-<details><summary><b>Microsoft Active Directory</b></summary>
-<p>
+
+
+<b>Microsoft Active Directory</b>
+
 
 ```yaml title=http-filters.yaml
 - listener_name: frontend
@@ -297,8 +297,8 @@ Here you can find some ready to use example of different identity providers that
             filename: /etc/ssl/certs/ca-certificates.crt
 ```
 
-</p>
-</details>
+
+
 
 ## LUA script
 

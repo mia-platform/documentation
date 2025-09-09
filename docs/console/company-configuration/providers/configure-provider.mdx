@@ -7,7 +7,7 @@ sidebar_label: Manage Providers
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-Mia-Platform Console allows authorized users to manage providers. 
+Mia-Platform Console allows authorized users to manage providers.
 
 More specifically, authorized users can:
 
@@ -29,7 +29,7 @@ You can filter data based on provider name or service through the search bar at 
 
 ## Connect a Provider
 
-You can connect a Provider by clicking on the "**Add Provider connection**" or "**Add Marketplace Provider connection**" button, located in the page's top right corner. 
+You can connect a Provider by clicking on the "**Add Provider connection**" or "**Add Marketplace Provider connection**" button, located in the page's top right corner.
 
 ![Add provider button](img/add-provider-connection-choice.png)
 
@@ -47,7 +47,7 @@ After clicking the button a modal will show up, and, through a few steps, you wi
 ![Add provider 1a](img/add-provider-1a.png)
 ![Add provider 1b](img/add-provider-1b.png)
 
-In this step, you are required to choose the specific provider you want to use among the ones supported by the Console and, for the chosen provider, the capabilities you want to use it for ("Git Provider", "Secret Manager", "CI/CD Tool").  
+In this step, you are required to choose the specific provider you want to use among the ones supported by the Console and, for the chosen provider, the capabilities you want to use it for ("Git Provider", "Secret Manager", "CI/CD Tool").
 
 :::info
 If the provider offers only one capability, clicking on it will lead directly to step 2 and the capability will be selected by default.
@@ -69,8 +69,8 @@ In this step, you can insert some general details about your provider:
 If in [Step 1](#step-1-provider-services) the **Git Provider** capability has been selected, two additional fields will appear in this step. The first one is the **Repository path template**. This field controls where Project repositories, created using this provider, will be located, and can also contain a special interpolation variable `{{projectId}}` that will be replaced with the actual Project identifier during the [Project creation](/console/project-configuration/create-a-project.mdx) phase.
 
 :::info
-The **Repository path template** field identifies the path where your project configuration repository will be created. 
-It must follow the hierarchical structure of each **Git Provider** so it will be different for different providers. 
+The **Repository path template** field identifies the path where your project configuration repository will be created.
+It must follow the hierarchical structure of each **Git Provider** so it will be different for different providers.
 More information about how to configure it for the specific provider in the table below.
 :::
 
@@ -268,7 +268,7 @@ With the correct host to the Hashicorp Vault instance.
 </TabItem>
 <TabItem value="jenkins" label="Jenkins Client Credentials">
 
-It is possible to 
+It is possible to
 
 * **Client ID**: client identifier
 * **Client Secret**: the shared client secret
@@ -327,7 +327,7 @@ The "Expanded view" tab displays the human-readable version of the certificate, 
 
 As mentioned in the previous section, through the button in the top right corner of the Details, Credentials, and Advanced cards, it is possible to modify the information inserted by the user while connecting the provider to the Console.
 
-A click on the button will open a modal very similar to the one seen when connecting the provider, but only specific to the information you wish to edit. 
+A click on the button will open a modal very similar to the one seen when connecting the provider, but only specific to the information you wish to edit.
 
 :::info
 In the Details card, the modal will allow you also to change the capabilities used by the provider, selected in step 1.
@@ -340,7 +340,7 @@ By clicking on "Edit provider", the information about the provider will be updat
 
 ## Remove a Provider Connection
 
-In the bottom part of a provider detail page, you will find a footer that allows you to remove the provider connection from the Console.  
+In the bottom part of a provider detail page, you will find a footer that allows you to remove the provider connection from the Console.
 
 ![Remove provider connection footer](img/remove-provider-connection-footer.png)
 
@@ -348,7 +348,7 @@ By clicking on the "Remove" button, a modal will be displayed, asking for confir
 
 ![Remove provider connection](img/remove-provider-connection.png)
 
-By entering the name in the input field and clicking `Remove`, a loading will appear. 
+By entering the name in the input field and clicking `Remove`, a loading will appear.
 
 After the request has been completed, a feedback of successful removal will be shown, and closing the modal will then redirect you to the providers' table. In case of errors, an informative feedback will be shown instead, and the `Close` button will not perform a redirection.
 
@@ -366,9 +366,9 @@ You can also find further details on how to set a different default provider in 
 
 ## Set a Default Provider
 
-Once you create a provider connection, you will be able to set it as the default provider for a specific capability of that company.  
+Once you create a provider connection, you will be able to set it as the default provider for a specific capability of that company.
 
-By using the dedicated cards at the top of the providers' section, you will be able to select one of the providers implementing that specific capability.  
+By using the dedicated cards at the top of the providers' section, you will be able to select one of the providers implementing that specific capability.
 
 As soon as the default provider has been set for a certain capability, the card will show the corresponding chosen provider.
 If no provider has been set, a "Set default capability" button will appear instead.
@@ -384,7 +384,7 @@ Default Providers are automatically associated with newly created Projects insid
 :::
 
 :::caution
-Please make sure to have the right permissions to set or modify the default providers of a company. 
+Please make sure to have the right permissions to set or modify the default providers of a company.
 
 **Only Company Owners will be able to access this feature.**
 :::

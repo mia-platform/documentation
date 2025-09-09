@@ -71,8 +71,8 @@ However, you will lose some of the automation provided by the company creation A
 It is recommended to use the API to create a new company. Use this method only if strictly necessary.
 :::
 
-<details>
-<summary>Detailed guide</summary>
+
+Detailed guide
 
 ### Create the company
 
@@ -116,4 +116,4 @@ As a general recommendation, we suggest `{companyId}-{desiredRole}`, however in 
 }
 ```
 
-</details>
+

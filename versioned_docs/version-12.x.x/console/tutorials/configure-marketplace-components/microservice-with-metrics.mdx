@@ -4,9 +4,7 @@ title: Add metrics to your custom Microservice
 sidebar_label: Add metrics to your Microservice
 ---
 
-import VideoBox from "./../../../../../src/components/VideoBox";
-
-In this tutorial we are going to add custom metrics to a custom micro-service, that will be later collected by a monitoring system like the _Prometheus Operator_. 
+In this tutorial we are going to add custom metrics to a custom micro-service, that will be later collected by a monitoring system like the _Prometheus Operator_.
 
 These metrics will then be available in [Grafana](/infrastructure/paas/tools/grafana.md) to use in personalized dashboards based on user-defined queries.
 
@@ -16,7 +14,7 @@ Before starting, we assume that you have already created the `shipping-cost` mic
 
 :::info
 Since there can be different libraries to handle custom metrics, we will consider the library provided by [our Nodes.js service launcher lc39](https://github.com/mia-platform/lc39/blob/master/docs/main-entrypoint.md#prometheus-metrics), used by the [Node.js Template](https://github.com/mia-platform-marketplace/Node.js-Custom-Plugin-Template/).
-Therefore, javascript will be used as example language for this tutorial. Other languages and frameworks may provide different modes to expose metrics.  
+Therefore, javascript will be used as example language for this tutorial. Other languages and frameworks may provide different modes to expose metrics.
 :::
 
 More-over, the project where the service has been created must have a monitoring system such as Prometheus configured from the [Microservice Monitoring Section](/development_suite/api-console/api-design/microservice-monitoring.md):
@@ -27,7 +25,7 @@ This monitoring system should also be configured as data source to Grafana, to v
 
 Consider the `/shipping-cost` route of the micro-service. We want to add a custom metric to count, the number of requests submitted to the endpoint based on the response status code.
 
-Lets create a `metrics.js` file that exports a `getMetrics` function: 
+Lets create a `metrics.js` file that exports a `getMetrics` function:
 
 ```js title=/metrics.js
 module.exports.getMetrics = function getMetrics(prometheusClient) {
@@ -42,7 +40,7 @@ module.exports.getMetrics = function getMetrics(prometheusClient) {
 }
 ```
 
-This function will be used by _lc39_ to decorate the fastify instance with a prometheus client from the [fastify-metrics](https://github.com/SkeLLLa/fastify-metrics) library. 
+This function will be used by _lc39_ to decorate the fastify instance with a prometheus client from the [fastify-metrics](https://github.com/SkeLLLa/fastify-metrics) library.
 In particular, we are defining a **counter** called `custom_shipping_cost_metric`, which represents a value that can only increase monotonically. Also, this value can be grouped by a label called status, based on the http status code returned by the micro-service.
 
 The counter is then stored in a variable called `shippingCostCounter`, that we will use later on our micro-service to increment the number of the metric.
@@ -59,11 +57,11 @@ Go to the `shipping-costs` micro-service configuration: since the Service Monito
 
 ![Enable Metrics](img/enable-metrics.png)
 
-This section enables on Deploy the creation of a Service Monitor resource, that will instruct the monitoring system to collect metrics every 60 seconds from the `/-/metrics` endpoint.  
+This section enables on Deploy the creation of a Service Monitor resource, that will instruct the monitoring system to collect metrics every 60 seconds from the `/-/metrics` endpoint.
 Now save the configuration with the current version of the micro-service containing the _Prometheus Client_ and release it.
 
-<details><summary>Access the metrics endpoint:</summary>
-<p>
+Access the metrics endpoint:
+
 
 If you have a direct access with `kubectl` to the environment you have deployed your application, try to access locally the `shipping-cost` micro-service using port-forwarding on port 3000
 
@@ -85,12 +83,12 @@ You should receive a `text/plain` content type having a structure like this:
 # TYPE custom_shipping_cost_metric counter Custom metric to count shipping costs requests
 custom_shipping_cost_metric = 0
 ```
-</p>
-</details>
+
+
 
 ## Update custom metrics
 
-Now custom metrics have been deployed, but they are not updated automatically by the micro-service. 
+Now custom metrics have been deployed, but they are not updated automatically by the micro-service.
 
 As we said before, the goal of the custom metric is to count the number of either successfull or failed requests.
 
@@ -98,7 +96,7 @@ So, we have to edit the handler code of the `/shipping-cost` endpoint to access 
 
 ```js title=/handlers/getShippingCost.js {9,21,30}
 async function handler(req, rep) {
-  // ... get customerEmail 
+  // ... get customerEmail
   let customerCrudRes;
   try {
     customerCrudRes = await crudClient.get(`/customers/`, {
@@ -133,12 +131,12 @@ async function handler(req, rep) {
 
 The prometheus client defined before, along with its metrics, can be accessed inside the handler's scope from the variable `customMetrics`: here, at each point of the code that we're returning a response, we increment the counter's value by calling the `inc()` function.
 
-Also, since we wanna group metrics based on the status code provided by the endpoint, we are passing to the function the value of the label `status`, so that there will be a different counter for each value of the `status` label.    
+Also, since we wanna group metrics based on the status code provided by the endpoint, we are passing to the function the value of the label `status`, so that there will be a different counter for each value of the `status` label.
 
 Now, you can release the changes on the micro-service and release the new version. By performing http requests, you can see from the metrics endpoint the increase of the metric `custom_shipping_cost_metric`.
 
-<details><summary>Test the behavior of your metrics:</summary>
-<p>
+Test the behavior of your metrics:
+
 
 Metrics can be tested also by using TDD! Let's take the `shipping-cost` unit test written during the previous tutorial and add an additional assert for the metrics response.
 
@@ -175,8 +173,8 @@ Metrics can be tested also by using TDD! Let's take the `shipping-cost` unit tes
 ```
 Since the response of the `/-/metrics` endpoint is of content type `text/plain`, you have to parse the metric line, for example with a `getCounter`utility function.
 There are several libraries that parse the content of prometheus metrics, such as [parse-prometheus-text-format](https://github.com/yunyu/parse-prometheus-text-format).
-</p>
-</details>
+
+
 
 ## Create Grafana Dashboards based on Custom Metrics
 
@@ -197,11 +195,11 @@ This query will:
 * fetch all series matching metric `custom_shipping_cost_metric`;
 * calculates sum over dimensions while preserving label `status`.
 
-Once you've executed this query, you'll see that the time-series visualization is showing the metric representing the number of requests received by the service over the time range provided. 
+Once you've executed this query, you'll see that the time-series visualization is showing the metric representing the number of requests received by the service over the time range provided.
 
 ![Time Series Metrics Dashboard](img/metrics-dashboard.png)
 
-If you try to perform GET requests to the `"/shipping-cost"` endpoint, you will see the counter increase. That's it, you have defined your custom metric and shown it on a Grafana visualization! 
+If you try to perform GET requests to the `"/shipping-cost"` endpoint, you will see the counter increase. That's it, you have defined your custom metric and shown it on a Grafana visualization!
 
 :::tip
 This dashboard can also be embedded into the Console using the [Dashboard Section](/development_suite/monitoring/dashboard.md).

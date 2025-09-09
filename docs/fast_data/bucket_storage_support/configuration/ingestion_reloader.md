@@ -46,8 +46,8 @@ In order to connect and authenticate correctly with the bucket and Kafka, please
 
 ## Routes
 
-<details><summary>Openapi file of the Ingestion Reloader</summary>
-<p>
+Openapi file of the Ingestion Reloader
+
 
 ```yaml
 openapi: 3.0.3
@@ -199,8 +199,8 @@ paths:
                   code:
                     type: string
 ```
-</p>
-</details>
+
+
 
 The Ingestion Reloader exposes four `POST` routes to trigger its functionalities.
 

@@ -41,7 +41,7 @@ To reduce the load on the RLS in case of heavy traffic spikes, you can configure
 
 ### External authorization
 
-Envoy supports **external authorization** via the dedicated [HTTP filter](https://www.envoyproxy.io/docs/envoy/v1.21.0/configuration/http/http_filters/ext_authz_filter.html). We provide a compatible [authorization service](../../runtime_suite/authorization-service/overview) with its default Envoy filter, that will be added automatically to the filter chain when our external authorizer is picked from the Marketplace and deployed. However, you are free to deploy and configure your own in [advanced mode](../../development_suite/api-console/advanced-section/api-gateway-envoy/extensions#external-authorization).
+Envoy supports **external authorization** via the dedicated [HTTP filter](https://www.envoyproxy.io/docs/envoy/v1.21.0/configuration/http/http_filters/ext_authz_filter.html). We provide a compatible [authorization service](/runtime_suite/authorization-service/10_overview.md) with its default Envoy filter, that will be added automatically to the filter chain when our external authorizer is picked from the Marketplace and deployed. However, you are free to deploy and configure your own in [advanced mode](/development_suite/api-console/advanced-section/api-gateway-envoy/extensions.md#external-authorization).
 
 The `authorization-request` object allows defining some actions to perform on the **request** to the authorizer. For example, it is possible to **append some headers** to the request via the list `headers_to_add`.
 
@@ -62,7 +62,7 @@ On the other hand, the Lua script in the second step is in charge of **resolving
 
 ### JWT authentication
 
-Envoy supports **JWT authentication**, which can be combined with our **[Authorization Service**](../../runtime_suite/authorization-service/usage#trust-mia-platform-user-headers)** using the trusted user headers mode.
+Envoy supports **JWT authentication**, which can be combined with our **[Authorization Service**](/runtime_suite/authorization-service/30_usage.md#trust-mia-platform-user-headers)** using the trusted user headers mode.
 
 The **[JWT authentication HTTP filter](https://www.envoyproxy.io/docs/envoy/v1.21.0/configuration/http/http_filters/jwt_authn_filter#config-http-filters-jwt-authn)** performs all the necessary operations to decode and extract the JWT payload.
 

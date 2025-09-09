@@ -145,7 +145,7 @@ It is also **required** to deploy the corresponding secret in the project's envi
 
 Assuming you have a Vault instance setup and running and a Console project already created, you can configure it to use Vault to store your environment variables. The steps to do that are the following:
 
-1. Create a provider for your Vault instance. This can be done using the dedicated [providers APIs](//console/company-configuration/providers/configure-provider.mdx). The provider is the entity that contains references to the public hostname of your Vault instance and credentials to access its APIs. 
+1. Create a provider for your Vault instance. This can be done using the dedicated [providers APIs](/console/company-configuration/providers/configure-provider.mdx). The provider is the entity that contains references to the public hostname of your Vault instance and credentials to access its APIs. 
   
   In this step you have to configure:
     - The [provider related fields](/console/company-configuration/providers/configure-provider.mdx?providerType=vault#step-2-provider-details), having type `vault`. Optionally, you can setup a custom Certificate Authority and/or proxy.

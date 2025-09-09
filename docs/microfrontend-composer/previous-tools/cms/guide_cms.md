@@ -240,8 +240,8 @@ For each property you need to fill in the file with a specific formatting. The "
 
 * string = normal text
 * number = 113213
-* array = ["" value "", 2],
-* object = {"" key "": "" value ""}
+* array = `["" value "", 2]`,
+* object = `{"" key "": "" value ""}`
 
 At this point you can import the file.
 

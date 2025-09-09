@@ -59,7 +59,7 @@ miactl project apply --project-id <PROJECT_ID_B> --revision main -f project-to-m
 In order to make the new Project work as expected, ensure to correctly configure Providers, Secrets and Environments in the new Company as well.
 :::
 
-[docs-miactl]: ../../../cli/miactl/overview
+[docs-miactl]: /cli/miactl/10_overview.md
 [docs-miactl-project-describe]: https://docs.mia-platform.eu/docs/cli/miactl/commands#describe
 [docs-miactl-project-apply]: https://docs.mia-platform.eu/docs/cli/miactl/commands#apply
-[docs-revision-history]: ../../../development_suite/set-up-infrastructure/revisions-and-versions#revision-history
+[docs-revision-history]: /development_suite/set-up-infrastructure/revisions-and-versions.md#revision-history

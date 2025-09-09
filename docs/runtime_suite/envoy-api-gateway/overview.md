@@ -7,11 +7,11 @@ Envoy is a high-performance C++ edge and service proxy, built for microservice a
 
 ## Why should I pick Envoy for my project?
 
-Envoy offers a valid alternative to our [API Gateway based on NGINX](../api-gateway/overview). Despite its raw configuration may not be straightforward to write and understand, it provides many advantages:
+Envoy offers a valid alternative to our [API Gateway based on NGINX](/runtime_suite/api-gateway/10_overview.md). Despite its raw configuration may not be straightforward to write and understand, it provides many advantages:
 
 - **Improved latency:** it performs very well under heavy traffic conditions, with a lower response time with respect to NGINX.
 - **JWT authentication:** thanks to its JWT filter, Envoy supports JWT parsing and payload extraction for authentication purposes.
-- **Extensions:** Envoy offers a vast variety of [filters](./filters.md), that can be added to improve and customize the default configuration according to the project's needs.
+- **Extensions:** Envoy offers a vast variety of [filters](/runtime_suite/envoy-api-gateway/filters.md), that can be added to improve and customize the default configuration according to the project's needs.
 - **Coming soon - RBAC authorization:** Envoy will provide full support for our RBAC authorization, therefore you will not need to rewrite or update your existing policies.
 
 ## Default architecture
@@ -54,7 +54,7 @@ The existing extensions for the previous API Gateway cannot be automatically mig
 
 Prometheus metrics are exposed by Envoy at the port *9901* with path `/stats/prometheus`.
 
-So, to configure [ServiceMonitor](../../development_suite/api-console/api-design/microservice-monitoring#configure-servicemonitor) in Console, you should set:
+So, to configure [ServiceMonitor](/development_suite/api-console/api-design/microservice-monitoring.md#configure-servicemonitor) in Console, you should set:
 
 - **Path**: `/stats/prometheus`
 - **Port**: *9901*

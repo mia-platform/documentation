@@ -22,8 +22,8 @@ The Projection Changes Schema is made of the following fields:
 * `identifier`: The projection changes identifier object that will be generated to match the single view document. Every key of the object will be a key of the identifier and every value of the object will be replaced with the `BASE_PROJECTION` documents found by the strategy
 
 
-<details><summary>Projection Changes Configuration</summary>
-<p>
+Projection Changes Configuration
+
 
 ```json
 {
@@ -43,8 +43,8 @@ The Projection Changes Schema is made of the following fields:
 }
 ```
 
-</p>
-</details>
+
+
 
 :::note
 All the keys in uppercase are values that you must change depending on your data, while the keys in lowercase are keywords that should not be changed.
@@ -65,8 +65,8 @@ To define a custom function, you should specify as identifier the `__fromFile__[
 where within squared brackets is provided the filename containing the custom function: the function provided must be created in a config map, that has been mounted in the same path as the one defined in the [environment variable `TRIGGER_CUSTOM_FUNCTIONS_FOLDER`](/fast_data/configuration/single_view_trigger_generator.md#environment-variables).
 
 
-<details><summary>Projection Changes Configuration with function loading</summary>
-<p>
+Projection Changes Configuration with function loading
+
 
 ```json
 {
@@ -84,8 +84,8 @@ where within squared brackets is provided the filename containing the custom fun
 }
 ```
 
-</p>
-</details>
+
+
 
 As you can see, in this example we're referencing a file called `myCustomFunction.js`. This file needs to a be a Javascript file exporting a default [async generator function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/AsyncGenerator) with the following parameters:
 
@@ -95,8 +95,8 @@ As you can see, in this example we're referencing a file called `myCustomFunctio
 - `document`: the document of the *base projection* found by the strategy up to this point
 
 
-<details><summary>Custom function</summary>
-<p>
+Custom function
+
 
 ```js
 // note: this has to be an AsyncGenerator
@@ -111,5 +111,5 @@ module.exports = async function* myCustomFunction ({ logger, dbMongo }, document
 }
 ```
 
-</p>
-</details>
+
+

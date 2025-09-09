@@ -15,7 +15,7 @@ const excludePath = (path) => {
         'docs/microfrontend-composer/back-kit',
         'docs/microfrontend-composer/composer',
         'docs/cli',
-        'docs/mcp',
+        'docs/mcp'
     ];
 
     if (pathToExclude.some(s => path.toLowerCase().includes(s))) return true;
@@ -105,3 +105,5 @@ const linksWithErrors = readFiles(docsFolder+'/docs/')
 if(Object.keys(linksWithErrors).length > 0) {
     throw new Error(`Found ${Object.keys(linksWithErrors).length} page with wrong links: ${JSON.stringify(linksWithErrors, null, 2)}`);
 }
+
+process.exit(0);

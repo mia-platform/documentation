@@ -75,8 +75,8 @@ FLUSH PRIVILEGES;
 
 Once the database is configured, it is possible to configure the Debezium Server instance, filling in the _source_ and _sink_ configuration. An example using MySQL as _source_, Redis as offsets and metadata store and Kafka as _sink_ is provided here below.
 
-<details>
-<summary>Click here to show/hide the example configuration for MySQL</summary>
+
+Click here to show/hide the example configuration for MySQL
 
 ```shell
 # Application configuration
@@ -169,7 +169,7 @@ debezium.transforms.Reroute.key.enforce.uniqueness=false
 
 ```
 
-</details>
+
 
 :::note
 For an in depth explanation of the particular database configuration, we suggest reading the [official documentation](https://debezium.io/documentation/reference/2.2/connectors/mysql.html).
@@ -288,8 +288,8 @@ It is possible to find a reference for each of AWS RDS Administration tasks desc
 
 Once the database is configured, it is possible to configure the Debezium Server instance, filling in the _source_ and _sink_ configuration. An example using Oracle as _source_, Redis as offsets and metadata store and Kafka as _sink_ is provided here below.
 
-<details>
-<summary>Click here to show/hide the example configuration for Oracle</summary>
+
+Click here to show/hide the example configuration for Oracle
 
 ```shell
 # Application Configuration
@@ -391,7 +391,7 @@ debezium.transforms.Reroute.topic.replacement=$1.ingestion
 debezium.transforms.Reroute.key.enforce.uniqueness=false
 ```
 
-</details>
+
 
 :::note
 For an in depth explanation of the particular database configuration, we suggest reading the [official documentation](https://debezium.io/documentation/reference/2.2/connectors/oracle.html).
@@ -436,8 +436,8 @@ Mind that the plugin is based on the [Debezium Server](https://debezium.io/docum
 Here's an example of the full configuration for the plugin:
 
 
-<details>
-<summary>Click here to show/hide the example configuration for PostgreSQL</summary>
+
+Click here to show/hide the example configuration for PostgreSQL
 
 ```shell
 # Application Configuration
@@ -523,7 +523,7 @@ debezium.transforms.Reroute.topic.replacement=$1.ingestion
 debezium.transforms.Reroute.key.enforce.uniqueness=false
 ```
 
-</details>
+
 
 
 ### DB2
@@ -675,8 +675,8 @@ Keep in mind that the template is based on the [Debezium Server](https://debeziu
 Here's an example of the full configuration for the plugin:
 
 
-<details>
-<summary>Click here to show/hide the example configuration for PostgreSQL</summary>
+
+Click here to show/hide the example configuration for PostgreSQL
 
 ```shell
 # Application Configuration
@@ -762,7 +762,7 @@ debezium.transforms.Reroute.topic.replacement=$1.ingestion
 debezium.transforms.Reroute.key.enforce.uniqueness=false
 ```
 
-</details>
+
 
 :::note
 For an in depth explanation of the particular database configuration, we suggest reading the [official documentation](https://debezium.io/documentation/reference/2.2/connectors/db2.html).

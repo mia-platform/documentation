@@ -30,7 +30,7 @@ Mia-Platform would need the following information for the audit:
 * List of the name of the clusters that host Mia-Platform;
 
 * History of the cluster configurations, starting from the last audit/installation. For this the Clients can choose between the two following options:
-  1. Enabling AWS Config Service on the Kubernetes clusters: <https://aws.amazon.com/config/>;
+  1. Enabling AWS Config Service on the Kubernetes clusters: `<https://aws.amazon.com/config/>`;
   2. Providing Mia-Platform with a logging service where we can log periodically the sizing of the license.
 
 ## Process

@@ -86,28 +86,28 @@ The following is the default template provided by the dev portal application. Yo
 
 ```html title="template.html"
 <h3>Overview</h3>
-<p>In this section, you can write a simple overview of your component. This information can help your clients understand its main purpose and capabilities.</p>
-<p><br></p>
+In this section, you can write a simple overview of your component. This information can help your clients understand its main purpose and capabilities.
+<br>
 
 <h3>Introduction</h3>
-<p>After a brief description, you can add further details regarding your component, including popular use cases and which problems it helps to solve. In addition, you can include details regarding the team behind its implementation, the interfaces it provides, and also how it performs in terms of speed and reliability.</p>
-<p><br></p>
+After a brief description, you can add further details regarding your component, including popular use cases and which problems it helps to solve. In addition, you can include details regarding the team behind its implementation, the interfaces it provides, and also how it performs in terms of speed and reliability.
+<br>
 
 <h3>Pricing</h3>
-<p>Here you can structure a pricing plan where you analyze in detail every requirement linked to your component usage. Popular pricing frameworks include different subscription plans, composed for example of free and professional tiers.</p>
-<p><br></p>
+Here you can structure a pricing plan where you analyze in detail every requirement linked to your component usage. Popular pricing frameworks include different subscription plans, composed for example of free and professional tiers.
+<br>
 
 <h3>Documentation</h3>
-<p>In this section, you can describe all the technical details regarding your component, including the routes it offers and some related examples.</p>
-<p>Furthermore, you can add links directed to the <a href='https://docs.mia-platform.eu/' rel='noopener noreferrer' target='_blank'>official documentation</a> where your component is described exhaustively.</p>
-<p><br></p>
+In this section, you can describe all the technical details regarding your component, including the routes it offers and some related examples.
+Furthermore, you can add links directed to the <a href='https://docs.mia-platform.eu/' rel='noopener noreferrer' target='_blank'>official documentation</a> where your component is described exhaustively.
+<br>
 
 <h4>Routes</h4>
-<p>Here you can define all the possible ways your component can be accessed from the outside and their relative interfaces.</p>
-<p><br></p>
+Here you can define all the possible ways your component can be accessed from the outside and their relative interfaces.
+<br>
 
 <h4>Examples</h4>
-<p>Once you have defined how your component can be accessed, you can use the following section to provide examples including specific pieces of code:</p>
+Once you have defined how your component can be accessed, you can use the following section to provide examples including specific pieces of code:
 <pre class='ql-syntax' spellcheck='false'>
   module.exports = function toDate (value, fieldName, logger) {
     const date = new Date(value)
@@ -118,15 +118,15 @@ The following is the default template provided by the dev portal application. Yo
     return undefined
   }
 </pre>
-<p><br></p>
+<br>
 
 <h3>Support</h3>
-<p>Here you can include a link redirecting to your customer support service: <a href='https://docs.mia-platform.eu/' rel='noopener noreferrer' target='_blank'>Learn more</a>.</p>
-<p><br></p>
+Here you can include a link redirecting to your customer support service: <a href='https://docs.mia-platform.eu/' rel='noopener noreferrer' target='_blank'>Learn more</a>.
+<br>
 
 <h3>Terms of service</h3>
-<p>In this section you can specify all the terms and conditions of the software license associated with your component. <a href='https://docs.mia-platform.eu/' rel='noopener noreferrer' target='_blank'>Terms of service</a>.</p>
-<p><br></p>
+In this section you can specify all the terms and conditions of the software license associated with your component. <a href='https://docs.mia-platform.eu/' rel='noopener noreferrer' target='_blank'>Terms of service</a>.
+<br>
 ```
 
 If you wish to set your own custom description template, go to the microservices section of your project and search for the `dev-portal-backoffice` microservice. 
@@ -210,4 +210,3 @@ In order to be able to select a specific tag from the Marketplace Page, you will
   :::caution warning
   **DRAFT** entries will not be displayed on the Marketplace Page. Please make sure to publish all the entries you may want to associate to an API or event.
   :::
-  

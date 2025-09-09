@@ -92,8 +92,8 @@ If you need to correct or modify your newly registered extension, you can do so 
 miactl extensions apply --endpoint https://<my-console-domain>/ --company-id my-tenant-id -f ./<relative-path>/my-extension.json --extension-id my-extension-id 
 ```
 
-<details>
-  <summary>See the complete example</summary>
+
+  See the complete example
 
 The `my-extension.json` file should always contains all the extension info, both those to edit and both those that are already registered:
 
@@ -135,7 +135,7 @@ Successfully applied extension with id `my-extension-id`
 
 In this example, the `labelIntl` of the menu item has been modified.
 
-</details>
+
 
 ## 2. Check that the new extension is registered
 

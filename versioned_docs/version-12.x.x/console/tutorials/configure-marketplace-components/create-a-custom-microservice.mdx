@@ -47,21 +47,21 @@ Firstly, open your project, and create the following [MongoDB CRUD](/development
 
 - Create `customers` CRUD collection, download the schema <a download target="_blank" href="/docs_files_to_download/tutorial/node_ms/customers.json">here</a> or copy it from below;
 
-  <details>
-    <summary>Click to see the customers schema:</summary>
-    <p>
+
+    Click to see the customers schema:
+
       <SourceCodeBlock filePath="/docs_files_to_download/tutorial/node_ms/customers.json" />
-    </p>
-  </details>
+
+
 
 - Create `orders` CRUD collection, download the schema <a download target="_blank" href="/docs_files_to_download/tutorial/node_ms/orders.json">here</a> or copy it from below.
 
-  <details>
-    <summary>Click to see the orders schema:</summary>
-    <p>
+
+    Click to see the orders schema:
+
       <SourceCodeBlock filePath="/docs_files_to_download/tutorial/node_ms/orders.json" />
-    </p>
-  </details>
+
+
 
 :::info
 You don't know how to import CRUD schema? Give a look [here](/console/tutorials/configure-marketplace-components/rest-api-for-crud-on-data.mdx#option-2-import-crud-collection)
@@ -253,8 +253,8 @@ t.test("shipping-cost", async (t) => {
 
 In this test we tested only the "happy path", that is the case in which returning the correct shipping cost for a new customer. To achieve full coverage, we need to also test different inputs and the return of the default shipping cost. You can implement the full test suite on your own or copy the complete test code below:
 
-<details><summary>Tests to get full coverage:</summary>
-<p>
+Tests to get full coverage:
+
 
 ```js title=/tests/index.test.js
 "use strict";
@@ -407,8 +407,8 @@ t.test("shipping-cost", async (t) => {
 });
 ```
 
-</p>
-</details>
+
+
 
 </TabItem>
 <TabItem value="java">
@@ -514,8 +514,8 @@ public class ShippingControllerTest {
 
 In this test we tested only the "happy path", that is the case in which returning the correct shipping cost for a new customer. To achieve full coverage, we need to also test different inputs and the return of the default shipping cost. You can implement the full test suite on your own or copy the complete test code below:
 
-<details><summary>Tests to get full coverage:</summary>
-<p>
+Tests to get full coverage:
+
 
 ```java title=/src/test/java/eu/miaplatform/customplugin/springboot/ShippingControllerTest.java
 package eu.miaplatform.customplugin.springboot;
@@ -691,8 +691,8 @@ public class ShippingControllerTest {
 }
 ```
 
-</p>
-</details>
+
+
 
 </TabItem>
 <TabItem value="dotnet">
@@ -885,8 +885,8 @@ public class UnitTest1: IClassFixture<MockWebApplicationFactory>
 
 In this test, we only tested the "happy path", i.e. the return of the correct shipping cost for a new customer. To achieve full coverage by testing the inputs and the return of the default shipping cost you need to write more tests, so if you want to try that or just copy the complete test code below:
 
-<details><summary>Tests and mocks to get full coverage:</summary>
-<p>
+Tests and mocks to get full coverage:
+
 
 ```csharp title=MockWebApplicationFactory.cs
 using System.Net.Http;
@@ -1032,8 +1032,8 @@ public class UnitTest1: IClassFixture<MockWebApplicationFactory>
 }
 ```
 
-</p>
-</details>
+
+
 </TabItem>
 </Tabs>
 
@@ -1158,8 +1158,8 @@ module.exports = {
 };
 ```
 
-<details><summary>Complete snippet:</summary>
-<p>
+Complete snippet:
+
 
 ```js title=/handlers/getShippingCost.js
 "use strict";
@@ -1237,8 +1237,8 @@ module.exports = {
 };
 ```
 
-</p>
-</details>
+
+
 
 </TabItem>
 <TabItem value="java">
@@ -1665,8 +1665,8 @@ Now we can [deploy](/console/handbooks/project-usage.md#deploy-changes) the serv
 
 After the deploy has been finished, open the [API Portal](/runtime_suite/api-portal/10_overview.md) and use the _Customers_ CRUD routes to add this document:
 
-<details><summary>Click to see the customer schema:</summary>
-<p>
+Click to see the customer schema:
+
 
 ```json
 {
@@ -1677,15 +1677,15 @@ After the deploy has been finished, open the [API Portal](/runtime_suite/api-por
 }
 ```
 
-</p>
-</details>
+
+
 
 Now you can try the `GET /shipping-cost` route and you will see that it will return the `NEW_CUSTOMER_SHIPPING_COST` value which will be 5.99, if you followed the tutorial.
 
 Now use the _Orders_ CRUD routes to add this document:
 
-<details><summary>Click to see the orders schema:</summary>
-<p>
+Click to see the orders schema:
+
 
 ```json
 {
@@ -1697,8 +1697,8 @@ Now use the _Orders_ CRUD routes to add this document:
 }
 ```
 
-</p>
-</details>
+
+
 
 :::caution
 Get the response \_id from the creation of the client and replace the `"<_id>"` placeholder in `customerId` in the previous json.

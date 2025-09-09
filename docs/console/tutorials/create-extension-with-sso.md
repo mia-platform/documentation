@@ -581,9 +581,9 @@ const Home: React.FC = () => {
     <div className='App'>
       <header className='App-header'>
         <img alt="logo" className='App-logo' src={logo}/>
-        <p>
+        
           <FormattedMessage id={'autologin'} />
-        </p>
+        
       </header>
     </div>
   )
@@ -634,7 +634,7 @@ const AutoLogin: React.FC = () => {
 
   return (
     <>
-      <p>{'Logging in ... please wait ...'}</p>
+      {'Logging in ... please wait ...'}
     </>
   )
 }
@@ -741,7 +741,7 @@ const Callback: React.FC = () => {
 
   return (
     <>
-      <p>{'logging in ...'}</p>
+      {'logging in ...'}
     </>
   )
 }
@@ -813,7 +813,7 @@ const Login: React.FC = () => {
 
   return (
     <>
-      <p>{'Login here'}</p>
+      {'Login here'}
       <button onClick={authorize}>{'Login with Mia-Platform'}</button>
     </>
   )
@@ -935,7 +935,7 @@ const Tasks: React.FC = () => {
     if (!sid) {
       return (
         <div style={{ padding: '20px' }}>
-          <p>{'You must be logged in to view tasks.'}</p>
+          {'You must be logged in to view tasks.'}
           <button onClick={() => history.push('/login')}>{'Login'}</button>
         </div>
       )
@@ -966,10 +966,10 @@ const Tasks: React.FC = () => {
         
         {(() => {
           if (isLoading) {
-            return <p style={{ margin: '20px 0' }}>Loading tasks...</p>
+            return <p style={{ margin: '20px 0' }}>Loading tasks...
           }
           if (tasks.length === 0) {
-            return <p style={{ margin: '20px 0' }}>No tasks found.</p>
+            return <p style={{ margin: '20px 0' }}>No tasks found.
           }
 
           return tasksTable

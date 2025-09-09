@@ -87,8 +87,8 @@ The route `GET /api/extensibility/tenants/{tenantId}/extensions` allows you to r
 **Response on success**
 Array of registered extensions info.
 
-<details>
-<summary>Extension Info Schema</summary>
+
+Extension Info Schema
 
 ```json
 {
@@ -119,7 +119,7 @@ Array of registered extensions info.
 ```
 
 The `visibilities` key in the response in which specific context the extension is active, instead the other ones are the same info applied when the extension is been registered. This keys are explained above in the [how to register your extension](#how-to-register-your-extension) paragraph.
-</details>
+
 
 :::tip
 **[See the example in the tutorial page](/console/tutorials/create-extension.md#2-check-that-the-new-extension-is-registered)**
@@ -136,8 +136,8 @@ You can retrieve also the info of a specific registered extension using the rout
 **Response on success**
 Array of registered extensions info.
 
-<details>
-<summary>Extension Info Schema</summary>
+
+Extension Info Schema
 
 ```json
 {
@@ -168,7 +168,7 @@ Array of registered extensions info.
 ```
 
 The `visibilities` key in the response in which specific context the extension is active, instead the other ones are the same info applied when the extension is been registered. This keys are explained above in the [how to register your extension](#how-to-register-your-extension) paragraph.
-</details>
+
 
 :::tip
 **[See the example in the tutorial page](/console/tutorials/create-extension.md#2-check-that-the-new-extension-is-registered)**
