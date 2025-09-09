@@ -118,6 +118,7 @@
     "ktor",
     "kubectl",
     "kubelet",
+    "kubelogin",
     "kubens",
     "kubernetes",
     "Kubernetes",
