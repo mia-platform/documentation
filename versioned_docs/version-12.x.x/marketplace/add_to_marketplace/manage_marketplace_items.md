@@ -41,8 +41,8 @@ First of all, you need to create a JSON file as explained in [this guide](/marke
 Save the file, for example as `myAwesomeService.json` file.
 
 The file contents will look like this:
-<details>
-<summary>Click to expand <code>myAwesomeService.json</code></summary>
+
+Click to expand <code>myAwesomeService.json</code>
 
 ```json
 {
@@ -107,14 +107,14 @@ The file contents will look like this:
   "type": "plugin"
 }
 ```
-</details>
+
 
 You also want users to write services in your brand new programming language, `Acme.Js`.
 
 To do this, you need to create a [Template](/marketplace/templates/mia_templates.md), which is a skeleton with a minimal setup: your users are required to write business code from scratch.
 
-<details>
-<summary>Click to expand <code>myAcmeJsTemplate.json</code></summary>
+
+Click to expand <code>myAcmeJsTemplate.json</code>
 
 ```json
 {
@@ -168,12 +168,12 @@ To do this, you need to create a [Template](/marketplace/templates/mia_templates
   }
 }
 ```
-</details>
+
 
 To highlight the potentialities of `Acme.Js` and introduce your users to the new programming language, you also decide to provide a working [Example](/marketplace/examples/mia_examples.md) with minimal business code.
 
-<details>
-<summary>Click to expand <code>myAcmeJsExample.json</code></summary>
+
+Click to expand <code>myAcmeJsExample.json</code>
 
 ```json
 {
@@ -217,7 +217,7 @@ To highlight the potentialities of `Acme.Js` and introduce your users to the new
   }
 }
 ```
-</details>
+
 
 
 Notice that the `image` and `supportedByImage` objects are populated with local paths to images: make sure the images exist and that their path is correct.

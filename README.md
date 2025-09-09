@@ -65,7 +65,7 @@ yarn serve
 
 This command starts a local development server, the site will be reachable on <http://localhost:3000> window. To see changes you have to restart the server.
 
-> :warning: The Search is configured to **not working locally**.  
+> :warning: The Search is configured to **not working locally**.
 
 ## How to contribute
 

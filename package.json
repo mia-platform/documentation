@@ -1,19 +1,19 @@
 {
-  "name": "mia-platform-doc",
-  "version": "12.2.1",
+  "name": "mia-platform-docs",
+  "version": "0.0.0",
   "private": true,
-  "license": "SEE LICENSE IN LICENSE",
   "scripts": {
     "docusaurus": "docusaurus",
     "start": "docusaurus start",
     "build": "yarn build-redirects && USE_SIMPLE_CSS_MINIFIER=true docusaurus build",
     "swizzle": "docusaurus swizzle",
     "deploy": "docusaurus deploy",
+    "clear": "docusaurus clear",
     "serve": "docusaurus serve",
     "lint": "eslint --ext js .",
     "spellcheck": "npx cspell './docs/**'",
-    "release-note": "node ./new-release-note.js",
-    "check-content": "npm run validate-links && node ./check-content.js",
+    "release-note": "node ./scripts/new-release-note.js",
+    "check-content": "node ./scripts/validate-links.js && node ./scripts/check-content.js",
     "validate-links": "node ./scripts/validate-links.js",
     "build-redirects": "node ./scripts/build-permanent-redirects.js",
     "check-redirects": "node ./scripts/check-permanent-redirects.js",
@@ -21,45 +21,43 @@
     "generate-last-edited": "node scripts/last-pages-edited.js "
   },
   "dependencies": {
-    "@docusaurus/core": "2.4.3",
-    "@docusaurus/plugin-client-redirects": "2.4.3",
-    "@docusaurus/preset-classic": "2.4.3",
+    "@docusaurus/core": "3.8.1",
+    "@docusaurus/faster": "^3.8.1",
+    "@docusaurus/plugin-client-redirects": "^3.8.1",
+    "@docusaurus/preset-classic": "3.8.1",
+    "@mdx-js/react": "^3.0.0",
     "@mia-platform/console-types": "^0.38.11",
-    "@staticdeploy/cli": "^0.15.5",
-    "clsx": "^2.1.1",
-    "cspell": "^8.17.3",
-    "docusaurus-json-schema-plugin": "^1.13.0",
+    "clsx": "^2.0.0",
+    "docusaurus-json-schema-plugin": "^1.15.0",
     "klaw": "^4.1.0",
-    "mdx-mermaid": "^v1.3.2",
-    "medium-zoom": "^1.0.8",
-    "mermaid": "^10.9.1",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
-    "react-youtube": "^10.1.0",
-    "swc-loader": "^0.2.6"
+    "medium-zoom": "^1.1.0",
+    "prism-react-renderer": "^2.3.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "react-youtube": "^10.1.0"
+  },
+  "devDependencies": {
+    "@babel/eslint-parser": "^7.28.4",
+    "@docusaurus/module-type-aliases": "3.8.1",
+    "@docusaurus/types": "3.8.1",
+    "@ianvs/prettier-plugin-sort-imports": "4.7.0",
+    "eslint": "^9.35.0",
+    "eslint-plugin-react": "^7.37.5",
+    "prettier": "3.6.2"
   },
   "browserslist": {
     "production": [
-      ">0.2%",
+      ">0.5%",
       "not dead",
       "not op_mini all"
     ],
     "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
+      "last 3 chrome version",
+      "last 3 firefox version",
+      "last 5 safari version"
     ]
   },
-  "devDependencies": {
-    "@babel/eslint-parser": "^7.26.5",
-    "@swc/core": "^1.11.18",
-    "eslint": "^8.57.0",
-    "eslint-plugin-react": "7.37.4",
-    "front-matter": "^4.0.2",
-    "git-list-updated": "^1.2.1",
-    "git-tag": "^0.2.0",
-    "prop-types": "^15.8.1",
-    "semver-utils": "^1.1.4"
-  },
-  "packageManager": "yarn@4.4.1"
+  "engines": {
+    "node": ">=18.0"
+  }
 }

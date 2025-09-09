@@ -270,7 +270,7 @@ show the name and surname properties and I want that between the two there is a 
 
 * **Filter**: I can also choose to set a filter to visibility. To write a query we suggest two links: 1) the different types of queries 2) all types of operators that you can use.
 Let's take an example: in this lookup I want to see only the data that have state = a working.
-The query will be: {"state": "working"}
+The query will be: `{"state": "working"}`
 
 * **Limit**: I can set a maximum number of items to display in my Lookup
 

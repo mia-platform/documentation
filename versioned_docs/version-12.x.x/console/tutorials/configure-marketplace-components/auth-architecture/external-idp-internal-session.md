@@ -106,13 +106,13 @@ We suppose that you have already created an API Gateway in your project and you 
     - Click on `Create`
     - Update the values of the following environment variables:
 
-      | Variable                       | Value                                                                        |
-      | -------------------------------| ---------------------------------------------------------------------------  |
-      | USERINFO_URL                   | http://authentication-service/userinfo                                       |
-      | CUSTOM_USER_ID_KEY             | userID                                                                       |
-      | HEADERS_TO_PROXY               | <header of the client's request containing the token> (e.g. `Authorization`) |
-      | AUTHORIZATION_HEADERS_TO_PROXY | <header of the client's request containing the token> (e.g. `Authorization`) |
-      | USER_PROPERTIES_TO_PROXY       | userID,groups
+      | Variable                        | Value                                                                          |
+      |---------------------------------|--------------------------------------------------------------------------------|
+      | USERINFO_URL                    | http://authentication-service/userinfo                                         |
+      | CUSTOM_USER_ID_KEY              | userID                                                                         |
+      | HEADERS_TO_PROXY                | `<header of the client's request containing the token>` (e.g. `Authorization`) |
+      | AUTHORIZATION_HEADERS_TO_PROXY  | `<header of the client's request containing the token>` (e.g. `Authorization`) |
+      | USER_PROPERTIES_TO_PROXY        | userID,groups                                                                  |
 
 4. Create the [`Login Site`](/runtime_suite/authorization-service/10_overview.md) plugin from Marketplace
 5. Create the following endpoints in your project:

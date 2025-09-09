@@ -13,7 +13,7 @@ function getMailLink() {
   const location = ExecutionEnvironment.canUseDOM ? window.location.href : null
   const emailSubject=`Documentation Broken link report`
   const emailBody=`The link ${location} seems to be broken`
-  
+
   return `mailto:info@mia-platform.eu?subject=${emailSubject}&body=${emailBody}`
 }
 
@@ -26,13 +26,11 @@ function NotFound() {
             <h1 className="hero__title">Oops! Page Not Found</h1>
             <p>Sorry, we could not find what you were looking for.</p>
             <p>You can:</p>
-            <p>
-              <ul>
-                <li>Go back to <a href="/">home page</a></li>
-                <li><a href={getMailLink()} target="blank">Let us know</a></li>
-                <li><a href="/overview/mia_platform_overview">Find out how to get started with Mia-Platform</a></li>
-              </ul>
-            </p>
+            <ul>
+              <li>Go back to <a href="/">home page</a></li>
+              <li><a href={getMailLink()} target="blank">Let us know</a></li>
+              <li><a href="/overview/mia_platform_overview">Find out how to get started with Mia-Platform</a></li>
+            </ul>
           </div>
         </div>
       </main>

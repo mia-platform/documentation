@@ -50,7 +50,7 @@ is a need for updating any specific detail, please look for more information at 
 #### Authentication Service
 
 :::caution
-In order to follow through this guide it is necessary to ensure that at least version `v3.10.0` of Authentication Service has been configured.  
+In order to follow through this guide it is necessary to ensure that at least version `v3.10.0` of Authentication Service has been configured.
 Earlier versions do not fully support `permissions` key in `/user-info` details and therefore they would not be retrieved
 when checking for user's authorization
 :::
@@ -91,7 +91,7 @@ corresponding section, each of them with an empty value.
 Filling the variables listed above allows to generate a complete configuration at deploy time. An example of such configuration for Okta
 can be fond in the panel below.
 
-<details><summary>Authentication Service | Configuration Example (with variables to be interpolated)</summary>
+Authentication Service | Configuration Example (with variables to be interpolated)
 
 ```json title=config.json
 {
@@ -130,7 +130,7 @@ can be fond in the panel below.
 }
 ```
 
-</details>
+
 
 In addition to previous configurations, the service needs to mount a private key as a secret. This key is employed to
 sign JWTs that are set as _session id_ for authenticated users. In case the service has been instantiated through the
@@ -157,14 +157,14 @@ secrets:
 ```
 
 This will create at deploy time a K8s secret named `authentication-service-secrets`, which will contains a property `private-key.pem` mapped
-to the value of the interpolated variable `DC_JWT_CLIENT_PRIVATE_KEY`.  
+to the value of the interpolated variable `DC_JWT_CLIENT_PRIVATE_KEY`.
 To provide the proper value, please generate a private key, for example as follows,
 
 ```shell
 ssh-keygen -t rsa -b 4096 -m PEM -f private.key
 ```
 
-and then create the corresponding environment variable `DC_JWT_CLIENT_PRIVATE_KEY` in the _Variables_ tab of _Console Project Overview_ area.  
+and then create the corresponding environment variable `DC_JWT_CLIENT_PRIVATE_KEY` in the _Variables_ tab of _Console Project Overview_ area.
 Finally, please ensure that on the `authentication-service`, located under the _Microservices_ section in the Console _Design_ area,
 the environment `MIA_JWT_TOKEN_PRIVATE_KEY_FILE_PATH` is set to `/secrets/private-key.pem` (where the folder is driven
 by the secret mount path and the file name corresponds to the `key` property set in the `mlp.yaml` configuration entry).
@@ -210,17 +210,17 @@ your own in-memory only instance:
   port 6379
   # listen on all the interfaces for incoming connections
   bind 0.0.0.0
-  
+
   ## NO DISK PERSISTENCE ##
   save ""
   appendonly no
-  
+
   ## SECURITY ##
   protected-mode yes
-  
+
   # NOTE: +@connection is necessary to be placed after -@dangerous, otherwise the user won't have the permissions to connect to Redis
   user {{DC_REDIS_USERNAME}} on +@all -@dangerous +@connection allkeys allchannels >{{DC_REDIS_PASSWORD}}
-  
+
   # disable default user
   user default off
   ```
@@ -263,13 +263,13 @@ where `<project-base-url>` is the base url where the project of interest is expo
 
 The authentication flow via the `authentication-service` requires also the introduction of a CRUD Collection, where
 users details are saved upon successful login. These user information can then be employed in the authorization flow, which is
-described later.  
+described later.
 By default the `Data Catalog` application creates the collection for you and instantiates the CRUD Service,
 which is employed by the authentication service to access the collection. Additionally, below it is also provided the
 collection definition ready for being imported, in case it may be necessary to move or replicate the collection in another Console project.
 
-<details>
-<summary>Data Catalog Users Collection Definition (import ready)</summary>
+
+Data Catalog Users Collection Definition (import ready)
 
 ```json
 {
@@ -501,7 +501,7 @@ collection definition ready for being imported, in case it may be necessary to m
 }
 ```
 
-</details>
+
 
 ### Advanced
 
@@ -739,8 +739,8 @@ In case you would like to customize those pages here are provided their configur
 the roles and one for their bindings. These configuration can be loaded either as config map of [micro-lc](https://micro-lc.io/docs/) service
 or within the advanced tab of the corresponding page in the Composer.
 
-<details>
-<summary>Data Catalog Users Page</summary>
+
+Data Catalog Users Page
 
 ```json title=users-config.json
 {
@@ -1245,7 +1245,7 @@ or within the advanced tab of the corresponding page in the Composer.
 }
 ```
 
-</details>
+
 
 ![Screenshot of Microfrontend Composer homepage](img/microfrontend_composer.png)
 
@@ -1266,7 +1266,7 @@ Besides the _Users Page_, the Composer comes with two additional pages of type `
 
 - __docs__: page showing Data Catalog documentation from this website;
 - __job_runner_ui__: page showing the application's [`grpcui`](https://github.com/fullstorydev/grpcui) interacting with the _Job Runner_ service.
-  See [here](/data_catalog/data_catalog_job_runner.mdx#trigger-job) to learn more about the interactions with _Job Runner_. 
+  See [here](/data_catalog/data_catalog_job_runner.mdx#trigger-job) to learn more about the interactions with _Job Runner_.
 :::
 
 ### Endpoints

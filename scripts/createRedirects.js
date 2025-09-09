@@ -1,4 +1,4 @@
-/* 
+/*
 WARNING: The redirect map is deprecated!!!
 To add a redirect, please add it to the object in the file `301redirects.json` in the root of the project.
 The format is as follows:
@@ -9,7 +9,7 @@ The format is as follows:
 addedOn is optional but recommended, please use the format YYYY-MM-DD, this is used to track when the redirect was added.
 */
 
-const linkFile = require('./301redirects.json');
+const linkFile = require('../301redirects.json');
 
 // Build JS redirect map from JSON file
 let redirectPaths = Object.keys(linkFile).reduce((redirects, sourceLink) => {

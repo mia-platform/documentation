@@ -3,7 +3,7 @@
 First off, thank you for considering contributing to this project.
 
 Please follow these guidelines for helping us to better address your issue, assessing changes, and helping you finalize your pull requests.
-In order to contribute you can submitting bug reports or suggest some correction or content improvements and it's also possible to open a new pull request. 
+In order to contribute you can submitting bug reports or suggest some correction or content improvements and it's also possible to open a new pull request.
 
 ## Code of Conduct
 
@@ -37,20 +37,20 @@ To contribute to the Mia-Platform docs:
 
 3. Create a branch named according to these rules: `activity/task-topic`
     - **activity** can be:
-      - `edit` if you are changing one or more pages.  
-      - `new` if you are working on a new page or section related to features already in production.  
-      - `project` if you are writing the documentation of a project before or during the development.  
-      - `remove` if you are deleting information.  
+        - `edit` if you are changing one or more pages.
+        - `new` if you are working on a new page or section related to features already in production.
+        - `project` if you are writing the documentation of a project before or during the development.
+        - `remove` if you are deleting information.
 
     - **task (optional)**: the ID of the task you are working on, if existing.
 
     - **topic**: a short description of what you are documenting.
 
-    Example: `new/MD-333-authentication-section`
+   Example: `new/MD-333-authentication-section`
 
-    Additionally, branches named `release-note/vX.Y.Z` are dedicated to the documentation of the `Mia-Platform` incoming updates.
+   Additionally, branches named `release-note/vX.Y.Z` are dedicated to the documentation of the `Mia-Platform` incoming updates.
 
-    > :warning: **It's strictly important to follow branch name conventions**
+   > :warning: **It's strictly important to follow branch name conventions**
 
 4. Share your knowledge following the [style guidelines](./styleguide.md)!
 
@@ -67,12 +67,12 @@ To contribute to the Mia-Platform docs:
 Linking a resource to another one inside the documentation is done using the following rules:
 
 - Each link must be relative to the /docs/ of the project (including subfolders).
-  - e.g. if you want to link to the page `/docs/getting_started/faq.md` you have to write `[FAQ](/getting_started/faq.md)`.
+    - e.g. if you want to link to the page `/docs/getting_started/faq.md` you have to write `[FAQ](/getting_started/faq.md)`.
 - The extension it's mandatory and must be `.md` or `.mdx`.
 - The link can include an anchor to a specific section of the page.
-  - e.g. if you want to link to the section `#how-to-contribute` of the page `/docs/getting_started/faq.md` you have to write `[How to contribute](/docs/getting_started/faq.md#how-to-contribute)`.
-  - e.g. if you want to link an anchor inside the same page you have to write `[How to contribute](#how-to-contribute)`.
-- Linking internal resources using https://docs.mia-platform.eu/ **is NOT allowed**.  
+    - e.g. if you want to link to the section `#how-to-contribute` of the page `/docs/getting_started/faq.md` you have to write `[How to contribute](/docs/getting_started/faq.md#how-to-contribute)`.
+    - e.g. if you want to link an anchor inside the same page you have to write `[How to contribute](#how-to-contribute)`.
+- Linking internal resources using https://docs.mia-platform.eu/ **is NOT allowed**.
 
 An automatic check is performed on each push to verify that the links are correct.
 The check is performed to each file in the /docs/ folder excluding the folder managed by the **doc aggregator**:
@@ -110,21 +110,21 @@ The repo provides a series of content test that must be passed:
 ## Repository structure
 
 - `src`
-   Contains the custom code.
-  - `src/components`
-     Contains the React custom components
-  - `src/pages`
-     Contains off-documentations pages, like the homepage. **These pages aren't versioned.**
-  - `src/theme`
-     Contains Docusaurus components customized.
+  Contains the custom code.
+    - `src/components`
+      Contains the React custom components
+    - `src/pages`
+      Contains off-documentations pages, like the homepage. **These pages aren't versioned.**
+    - `src/theme`
+      Contains Docusaurus components customized.
 - `docs/`
-   Contains markdown documentation page for current version.
+  Contains markdown documentation page for current version.
 - `versioned_docs/`
-   Contains versioned documentation pages.
-  - `versioned_docs/version-5.x.x`
-     Contains the files related to v5
+  Contains versioned documentation pages.
+    - `versioned_docs/version-5.x.x`
+      Contains the files related to v5
 - `versioned_sidebars/`
-   Contains versioned sidebars config.
+  Contains versioned sidebars config.
 
 ## Create a new documentation version
 
@@ -216,7 +216,7 @@ sidebar_label: <Title displayed in the sidebar>
 
 The complete ID of the page is:
 
- `<path>+id`
+`<path>+id`
 
 You can write the pages using:
 

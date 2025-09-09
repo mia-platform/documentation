@@ -112,7 +112,7 @@ For example, to configure the `microservice-gateway` with 5 replicas, the config
 
 If you need to add some new environment variables, all you need to do is edit the file in the advanced section: `core-services.json` that you can find in _Advanced_ &rarr; _api-console-config_.
 
-Inside the file, you need to add the **envs** field inside the service you want to modify. The **envs** field is a JSON and must contain the _<key: value>_ pairs with the environment variables you want to add.
+Inside the file, you need to add the **envs** field inside the service you want to modify. The **envs** field is a JSON and must contain the _`<key: value>`_ pairs with the environment variables you want to add.
 
 In the example below, we are adding three new environment variables to the `v1-adapter` microservice:
 

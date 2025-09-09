@@ -259,7 +259,7 @@ Along with the *endpointData*, you can add the following property to fully custo
 
 * **markerType** *(*required*): The only marker supported right now is the*'circleMarker'*, which allows showing bubbles with a radius that depends on the value of each data.
 
-* **markerOptions**: Here you can insert all the options defined by leaflet documentation (except the radius which is computed based on the data value -  see <https://leafletjs.com/reference-1.6.0.html#circlemarker>) in order to customize the *circleMarker*.
+* **markerOptions**: Here you can insert all the options defined by leaflet documentation (except the radius which is computed based on the data value -  see `<https://leafletjs.com/reference-1.6.0.html#circlemarker>`) in order to customize the *circleMarker*.
 By default, the markers are displayed without any clustering. To add the clusterization, you should define an additional *cluster* property in the **markerOptions**.
   * *cluster*: Object with the following properties.
 

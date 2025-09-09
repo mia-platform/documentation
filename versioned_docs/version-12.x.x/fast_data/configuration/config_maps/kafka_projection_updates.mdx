@@ -11,8 +11,8 @@ import TabItem from "@theme/TabItem";
 
 The Kafka Projection Updates is a JSON file which describes for each projection a [Projection Updates](/fast_data/inputs_and_outputs.md#projection-update) topic and a [Strategy](/fast_data/configuration/strategies.md) to generate the projection changes identifier. This file is typically used by:
 
-* the [Real-Time Updater](/fast_data/realtime_updater.md), to generate a `pr-update` message; 
-* the [Single View Trigger Generator](/fast_data/single_view_trigger_generator.md), to execute a strategy starting from a `pr-update` message.  
+* the [Real-Time Updater](/fast_data/realtime_updater.md), to generate a `pr-update` message;
+* the [Single View Trigger Generator](/fast_data/single_view_trigger_generator.md), to execute a strategy starting from a `pr-update` message.
 
 ## Configuration Properties
 
@@ -68,14 +68,14 @@ This Javascript file should export a default async generator function with the f
   - `dbMongo`: the configured [MongoDB Database](https://mongodb.github.io/node-mongodb-native/5.2/classes/Db.html) instance where the projections are stored
 - `updateEvent`: The [Projection Updates](/fast_data/inputs_and_outputs.md#projection-update) message.
 
-The function _yields_ one or more identifier retrieved from the update event. 
+The function _yields_ one or more identifier retrieved from the update event.
 
 :::tip Examples
 Here's a couple of examples example of what a custom strategy could look like:
 
-<details>
-<summary>Simple Custom Strategy</summary>
-<p>
+
+Simple Custom Strategy
+
 
 ```js
 // note: this has to be an AsyncGenerator
@@ -84,23 +84,23 @@ module.exports = async function* myCustomStrategy ({ logger, dbMongo }, { after 
 }
 ```
 
-</p>
-</details>
-<details>
-<summary>Custom Strategy with 1:n lookup </summary>
-<p>
+
+
+
+Custom Strategy with 1:n lookup
+
 
 ```js
 module.exports = async function* myCustomStrategy ({ logger, dbMongo }, { after }) {
   const lookupRecords = await dbMongo.collection('lookup-collection').find({ field: after.FIELD })
   for await(const lookup of lookupRecords) {
-    yield { IDENTIFIER_FIELD: lookup.FIELD } 
+    yield { IDENTIFIER_FIELD: lookup.FIELD }
   }
 }
 ```
 
-</p>
-</details>
+
+
 :::
 
 </TabItem>

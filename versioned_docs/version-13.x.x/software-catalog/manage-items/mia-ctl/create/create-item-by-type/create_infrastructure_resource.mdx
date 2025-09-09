@@ -22,8 +22,8 @@ To adding an infrastructure resource to you project you need to adding in the Ma
 
 The following JSON Schema is the schema used to validate the requests used to add or edit custom-resource in the Console Marketplace.
 
-<details><summary>JSON Schema</summary>
-<p>
+JSON Schema
+
 
 ```json
 {
@@ -35,7 +35,7 @@ The following JSON Schema is the schema used to validate the requests used to ad
     },
     "runtime": {
       "type": "object",
-      "description": "The object used to view the status of your Current Kubernetes Resources directly in the Console Runtime section", 
+      "description": "The object used to view the status of your Current Kubernetes Resources directly in the Console Runtime section",
       "properties": {
         "type": {
           "type": "string",
@@ -132,17 +132,17 @@ The following JSON Schema is the schema used to validate the requests used to ad
 }
 ```
 
-</p>
-</details>
+
+
 
 This schema can be used to define both available types of Infrastructure Resources:
 generic **template-based** Infrastructure Resources, and **Kubernetes-specific** ones.
 
 Here some examples of a template-based Infrastructure Resource:
 
-<details>
-<summary>ExternalOrchestratorLambda</summary>
-<p>
+
+ExternalOrchestratorLambda
+
 
 ```yaml
 name: ExternalOrchestratorLambda
@@ -161,14 +161,14 @@ generator:
       folderName: template-folder-name
 ```
 
-</p>
-</details>
+
+
 
 A Kubernetes-specific Infrastructure Resource, used to configure [`kube-green`](https://kube-green.dev/):
 
-<details>
-<summary>SleepInfo</summary>
-<p>
+
+SleepInfo
+
 
 ```yaml
 name: sleepInfo
@@ -184,8 +184,8 @@ runtime:
   resourceId: sleepinfos
 ```
 
-</p>
-</details>
+
+
 
 ### Define Marketplace item to upload
 
@@ -193,9 +193,9 @@ First of all, we need to create or edit a new file that includes the Marketplace
 
 Here is an example of Marketplace item definition for a template-based Infrastructure Resource:
 
-<details>
-<summary>template-custom-resource.yaml</summary>
-<p>
+
+template-custom-resource.yaml
+
 
 ```yaml
 name: Google Cloud Function External
@@ -232,14 +232,14 @@ resources:
     type: template
 ```
 
-</p>
-</details>
+
+
 
 Here is an example of Marketplace item definition for a Kubernetes-specific Infrastructure Resource:
 
-<details>
-<summary>k8s-custom-resource.yaml</summary>
-<p>
+
+k8s-custom-resource.yaml
+
 
 ```yaml
 name: Traefik IngressRoute
@@ -279,8 +279,8 @@ resources:
           port: 8080
 ```
 
-</p>
-</details>
+
+
 
 Please note that:
 
@@ -338,7 +338,7 @@ To enable this feature, please follow the instructions above to [update](#update
 
 If you have upgraded the Console to version `v13.6.1`, you can now generate a dynamic form.
 This documentation serves as a guide for users to understand and effectively utilize the dynamic form fields generated from a JSON schema.
-By following the examples and descriptions provided, users can create forms that are both functional and user-friendly, ensuring a smooth data entry experience. 
+By following the examples and descriptions provided, users can create forms that are both functional and user-friendly, ensuring a smooth data entry experience.
 
 :::info
 In the next versions of the Console we want to add dynamic form generation also in the details section
@@ -369,7 +369,7 @@ Visualized as Editor
     }
     ```
 
-##### Validation: 
+##### Validation:
 
 The editor generated from this type can validate with [ajv library](https://ajv.js.org/) the sub schema used to fields
 
@@ -381,13 +381,13 @@ The editor generated from this type can validate with [ajv library](https://ajv.
         "type": "object",
         "required": ["mirroring"],
         "properties" {
-          "mirroring": { 
+          "mirroring": {
             "type": "object",
             "additionalProperties": false,
             "required": ["name"],
             "properties": {
               "name": { "type": "string" }
-            } 
+            }
           }
         }
       }
@@ -397,7 +397,7 @@ The editor generated from this type can validate with [ajv library](https://ajv.
   </TabItem>
   <TabItem value="type-array" label="type Array">
 
-#### Array field 
+#### Array field
 
 Visualized as Editor
 
@@ -425,8 +425,8 @@ Visualized as Editor
       }
     }
     ```
-    
-##### Validation: 
+
+##### Validation:
 
 The editor generated from this type can validate with [ajv library](https://ajv.js.org/) the sub schema used to fields
 
@@ -459,7 +459,7 @@ The editor generated from this type can validate with [ajv library](https://ajv.
 
   <TabItem value="type-string" label="type String">
 
-#### String type 
+#### String type
 
 Used for textual input. It can include various validations such as minimum and maximum length.
 When using a string field, ensure that the input meets the specified length requirements.
@@ -486,7 +486,7 @@ When using a string field, ensure that the input meets the specified length requ
   <TabItem value="type-boolean" label="type Boolean">
 
 The boolean type is used for true/false values. This is typically represented as a switch in the form.
-    
+
 ![boolean](img/type-boolean.png)
 
     ```json
@@ -507,12 +507,12 @@ The boolean type is used for true/false values. This is typically represented as
 
   <TabItem value="type-integer" label="type Integer">
 
-#### Integer type 
+#### Integer type
 
 Specifically for whole numbers. It behaves similarly to the number type but restricts input to integers.
 
 ![type-int-or-number](img/type-int-or-number.png)
-    
+
     ```json
     {
       "jsonSchema": {
@@ -559,7 +559,7 @@ Used for numerical input, which can include both integers and floating-point num
 
 ### Unsupported JSON Schema Features
 
-While our dynamic form fields support a wide range of JSON schema features, there are certain features that are not supported. 
+While our dynamic form fields support a wide range of JSON schema features, there are certain features that are not supported.
 Additionally, being aware of the unsupported features will help users avoid potential issues when designing their schemas.
 Below is a list of unsupported features:
 
