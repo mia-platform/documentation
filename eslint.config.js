@@ -1,9 +1,9 @@
-import js from "@eslint/js";
-import pluginReact from "eslint-plugin-react";
-import babelParser from "@babel/eslint-parser";
+const js = require("@eslint/js");
+const pluginReact = require("eslint-plugin-react");
+const babelParser = require("@babel/eslint-parser");
 
 /** @type {import("eslint").Linter.FlatConfig[]} */
-export default [
+module.exports = [
     js.configs.recommended,
     {
         files: ["**/*.js", "**/*.jsx"],
