@@ -272,6 +272,30 @@ const config = {
               path: "12.x",
             }
           },
+          async sidebarItemsGenerator({
+            isCategoryIndex: defaultCategoryIndexMatcher,
+            defaultSidebarItemsGenerator,
+            ...args
+          }) {
+            return defaultSidebarItemsGenerator({
+              ...args,
+              isCategoryIndex(params) {
+                const {
+                  fileName
+                } = params
+                return defaultCategoryIndexMatcher(params) || ['overview', '10_overview', '10-overview'].includes(fileName.toLowerCase())
+              },
+            });
+          },
+        },
+        theme: {
+          customCss: require.resolve("./src/css/custom.css"),
+        },
+        sitemap: {
+          changefreq: "weekly",
+          priority: 0.5,
+          ignorePatterns: ['/docs/11.x/**', '/docs/12.x/**'],
+          filename: 'sitemap.xml',
         }
       }
     ],
