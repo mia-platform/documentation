@@ -294,7 +294,7 @@ const config = {
         sitemap: {
           changefreq: "weekly",
           priority: 0.5,
-          ignorePatterns: ['/docs/11.x/**', '/docs/12.x/**'],
+          ignorePatterns: ['/docs/12.x/**', '/docs/13.x/**'],
           filename: 'sitemap.xml',
         }
       }
