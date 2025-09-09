@@ -3,7 +3,7 @@ build
 
 .docusaurus
 .vscode
-.idea
+
 .history
 *.DS_Store
 
