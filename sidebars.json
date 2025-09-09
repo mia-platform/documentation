@@ -1608,6 +1608,37 @@
       "type": "doc"
     },
     {
+      "type": "category",
+      "label": "Use Cases",
+      "collapsed": true,
+      "items": [
+        {
+          "id": "getting-started/use-cases/application-development",
+          "type": "doc"
+        },
+        {
+          "id": "getting-started/use-cases/platform-engineering",
+          "type": "doc"
+        },
+        {
+          "id": "getting-started/use-cases/application-development",
+          "type": "doc"
+        },
+        {
+          "id": "getting-started/use-cases/ai-agent-lifecycle",
+          "type": "doc"
+        },
+        {
+          "id": "getting-started/use-cases/cloud-operations",
+          "type": "doc"
+        },
+        {
+          "id": "getting-started/use-cases/data-integration",
+          "type": "doc"
+        }
+      ]
+    },
+    {
       "type": "doc",
       "id": "getting-started/tutorials/tutorials"
     },
