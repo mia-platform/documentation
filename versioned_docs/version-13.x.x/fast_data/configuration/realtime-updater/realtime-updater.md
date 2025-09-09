@@ -181,9 +181,9 @@ The information saved are:
 - `key`: is the key of the Kafka message
 - `timestamp`: is the timestamp of the message
 
-<details>
-<summary>Projection Record with metadata</summary>
-<p>
+
+Projection Record with metadata
+
 
 ```json
 {
@@ -207,8 +207,8 @@ The information saved are:
 }
 ```
 
-</p>
-</details>
+
+
 
 ## Projection Changes Collection
 
@@ -237,9 +237,9 @@ Into each element of the `changes` array of the projection change document are i
 - `key`: is the key of the Kafka message
 - `timestamp`: is the timestamp of the message
 
-<details>
-<summary>Example PC Metadata</summary>
-<p>
+
+Example PC Metadata
+
 
 ```json
 {
@@ -260,8 +260,8 @@ Into each element of the `changes` array of the projection change document are i
 }
 ```
 
-</p>
-</details>
+
+
 
 
 ### Custom Projection Changes Collection

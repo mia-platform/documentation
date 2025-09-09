@@ -198,12 +198,12 @@ To enable the **Enhanced Project Workflow** on an existing Project, head to the 
 Enabling the Workflow on an existing Project will not make any changes to the Project repository, so make sure to follow the [migration guide](#migrating-your-projects) below before converting the Project to the new workflow.
 :::
 
-<details>
-<summary>Enable the Workflow on a whole Company</summary>
+
+Enable the Workflow on a whole Company
 
 If you want to ensure that all Projects in your Company adopt the **Enhanced Project Workflow**, you can open a service request and ask for the support of a Mia-Platform referent in order to activate the `ENABLE_CONF_GENERATION_ON_DEPLOY` feature toggle at Company level. The activation of this feature at the Company level also disallows the creation of new Projects with the standard Workflow.
 
-</details>
+
 
 ## Migrating your Projects
 

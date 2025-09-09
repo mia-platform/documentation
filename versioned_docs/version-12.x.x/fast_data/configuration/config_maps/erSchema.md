@@ -74,9 +74,9 @@ In the example presented above, the relationship between the two entities could 
 
 ### Constants
 
-<details><summary>ER Schema Configuration with constant value to validate the condition</summary>
+ER Schema Configuration with constant value to validate the condition
 
-<p>
+
 
 ```json title="erSchema.json"
 {
@@ -99,8 +99,8 @@ In the example presented above, the relationship between the two entities could 
 }
 ```
 
-</p>
-</details>
+
+
 
 In this case, the condition will always be verified if `"ID_DISH"` is equal to `"testID"`.
 The types of constants that are supported are:
@@ -118,9 +118,9 @@ Remember that `__constant__[]` is deprecated, and it will be removed in future v
 
 Conditions can also use [MongoDB Query and Projection Operators](https://www.mongodb.com/docs/manual/reference/operator/query/), such as `$or` and `$and`.
 
-<details><summary>ER Schema Configuration with MongoDB Query and Projection Operators</summary>
+ER Schema Configuration with MongoDB Query and Projection Operators
 
-<p>
+
 
 ```json title="erSchema.json"
 {
@@ -151,8 +151,8 @@ Conditions can also use [MongoDB Query and Projection Operators](https://www.mon
 }
 ```
 
-</p>
-</details>
+
+
 
 ## Direction of the relationships
 
@@ -161,9 +161,9 @@ Normally when we write an ER Schema we think about declaring a condition in only
 The generation of the Single View can actually be split in two main blocks, the [Strategy](/fast_data/the_basics.md#strategies) and the [Aggregation](/fast_data/configuration/single_view_creator/plugin.md#aggregation).
 As you may know, the Strategy is the process by which given an update on a projection document it tells the Aggregation which Single Views need to be re-aggregated. So, given the nature of the whole process, the relationships are explored in the __opposite__ way in which the Aggregation explores them.
 
-<details><summary>ER Schema Configuration with Strategy and Aggregation</summary>
+ER Schema Configuration with Strategy and Aggregation
 
-<p>
+
 
 ```json title="erSchema.json"
 {
@@ -202,8 +202,8 @@ As you may know, the Strategy is the process by which given an update on a proje
 }
 ```
 
-</p>
-</details>
+
+
 
 ## Use the No Code
 
@@ -367,8 +367,8 @@ Moreover, the user will be notified if, by mistake, one or more conditions refer
 
 ## Real use case example
 
-<details><summary>Food Delivery ER schema configuration</summary>
-<p>
+Food Delivery ER schema configuration
+
 
 ```json
 {
@@ -558,8 +558,8 @@ Moreover, the user will be notified if, by mistake, one or more conditions refer
 }
 ```
 
-</p>
-</details>
+
+
 
 Here you can see a visual representation of the ER schema.
 

@@ -458,7 +458,7 @@ async function validateToken(request, response) {
 A microservice developed with `Mia Service Node.js Library` automatically also exposes the documentation of the routes and decorators that
 are implemented. The documentation is specified using the [OpenAPI 2.0 standard](https://swagger.io/specification/v2/)
 and exhibited through [Swagger](https://swagger.io). Once the microservice is started, its documentation can be accessed at
-route *<http://localhost:3000/documentation>*. The specification of the request scheme
+route *`<http://localhost:3000/documentation>`*. The specification of the request scheme
 and responses to a route must conform to the format accepted by
 [Fastify](https://www.fastify.io/docs/latest/Validation-and-Serialization).
 

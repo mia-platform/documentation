@@ -15,12 +15,12 @@ The library should include an HTTP client which exposes HTTP verbs (`get`, `post
 
 Moreover, to easily perform [**CRUD**](/development_suite/api-console/api-design/crud_advanced.md) operations it should also include a specific HTTP client to make relative requests, e.g:
 
-* `get(...)`: `GET` */collectionName*
-* `getById(...)`: `GET` */collectionName/{id}*
-* `create(...)`: `POST` */collectionName/bulks*
-* `deleteById(...)`: `DELETE` */collectionName/{id}*
-* `POST` */v2/items/bulks*
-* `DELETE` */v2/items/{id}*
+* `get(...)`: `GET` *`/collectionName`*
+* `getById(...)`: `GET` *`/collectionName/{id}`*
+* `create(...)`: `POST` *`/collectionName/bulks`*
+* `deleteById(...)`: `DELETE` *`/collectionName/{id}`*
+* `POST` *`/v2/items/bulks`*
+* `DELETE` *`/v2/items/{id}`*
 
 Calling any [**service**](/development_suite/api-console/api-design/services.md) defined on the Platform project should be an important feature for the creation of microservices. To do this, the developer who will use your library should be able to call a route with some options.
 

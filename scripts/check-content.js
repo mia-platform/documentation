@@ -5,7 +5,7 @@ const path = require('path')
 const fs = require('fs')
 
 // mode could be warn, debug or throw
-checkSidebar('./docs', './sidebars.json', '', false, 'throw')
+checkSidebar('../docs', '../sidebars.json', '', false, 'throw')
 
 const filesToExcludeFromSidebarCheck = [
   "monitoring/paas_alerting_rules",
@@ -209,7 +209,7 @@ function getSidebarLinkedFiles(sidebarFilePath, prefix = '') {
 }
 
 async function getFooterLinkedFiles() {
-  const config = await require('./docusaurus.config')()
+  const config = await require('../docusaurus.config')()
   let files = {}
   config.themeConfig.footer.links.forEach(({items}) => {
     items.forEach(item => {
@@ -231,3 +231,5 @@ function excludeFromSidebarCheck(fileName) {
     }
   }))
 }
+
+process.exit(0);

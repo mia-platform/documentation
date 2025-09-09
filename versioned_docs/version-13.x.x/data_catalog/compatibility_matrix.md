@@ -18,7 +18,7 @@ Please ensure that versions shown in the matrix are respected in your deployed e
 | [Open Lineage](/data_catalog/data_catalog_open_lineage.mdx) | 0.1.x - 0.3.x   | \>=5.0  | \>=7.0 |
 | [Job Runner](/data_catalog/data_catalog_job_runner.mdx)     | 0.1.x - 0.2.x   | \>=5.0  | _N/A_  |
 | [Fabric Admin](/data_catalog/database_setup.mdx)            | 0.1.x - 0.5.x   | \>=5.0  | _N/A_  |
-<p><sup>*</sup><em>N/A</em> means the service does not depend on the resource</p>
+<sup>*</sup><em>N/A</em> means the service does not depend on the resource
 
 ## Service Latest Versions
 

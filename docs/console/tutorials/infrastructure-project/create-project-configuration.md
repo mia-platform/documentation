@@ -65,9 +65,9 @@ In the following sections, we will provide an example of a git repository contai
 These are example snippets. Always adapt them to your specific requirements, thoroughly validate all settings (especially variables and secrets), and remember that many effective solutions can be designed differently.
 :::
 
-<details>
-<summary>Cloud Storage Bucket</summary>
-<p>
+
+Cloud Storage Bucket
+
 
 ```
 # Specify the Google Cloud provider
@@ -100,8 +100,8 @@ resource "google_storage_bucket" "demo_bucket" {
 }
 ```
 
-</p>
-</details>
+
+
 
 ## Example of a terraform code for creating a GKE Cluster in Google
 
@@ -112,9 +112,9 @@ These are example snippets. Always adapt them to your specific requirements, tho
 :::
 
 
-<details>
-<summary>GKE Cluster</summary>
-<p>
+
+GKE Cluster
+
 
 ```
 # Configure the Google Cloud provider provider
@@ -167,8 +167,8 @@ resource "google_container_node_pool" "demo_nodes" {
 
 ```
 
-</p>
-</details>
+
+
 
 ## Example of a terraform code for creating a database MongoDB Atlas
 
@@ -178,9 +178,9 @@ In the following sections, we will provide an example of a git repository contai
 These are example snippets. Always adapt them to your specific requirements, thoroughly validate all settings (especially variables and secrets), and remember that many effective solutions can be designed differently.
 :::
 
-<details>
-<summary>MongoDB Atlas</summary>
-<p>
+
+MongoDB Atlas
+
 
 ```
 ## Configure the MongoDB Atlas provider
@@ -240,8 +240,8 @@ resource "mongodbatlas_database_user" "app_user" {
 }
 
 ```
-</p>
-</details>
+
+
 
 ## Deploying the Infrastructure Resource
 
@@ -269,9 +269,9 @@ Of course, the GitLab CI pipeline is essential for deploying the resources. In t
 These are example snippets. Always adapt them to your specific requirements, thoroughly validate all settings (especially CI/CD variables and secrets), and remember that many effective solutions can be designed differently.
 :::
 
-<details>
-<summary>Pipeline</summary>
-<p>
+
+Pipeline
+
 
 ```
 # GitLab CI/CD OpenTofu Pipeline: Your Lean Starting Point
@@ -390,8 +390,8 @@ apply:
 
 ```
 
-</p>
-</details>
+
+
 
 ## Infrastructure Resource Repository
 

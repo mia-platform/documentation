@@ -38,7 +38,7 @@ The application requires a secret named `mia-assistant-keys` in your Kubernetes 
 
 #### Creating the Secret with mlp
 
-If you are using [mlp](../../runtime_suite_tools/mlp/10_overview.md), create the secret by updating the `mlp.yaml` file in your configuration repository adding the following section:
+If you are using [mlp](/runtime_suite_tools/mlp/10_overview.md), create the secret by updating the `mlp.yaml` file in your configuration repository adding the following section:
 
 ```yaml
 - name: "mia-assistant-keys"

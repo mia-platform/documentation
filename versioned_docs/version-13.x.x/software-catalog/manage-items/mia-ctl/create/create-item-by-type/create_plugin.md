@@ -217,8 +217,8 @@ The following is an example of the manifest a plugin, called *MongoDB Reader*, r
 
 This manifest can be used to add the element to the Marketplace.
 
-<details><summary>Plugin manifest</summary>
-<p>
+Plugin manifest
+
 
 ```json
 {
@@ -279,8 +279,8 @@ This manifest can be used to add the element to the Marketplace.
 }
 ```
 
-</p>
-</details>
+
+
 
 ## Publish a new Plugin
 

@@ -31,9 +31,9 @@ This CR features code directly within the configuration; in real-world scenario 
 to be versioned in a Git repository
 :::
 
-<details>
-<summary>AWS Lambda</summary>
-<p>
+
+AWS Lambda
+
 
 ```yaml
 name: my-lambda-function
@@ -88,8 +88,8 @@ generator:
             Description: The public URL to access the Lambda function
 ```
 
-</p>
-</details>
+
+
 
 ### Amazon EC2
 
@@ -125,9 +125,9 @@ This use case is ideal for users who require granular control over routing rules
 
 Here is an example of a Traefik IngressRoute Infrastructure Resource:
 
-<details>
-<summary>Traefik IngressRoute</summary>
-<p>
+
+Traefik IngressRoute
+
 
 ```yaml
 name: traefik-ingressroute
@@ -148,8 +148,8 @@ name: traefik-ingressroute
           port: 8080
 ```
 
-</p>
-</details>
+
+
 
 ### kube-green SleepInfo
 
@@ -161,9 +161,9 @@ This use case is particularly beneficial for organizations that want to reduce t
 
 Here is an example of a kube-green SleepInfo Infrastructure Resource:
 
-<details>
-<summary>kube-green SleepInfo</summary>
-<p>
+
+kube-green SleepInfo
+
 
 ```yaml
 name: sleepInfo
@@ -176,5 +176,5 @@ spec:
     weekdays: "1-5"
 ```
 
-</p>
-</details>
+
+

@@ -27,9 +27,9 @@ curl --location --request POST 'https://console-url/api/backend/tenants/my-examp
 --data-raw '{"credentials":{"type":"token","content":{"accessToken":"my-super-super-super-secret-token"}},"id":"gitlab-id","label":"My GitLab Label","type":"gitlab","urls":{"apiBase":"https://gitlab-test.com/api","base":"https://gitlab-test.com"}}'
 ```
 
-<details>
 
-<summary>The JSON schema of the request body</summary>
+
+The JSON schema of the request body
 
 ```json
 {
@@ -175,7 +175,7 @@ curl --location --request POST 'https://console-url/api/backend/tenants/my-examp
 }
 ```
 
-</details>
+
 
 :::info Supported credential types
 As discussed [here](/console/company-configuration/providers/configure-provider.mdx#step-3-credentials),

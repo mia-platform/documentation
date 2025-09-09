@@ -33,10 +33,10 @@ It's strongly suggested to use as data-set a CRUD collection, since it can enabl
 
 The checkpoints returned by the micro-service have to comply to the following JSON Schema, which is used by the visualization to display data.
 
-<details>
-  <summary>Timeline JSON Schema</summary>
 
-  <p>
+  Timeline JSON Schema
+
+  
 
   ```json
   {
@@ -146,13 +146,13 @@ The checkpoints returned by the micro-service have to comply to the following JS
   }
   ```
 
-  </p>
-</details>
+  
 
-<details>
-  <summary>Timeline JSON Example</summary>
 
-  <p>
+
+  Timeline JSON Example
+
+  
 
   The result shown in the picture at the top of this page can be obtained by computing the following array:
 
@@ -269,8 +269,8 @@ The checkpoints returned by the micro-service have to comply to the following JS
       }
   ]
   ```
-  </p>
-</details>
+  
+
 
 :::tip Resources from CRUD Collection  
 

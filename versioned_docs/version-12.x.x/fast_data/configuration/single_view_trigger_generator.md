@@ -122,8 +122,8 @@ Mind that only one producer and consumer must be configured at a time so the ser
 
 At the moment you can only configure your consumer with kafka which will read `pr-update` messages from the Real-Time Updater. To configure it you must follow the JsonSchema specification below.
 
-<details><summary>Kafka consumer config JsonSchema</summary>
-<p>
+Kafka consumer config JsonSchema
+
 
 ```json
 {
@@ -245,8 +245,8 @@ At the moment you can only configure your consumer with kafka which will read `p
 }
 ```
 
-</p>
-</details>
+
+
 
 #### Producers
 
@@ -254,8 +254,8 @@ For the producers you can choose between two options: Kafka or MongoDB ([`sv-tri
 
 With MongoDB you will save Projection Changes on the DB just like the Real-Time Updater does. With Kafka instead it will send `sv-trigger` messages which will also be read by the Single View Creator by changing its configuration to do so. Here's the configuration specification for both:
 
-<details><summary>MongoDB producer config JsonSchema</summary>
-<p>
+MongoDB producer config JsonSchema
+
 
 ```json
 {
@@ -271,11 +271,11 @@ With MongoDB you will save Projection Changes on the DB just like the Real-Time 
   }
 }
 ```
-</p>
-</details>
 
-<details><summary>Kafka producer config JsonSchema</summary>
-<p>
+
+
+Kafka producer config JsonSchema
+
 
 ```json
 {
@@ -384,8 +384,8 @@ With MongoDB you will save Projection Changes on the DB just like the Real-Time 
   }
 }
 ```
-</p>
-</details>
+
+
 
 :::tip
 Starting from version `v3.1.6` of the SVTG, is possible to add into the Kafka producer configuration the property `compressionName`, to apply a particular encoding to `sv-trigger` messages. Allowed values are:
@@ -401,9 +401,9 @@ While this option can be useful for messages having a large size, can increase t
 
 Below you can find a list of example configurations, based on the two different types of producers.
 
-<details>
-<summary>Kafka Consumer with MongoDB Producer</summary>
-<p>
+
+Kafka Consumer with MongoDB Producer
+
 
 ```json
 {
@@ -425,12 +425,12 @@ Below you can find a list of example configurations, based on the two different 
 }
 ```
 
-</p>
-</details>
 
-<details>
-<summary>Kafka Consumer with Kafka Producer</summary>
-<p>
+
+
+
+Kafka Consumer with Kafka Producer
+
 
 ```json
 {
@@ -453,12 +453,12 @@ Below you can find a list of example configurations, based on the two different 
 }
 ```
 
-</p>
-</details>
 
-<details>
-<summary>Kafka Consumer with Kafka Producer having Snappy compression</summary>
-<p>
+
+
+
+Kafka Consumer with Kafka Producer having Snappy compression
+
 
 ```json
 {
@@ -482,6 +482,6 @@ Below you can find a list of example configurations, based on the two different 
 }
 ```
 
-</p>
-</details>
+
+
 

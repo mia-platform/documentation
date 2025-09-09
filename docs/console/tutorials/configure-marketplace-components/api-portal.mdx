@@ -4,8 +4,6 @@ title: API portal documentation
 sidebar_label: API portal documentation
 ---
 
-import VideoBox from "./../../../src/components/VideoBox";
-
 In this tutorial, we will learn how to configure and use the [_API Portal_](/runtime_suite/api-portal/10_overview.md) and the [_Swagger Aggregator_](/runtime_suite/swagger-aggregator/10_overview.md) in order to provide the developers with a user-friendly interface that enables them to easily visualize and test endpoints of different microservices in a single place. It is built on top of the [OpenAPI 2.0](https://swagger.io/specification/v2/)/[OpenAPI 3.0](https://swagger.io/specification/v3/)/[OpenAPI 3.1](https://swagger.io/specification/) Specification.
 
 ## What we will build
@@ -47,14 +45,14 @@ Moreover, you need at least:
 
 In order to start the tutorial, you must be in the _design_ section of the project in the [Microservices section](/development_suite/api-console/api-design/services.md) from the left side menu.
 
-Since a project is meant to have several microservices, we want to have the ability to access their documentation from a single place. 
-To do so we need to include in our project an [_API Portal_](/runtime_suite/api-portal/10_overview.md) and a [_Swagger Aggregator_](/runtime_suite/swagger-aggregator/10_overview.md) service. 
+Since a project is meant to have several microservices, we want to have the ability to access their documentation from a single place.
+To do so we need to include in our project an [_API Portal_](/runtime_suite/api-portal/10_overview.md) and a [_Swagger Aggregator_](/runtime_suite/swagger-aggregator/10_overview.md) service.
 We can install each plug-in manually from _Mia-Platform Markeplace_, but in this example we use the _API Documentation Aggregator_ application.
 
 This application include the following components:
 - [_API Portal_](/runtime_suite/api-portal/10_overview.md), that will present a graphical interface to show the OpenAPI documentation of our endpoints;
 - [_Swagger Aggregator_](/runtime_suite/swagger-aggregator/10_overview.md), that will be contacted by the _API Portal_ to have the entire OpenAPI documentation to be shown. In order to create it, the _Swagger Aggregator_ will retreive the OpenAPI documentation of each service and merge it into a single one.
-- you can choose to create a new _API Gateway_ service or choose an already installed service. 
+- you can choose to create a new _API Gateway_ service or choose an already installed service.
 
 and the following endpoints:
 - _/documentations/api-portal_ to the [_API Portal_](/runtime_suite/api-portal/10_overview.md) service
@@ -70,7 +68,7 @@ The _/api/openapi_ endpoint reroute depends on which Open API Specification you 
 
 :::caution
 In the Mia-Platform Marketplace are available two different applications to install the _API Portal_ and _Swagger Aggregator_.
-The difference between them is the _API Gateway_ used: 
+The difference between them is the _API Gateway_ used:
 - the _API Documentation Aggregator_ uses the _Envoy API Gateway_
 - the _API Documentation Aggregator NGINX_ uses the _NGINX API Gateway_
 

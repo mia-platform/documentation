@@ -20,8 +20,8 @@ Possible parsers are:
 
 - `mia-json`: parse log lines as JSON data structures, including nested fields.
 
-  <details><summary>Example:</summary>
-  <p>
+  Example:
+  
   A possible log that can be parsed is:
   
   ```json
@@ -36,8 +36,8 @@ Possible parsers are:
   * `pid`: 657
   * `hostname`: `example.com`
 
-  </p>
-  </details>
+  
+  
 
 - `mia-nginx`: parse log lines from our [API Gateway based on NGINX](/runtime_suite/api-gateway/10_overview.md) having the following format:
 
@@ -45,8 +45,8 @@ Possible parsers are:
   <remoteAddress> <remoteHostname> [<time>] "<requestMethod> <requestURL> HTTP/<requestHTTPVersion>" <statusCode> <responseSize> "<HTTPReferer>" "<userAgent>" - <responseTime> - <reqId>
   ```
   where `time` is in the format `%Y-%m-%dT%H:%M:%S%z`.
-  <details><summary>Example:</summary>
-  <p>
+  Example:
+  
   A possible log that can be accepted by the parser is:
   
   ```
@@ -67,8 +67,8 @@ Possible parsers are:
   * `responseTime`: 0.002
   * `reqId`: `my_unique_request_id`
 
-  </p>
-  </details>
+  
+  
 
 - `mia-plain`: does not parse any information contained in log lines.
 

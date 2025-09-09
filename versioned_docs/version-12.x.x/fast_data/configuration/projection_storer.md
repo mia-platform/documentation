@@ -169,8 +169,8 @@ Here is described the interface of the custom message adapter function:
 
 Taking into account the above details, it is possible to implement _user-defined functions_ in Javascript.
 
-<details><summary>Custom Message Adapter Function (messageAdapter.js)</summary>
-<p>
+Custom Message Adapter Function (messageAdapter.js)
+
 
 ```javascript
 'use strict'
@@ -218,11 +218,11 @@ function extractKey(obj, wantedKeys) {
 }
 ```
 
-</p>
-</details>
 
-<details><summary>Custom Message Adapter Function (with empty payload management - messageAdapter.js)</summary>
-<p>
+
+
+Custom Message Adapter Function (with empty payload management - messageAdapter.js)
+
 
 ```javascript
 'use strict'
@@ -268,8 +268,8 @@ try {
 
 ```
 
-</p>
-</details>
+
+
 
 :::caution
 Within the custom message adapter script file it is possible to define multiple functions. However, it is mandatory
@@ -326,8 +326,8 @@ in the type expected by the data model for that specific field on which the cast
 
 Below you can find several examples about implementation of cast functions.
 
-<details><summary>Custom Cast Function (mapToAddressType.js)</summary>
-<p>
+Custom Cast Function (mapToAddressType.js)
+
 
 ```javascript
 const addressMapping = {
@@ -361,11 +361,11 @@ try {
 }
 ```
 
-</p>
-</details>
 
-<details><summary>Custom Cast Function (castToTitleCase.js)</summary>
-<p>
+
+
+Custom Cast Function (castToTitleCase.js)
+
 
 ```javascript
 'use strict'
@@ -392,8 +392,8 @@ try {
 }
 ```
 
-</p>
-</details>
+
+
 
 :::danger
 For those migrating custom cast functions from the ones employed in the Real-Time Updater, please bear in mind that
@@ -653,8 +653,8 @@ defined cast function.
 Below is presented an example of Projection Storer working configuration, both `JSON` and `YAML` formats, which are the ones
 supported by the service.
 
-<details><summary>Projection Storer configuration (JSON)</summary>
-<p>
+Projection Storer configuration (JSON)
+
 
 ```json
 {
@@ -824,11 +824,11 @@ supported by the service.
 }
 ```
 
-</p>
-</details>
 
-<details><summary>Projection Storer configuration (YAML)</summary>
-<p>
+
+
+Projection Storer configuration (YAML)
+
 
 ```yaml
 version: 2
@@ -951,8 +951,8 @@ projections:
         castFunction: castToFloat
 ```
 
-</p>
-</details>
+
+
 
 ## Migration Guide
 

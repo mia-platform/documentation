@@ -283,9 +283,9 @@ where:
 - `MY_STRATEGY` is the strategy to be used to get the identifier of the Single View to update. It could be the name of a file or, in case an automatic strategy, the string `__automatic__`.
 - `MY_TOPIC` is the topic where the projection change need to be sent (for further information about the naming convention adopted for this topic, [click here](/fast_data/concepts/inputs_and_outputs.md#topic-for-svc-trigger))
 
-<details>
-<summary>Example</summary>
-<p>
+
+Example
+
 
 ```json
 {
@@ -310,7 +310,7 @@ where:
 
 When a message about `registry-json` happens, the projection changes will be saved on MongoDB, and it will be sent to the Kafka topic `my-tenant.development.my-database.sv-pointofsale.projection-change` as well.
 
-</p>
-</details>
+
+
 
 

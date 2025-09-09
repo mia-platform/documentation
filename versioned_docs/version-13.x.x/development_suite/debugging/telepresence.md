@@ -87,10 +87,10 @@ Run the following command to connect to the cluster and intercept your microserv
   telepresence intercept [MICROSERVICE_NAME] --port [PORT] --env-json [ENV_JSON_FILE]
   ```
 
-<details>
-<summary>
+
+
 If you use IntelliJ IDE, the <b>EnvFile plugin</b> will be required to debug your microservice.
-</summary>
+
 
 First, install the [EnvFile plugin](https://plugins.jetbrains.com/plugin/7861-envfile).
 
@@ -101,7 +101,7 @@ Finally, run IntelliJ "Debug" option.
 Here is an example on how to configure the env file inside IntelliJ:
 
 ![Img](img/java-intellij.png)
-</details>
+
 </TabItem>
 </Tabs>
 
