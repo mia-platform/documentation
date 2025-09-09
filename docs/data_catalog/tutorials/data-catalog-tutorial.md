@@ -18,7 +18,7 @@ The tutorial will cover the following key areas:
 - A detailed explanation of Data Lineage: its definition, significance, and how it functions within the platform.
 - An overview of how data lineage is visualized and how virtual elements can be created to enrich lineage information.
 
-Upon completion of this tutorial, users will possess a solid understanding of the Data Catalog's core features and will be prepared to perform initial setup and basic operations. While this guide aims to be comprehensive in its coverage of fundamental aspects, it is important to recognize that it provides a starting point. For the most detailed, up-to-date information, and advanced configurations, users should consult the [official documentation](/data_catalog/overview.mdx). This approach ensures users feel empowered to begin their journey with the Data Catalog, while also being aware of resources for more specialized requirements.
+Upon completion of this tutorial, users will obtain a solid understanding of the Data Catalog's core features and will be prepared to perform initial setup and basic operations. While this guide aims to be comprehensive in its coverage of fundamental aspects, it is important to recognize that it provides a starting point. For the most detailed, up-to-date information, and advanced configurations, users should consult the [official documentation](/data_catalog/overview.mdx). This approach ensures users feel empowered to begin their journey with the Data Catalog, while also being aware of resources for more specialized requirements.
 
 ## Data Catalog: What It Is and How It Works
 
@@ -52,7 +52,7 @@ A high-level overview of the architecture reveals several interconnected compone
 
 - **[Data Catalog Frontend (UI)](/data_catalog/frontend/overview.mdx)**: This is the primary interface through which users interact with the catalog.
 - **[Fabric BFF (Backend for Frontend)](/data_catalog/data_catalog_fabric_bff.mdx)**: This component manages connections configured from the frontend and communicates with other backend services.
-- **[Job Runner](/data_catalog/data_catalog_job_runner.mdx)**: This service is responsible for scheduling and executing tasks, such as metadata extraction (via "Agent Dataset Scan") and lineage data collection (e.g., "Fast Data Sync").
+- **[Job Runner](/data_catalog/data_catalog_job_runner.mdx)**: This service is responsible for scheduling and executing tasks, such as metadata extraction (via "Agent Dataset Scan") and lineage data retrieval (e.g., "Fast Data Sync").
 - **[Open Lineage service](/data_catalog/data_catalog_open_lineage.mdx)**: This service manages the assets and lineage jobs, providing the features necessary to retrieve and present lineage data.
 
 These components work in concert: the Fabric BFF handles requests from the UI, particularly for connection configurations; the Job Runner executes tasks to scan data sources or collect lineage information from systems like [Mia-Platform Fast Data](/fast_data/what_is_fast_data.md); and the Open Lineage service stores and serves this data to be displayed in the UI. This architecture underscores that the Data Catalog is not merely a passive repository but an active system whose utility is amplified by the quality and context of the information fed into it, both automatically and through user enrichment. The Mia-Platform Data Catalog supports metadata acquisition from a variety of Systems of Records. Supported Systems of Records for [Metadata Acquisition](/data_catalog/frontend/data_catalog_connections.mdx#connection-providers):
@@ -70,13 +70,13 @@ These components work in concert: the Fabric BFF handles requests from the UI, p
 
 Before setting up the Mia-Platform Data Catalog, certain prerequisites must be met. A running [Mia-Platform Console](/development_suite/overview-dev-suite.md) instance is fundamental, as the Data Catalog Application is sourced from the [Mia-Platform Marketplace](/marketplace/overview_marketplace.md) and its configuration is managed within the Console environment. It is also crucial for users to consult the [compatibility matrix](/data_catalog/compatibility_matrix.md) to ensure their existing infrastructure and services are equipped to support the Data Catalog solution.
 
-The Data Catalog Application is found within the Mia-Platform Marketplace. This application is a pre-configured bundle of resources designed for straightforward instantiation and deployment of a functional Data Catalog product. The availability of the Data Catalog as a pre-configured package in the Marketplace simplifies deployment, allowing organizations to achieve faster time-to-value by avoiding manual setup of all components from scratch.
+The Data Catalog Application belongs to the Mia-Platform Runtime Components suite. This application is a pre-configured bundle of resources designed for straightforward instantiation and deployment of a functional Data Catalog product. The availability of the Data Catalog as a pre-configured package in the Marketplace simplifies deployment, allowing organizations to achieve faster time-to-value by avoiding manual setup of all components from scratch.
 
-To configure the Data Catalog, you must first initialize the Data Catalog Application from the Mia-Platform Marketplace. To do so, move to the "Application" section in the Design Area sidebar and search for the "Data Catalog" application in the list of applications. Then, follow all the steps to complete the initial setup. These steps will create all the necessary microservices and routes. 
+To configure the Data Catalog, you must first initialize the Data Catalog Application. To do so, navigate to the "Application" section in the Design Area of a Mia-Platform Project and search for the "Data Catalog" application. Then, follow all the steps to complete the initial setup. These steps will create all the necessary microservices and routes. 
 
 ![](./../img/data-catalog-application.png)
 
-Once the application is successfully installed you have to do some manual configuration to successfully configure the application.
+Once the application is successfully installed, you have to do some manual configuration to successfully configure the application.
 
 The effective setup of the Data Catalog involves not only deploying the application but also ensuring that the surrounding Mia-Platform environment, including network paths, security settings, and API Gateway features like WebSocket support, is correctly configured. This interconnectedness means users may need a basic understanding of Mia-Platform's architectural concepts.
 
@@ -139,7 +139,7 @@ Now, users can start finalizing the configuration of the application workloads t
 
 #### Authentication & Authorization Services
 
-In the Data Catalog documentation, there is [Secure Access documentation page](/data_catalog/secure_access.mdx) that guides users through configuring the authentication and authorization flows and securing and managing users access.
+In the Data Catalog documentation, there is a [Secure Access documentation page](/data_catalog/secure_access.mdx) that guides users through configuring the authentication and authorization flows and securing and managing user access.
 
 Once you have completed all the steps outlined in the Secure Access documentation page, you have achieved the goal of securing your Data Catalog application.
 
@@ -207,7 +207,6 @@ After successful deployment, you can access your Data Catalog at:
 
 - **Main Interface**: `{{DC_BASE_URL}}/data-catalog/`
 - **Management Interface**: `{{DC_BASE_URL}}/mgmt/`
-- **Job Runner UI**: `{{DC_BASE_URL}}/ui/job-runner/`
 - **Authentication**: `{{DC_BASE_URL}}/web-login/`
 
 :::caution
@@ -222,10 +221,14 @@ The next step will therefore be to **start retrieving data assets** into the Dat
 
 [Connections Management](/data_catalog/frontend/data_catalog_connections.mdx) is a core feature of the Mia-Platform Data Catalog, allowing users to add, edit and synchronize external data sources to retrieve their assets. These connections are typically configured from the Data Catalog's frontend interface, and the Fabric BFF component is responsible for managing these configurations.
 
-The Data Catalog **Job Runner** plays a crucial role in populating the catalog with metadata. It schedules tasks, such as an "Agent Dataset Scan", to connect to configured data sources, retrieve metadata about their structure (like tables and columns), and store this information as Datasets within the Data Catalog. Configuration details for the Job Runner should be available in its dedicated [documentation](/data_catalog/data_catalog_job_runner.mdx). 
-Here is an example on how to connect to an **OracleDB** Database:
+The Data Catalog **Job Runner** plays a crucial role in populating the catalog with metadata. It schedules tasks, such as an "Agent Dataset Scan", to connect to configured data sources, retrieve metadata about their structure (like tables and columns), and store this information as data assets within the Data Catalog. Configuration details for the Job Runner should be available in its dedicated [documentation](/data_catalog/data_catalog_job_runner.mdx). 
+In the next paragraphs, there is an example of how to connect to an **OracleDB** Database.
 
-To create a new connection, begin by navigating to the **Connection** tab on the main page of the Data Catalog UI, then click the **Add Connection** button. Next, you must choose a connection provider from the list of available options, such as **OracleDB**, and fill out the form with the required data like the **connection name** and **connection string**. Upon doing so, the connection is established, and the Data Catalog will automatically start to fetch the available metadata for the data sources within that System of Record (SoR). If you want to see a step by step guide take a look at [this guided video tutorial](https://youtu.be/sfMxhWrHwmw?si=fGymSvTVi_TaTlZz) to add a Oracle Connection to Mia-Platform Data Catalog.
+To properly establish a connection to an OracleDB, follow the configuration steps for the Job Runner [here reported](/data_catalog/data_catalog_job_runner.mdx##odbc-configuration). Then, release the Job Runner configuration updates in the runtime environment.
+
+Now, begin by navigating to the **Connections** tab on the main page of the Data Catalog UI, then click the **Add Connection** button, choose the **OracleDB** connection provider among theavailable options, and fill out the form with the required data like the **connection name** and **connection string**. 
+
+Once the connection is established, you can start importing its data assets into the Data Catalog. In [this documentation paragraph](/data_catalog/frontend/data_catalog_connections.mdx#import-data-assets-from-a-connection) is well described how to trigger the Agent Dataset Scan Job and the Data Catalog Sync. If you want to see how to navigate and trigger the asset retrieval from a connection, take a look at [this guided video tutorial](https://youtu.be/sfMxhWrHwmw?si=fGymSvTVi_TaTlZz).
 
 ![](./../img/data-catalog-connection-1.png)
 
@@ -233,11 +236,11 @@ The **Connection** page allows you to check all available connections. From here
 
 ![](./../img/data-catalog-connection-2.png)
 
-Integrating Mia-Platform Data Catalog with other components of the Mia-Platform ecosystem, such as Mia-Platform CRUD services and Fast Data, allows for a more comprehensive view of your data landscape, encompassing both data at rest and data in motion. 
+Integrating Mia-Platform Data Catalog with other components of the Mia-Platform ecosystem, such as Mia-Platform CRUD services and Mia-Platform Fast Data, allows to unlock the synergies between the Mia-Platform products and to acquire a even more comprehensive view of your data landscape, encompassing both data at rest and data in motion. 
 
-[Mia-Platform Fast Data](/fast_data/what_is_fast_data.md) often processes real-time data streams, and the results of these processes might be stored in MongoDB collections. If these MongoDB collections are managed and exposed by a [Mia-Platform CRUD Service](/runtime_suite/crud-service/10_overview_and_usage.md), the Data Catalog can connect to this CRUD Service to catalog the metadata of the resulting datasets. This allows you to document and discover the data that has been processed by your Fast Data pipelines.
+[Mia-Platform Fast Data](/fast_data/what_is_fast_data.md) enables real-time data pipeline, and often its data products like Single Views are stored in MongoDB collections. If these MongoDB collections are managed and exposed by a [Mia-Platform CRUD Service](/runtime_suite/crud-service/10_overview_and_usage.md), the Data Catalog can connect to this CRUD Service to retrieve the metadata of the resulting data schemas. This allows you to document and discover the data that has been processed by your Fast Data pipelines.
 
-Conceptually, the process unfolds through several steps. Firstly, it's crucial to **ensure data is accessible via CRUD Service**. This means verifying that the data intended for cataloging—which could very well be the output of a Fast Data pipeline—is indeed stored in a MongoDB collection. Subsequently, this MongoDB collection must be exposed via a Mia-Platform CRUD Service. This involves configuring the CRUD Service within your Mia-Platform project to manage that specific collection, carefully defining its schema, and exposing the necessary endpoints. For comprehensive details on setting up a CRUD service, the relevant Mia-Platform Console [tutorials and documentation](/runtime_suite/crud-service/10_overview_and_usage.md) serve as invaluable resources.
+Conceptually, the process unfolds through several steps. Firstly, it's crucial to **ensure data is accessible via CRUD Service**. This means verifying that the data intended for cataloging is indeed stored in a MongoDB collection. Subsequently, this MongoDB collection must be exposed via a Mia-Platform CRUD Service. This involves configuring the CRUD Service within your Mia-Platform project to manage that specific collection, carefully defining its schema, and exposing the necessary endpoints. For comprehensive details on setting up a CRUD service, the relevant Mia-Platform Console [tutorials and documentation](/runtime_suite/crud-service/10_overview_and_usage.md) serve as invaluable resources.
 
 Once the CRUD service is ready, you would **navigate to connections management in Data Catalog**. Within the Mia-Platform Data Catalog UI, you'll find a "Connections" or "Connections Management" section, which is the designated area for managing all your data source connections. Here, you will **add a new connection for the Mia-Platform CRUD Service**. When initiating this process, you'll select "Mia-Platform MongoDB CRUD Service" as the connection type from the comprehensive list of supported Systems of Record.  
 
@@ -249,13 +252,13 @@ In addition to the connection details, you will need to identify the Fast Data P
 
 ![](./../img/data-catalog-connection-4.png)
 
-Finally, the process involves **Scheduling Metadata Scraping**. After the connection is configured and saved, the Data Catalog Job Runner takes on the responsibility of scraping the metadata from the specified CRUD Service. This is typically executed by an "Agent Dataset Scan" task. This task connects to the CRUD service, meticulously inspects the exposed collections and their associated schemas (including fields, data types, etc.), and then imports this rich metadata into the Data Catalog. As a result, the scraped collections will manifest as datasets within the Data Catalog, readily available for discovery, enrichment, and incorporation into lineage mapping.
+Finally, the process involves **Scheduling Metadata Scraping**. After the connection is configured and saved, the Data Catalog Job Runner takes on the responsibility of scraping the metadata from the specified CRUD Service. This is typically executed by an "Agent Dataset Scan" task. This task connects to the CRUD service, meticulously inspects the exposed collection schemas (including fields, data types, etc.), and then imports them into the Data Catalog. As a result, the scraped collections will manifest as data assets within the Data Catalog, readily available for discovery, enrichment, and incorporation into lineage mapping.
 
 ![](./../img/data-catalog-connection-5.png)
 
-Beyond cataloging data at rest, it is profoundly important to understand the journey of data—how it is processed and transformed. The Mia-Platform Data Catalog achieves this by integrating with Fast Data to import information about data processing pipelines, representing them as "Lineage Jobs" within the catalog . This provides invaluable visibility into your intricate data flows.
+Beyond cataloging data at rest, it is profoundly important to understand the journey of data, how it is processed and transformed. The Mia-Platform Data Catalog achieves this by integrating with Fast Data to import information about data processing pipelines, representing them as "Lineage Jobs" within the catalog. This provides invaluable visibility into your complex data flows.
 
-The mechanics of this integration generally involve a few key stages. Firstly, you must **ensure the Data Catalog Job Runner is operational**, as this component is central to automating tasks within the Data Catalog, including the crucial synchronization of lineage information. Then, you will need to **Configure and Schedule a [Fast Data Sync](/data_catalog/data_catalog_job_runner.mdx#fast-data-jobs-sync) Task**. Within the Data Catalog's Job Runner configuration—a task typically managed via the Mia-Platform Console or through specific configuration files for the Job Runner—a dedicated task for Fast Data integration must be established. This is often referred to as a "Fast Data Sync" task . This task will be scheduled to run periodically, ensuring that the lineage information within the Data Catalog remains current and accurately reflects your Fast Data projects.  
+The mechanics of this integration generally involve a few key stages. Firstly, you must **ensure the Data Catalog Job Runner is operational**, as this component is central to automating tasks within the Data Catalog, including the crucial synchronization of lineage information. Then, you will need to **Configure and Schedule a [Fast Data Sync](/data_catalog/data_catalog_job_runner.mdx#fast-data-jobs-sync-configuration) Task**. Within the Data Catalog's Job Runner configuration—a task typically managed via the Mia-Platform Console or through specific configuration files for the Job Runner—a dedicated task for Fast Data integration must be established. This is often referred to as a "Fast Data Sync" task.  
 
 This "Fast Data Sync" task is specifically designed for **connection to the Fast Data Control Plane**. The [Control Plane](/fast_data/runtime_management/control_plane.mdx) is the component that manages the configurations and definitions of your Fast Data pipelines and aggregation projects. During its execution, the sync task performs the **Retrieval of Pipeline Definitions** by querying the Fast Data Control Plane to gather information about the configured data processing pipelines, including any aggregations and transformations defined within your Fast Data Projects.
 
@@ -265,21 +268,21 @@ From there, you can pick the **JobRunner** service, choose the **Run** method an
 
 ![](./../img/data-catalog-connection-6.png)
 
-The final step is the **registration as lineage jobs**. The retrieved Fast Data pipeline definitions are then intelligently translated and registered within the Data Catalog as "Lineage Jobs" . These Lineage Jobs effectively represent the processing steps and transformations that occur within your Fast Data environment. Consequently, these imported Fast Data jobs become visible on the Data Lineage canvas in the Data Catalog UI, allowing users to clearly see how data flows through these processing stages and how they connect to various data assets .
+The final step is the **registration as lineage jobs**. The retrieved Fast Data pipeline definitions are then intelligently translated and registered within the Data Catalog as "Lineage Jobs". These Lineage Jobs effectively represent the processing steps and transformations that occur within your Fast Data environment. Consequently, these imported Fast Data jobs become visible on the Data Lineage canvas in the Data Catalog UI, allowing users to clearly see how data flows through these processing stages and how they connect to various data assets .
 
-By meticulously configuring these connections, you can fully leverage the Data Catalog not only to inventory data exposed by CRUD services (which may indeed include Fast Data outputs) but also to visualize and deeply understand the Fast Data processing pipelines themselves. This synergy provides a far more holistic and comprehensive view of your data's entire lifecycle.
+By meticulously configuring these connections, you can fully leverage the Data Catalog not only to inventory data exposed by CRUD services (which may indeed include Fast Data outputs) but also to visualize and deeply understand the Fast Data processing pipelines themselves. This synergy provides a far more holistic and comprehensive view of your data's entire lifecycle managed by Mia-Platform software components.
 
 ## Metadata Scraping and Enrichment
 
-Once data assets have been imported metadata is imported into the Mia-Platform Data Catalog after establishing a connection to a datasource, the assets are organized in a structured manner to facilitate discovery and understanding. This organization, coupled with robust metadata enrichment capabilities, transforms the catalog from a simple inventory into a powerful tool for centralized data governance and collaboration.
+Once retrieved from an established connection, the data assets are organized in a structured manner to facilitate discovery and understanding. This organization, coupled with robust metadata enrichment capabilities, transforms the catalog from a simple inventory into a powerful tool for centralized data governance and collaboration.
 
 The Data Catalog typically organizes imported metadata hierarchically, reflecting the structure of the source systems. This generally includes:  
 
 - **Systems of Record (SoR)**: The highest level, representing the originating data systems themselves (e.g., a specific PostgreSQL database, a Salesforce instance). The SoR is mapped with a 1:1 relationship with the connection you created, so the SoR name is equal to the connection name.
-- **Tables/Datasets/Collections**: Within each SoR, assets are further organized into logical groupings like database tables, datasets, or collections (in the case of NoSQL databases like MongoDB). These represent distinct sets of related data.  
-- **Columns/Fields/Attributes**: The most granular level, detailing the individual columns within a table, fields in a document, or attributes of a data entity. This includes information about data types, and potentially other technical metadata scraped from the source.  
+- **Tables**: Within each SoR, assets are further organized into logical groupings like database tables, datasets, or collections (in the case of NoSQL databases like MongoDB). These represent distinct sets of related data.  
+- **Columns**: The most granular level, detailing the individual columns within a table, fields in a document, or attributes of a data entity. This includes information about data types, and potentially other technical metadata scraped from the source.  
 
-Users can navigate this hierarchical structure primarily through the **Asset Discovery** section of the Data Catalog UI. This interface allows users to browse and search for specific assets across different connected systems and the advanced search capability allows users to perform a granular discovery of the data assets.
+Users can navigate this hierarchical structure in an easy way in the Data Catalog UI. This interface allows users to browse and search for specific assets across different connected systems and the advanced search capability allows users to perform a granular discovery of the data assets.
 
 While automated metadata scraping provides a foundational layer of technical information, its true value is unlocked through **metadata enrichment**. This is the process of enhancing the existing metadata with additional contextual, business-relevant information. The Mia-Platform Data Catalog provides full management capabilities through its UI.
 
@@ -287,10 +290,13 @@ Key aspects of metadata enrichment include:
 
 - **Adding Descriptions**: Users can add detailed descriptions to SoRs, tables, and columns to explain their purpose, business context, origin, or how they are used. This is crucial for data understanding, especially for non-technical users.  
 - **Assigning Tags**: Tags are keywords or labels that can be associated with assets for classification, categorization, or to improve searchability. For example, tags like "PII," "Sales Data," "GDPR Sensitive," or "Marketing Campaign Q3" can be applied.  
-- **Defining Custom Properties**: The Data Catalog allows for the management of custom properties that can be assigned to assets. This enables organizations to capture specific metadata attributes relevant to their unique business needs or governance frameworks, which might not be covered by standard metadata (e.g., "Data Owner," "Refresh Frequency," "Quality Score").  
-- **Establishing Data Classification**: Through enrichment, assets can be classified according to sensitivity levels (e.g., public, internal, confidential), which aids in policy management and access control.
+- **Defining Custom Properties**: The Data Catalog allows for the management of custom properties that can be assigned to assets. This enables organizations to capture specific metadata attributes relevant to their unique business needs or governance frameworks, which might not be covered by standard metadata (e.g., "Data Owner," "Refresh Frequency," "Quality Score", "Data Classification", "Sensitivity Level", ...).  
 
-Enriching metadata is vital for several reasons :  
+:::info
+We invite you to read the [Data Catalog Asset Discovery documentation](docs/data_catalog/frontend/data_catalog_assets.mdx) to learn how to navigate assets, apply custom properties, use bulk actions, perform advanced searches. Moreover, you can take a look at [this guided video tutorial](https://youtu.be/sfMxhWrHwmw?si=fGymSvTVi_TaTlZz).
+:::
+
+Enriching metadata is vital for several reasons:  
 
 - **Enhanced Data Discoverability**: Richer metadata makes it easier and faster for users like data analysts and scientists to find the exact data they need.  
 - **Improved Data Understanding**: Contextual information helps all users, including business users and decision-makers, to better understand what the data represents and its relevance.  
@@ -302,7 +308,7 @@ The Data Catalog is designed as a collaborative environment where various users,
 
 ## What is Data Lineage and How Does It Work?
 
-[Data Lineage](/data_catalog/frontend/data_lineage.mdx) is the process of understanding, documenting, and visualizing data as it flows from its origin to its destination across various systems and transformations. It essentially provides a map of the data's journey, tracking the origin and flow of data through systems to help understand how data are transformed and used through various business processes. Data lineage seeks to answer critical questions such as: Where does this data come from? What changes or transformations has it undergone? And where is it ultimately used or stored?
+[Data Lineage](/data_catalog/frontend/data_lineage.mdx) allows you to understand, document, and visualize data as it flows from its origin to its destination across various systems and transformations. It essentially provides a map of the data's journey, tracking the origin and flow of data through systems to help understand how data are transformed and used through various business processes. Data lineage seeks to answer critical questions such as: Where does this data come from? What changes or transformations has it undergone? And where is it ultimately used or stored?
 
 The importance and benefits of implementing robust data lineage are manifold:
 
@@ -313,34 +319,28 @@ The importance and benefits of implementing robust data lineage are manifold:
 - **Simplifying Complex Systems**: In environments with intricate data architectures and numerous data flows, lineage provides clarity and helps to demystify complexity.
 - **AI Implementation**: For Artificial Intelligence and Machine Learning initiatives, data lineage is critical. It helps ensure the quality and reliability of training data, enables informed feature engineering, and promotes model explainability and auditability.
 
-Mia-Platform Data Catalog implements data lineage by leveraging several key mechanisms:
-
-- **[Open Lineage Integration](/data_catalog/data_catalog_open_lineage.mdx)**: The Data Catalog adopts the Open Lineage standard, an open specification for collecting and structuring data assets lineage information data lineage. The [Open Lineage service](/data_catalog/data_catalog_open_lineage.mdx) is a core backend component responsible for managing assets (data entities) and lineage jobs (processes acting on these assets). This adoption of an open standard is a strategic choice that promotes interoperability with a broader ecosystem of data tools that also support OpenLineage, potentially avoiding vendor lock-in and allowing for more comprehensive lineage views in heterogeneous environments.
-- **Job Runner for Lineage Jobs**: The Data Catalog's Job Runner can schedule specific tasks to collect lineage information. A prime example is the "Fast Data Sync" task, which retrieves pipeline definitions from Fast Data available projects. These Fast Data pipelines are then registered within the Data Catalog as "Lineage Jobs". This allows for the automatic capture of data processing logic occurring within Fast Data projects, making these jobs visible on the lineage canvas.
-- **Assets and Lineage Jobs**: These entities, representing data elements and the processes that transform them, are managed by the Open Lineage service. This service provides the necessary APIs and features to retrieve this data for visualization and analysis within the Data Catalog frontend. Lineage relationships between assets conform to the OpenLineage `Job` format, where a `Job` represents a process occurring between two or more assets.
-
-Data lineage within the Mia-Platform Data Catalog is therefore not just a static map but an active tool. It serves as a dynamic diagnostic and preventative maintenance utility for data pipelines, enabling operational resilience and supporting robust data governance. Its ability to integrate with processing engines like Fast Data and adhere to open standards positions it as a forward-looking solution for managing complex data ecosystems.
-
-## Data Lineage: Visualization and Creation of Virtual Elements
-
-Understanding data lineage involves not only collecting the information but also presenting it in a comprehensible manner and allowing for its enrichment to reflect the complete data journey.
-
-The Mia-Platform Data Catalog provides a "Data Lineage section" within its UI, designed to help users understand, visualize, and describe the flow and transformations of data within an organization. Lineage is typically presented through "intuitive visual maps" or an "interactive representation of data movement" across systems. This Lineage view enables users to perform impact analyses, identify potential bottlenecks, and ensure compliance across data workflows. 
+The Mia-Platform Data Catalog provides a **Data Lineage** section within its UI, designed to help users understand, visualize, and describe the flow and transformations of data within an organization.
 
 The visualization of data lineage is often offered at different levels of granularity to cater to diverse user needs and analytical purposes:
 
 - **Table-Level Lineage**: This view tracks the movement of data elements specifically between tables, typically within a database or data warehouse context. It is particularly useful for data engineers and analysts who need to investigate data accuracy issues, understand the impact of schema changes, or trace the origins of data in specific reports. For instance, it can show which source tables contribute to a summary table.
 - **System of Record (SoR) Lineage**: This provides a broader, more high-level overview of how different data sources and systems interact across the entire organization. SoR lineage is beneficial for enterprise data architects, data governance teams, and compliance officers who require a holistic view of data flows for strategic planning and monitoring.
 
-These visualizations are designed to be interactive, allowing users to explore data relationships, dependencies, and the transformations applied to data as it moves through various processes. The provision of both table-level and SoR-level lineage demonstrates an understanding that different roles within an organization require varying degrees of detail: from the granular specifics needed by technical teams to the broader strategic overview required by governance bodies.
+Mia-Platform Data Catalog implements Data Lineage by leveraging the Open Lineage standard, an open specification for collecting and structuring data lineage information. The [Open Lineage service](/data_catalog/data_catalog_open_lineage.mdx) is a core backend component responsible for managing data assets and lineage jobs (processes acting on these assets). Lineage relationships between assets conform to the OpenLineage `Job` format, where a `Job` represents a process occurring between two or more assets. Adopting this open standard is a strategic choice that promotes interoperability with a broader ecosystem of data tools that also support OpenLineage, helping to avoid vendor lock-in and enabling more comprehensive lineage views across heterogeneous environments.
+
+In case you adopt **Mia-Platform Fast Data**, with the above mentioned "Fast Data Sync" task, the Job Runner can automatically retrieve pipeline definitions from Fast Data available projects, enabling automatic Data Lineage and making these jobs directly visible on the lineage canvas.
+
+## Data Lineage: Visualization and Creation of Virtual Elements
 
 Automated data discovery and lineage capture are powerful, but they may not always capture the entirety of an organization's data landscape, especially where manual processes, legacy systems not directly connected, or conceptual data flows exist. To address this, Mia-Platform Data Catalog supports the creation of **virtual assets** (virtual assets and virtual jobs).
 
-What are Virtual Assets/Jobs? Virtual elements are user-defined entities that can be manually added to the lineage graph. They represent data assets (like a manually maintained spreadsheet or an external data feed not directly integrated) or processes (like a manual approval step or a data transformation occurring in a non-instrumented system) that are not automatically discovered through standard connections. They are "virtual" in the sense that they might not correspond to a physical table or an automated job within a connected system but are nonetheless a logical and crucial part of the overall data flow. In data lineage, a common challenge is accounting for processes and assets that are not automatically discoverable by scanning systems. To address this, the Open Lineage service provides the capability to create and manage virtual elements, such as virtual assets and jobs. This functionality allows organizations to construct a complete and accurate representation of their data's journey, even when it involves manual steps or external processes. The creation, modification, and deletion of these virtual elements are managed through the Data Catalog UI. To do so, navigate to an asset within your data catalog, such as a System of Record (SoR) or a Table, and then select the "Lineage" tab.
+**What are Virtual Assets/Jobs?** Virtual elements are user-defined entities that can be manually added to the lineage graph to represent data assets or processes not automatically discovered through standard connections. For detailed information on creating and managing virtual elements, refer to the [Assets: Real and Virtual](/data_catalog/frontend/data_lineage.mdx#assets-real-and-virtual) and [Jobs: Real and Virtual](/data_catalog/frontend/data_lineage.mdx#jobs-real-and-virtual) sections in the Data Lineage documentation.
+
+To create virtual elements, navigate to an asset within your data catalog, such as a System of Record (SoR) or a Table, and then select the "Lineage" tab.
 
 ![](./../img/data-catalog-lineage-1.png)
 
-Here, after each block in the lineage flow, you will find a plus button. Click this button and use the “Create new table” option to add a virtual asset. Once the virtual table is created, you can associate it with an available SoR or create a new virtual one. Virtual jobs are automatically created in the process to connect the assets and can be enriched simply by adding a description.
+Here, on the right-side of an asset element displayed in the lineage flow, you will find a plus button. Click this button and use the “Create new table” option to add a virtual asset. Once the virtual table is created, you can associate it with an already available virtual SoR or create a new virtual one. Virtual jobs are automatically created in the process to connect the assets and can be enriched simply by adding a description.
 
 ![](./../img/data-catalog-lineage-2.png)
 
@@ -348,13 +348,10 @@ The primary value of virtual elements is their ability to enrich the automated l
 
 By incorporating these user-defined elements, organizations can ensure the lineage graph provides a comprehensive, end-to-end view of how data moves across all systems and processes, thereby increasing the accuracy and trustworthiness of the entire lineage record.
 
-The inclusion of virtual elements is a significant feature, acknowledging that automated discovery has its limitations. It allows human expertise and contextual understanding to be formally integrated into the data lineage map. This transforms the lineage from being merely a reflection of connected, automated systems into a comprehensive, curated depiction of data flows, which is indispensable for achieving true end-to-end visibility in complex enterprise environments.
-
 ## Conclusion
 
 The Mia-Platform Data Catalog emerges as a pivotal tool for organizations aiming to harness the full potential of their data assets. This tutorial has navigated through its core functionalities, from understanding its fundamental purpose as a centralized metadata repository to exploring its advanced capabilities in data lineage.
 
-The journey covered the initial setup and configuration within the Mia-Platform Console, the process of establishing connections to diverse data sources like OracleDB and Mia-Platform Fast Data, and the critical role of metadata scraping in populating the catalog. A significant focus was placed on data lineage: its definition, operational mechanics, visualization at different levels (Table-level and SoR-level), and the innovative use of virtual elements to capture a complete and accurate data story.
+The journey covered the initial setup and configuration within the Mia-Platform Console, the process of establishing connections to diverse data sources, and the critical role of metadata scraping in populating the catalog. A significant focus has even placed on data lineage: its definition, operational mechanics, visualization at different levels (Table-level and SoR-level), and the usage of virtual elements to capture a complete and accurate data journey.
 
-For further in-depth information, specific use-case implementations, and advanced configuration options, users are encouraged to consult the [official documentation](/data_catalog/overview.mdx). This continued exploration will ensure that organizations can maximize the strategic benefits offered by this comprehensive data management solution.
-
+For further in-depth information, specific use-case implementations, and advanced configuration options, users are encouraged to consult the [official documentation](/data_catalog/overview.mdx). 
