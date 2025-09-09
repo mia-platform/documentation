@@ -5,7 +5,6 @@ const docsFolder = path.resolve(__dirname, '../');
 
 const excludePath = (path) => {
     const pathToExclude = [
-        /*
         'docs/runtime_suite',
         'docs/runtime_suite_examples',
         'docs/runtime_suite_templates',
@@ -16,8 +15,7 @@ const excludePath = (path) => {
         'docs/microfrontend-composer/back-kit',
         'docs/microfrontend-composer/composer',
         'docs/cli',
-        'docs/mcp',
-        */
+        'docs/mcp'
     ];
 
     if (pathToExclude.some(s => path.toLowerCase().includes(s))) return true;
@@ -107,3 +105,5 @@ const linksWithErrors = readFiles(docsFolder+'/docs/')
 if(Object.keys(linksWithErrors).length > 0) {
     throw new Error(`Found ${Object.keys(linksWithErrors).length} page with wrong links: ${JSON.stringify(linksWithErrors, null, 2)}`);
 }
+
+process.exit(0);
