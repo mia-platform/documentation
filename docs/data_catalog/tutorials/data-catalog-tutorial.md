@@ -293,7 +293,7 @@ Key aspects of metadata enrichment include:
 - **Defining Custom Properties**: The Data Catalog allows for the management of custom properties that can be assigned to assets. This enables organizations to capture specific metadata attributes relevant to their unique business needs or governance frameworks, which might not be covered by standard metadata (e.g., "Data Owner," "Refresh Frequency," "Quality Score", "Data Classification", "Sensitivity Level", ...).  
 
 :::info
-We invite you to read the [Data Catalog Asset Discovery documentation](docs/data_catalog/frontend/data_catalog_assets.mdx) to learn how to navigate assets, apply custom properties, use bulk actions, perform advanced searches. Moreover, you can take a look at [this guided video tutorial](https://youtu.be/sfMxhWrHwmw?si=fGymSvTVi_TaTlZz).
+We invite you to read the [Data Catalog Asset Discovery documentation](/data_catalog/frontend/data_catalog_assets.mdx) to learn how to navigate assets, apply custom properties, use bulk actions, perform advanced searches. Moreover, you can take a look at [this guided video tutorial](https://youtu.be/sfMxhWrHwmw?si=fGymSvTVi_TaTlZz).
 :::
 
 Enriching metadata is vital for several reasons:  
