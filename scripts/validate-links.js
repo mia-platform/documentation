@@ -4,19 +4,7 @@ const path = require('path');
 const docsFolder = path.resolve(__dirname, '../');
 
 const excludePath = (path) => {
-    const pathToExclude = [
-        'docs/runtime_suite',
-        'docs/runtime_suite_examples',
-        'docs/runtime_suite_templates',
-        'docs/runtime_suite_libraries',
-        'docs/runtime_suite_tools',
-        'docs/runtime_suite_applications',
-        'docs/infrastructure/self-hosted/installation-chart',
-        'docs/microfrontend-composer/back-kit',
-        'docs/microfrontend-composer/composer',
-        'docs/cli',
-        'docs/mcp'
-    ];
+    const pathToExclude = [];
 
     if (pathToExclude.some(s => path.toLowerCase().includes(s))) return true;
     return false;

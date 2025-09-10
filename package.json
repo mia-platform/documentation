@@ -18,7 +18,8 @@
     "build-redirects": "node ./scripts/build-permanent-redirects.js",
     "check-redirects": "node ./scripts/check-permanent-redirects.js",
     "build-subtitle": "node ./scripts/parse-subtitle.js",
-    "generate-last-edited": "node scripts/last-pages-edited.js "
+    "generate-last-edited": "node scripts/last-pages-edited.js",
+    "mv": "node ./scripts/mv.js"
   },
   "dependencies": {
     "@docusaurus/core": "3.8.1",
@@ -43,7 +44,11 @@
     "@ianvs/prettier-plugin-sort-imports": "4.7.0",
     "eslint": "^9.35.0",
     "eslint-plugin-react": "^7.37.5",
-    "prettier": "3.6.2"
+    "fs-extra": "^11.3.1",
+    "glob": "^11.0.3",
+    "gray-matter": "^4.0.3",
+    "prettier": "3.6.2",
+    "prompts": "^2.4.2"
   },
   "browserslist": {
     "production": [
