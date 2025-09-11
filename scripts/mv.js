@@ -196,11 +196,10 @@ const normalizeForRedirect = (filePath) => {
         return webPath.replace(/\\/g, '/');
     }
 
-    // Fallback se 'docs' non è nel percorso
     return path.join('/', filePath.replace('./', '')).replace(/\\/g, '/');
 };
 
-const makeRedirect = async (redirectsFilePath, oldPath, newPath) => {
+const makeRedirect = async (redirects, oldPath, newPath) => {
     if (!oldPath || !newPath) {
         console.error(`[ERROR] Redirect creation skipped due to invalid paths.`);
         return;
@@ -211,11 +210,7 @@ const makeRedirect = async (redirectsFilePath, oldPath, newPath) => {
 
     try {
         const today = new Date().toISOString().split('T')[0];
-        let redirects = {};
 
-        if (await fs.pathExists(redirectsFilePath)) {
-            redirects = await fs.readJson(redirectsFilePath);
-        }
 
         for (const sourceRedirect in redirects) {
             if (redirects[sourceRedirect].destination === normOldPath) {
@@ -230,7 +225,7 @@ const makeRedirect = async (redirectsFilePath, oldPath, newPath) => {
         };
         console.log(`[SUCCESS] Redirect rule created/updated: ${normOldPath} -> ${normNewPath}`);
 
-        await fs.writeJson(redirectsFilePath, redirects, { spaces: 2 });
+        return redirects;
 
     } catch (error) {
         console.error(`[ERROR] Failed to update redirects: ${error.message}`);
@@ -260,6 +255,11 @@ const main = async () => {
     const toMoveFiles = listAllFiles(source);
     log('SUCCESS', `Mapping files to move complete. Found ${toMoveFiles.length} files.`);
 
+    let redirectsContent = null;
+    if (fs.pathExistsSync("./301redirects.json")) {
+        redirectsContent = fs.readJsonSync("./301redirects.json");
+    }
+
     toMoveFiles.forEach((filePath, index) => {
         console.log(`${index + 1}. ${filePath}`);
         const newFilePath = moveFile(source, destination, filePath);
@@ -270,23 +270,17 @@ const main = async () => {
             const { oldPhysicalPath, oldLogicalPath } = updatePaths;
             const newLogicalPath = mapping[newFilePath] ? mapping[newFilePath].logical_path : null;
             cleanupEmptyFolders(source);
-            makeRedirect("./301redirects.json", oldLogicalPath, newLogicalPath)
-            // SIDEBAR UPDATE
+            if(redirectsContent) {
+                redirectsContent = makeRedirect(redirectsContent, oldLogicalPath, newLogicalPath);
+            }
         } else {
             log('ERROR', `Failed to move file: ${filePath}`);
         }
-
-
     });
 
-    console.log("MAPPING :", mapping);
-    //console.log(toMoveFiles)
-
-
-
-
-
-
+    if(redirectsContent) {
+        fs.writeJsonSync("./301redirects.json", redirectsContent, { spaces: 2 });
+    }
 
     log('SUCCESS', 'Operation completed successfully!');
 
