@@ -15,10 +15,10 @@ const log = (level, message, details) => {
         REDIRECT: '[REDIRECT]',
         'LINK UPDATE': '[LINK UPDATE]',
     };
-    console.log(`\n${prefixMap[level] || '[LOG]'} ${message}`);
+    console.// log(`\n${prefixMap[level] || '[LOG]'} ${message}`);
     if (details) {
-        console.log(`  - From: ${details.from}`);
-        console.log(`  - To:   ${details.to}`);
+        console.// log(`  - From: ${details.from}`);
+        console.// log(`  - To:   ${details.to}`);
     }
 };
 
@@ -121,7 +121,7 @@ const moveFile = (sourcePath, destinationPath, filePath) => {
         const finalDestinationPath = path.join(destinationPath, relativePath);
         fs.moveSync(filePath, finalDestinationPath, { overwrite: true });
 
-        console.log(`Successfully moved ${filePath} to ${finalDestinationPath}`);
+        console.// log(`Successfully moved ${filePath} to ${finalDestinationPath}`);
         return finalDestinationPath;
 
     } catch (error) {
@@ -179,11 +179,11 @@ const cleanupEmptyFolders = (basePath) => {
             const files = fs.readdirSync(dir);
             if (files.length === 0) {
                 fs.rmdirSync(dir);
-                log('INFO', `Cleaned up empty folder: ${path.relative(CWD, dir)}`);
+                // log('INFO', `Cleaned up empty folder: ${path.relative(CWD, dir)}`);
             }
         }
     } catch (error) {
-        log('ERROR', `An error occurred during cleanup: ${error.message}`);
+        // log('ERROR', `An error occurred during cleanup: ${error.message}`);
     }
 };
 
@@ -201,7 +201,7 @@ const normalizeForRedirect = (filePath) => {
 
 const makeRedirect = (redirectsPath, oldPath, newPath) => {
     if (!oldPath || !newPath) {
-        console.error(`[ERROR] Redirect creation skipped due to invalid paths.`);
+        console.error(`[ERROR] Redirect creation skipped due to invalid paths.`, oldPath, newPath);
         return;
     }
 
@@ -218,7 +218,7 @@ const makeRedirect = (redirectsPath, oldPath, newPath) => {
             for (const sourceRedirect in redirects) {
                 if (redirects[sourceRedirect].destination === normOldPath) {
                     redirects[sourceRedirect].destination = normNewPath;
-                    console.log(`[SUCCESS] Chained redirect updated: ${sourceRedirect} -> ${normNewPath}`);
+                    console.// log(`[SUCCESS] Chained redirect updated: ${sourceRedirect} -> ${normNewPath}`);
                 }
             }
 
@@ -226,7 +226,7 @@ const makeRedirect = (redirectsPath, oldPath, newPath) => {
                 destination: normNewPath,
                 addedOn: today,
             };
-            console.log(`[SUCCESS] Redirect rule created/updated: ${normOldPath} -> ${normNewPath}`);
+            console.// log(`[SUCCESS] Redirect rule created/updated: ${normOldPath} -> ${normNewPath}`);
 
 
             fs.writeJsonSync(redirectsPath, redirects, {spaces: 2});
@@ -241,33 +241,33 @@ const makeRedirect = (redirectsPath, oldPath, newPath) => {
 };
 
 const main = async () => {
-    console.log(process.argv.slice(2));
+    console.// log(process.argv.slice(2));
     const args = process.argv.slice(2);
     if (args.length !== 2) {
-        log('ERROR', 'Usage: npm run mv -- <source_path> <destination_path>');
+        // log('ERROR', 'Usage: npm run mv -- <source_path> <destination_path>');
         process.exit(1);
     }
 
     const [source, destination] = args.map(p => path.resolve(CWD, p));
 
     if (!await fs.pathExists(source)) {
-        log('ERROR', `Source path does not exist: ${source}`);
+        // log('ERROR', `Source path does not exist: ${source}`);
         process.exit(1);
     }
 
-    log('INFO', 'Starting pre-scan and ID mapping...');
+    // log('INFO', 'Starting pre-scan and ID mapping...');
     let mapping = createMapping('./docs');
-    log('SUCCESS', `Mapping complete. Found ${Object.keys(mapping).length / 2} unique IDs.`);
+    // log('SUCCESS', `Mapping complete. Found ${Object.keys(mapping).length / 2} unique IDs.`);
 
-    log('INFO', 'Starting mapping files to move...');
+    // log('INFO', 'Starting mapping files to move...');
     const toMoveFiles = listAllFiles(source);
-    log('SUCCESS', `Mapping files to move complete. Found ${toMoveFiles.length} files.`);
+    // log('SUCCESS', `Mapping files to move complete. Found ${toMoveFiles.length} files.`);
 
     toMoveFiles.forEach((filePath, index) => {
-        console.log(`${index + 1}. ${filePath}`);
+        console.// log(`${index + 1}. ${filePath}`);
         const newFilePath = moveFile(source, destination, filePath);
         if(newFilePath) {
-            log('SUCCESS', `Moved file: ${filePath} to ${destination}`);
+            // log('SUCCESS', `Moved file: ${filePath} to ${destination}`);
             const updatePaths = updateMappingAfterMove(mapping, filePath, newFilePath);
             mapping = { ...updatePaths.mapping };
             const { oldPhysicalPath, oldLogicalPath } = updatePaths;
@@ -275,10 +275,10 @@ const main = async () => {
             cleanupEmptyFolders(source);
             makeRedirect("./301redirects.json", oldLogicalPath, newLogicalPath);
         } else {
-            log('ERROR', `Failed to move file: ${filePath}`);
+            // log('ERROR', `Failed to move file: ${filePath}`);
         }
     });
-    log('SUCCESS', 'Operation completed successfully!');
+    // log('SUCCESS', 'Operation completed successfully!');
 }
 
 main();
