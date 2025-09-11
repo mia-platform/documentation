@@ -2,7 +2,18 @@ const fs = require('fs-extra');
 const path = require('path');
 const {globSync} = require('glob');
 const matter = require('gray-matter');
+const prompts = require('prompts');
 const CWD = process.cwd();
+
+const log = (level, message, details) => {
+    const prefixMap = {
+        INFO: '[INFO]',
+        SUCCESS: '[SUCCESS]',
+        ERROR: '[ERROR]',
+        REDIRECT: '[REDIRECT]',
+        'LINK UPDATE': '[LINK UPDATE]',
+    };
+};
 
 const createMapping = (directoryPath) => {
     const files = globSync(`${directoryPath}/**/*.{md,mdx}`);
@@ -81,8 +92,6 @@ const listAllFiles = (inputPath) => {
 };
 
 const moveFile = (sourcePath, destinationPath, filePath) => {
-    // docs/console docs/development_suite docs/console/api-console/advanced-section/api-gateway/how-to.md
-
     try {
         const relativePath = path.relative(sourcePath, filePath);
         const finalDestinationPath = path.join(destinationPath, relativePath);
@@ -179,6 +188,24 @@ const makeRedirect = (redirectsPath, oldPath, newPath) => {
     }
 };
 
+const updateAllLinks = (newPhysicalPath, oldLogicalPath, oldPhysicalPath) => {
+    try {
+        const docsDir = './docs';
+        const allMarkdownFiles = globSync(`${docsDir}/**/*.{md,mdx}`);
+        for (const currentFilePath of allMarkdownFiles) {
+            let content = fs.readFileSync(currentFilePath, 'utf-8');
+
+            const newPhysicalPathParsed = newPhysicalPath.replace(/^docs\//, '/');
+            const oldPhysicalPathParsed = oldPhysicalPath.replace(/^docs\//, '/');
+
+            const newContent = content.replaceAll(`](${oldPhysicalPathParsed}`, `](${newPhysicalPathParsed}`);
+            fs.writeFileSync(currentFilePath, newContent, 'utf-8');
+        }
+    } catch (e) {
+        console.error(`[ERROR] Failed to update links: ${e.message}`);
+    }
+};
+
 const main = async () => {
     console.log("Starting move operation...");
     const args = process.argv.slice(2);
@@ -203,6 +230,7 @@ const main = async () => {
             mapping = { ...updatePaths.mapping };
             const { newLogicalPath, newPhysicalPath, oldLogicalPath, oldPhysicalPath } = updatePaths;
             makeRedirect("./301redirects.json", oldLogicalPath, newLogicalPath);
+            updateAllLinks(newPhysicalPath, oldLogicalPath, oldPhysicalPath)
         }
     });
 
