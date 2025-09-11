@@ -198,7 +198,7 @@ const updateAllLinks = (newPhysicalPath, oldLogicalPath, oldPhysicalPath) => {
             const newPhysicalPathParsed = newPhysicalPath.replace(/^docs\//, '/');
             const oldPhysicalPathParsed = oldPhysicalPath.replace(/^docs\//, '/');
 
-            const newContent = content.replaceAll(`](${oldPhysicalPathParsed}`, `](${newPhysicalPathParsed}`);
+            const newContent = content.replaceAll(`${oldPhysicalPathParsed}`, `${newPhysicalPathParsed}`);
             fs.writeFileSync(currentFilePath, newContent, 'utf-8');
         }
     } catch (e) {
