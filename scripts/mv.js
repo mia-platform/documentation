@@ -199,36 +199,44 @@ const normalizeForRedirect = (filePath) => {
     return path.join('/', filePath.replace('./', '')).replace(/\\/g, '/');
 };
 
-const makeRedirect = async (redirects, oldPath, newPath) => {
+const makeRedirect = (redirectsPath, oldPath, newPath) => {
     if (!oldPath || !newPath) {
         console.error(`[ERROR] Redirect creation skipped due to invalid paths.`);
         return;
     }
 
+    let redirects = null;
     const normOldPath = normalizeForRedirect(oldPath);
     const normNewPath = normalizeForRedirect(newPath);
 
     try {
-        const today = new Date().toISOString().split('T')[0];
+        if (fs.pathExistsSync(redirectsPath)) {
+            redirects = fs.readJsonSync(redirectsPath);
 
+            const today = new Date().toISOString().split('T')[0];
 
-        for (const sourceRedirect in redirects) {
-            if (redirects[sourceRedirect].destination === normOldPath) {
-                redirects[sourceRedirect].destination = normNewPath;
-                console.log(`[SUCCESS] Chained redirect updated: ${sourceRedirect} -> ${normNewPath}`);
+            for (const sourceRedirect in redirects) {
+                if (redirects[sourceRedirect].destination === normOldPath) {
+                    redirects[sourceRedirect].destination = normNewPath;
+                    console.log(`[SUCCESS] Chained redirect updated: ${sourceRedirect} -> ${normNewPath}`);
+                }
             }
-        }
 
-        redirects[normOldPath] = {
-            destination: normNewPath,
-            addedOn: today,
-        };
-        console.log(`[SUCCESS] Redirect rule created/updated: ${normOldPath} -> ${normNewPath}`);
+            redirects[normOldPath] = {
+                destination: normNewPath,
+                addedOn: today,
+            };
+            console.log(`[SUCCESS] Redirect rule created/updated: ${normOldPath} -> ${normNewPath}`);
+
+
+            fs.writeJsonSync(redirectsPath, redirects, {spaces: 2});
+        }
 
         return redirects;
 
     } catch (error) {
         console.error(`[ERROR] Failed to update redirects: ${error.message}`);
+        return redirects;
     }
 };
 
@@ -255,11 +263,6 @@ const main = async () => {
     const toMoveFiles = listAllFiles(source);
     log('SUCCESS', `Mapping files to move complete. Found ${toMoveFiles.length} files.`);
 
-    let redirectsContent = null;
-    if (fs.pathExistsSync("./301redirects.json")) {
-        redirectsContent = fs.readJsonSync("./301redirects.json");
-    }
-
     toMoveFiles.forEach((filePath, index) => {
         console.log(`${index + 1}. ${filePath}`);
         const newFilePath = moveFile(source, destination, filePath);
@@ -270,21 +273,12 @@ const main = async () => {
             const { oldPhysicalPath, oldLogicalPath } = updatePaths;
             const newLogicalPath = mapping[newFilePath] ? mapping[newFilePath].logical_path : null;
             cleanupEmptyFolders(source);
-            if(redirectsContent) {
-                redirectsContent = makeRedirect(redirectsContent, oldLogicalPath, newLogicalPath);
-            }
+            makeRedirect("./301redirects.json", oldLogicalPath, newLogicalPath);
         } else {
             log('ERROR', `Failed to move file: ${filePath}`);
         }
     });
-
-    if(redirectsContent) {
-        fs.writeJsonSync("./301redirects.json", redirectsContent, { spaces: 2 });
-    }
-
     log('SUCCESS', 'Operation completed successfully!');
-
-
 }
 
 main();
