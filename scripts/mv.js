@@ -267,7 +267,7 @@ const main = async () => {
         console.log(`${index + 1}. ${filePath}`);
         const newFilePath = moveFile(source, destination, filePath);
         if(newFilePath) {
-            log('SUCCESS', `Moved file: ${filePath} to ${toMoveFiles}`);
+            log('SUCCESS', `Moved file: ${filePath} to ${destination}`);
             const updatePaths = updateMappingAfterMove(mapping, filePath, newFilePath);
             mapping = { ...updatePaths.mapping };
             const { oldPhysicalPath, oldLogicalPath } = updatePaths;
