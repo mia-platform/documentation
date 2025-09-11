@@ -223,7 +223,8 @@ const main = async () => {
     let mapping = createMapping('./docs');
     const toMoveFiles = listAllFiles(source);
 
-    toMoveFiles.forEach((filePath) => {
+    toMoveFiles.forEach((filePath, index) => {
+        console.log(`Processing: ${index+1}/${toMoveFiles.length} - File: ${filePath}`);
         const newFilePath = moveFile(source, destination, filePath);
         if(newFilePath && (path.extname(filePath).toLowerCase() === '.md' || path.extname(filePath).toLowerCase() === '.mdx')) {
             const updatePaths = updateMappingAfterMove(mapping, filePath, newFilePath);
