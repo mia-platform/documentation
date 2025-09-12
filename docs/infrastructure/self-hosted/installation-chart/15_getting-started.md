@@ -181,8 +181,8 @@ If you want to setup multiple Super User you can use the same binding and add mu
 
 5. Now it's possible to can create the first company via API by heading to the `/documentations/api-portal/` path on your Console host and using the `POST /companies` API. The API will return the id of the company.
 6. After the creation of the Company you will be able to access it from Console at the `/tenants/:id` path, here you'll be able to manage the Company providers and Clusters.
-7.  Now you are ready to start with your first project! You can find out more [here](/console/company-configuration/project-default-configuration.mdx)
+7.  Now you are ready to start with your first project! You can find out more [here](/products/console/company-configuration/project-default-configuration.mdx)
 
 :::info
-For further information head to the Company creation [documentation section](/console/project-configuration/create-a-project.mdx).
+For further information head to the Company creation [documentation section](/products/console/project-configuration/create-a-project.mdx).
 :::

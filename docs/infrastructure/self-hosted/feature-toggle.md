@@ -4,15 +4,15 @@ title: Feature Toggle
 sidebar_label: Feature Toggle
 ---
 
-The console offers a section called [Feature Preview](/development_suite/user-settings/feature-preview.md) in the Project Settings and User section. These sections allow to activate features that are still in preview by enabling a toggle.
+The console offers a section called [Feature Preview](/products/console/user-settings/feature-preview.md) in the Project Settings and User section. These sections allow to activate features that are still in preview by enabling a toggle.
 
-![feature preview](../../development_suite/user-settings/img/enabling-feature-preview.png)
+![feature preview](../../products/console/user-settings/img/enabling-feature-preview.png)
 
 ## List of features preview
 In the CMS, inside the Feature table under the Configuration group, are listed all the available features that can be bound to a scope.
 Each element has:
 - a description,
-- a field `Release Stage` that if evaluated to `preview`, the feature will be available in the user [Feature Preview](/development_suite/user-settings/feature-preview.md) section.
+- a field `Release Stage` that if evaluated to `preview`, the feature will be available in the user [Feature Preview](/products/console/user-settings/feature-preview.md) section.
 - a list of scopes which the feature could be bound with.
 
 In the Scope field it is possible to choose between these values:

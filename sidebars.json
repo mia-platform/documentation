@@ -1,7 +1,7 @@
 {
   "console": [
     {
-      "id": "development_suite/overview-dev-suite",
+      "id": "products/console/overview-dev-suite",
       "type": "doc"
     },
     {
@@ -15,27 +15,27 @@
           "label": "Configure Marketplace Components",
           "items": [
             {
-              "id": "console/tutorials/configure-marketplace-components/microservice-hello-world",
+              "id": "products/console/tutorials/configure-marketplace-components/microservice-hello-world",
               "type": "doc"
             },
             {
-              "id": "console/tutorials/configure-marketplace-components/api-portal",
+              "id": "products/console/tutorials/configure-marketplace-components/api-portal",
               "type": "doc"
             },
             {
-              "id": "console/tutorials/configure-marketplace-components/rest-api-for-crud-on-data",
+              "id": "products/console/tutorials/configure-marketplace-components/rest-api-for-crud-on-data",
               "type": "doc"
             },
             {
-              "id": "console/tutorials/configure-marketplace-components/create-a-custom-microservice",
+              "id": "products/console/tutorials/configure-marketplace-components/create-a-custom-microservice",
               "type": "doc"
             },
             {
-              "id": "console/tutorials/configure-marketplace-components/microservice-with-metrics",
+              "id": "products/console/tutorials/configure-marketplace-components/microservice-with-metrics",
               "type": "doc"
             },
             {
-              "id": "console/tutorials/configure-marketplace-components/flow-manager",
+              "id": "products/console/tutorials/configure-marketplace-components/flow-manager",
               "type": "doc"
             },
             {
@@ -44,23 +44,23 @@
               "collapsed": true,
               "link": {
                 "type": "doc",
-                "id": "console/tutorials/configure-marketplace-components/auth-architecture/intro"
+                "id": "products/console/tutorials/configure-marketplace-components/auth-architecture/intro"
               },
               "items": [
                 {
-                  "id": "console/tutorials/configure-marketplace-components/auth-architecture/static-api-key",
+                  "id": "products/console/tutorials/configure-marketplace-components/auth-architecture/static-api-key",
                   "type": "doc"
                 },
                 {
-                  "id": "console/tutorials/configure-marketplace-components/auth-architecture/external-idp",
+                  "id": "products/console/tutorials/configure-marketplace-components/auth-architecture/external-idp",
                   "type": "doc"
                 },
                 {
-                  "id": "console/tutorials/configure-marketplace-components/auth-architecture/external-idp-internal-session",
+                  "id": "products/console/tutorials/configure-marketplace-components/auth-architecture/external-idp-internal-session",
                   "type": "doc"
                 },
                 {
-                  "id": "console/tutorials/configure-marketplace-components/auth-architecture/multiple-projects",
+                  "id": "products/console/tutorials/configure-marketplace-components/auth-architecture/multiple-projects",
                   "type": "doc"
                 }
               ]
@@ -72,53 +72,53 @@
           "label": "Infrastructure Project",
           "items": [
             {
-              "id": "console/tutorials/infrastructure-project/create-project-configuration",
+              "id": "products/console/tutorials/infrastructure-project/create-project-configuration",
               "type": "doc"
             },
             {
-              "id": "console/tutorials/infrastructure-project/visualize-infrastructure-project-components-runtime-data-in-console",
+              "id": "products/console/tutorials/infrastructure-project/visualize-infrastructure-project-components-runtime-data-in-console",
               "type": "doc"
             }
           ]
         },
         {
-          "id": "console/tutorials/configure-new-company",
+          "id": "products/console/tutorials/configure-new-company",
           "type": "doc"
         },
         {
-          "id": "console/tutorials/microservice-from-docker-image",
+          "id": "products/console/tutorials/microservice-from-docker-image",
           "type": "doc"
         },
         {
-          "id": "console/tutorials/set-requests-limits-of-a-microservice",
+          "id": "products/console/tutorials/set-requests-limits-of-a-microservice",
           "type": "doc"
         },
         {
-          "id": "console/tutorials/protect-your-endpoints-with-policies",
+          "id": "products/console/tutorials/protect-your-endpoints-with-policies",
           "type": "doc"
         },
         {
-          "id": "console/tutorials/create-extension-tutorial",
+          "id": "products/console/tutorials/create-extension-tutorial",
           "type": "doc"
         },
         {
-          "id": "console/tutorials/import-brownfield-project-tutorial",
+          "id": "products/console/tutorials/import-brownfield-project-tutorial",
           "type": "doc"
         },
         {
-          "id": "console/tutorials/create-a-rag-application",
+          "id": "products/console/tutorials/create-a-rag-application",
           "type": "doc"
         },
         {
-          "id": "console/company-configuration/providers/project-configuration",
+          "id": "products/console/company-configuration/providers/project-configuration",
           "type": "doc"
         },
         {
-          "id": "console/tutorials/create-extension-with-sso",
+          "id": "products/console/tutorials/create-extension-with-sso",
           "type": "doc"
         },
         {
-          "id": "console/tutorials/create-scorecards",
+          "id": "products/console/tutorials/create-scorecards",
           "type": "doc"
         }
       ]
@@ -134,45 +134,45 @@
           "label": "Marketplace Components",
           "items": [
             {
-              "id": "console/videos/marketplace-components/node-microservice",
+              "id": "products/console/videos/marketplace-components/node-microservice",
               "type": "doc"
             },
             {
-              "id": "console/videos/marketplace-components/crud-service",
+              "id": "products/console/videos/marketplace-components/crud-service",
               "type": "doc"
             }
           ]
         },
         {
-          "id": "console/videos/mia-assistant",
+          "id": "products/console/videos/mia-assistant",
           "type": "doc"
         },
         {
-          "id": "console/videos/manage-providers-in-console",
+          "id": "products/console/videos/manage-providers-in-console",
           "type": "doc"
         },
         {
-          "id": "console/videos/custom-frontend-iframe",
+          "id": "products/console/videos/custom-frontend-iframe",
           "type": "doc"
         },
         {
-          "id": "console/videos/connecting-cluster",
+          "id": "products/console/videos/connecting-cluster",
           "type": "doc"
         },
         {
-          "id": "console/videos/feature-preview",
+          "id": "products/console/videos/feature-preview",
           "type": "doc"
         },
         {
-          "id": "console/videos/m2m-auth",
+          "id": "products/console/videos/m2m-auth",
           "type": "doc"
         },
         {
-          "id": "console/videos/providers",
+          "id": "products/console/videos/providers",
           "type": "doc"
         },
         {
-          "id": "console/videos/runtime-area",
+          "id": "products/console/videos/runtime-area",
           "type": "doc"
         }
       ]
@@ -183,31 +183,31 @@
       "label": "Handbooks",
       "items": [
         {
-          "id": "console/handbooks/project-manage",
+          "id": "products/console/handbooks/project-manage",
           "type": "doc"
         },
         {
-          "id": "console/handbooks/project-usage",
+          "id": "products/console/handbooks/project-usage",
           "type": "doc"
         },
         {
-          "id": "console/handbooks/project-development",
+          "id": "products/console/handbooks/project-development",
           "type": "doc"
         },
         {
-          "id": "console/handbooks/design-overview",
+          "id": "products/console/handbooks/design-overview",
           "type": "doc"
         },
         {
-          "id": "console/handbooks/microservice-ports",
+          "id": "products/console/handbooks/microservice-ports",
           "type": "doc"
         },
         {
-          "id": "console/handbooks/endpoints",
+          "id": "products/console/handbooks/endpoints",
           "type": "doc"
         },
         {
-          "id": "console/handbooks/traefik-handbook",
+          "id": "products/console/handbooks/traefik-handbook",
           "type": "doc"
         }
       ]
@@ -217,20 +217,20 @@
       "type": "category",
       "label": "Company Configuration",
       "link": {
-        "id": "console/company-configuration/overview",
+        "id": "products/console/company-configuration/overview",
         "type": "doc"
       },
       "items": [
         {
-          "id": "console/company-configuration/create-company",
+          "id": "products/console/company-configuration/create-company",
           "type": "doc"
         },
         {
-          "id": "console/company-configuration/configuration",
+          "id": "products/console/company-configuration/configuration",
           "type": "doc"
         },
         {
-          "id": "console/company-configuration/company-settings",
+          "id": "products/console/company-configuration/company-settings",
           "type": "doc"
         },
         {
@@ -238,16 +238,16 @@
           "type": "category",
           "label": "Clusters",
           "link": {
-            "id": "console/company-configuration/clusters-management/overview",
+            "id": "products/console/company-configuration/clusters-management/overview",
             "type": "doc"
           },
           "items": [
             {
-              "id": "console/company-configuration/clusters-management/cluster-setup",
+              "id": "products/console/company-configuration/clusters-management/cluster-setup",
               "type": "doc"
             },
             {
-              "id": "console/company-configuration/clusters-management/connect-and-manage-cluster",
+              "id": "products/console/company-configuration/clusters-management/connect-and-manage-cluster",
               "type": "doc"
             }
           ]
@@ -257,20 +257,20 @@
           "type": "category",
           "label": "Providers",
           "link": {
-            "id": "console/company-configuration/providers/overview",
+            "id": "products/console/company-configuration/providers/overview",
             "type": "doc"
           },
           "items": [
             {
-              "id": "console/company-configuration/providers/management",
+              "id": "products/console/company-configuration/providers/management",
               "type": "doc"
             },
             {
-              "id": "console/company-configuration/providers/marketplace",
+              "id": "products/console/company-configuration/providers/marketplace",
               "type": "doc"
             },
             {
-              "id": "console/company-configuration/providers/project-configuration",
+              "id": "products/console/company-configuration/providers/project-configuration",
               "type": "doc"
             },
             {
@@ -278,7 +278,7 @@
               "type": "category",
               "label": "Extension Providers",
               "link": {
-                "id": "console/company-configuration/providers/extension-providers",
+                "id": "products/console/company-configuration/providers/extension-providers",
                 "type": "doc"
               },
               "items": [
@@ -287,12 +287,12 @@
                   "type": "category",
                   "label": "Orchestrator Generator",
                   "link": {
-                    "id": "console/company-configuration/providers/extensions/orchestrator-generator/overview",
+                    "id": "products/console/company-configuration/providers/extensions/orchestrator-generator/overview",
                     "type": "doc"
                   },
                   "items": [
                     {
-                      "id": "console/company-configuration/providers/extensions/orchestrator-generator/use-cases",
+                      "id": "products/console/company-configuration/providers/extensions/orchestrator-generator/use-cases",
                       "type": "doc"
                     }
                   ]
@@ -300,25 +300,25 @@
               ]
             },
             {
-              "id": "console/company-configuration/providers/api-reference",
+              "id": "products/console/company-configuration/providers/api-reference",
               "type": "doc"
             }
           ]
         },
         {
-          "id": "console/company-configuration/project-default-configuration",
+          "id": "products/console/company-configuration/project-default-configuration",
           "type": "doc"
         },
         {
-          "id": "console/company-configuration/project-blueprint",
+          "id": "products/console/company-configuration/project-blueprint",
           "type": "doc"
         },
         {
-          "id": "console/company-configuration/design-overview",
+          "id": "products/console/company-configuration/design-overview",
           "type": "doc"
         },
         {
-          "id": "console/company-configuration/license-metrics",
+          "id": "products/console/company-configuration/license-metrics",
           "type": "doc"
         },
         {
@@ -327,17 +327,17 @@
           "label": "Manage Webhooks",
           "link": {
             "type": "doc",
-            "id": "console/company-configuration/webhooks"
+            "id": "products/console/company-configuration/webhooks"
           },
           "items": [
             {
-              "id": "console/company-configuration/events",
+              "id": "products/console/company-configuration/events",
               "type": "doc"
             }
           ]
         },
         {
-          "id": "console/company-configuration/extensions",
+          "id": "products/console/company-configuration/extensions",
           "type": "doc"
         }
       ]
@@ -348,27 +348,27 @@
       "collapsed": true,
       "link": {
         "type": "doc",
-        "id": "console/project-configuration/project-configuration"
+        "id": "products/console/project-configuration/project-configuration"
       },
       "items": [
         {
-          "id": "console/project-configuration/application-project",
+          "id": "products/console/project-configuration/application-project",
           "type": "doc"
         },
         {
-          "id": "console/project-configuration/infrastructure-project",
+          "id": "products/console/project-configuration/infrastructure-project",
           "type": "doc"
         },
         {
-          "id": "console/project-configuration/create-a-project",
+          "id": "products/console/project-configuration/create-a-project",
           "type": "doc"
         },
         {
-          "id": "console/project-configuration/delete-a-project",
+          "id": "products/console/project-configuration/delete-a-project",
           "type": "doc"
         },
         {
-          "id": "console/project-configuration/project-settings",
+          "id": "products/console/project-configuration/project-settings",
           "type": "doc"
         },
         {
@@ -376,20 +376,20 @@
           "type": "category",
           "collapsed": true,
           "link": {
-            "id": "console/project-configuration/kustomize-your-configurations/kustomize-your-configurations",
+            "id": "products/console/project-configuration/kustomize-your-configurations/kustomize-your-configurations",
             "type": "doc"
           },
           "items": [
             {
-              "id": "console/project-configuration/kustomize-your-configurations/migrate-to-kustomize",
+              "id": "products/console/project-configuration/kustomize-your-configurations/migrate-to-kustomize",
               "type": "doc"
             },
             {
-              "id": "console/project-configuration/kustomize-your-configurations/manage-a-kustomize-project",
+              "id": "products/console/project-configuration/kustomize-your-configurations/manage-a-kustomize-project",
               "type": "doc"
             },
             {
-              "id": "console/project-configuration/kustomize-your-configurations/kustomize-use-cases",
+              "id": "products/console/project-configuration/kustomize-your-configurations/kustomize-use-cases",
               "type": "doc"
             }
           ]
@@ -399,16 +399,16 @@
           "type": "category",
           "collapsed": true,
           "link": {
-            "id": "console/project-configuration/manage-runtime-environments/manage-runtime-environments",
+            "id": "products/console/project-configuration/manage-runtime-environments/manage-runtime-environments",
             "type": "doc"
           },
           "items": [
             {
-              "id": "console/project-configuration/manage-runtime-environments/configure-a-new-environment",
+              "id": "products/console/project-configuration/manage-runtime-environments/configure-a-new-environment",
               "type": "doc"
             },
             {
-              "id": "console/project-configuration/manage-runtime-environments/delete-an-environment",
+              "id": "products/console/project-configuration/manage-runtime-environments/delete-an-environment",
               "type": "doc"
             }
           ]
@@ -418,30 +418,30 @@
           "type": "category",
           "collapsed": true,
           "link": {
-            "id": "console/project-configuration/manage-environment-variables/environment-variables-introduction",
+            "id": "products/console/project-configuration/manage-environment-variables/environment-variables-introduction",
             "type": "doc"
           },
           "items": [
             {
-              "id": "console/project-configuration/manage-environment-variables/manage-environment-variables-with-gitlab",
+              "id": "products/console/project-configuration/manage-environment-variables/manage-environment-variables-with-gitlab",
               "type": "doc"
             },
             {
-              "id": "console/project-configuration/manage-environment-variables/manage-environment-variables-with-vault",
+              "id": "products/console/project-configuration/manage-environment-variables/manage-environment-variables-with-vault",
               "type": "doc"
             },
             {
-              "id": "console/project-configuration/manage-environment-variables/manage-environment-variables-with-akv",
+              "id": "products/console/project-configuration/manage-environment-variables/manage-environment-variables-with-akv",
               "type": "doc"
             }
           ]
         },
         {
-          "id": "console/project-configuration/authorization-flow",
+          "id": "products/console/project-configuration/authorization-flow",
           "type": "doc"
         },
         {
-          "id": "console/project-configuration/documentation-portal",
+          "id": "products/console/project-configuration/documentation-portal",
           "type": "doc"
         },
         {
@@ -449,30 +449,30 @@
           "type": "category",
           "collapsed": true,
           "link": {
-            "id": "development_suite/set-up-infrastructure/enhanced-project-workflow",
+            "id": "products/console/set-up-infrastructure/enhanced-project-workflow",
             "type": "doc"
           },
           "items": [
             {
-              "id": "development_suite/set-up-infrastructure/revisions-and-versions",
+              "id": "products/console/set-up-infrastructure/revisions-and-versions",
               "type": "doc"
             },
             {
-              "id": "development_suite/set-up-infrastructure/migration-and-creation-project",
+              "id": "products/console/set-up-infrastructure/migration-and-creation-project",
               "type": "doc"
             },
             {
-              "id": "development_suite/set-up-infrastructure/new-deployment-workflow",
+              "id": "products/console/set-up-infrastructure/new-deployment-workflow",
               "type": "doc"
             },
             {
-              "id": "development_suite/set-up-infrastructure/env-based-management",
+              "id": "products/console/set-up-infrastructure/env-based-management",
               "type": "doc"
             }
           ]
         },
         {
-          "id": "console/project-configuration/docker-registry-configuration",
+          "id": "products/console/project-configuration/docker-registry-configuration",
           "type": "doc"
         }
       ]
@@ -486,64 +486,64 @@
           "label": "Videos",
           "items": [
             {
-              "id": "development_suite/api-console/api-design/videos/flow-manager",
+              "id": "products/console/api-console/api-design/videos/flow-manager",
               "type": "doc"
             }
           ]
         },
         {
-          "id": "development_suite/api-console/api-design/overview",
+          "id": "products/console/api-console/api-design/overview",
           "type": "doc"
         },
         {
-          "id": "development_suite/api-console/api-design/miactl-commands",
+          "id": "products/console/api-console/api-design/miactl-commands",
           "type": "doc"
         },
         {
-          "id": "development_suite/api-console/api-design/crud_advanced",
+          "id": "products/console/api-console/api-design/crud_advanced",
           "type": "doc"
         },
         {
-          "id": "development_suite/api-console/api-design/mongo_views",
+          "id": "products/console/api-console/api-design/mongo_views",
           "type": "doc"
         },
         {
           "collapsed": true,
           "items": [
             {
-              "id": "development_suite/api-console/api-design/services",
+              "id": "products/console/api-console/api-design/services",
               "type": "doc"
             },
             {
-              "id": "development_suite/api-console/api-design/microservice-containers",
+              "id": "products/console/api-console/api-design/microservice-containers",
               "type": "doc"
             },
             {
-              "id": "development_suite/api-console/api-design/microservice-memory-resources",
+              "id": "products/console/api-console/api-design/microservice-memory-resources",
               "type": "doc"
             },
             {
-              "id": "development_suite/api-console/api-design/microservices-cpu-resources",
+              "id": "products/console/api-console/api-design/microservices-cpu-resources",
               "type": "doc"
             },
             {
-              "id": "development_suite/api-console/api-design/requests_limits_docs",
+              "id": "products/console/api-console/api-design/requests_limits_docs",
               "type": "doc"
             },
             {
-              "id": "development_suite/api-console/api-design/microservice-container-ports",
+              "id": "products/console/api-console/api-design/microservice-container-ports",
               "type": "doc"
             },
             {
-              "id": "development_suite/api-console/api-design/microservice-runtime-resources",
+              "id": "products/console/api-console/api-design/microservice-runtime-resources",
               "type": "doc"
             },
             {
-              "id": "development_suite/api-console/api-design/microservice-monitoring",
+              "id": "products/console/api-console/api-design/microservice-monitoring",
               "type": "doc"
             },
             {
-              "id": "development_suite/api-console/api-design/guidelines-for-logs",
+              "id": "products/console/api-console/api-design/guidelines-for-logs",
               "type": "doc"
             }
           ],
@@ -551,26 +551,26 @@
           "type": "category"
         },
         {
-          "id": "development_suite/api-console/api-design/replicas",
+          "id": "products/console/api-console/api-design/replicas",
           "type": "doc"
         },
         {
-          "id": "development_suite/api-console/api-design/jobs-cronjob",
+          "id": "products/console/api-console/api-design/jobs-cronjob",
           "type": "doc"
         },
         {
-          "id": "console/design-your-projects/sidecars",
+          "id": "products/console/design-your-projects/sidecars",
           "type": "doc"
         },
         {
           "collapsed": true,
           "link": {
-            "id": "console/design-your-projects/custom-resources/custom-resources",
+            "id": "products/console/design-your-projects/custom-resources/custom-resources",
             "type": "doc"
           },
           "items": [
             {
-              "id": "console/design-your-projects/custom-resources/custom-resources-use-cases",
+              "id": "products/console/design-your-projects/custom-resources/custom-resources-use-cases",
               "type": "doc"
             }
           ],
@@ -578,18 +578,18 @@
           "type": "category"
         },
         {
-          "id": "development_suite/api-console/api-design/decorators",
+          "id": "products/console/api-console/api-design/decorators",
           "type": "doc"
         },
         {
           "collapsed": true,
           "items": [
             {
-              "id": "development_suite/api-console/api-design/flow-manager-configurator/overview",
+              "id": "products/console/api-console/api-design/flow-manager-configurator/overview",
               "type": "doc"
             },
             {
-              "id": "development_suite/api-console/api-design/flow-manager-configurator/how-it-works",
+              "id": "products/console/api-console/api-design/flow-manager-configurator/how-it-works",
               "type": "doc"
             }
           ],
@@ -597,47 +597,47 @@
           "type": "category"
         },
         {
-          "id": "development_suite/api-console/api-design/endpoints",
+          "id": "products/console/api-console/api-design/endpoints",
           "type": "doc"
         },
         {
-          "id": "development_suite/api-console/api-design/listeners",
+          "id": "products/console/api-console/api-design/listeners",
           "type": "doc"
         },
         {
-          "id": "development_suite/api-console/api-design/authorization",
+          "id": "products/console/api-console/api-design/authorization",
           "type": "doc"
         },
         {
-          "id": "development_suite/api-console/api-design/api-key",
+          "id": "products/console/api-console/api-design/api-key",
           "type": "doc"
         },
         {
-          "id": "development_suite/api-console/api-design/proxies",
+          "id": "products/console/api-console/api-design/proxies",
           "type": "doc"
         },
         {
-          "id": "development_suite/api-console/api-design/public_variables",
+          "id": "products/console/api-console/api-design/public_variables",
           "type": "doc"
         },
         {
-          "id": "development_suite/api-console/api-design/merge_collaboration",
+          "id": "products/console/api-console/api-design/merge_collaboration",
           "type": "doc"
         },
         {
-          "id": "development_suite/api-console/api-design/miacraft",
+          "id": "products/console/api-console/api-design/miacraft",
           "type": "doc"
         },
         {
-          "id": "development_suite/api-console/api-design/gdpr",
+          "id": "products/console/api-console/api-design/gdpr",
           "type": "doc"
         },
         {
-          "id": "development_suite/api-console/api-design/security",
+          "id": "products/console/api-console/api-design/security",
           "type": "doc"
         },
         {
-          "id": "development_suite/api-console/api-design/fine-grained-access-control",
+          "id": "products/console/api-console/api-design/fine-grained-access-control",
           "type": "doc"
         },
         {
@@ -646,21 +646,21 @@
             {
               "label": "Console Configuration",
               "type": "doc",
-              "id": "development_suite/api-console/advanced-section/api-console-configuration"
+              "id": "products/console/api-console/advanced-section/api-console-configuration"
             },
             {
               "collapsed": true,
               "items": [
                 {
-                  "id": "development_suite/api-console/advanced-section/api-gateway/how-to",
+                  "id": "products/console/api-console/advanced-section/api-gateway/how-to",
                   "type": "doc"
                 },
                 {
-                  "id": "development_suite/api-console/advanced-section/api-gateway/request-size",
+                  "id": "products/console/api-console/advanced-section/api-gateway/request-size",
                   "type": "doc"
                 },
                 {
-                  "id": "development_suite/api-console/advanced-section/api-gateway/change-timeout",
+                  "id": "products/console/api-console/advanced-section/api-gateway/change-timeout",
                   "type": "doc"
                 }
               ],
@@ -671,23 +671,23 @@
               "collapsed": true,
               "items": [
                 {
-                  "id": "development_suite/api-console/advanced-section/api-gateway-envoy/extensions",
+                  "id": "products/console/api-console/advanced-section/api-gateway-envoy/extensions",
                   "type": "doc"
                 },
                 {
-                  "id": "development_suite/api-console/advanced-section/api-gateway-envoy/jwt-authn",
+                  "id": "products/console/api-console/advanced-section/api-gateway-envoy/jwt-authn",
                   "type": "doc"
                 },
                 {
-                  "id": "development_suite/api-console/advanced-section/api-gateway-envoy/websockets",
+                  "id": "products/console/api-console/advanced-section/api-gateway-envoy/websockets",
                   "type": "doc"
                 },
                 {
-                  "id": "development_suite/api-console/advanced-section/api-gateway-envoy/timeouts",
+                  "id": "products/console/api-console/advanced-section/api-gateway-envoy/timeouts",
                   "type": "doc"
                 },
                 {
-                  "id": "development_suite/api-console/advanced-section/api-gateway-envoy/udp",
+                  "id": "products/console/api-console/advanced-section/api-gateway-envoy/udp",
                   "type": "doc"
                 }
               ],
@@ -695,22 +695,22 @@
               "type": "category"
             },
             {
-              "id": "development_suite/api-console/advanced-section/swagger-aggregator/configuration",
+              "id": "products/console/api-console/advanced-section/swagger-aggregator/configuration",
               "type": "doc"
             },
             {
-              "id": "development_suite/api-console/advanced-section/authorization-service/configuration",
+              "id": "products/console/api-console/advanced-section/authorization-service/configuration",
               "type": "doc"
             },
             {
-              "id": "development_suite/api-console/advanced-section/auth0-client/configuration",
+              "id": "products/console/api-console/advanced-section/auth0-client/configuration",
               "type": "doc"
             }
           ],
           "label": "Advanced Mode",
           "type": "category",
           "link": {
-            "id": "development_suite/api-console/advanced-section/advanced-section",
+            "id": "products/console/api-console/advanced-section/advanced-section",
             "type": "doc"
           }
         }
@@ -722,31 +722,31 @@
       "collapsed": true,
       "items": [
         {
-          "id": "development_suite/deploy/overview",
+          "id": "products/console/deploy/overview",
           "type": "doc"
         },
         {
           "type": "category",
           "label": "Pipeline-based deployment strategy",
           "link": {
-            "id": "development_suite/deploy/pipeline-based/pipeline-based",
+            "id": "products/console/deploy/pipeline-based/pipeline-based",
             "type": "doc"
           },
           "items": [
             {
-              "id": "development_suite/deploy/pipeline-based/configure-jenkins",
+              "id": "products/console/deploy/pipeline-based/configure-jenkins",
               "type": "doc"
             },
             {
-              "id": "development_suite/deploy/pipeline-based/configure-github-actions",
+              "id": "products/console/deploy/pipeline-based/configure-github-actions",
               "type": "doc"
             },
             {
-              "id": "development_suite/deploy/pipeline-based/configure-gitlab-ci",
+              "id": "products/console/deploy/pipeline-based/configure-gitlab-ci",
               "type": "doc"
             },
             {
-              "id": "development_suite/deploy/pipeline-based/configure-azure-pipelines",
+              "id": "products/console/deploy/pipeline-based/configure-azure-pipelines",
               "type": "doc"
             }
           ]
@@ -755,12 +755,12 @@
           "type": "category",
           "label": "GitOps deployment strategy",
           "link": {
-            "id": "development_suite/deploy/gitops-based/gitops-based",
+            "id": "products/console/deploy/gitops-based/gitops-based",
             "type": "doc"
           },
           "items": [
             {
-              "id": "development_suite/deploy/gitops-based/configure-argocd",
+              "id": "products/console/deploy/gitops-based/configure-argocd",
               "type": "doc"
             }
           ]
@@ -769,7 +769,7 @@
       "label": "Deploy your workload",
       "type": "category",
       "link": {
-        "id": "development_suite/deploy/deploy",
+        "id": "products/console/deploy/deploy",
         "type": "doc"
       }
     },
@@ -777,23 +777,23 @@
       "collapsed": true,
       "items": [
         {
-          "id": "console/console-extensibility/extensibility-overview",
+          "id": "products/console/console-extensibility/extensibility-overview",
           "type": "doc"
         },
         {
-          "id": "console/console-extensibility/extension-registration",
+          "id": "products/console/console-extensibility/extension-registration",
           "type": "doc"
         },
         {
-          "id": "console/console-extensibility/extension-activation",
+          "id": "products/console/console-extensibility/extension-activation",
           "type": "doc"
         },
         {
-          "id": "console/console-extensibility/extension-locations",
+          "id": "products/console/console-extensibility/extension-locations",
           "type": "doc"
         },
         {
-          "id": "console/console-extensibility/extension-sso",
+          "id": "products/console/console-extensibility/extension-sso",
           "type": "doc"
         }
       ],
@@ -804,39 +804,39 @@
       "collapsed": true,
       "items": [
         {
-          "id": "development_suite/monitoring/introduction",
+          "id": "products/console/monitoring/introduction",
           "type": "doc"
         },
         {
-          "id": "development_suite/monitoring/resources/pods",
+          "id": "products/console/monitoring/resources/pods",
           "type": "doc"
         },
         {
-          "id": "development_suite/monitoring/resources/deployments",
+          "id": "products/console/monitoring/resources/deployments",
           "type": "doc"
         },
         {
-          "id": "development_suite/monitoring/resources/services",
+          "id": "products/console/monitoring/resources/services",
           "type": "doc"
         },
         {
-          "id": "development_suite/monitoring/resources/cronjobs",
+          "id": "products/console/monitoring/resources/cronjobs",
           "type": "doc"
         },
         {
-          "id": "development_suite/monitoring/resources/jobs",
+          "id": "products/console/monitoring/resources/jobs",
           "type": "doc"
         },
         {
-          "id": "development_suite/monitoring/resources/namespace",
+          "id": "products/console/monitoring/resources/namespace",
           "type": "doc"
         },
         {
-          "id": "development_suite/monitoring/resources/custom-resources",
+          "id": "products/console/monitoring/resources/custom-resources",
           "type": "doc"
         },
         {
-          "id": "development_suite/monitoring/dashboard",
+          "id": "products/console/monitoring/dashboard",
           "type": "doc"
         }
       ],
@@ -847,7 +847,7 @@
       "collapsed": true,
       "items": [
         {
-          "id": "development_suite/debugging/telepresence",
+          "id": "products/console/debugging/telepresence",
           "type": "doc"
         }
       ],
@@ -858,33 +858,33 @@
       "collapsed": true,
       "items": [
         {
-          "id": "development_suite/identity-and-access-management/console-levels-and-permission-management",
+          "id": "products/console/identity-and-access-management/console-levels-and-permission-management",
           "type": "doc"
         },
         {
-          "id": "development_suite/identity-and-access-management/monitor-audit-logs",
+          "id": "products/console/identity-and-access-management/monitor-audit-logs",
           "type": "doc"
         },
         {
-          "id": "development_suite/identity-and-access-management/manage-identities",
+          "id": "products/console/identity-and-access-management/manage-identities",
           "type": "doc"
         },
         {
-          "id": "development_suite/identity-and-access-management/manage-users",
+          "id": "products/console/identity-and-access-management/manage-users",
           "type": "doc"
         },
         {
-          "id": "development_suite/identity-and-access-management/manage-groups",
+          "id": "products/console/identity-and-access-management/manage-groups",
           "type": "doc"
         },
         {
-          "id": "development_suite/identity-and-access-management/manage-service-accounts",
+          "id": "products/console/identity-and-access-management/manage-service-accounts",
           "type": "doc"
         }
       ],
       "link": {
         "type": "doc",
-        "id": "development_suite/identity-and-access-management/identity-and-access-management"
+        "id": "products/console/identity-and-access-management/identity-and-access-management"
       },
       "type": "category",
       "label": "Identity and Access Management"
@@ -893,19 +893,19 @@
       "collapsed": true,
       "items": [
         {
-          "id": "development_suite/user-settings/user-personal-info",
+          "id": "products/console/user-settings/user-personal-info",
           "type": "doc"
         },
         {
-          "id": "development_suite/user-settings/user-companies",
+          "id": "products/console/user-settings/user-companies",
           "type": "doc"
         },
         {
-          "id": "development_suite/user-settings/user-preferences",
+          "id": "products/console/user-settings/user-preferences",
           "type": "doc"
         },
         {
-          "id": "development_suite/user-settings/feature-preview",
+          "id": "products/console/user-settings/feature-preview",
           "type": "doc"
         }
       ],
@@ -917,23 +917,23 @@
       "collapsed": true,
       "label": "Mia Assistant",
       "link": {
-        "id": "console/assistant/overview",
+        "id": "products/console/assistant/overview",
         "type": "doc"
       },
       "items": [
         {
-          "id": "console/assistant/overview",
+          "id": "products/console/assistant/overview",
           "type": "doc"
         }
       ]
     },
     {
        "type": "autogenerated",
-       "dirName": "mcp"
+       "dirName": "products/console/mcp"
      },
     {
       "type": "autogenerated",
-      "dirName": "cli"
+      "dirName": "products/console/cli"
     },
     {
       "collapsed": true,
@@ -947,27 +947,27 @@
           "use-cases",
           "guides"
         ],
-        "slug": "development_suite/use-cases"
+        "slug": "products/console/use-cases"
       },
       "items": [
         {
-          "id": "development_suite/use-cases/grpc",
+          "id": "products/console/use-cases/grpc",
           "type": "doc"
         }
       ]
     },
     {
-      "id": "development_suite/user-feedback/give-feedback",
+      "id": "products/console/user-feedback/give-feedback",
       "type": "doc"
     }
   ],
   "microfrontendComposer": [
     {
-      "id": "microfrontend-composer/what-is",
+      "id": "products/microfrontend-composer/what-is",
       "type": "doc"
     },
     {
-      "id": "microfrontend-composer/overview",
+      "id": "products/microfrontend-composer/overview",
       "type": "doc"
     },
     {
@@ -976,19 +976,19 @@
       "label": "Tutorials",
       "items": [
         {
-          "id": "microfrontend-composer/tutorials/basics",
+          "id": "products/microfrontend-composer/tutorials/basics",
           "type": "doc"
         },
         {
-          "id": "microfrontend-composer/tutorials/templates",
+          "id": "products/microfrontend-composer/tutorials/templates",
           "type": "doc"
         },
         {
-          "id": "microfrontend-composer/tutorials/microfrontends",
+          "id": "products/microfrontend-composer/tutorials/microfrontends",
           "type": "doc"
         },
         {
-          "id": "microfrontend-composer/tutorials/auth0-integration",
+          "id": "products/microfrontend-composer/tutorials/auth0-integration",
           "type": "doc"
         }
       ]
@@ -999,13 +999,13 @@
       "label": "Videos",
       "items": [
         {
-          "id": "microfrontend-composer/videos/microfrontend-composer",
+          "id": "products/microfrontend-composer/videos/microfrontend-composer",
           "type": "doc"
         }
       ]
     },
     {
-      "id": "microfrontend-composer/architecture",
+      "id": "products/microfrontend-composer/architecture",
       "type": "doc"
     },
     {
@@ -1015,7 +1015,7 @@
       "items": [
         {
           "type": "autogenerated",
-          "dirName": "microfrontend-composer/composer"
+          "dirName": "products/microfrontend-composer/composer"
         }
       ]
     },
@@ -1026,7 +1026,7 @@
       "items": [
         {
           "type": "autogenerated",
-          "dirName": "microfrontend-composer/back-kit"
+          "dirName": "products/microfrontend-composer/back-kit"
         }
       ]
     },
@@ -1036,15 +1036,15 @@
       "label": "External components",
       "items": [
         {
-          "id": "microfrontend-composer/external-components/overview",
+          "id": "products/microfrontend-composer/external-components/overview",
           "type": "doc"
         },
         {
-          "id": "microfrontend-composer/external-components/manifest",
+          "id": "products/microfrontend-composer/external-components/manifest",
           "type": "doc"
         },
         {
-          "id": "microfrontend-composer/external-components/bundling",
+          "id": "products/microfrontend-composer/external-components/bundling",
           "type": "doc"
         }
       ]
@@ -1055,17 +1055,17 @@
       "collapsed": true,
       "items": [
         {
-          "id": "microfrontend-composer/use-cases/data-visualization",
+          "id": "products/microfrontend-composer/use-cases/data-visualization",
           "type": "doc"
         },
         {
-          "id": "microfrontend-composer/use-cases/timeline",
+          "id": "products/microfrontend-composer/use-cases/timeline",
           "type": "doc"
         }
       ]
     },
     {
-      "id": "microfrontend-composer/faqs",
+      "id": "products/microfrontend-composer/faqs",
       "type": "doc"
     },
     {
@@ -1074,7 +1074,7 @@
       "collapsed": true,
       "items": [
         {
-          "id": "microfrontend-composer/previous-tools/overview-business-suite",
+          "id": "products/microfrontend-composer/previous-tools/overview-business-suite",
           "type": "doc"
         },
         {
@@ -1083,31 +1083,31 @@
           "collapsed": true,
           "items": [
             {
-              "id": "microfrontend-composer/previous-tools/cms/guide_cms",
+              "id": "products/microfrontend-composer/previous-tools/cms/guide_cms",
               "type": "doc"
             },
             {
-              "id": "microfrontend-composer/previous-tools/cms/config_cms",
+              "id": "products/microfrontend-composer/previous-tools/cms/config_cms",
               "type": "doc"
             },
             {
-              "id": "microfrontend-composer/previous-tools/cms/conf_cms",
+              "id": "products/microfrontend-composer/previous-tools/cms/conf_cms",
               "type": "doc"
             },
             {
-              "id": "microfrontend-composer/previous-tools/cms/colorare_il_cms",
+              "id": "products/microfrontend-composer/previous-tools/cms/colorare_il_cms",
               "type": "doc"
             },
             {
-              "id": "microfrontend-composer/previous-tools/cms/update_cms",
+              "id": "products/microfrontend-composer/previous-tools/cms/update_cms",
               "type": "doc"
             },
             {
-              "id": "microfrontend-composer/previous-tools/cms/custom-frontends-integration-CMS",
+              "id": "products/microfrontend-composer/previous-tools/cms/custom-frontends-integration-CMS",
               "type": "doc"
             },
             {
-              "id": "microfrontend-composer/previous-tools/cms/video-pills",
+              "id": "products/microfrontend-composer/previous-tools/cms/video-pills",
               "type": "doc"
             }
           ]
@@ -1116,11 +1116,11 @@
           "collapsed": true,
           "items": [
             {
-              "id": "microfrontend-composer/previous-tools/analytics/config_analytics",
+              "id": "products/microfrontend-composer/previous-tools/analytics/config_analytics",
               "type": "doc"
             },
             {
-              "id": "microfrontend-composer/previous-tools/analytics/conf_analytics",
+              "id": "products/microfrontend-composer/previous-tools/analytics/conf_analytics",
               "type": "doc"
             }
           ],
@@ -1132,11 +1132,11 @@
   ],
   "fastData": [
     {
-      "id": "fast_data/what_is_fast_data",
+      "id": "products/fast_data/what_is_fast_data",
       "type": "doc"
     },
     {
-      "id": "fast_data/no_code_overview",
+      "id": "products/fast_data/no_code_overview",
       "type": "doc"
     },
     {
@@ -1145,15 +1145,15 @@
       "collapsed": true,
       "items": [
         {
-          "id": "fast_data/tutorials/low-code",
+          "id": "products/fast_data/tutorials/low-code",
           "type": "doc"
         },
         {
-          "id": "fast_data/tutorials/bucket-storage-support",
+          "id": "products/fast_data/tutorials/bucket-storage-support",
           "type": "doc"
         },
         {
-          "id": "fast_data/tutorials/migration",
+          "id": "products/fast_data/tutorials/migration",
           "type": "doc"
         }
       ]
@@ -1164,11 +1164,11 @@
       "collapsed": true,
       "items": [
         {
-          "id": "fast_data/videos/fast-data-no-code",
+          "id": "products/fast_data/videos/fast-data-no-code",
           "type": "doc"
         },
         {
-          "id": "fast_data/videos/bucket-storage",
+          "id": "products/fast_data/videos/bucket-storage",
           "type": "doc"
         }
       ]
@@ -1179,41 +1179,41 @@
       "collapsed": true,
       "items": [
         {
-          "id": "fast_data/concepts/glossary",
+          "id": "products/fast_data/concepts/glossary",
           "type": "doc"
         },
         {
-          "id": "fast_data/concepts/inputs_and_outputs",
+          "id": "products/fast_data/concepts/inputs_and_outputs",
           "type": "doc"
         },
         {
-          "id": "fast_data/concepts/the_basics",
+          "id": "products/fast_data/concepts/the_basics",
           "type": "doc"
         },
         {
-          "id": "fast_data/concepts/architecture",
+          "id": "products/fast_data/concepts/architecture",
           "type": "doc"
         },
         {
-          "id": "fast_data/concepts/data_loading",
+          "id": "products/fast_data/concepts/data_loading",
           "type": "doc"
         }
       ]
     },
     {
-      "id": "fast_data/realtime_updater",
+      "id": "products/fast_data/realtime_updater",
       "type": "doc"
     },
     {
-      "id": "fast_data/projection_storer",
+      "id": "products/fast_data/projection_storer",
       "type": "doc"
     },
     {
-      "id": "fast_data/single_view_creator",
+      "id": "products/fast_data/single_view_creator",
       "type": "doc"
     },
     {
-      "id": "fast_data/single_view_trigger_generator",
+      "id": "products/fast_data/single_view_trigger_generator",
       "type": "doc"
     },
     {
@@ -1221,40 +1221,40 @@
       "type": "category",
       "collapsed": true,
       "link": {
-        "id": "fast_data/runtime_management/overview",
+        "id": "products/fast_data/runtime_management/overview",
         "type": "doc"
       },
       "items": [
         {
-          "id": "fast_data/runtime_management/control_plane_frontend",
+          "id": "products/fast_data/runtime_management/control_plane_frontend",
           "type": "doc"
         },
         {
-          "id": "fast_data/runtime_management/control_plane_fabric_bff",
+          "id": "products/fast_data/runtime_management/control_plane_fabric_bff",
           "type": "doc"
         },
         {
-          "id": "fast_data/runtime_management/control_plane",
+          "id": "products/fast_data/runtime_management/control_plane",
           "type": "doc"
         },
         {
-          "id": "fast_data/runtime_management/control_plane_operator",
+          "id": "products/fast_data/runtime_management/control_plane_operator",
           "type": "doc"
         },
         {
-          "id": "fast_data/runtime_management/workloads",
+          "id": "products/fast_data/runtime_management/workloads",
           "type": "doc"
         },
         {
-          "id": "fast_data/runtime_management/cp_database_setup",
+          "id": "products/fast_data/runtime_management/cp_database_setup",
           "type": "doc"
         },
         {
-          "id": "fast_data/runtime_management/secure_access",
+          "id": "products/fast_data/runtime_management/secure_access",
           "type": "doc"
         },
         {
-          "id": "fast_data/runtime_management/compatibility_matrix",
+          "id": "products/fast_data/runtime_management/compatibility_matrix",
           "type": "doc"
         }
       ]
@@ -1263,31 +1263,31 @@
       "collapsed": true,
       "items": [
         {
-          "id": "fast_data/configuration/overview",
+          "id": "products/fast_data/configuration/overview",
           "type": "doc"
         },
         {
-          "id": "fast_data/configuration/projections",
+          "id": "products/fast_data/configuration/projections",
           "type": "doc"
         },
         {
-          "id": "fast_data/configuration/single_views",
+          "id": "products/fast_data/configuration/single_views",
           "type": "doc"
         },
         {
-          "id": "fast_data/configuration/indexes",
+          "id": "products/fast_data/configuration/indexes",
           "type": "doc"
         },
         {
-          "id": "fast_data/configuration/strategies",
+          "id": "products/fast_data/configuration/strategies",
           "type": "doc"
         },
         {
-          "id": "fast_data/configuration/cast_functions",
+          "id": "products/fast_data/configuration/cast_functions",
           "type": "doc"
         },
         {
-          "id": "fast_data/configuration/import_export",
+          "id": "products/fast_data/configuration/import_export",
           "type": "doc"
         },
         {
@@ -1296,29 +1296,29 @@
           "collapsed": false,
           "items": [
             {
-              "id": "fast_data/configuration/config_maps/erSchema",
+              "id": "products/fast_data/configuration/config_maps/erSchema",
               "type": "doc"
             },
             {
-              "id": "fast_data/configuration/config_maps/aggregation",
+              "id": "products/fast_data/configuration/config_maps/aggregation",
               "type": "doc"
             },
             {
-              "id": "fast_data/configuration/config_maps/singleViewKey",
+              "id": "products/fast_data/configuration/config_maps/singleViewKey",
               "type": "doc"
             },
             {
-              "id": "fast_data/configuration/config_maps/projection_changes_schema",
+              "id": "products/fast_data/configuration/config_maps/projection_changes_schema",
               "type": "doc"
             },
             {
-              "id": "fast_data/configuration/config_maps/kafka_projection_updates",
+              "id": "products/fast_data/configuration/config_maps/kafka_projection_updates",
               "type": "doc"
             }
           ]
         },
         {
-          "id": "fast_data/configuration/projection_storer_config",
+          "id": "products/fast_data/configuration/projection_storer_config",
           "type": "doc"
         },
         {
@@ -1326,16 +1326,16 @@
           "type": "category",
           "collapsed": true,
           "link": {
-            "id": "fast_data/configuration/realtime-updater/real-time-updater",
+            "id": "products/fast_data/configuration/realtime-updater/real-time-updater",
             "type": "doc"
           },
           "items": [
             {
-              "id": "fast_data/configuration/realtime-updater/configuration-files",
+              "id": "products/fast_data/configuration/realtime-updater/configuration-files",
               "type": "doc"
             },
             {
-              "id": "fast_data/configuration/realtime-updater/advanced-topics",
+              "id": "products/fast_data/configuration/realtime-updater/advanced-topics",
               "type": "doc"
             }
           ]
@@ -1345,34 +1345,34 @@
           "type": "category",
           "collapsed": true,
           "link": {
-            "id": "fast_data/configuration/single_view_creator/overview",
+            "id": "products/fast_data/configuration/single_view_creator/overview",
             "type": "doc"
           },
           "items": [
             {
-              "id": "fast_data/configuration/single_view_creator/plugin",
+              "id": "products/fast_data/configuration/single_view_creator/plugin",
               "type": "doc"
             },
             {
-              "id": "fast_data/configuration/single_view_creator/template",
+              "id": "products/fast_data/configuration/single_view_creator/template",
               "type": "doc"
             },
             {
-              "id": "fast_data/configuration/single_view_creator/patch",
+              "id": "products/fast_data/configuration/single_view_creator/patch",
               "type": "doc"
             },
             {
-              "id": "fast_data/configuration/single_view_creator/upsert_delete_strategies",
+              "id": "products/fast_data/configuration/single_view_creator/upsert_delete_strategies",
               "type": "doc"
             }
           ]
         },
         {
-          "id": "fast_data/configuration/single_view_trigger_generator",
+          "id": "products/fast_data/configuration/single_view_trigger_generator",
           "type": "doc"
         },
         {
-          "id": "fast_data/configuration/secrets_resolution",
+          "id": "products/fast_data/configuration/secrets_resolution",
           "type": "doc"
         }
       ],
@@ -1383,15 +1383,15 @@
       "collapsed": true,
       "items": [
         {
-          "id": "fast_data/connectors/overview_connectors",
+          "id": "products/fast_data/connectors/overview_connectors",
           "type": "doc"
         },
         {
-          "id": "fast_data/connectors/debezium_cdc",
+          "id": "products/fast_data/connectors/debezium_cdc",
           "type": "doc"
         },
         {
-          "id": "fast_data/connectors/debezium_connect_cdc",
+          "id": "products/fast_data/connectors/debezium_connect_cdc",
           "type": "doc"
         }
       ],
@@ -1402,38 +1402,38 @@
       "collapsed": true,
       "items": [
         {
-          "id": "fast_data/bucket_storage_support/overview_bucket_storage_support",
+          "id": "products/fast_data/bucket_storage_support/overview_bucket_storage_support",
           "type": "doc"
         },
         {
-          "id": "fast_data/bucket_storage_support/use_cases_bucket_storage_support",
+          "id": "products/fast_data/bucket_storage_support/use_cases_bucket_storage_support",
           "type": "doc"
         },
         {
-          "id": "fast_data/bucket_storage_support/integration_bucket_storage_support",
+          "id": "products/fast_data/bucket_storage_support/integration_bucket_storage_support",
           "type": "doc"
         },
         {
-          "id": "fast_data/bucket_storage_support/deployment-bucket-storage",
+          "id": "products/fast_data/bucket_storage_support/deployment-bucket-storage",
           "type": "doc"
         },
         {
           "collapsed": true,
           "items": [
             {
-              "id": "fast_data/bucket_storage_support/configuration/ingestion_storer_configuration",
+              "id": "products/fast_data/bucket_storage_support/configuration/ingestion_storer_configuration",
               "type": "doc"
             },
             {
-              "id": "fast_data/bucket_storage_support/configuration/ingestion_reloader_configuration",
+              "id": "products/fast_data/bucket_storage_support/configuration/ingestion_reloader_configuration",
               "type": "doc"
             },
             {
-              "id": "fast_data/bucket_storage_support/configuration/bucket_connection_configuration",
+              "id": "products/fast_data/bucket_storage_support/configuration/bucket_connection_configuration",
               "type": "doc"
             },
             {
-              "id": "fast_data/bucket_storage_support/configuration/kafka_connection_configuration",
+              "id": "products/fast_data/bucket_storage_support/configuration/kafka_connection_configuration",
               "type": "doc"
             }
           ],
@@ -1448,7 +1448,7 @@
       "collapsed": true,
       "items": [
         {
-          "id": "fast_data/monitoring/overview",
+          "id": "products/fast_data/monitoring/overview",
           "type": "doc"
         },
         {
@@ -1457,31 +1457,31 @@
           "collapsed": true,
           "items": [
             {
-              "id": "fast_data/monitoring/dashboards/bucket_storage_support",
+              "id": "products/fast_data/monitoring/dashboards/bucket_storage_support",
               "type": "doc"
             },
             {
-              "id": "fast_data/monitoring/dashboards/debezium_cdc",
+              "id": "products/fast_data/monitoring/dashboards/debezium_cdc",
               "type": "doc"
             },
             {
-              "id": "fast_data/monitoring/dashboards/kafka_messages",
+              "id": "products/fast_data/monitoring/dashboards/kafka_messages",
               "type": "doc"
             },
             {
-              "id": "fast_data/monitoring/dashboards/projection_changes",
+              "id": "products/fast_data/monitoring/dashboards/projection_changes",
               "type": "doc"
             },
             {
-              "id": "fast_data/monitoring/dashboards/ingestion_services",
+              "id": "products/fast_data/monitoring/dashboards/ingestion_services",
               "type": "doc"
             },
             {
-              "id": "fast_data/monitoring/dashboards/single_views",
+              "id": "products/fast_data/monitoring/dashboards/single_views",
               "type": "doc"
             },
             {
-              "id": "fast_data/monitoring/dashboards/unmapped_fields",
+              "id": "products/fast_data/monitoring/dashboards/unmapped_fields",
               "type": "doc"
             }
           ]
@@ -1494,23 +1494,23 @@
       "collapsed": true,
       "items": [
         {
-          "id": "fast_data/troubleshooting/fast_data_error_codes",
+          "id": "products/fast_data/troubleshooting/fast_data_error_codes",
           "type": "doc"
         },
         {
-          "id": "fast_data/troubleshooting/rtu_keeps_restarting_rebalancing",
+          "id": "products/fast_data/troubleshooting/rtu_keeps_restarting_rebalancing",
           "type": "doc"
         },
         {
-          "id": "fast_data/troubleshooting/pr_update_topics_overwritten",
+          "id": "products/fast_data/troubleshooting/pr_update_topics_overwritten",
           "type": "doc"
         },
         {
-          "id": "fast_data/troubleshooting/rtu_violates_unique_keys",
+          "id": "products/fast_data/troubleshooting/rtu_violates_unique_keys",
           "type": "doc"
         },
         {
-          "id": "fast_data/troubleshooting/debezium",
+          "id": "products/fast_data/troubleshooting/debezium",
           "type": "doc"
         }
       ],
@@ -1521,27 +1521,27 @@
       "collapsed": true,
       "items": [
         {
-          "id": "fast_data/faq/parallel_svc",
+          "id": "products/fast_data/faq/parallel_svc",
           "type": "doc"
         },
         {
-          "id": "fast_data/faq/failure_handling",
+          "id": "products/fast_data/faq/failure_handling",
           "type": "doc"
         },
         {
-          "id": "fast_data/faq/architecture_migration",
+          "id": "products/fast_data/faq/architecture_migration",
           "type": "doc"
         },
         {
-          "id": "fast_data/faq/bootstrapping_fast_data",
+          "id": "products/fast_data/faq/bootstrapping_fast_data",
           "type": "doc"
         },
         {
-          "id": "fast_data/faq/import_export_faq",
+          "id": "products/fast_data/faq/import_export_faq",
           "type": "doc"
         },
         {
-          "id": "fast_data/faq/fast_data_versioning",
+          "id": "products/fast_data/faq/fast_data_versioning",
           "type": "doc"
         }
       ],
@@ -1551,7 +1551,7 @@
   ],
   "dataCatalog": [
     {
-      "id": "data_catalog/overview_data_catalog",
+      "id": "products/data_catalog/overview_data_catalog",
       "type": "doc"
     },
     {
@@ -1559,46 +1559,46 @@
       "label": "Data Catalog UI",
       "collapsed": true,
       "link": {
-        "id": "data_catalog/frontend/overview",
+        "id": "products/data_catalog/frontend/overview",
         "type": "doc"
       },
       "items": [
         {
-          "id": "data_catalog/frontend/data_catalog_assets",
+          "id": "products/data_catalog/frontend/data_catalog_assets",
           "type": "doc"
         },
         {
-          "id": "data_catalog/frontend/data_lineage",
+          "id": "products/data_catalog/frontend/data_lineage",
           "type": "doc"
         },
         {
-          "id": "data_catalog/frontend/data_catalog_connections",
+          "id": "products/data_catalog/frontend/data_catalog_connections",
           "type": "doc"
         }
       ]
     },
     {
-      "id": "data_catalog/data_catalog_fabric_bff",
+      "id": "products/data_catalog/data_catalog_fabric_bff",
       "type": "doc"
     },
     {
-      "id": "data_catalog/data_catalog_job_runner",
+      "id": "products/data_catalog/data_catalog_job_runner",
       "type": "doc"
     },
     {
-      "id": "data_catalog/data_catalog_open_lineage",
+      "id": "products/data_catalog/data_catalog_open_lineage",
       "type": "doc"
     },
     {
-      "id": "data_catalog/dc_database_setup",
+      "id": "products/data_catalog/dc_database_setup",
       "type": "doc"
     },
     {
-      "id": "data_catalog/data_catalog_secure_access",
+      "id": "products/data_catalog/data_catalog_secure_access",
       "type": "doc"
     },
     {
-      "id": "data_catalog/data_catalog_compatibility_matrix",
+      "id": "products/data_catalog/data_catalog_compatibility_matrix",
       "type": "doc"
     }
   ],
@@ -1825,26 +1825,26 @@
   ],
   "marketplace": [
     {
-      "id": "marketplace/overview_marketplace",
+      "id": "runtime-components/overview_marketplace",
       "type": "doc"
     },
     {
       "label": "Compatibility Matrices",
-      "id": "marketplace/compatibility_matrices/mongo_compatibility_matrix",
+      "id": "runtime-components/compatibility_matrices/mongo_compatibility_matrix",
       "type": "doc"
     },
     {
       "label": "Plugins",
       "type": "category",
       "link": {
-        "id": "marketplace/plugins/mia-platform-plugins",
+        "id": "runtime-components/plugins/mia-platform-plugins",
         "type": "doc"
       },
       "collapsed": true,
       "items": [
         {
           "type": "autogenerated",
-          "dirName": "runtime_suite"
+          "dirName": "runtime-components/plugins"
         }
       ]
     },
@@ -1852,23 +1852,19 @@
       "collapsed": true,
       "items": [
         {
-          "id": "development_suite/api-console/api-design/custom_microservice_get_started",
-          "type": "doc"
-        },
-        {
           "type": "autogenerated",
-          "dirName": "runtime_suite_templates"
+          "dirName": "runtime-components/templates"
         }
       ],
       "label": "Templates",
       "type": "category",
       "link": {
-        "id": "marketplace/templates/mia_templates",
+        "id": "runtime-components/templates/mia_templates",
         "type": "doc"
       }
     },
     {
-      "id": "marketplace/examples/mia_examples",
+      "id": "runtime-components/examples/mia_examples",
       "type": "doc"
     },
     {
@@ -1876,13 +1872,13 @@
       "items": [
         {
           "type": "autogenerated",
-          "dirName": "runtime_suite_applications"
+          "dirName": "runtime-components/applications"
         }
       ],
       "label": "Applications",
       "type": "category",
       "link": {
-        "id": "marketplace/applications/mia_applications",
+        "id": "runtime-components/applications/mia_applications",
         "type": "doc"
       }
     },
@@ -1890,14 +1886,14 @@
       "label": "Sidecars",
       "type": "category",
       "link": {
-        "id": "marketplace/sidecars/mia-sidecars",
+        "id": "runtime-components/sidecars/mia-sidecars",
         "type": "doc"
       },
       "collapsed": true,
       "items": [
         {
           "type": "autogenerated",
-          "dirName": "runtime_suite_sidecars"
+          "dirName": "runtime-components/sidecars"
         }
       ]
     },
@@ -1908,7 +1904,7 @@
       "items": [
         {
           "type": "autogenerated",
-          "dirName": "runtime_suite_libraries"
+          "dirName": "runtime-components/libraries"
         }
       ]
     },
@@ -1919,7 +1915,7 @@
       "items": [
         {
           "type": "autogenerated",
-          "dirName": "runtime_suite_tools"
+          "dirName": "runtime-components/tools"
         }
       ]
     }
@@ -1969,7 +1965,7 @@
   ],
   "software-catalog": [
     {
-      "id": "software-catalog/overview",
+      "id": "products/software-catalog/overview",
       "type": "doc"
     },
     {
@@ -1979,7 +1975,7 @@
       "items": [
         {
           "type": "autogenerated",
-          "dirName": "software-catalog/basic-concepts"
+          "dirName": "products/software-catalog/basic-concepts"
         }
       ]
     },
@@ -1988,20 +1984,20 @@
       "collapsed": true,
       "label": "Catalog management",
       "link": {
-        "id": "software-catalog/items-management/overview",
+        "id": "products/software-catalog/items-management/overview",
         "type": "doc"
       },
       "items": [
         {
-          "id": "software-catalog/items-management/ui",
+          "id": "products/software-catalog/items-management/ui",
           "type": "doc"
         },
         {
-          "id": "software-catalog/items-management/miactl",
+          "id": "products/software-catalog/items-management/miactl",
           "type": "doc"
         },
         {
-          "id": "software-catalog/items-management/api",
+          "id": "products/software-catalog/items-management/api",
           "type": "doc"
         }
       ]
@@ -2011,45 +2007,45 @@
       "collapsed": true,
       "label": "Catalog manifests",
       "link": {
-        "id": "software-catalog/items-manifest/overview",
+        "id": "products/software-catalog/items-manifest/overview",
         "type": "doc"
       },
       "items": [
         {
           "type": "doc",
-          "id": "software-catalog/items-manifest/application"
+          "id": "products/software-catalog/items-manifest/application"
         },
         {
           "type": "doc",
-          "id": "software-catalog/items-manifest/example"
+          "id": "products/software-catalog/items-manifest/example"
         },
         {
           "type": "doc",
-          "id": "software-catalog/items-manifest/extension"
+          "id": "products/software-catalog/items-manifest/extension"
         },
         {
           "type": "doc",
-          "id": "software-catalog/items-manifest/infrastructure-resource"
+          "id": "products/software-catalog/items-manifest/infrastructure-resource"
         },
         {
           "type": "doc",
-          "id": "software-catalog/items-manifest/infrastructure-component-runtime"
+          "id": "products/software-catalog/items-manifest/infrastructure-component-runtime"
         },
         {
           "type": "doc",
-          "id": "software-catalog/items-manifest/plugin"
+          "id": "products/software-catalog/items-manifest/plugin"
         },
         {
           "type": "doc",
-          "id": "software-catalog/items-manifest/proxy"
+          "id": "products/software-catalog/items-manifest/proxy"
         },
         {
           "type": "doc",
-          "id": "software-catalog/items-manifest/sidecar"
+          "id": "products/software-catalog/items-manifest/sidecar"
         },
         {
           "type": "doc",
-          "id": "software-catalog/items-manifest/template"
+          "id": "products/software-catalog/items-manifest/template"
         }
       ]
     },
@@ -2060,7 +2056,7 @@
       "items": [
         {
           "type": "autogenerated",
-          "dirName": "software-catalog/tutorials"
+          "dirName": "products/software-catalog/tutorials"
         }
       ]
     }

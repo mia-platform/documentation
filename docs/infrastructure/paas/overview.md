@@ -16,7 +16,7 @@ The consequence is a revolution of organizations' approach to hardware and softw
   
 - **Database Management**: Mia-Platform PaaS software incorporates robust database management capabilities based on MongoDB database instances offering backups services and data replication.
 
-- **Updated Mia-Platform Console and tools**: Mia-Platform PaaS gives the customer the possibility to have [Mia-Platform Console](/development_suite/overview-dev-suite.md) and all its connected tools always up to date exploiting the new offering provided by service providers and Mia-Platform R&D teams.
+- **Updated Mia-Platform Console and tools**: Mia-Platform PaaS gives the customer the possibility to have [Mia-Platform Console](/products/console/overview-dev-suite.md) and all its connected tools always up to date exploiting the new offering provided by service providers and Mia-Platform R&D teams.
 
 - **Monitoring and Logging**: Mia-Platform PaaS offers a ready to use monitoring and logging capabilities to track application performance, resource utilization, and detect potential issues useful to identify bottlenecks, to optimize performance, and to troubleshoot problems.
 

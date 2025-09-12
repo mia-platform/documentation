@@ -10,21 +10,21 @@ Bring Your Own Infrastructure (BYOI) allows customers to use their own runtime, 
 
 The above schema, shows the typical infrastructure architecture and the main elements that are involved in the Mia-Platform BYOI configuration.
 
-- **Mia-Platform Console**: Mia-Platform Console is completely managed by Mia-Platform. It is [connected to the Runtime](/console/company-configuration/clusters-management/connect-and-manage-cluster.mdx#step-1-runtime-service) in order to retrieve information about the runtime status.
-Mia-Platform is [integrated with CI/CD tool](/console/company-configuration/providers/overview.md) to streamline the software development process, automate the build and deployment procedures.
-Every change in the microservices architecture undergoes versioning and is subsequently released to the customer [Git Repository](/console/project-configuration/manage-runtime-environments/configure-a-new-environment.mdx#setup-git-provider).
+- **Mia-Platform Console**: Mia-Platform Console is completely managed by Mia-Platform. It is [connected to the Runtime](/products/console/company-configuration/clusters-management/connect-and-manage-cluster.mdx#step-1-runtime-service) in order to retrieve information about the runtime status.
+Mia-Platform is [integrated with CI/CD tool](/products/console/company-configuration/providers/overview.md) to streamline the software development process, automate the build and deployment procedures.
+Every change in the microservices architecture undergoes versioning and is subsequently released to the customer [Git Repository](/products/console/project-configuration/manage-runtime-environments/configure-a-new-environment.mdx#setup-git-provider).
 
 - **Mia-Platform Nexus**: Mia-Platform Nexus is a docker registry services where all the Mia-Platform marketplace services images are stored. It is a necessary dependency in order to utilize the images supported by Mia-Platform and published on the Mia-Platform Marketplace.
   
-- **CI/CD**: The customers can use any [supported tool](/console/company-configuration/providers/overview.md) by Mia-Platform Console.
+- **CI/CD**: The customers can use any [supported tool](/products/console/company-configuration/providers/overview.md) by Mia-Platform Console.
   
-- **Container image registry**: You can [configure](/console/company-configuration/configuration.mdx#example-configuration-3) any container registry.
+- **Container image registry**: You can [configure](/products/console/company-configuration/configuration.mdx#example-configuration-3) any container registry.
   
-- **Runtime**: A k8s [runtime](/console/company-configuration/clusters-management/overview.md).
+- **Runtime**: A k8s [runtime](/products/console/company-configuration/clusters-management/overview.md).
   
-- **MongoDB**: It is a necessary dependency for [Fast Data](/fast_data/what_is_fast_data.md) and [CRUD service](/development_suite/api-console/api-design/crud_advanced.md#what-is-a-crud).
+- **MongoDB**: It is a necessary dependency for [Fast Data](/products/fast_data/what_is_fast_data.md) and [CRUD service](/products/console/api-console/api-design/crud_advanced.md#what-is-a-crud).
   
-- **Git Repository**: One of the Git repository provided by  GitLab, GitHub, Bitbucket, Azure Repos. [Click here](/console/project-configuration/manage-runtime-environments/configure-a-new-environment.mdx#setup-git-provider) to see how to configure it.
+- **Git Repository**: One of the Git repository provided by  GitLab, GitHub, Bitbucket, Azure Repos. [Click here](/products/console/project-configuration/manage-runtime-environments/configure-a-new-environment.mdx#setup-git-provider) to see how to configure it.
 
 ## Mia-Platform BYOI key features
 
@@ -32,7 +32,7 @@ Every change in the microservices architecture undergoes versioning and is subse
 
 - **Standardization**: Mia-Platform BYOI enables customers to establish standardized approaches and practices across their infrastructure, ensuring a coherent and harmonized operational environment. This alignment fosters enhanced efficiency, promotes uniformity, and diminishes the potential for discrepancies or inefficiencies that may arise from disparate infrastructure setups.
 
-- **Updated Mia-Platform Console and tools**: Mia-Platform BYOI gives the customer the possibility to have [Mia-Platform Console](/development_suite/overview-dev-suite.md) always up to date and leveraging the new features provided by Mia-Platform R&D team.
+- **Updated Mia-Platform Console and tools**: Mia-Platform BYOI gives the customer the possibility to have [Mia-Platform Console](/products/console/overview-dev-suite.md) always up to date and leveraging the new features provided by Mia-Platform R&D team.
 
 - **24/7 Incident Support**: Mia-Platform BYOI provide 24/7 incident support on Mia-Platform Console.
 

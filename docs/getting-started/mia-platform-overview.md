@@ -121,36 +121,36 @@ Mia-Platform provides you with a suite of products that support platform governa
 **Core Products:**
 These products form the backbone of Mia-Platform and are the main solutions used daily by our customers:
 
-* [**Mia-Platform Console**](/development_suite/overview-dev-suite.md): The heart of the suite, Mia-Platform Console industrializes and governs cloud-native development and operations, facilitating platform engineering and application development to optimize DevX and accelerate product teams' delivery.
+* [**Mia-Platform Console**](/products/console/overview-dev-suite.md): The heart of the suite, Mia-Platform Console industrializes and governs cloud-native development and operations, facilitating platform engineering and application development to optimize DevX and accelerate product teams' delivery.
 
-* [**Mia-Platform Runtime Components**](/marketplace/overview_marketplace.md): Accelerate the creation of new applications through reuse and composition of components.
+* [**Mia-Platform Runtime Components**](/runtime-components/overview_marketplace.md): Accelerate the creation of new applications through reuse and composition of components.
 
-* [**Software Catalog**](/software-catalog/overview.md): A centralized solution for tracking and managing all software within your organization's ecosystem. It includes a public catalog of ready-to-use components and a private catalog for internal, reusable assets.
+* [**Software Catalog**](/products/software-catalog/overview.md): A centralized solution for tracking and managing all software within your organization's ecosystem. It includes a public catalog of ready-to-use components and a private catalog for internal, reusable assets.
 
-* [**Mia-Platform Fast Data**](/fast_data/what_is_fast_data.md): Adopt a **Digital Integration Hub** architecture with a **Data Fabric** approach to unlock the full potential of real-time data. It provides a unified data control plane, enabling data ingestion from any source, data synchronization and the creation of data products and APIs for rapid, secure data access.
+* [**Mia-Platform Fast Data**](/products/fast_data/what_is_fast_data.md): Adopt a **Digital Integration Hub** architecture with a **Data Fabric** approach to unlock the full potential of real-time data. It provides a unified data control plane, enabling data ingestion from any source, data synchronization and the creation of data products and APIs for rapid, secure data access.
 
 **Additional Components:**
 These components contribute to the realization of specific tasks within your products and are available through Mia-Platform Runtime Components:
 
-* **API Management**: With [**API Gateway**](/runtime_suite/api-gateway/10_overview.md) and [**API Portal**](/runtime_suite/api-portal/10_overview.md) you can simplify API management, routing requests, applying security policies, and offering a self-service interface for documentation and testing.
+* **API Management**: With [**API Gateway**](/runtime-components/plugins/api-gateway/10_overview.md) and [**API Portal**](/runtime-components/plugins/api-portal/10_overview.md) you can simplify API management, routing requests, applying security policies, and offering a self-service interface for documentation and testing.
 
-* [**Mia-Platform Microfrontend Composer**](/microfrontend-composer/what-is.md): Create custom CMSs, or generic User Interfaces, with the ability to compose custom pages, putting whatever web component coming from the back-kit library or from a custom component library.
+* [**Mia-Platform Microfrontend Composer**](/products/microfrontend-composer/what-is.md): Create custom CMSs, or generic User Interfaces, with the ability to compose custom pages, putting whatever web component coming from the back-kit library or from a custom component library.
 
-* [**Mia-Platform External Developer Portal**](/runtime_suite/api-portal/10_overview.md): A complete access point to your company's APIs for your partners and providers, containing live and testable API documentation and allowing standardization in usage methods.
+* [**Mia-Platform External Developer Portal**](/runtime-components/plugins/api-portal/10_overview.md): A complete access point to your company's APIs for your partners and providers, containing live and testable API documentation and allowing standardization in usage methods.
 
-* [**Mia-Platform Flow Manager**](/runtime_suite/flow-manager-service/10_overview.md): A saga orchestrator, capable of managing flows structured using the architectural pattern named Saga Pattern, particularly the Command/Orchestration approach.
+* [**Mia-Platform Flow Manager**](/runtime-components/plugins/flow-manager-service/10_overview.md): A saga orchestrator, capable of managing flows structured using the architectural pattern named Saga Pattern, particularly the Command/Orchestration approach.
 
-* [**RAG Template**](/runtime_suite_templates/ai-rag-template/10_overview_and_usage.md): Build and run your own conversational RAG application using LangChain and FastAPI to connect with your data.
+* [**RAG Template**](/runtime-components/templates/ai-rag-template/10_overview_and_usage.md): Build and run your own conversational RAG application using LangChain and FastAPI to connect with your data.
 
-* [**AI-Powered SDLC Tool**](/runtime_suite_applications/quality-assistant/10_overview.md#ai-powered-sdlc-tool): Enhance quality and accelerate development with AI-powered requirement evaluation, test coverage estimation and compliance checks for industry standards (e.g., IEC 62304, AI Act).
+* [**AI-Powered SDLC Tool**](/runtime-components/applications/quality-assistant/10_overview.md#ai-powered-sdlc-tool): Enhance quality and accelerate development with AI-powered requirement evaluation, test coverage estimation and compliance checks for industry standards (e.g., IEC 62304, AI Act).
 
-* [**AI-Compliance for Data Catalog**](/runtime_suite_applications/data-catalog-ai-compliance/10_overview.md#getting-started): Empower non-technical roles with an AI Assistant to explore and understand Data Catalog metadata using natural language, simplifying compliance and audits.
+* [**AI-Compliance for Data Catalog**](/runtime-components/applications/data-catalog-ai-compliance/10_overview.md#getting-started): Empower non-technical roles with an AI Assistant to explore and understand Data Catalog metadata using natural language, simplifying compliance and audits.
 
-* [**Infrastructure Projects**](/console/project-configuration/infrastructure-project.md): A dedicated Project type for Operations teams to define, version and deploy infrastructure resources with consistency and control, following the Infrastructure as Code paradigm.
+* [**Infrastructure Projects**](/products/console/project-configuration/infrastructure-project.md): A dedicated Project type for Operations teams to define, version and deploy infrastructure resources with consistency and control, following the Infrastructure as Code paradigm.
 
-* [**Infrastructure Resources**](/console/design-your-projects/custom-resources/custom-resources.md): Extend the Console's capabilities by defining any custom infrastructure object—from Kubernetes CRDs to Lambda functions—as configuration-as-code elements.
+* [**Infrastructure Resources**](/products/console/design-your-projects/custom-resources/custom-resources.md): Extend the Console's capabilities by defining any custom infrastructure object—from Kubernetes CRDs to Lambda functions—as configuration-as-code elements.
 
-This is just a selection of our available tools, to discover the full range of capabilities, explore our [Runtime Components](/marketplace/overview_marketplace.md) section for more Add-ons, Templates, and Plugins.
+This is just a selection of our available tools, to discover the full range of capabilities, explore our [Runtime Components](/runtime-components/overview_marketplace.md) section for more Add-ons, Templates, and Plugins.
 
 In addition to the components above, you can also find Mia-Platform's **open-source projects**:
 
