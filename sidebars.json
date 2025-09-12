@@ -1136,6 +1136,17 @@
       "type": "doc"
     },
     {
+      "type": "category",
+      "label": "Fast Data Engine 2.0",
+      "collapsed": true,
+      "items": [
+        {
+          "id": "products/fast_data/new_fast_data_engine/overview.md",
+          "type": "doc"
+        }
+      ]
+    },
+    {
       "id": "products/fast_data/no_code_overview",
       "type": "doc"
     },
