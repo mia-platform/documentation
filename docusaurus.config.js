@@ -87,6 +87,44 @@ const config = {
                     ]
                 },
                 {
+                    label: "Solutions",
+                    position: "left",
+                    activeBaseRegex: "(docs|docs/\\d.x)/solutions",
+                    type: "dropdown",
+                    items: [
+                        {
+                            type: 'doc',
+                            docId: "solutions/application-development/application-development-overview",
+                            label: "Application Development",
+                            activeBaseRegex: "(docs|docs/\\d.x)/solutions/application-development"
+                        },
+                        {
+                            type: 'doc',
+                            docId: "solutions/platform-engineering/platform-engineering-overview",
+                            label: "Platform Engineering",
+                            activeBaseRegex: "(docs|docs/\\d.x)/solutions/platform-engineering"
+                        },
+                        {
+                            type: 'doc',
+                            docId: "solutions/ai-agent-lifecycle/ai-agent-lifecycle-overview",
+                            label: "AI Agent Lifecycle",
+                            activeBaseRegex: "(docs|docs/\\d.x)/solutions/ai-agent-lifecycle"
+                        },
+                        {
+                            type: 'doc',
+                            docId: "solutions/cloud-operations/cloud-operations-overview",
+                            label: "Cloud Operations",
+                            activeBaseRegex: "(docs|docs/\\d.x)/solutions/cloud-operations"
+                        },
+                        {
+                            type: 'doc',
+                            docId: "solutions/data-integration/data-integration-overview",
+                            label: "Data Integration",
+                            activeBaseRegex: "(docs|docs/\\d.x)/solutions/data-integration"
+                        }
+                    ]
+                },
+                {
                     label: "Infrastructure",
                     position: "left",
                     activeBaseRegex: "(docs|docs/\\d.x)/(development_suite|marketplace|libraries|tools|runtime_suite|business_suite|fast_data|dev_portal|infrastructure/infrastructure_overview)",
