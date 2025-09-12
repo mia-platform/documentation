@@ -46,8 +46,8 @@ New Mia-Platform version may include features that are not yet considered stable
 tag denoting the current feature state.
 
 :::info
-These early access feature are generally disabled by default and can be enabled using the Feature Preview pages (depending whether the feature has impact on [specific users](/development_suite/user-settings/feature-preview.md)
-or whole [Projects](/console/project-configuration/project-settings.md#feature-preview)).
+These early access feature are generally disabled by default and can be enabled using the Feature Preview pages (depending whether the feature has impact on [specific users](/products/console/user-settings/feature-preview.md)
+or whole [Projects](/products/console/project-configuration/project-settings.md#feature-preview)).
 :::
 
 The current feature state classifications are as follows:

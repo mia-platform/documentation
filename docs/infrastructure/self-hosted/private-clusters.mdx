@@ -35,9 +35,9 @@ To do that you can:
 * Click on the _Clusters_ menu;
 * Click on the _Add cluster connection_ button (or editing an existing one);
 * Insert cluster's details, until you reach the _Advanced_ section of the "Cluster creation stepper";
-* Insert the proxy's URL and, if you need it, a TLS certificate, as reported in [this documentation page](/console/company-configuration/clusters-management/connect-and-manage-cluster.mdx#step-4-advanced).
+* Insert the proxy's URL and, if you need it, a TLS certificate, as reported in [this documentation page](/products/console/company-configuration/clusters-management/connect-and-manage-cluster.mdx#step-4-advanced).
 
-![Add cluster connection 4](../../console/company-configuration/clusters-management/img/add-cluster-connection-4.png)
+![Add cluster connection 4](../../products/console/company-configuration/clusters-management/img/add-cluster-connection-4.png)
 
 :::warning
 If you have a __Pure License__ Mia-Platform Console instance and the Mia-Platform Console is installed on the same runtime environment, you won't need the proxy because the communications between the Mia-Platform Console and the cluster will be internal.
@@ -162,7 +162,7 @@ specifying which token you need to use to bound the two agents.
 Once the agent is configured, the CI/CD pipelines should be able to run `kubectl` commands.
 You can choose to build you custom deploy pipelines, running `kubectl` command inside them, or you can use `mlp`.
 
-`mlp` is a command line tool we use to deploy on Kubernetes, look at the [dedicated documentation page](/runtime_suite_tools/mlp/10_overview.md) for more.
+`mlp` is a command line tool we use to deploy on Kubernetes, look at the [dedicated documentation page](/runtime-components/tools/mlp/10_overview.md) for more.
 
 All you need to change, using `mlp`, is the deploy command, because you need to add the GitLab agent context option:
 ```sh
