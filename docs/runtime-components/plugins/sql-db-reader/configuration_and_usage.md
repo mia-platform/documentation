@@ -243,34 +243,33 @@ mvn failsafe:integration-test
 ```
 or directly from your IDE.
 
-### Tests Census
-| Test  |File  |Status   |
-|---|---|---|
-profile file must be JSON file |ProfileBadConfig_IT|OK|
-profile file name must be equal to profile name |ProfileBadConfig_IT|OK|
-profile must have one valid query set in queries array |ProfileBadConfig_IT|OK|
-standard queries must have table and column field |ProfileBadConfig_IT|OK|
-standard queries must not have directSql field |ProfileBadConfig_IT|OK|
-the directSql queries must not have table, column, group, where, having, order |ProfileBadConfig_IT|OK|
-scripted profile must have its own groovy script file |ProfileBadConfig_IT|OK|
-groovy script file name must be equal to profile name |ProfileBadConfig_IT|OK|
-|directSql funziona |Query_Execution_IT|OK|
-una standard query seleziona correttamente le colonne |Query_Execution_IT|OK|
-una standard query applica correttamente le condizioni di where |Query_Execution_IT|OK|
-una standard query applica correttamente le condiizoni di having |Query_Execution_IT|OK|
-una standard query applica correttamente le condizioni di order |Query_Execution_IT|OK|
-una standard query applica correttamente le condizioni di groupBy |Query_Execution_IT|OK|
-l’interpolazione è ok su standard query con condizioni where |Query_Execution_IT|OK|
-l’interpolazione è ok su standard query con condizioni order |Query_Execution_IT|OK|
-l’interpolazione è ok su standard query con condizioni groupBy |Query_Execution_IT|OK|
-l’interpolazione è ok su directSql |Query_Execution_IT|OK|
-viene applicato correttamente una customizzazione di query param su where |Query_Customization_IT|OK|
-viene applicato correttamente una customizzazione di query param su directSql |Query_Customization_IT|OK|
-viene applicata correttamente una customizzazione del risultato in output da standard query  |Query_Customization_IT|OK|
-viene applicata correttamente una customizzazione del risultato in output da directSql  |Query_Customization_IT|OK|
-settaggi sulla count |CountOrNot_IT|OK|
-bind variables |BindVariables_IT|OK|
-
+### Tests Coverage
+| Test                                                                          | File                  | Status |
+|-------------------------------------------------------------------------------|-----------------------|--------|
+| profile file must be a JSON file                                              | ProfileBadConfig      | OK     |
+| profile file name must be equal to profile name                               | ProfileBadConfig      | OK     |
+| profile must have one valid query set in the queries array                    | ProfileBadConfig      | OK     |
+| standard queries must have a table and column field                           | ProfileBadConfig      | OK     |
+| standard queries must not have a directSql field                              | ProfileBadConfig      | OK     |
+| directSql queries must not have table, column, group, where, having, order    | ProfileBadConfig      | OK     |
+| scripted profile must have its own groovy script file                         | ProfileBadConfig      | OK     |
+| groovy script file name must be equal to the profile name                     | ProfileBadConfig      | OK     |
+| directSql works                                                               | Query_Execution       | OK     |
+| a standard query correctly selects columns                                    | Query_Execution       | OK     |
+| a standard query correctly applies where conditions                           | Query_Execution       | OK     |
+| a standard query correctly applies having conditions                          | Query_Execution       | OK     |
+| a standard query correctly applies order conditions                           | Query_Execution       | OK     |
+| a standard query correctly applies groupBy conditions                         | Query_Execution       | OK     |
+| interpolation is ok on a standard query with where conditions                 | Query_Execution       | OK     |
+| interpolation is ok on a standard query with order conditions                 | Query_Execution       | OK     |
+| interpolation is ok on a standard query with groupBy conditions               | Query_Execution       | OK     |
+| interpolation is ok on directSql                                              | Query_Execution       | OK     |
+| a query param customization on 'where' is applied correctly                   | Query_Customization   | OK     |
+| a query param customization on 'directSql' is applied correctly               | Query_Customization   | OK     |
+| a result output customization from a standard query is applied correctly      | Query_Customization   | OK     |
+| a result output customization from directSql is applied correctly             | Query_Customization   | OK     |
+| settings on count                                                             | CountOrNot            | OK     |
+| bind variables                                                                | BindVariables         | OK     |
 
 ## Tag Project
 
