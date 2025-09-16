@@ -1624,6 +1624,74 @@
       "type": "doc"
     }
   ],
+  "application-development": [
+    {
+      "id": "solutions/application-development/application-development-overview",
+      "type": "doc"
+    },
+    {
+      "id": "solutions/application-development/building-rest-api",
+      "type": "doc"
+    },
+    {
+      "id": "solutions/application-development/accelerating-frontend-development",
+      "type": "doc"
+    },
+    {
+      "id": "solutions/application-development/orchestrating-complex-business-processes",
+      "type": "doc"
+    }
+  ],
+  "cloud-operations": [
+    {
+      "id": "solutions/cloud-operations/cloud-operations-overview",
+      "type": "doc"
+    },
+    {
+      "id": "solutions/cloud-operations/simplifying-multi-cloud-management",
+      "type": "doc"
+    },
+    {
+      "id": "solutions/cloud-operations/monitoring-and-troubleshooting-runtime",
+      "type": "doc"
+    }
+  ],
+  "data-integration": [
+    {
+      "id": "solutions/data-integration/data-integration-overview",
+      "type": "doc"
+    },
+    {
+      "id": "solutions/data-integration/scaling-legacy-system",
+      "type": "doc"
+    },
+    {
+      "id": "solutions/data-integration/create-real-time-data-aggregation",
+      "type": "doc"
+    }
+  ],
+  "ai-agent-lifecycle": [
+    {
+      "id": "solutions/ai-agent-lifecycle/ai-agent-lifecycle-overview",
+      "type": "doc"
+    },
+    {
+      "id": "solutions/ai-agent-lifecycle/prototyping-rag-application",
+      "type": "doc"
+    },
+    {
+      "id": "solutions/ai-agent-lifecycle/orchestrating-multi-agent-ai-workflows",
+      "type": "doc"
+    },
+    {
+      "id": "solutions/ai-agent-lifecycle/building-custom-ai-agent",
+      "type": "doc"
+    },
+    {
+      "id": "solutions/ai-agent-lifecycle/leveraging-software-catalog-with-mia-assistant",
+      "type": "doc"
+    }
+  ],
   "gettingStarted": [
     {
       "id": "getting-started/mia-platform-overview",
