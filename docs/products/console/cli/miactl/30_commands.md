@@ -4,8 +4,6 @@ title: Commands
 sidebar_label: Commands
 ---
 
-
-
 This section explores a summary of the `miactl` commands and their functionalities.
 
 :::tip
@@ -479,8 +477,8 @@ Available flags for the command:
 - `--project-id`, the id of the Project (if provided the command will update the rules for the specified Project only)
 - `-f`, path to the file where the rules are saved
 
-
-File example
+<details>
+<summary>File example</summary>
 
 ```json
 [
@@ -493,7 +491,7 @@ File example
 ]
 ```
 
-
+</details>
 
 ## project
 
@@ -538,11 +536,11 @@ miactl project describe [flags]
 
 Flags available for this command:
 
-- `--project-id`: required. The ID of the Application Project to describe 
-- `--revision`: for projects using Enhanced Workflow. The revision of the Application Project to describe 
-- `--version`: for projects using Enhanced Workflow. The version of the Application Project to describe 
-- `--branch`: for projects using the standard workflow. The branch of the Application Project to describe 
-- `--tag`: for projects using the standard workflow. The tag of the Application Project to describe 
+- `--project-id`: required. The ID of the Application Project to describe
+- `--revision`: for projects using Enhanced Workflow. The revision of the Application Project to describe
+- `--version`: for projects using Enhanced Workflow. The version of the Application Project to describe
+- `--branch`: for projects using the standard workflow. The branch of the Application Project to describe
+- `--tag`: for projects using the standard workflow. The tag of the Application Project to describe
 - `--output` or `-o`: output format. Allowed values: json, yaml (default is "json")
 
 ### apply
@@ -781,8 +779,8 @@ The `extensions apply` command can be used to register new extensions or update
 
 It accepts an Extension Manifest either in `yaml` or `json` format
 
-
-Example JSON Manifest
+<details>
+<summary>Example JSON Manifest</summary>
 
 ```json
 {
@@ -809,10 +807,10 @@ Example JSON Manifest
 }
 ```
 
+</details>
 
-
-
-Example YAML Manifest
+<details>
+<summary>Example YAML Manifest</summary>
 
 ```yaml
 name: Extension 1
@@ -834,7 +832,7 @@ category:
   id: workloads
 ```
 
-
+</details>
 
 Usage:
 
@@ -1221,7 +1219,7 @@ List Catalog items
 
 #### Synopsis
 
-List the Catalog items that the current user can access.
+List the Catalog items that the current user can access. Results are paginated and by default only the first page is shown.
 
 #### Usage
 
@@ -1231,7 +1229,8 @@ miactl catalog list --company-id company-id [FLAGS]...
 
 #### Flags
 
-- `--public` - if this flag is set, the command fetches not only the items from the requested company, but also the public Catalog items from other companies.
+- `--public` - if this flag is set, the command fetches not only the items from the requested company, but also the public item type definitions from other companies.
+- `--page` - specify the page to fetch, default is 1
 
 ### get
 
@@ -1325,4 +1324,97 @@ The flag `--item-id` or `-i` accepts the `itemId` of the Item.
 
 ```bash
 miactl catalog list-versions -i some-item
+```
+
+## item type definition
+
+:::info
+This command and its subcommands use APIs that are only available from Mia-Platform Console v14.1.0.
+:::
+
+View and manage Item Type Definitions
+
+All the subcommands inherit the following flags:
+
+```sh
+      --auth-name string               the name of the miactl auth to use
+      --certificate-authority string   path to a cert file for the certificate authority for the selected endpoint
+      --company-id string              the ID of the Company
+  -c, --config string                  path to the config file default to $HOME/miactl/config
+      --context string                 the name of the miactl context to use
+      --endpoint string                the address and port of the Mia-Platform Console server
+      --insecure-skip-tls-verify       if true, the server's certificate will not be checked for validity. This will make your HTTPS connections insecure
+  -v  --verbose                        increase the verbosity of the cli output
+```
+
+### list
+
+List Item Type Definitions
+
+#### Synopsis
+
+List the Item Type Definitions that the current user can access. Results are paginated and by default only the first page is shown.
+
+#### Usage
+
+```sh
+miactl itd list --company-id company-id [FLAGS]...
+```
+
+#### Flags
+
+- `--public` - if this flag is set, the command fetches not only the items from the requested company, but also the public Catalog items from other companies.
+- `--page` - specify the page to fetch, default is 1
+
+### get
+
+Get a Catalog item
+
+#### Synopsis
+
+Get an Item Type Definition
+
+You need to specify the name via the respective flag. The company-id flag can be omitted if it is already set in the context and it is used as tenantId of the item type definition.
+
+```bash
+miactl itd get --name name
+```
+
+### delete
+
+Delete an Item Type Definition
+
+#### Synopsis
+
+Delete an Item Type Definition
+
+You need to specify the companyId and the item type definition name via the respective flags (recommended). The company-id flag can be omitted if it is already set in the context.
+
+```bash
+miactl itd delete --name name
+```
+
+### put
+
+Create or update an Item Type Definition
+
+#### Synopsis
+
+Create or update an Item Type Definition.
+
+You need to specify the flag --file or -f that accepts a file, and companyId. Supported formats are JSON (.json files) and YAML (.yaml or .yml files).
+
+```bash
+miactl itd put -f file-path
+```
+
+#### Examples
+
+```bash
+
+# Create the item type definition in file myFantasticPluginDefinition.json located in the current directory
+miactl itd put --file myFantasticPluginDefinition.json
+
+# Create the item type definition in file myFantasticPluginDefinition.json, with relative path
+miactl itd put --file ./path/to/myFantasticPluginDefinition.json
 ```

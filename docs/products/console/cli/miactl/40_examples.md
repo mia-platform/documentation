@@ -4,8 +4,6 @@ title: Examples
 sidebar_label: Examples
 ---
 
-
-
 ## Create and use a Context
 
 You can have one or more context locally for interacting with one or more installation fo Mia-Platform Console. Below
@@ -134,7 +132,7 @@ Finally, you can group the commands above and run them inside a pipeline, e.g. a
 # Insert that after your pipeline stages
 delivery:
     stage: deploy
-    image: ghcr.io/mia-platform/miactl:v0.20.0
+    image: ghcr.io/mia-platform/miactl:v0.21.0
 
     script:
       - miactl version

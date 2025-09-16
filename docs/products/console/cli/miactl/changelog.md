@@ -4,12 +4,31 @@ title: Changelog
 sidebar_label: CHANGELOG
 ---
 
-
-
 All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+## [Unreleased]
+
+## [v0.21.0] - 2025-09-16
+
+### Fixed
+
+- fixed error management in commands with Console version check
+
+### Changed
+
+- update go version to 1.25.1
+- update cobra to v1.10.1
+- update pflag to v1.0.10
+- update oauth2 to v0.31.0
+- update sync to v0.17.0
+- update text to v0.29.0
+
+### Added
+
+- new command: `itd`
 
 ## [v0.20.0] - 2025-07-28
 
@@ -398,7 +417,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - create cli sdk
 - create cli renderer
 
-[unreleased]: https://github.com/mia-platform/miactl/compare/v0.20.0...HEAD
+[unreleased]: https://github.com/mia-platform/miactl/compare/v0.21.0...HEAD
+[v0.21.0]: https://github.com/mia-platform/miactl/compare/v0.20.0...v0.21.0
 [v0.20.0]: https://github.com/mia-platform/miactl/compare/v0.19.0...v0.20.0
 [v0.19.0]: https://github.com/mia-platform/miactl/compare/v0.18.0...v0.19.0
 [v0.18.0]: https://github.com/mia-platform/miactl/compare/v0.17.3...v0.18.0
