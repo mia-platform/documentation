@@ -1602,6 +1602,28 @@
       "type": "doc"
     }
   ],
+  "platform-engineering": [
+    {
+      "id": "solutions/platform-engineering/platform-engineering-overview",
+      "type": "doc"
+    },
+    {
+      "id": "solutions/platform-engineering/automate-infrastructure-provisioning",
+      "type": "doc"
+    },
+    {
+      "id": "solutions/platform-engineering/standardize-microservices-development",
+      "type": "doc"
+    },
+    {
+      "id": "solutions/platform-engineering/gain-visibility-and-control-across-projects",
+      "type": "doc"
+    },
+    {
+      "id": "solutions/platform-engineering/implement-secure-governance",
+      "type": "doc"
+    }
+  ],
   "gettingStarted": [
     {
       "id": "getting-started/mia-platform-overview",
