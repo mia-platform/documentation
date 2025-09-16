@@ -4,8 +4,6 @@ title: Generation Configuration
 sidebar_label: Generate
 ---
 
-
-
 The `generate` command is used to generate secrets and configmaps from a configuration `.yaml`, interpolating it
 with environment variables when necessary and saves the generated files in a specified directory.
 
