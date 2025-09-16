@@ -4,8 +4,6 @@ title: Hydration Logic
 sidebar_label: Hydrate
 ---
 
-
-
 The `hydrate` subcommand is an helper to fill kustomization configuration files with resources and patches.
 
 For doing so without launching multiple commands with different parameters, and leaving the user being able to add
