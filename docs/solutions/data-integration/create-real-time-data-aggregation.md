@@ -12,7 +12,7 @@ A multi-brand retail company has its customer data spread across multiple, disco
 
 * **Data Silos**:
     * Customer personal information (name, email) is in a **Salesforce CRM**.
-    * Order history is in a **Magento e-commerce platform**.
+    * Order history is in a **e-commerce platform**.
     * Product browsing history and marketing preferences are in a **HubSpot marketing automation tool**.
 * **Inconsistent Customer Experience**: When a customer calls support, the agent doesn't have a complete view of their recent orders or marketing interactions, leading to a frustrating and disjointed experience.
 * **Ineffective Marketing Campaigns**: The marketing team cannot create personalized campaigns because they cannot segment customers based on their combined purchase and browsing history.
@@ -24,7 +24,7 @@ The company decides to build a real-time, 360° view of their customers using **
 
 1.  **Creating Projections for Each Data Source**: First, they create a **Fast Data Projection** for each of the three systems of record. Using CDC tools and Kafka, any change in these systems is published as an event and consumed by a **Real-Time Updater**.
     * `crm_customers_projection`: Contains up-to-date personal information from Salesforce.
-    * `ecommerce_orders_projection`: Contains the real-time order history from Magento.
+    * `ecommerce_orders_projection`: Contains the real-time order history from e-commerce.
     * `marketing_preferences_projection`: Contains the latest browsing and preference data from HubSpot.
 
 2.  **Configuring the Single View**: In Mia-Platform Console, they create a **Fast Data Single View** named `customer_sv`. This Single View will be a new, aggregated MongoDB collection.

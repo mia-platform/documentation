@@ -45,7 +45,7 @@ Mia-Platform provides the tools to right-size your applications and avoid wasted
 
 Move away from risky, manual deployments by adopting a modern, pull-based GitOps workflow with the **Enhanced Project Workflow**.
 * **Git as the Single Source of Truth**: The desired state of your infrastructure and applications is declared in a Git repository. Tools like ArgoCD or Flux can be used to automatically synchronize the cluster's state with the repository.
-* **Enhanced Security**: A GitOps approach minimizes the need for direct cluster access. Changes are made through pull requests, providing a clear, auditable, and approvable workflow. This reduces the attack surface and prevents unauthorized changes.
+* **Enhanced Security**: A GitOps approach minimizes the need for direct cluster access. Changes are made through pull requests, providing a clear and auditable workflow. This reduces the attack surface and prevents unauthorized changes.
 * **Reliable and Auditable Deployments**: Every change is version-controlled in Git, creating an immutable audit trail. Rolling back to a previous state is as simple as reverting a commit.
 
 With Mia-Platform Console, CloudOps teams can transition from being reactive firefighters to proactive enablers, building a secure, reliable, and cost-efficient platform that accelerates the entire organization.
