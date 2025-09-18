@@ -48,7 +48,7 @@
     "eslint": "^9.36.0",
     "eslint-plugin-react": "^7.37.5",
     "fs-extra": "^11.3.1",
-    "glob": "^10.4.5",
+    "glob": "^11.0.3",
     "gray-matter": "^4.0.3",
     "prettier": "3.6.2",
     "prompts": "^2.4.2"
