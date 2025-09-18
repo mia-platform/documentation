@@ -54,6 +54,9 @@
   "overrides": {
     "marked": "^15.1.0"
   },
+  "resolutions": {
+    "marked": "^15.1.0"
+  },
   "browserslist": {
     "production": [
       ">0.5%",
