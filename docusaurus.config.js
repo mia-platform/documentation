@@ -13,7 +13,10 @@ const config = {
     onBrokenLinks: "throw",
     onBrokenMarkdownLinks: 'throw',
     onBrokenAnchors: 'ignore',
-    themes: ["docusaurus-json-schema-plugin"],
+    themes: ["docusaurus-json-schema-plugin", "@docusaurus/theme-mermaid"],
+    markdown: {
+        mermaid: true,
+    },
     themeConfig: {
         prism: {
             additionalLanguages: ['rego', 'java', 'csharp', 'kotlin', 'nginx', 'docker', 'ini'],
