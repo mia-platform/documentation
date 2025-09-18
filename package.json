@@ -26,6 +26,7 @@
     "@docusaurus/faster": "^3.8.1",
     "@docusaurus/plugin-client-redirects": "^3.8.1",
     "@docusaurus/preset-classic": "3.8.1",
+    "@docusaurus/theme-mermaid": "^3.8.1",
     "@mdx-js/react": "^3.0.0",
     "@mia-platform/console-types": "^0.38.11",
     "clsx": "^2.0.0",
