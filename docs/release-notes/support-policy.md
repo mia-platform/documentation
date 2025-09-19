@@ -7,7 +7,7 @@ sidebar_label: Support Policy
 This page holds useful links for customers regarding the different policies available.
 
 :::info
-Read [Stable Versions](/release-notes/stable versions.md) to find out the stable version roadmap and details about the currently supported version of the Mia-Platform products.
+Read [Stable Versions](/release-notes/stable-versions.md) to find out the stable version roadmap and details about the currently supported version of the Mia-Platform products.
 :::
 
 :::note
