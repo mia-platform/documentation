@@ -108,7 +108,6 @@ export default function GanttChart({config, renderAs = 'chart'}) {
             <table className={styles.ganttTable}>
                 <thead>
                 <tr>
-                    <th className={styles.firstColHeader}></th>
                     {config.timeline.map((q, index) => (
                         <th className={styles.quarterHeader} colSpan={q.months.length} key={index}>
                             {`${q.quarter} - ${q.year}`}
@@ -116,7 +115,6 @@ export default function GanttChart({config, renderAs = 'chart'}) {
                     ))}
                 </tr>
                 <tr>
-                    <th className={styles.firstColHeader}></th>
                     {config.timeline.flatMap((q) => q.months).map((month, index) => (
                         <th className={styles.monthHeader} key={index}>{month}</th>
                     ))}
@@ -143,7 +141,6 @@ export default function GanttChart({config, renderAs = 'chart'}) {
 
                     return (
                         <tr key={task.name}>
-                            <td className={styles.taskLabel}>{task.name}</td>
                             <td className={styles.barCell} colSpan={totalMonths}>
                                 <div className={styles.barContainer} style={{'--total-months': totalMonths}}>
                                     <div className={`${styles.bar} ${styles[status]}`} style={{gridColumn}}>
