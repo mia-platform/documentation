@@ -52,4 +52,4 @@ The company decides to build a real-time, 360° view of their customers using **
 * **Targeted and Effective Marketing**: The marketing team can now run highly targeted campaigns. For example, they can create a segment of customers who have viewed a specific product category but have not made a purchase in the last 30 days.
 * **Foundation for New Applications**: The `customer_sv` becomes a valuable asset for the entire company. New applications, like a recommendation engine or a loyalty program app, can be built quickly on top of this reliable and real-time data source.
 
-By leveraging Fast Data Single Views, the company broke down its data silos and transformed its fragmented data into a strategic asset, enabling a new level of personalization and operational efficiency.
+By leveraging Fast Data Single Views, the company broke down its data silos and transformed its fragmented data into a strategic asset, that is to say unified business data as a product. Single Views are easily discoverable, reusable and governed across all layers of the organization, enabling a new level of personalization and operational efficiency.

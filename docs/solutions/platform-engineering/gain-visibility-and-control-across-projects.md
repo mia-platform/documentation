@@ -17,7 +17,7 @@ A large enterprise with multiple business lines manages dozens of projects on Mi
 
 ### The Solution with Mia-Platform
 
-The Platform Engineering team leverages the **Design Overview** of Mia-Platform Console, a Company-level feature that aggregates configuration data from all underlying projects into a single interface.
+The Platform Engineering team leverages the **Design Overview** of Mia-Platform Console, a Company-level feature that aggregates configuration data from all underlying projects into a single interface for a streamlined, automated developer experience.
 
 1.  **Using Predefined Views**: Upon entering the Design Overview, the team uses the predefined views to get immediate insights:
     * **Unprotected Endpoints**: In a few seconds, they identify all endpoints exposed without authentication or API key, creating a priority list for the security team.

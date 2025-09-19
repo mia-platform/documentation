@@ -20,7 +20,7 @@ Development teams often face obstacles that slow down the entire software lifecy
 
 ## The Mia-Platform Solution: a Composition-based Approach
 
-**Mia-Platform Console** provides a suite of tools and ready-to-use components that enable a **composition-based development** approach. Instead of building everything from scratch, developers can assemble applications using pre-built, secure, and scalable components, drastically accelerating the time-to-market.
+**Mia-Platform Console** provides a suite of tools and ready-to-use building blocks that enable an approach based on **composability and reuse**. Instead of building everything from scratch, developers can assemble applications using pre-built, secure, and scalable components, drastically accelerating the time-to-market.
 
 ### Accelerate Frontend Development with Microfrontend Composer
 
@@ -47,4 +47,4 @@ Every endpoint created in Mia-Platform Console is automatically exposed through 
 * **Centralized Security**: Apply authentication and authorization policies consistently across all your APIs. Integrate with external Identity Providers (IdP) or use static API keys.
 * **API Lifecycle Management**: Manage traffic, apply rate limiting, and get a clear view of how your APIs are being used through the **API Portal**, which provides auto-generated and interactive documentation.
 
-By adopting Mia-Platform's composition-based approach, development teams can stop reinventing the wheel and focus on what truly matters: delivering innovative features to their users, faster and more securely.
+By adopting Mia-Platform's composition-based approach, development teams can stop reinventing the wheel and focus on what truly matters: generating value and delivering innovative features to their users, faster and more securely.

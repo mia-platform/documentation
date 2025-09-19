@@ -20,7 +20,7 @@ Developing and operationalizing AI agents goes far beyond simply connecting to a
 
 ## The Mia-Platform Solution: a Unified Platform for Building and Managing AI Agents
 
-**Mia-Platform** provides an integrated solution to manage the entire lifecycle of AI agents, from rapid prototyping to the orchestration and governance of complex, enterprise-grade systems. It combines no-code/low-code components with the full power of a cloud-native platform.
+**Mia-Platform** provides an integrated solution to manage the entire lifecycle of AI agents, from rapid prototyping to the orchestration and governance of complex, enterprise-grade systems. The end-to-end AI agent lifecycle management ensures context-aware applications that remain compliant and are easier to integrate into existing solutions, ultimately accelerating the time-to-market.
 
 ### Rapidly Build RAG Applications with Marketplace Templates
 
@@ -44,7 +44,7 @@ Treat your AI agents as first-class citizens of your software ecosystem. **Mia-P
 ### Leverage Platform Data with Mia-Assistant
 
 Mia-Platform not only helps you build external-facing AI agents but also uses AI to improve the platform experience itself.
-* **Mia-Assistant**: An AI-powered assistant integrated into the Console that uses data from your **Software Catalog** and runtime environments to answer questions, perform actions (like debugging or deploying), and provide insights about your platform.
+* **Mia-Assistant**: An AI-powered assistant integrated into the Console that uses data from your **Software Catalog** and runtime environments to answer questions, perform actions (like debugging or deploying), and provide insights into your platform.
 
-By providing a standardized, integrated, and scalable platform, Mia-Platform empowers organizations to move beyond simple AI experiments and build, manage, and govern a robust ecosystem of AI agents that drive real business value.
+Mia-Platform offers a standardized, integrated and scalable platform that empowers organizations to move beyond simple AI experiments. You can build, manage and govern a robust ecosystem of AI agents that drive real business value.
 

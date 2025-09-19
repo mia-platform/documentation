@@ -17,7 +17,7 @@ A company needs to develop a new internal backoffice application for managing it
 
 ### The Solution with Mia-Platform
 
-The development team decides to use **Mia-Platform Microfrontend Composer** to build the backoffice application through composition, leveraging the no-code/low-code capabilities of the platform.
+The development team decides to use **Mia-Platform Microfrontend Composer** to build the backoffice application through a composable approach, leveraging the no-code/low-code capabilities of the platform.
 
 1.  **Application Setup**: The team starts by creating the **Microfrontend Composer Toolkit** application from the Marketplace. This instantly sets up the necessary services, including the `micro-lc` frontend orchestrator and the webserver to serve the application.
 
@@ -41,6 +41,6 @@ The development team decides to use **Mia-Platform Microfrontend Composer** to b
 * **Rapid Development**: The entire backoffice application was built and deployed in a matter of days, not weeks. The no-code/low-code approach allowed the team to focus on the user experience rather than on writing boilerplate code.
 * **High-Quality and Consistent UI**: By using the pre-built components from the **Back-kit** library, the team created a modern, responsive, and consistent user interface without needing deep frontend expertise.
 * **Easy Integration**: Connecting the frontend to the backend CRUD service was a matter of simple configuration, thanks to the integrated components like the `CRUD Client`.
-* **Empowered Team**: The development team was able to deliver a complex application on time, demonstrating the power of a composition-based approach to application development.
+* **Empowered Team**: The development team was able to deliver a complex application on time, demonstrating that composability drastically streamlines application design and configuration.
 
 Mia-Platform Microfrontend Composer allowed the team to transform a complex requirement into a fully functional application quickly, proving that modern, high-quality frontends can be built with agility and efficiency.

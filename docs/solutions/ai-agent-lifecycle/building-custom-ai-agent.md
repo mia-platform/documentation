@@ -44,4 +44,4 @@ The team decides that a pre-built plugin is not flexible enough for their needs.
 * **Enterprise-Grade Governance**: The AI agent is not a standalone, ungoverned application. It is a fully managed component of their software ecosystem, subject to the same security, deployment, and monitoring standards as all their other microservices.
 * **Complete Lifecycle Management**: The team manages the agent's entire lifecycle through the Console, from development and deployment to monitoring and maintenance, ensuring a robust and reliable service for their users.
 
-This use case demonstrates that Mia-Platform is not just for building agents with pre-built components, but is a comprehensive platform for developing, deploying, and governing custom, mission-critical AI applications.
+This use case demonstrates that Mia-Platform is not just a platform for building agents with pre-built components, but is a comprehensive ecosystem for developing, deploying and governing custom, mission-critical and task-specific AI applications.

@@ -40,4 +40,4 @@ The Platform Engineering team decides to use **Mia-Platform Console** and the **
 * **Accelerated Onboarding**: New developers are immediately productive, as the service structure and pipelines are already defined and familiar.
 * **Quality and Security "by design"**: Security and quality practices are integrated directly into the template, reducing the risk of errors and vulnerabilities.
 
-Thanks to Mia-Platform, the Platform Engineering team has transformed chaos into an industrial process, providing developers with a "golden path" that makes them faster, more autonomous, and more secure.
+Thanks to Mia-Platform, the Platform Engineering team has transformed chaos into an industrial process, providing developers with golden paths and guardrails that makes them faster, more autonomous and more secure.

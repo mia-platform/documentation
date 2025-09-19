@@ -19,7 +19,7 @@ As companies evolve, they face significant hurdles in making their data accessib
 
 ## The Mia-Platform Solution: a Real-Time, Event-Driven Approach
 
-**Mia-Platform Fast Data** provides a comprehensive solution to these challenges by enabling an event-driven, real-time data integration architecture. Instead of slow and brittle batch processes, Fast Data allows you to create a low-latency data mesh that keeps your systems in sync. Additionally, for simpler use cases, the platform offers synchronous data aggregation tools.
+**Mia-Platform Fast Data** provides a comprehensive solution to cope with these challenges by enabling an event-driven, real-time data integration architecture based on a data fabric approach. Instead of slow and brittle batch processes, Fast Data allows you to create a low-latency data mesh that keeps your systems in sync. Additionally, for simpler use cases, the platform offers synchronous data aggregation tools.
 
 ### Scale Your Systems of Record with Projections
 
@@ -43,4 +43,4 @@ For simpler use cases that don't require the full power of an event-driven archi
 * **On-the-Fly Aggregation**: A MongoDB View is a virtual collection whose content is defined by a MongoDB aggregation pipeline that can join data from multiple collections at query time.
 * **Simplicity and Speed**: This is a perfect solution for backoffice dashboards or internal tools that need to display combined data without the overhead of creating a new persistent collection or a Fast Data pipeline.
 
-By leveraging these tools, organizations can break down data silos, unlock the value of their legacy systems, and build a modern, real-time data integration architecture that fuels innovation and provides a competitive edge.
+By leveraging these tools, organizations can break down data silos and decouple their data, unlock the value of their legacy systems, and build a modern, real-time data integration architecture that fuels innovation and provides a competitive edge.

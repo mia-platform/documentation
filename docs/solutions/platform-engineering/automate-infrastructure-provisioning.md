@@ -13,7 +13,7 @@ In an organization that adopts a "you build it, you run it" approach, developmen
 * **Slowness and Bottlenecks**: The ticket-based process is slow. A developer can wait for days to get a new database, effectively blocking the development of new features.
 * **Resource Inconsistency**: Manual provisioning by the Ops team can lead to inconsistent configurations. A database might be created with different performance parameters than another, or without the correct backup policies.
 * **Excessive Load on the Ops Team**: The Cloud Operations team is swamped with repetitive, low-value requests, diverting time and energy from more strategic activities like cost optimization and security improvement.
-* **Lack of Self-Service**: Developers are not truly autonomous. Their speed is limited by the availability of another team, contrary to the principles of an effective DevOps culture.
+* **Lack of Self-Service**: Developers are not truly autonomous. Their speed is limited by the overreliance on another team, which hinders effective DevOps practices fulfilment.
 
 ### The Solution with Mia-Platform
 
@@ -40,7 +40,7 @@ The Platform Engineering team decides to create a self-service experience for in
 ### The Outcome
 
 * **Speed and Agility**: Developers can provision the infrastructure they need in minutes, in total autonomy, eliminating waiting times.
-* **Standardization and Security "by Default"**: All resources are created following the best practices defined by the Ops team. Security, backup, and monitoring are configured by default, drastically reducing the risk of manual errors.
+* **Standardization and Security "by Default"**: All resources are created abiding by embedded best practices defined by the Ops team, who sets the standard. Security guardrails, backup, and monitoring are configured by default, drastically reducing the risk of manual errors.
 * **Efficiency of the Ops Team**: The Cloud Operations team no longer handles manual requests but focuses on creating and maintaining IaC modules, a higher-value activity that scales for the entire organization.
 * **Full Self-Service and Accountability**: Developers are truly end-to-end responsible for their applications, including the infrastructure they need. The process is fully tracked and governed.
 

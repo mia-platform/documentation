@@ -17,7 +17,7 @@ A financial sector organization must ensure maximum security and compliance for 
 
 ### The Solution with Mia-Platform
 
-The Platform Engineering team decides to implement a "paved roads with guardrails" system using the governance features of **Mia-Platform Console**.
+The Platform Engineering team decides to implement a "railroad framework", which features golden paths, paved roads  and guardrails measures, by using the governance features of **Mia-Platform Console**.
 
 1.  **Definition of Roles in IAM**: Using the **IAM Portal** at the Company level, clear roles such as `Developer`, `Senior Developer`, and `Platform Engineer` are defined. Each user is assigned a role based on their responsibilities.
 

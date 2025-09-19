@@ -34,6 +34,6 @@ The CloudOps team adopts **Mia-Platform Console** as a centralized control plane
 * **Single Pane of Glass**: The CloudOps team now manages their entire hybrid infrastructure from one place. They have a unified view of all their clusters, namespaces, and applications, drastically reducing operational complexity.
 * **Consistent and Portable Workloads**: Since deployments are standardized, applications can be moved between the on-premise and cloud environments with minimal changes, providing true workload portability.
 * **Improved Troubleshooting Speed**: When an issue arises, the team doesn't waste time figuring out which tool to use. They go directly to the Console's Runtime Area, select the environment, and start debugging immediately, whether the problem is in the cloud or on-premise.
-* **Simplified Governance**: Access control is managed centrally through the Console's IAM, ensuring that user permissions are applied consistently across all connected clusters.
+* **Simplified Governance**: Access control is managed centrally through the Console's IAM, ensuring that user permissions are applied consistently across all connected clusters. Automated policies and controls guarantee security and compliance best practices by design.
 
-Mia-Platform Console has provided the organization with a powerful abstraction layer over their hybrid infrastructure, enabling them to leverage the benefits of multi-cloud without the associated operational overhead.
+Mia-Platform Console has provided the organization with a powerful abstraction layer over their hybrid infrastructure, enabling teams to take full advantage of multi-cloud without the associated operational overhead.

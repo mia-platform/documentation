@@ -22,11 +22,11 @@ In today's cloud-native landscape, development teams face increasing complexity 
 
 ## The Mia-Platform Solution: Your Platform as a Product
 
-**Mia-Platform Console** is the Platform Builder that enables Platform Engineering teams to build and manage a robust, secure, and customized IDP. The Console transforms the infrastructure from a complex set of tools into a coherent, self-service product.
+**Mia-Platform** is the AI-Native Developer Platform Foundation that enables Platform Engineering teams to build and manage a robust, secure, and customized IDP. The Console transforms the infrastructure from a complex set of tools into a coherent, self-service product to manage the entire software lifecycle.
 
 ### Centralize and Standardize with the Software Catalog
 
-The **Software Catalog** is the heart of standardization. Platform teams can create and distribute reusable components such as **Templates**, **Plugins**, and **Infrastructure Components**. This ensures that every new microservice or resource starts from a solid, approved foundation, following corporate "golden paths."
+The **Software Catalog** is the heart of standardization. Platform teams can create and distribute reusable resources such as **Templates**, **Plugins**, and **Infrastructure Components**. This ensures that every new microservice or resource starts from a solid, approved foundation, following opinionated "golden paths."
 * **Microservice Standardization**: Create templates with pre-configured logging, health checks, and CI/CD pipelines, ensuring consistency and quality.
 * **Code Reuse**: Offer ready-to-use plugins (e.g., CRUD Service, Authorization Service) to accelerate development and reduce duplication.
 
@@ -57,6 +57,6 @@ The **Design Overview** at the Company level provides an aggregated view of all 
 * Monitor services with anomalous resource consumption (CPU/memory).
 * Verify the consistency of configurations and compliance with corporate standards.
 
-By using Mia-Platform Console, Platform Engineering teams can finally build an internal platform that not only solves operational challenges but also becomes a true accelerator for the entire organization.
+By using Mia-Platform Console, Platform Engineering teams can finally build an internal platform that not only solves operational challenges but also becomes a true accelerator and value generator for the entire organization.
 
 
