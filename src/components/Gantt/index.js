@@ -1,31 +1,7 @@
 import React from 'react';
 import styles from './styles.module.css';
 
-// --- CONFIGURAZIONE JSON ---
-// Modifica questo oggetto per personalizzare il tuo Gantt
-const ganttData = {
-    // Definisci le colonne del tempo
-    timeline: [
-        { year: 2024, quarter: 'Q4', months: ['Oct', 'Nov', 'Dec'] },
-        { year: 2025, quarter: 'Q1', months: ['Jan', 'Feb', 'Mar'] },
-        { year: 2025, quarter: 'Q2', months: ['Apr', 'May', 'Jun'] },
-        { year: 2025, quarter: 'Q3', months: ['Jul', 'Ago', 'Sep'] },
-        { year: 2025, quarter: 'Q4', months: ['Oct', 'Nov', 'Dec'] },
-        { year: 2026, quarter: 'Q1', months: ['Jan', 'Feb', 'Mar'] },
-    ],
-    // Definisci le righe (task/versioni)
-    tasks: [
-        { name: 'v13.1.x', start: '2024-10', end: '2025-01' },
-        { name: 'v13.3.x', start: '2025-01', end: '2025-04' },
-        { name: 'v13.7.x', start: '2025-04', end: '2025-07' },
-        { name: 'v14.0.x', start: '2025-07', end: '2025-10' },
-        { name: 'v14.3.x', start: '2025-10', end: '2026-01' },
-        // Aggiungi qui altre righe...
-    ],
-};
-// -------------------------
-
-// Funzione helper per ottenere la data corrente in formato 'YYYY-MM'
+// --- Helper Functions ---
 const getCurrentYearMonth = () => {
     const now = new Date();
     const year = now.getFullYear();
@@ -33,28 +9,99 @@ const getCurrentYearMonth = () => {
     return `${year}-${month}`;
 };
 
-// Funzione per determinare lo stato di un task
 const getTaskStatus = (task, currentYearMonth) => {
-    if (task.end < currentYearMonth) {
-        return 'passed';
-    }
-    if (task.start <= currentYearMonth && task.end >= currentYearMonth) {
-        return 'current';
-    }
+    const startMonth = task.start.slice(0, 7);
+    const endMonth = task.end.slice(0, 7);
+    if (endMonth < currentYearMonth) return 'passed';
+    if (startMonth <= currentYearMonth && endMonth >= currentYearMonth) return 'current';
     return 'next';
 };
 
-export default function GanttChart() {
-    const allMonths = ganttData.timeline.flatMap(q =>
+/**
+ * Gets the English ordinal suffix for a day number (st, nd, rd, th).
+ * @param {number} d The day of the month.
+ * @returns {string} The ordinal suffix.
+ */
+const getOrdinalSuffix = (d) => {
+    if (d > 3 && d < 21) return 'th';
+    switch (d % 10) {
+        case 1: return 'st';
+        case 2: return 'nd';
+        case 3: return 'rd';
+        default: return 'th';
+    }
+};
+
+/**
+ * Formats a 'YYYY-MM-DD' string into 'Month Dayth, Year'.
+ * @param {string} dateString The date string to format.
+ * @returns {string} The formatted date.
+ */
+const formatDateForTable = (dateString) => {
+    const date = new Date(dateString + 'T00:00:00');
+    if (isNaN(date.getTime())) return 'Invalid Date';
+    const day = date.getDate();
+    const year = date.getFullYear();
+    const month = date.toLocaleString('en-US', {month: 'long'});
+    return `${month} ${day}${getOrdinalSuffix(day)}, ${year}`;
+};
+
+/**
+ * Determines the quarter for a given date string.
+ * @param {string} dateString The date string to check.
+ * @returns {string} The quarter in 'Qn - YYYY' format.
+ */
+const findQuarter = (dateString) => {
+    const date = new Date(dateString + 'T00:00:00');
+    if (isNaN(date.getTime())) return 'N/A';
+    const month = date.getMonth();
+    const year = date.getFullYear();
+    const quarter = Math.floor(month / 3) + 1;
+    return `Q${quarter} - ${year}`;
+};
+
+// --- Main Component ---
+export default function GanttChart({config, renderAs = 'chart'}) {
+    if (!config || !config.timeline || !config.tasks) {
+        return <pre><code>{`Error: The 'config' prop is missing or invalid.`}</code></pre>;
+    }
+
+    // MODIFIED: Render a styled HTML table if specified
+    if (renderAs === 'table') {
+        return (
+            <table>
+                <thead>
+                <tr>
+                    <th>{`Quarter`}</th>
+                    <th>{`Stable Version*`}</th>
+                    <th>{`Start MTW`}</th>
+                    <th>{`End MTW`}</th>
+                </tr>
+                </thead>
+                <tbody>
+                {config.tasks.map(task => (
+                    <tr key={task.name}>
+                        <td>{findQuarter(task.start)}</td>
+                        <td>{task.name}</td>
+                        <td>{formatDateForTable(task.start)}</td>
+                        <td>{formatDateForTable(task.end)}</td>
+                    </tr>
+                ))}
+                </tbody>
+            </table>
+        );
+    }
+
+    // --- Default: Render the visual Gantt Chart ---
+    const allMonths = config.timeline.flatMap(q =>
         q.months.map((month) => {
-            // Mappatura robusta del nome del mese al suo numero
-            const monthIndex = new Date(Date.parse(month +" 1, 2012")).getMonth() + 1;
+            const monthIndex = new Date(Date.parse(month + " 1, 2012")).getMonth() + 1;
             return `${q.year}-${String(monthIndex).padStart(2, '0')}`;
         })
     );
 
     const currentYearMonth = getCurrentYearMonth();
-    const totalMonths = allMonths.length; // Calcoliamo il numero totale di mesi
+    const totalMonths = allMonths.length;
 
     return (
         <div className={styles.ganttContainer}>
@@ -62,31 +109,31 @@ export default function GanttChart() {
                 <thead>
                 <tr>
                     <th className={styles.firstColHeader}></th>
-                    {ganttData.timeline.map((q, index) => (
-                        <th key={index} colSpan={q.months.length} className={styles.quarterHeader}>
-                            {q.quarter} - {q.year}
+                    {config.timeline.map((q, index) => (
+                        <th className={styles.quarterHeader} colSpan={q.months.length} key={index}>
+                            {`${q.quarter} - ${q.year}`}
                         </th>
                     ))}
                 </tr>
                 <tr>
                     <th className={styles.firstColHeader}></th>
-                    {ganttData.timeline.flatMap((q) => q.months).map((month, index) => (
-                        <th key={index} className={styles.monthHeader}>
-                            {month}
-                        </th>
+                    {config.timeline.flatMap((q) => q.months).map((month, index) => (
+                        <th className={styles.monthHeader} key={index}>{month}</th>
                     ))}
                 </tr>
                 </thead>
                 <tbody>
-                {ganttData.tasks.map((task) => {
-                    const startIndex = allMonths.indexOf(task.start);
-                    const endIndex = allMonths.indexOf(task.end);
+                {config.tasks.map((task) => {
+                    const startMonth = task.start.slice(0, 7);
+                    const endMonth = task.end.slice(0, 7);
+                    const startIndex = allMonths.indexOf(startMonth);
+                    const endIndex = allMonths.indexOf(endMonth);
 
                     if (startIndex === -1 || endIndex === -1) {
                         return (
                             <tr key={task.name}>
                                 <td className={styles.taskLabel}>{task.name}</td>
-                                <td colSpan={totalMonths}>Data non valida</td>
+                                <td colSpan={totalMonths}>{`Invalid Date Range`}</td>
                             </tr>
                         );
                     }
@@ -97,19 +144,9 @@ export default function GanttChart() {
                     return (
                         <tr key={task.name}>
                             <td className={styles.taskLabel}>{task.name}</td>
-
-                            {/* La cella <td> usa la classe .barCell e contiene un <div> */}
-                            <td colSpan={totalMonths} className={styles.barCell}>
-
-                                {/* Questo <div> interno è il contenitore grid */}
-                                <div
-                                    className={styles.barContainer}
-                                    style={{ '--total-months': totalMonths }}
-                                >
-                                    <div
-                                        className={`${styles.bar} ${styles[status]}`}
-                                        style={{ gridColumn }}
-                                    >
+                            <td className={styles.barCell} colSpan={totalMonths}>
+                                <div className={styles.barContainer} style={{'--total-months': totalMonths}}>
+                                    <div className={`${styles.bar} ${styles[status]}`} style={{gridColumn}}>
                                         {task.name}
                                     </div>
                                 </div>
