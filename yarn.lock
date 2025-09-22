@@ -2289,10 +2289,10 @@
   dependencies:
     langium "3.3.1"
 
-"@mia-platform/console-types@^0.38.11":
-  version "0.38.11"
-  resolved "https://registry.npmjs.org/@mia-platform/console-types/-/console-types-0.38.11.tgz"
-  integrity sha512-6KANYjs32cJw7AaAmCnTPhcw65QpsT7etMFdHHSjOSCH1N1MbLZ1eA9Fdo8WHoY0tlkyqNM103tHZOKT/C2jpA==
+"@mia-platform/console-types@^0.39.0":
+  version "0.39.0"
+  resolved "https://registry.yarnpkg.com/@mia-platform/console-types/-/console-types-0.39.0.tgz#87ee4b432a6591bc123c945c09597291b47d04a8"
+  integrity sha512-ChksDMTFy1GpN4HYexzl6KyHEvbRP7ccjN6Zs2IiqDONDh3Yvfm2BbZ29Qd3A0zZnHqU3CeNEUVz4Ny2wo+mGg==
   dependencies:
     "@types/json-schema" "^7.0.9"
     json-schema-to-ts "^2.9.2"
@@ -7526,10 +7526,10 @@ markdown-table@^3.0.0:
   resolved "https://registry.npmjs.org/markdown-table/-/markdown-table-3.0.4.tgz"
   integrity sha512-wiYz4+JrLyb/DqW2hkFJxP7Vd7JuTDm77fvbM8VfEQdmSMqcImWeeRbHwZjBjIFki/VaMK2BhFi7oUUZeM5bqw==
 
-marked@^16.2.1:
-  version "16.3.0"
-  resolved "https://registry.yarnpkg.com/marked/-/marked-16.3.0.tgz#2f513891f867d6edc4772b4a026db9cc331eb94f"
-  integrity sha512-K3UxuKu6l6bmA5FUwYho8CfJBlsUWAooKtdGgMcERSpF7gcBUrCGsLH7wDaaNOzwq18JzSUDyoEb/YsrqMac3w==
+marked@15.0.12, marked@^16.2.1:
+  version "15.0.12"
+  resolved "https://registry.yarnpkg.com/marked/-/marked-15.0.12.tgz#30722c7346e12d0a2d0207ab9b0c4f0102d86c4e"
+  integrity sha512-8dD6FusOQSrpv9Z1rdNMdlSgQOIP880DHqnohobOmYLElGEqAL/JvxvuxZO16r4HtjTlfPRDC1hbvxC9dPN2nA==
 
 math-intrinsics@^1.1.0:
   version "1.1.0"
