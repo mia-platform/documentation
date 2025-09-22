@@ -2,6 +2,8 @@
   "name": "mia-platform-docs",
   "version": "0.0.0",
   "private": true,
+  "packageManager": "yarn@4.10.2",
+  "license": "SEE LICENSE IN LICENSE",
   "scripts": {
     "docusaurus": "docusaurus",
     "start": "docusaurus start",
