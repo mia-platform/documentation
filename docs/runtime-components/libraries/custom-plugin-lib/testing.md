@@ -4,8 +4,6 @@ title: Testing
 sidebar_label: Testing
 ---
 
-
-
 `Mia service Node.js Library` is built on Fastify and therefore integrates with [testing tools](https://www.fastify.io/docs/latest/Testing/)
 made available by the framework. A complete example of this type of test is available [here](https://github.com/mia-platform/custom-plugin-lib/tree/master/examples/advanced/tests).
 
