@@ -4,8 +4,6 @@ title: PDF Service Configuration
 sidebar_label: Configuration
 ---
 
-
-
 This service relies on the existence of:
 - [CRUD Service](/runtime-components/plugins/crud-service/10_overview_and_usage.md) connected to a MongoDB collection that will hold the HTML templates.
 
@@ -14,6 +12,8 @@ You must provide the following environment variables:
 - `CRUD_SERVICE` - *Optional. The URL that this service will use to contact the CRUD Service. If not specified `crud-service` will be used by default.
 - `DOCKER` - Required. True, if it runs within docker. False otherwise.
 - `PDF_TEMPLATE_ENDPOINT` - *Optional. The CRUD collection name used to hold the HTML templates. If not specified `/pdf-template` will be used by default.
+- `HEALTHINESS_CHECK` - *Optional. If the variable is set to true, the pdf service pod is restarted when a TimeoutError is thrown in POST `/url`
+- `TIMEOUT_VALUE` - *Optional. The time in milliseconds after which, if Puppeteer does not respond, a TimeoutError is thrown. The default value is 30000.
 - `HEALTHINESS_CHECK` - *Optional. If the variable is set to true, the pdf service pod is restarted when a TimeoutError is thrown in POST `/url`
 - `TIMEOUT_VALUE` - *Optional. The time in milliseconds after which, if Puppeteer does not respond, a TimeoutError is thrown. The default value is 30000.
 - `PDF_CONFIG_PATH` - *Optional. The path to the pdf configurations. If not specified the following default options will be used:
