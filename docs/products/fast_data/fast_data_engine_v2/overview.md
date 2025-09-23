@@ -7,7 +7,7 @@ sidebar_label: Fast Data Engine 2.0
 ## More Performant. More Flexible. More Efficient
 
 Welcome to **Fast Data 2.0** — the next evolution of Mia-Platform's Fast Data engine.  
-It delivers significant performance improvements while enhancing the core capabilities of the original [Fast Data product](/fast_data/what_is_fast_data.md).
+It delivers significant performance improvements while enhancing the core capabilities of the original [Fast Data product](/products/fast_data/what_is_fast_data.md).
 
 Fast Data 2.0 is designed to support a wide range of advanced use cases, including:  
 
@@ -168,5 +168,5 @@ Fast Data 2.0 is designed as the foundation step for some new roadmap initiative
 
 - **Data Pipeline Configurator**: An upcoming UX/UI canvas-based configurator will allow you to
   build data pipelines visually, further streamlining the development experience and boost interoperation and synergies with other Mia-Platform product suite components.
-- **Advanced Runtime Management**: Enable full support of Fast Data runtime management capabilities provided by compatibility with [Fast Data Control Plane](/fast_data/runtime_management),
+- **Advanced Runtime Management**: Enable full support of Fast Data runtime management capabilities provided by compatibility with [Fast Data Control Plane](/products/fast_data/runtime_management),
   providing comprehensive monitoring and control over your Fast Data operations at runtime.

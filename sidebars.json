@@ -1139,10 +1139,33 @@
       "type": "category",
       "label": "Fast Data Engine 2.0",
       "collapsed": true,
+      "link": {
+        "id": "products/fast_data/fast_data_engine_v2/overview",
+        "type": "doc"
+      },
       "items": [
         {
-          "id": "products/fast_data/new_fast_data_engine/overview.md",
-          "type": "doc"
+          "type": "category",
+          "label": "Mongezium CDC",
+          "collapsed": true,
+          "link": {
+            "id": "products/fast_data/fast_data_engine_v2/mongezium_cdc/overview",
+            "type": "doc"
+          },
+          "items": [
+            {
+              "id": "products/fast_data/fast_data_engine_v2/mongezium_cdc/configuration",
+              "type": "doc"
+            },
+            {
+              "id": "products/fast_data/fast_data_engine_v2/mongezium_cdc/usage",
+              "type": "doc"
+            },
+            {
+              "id": "products/fast_data/fast_data_engine_v2/mongezium_cdc/changelog",
+              "type": "doc"
+            }
+          ]
         }
       ]
     },

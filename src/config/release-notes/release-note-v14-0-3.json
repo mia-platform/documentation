@@ -10,9 +10,9 @@
         "title": "Introducing Mongezium: MongoDB to Kafka CDC Connector",
         "description": [
           "**Mongezium** is a CDC (Change Data Capture) connector that captures changes in MongoDB collections and push them to Kafka topics.",
-          "Mongezium uses MongoDB change streams to listen for changes in the collections and maps MongoDB events into schemaless [Debezium-like messages](/docshttps://debezium.io/documentation/reference/stable/connectors/mongodb.html#mongodb-events).",
+          "Mongezium uses MongoDB change streams to listen for changes in the collections and maps MongoDB events into schemaless [Debezium-like messages](https://debezium.io/documentation/reference/stable/connectors/mongodb.html#mongodb-events).",
           "Mongezium can be configured with different startup behaviors, such as performing always an initial snapshot on startup, or resuming the change stream from the last known resume token.",
-          "To know more about how to configure Mongezium CDC, visit the [official documentation](/docs/runtime-components/plugins/mongezium-cdc/10_overview)."
+          "To know more about how to configure Mongezium CDC, visit the [official documentation](/products/fast_data/fast_data_engine_v2/mongezium_cdc/10_overview.md)."
         ]
       }
       ],

@@ -5486,5 +5486,9 @@
   "/docs/runtime_suite_tools/mlp/overview": {
     "destination": "/docs/runtime-components/tools/mlp/overview",
     "addedOn": "2025-09-11"
+  },
+  "/docs/runtime-components/plugins/mongezium-cdc/overview": {
+    "destination": "/docs/products/fast_data/fast_data_engine_v2/mongezium_cdc/overview",
+    "addedOn": "2025-09-23"
   }
 }

@@ -1,4 +1,5 @@
 {
+  "$schema": "https://raw.githubusercontent.com/streetsidesoftware/cspell/main/cspell.schema.json",
   "version": "0.2",
   "language": "en",
   "words": [
@@ -112,6 +113,7 @@
     "JWTs",
     "kaleyra",
     "Kango",
+    "kango",
     "kyaml",
     "Kmongo",
     "kpis",
@@ -406,5 +408,6 @@
     "\".*\": \".*\"",
     "`.*`",
     "/^\\s*```[\\s\\S]*?^\\s*```/gm"
-  ]
+  ],
+  "failFast": true
 }
