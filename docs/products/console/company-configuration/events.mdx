@@ -559,7 +559,7 @@ In an Enhanced Workflow project, this event will be triggered when a version is 
 | `ref`                | `string` | The ref of the tag                                                     |
 | `message`            | `string` | The message of the tag compiled from the Console                       |
 | `releaseDescription` | `string` | The release description of the tag compiled from the Console           |
-| `project`            | `object` | [The Project metadata](#project) (ideally, the whole Project resource) |
+| `project`            | `object` | [The Project metadata](#project-created) (ideally, the whole Project resource) |
 
 </TabItem>
 <TabItem value="example" label="Example">
@@ -791,7 +791,7 @@ The following schema is potentially non-exhaustive and may not cover all the pos
 
 *Available from v14.2.0*
 
-This event will be triggered when [a Version is successfully deleted](/development_suite/set-up-infrastructure/revisions-and-versions.md#versions-section).
+This event will be triggered when [a Version is successfully deleted](/products/console/set-up-infrastructure/revisions-and-versions.md#versions-section).
 In an Enhanced Workflow project, this event will be triggered when a version is deleted.
 
 In Enhanced Workflow projects, each version is represented by a tag. Therefore, when a version is deleted, the corresponding tag is deleted, and the event with the name `tag_deleted` is triggered. The payload refers to the deleted tag, which corresponds to the deleted version.
@@ -803,7 +803,7 @@ In Enhanced Workflow projects, each version is represented by a tag. Therefore, 
 | `tenantId`           | `string` | The identifier of the Company the service belongs to                   |
 | `projectId`          | `string` | The identifier of the Project the service belongs to                   |
 | `tagName`            | `string` | The name of the tag deleted from the Console                           |
-| `project`            | `object` | [The Project metadata](#project) (ideally, the whole Project resource) |
+| `project`            | `object` | [The Project metadata](#project-created) (ideally, the whole Project resource) |
 
 </TabItem>
 <TabItem value="example" label="Example">
