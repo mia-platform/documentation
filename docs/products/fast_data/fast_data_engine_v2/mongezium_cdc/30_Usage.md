@@ -57,30 +57,42 @@ Output Kafka messages payload is compliant the following schema:
     "oneOf": [
         {
             "properties": {
-                "op": {"const": "c"},
-                "before": {"type": "null"},
-                "after": {"type": "object"}
+                "op": {
+                    "const": "c",
+                    "description": "insert"
+                },
+                "before": { "type": "null" },
+                "after": { "type": "object" }
             }
         },
         {
             "properties": {
-                "op": {"const": "r"},
-                "before": {"type": "null"},
-                "after": {"type": "object"}
+                "op": {
+                    "const": "r",
+                    "description": "snapshot"
+                },
+                "before": { "type": "null" },
+                "after": { "type": "object" }
             }
         },
         {
             "properties": {
-                "op": {"const": "u"},
-                "before": {"type": "object"},
-                "after": {"type": "object"}
+                "op": {
+                    "const": "u",
+                    "description": "update"
+                },
+                "before": { "type": "object" },
+                "after": { "type": "object" }
             }
         },
         {
             "properties": {
-                "op": {"const": "d"},
-                "before": {"type": "object"},
-                "after": {"type": "null"}
+                "op": {
+                    "const": "d",
+                    "description": "delete"
+                },
+                "before": { "type": "object" },
+                "after": { "type": "null" }
             }
         }
     ]

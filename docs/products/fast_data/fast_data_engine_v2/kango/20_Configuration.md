@@ -1,0 +1,130 @@
+---
+id: configuration
+title: Configuration
+sidebar_label: Configuration
+---
+
+
+
+In order to configure the service, a set of environment variables are adopted for
+describing basic service needs, alongside a main configuration file.
+
+## Environment Variables
+
+| Variable                    | Description                                                                                                                | Default            |
+|-----------------------------|----------------------------------------------------------------------------------------------------------------------------|--------------------|
+| LOG_LEVEL                   | the maximum log level to emit. Accepted levels are  `trace`\|`debug`\|`info`\|`warn`\|`error`                              | `info`             |
+| HTTP_PORT                   | the HTTP port on which kubernetes status routes and metrics are exposed                                                    | `3000`             |
+| CONFIGURATION_FOLDER        | the filepath to the folder under which configuration files are located                                                     | `<HOME>/.df/kango` |
+| OTEL_EXPORTER_OTLP_ENDPOINT | specify the OpenTelemetry OTLP endpoint where traces and metrics should be pushed. When not set, telemetry is not exported |                    |
+
+:::info
+Currently `<HOME>` value is set to `/home/kango`, which is based on how the service image is built.
+:::
+
+## Configuration File
+
+The application needs a configuration file, named `config.json`, having the following
+structure with values using the [secret_rs syntax](https://docs.rs/secret_rs/latest/secret_rs/index.html):
+
+```json
+{
+  "persistence": {
+    "url": "<mongodb-connection-string>",
+    "database": "<database-name>",
+    "collection": "<output-collection-name>"
+  },
+  "consumer": {
+    "type": "kafka",
+    "topic": "<input-topic-name>",
+    "config": {
+      // <string, secret_rs value> pair of properties that appear in the
+      // [librdkafka](https://github.com/confluentinc/librdkafka/blob/master/CONFIGURATION.md)
+      // used by consumer
+      ...
+    }
+  }
+}
+```
+
+For more details regarding the configuration file, please refer to the
+<a target="_blank" href="/docs_files_to_download/data-fabric/schemas/kango.0.5.1.schema.json">JSON schema</a>
+that describes its properties.
+
+## Control Plane Support
+
+The service implements the interface for connecting towards a Control-Plane Operator.  
+However, complete [Runtime Management](/products/fast_data/runtime_management/overview.mdx) support, that is with Control Plane UI and
+a central Control Plane instance will be added in the future.
+
+## Recommended Kafka Configuration
+
+When configuring Kafka consumer, it is advised to set appropriate values for
+constraining the consumer internal queue. In this manner:
+
+- the maximum amount of memory employed by the service can be finely tuned to avoid
+  wasting resources, since only the number of messages that can effectively be
+  processed in real-time should be pulled in memory;
+- it is ensured that consumer continuously poll the broker to avoid it exiting the
+  consumer group, since a lower number of buffered messages can trigger a new fetch to
+  replenish it;
+
+The main values to tune are:
+
+- `queued.max.messages.kbytes`: maximum number of kilobytes of queued pre-fetched
+  messages in the local consumer queue;
+- `queued.min.messages`: minimum number of messages per topic+partition _librdkafka_
+  tries to maintain in the local consumer queue;
+
+It is recommended to set `queued.min.messages` to a value greater, but close to the
+average message consumption rate. It is possible to observer:
+
+- `kafka_consumer_rx_msgs_total` &rarr; messages read
+- `ka_flushed_messages` &rarr; messages written to the persistence layer
+
+to check the average values.
+
+For _Kango_ service, when connected to a MongoDB M50 cluster instance, an example of configuration can be the following one:
+
+```json
+{
+  "queued.max.messages.kbytes": "32840",
+  "queued.min.messages": "5000"
+}
+```
+
+Another important property that might need to be tuned is `fetch.message.max.bytes`,
+which however should be changed only in case `queued.max.messages.kbytes` is set to
+a value lower than `1024`.
+
+## Kubernetes
+
+### Resources
+
+When the plugin is deployed on Kubernetes, it is advised to set its resources'
+_requests_ and _limits_. Here are provided which are the recommended ones, although
+they can be changed according to your needs:
+
+#### Recommended
+
+- _requests_:
+  ```text
+  CPU: 25m 
+  Memory: 30MB
+  ```
+- _limits_:
+  ```text
+  CPU: 300m 
+  Memory: 90MB
+  ```
+
+### Status Probes
+
+The service exposes the `liveness` and `readines` status probes as HTTP endpoint, which
+helps Kubernetes when the service is successfully started and when it may need to be restarted.
+
+The endpoints are:
+
+- `liveness` probe: `/-/healthz`
+- `readiness` probe: `/-/ready`
+

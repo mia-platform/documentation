@@ -1,0 +1,1129 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Configuration",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "minLength": 8,
+      "maxLength": 16,
+      "pattern": "^[A-Za-z][A-Za-z0-9_]*$"
+    },
+    "consumers": {
+      "$ref": "#/definitions/ConsumersConfig"
+    },
+    "producer": {
+      "$ref": "#/definitions/ProducerConfig"
+    },
+    "connections": {
+      "description": "map of connection names to connection configurations",
+      "type": "object",
+      "additionalProperties": {
+        "$ref": "#/definitions/ConnectionConfig"
+      }
+    },
+    "processor": {
+      "$ref": "#/definitions/AggregationConfig"
+    },
+    "controlPlane": {
+      "anyOf": [
+        {
+          "$ref": "#/definitions/ControlPlaneConfig"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "server": {
+      "default": {
+        "ip": "0.0.0.0",
+        "port": 3000,
+        "apiPrefix": "/"
+      },
+      "allOf": [
+        {
+          "$ref": "#/definitions/ServerSettings"
+        }
+      ]
+    }
+  },
+  "required": [
+    "id",
+    "consumers",
+    "producer",
+    "connections",
+    "processor"
+  ],
+  "definitions": {
+    "ConsumersConfig": {
+      "oneOf": [
+        {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "string",
+              "const": "kafka"
+            },
+            "config": {
+              "type": "object",
+              "additionalProperties": {
+                "$ref": "#/definitions/KafkaConsumerConfig"
+              }
+            }
+          },
+          "required": [
+            "type",
+            "config"
+          ]
+        }
+      ]
+    },
+    "KafkaConsumerConfig": {
+      "type": "object",
+      "properties": {
+        "topic": {
+          "description": "name of the Kafka topic from which the consumer will poll",
+          "type": "string"
+        },
+        "connectionName": {
+          "description": "connection name to use from the connections map (must be type kafka)",
+          "type": "string"
+        },
+        "commitIntervalMs": {
+          "description": "number of milliseconds between one commit and another",
+          "type": "integer",
+          "format": "uint64",
+          "minimum": 0,
+          "default": 500
+        }
+      },
+      "required": [
+        "topic",
+        "connectionName"
+      ],
+      "additionalProperties": {
+        "$ref": "#/definitions/Secret"
+      }
+    },
+    "Secret": {
+      "examples": [
+        "my-secret",
+        {
+          "type": "env",
+          "key": "CUSTOM_ENV_VAR"
+        },
+        {
+          "type": "env",
+          "key": "CUSTOM_ENV_VAR",
+          "encoding": "base64"
+        },
+        {
+          "type": "file",
+          "path": "/path/to/file"
+        }
+      ],
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "type": {
+              "const": "env"
+            },
+            "key": {
+              "type": "string"
+            },
+            "encoding": {
+              "description": "Define which type of encoding the library supports when it needs to read the actual secret value.",
+              "type": "string",
+              "enum": [
+                "base64"
+              ]
+            }
+          },
+          "required": [
+            "type",
+            "key"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "type": {
+              "const": "file"
+            },
+            "key": {
+              "type": "string"
+            },
+            "path": {
+              "type": "string"
+            },
+            "encoding": {
+              "description": "Define which type of encoding the library supports when it needs to read the actual secret value.",
+              "type": "string",
+              "enum": [
+                "base64"
+              ]
+            }
+          },
+          "required": [
+            "type",
+            "path"
+          ]
+        }
+      ]
+    },
+    "ProducerConfig": {
+      "oneOf": [
+        {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "string",
+              "const": "kafka"
+            },
+            "config": {
+              "$ref": "#/definitions/KafkaProducerConfig"
+            }
+          },
+          "required": [
+            "type",
+            "config"
+          ]
+        }
+      ]
+    },
+    "KafkaProducerConfig": {
+      "type": "object",
+      "properties": {
+        "connectionName": {
+          "description": "connection name to use from the connections map (must be type kafka)",
+          "type": "string"
+        },
+        "topic": {
+          "description": "name of the Kafka topic to which the producer will send messages",
+          "type": "string"
+        }
+      },
+      "required": [
+        "connectionName",
+        "topic"
+      ],
+      "additionalProperties": {
+        "$ref": "#/definitions/Secret"
+      }
+    },
+    "ConnectionConfig": {
+      "oneOf": [
+        {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "string",
+              "const": "kafka"
+            },
+            "config": {
+              "$ref": "#/definitions/KafkaConnectionConfig"
+            }
+          },
+          "required": [
+            "type",
+            "config"
+          ]
+        }
+      ]
+    },
+    "KafkaConnectionConfig": {
+      "type": "object",
+      "additionalProperties": {
+        "$ref": "#/definitions/Secret"
+      }
+    },
+    "AggregationConfig": {
+      "type": "object",
+      "properties": {
+        "graph": {
+          "$ref": "#/definitions/AggregationGraph"
+        },
+        "persistence": {
+          "$ref": "#/definitions/PersistenceConfig"
+        },
+        "internalUpdates": {
+          "$ref": "#/definitions/InternalUpdatesConfig"
+        },
+        "mode": {
+          "default": "read-delete",
+          "allOf": [
+            {
+              "$ref": "#/definitions/OutputMode"
+            }
+          ]
+        }
+      },
+      "required": [
+        "graph",
+        "persistence",
+        "internalUpdates"
+      ]
+    },
+    "AggregationGraph": {
+      "description": "Configuration given by the user of a DAG of nodes, linked by each other\nwith edges that contains filter to retrieve records from/to a given record",
+      "type": "object",
+      "properties": {
+        "edges": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Edge"
+          }
+        },
+        "nodes": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Node"
+          }
+        }
+      },
+      "required": [
+        "edges",
+        "nodes"
+      ]
+    },
+    "Edge": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "description": "identifier of an edge in the graph. must be unique",
+          "type": "string"
+        },
+        "filter": {
+          "description": "filter to retrieve data from node A to node B",
+          "default": true,
+          "allOf": [
+            {
+              "$ref": "#/definitions/GenericFilter"
+            }
+          ]
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "GenericFilter": {
+      "title": "DownwardFilter",
+      "description": "A filter for constraining how two nodes are linked together",
+      "anyOf": [
+        {
+          "description": "Logical and operator between two filters",
+          "type": "object",
+          "properties": {
+            "$and": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/GenericFilter"
+              }
+            }
+          },
+          "required": [
+            "$and"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "description": "Logical or operator between two filters",
+          "type": "object",
+          "properties": {
+            "$or": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/GenericFilter"
+              }
+            }
+          },
+          "required": [
+            "$or"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "description": "Logical negation of the filter",
+          "type": "object",
+          "properties": {
+            "$not": {
+              "$ref": "#/definitions/GenericFilter"
+            }
+          },
+          "required": [
+            "$not"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "description": "Equality operation among two fields",
+          "type": "object",
+          "properties": {
+            "$eq": {
+              "type": "array",
+              "maxItems": 2,
+              "minItems": 2,
+              "items": [
+                {
+                  "$ref": "#/definitions/RepositoryFilter"
+                },
+                {
+                  "$ref": "#/definitions/DownwardRight"
+                }
+              ]
+            }
+          },
+          "required": [
+            "$eq"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "description": "Inequality operation among two fields",
+          "type": "object",
+          "properties": {
+            "$ne": {
+              "type": "array",
+              "maxItems": 2,
+              "minItems": 2,
+              "items": [
+                {
+                  "$ref": "#/definitions/RepositoryFilter"
+                },
+                {
+                  "$ref": "#/definitions/DownwardRight"
+                }
+              ]
+            }
+          },
+          "required": [
+            "$ne"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "description": "Greater than operator among two fields",
+          "type": "object",
+          "properties": {
+            "$gt": {
+              "type": "array",
+              "maxItems": 2,
+              "minItems": 2,
+              "items": [
+                {
+                  "$ref": "#/definitions/RepositoryFilter"
+                },
+                {
+                  "$ref": "#/definitions/DownwardRight"
+                }
+              ]
+            }
+          },
+          "required": [
+            "$gt"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "description": "Greater than or equal operator among two fields",
+          "type": "object",
+          "properties": {
+            "$gte": {
+              "type": "array",
+              "maxItems": 2,
+              "minItems": 2,
+              "items": [
+                {
+                  "$ref": "#/definitions/RepositoryFilter"
+                },
+                {
+                  "$ref": "#/definitions/DownwardRight"
+                }
+              ]
+            }
+          },
+          "required": [
+            "$gte"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "description": "Lower than operator among two fields",
+          "type": "object",
+          "properties": {
+            "$lt": {
+              "type": "array",
+              "maxItems": 2,
+              "minItems": 2,
+              "items": [
+                {
+                  "$ref": "#/definitions/RepositoryFilter"
+                },
+                {
+                  "$ref": "#/definitions/DownwardRight"
+                }
+              ]
+            }
+          },
+          "required": [
+            "$lt"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "description": "Lower than or equal operator among two fields",
+          "type": "object",
+          "properties": {
+            "$lte": {
+              "type": "array",
+              "maxItems": 2,
+              "minItems": 2,
+              "items": [
+                {
+                  "$ref": "#/definitions/RepositoryFilter"
+                },
+                {
+                  "$ref": "#/definitions/DownwardRight"
+                }
+              ]
+            }
+          },
+          "required": [
+            "$lte"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "description": "Length equality operator among two array fields",
+          "type": "object",
+          "properties": {
+            "$sizeEq": {
+              "type": "array",
+              "maxItems": 2,
+              "minItems": 2,
+              "items": [
+                {
+                  "$ref": "#/definitions/RepositoryFilter"
+                },
+                {
+                  "$ref": "#/definitions/DownwardRight"
+                }
+              ]
+            }
+          },
+          "required": [
+            "$sizeEq"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "description": "Length inequality operator among two array fields",
+          "type": "object",
+          "properties": {
+            "$sizeNe": {
+              "type": "array",
+              "maxItems": 2,
+              "minItems": 2,
+              "items": [
+                {
+                  "$ref": "#/definitions/RepositoryFilter"
+                },
+                {
+                  "$ref": "#/definitions/DownwardRight"
+                }
+              ]
+            }
+          },
+          "required": [
+            "$sizeNe"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "description": "Length greater than operator among two array fields",
+          "type": "object",
+          "properties": {
+            "$sizeGt": {
+              "type": "array",
+              "maxItems": 2,
+              "minItems": 2,
+              "items": [
+                {
+                  "$ref": "#/definitions/RepositoryFilter"
+                },
+                {
+                  "$ref": "#/definitions/DownwardRight"
+                }
+              ]
+            }
+          },
+          "required": [
+            "$sizeGt"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "description": "Length greater than or equal operator among two array fields",
+          "type": "object",
+          "properties": {
+            "$sizeGte": {
+              "type": "array",
+              "maxItems": 2,
+              "minItems": 2,
+              "items": [
+                {
+                  "$ref": "#/definitions/RepositoryFilter"
+                },
+                {
+                  "$ref": "#/definitions/DownwardRight"
+                }
+              ]
+            }
+          },
+          "required": [
+            "$sizeGte"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "description": "Length lower than operator among two array fields",
+          "type": "object",
+          "properties": {
+            "$sizeLt": {
+              "type": "array",
+              "maxItems": 2,
+              "minItems": 2,
+              "items": [
+                {
+                  "$ref": "#/definitions/RepositoryFilter"
+                },
+                {
+                  "$ref": "#/definitions/DownwardRight"
+                }
+              ]
+            }
+          },
+          "required": [
+            "$sizeLt"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "description": "Length lower than or equal operator among two array fields",
+          "type": "object",
+          "properties": {
+            "$sizeLte": {
+              "type": "array",
+              "maxItems": 2,
+              "minItems": 2,
+              "items": [
+                {
+                  "$ref": "#/definitions/RepositoryFilter"
+                },
+                {
+                  "$ref": "#/definitions/DownwardRight"
+                }
+              ]
+            }
+          },
+          "required": [
+            "$sizeLte"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "description": "Local field must be contained in foreign array fields",
+          "type": "object",
+          "properties": {
+            "$in": {
+              "type": "array",
+              "maxItems": 2,
+              "minItems": 2,
+              "items": [
+                {
+                  "$ref": "#/definitions/RepositoryFilter"
+                },
+                {
+                  "$ref": "#/definitions/DownwardRight"
+                }
+              ]
+            }
+          },
+          "required": [
+            "$in"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "description": "Local field must not be contained in foreign array fields",
+          "type": "object",
+          "properties": {
+            "$nin": {
+              "type": "array",
+              "maxItems": 2,
+              "minItems": 2,
+              "items": [
+                {
+                  "$ref": "#/definitions/RepositoryFilter"
+                },
+                {
+                  "$ref": "#/definitions/DownwardRight"
+                }
+              ]
+            }
+          },
+          "required": [
+            "$nin"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "description": "Local array field must contain in foreign fields",
+          "type": "object",
+          "properties": {
+            "$contains": {
+              "type": "array",
+              "maxItems": 2,
+              "minItems": 2,
+              "items": [
+                {
+                  "$ref": "#/definitions/RepositoryFilter"
+                },
+                {
+                  "$ref": "#/definitions/DownwardRight"
+                }
+              ]
+            }
+          },
+          "required": [
+            "$contains"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "description": "Local array field must not contain in foreign fields",
+          "type": "object",
+          "properties": {
+            "$ncontains": {
+              "type": "array",
+              "maxItems": 2,
+              "minItems": 2,
+              "items": [
+                {
+                  "$ref": "#/definitions/RepositoryFilter"
+                },
+                {
+                  "$ref": "#/definitions/DownwardRight"
+                }
+              ]
+            }
+          },
+          "required": [
+            "$ncontains"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "description": "Verifies whether field is of type array",
+          "type": "object",
+          "properties": {
+            "$isArray": {
+              "$ref": "#/definitions/RepositoryFilter"
+            }
+          },
+          "required": [
+            "$isArray"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "description": "Matches a field against a regular expression",
+          "type": "object",
+          "properties": {
+            "$regexMatch": {
+              "$ref": "#/definitions/RegexMatchArgs"
+            }
+          },
+          "required": [
+            "$regexMatch"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "description": "Either prevent any link among two nodes (`false`) or perform\nthe cartesian product among records of the two nodes (`true`)",
+          "type": "boolean"
+        }
+      ]
+    },
+    "RepositoryFilter": {
+      "type": "object",
+      "properties": {
+        "foreign": {
+          "$ref": "#/definitions/FieldPath"
+        }
+      },
+      "required": [
+        "foreign"
+      ]
+    },
+    "FieldPath": {
+      "description": "A path of fields that identifies the position of a value in a generic struct",
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/FieldSegment"
+      }
+    },
+    "FieldSegment": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "integer",
+          "format": "uint",
+          "minimum": 0
+        }
+      ]
+    },
+    "DownwardRight": {
+      "anyOf": [
+        {
+          "$ref": "#/definitions/LocalFilter"
+        },
+        {
+          "$ref": "#/definitions/FilterValue"
+        }
+      ]
+    },
+    "LocalFilter": {
+      "type": "object",
+      "properties": {
+        "local": {
+          "$ref": "#/definitions/FieldPath"
+        }
+      },
+      "required": [
+        "local"
+      ]
+    },
+    "FilterValue": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "integer",
+          "format": "int64"
+        },
+        {
+          "type": "number",
+          "format": "double"
+        },
+        {
+          "type": "boolean"
+        },
+        {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        {
+          "type": "array",
+          "items": {
+            "type": "boolean"
+          }
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "RegexMatchArgs": {
+      "type": "object",
+      "properties": {
+        "input": {
+          "$ref": "#/definitions/RepositoryFilter"
+        },
+        "regex": {
+          "type": "string"
+        },
+        "options": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "input",
+        "regex"
+      ]
+    },
+    "Node": {
+      "description": "A node represents a data stream appearing in the aggregation.",
+      "type": "object",
+      "properties": {
+        "edges": {
+          "$ref": "#/definitions/EdgeLinks"
+        },
+        "id": {
+          "description": "identifier of a node. must be unique",
+          "type": "string"
+        }
+      },
+      "required": [
+        "edges",
+        "id"
+      ]
+    },
+    "EdgeLinks": {
+      "description": "Defines lists of inner and outer nodes of an edge.",
+      "type": "object",
+      "properties": {
+        "in": {
+          "description": "This represents and array of edges necessary to reach a node, as in, to reach X you need both Y and Z",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "out": {
+          "description": "This represents and array of edges that can be traversed to reach other nodes",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "in",
+        "out"
+      ]
+    },
+    "PersistenceConfig": {
+      "oneOf": [
+        {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "string",
+              "const": "mongo"
+            },
+            "config": {
+              "$ref": "#/definitions/MongoConfig"
+            }
+          },
+          "required": [
+            "type",
+            "config"
+          ]
+        }
+      ]
+    },
+    "MongoConfig": {
+      "type": "object",
+      "properties": {
+        "url": {
+          "$ref": "#/definitions/Secret"
+        },
+        "database": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "appName": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "url"
+      ]
+    },
+    "InternalUpdatesConfig": {
+      "oneOf": [
+        {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "string",
+              "const": "kafka"
+            },
+            "config": {
+              "$ref": "#/definitions/KafkaInternalUpdatesConfig"
+            }
+          },
+          "required": [
+            "type",
+            "config"
+          ]
+        }
+      ]
+    },
+    "KafkaInternalUpdatesConfig": {
+      "type": "object",
+      "properties": {
+        "topic": {
+          "description": "name of the Kafka topic from which the consumer will poll\nand the producer will send messages",
+          "type": "string"
+        },
+        "connectionName": {
+          "description": "connection name to use from the connections map (must be type kafka)",
+          "type": "string"
+        },
+        "compressionWindowMs": {
+          "description": "the timespan of the window to attempt internal update messages compression",
+          "type": "integer",
+          "format": "uint64",
+          "minimum": 0,
+          "default": 250
+        },
+        "consumer": {
+          "default": {
+            "commitIntervalMs": 0
+          },
+          "allOf": [
+            {
+              "$ref": "#/definitions/KafkaInternalUpdatesConsumerConfig"
+            }
+          ]
+        },
+        "producer": {
+          "default": {},
+          "allOf": [
+            {
+              "$ref": "#/definitions/KafkaInternalUpdatesProducerConfig"
+            }
+          ]
+        }
+      },
+      "required": [
+        "topic",
+        "connectionName"
+      ]
+    },
+    "KafkaInternalUpdatesConsumerConfig": {
+      "type": "object",
+      "properties": {
+        "commitIntervalMs": {
+          "description": "number of milliseconds between one commit and another",
+          "type": "integer",
+          "format": "uint64",
+          "minimum": 0,
+          "default": 500
+        }
+      },
+      "additionalProperties": {
+        "$ref": "#/definitions/Secret"
+      }
+    },
+    "KafkaInternalUpdatesProducerConfig": {
+      "type": "object",
+      "additionalProperties": {
+        "$ref": "#/definitions/Secret"
+      }
+    },
+    "OutputMode": {
+      "description": "Select which strategy is employed to generate the output event from HEAD aggregation units.",
+      "oneOf": [
+        {
+          "description": "The [`OutputMode::OperationForwarding`] mode, ensures that Debezium operations occurring on the\nHEAD unit are forwarded, while operations occurring on internal nodes are produced as updates.\n\nNote: before and after properties of the payload are set accordingly to the selected DebeziumOperation",
+          "type": "string",
+          "const": "operation-forwarding"
+        },
+        {
+          "description": "[`OutputMode::ReadDelete`], which is default, transforms Debezium create/update operations into read operations, so that\n`before` field is never set in the payload.\n\nNote: this mode reduces the size of the output payload.",
+          "type": "string",
+          "const": "read-delete"
+        },
+        {
+          "description": "[`OutputMode::KeyOnly`], transforms Debezium create/update operations into read operations, also\ndoes NOT send the payload.\n\nPayload can be recovered by third-party consumer using 'farm-data' Rest API `/heads/{node}/items/{key}`\nwhere the key is the received base64 URL-safe not padded UTF-8 string representing the message key.\n\nNote: this mode reduces the size of the output payload to few bytes.",
+          "type": "string",
+          "const": "key-only"
+        }
+      ]
+    },
+    "ControlPlaneConfig": {
+      "type": "object",
+      "properties": {
+        "grpcAddress": {
+          "description": "Address to the gRPC server that should receive service feedback events",
+          "type": "string",
+          "examples": [
+            "http://control-plane-operator:50052"
+          ]
+        },
+        "feedbackInterval": {
+          "description": "Interval in milliseconds that must elapse between two feedback events sent to Control Plane Operator.\nIt defaults to `3000` ms when not provided during deserialization.",
+          "type": "integer",
+          "format": "uint64",
+          "minimum": 0,
+          "default": 3000
+        },
+        "resumeAfterMs": {
+          "description": "The number of milliseconds to wait before running the processing logic\nwhen connection with Control Plane Operator failed\nand no desired fast data state was ever received.",
+          "type": [
+            "integer",
+            "null"
+          ],
+          "format": "uint64",
+          "minimum": 0,
+          "default": null
+        }
+      },
+      "required": [
+        "grpcAddress"
+      ]
+    },
+    "ServerSettings": {
+      "type": "object",
+      "properties": {
+        "ip": {
+          "description": "Server bind IP",
+          "type": "string",
+          "format": "ipv4",
+          "default": "0.0.0.0"
+        },
+        "port": {
+          "description": "Server port",
+          "type": "integer",
+          "format": "uint16",
+          "minimum": 0,
+          "maximum": 65535,
+          "default": 3000
+        },
+        "apiPrefix": {
+          "description": "Server REST api prefix",
+          "default": "/",
+          "allOf": [
+            {
+              "$ref": "#/definitions/ApiPrefix"
+            }
+          ]
+        }
+      }
+    },
+    "ApiPrefix": {
+      "title": "string",
+      "type": "string",
+      "pattern": "^/(?:[a-zA-Z0-9._~-]+(?:/[a-zA-Z0-9._~-]+)*)?$"
+    }
+  }
+}
