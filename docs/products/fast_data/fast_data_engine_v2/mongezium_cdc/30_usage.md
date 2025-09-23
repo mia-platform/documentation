@@ -59,28 +59,28 @@ Output Kafka messages payload is compliant the following schema:
             "properties": {
                 "op": {"const": "c"},
                 "before": {"type": "null"},
-                "after": {"type": "object"},
+                "after": {"type": "object"}
             }
         },
         {
             "properties": {
                 "op": {"const": "r"},
                 "before": {"type": "null"},
-                "after": {"type": "object"},
+                "after": {"type": "object"}
             }
         },
         {
             "properties": {
                 "op": {"const": "u"},
                 "before": {"type": "object"},
-                "after": {"type": "object"},
+                "after": {"type": "object"}
             }
-        }
+        },
         {
             "properties": {
                 "op": {"const": "d"},
                 "before": {"type": "object"},
-                "after": {"type": "null"},
+                "after": {"type": "null"}
             }
         }
     ]
