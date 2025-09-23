@@ -1166,6 +1166,91 @@
               "type": "doc"
             }
           ]
+        },
+        {
+          "type": "category",
+          "label": "Stream Processor",
+          "collapsed": true,
+          "link": {
+            "id": "products/fast_data/fast_data_engine_v2/stream_processor/overview",
+            "type": "doc"
+          },
+          "items": [
+            {
+              "id": "products/fast_data/fast_data_engine_v2/stream_processor/configuration",
+              "type": "doc"
+            },
+            {
+              "id": "products/fast_data/fast_data_engine_v2/stream_processor/usage",
+              "type": "doc"
+            },
+            {
+              "id": "products/fast_data/fast_data_engine_v2/stream_processor/metrics",
+              "type": "doc"
+            },
+            {
+              "id": "products/fast_data/fast_data_engine_v2/stream_processor/changelog",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "type": "category",
+          "label": "Farm Data",
+          "collapsed": true,
+          "link": {
+            "id": "products/fast_data/fast_data_engine_v2/farm_data/overview",
+            "type": "doc"
+          },
+          "items": [
+            {
+              "id": "products/fast_data/fast_data_engine_v2/farm_data/configuration",
+              "type": "doc"
+            },
+            {
+              "id": "products/fast_data/fast_data_engine_v2/farm_data/usage",
+              "type": "doc"
+            },
+            {
+              "id": "products/fast_data/fast_data_engine_v2/farm_data/metrics",
+              "type": "doc"
+            },
+            {
+              "id": "products/fast_data/fast_data_engine_v2/farm_data/cache-apis",
+              "type": "doc"
+            },
+            {
+              "id": "products/fast_data/fast_data_engine_v2/farm_data/changelog",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "type": "category",
+          "label": "Kango",
+          "collapsed": true,
+          "link": {
+            "id": "products/fast_data/fast_data_engine_v2/kango/overview",
+            "type": "doc"
+          },
+          "items": [
+            {
+              "id": "products/fast_data/fast_data_engine_v2/kango/configuration",
+              "type": "doc"
+            },
+            {
+              "id": "products/fast_data/fast_data_engine_v2/kango/usage",
+              "type": "doc"
+            },
+            {
+              "id": "products/fast_data/fast_data_engine_v2/kango/metrics",
+              "type": "doc"
+            },
+            {
+              "id": "products/fast_data/fast_data_engine_v2/kango/changelog",
+              "type": "doc"
+            }
+          ]
         }
       ]
     },
