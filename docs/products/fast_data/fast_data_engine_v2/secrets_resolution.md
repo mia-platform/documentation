@@ -90,7 +90,7 @@ This mode provides backward compatibility with any of your existing configuratio
 
 ## Environment Variable
 
-The field is populated [by a microservice environment variable](/products/console/api-console/api-design/services.md#environment-variable-configuration).
+The field is populated [by a microservice environment variable](/products/console/api-console/api-design/services.md#environment-variables-configuration).
 
 ```json
 {
