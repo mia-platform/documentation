@@ -88,3 +88,9 @@ Input Kafka messages payload is compliant the following schema:
 }
 ```
 
+:::warning
+
+Input messages **must** be compliant with [Fast Data message format](/products/fast_data/fast_data_engine_v2/concepts.mdx#fast-data-message-format).
+
+:::
+

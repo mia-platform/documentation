@@ -192,6 +192,7 @@
           "description": "Configurations related to the Kafka Producer for sending to Kafka topics\nchange events occurring on the persistence layer.\n\n`bootstrap.servers` property MUST have the value of the corresponding property in the `consumer` configuration.",
           "type": "object",
           "additional_properties": {
+            "description": "librdkafka producer config | https://github.com/confluentinc/librdkafka/blob/master/CONFIGURATION.md",
             "$ref": "#/definitions/Secret"
           },
           "required": [

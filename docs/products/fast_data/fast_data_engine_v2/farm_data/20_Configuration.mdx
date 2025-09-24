@@ -4,6 +4,9 @@ title: Configuration
 sidebar_label: Configuration
 ---
 
+import FarmDataSchema from "@site/static/schemas/fast_data/farm-data.0.5.3.schema.json"
+import FarmDataConfigExample from "@site/static/schemas/fast_data/examples/toy_model.json"
+import SchemaViewer from "../snippets/schema_viewer.mdx"
 
 ## Environment Variables
 
@@ -15,16 +18,29 @@ sidebar_label: Configuration
 | OTEL_EXPORTER_OTLP_ENDPOINT | specify the OpenTelemetry OTLP endpoint where traces and metrics should be pushed. When not set telemetry is not exported                             |                          |
 
 :::info
+
 Currently `<HOME>` value is set to `/home/farm_data`, which is based on how the service image is built.
+
 :::
 
 ## Configuration File
 
-The farm-data service configuration is defined by the following
-<a target="_blank" href="/docs_files_to_download/data-fabric/schemas/farm-data.0.5.3.schema.json">JSON schema</a>.
+The farm-data service configuration is stored in `config.json` file, and
+it specifies various aspects of the system, including connections, consumers,
+producers, and data processing.
+Its content respect the JSON schema specification provided below.
+In the next sections its properties description are further explained and clarified.
 
-The configuration file specifies various aspects of the system, including connections,
-consumers, producers, and data processing, which are described in the next sections.
+<SchemaViewer schema={FarmDataSchema} example={FarmDataConfigExample} />
+
+:::note
+
+The raw JSON schema can also be found <a target="_blank" href="/schemas/fast_data/farm-data.0.5.3.schema.json">here</a>.
+
+In addition, Kafka configurations and MongoDB persistence properties
+support [**secret resolution**](/products/fast_data/fast_data_engine_v2/secrets_resolution.md).
+
+:::
 
 ### Connections
 
@@ -171,7 +187,7 @@ The `internalUpdates` configuration specifies how internal updates are handled w
 
 #### Aggregation Graph
 
-See [aggregation](/products/fast_data/fast_data_engine_v2/farm_data/30_Usage.md#aggregation-graph)
+See [aggregation](/products/fast_data/fast_data_engine_v2/farm_data/30_Usage.md#aggregation-graph) in Usage page.
 
 #### Secret Management
 
@@ -193,9 +209,8 @@ Properties that support `Secret` interface are:
 - Kafka consumer configuration
 - persistence connection string
 
-For more details, please refer to Secrets Resolution in config maps documentation page
-and [secret_rs](https://docs.rs/secret_rs/latest/secret_rs/index.html) library
-documentation.
+For more details, please refer to [secrets resolution](/products/fast_data/fast_data_engine_v2/secrets_resolution.md)
+in config maps documentation page and [`secret_rs`](https://docs.rs/secret_rs/latest/secret_rs/index.html) library documentation.
 
 ### Control Plane Support
 

@@ -82,6 +82,12 @@ JSON schema of the **payload**:
 }
 ```
 
+:::warning
+
+Input messages **must** be compliant with [Fast Data message format](/products/fast_data/fast_data_engine_v2/concepts.mdx#fast-data-message-format).
+
+:::
+
 :::info
 
 Tombstone events, that are events whose payload is empty (zero bytes), are ignored
@@ -159,9 +165,15 @@ when are read by the service.
 
 :::
 
+:::note
+
+Output messages are compliant with [Fast Data message format](/products/fast_data/fast_data_engine_v2/concepts.mdx#fast-data-message-format).
+
+:::
+
 ## Persistence
 
-As explained in the [Configuration](/products/fast_data/fast_data_engine_v2/farm_data/20_Configuration.md) page Farm-Data service
+As explained in the [Configuration](/products/fast_data/fast_data_engine_v2/farm_data/20_Configuration.mdx) page Farm-Data service
 process events using a stateful model and therefore it needs to store intermediate
 results on persistent storage system.  
 Currently, Farm-Data supports only MongoDB as external persistence system. 
@@ -301,7 +313,7 @@ Consequently, it is highly recommended to instantiate a filter for each edge,
 potentially using fields that uniquely identify each record.
 
 A filter is an expression written using an ad-hoc syntax that support different type of
-operations. For more details on them, please read the dedicated [section](#Filters).
+operations. For more details on them, please read the dedicated [section](#filters).
 
 In the example below, `users` stream is joined with `posts` stream, ensuring that
 `posts.userId` is equal to `users.id`:

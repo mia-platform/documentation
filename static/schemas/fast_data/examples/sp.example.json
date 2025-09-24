@@ -1,0 +1,32 @@
+{
+  "$schema": "https://docs.mia-platform.eu/schemas/fast_data/stream-processor.0.5.2.schema.json",
+  "consumer": {
+    "type": "kafka",
+    "topic": "fd.stream-processor.input",
+    "config": {
+      "client.id": "stream-processor-consumer",
+      "bootstrap.servers": {
+          "type": "file",
+          "path": "/run/secrets/kafka/bootstrap.servers"
+        },
+      "group.id": "fd.stream-processor",
+      "auto.offset.reset": "earliest"
+    },
+    "commitIntervalMs": 500
+  },
+  "producer": {
+    "type": "kafka",
+    "topic": "fd.stream-processor.output",
+    "config": {
+      "client.id": "stream-processor-producer",
+      "bootstrap.servers": {
+          "type": "file",
+          "path": "/run/secrets/kafka/bootstrap.servers"
+        },
+      "compression.type": "snappy"
+    }
+  },
+  "processor": {
+    "type": "javascript"
+  }
+}

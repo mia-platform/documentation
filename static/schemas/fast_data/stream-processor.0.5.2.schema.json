@@ -133,7 +133,7 @@
           "minimum": 0
         },
         "config": {
-          "description": "librdkafka Kafka consumer configuration properties",
+          "description": "librdkafka Kafka consumer configuration properties | https://github.com/confluentinc/librdkafka/blob/master/CONFIGURATION.md",
           "type": "object",
           "additionalProperties": {
             "$ref": "#/definitions/Secret"
@@ -153,7 +153,7 @@
       "type": "object",
       "properties": {
         "config": {
-          "description": "librdkafka Kafka producer configuration properties",
+          "description": "librdkafka Kafka producer configuration properties | https://github.com/confluentinc/librdkafka/blob/master/CONFIGURATION.md",
           "type": "object",
           "additionalProperties": {
             "$ref": "#/definitions/Secret"

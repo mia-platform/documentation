@@ -70,6 +70,12 @@ JSON schema of the **payload**:
 }
 ```
 
+:::note
+
+Input message may optionally be compliant with [Fast Data message format](/products/fast_data/fast_data_engine_v2/concepts.mdx#fast-data-message-format).
+
+:::
+
 #### Input Payload Deserialization
 
 Input payload deserialization is controlled by `payload_serde_strategy` parameter,
@@ -150,6 +156,13 @@ JSON schema of the **payload**:
 Here the main takeaway is the fact that output payload MUST be an **object**.
 
 :::
+
+:::note
+
+Output message may optionally be compliant with [Fast Data message format](/products/fast_data/fast_data_engine_v2/concepts.mdx#fast-data-message-format).
+
+:::
+
 
 ### Processing Function
 
@@ -334,9 +347,10 @@ of the near real-time property.
 
 In case this behavior is desired, that is no further processing would occur until
 **manual intervention** is applied, it is recommended to set up an alarm on the
-consumer group lag of the service. This prevents such situation to go unnoticed for
-a long period of time. The alarm can monitor `kafka_consumer_group_lag` Prometheus
-metric [exposed by the service](/products/fast_data/fast_data_engine_v2/stream_processor/40_Metrics.md).
+consumer group lag of the service. In this manner such situation will not go unnoticed for
+a long period of time.  
+An alarm can be setup to monitor `kafka_consumer_group_lag` Prometheus metric
+[exposed by the service](/products/fast_data/fast_data_engine_v2/stream_processor/40_Metrics.md).
 
 ```js
 export default function transform({ key, payload }) {

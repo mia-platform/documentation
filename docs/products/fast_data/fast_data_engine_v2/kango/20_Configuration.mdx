@@ -4,7 +4,9 @@ title: Configuration
 sidebar_label: Configuration
 ---
 
-
+import KangoSchema from "@site/static/schemas/fast_data/kango.0.5.1.schema.json"
+import KangoConfigExample from "@site/static/schemas/fast_data/examples/kango.example.json"
+import SchemaViewer from "../snippets/schema_viewer.mdx"
 
 In order to configure the service, a set of environment variables are adopted for
 describing basic service needs, alongside a main configuration file.
@@ -19,37 +21,26 @@ describing basic service needs, alongside a main configuration file.
 | OTEL_EXPORTER_OTLP_ENDPOINT | specify the OpenTelemetry OTLP endpoint where traces and metrics should be pushed. When not set, telemetry is not exported |                    |
 
 :::info
+
 Currently `<HOME>` value is set to `/home/kango`, which is based on how the service image is built.
+
 :::
 
 ## Configuration File
 
-The application needs a configuration file, named `config.json`, having the following
-structure with values using the [secret_rs syntax](https://docs.rs/secret_rs/latest/secret_rs/index.html):
+The application needs a configuration file, named `config.json`, which respects
+the following JSON schema configuration.
 
-```json
-{
-  "persistence": {
-    "url": "<mongodb-connection-string>",
-    "database": "<database-name>",
-    "collection": "<output-collection-name>"
-  },
-  "consumer": {
-    "type": "kafka",
-    "topic": "<input-topic-name>",
-    "config": {
-      // <string, secret_rs value> pair of properties that appear in the
-      // [librdkafka](https://github.com/confluentinc/librdkafka/blob/master/CONFIGURATION.md)
-      // used by consumer
-      ...
-    }
-  }
-}
-```
+<SchemaViewer schema={KangoSchema} example={KangoConfigExample} />
 
-For more details regarding the configuration file, please refer to the
-<a target="_blank" href="/docs_files_to_download/data-fabric/schemas/kango.0.5.1.schema.json">JSON schema</a>
-that describes its properties.
+:::note
+
+The raw JSON schema can also be found <a target="_blank" href="/schemas/fast_data/kango.0.5.1.schema.json">here</a>.
+
+In addition, Kafka configurations and MongoDB persistence properties
+support [**secret resolution**](/products/fast_data/fast_data_engine_v2/secrets_resolution.md).
+
+:::
 
 ## Control Plane Support
 

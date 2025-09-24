@@ -1145,6 +1145,11 @@
       },
       "items": [
         {
+          "id": "products/fast_data/fast_data_engine_v2/concepts",
+          "label": "Concepts",
+          "type": "doc"
+        },
+        {
           "type": "category",
           "label": "Mongezium CDC",
           "collapsed": true,
@@ -1251,6 +1256,11 @@
               "type": "doc"
             }
           ]
+        },
+        {
+          "id": "products/fast_data/fast_data_engine_v2/secrets_resolution",
+          "label": "Secrets Resolution",
+          "type": "doc"
         }
       ]
     },
