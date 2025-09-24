@@ -254,7 +254,7 @@ two indexer -c <path-to-config-folder>
 In the `-c` argument it is necessary to give the path to a directory folder which
 holds the Farm Data configuration file (either named `farm-data.json` or `config.json`).
 
-:::warn
+:::warning
 
 In order to use `two` CLI it is necessary to own a Mia-Platform subscription and
 have access to the private repository.
