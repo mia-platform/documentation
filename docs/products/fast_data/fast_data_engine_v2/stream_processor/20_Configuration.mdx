@@ -4,6 +4,10 @@ title: Configuration
 sidebar_label: Configuration
 ---
 
+import SPSchema from "@site/static/schemas/fast_data/stream-processor.0.5.2.schema.json"
+import SPConfigSchema from "@site/static/schemas/fast_data/examples/sp.example.json"
+import SchemaViewer from "../snippets/schema_viewer.mdx"
+
 In order to configure the service, a set of environment variables are adopted for
 describing basic service needs, alongside a main configuration file and a sandbox
 processor function.
@@ -52,11 +56,24 @@ Here it is shown the layout the configuration folder should have:
 
 ### Service Settings file
 
-The configuration schema provided <a target="_blank" href="/docs_files_to_download/data-fabric/schemas/stream-processor.0.5.2.schema.json">here</a>
-defines the structure for the `config.json` file. In the following paragraphs it will be provided a brief
-explanation of it.
+The main configuration file describes the connection details with the stream
+platform, which customizations should be applied to the consumer and producer,
+whether one or more cache connections should be instantiated and how the sandbox
+should behave.
 
-The root object contains five main properties that configure different aspects of the stream processor service:
+The file respects the following JSON schema and the following paragraph it is
+exampled in details.
+
+<SchemaViewer schema={SPSchema} example={SPConfigSchema} />
+
+:::note
+
+The raw JSON schema can also be found <a target="_blank" href="/schemas/fast_data/stream-processor.0.5.2.schema.json">here</a>.
+
+In addition, Kafka configurations and cache persistence properties
+support [**secret resolution**](/products/fast_data/fast_data_engine_v2/secrets_resolution.md).
+
+:::
 
 #### Required Fields
 
@@ -140,9 +157,9 @@ The schema supports flexible secret management through the `Secret` type, which 
     `.json` files). When not provided, the whole file content is loaded as the secret value
   - `encoding`: optional encoding (e.g., "base64")
 
-For more details, please refer to Secrets Resolution in config maps documentation page
-and [secret_rs](https://docs.rs/secret_rs/latest/secret_rs/index.html) library
-documentation.
+For more details, please refer to [secrets resolution](/products/fast_data/fast_data_engine_v2/secrets_resolution.md)
+in config maps documentation page and [`secret_rs`](https://docs.rs/secret_rs/latest/secret_rs/index.html)
+library documentation.
 
 ### Sandbox User-Defined Function file
 

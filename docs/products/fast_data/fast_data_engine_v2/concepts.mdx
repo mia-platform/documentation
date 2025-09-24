@@ -1,0 +1,199 @@
+---
+id: concepts
+title: Concepts
+sidebar_label: Concepts
+---
+
+import EventPayloadSchema from "@site/static/schemas/fast_data/event-payload.schema.json"
+import SchemaViewer from "../snippets/schema_viewer.mdx"
+
+## Data Source
+
+A _data source_ in the context of Fast Data pipelines represents a static resource
+that contains data / records not in movement. Example of static data sources are
+databases and APIs.
+
+## Stream
+
+A _stream_ in the context of Fast Data pipelines represents a channel where data
+can be moved from one location to another. During the movement, data can be transformed,
+filtered or aggregated together with other streams. Example of a stream is a Kafka topic.
+
+## Snapshot / Initial Load
+
+The procedure that reads a whole data source and transform each of its records into
+change events, producing them onto a stream.
+
+## Fast Data Message Format
+
+Within the context of Fast Data, workloads exchange change event following
+an ad-hoc format. This format provides different details regarding the
+modification that occurred to the record. In particular, the message contains
+
+- an identifier of the record that was modified
+- the type of operation it was applied onto the record, which ca be:
+
+  - `READ` &rarr; the record is extracted from the static data source during
+    a snapshot procedure
+  - `CREATE` &rarr; the record was just inserted in the static data source
+  - `UPDATE` &rarr; the record was updated on the static data source
+  - `DELETE` &rarr; the record was deleted from the static data source
+
+- the value of the record before the modification occurred
+  (available in `UPDATE` and `DELETE` operations)
+- the value of the record after the modification occurred
+  (available in `CREATE` and `UPDATE` operations)
+- an optional metadata describing the data source that contains
+  the record and when the modification occurred on it
+- an optional metadata describing when the modification was 
+  registered by the processing service
+
+:::warning
+In the context of the Fast Data pipelines configuration or this documentation,
+when a message is required to be **Fast Data compliant**, it means that it
+should respect the constraints described in this page and adopt the appropriate
+message format depending on the selected streaming platform.
+:::
+
+### Kafka Message Schema
+
+When using Kafka as stream messaging platform, the identifier of the record
+**must** be set in the message key value, while the remaining details **must**
+be set in the message payload.
+
+Here is provided the JSON schema of both message components:
+
+<SchemaViewer schema={{
+  "$schema": "https://json-schema.org/draft-07/schema",
+  "title": "Key Schema",
+  "type": "object",
+  "additionalProperties": true
+}} />
+
+<SchemaViewer schema={EventPayloadSchema} />
+
+:::note
+The raw JSON schema of the message's payload can also be downloaded from <a target="_blank" href="/schemas/fast_data/event-payload.schema.json">here</a>.
+:::
+
+### Examples
+
+In this section are provided examples of change events, each of them representing an operation type.
+
+#### Snapshot Event
+
+```json
+{
+  "key": {
+    "_id": "60e1d1b1c7849c71e2e3f4g5"
+  },
+  "payload": {
+    "op": "r",
+    "after": {
+      "_id": "60e1d1b1c7849c71e2e3f4g5",
+      "product_id": "P-101",
+      "name": "Laptop Pro",
+      "price": 1200.00,
+      "stock": 50
+    },
+    "before": null,
+    "source": {
+      "db": "inventory_db",
+      "collection": "products",
+      "ts_ms": 1678886400000
+    },
+    "ts_ms": 1678886401000,
+    "updateDescription": null
+  }
+}
+```
+
+#### Create Event
+
+```json
+{
+  "key": {
+    "_id": "60e1d1b1c7849c71e2e3f4g6"
+  },
+  "payload": {
+    "op": "c",
+    "after": {
+      "_id": "60e1d1b1c7849c71e2e3f4g6",
+      "product_id": "P-102",
+      "name": "Wireless Mouse",
+      "price": 25.50,
+      "stock": 200
+    },
+    "before": null,
+    "source": {
+      "db": "inventory_db",
+      "collection": "products",
+      "ts_ms": 1678886402000
+    },
+    "ts_ms": 1678886403000,
+    "updateDescription": null
+  }
+}
+```
+
+#### Update Event
+
+```json
+{
+  "key": {
+    "_id": "60e1d1b1c7849c71e2e3f4g5"
+  },
+  "payload": {
+    "op": "u",
+    "after": {
+      "_id": "60e1d1b1c7849c71e2e3f4g5",
+      "product_id": "P-101",
+      "name": "Laptop Pro",
+      "price": 1150.00,
+      "stock": 49
+    },
+    "before": {
+      "_id": "60e1d1b1c7849c71e2e3f4g5",
+      "product_id": "P-101",
+      "name": "Laptop Pro",
+      "price": 1200.00,
+      "stock": 50
+    },
+    "source": {
+      "db": "inventory_db",
+      "collection": "products",
+      "ts_ms": 1678886404000
+    },
+    "ts_ms": 1678886405000,
+    "updateDescription": null
+  }
+}
+```
+
+#### Delete Event
+
+```json
+{
+  "key": {
+    "_id": "60e1d1b1c7849c71e2e3f4g6"
+  },
+  "payload": {
+    "op": "d",
+    "after": null,
+    "before": {
+      "_id": "60e1d1b1c7849c71e2e3f4g6",
+      "product_id": "P-102",
+      "name": "Wireless Mouse",
+      "price": 25.50,
+      "stock": 200
+    },
+    "source": {
+      "db": "inventory_db",
+      "collection": "products",
+      "ts_ms": 1678886406000
+    },
+    "ts_ms": 1678886407000,
+    "updateDescription": null
+  }
+}
+```

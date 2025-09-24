@@ -115,7 +115,7 @@
           "minimum": 0
         },
         "config": {
-          "description": "librdkafka Kafka consumer configuration properties",
+          "description": "librdkafka Kafka consumer configuration properties | https://github.com/confluentinc/librdkafka/blob/master/CONFIGURATION.md",
           "type": "object",
           "additionalProperties": {
             "$ref": "#/$defs/Secret"

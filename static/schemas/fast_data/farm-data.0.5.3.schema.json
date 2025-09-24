@@ -103,6 +103,7 @@
         "connectionName"
       ],
       "additionalProperties": {
+        "description": "librdkafka consumer properties | https://github.com/confluentinc/librdkafka/blob/master/CONFIGURATION.md",
         "$ref": "#/definitions/Secret"
       }
     },
@@ -186,6 +187,7 @@
               "const": "kafka"
             },
             "config": {
+              "description": "librdkafka producer config | https://github.com/confluentinc/librdkafka/blob/master/CONFIGURATION.md",
               "$ref": "#/definitions/KafkaProducerConfig"
             }
           },

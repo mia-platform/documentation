@@ -4,7 +4,9 @@ title: Configuration
 sidebar_label: Configuration
 ---
 
-
+import MongeziumSchema from "@site/static/schemas/fast_data/mongezium.0.4.2.schema.json"
+import MongeziumConfigExample from "@site/static/schemas/fast_data/examples/mongezium.example.json"
+import SchemaViewer from "../snippets/schema_viewer.mdx"
 
 In order to configure the service, a set of environment variables are adopted for
 describing basic service needs, alongside a main configuration file.
@@ -19,43 +21,27 @@ describing basic service needs, alongside a main configuration file.
 | OTEL_EXPORTER_OTLP_ENDPOINT | specify the OpenTelemetry OTLP endpoint where traces and metrics should be pushed. When not set, telemetry is not exported |                        |
 
 :::info
+
 Currently `<HOME>` value is set to `/home/mongezium`, which is based on how the service image is built.
+
 :::
 
 ## Configuration File
 
-The application needs a configuration file, named `config.json`, having the following
-structure with values using the [secret_rs syntax](https://docs.rs/secret_rs/latest/secret_rs/index.html):
+The application needs a configuration file, named `config.json`, which respects 
+the following JSON schema configuration.
 
-```json
-{
-    "persistence": {
-        "url": "<secret-rs value>",
-        "dbName": "<optional database name to connect. if not defined, the connection string must contain the db name.>"
-    },
-    "stream": {
-        "consumer": {
-            // <string, secret_rs value> pair of properties that appear in the [librdkafka](https://github.com/confluentinc/librdkafka/blob/master/CONFIGURATION.md) used by consumer
-          // NOTE: bootstrap.servers MUST be set to the same value of the producer's one
-            ...
-        },
-        "producer": {
-            // <string, secret_rs value> pair of properties that appear in the [librdkafka](https://github.com/confluentinc/librdkafka/blob/master/CONFIGURATION.md) used by producer
-            // NOTE: bootstrap.servers MUST be set to the same value of the consumer's one
-            ...
-        }
-    },
-    "collections": [
-        {
-            "topic": "<topic-name>",
-            "namespace": "<db-name>.<collection-name>",
-            "snapshot": "when_needed|initial" // tells when to perform snapshots when no messages are found on a topic or a resume token used by the change is not found. 
-        }
-    ]
-}
-```
+<SchemaViewer schema={MongeziumSchema} example={MongeziumConfigExample} />
 
-The JSON schema describing the configuration file can be found <a target="_blank" href="/docs_files_to_download/data-fabric/schemas/mongezium.0.4.2.schema.json">here</a>.
+:::note
+
+The raw JSON schema can also be found <a target="_blank" href="/schemas/fast_data/mongezium.0.4.2.schema.json">here</a>.
+
+In addition, Kafka configurations and MongoDB persistence properties
+support [**secret resolution**](/products/fast_data/fast_data_engine_v2/secrets_resolution.md).
+
+:::
+
 
 ## Kubernetes
 
