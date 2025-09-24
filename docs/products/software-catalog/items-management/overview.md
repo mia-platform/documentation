@@ -21,7 +21,6 @@ On top of that, the specific permission [**`marketplace.root.manage`**](/product
 
 - create or edit *ITDs* with `metadata.visibility.scope` set to `console`, and
 - to set or edit these restricted properties of an *item*:
-  - `publishOnMiaDocumentation`
   - `supportedBy`
   - `supportedByImage`
   - `visibility`

@@ -4,11 +4,28 @@ title: Changelog
 sidebar_label: CHANGELOG
 ---
 
-
-
 All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+## v7.0.1 - 2024-12-16
+
+### Updated
+
+- axios: v1.7.9
+
+## v7.0.0 - 2024-07-04
+
+### BREAKING
+
+- dropped node 14 and node 16 support
+- dropped deprecated method `getServiceProxy` and `getDirectServiceProxy`, see the [migration guide](/runtime-components/libraries/custom-plugin-lib/migration-guides/10_migrate_from_v6_to_v7.md) for further details.
+
+### Updated
+
+- lc39: v8
+
+## v6.0.3
 
 ### Updated
 
@@ -23,6 +40,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## v6.0.1 - 2023-10-20
 
 ### Changes
+
 - update @mia-platform/lc39 lib to v7.0.2 to fix the "fastify.close is not a function" error
 
 ## v6.0.0 - 2023-05-11
@@ -200,6 +218,7 @@ This version contains a bug when it's configured a required env var with a defau
 ### Fixed
 
 - replaced expired test certificates with new ones that will expire on 3 September 3061
+
 ### Changed
 
 - the `getDirectServiceProxy` function now can receive a complete url as `serviceName` parameter

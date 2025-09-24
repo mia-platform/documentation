@@ -559,7 +559,7 @@ In an Enhanced Workflow project, this event will be triggered when a version is 
 | `ref`                | `string` | The ref of the tag                                                     |
 | `message`            | `string` | The message of the tag compiled from the Console                       |
 | `releaseDescription` | `string` | The release description of the tag compiled from the Console           |
-| `project`            | `object` | [The Project metadata](#project) (ideally, the whole Project resource) |
+| `project`            | `object` | [The Project metadata](#project-created) (ideally, the whole Project resource) |
 
 </TabItem>
 <TabItem value="example" label="Example">
@@ -610,6 +610,244 @@ In an Enhanced Workflow project, this event will be triggered when a version is 
         "ref": {"type": "string"},
         "message": {"type": "string"},
         "releaseDescription": {"type": "string"},
+
+        // See the Project metadata in the dedicated Tab
+        "project": {...}
+      }
+    }
+  }
+}
+```
+
+</TabItem>
+<TabItem value="tag-created-project-schema" label="Project JSON Schema">
+
+:::caution
+The following schema is potentially non-exhaustive and may not cover all the possible properties of a Project resource.
+:::
+
+```json
+{
+  "description": "The Project metadata (ideally, the whole Project resource)",
+  "type": "object",
+  "properties": {
+    "_id": {
+      "type": "string"
+    },
+    "availableNamespaces": {
+      "type": "array",
+      "default": [],
+      "items": {
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "string"
+          },
+          "label": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "value"
+        ]
+      }
+    },
+    "configurationGitPath": {
+      "type": "string"
+    },
+    "defaultBranch": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "environments": {
+      "type": "array",
+      "default": [],
+      "items": {
+        "type": "object",
+        "properties": {
+          "label": {
+            "type": "string"
+          },
+          "envId": {
+            "type": "string"
+          },
+          "envPrefix": {
+            "type": "string"
+          },
+          "hosts": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "host": {
+                  "type": "string"
+                },
+                "isBackoffice": {
+                  "type": "boolean"
+                },
+                "scheme": {
+                  "type": "string",
+                  "description": "an url schema, usually one of 'http' or 'https'"
+                }
+              }
+            }
+          },
+          "description": {
+            "type": "string"
+          },
+          "isProduction": {
+            "type": "boolean",
+            "default": false
+          },
+          "cluster": {
+            "type": "object",
+            "properties": {
+              "namespace": {
+                "type": "string"
+              },
+              "clusterId": {
+                "type": "string"
+              }
+            }
+          },
+          "deploy": {
+            "type": "object",
+            "required": [
+              "type"
+            ],
+            "properties": {
+              "type": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "required": [
+          "envId"
+        ]
+      }
+    },
+    "name": {
+      "type": "string"
+    },
+    "projectId": {
+      "type": "string"
+    },
+    "repository": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string"
+        },
+        "providerId": {
+          "type": "string"
+        }
+      }
+    },
+    "repositoryUrl": {
+      "type": "string"
+    },
+    "tenantId": {
+      "type": "string"
+    },
+    "imagePullSecretNames": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "monitoring": {
+      "type": "object",
+      "properties": {
+          "systems": {
+              "type": "array",
+              "items": {
+                  "type": "object",
+                  "properties": {
+                      "type": {
+                          "type": "string"
+                      }
+                  },
+                  "required": ["type"]
+              }
+          }
+      },
+      "required": ["systems"]
+    },
+    "containerRegistries": {
+      "type": "array"
+    }
+  }
+}
+```
+
+</TabItem>
+</Tabs>
+
+
+### Version Deleted
+
+*Available from v14.2.0*
+
+This event will be triggered when [a Version is successfully deleted](/products/console/set-up-infrastructure/revisions-and-versions.md#versions-section).
+In an Enhanced Workflow project, this event will be triggered when a version is deleted.
+
+In Enhanced Workflow projects, each version is represented by a tag. Therefore, when a version is deleted, the corresponding tag is deleted, and the event with the name `tag_deleted` is triggered. The payload refers to the deleted tag, which corresponds to the deleted version.
+<Tabs>
+<TabItem value="tag-deleted-table" label="Event Payload" default>
+
+|       Property       |  Value   |                              Description                               |
+| -------------------- | -------- | ---------------------------------------------------------------------- |
+| `tenantId`           | `string` | The identifier of the Company the service belongs to                   |
+| `projectId`          | `string` | The identifier of the Project the service belongs to                   |
+| `tagName`            | `string` | The name of the tag deleted from the Console                           |
+| `project`            | `object` | [The Project metadata](#project-created) (ideally, the whole Project resource) |
+
+</TabItem>
+<TabItem value="example" label="Example">
+
+```json
+{
+  "eventName": "tag_deleted",
+  "eventTimestamp": 123456,
+  "payload": {
+    "tenantId": "my-company-id",
+    "projectId": "0000000000000001",
+    "tagName": "v1.0.0",
+    "project": {
+      "_id": "0000000000000001",
+      "name": "my-project",
+      "tenantId": "my-company-id",
+      "projectId": "0000000000000001",
+      "repository": {
+        "type": "git",
+        "providerId": "0000000000000002"
+      }
+    } 
+  }
+}
+```
+
+</TabItem>
+<TabItem value="json-schema" label="JSON Schema">
+
+```json
+{
+  "type": "object",
+  "required": ["eventName", "eventTimestamp", "payload"],
+  "additionalProperties": false,
+  "properties": {
+    "eventName": {"const": "tag_deleted", "type": "string"},
+    "eventTimestamp": {"type": "number"},
+    "payload": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "tenantId": {"type": "string"},
+        "projectId": {"type": "string"},
+        "tagName": {"type": "string"},
 
         // See the Project metadata in the dedicated Tab
         "project": {...}

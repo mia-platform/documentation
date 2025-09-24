@@ -54,6 +54,7 @@
     "dependabot",
     "deserialization",
     "dind",
+    "distroless",
     "dnsmasq",
     "DSTU",
     "ecommerce",
@@ -373,7 +374,8 @@
     "Medisanté",
     "SDLC",
     "IMDRF",
-    "autho"
+    "autho",
+    "FSTDEP021"
   ],
   "dictionaries": [
     "softwareTerms",
