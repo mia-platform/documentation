@@ -164,11 +164,13 @@ Example of connection configuration:
 }
 ```
 
-:::warn
+:::warning
+
 Farm-data service heavily rely on the persistence layer to cache the current stream
 state. Consequently, it is highly recommended to configure MongoDB instance to
 actually sustain a heavy IO load, setting maximum IOPS to at least a value of 2400 IOPS (1200 read + 1200 write),
 though higher values would only benefit the service throughput.
+
 :::
 
 #### Internal Updates
