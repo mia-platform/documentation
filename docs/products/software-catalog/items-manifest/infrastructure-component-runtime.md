@@ -10,6 +10,10 @@ import TabItem from '@theme/TabItem';
 import { catalogWellKnownItems } from "@mia-platform/console-types";
 import SchemaViewer from "../snippets/schema_viewer.mdx";
 
+:::note
+Infrastructure Component Runtime are available starting from the v14 of the Mia-Platform Console.
+:::
+
 Infrastructure Component Runtime items are meant to be used in the context of an [Infrastructure Project](/products/console/project-configuration/infrastructure-project.md)
 to be able to collect [runtime data](/products/console/project-configuration/infrastructure-project.md#runtime-visibility) for visualization within Console.
 

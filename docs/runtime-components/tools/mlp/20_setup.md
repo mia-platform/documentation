@@ -35,13 +35,13 @@ If you have [Golang] installed with a version >= 1.13 in your system and you hav
 install `mlp` like this:
 
 ```sh
-go install github.com/mia-platform/mlp@v2.3.0
+go install github.com/mia-platform/mlp@v2.4.0
 ```
 
 Or like this if the `install` command is not available
 
 ```sh
-go get -u github.com/mia-platform/mlp@v2.3.0
+go get -u github.com/mia-platform/mlp@v2.4.0
 ```
 
 #### Binary Download
@@ -50,15 +50,14 @@ You can install `mlp` with the use of `curl` or `wget` and downloading the lates
 choosing the correct platform and operating system:
 
 ```sh
-curl -fsSL --proto '=https' --tlsv1.2 https://github.com/mia-platform/mlp/releases/download/v2.3.0/mlp-linux-amd64 -o /tmp/mlp
+curl -fsSL --proto '=https' --tlsv1.2 https://github.com/mia-platform/mlp/releases/download/v2.4.0/mlp-linux-amd64 -o /tmp/mlp
 ```
 
 ```sh
-wget -q --https-only --secure-protocol=TLSv1_2 https://github.com/mia-platform/mlp/releases/download/v2.3.0/mlp-linux-amd64 -O /tmp/mlp
+wget -q --https-only --secure-protocol=TLSv1_2 https://github.com/mia-platform/mlp/releases/download/v2.4.0/mlp-linux-amd64 -O /tmp/mlp
 ```
 
-After you have downloaded the file you can validate it against the checksum you can find at this [url] running the
-command:
+After you have downloaded the file you can validate it against the [checksum] running the command:
 
 ```sh
 sha256sum /tmp/mlp
@@ -75,7 +74,7 @@ sudo install -g root -o root /tmp/mlp /usr/local/bin
 If you want to run the cli in its environment or you want to test the cli you can use the Docker image:
 
 ```sh
-docker run ghcr.io/mia-platform/mlp:v2.3.0
+docker run ghcr.io/mia-platform/mlp:v2.4.0
 ```
 
 ### Windows
@@ -153,7 +152,7 @@ enable the autocompletion.
 
 [Homebrew]: https://brew.sh "The Missing Package Manager for macOS (or Linux)"
 [Golang]: https://go.dev "Build simple, secure, scalable systems with Go"
-[url]: https://github.com/mia-platform/mlp/releases/download/v0.12.2/checksums.txt "mlp checksums"
+[checksum]: https://github.com/mia-platform/mlp/releases/download/v2.4.0/checksums.txt "mlp checksums"
 [`bash-completion`]: https://github.com/scop/bash-completion "Programmable completion functions for bash"
 [`oh-my-zsh`]: https://ohmyz.sh "Oh My Zsh is a delightful, open source, community-driven
 	framework for managing your Zsh configuration"

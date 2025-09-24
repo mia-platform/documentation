@@ -2,6 +2,8 @@
   "name": "mia-platform-docs",
   "version": "0.0.0",
   "private": true,
+  "packageManager": "yarn@4.10.2",
+  "license": "SEE LICENSE IN LICENSE",
   "scripts": {
     "docusaurus": "docusaurus",
     "start": "docusaurus start",
@@ -26,8 +28,9 @@
     "@docusaurus/faster": "^3.8.1",
     "@docusaurus/plugin-client-redirects": "^3.8.1",
     "@docusaurus/preset-classic": "3.8.1",
+    "@docusaurus/theme-mermaid": "^3.8.1",
     "@mdx-js/react": "^3.0.0",
-    "@mia-platform/console-types": "^0.38.11",
+    "@mia-platform/console-types": "^0.39.1",
     "clsx": "^2.0.0",
     "docusaurus-json-schema-plugin": "^1.15.0",
     "klaw": "^4.1.0",
@@ -42,13 +45,19 @@
     "@docusaurus/module-type-aliases": "3.8.1",
     "@docusaurus/types": "3.8.1",
     "@ianvs/prettier-plugin-sort-imports": "4.7.0",
-    "eslint": "^9.35.0",
+    "eslint": "^9.36.0",
     "eslint-plugin-react": "^7.37.5",
     "fs-extra": "^11.3.1",
-    "glob": "^10.4.5",
+    "glob": "^11.0.3",
     "gray-matter": "^4.0.3",
     "prettier": "3.6.2",
     "prompts": "^2.4.2"
+  },
+  "overrides": {
+    "marked": "15.0.12"
+  },
+  "resolutions": {
+    "marked": "15.0.12"
   },
   "browserslist": {
     "production": [

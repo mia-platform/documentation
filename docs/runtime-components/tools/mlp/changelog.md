@@ -11,6 +11,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [v2.4.0] - 2025-09-17
+
+### Changed
+
+- update to go 1.25.1
+- update jlp to v0.9.0
+
+### Added
+
+- new wait flag that can be used to turn off the waiting steps of the deploy command
+
 ## [v2.3.0] - 2025-09-16
 
 ### Changed
@@ -266,7 +277,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Initial Release 🎉🎉🎉
 
-[Unreleased]: https://github.com/mia-platform/mlp/compare/v2.3.0...HEAD
+[Unreleased]: https://github.com/mia-platform/mlp/compare/v2.4.0...HEAD
+[v2.4.0]: https://github.com/mia-platform/mlp/compare/v2.3.0...v2.4.0
 [v2.3.0]: https://github.com/mia-platform/mlp/compare/v2.2.0...v2.3.0
 [v2.2.0]: https://github.com/mia-platform/mlp/compare/v2.1.0...v2.2.0
 [v2.1.0]: https://github.com/mia-platform/mlp/compare/v2.0.2...v2.1.0
