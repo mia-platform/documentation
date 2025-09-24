@@ -1,5 +1,4 @@
 .accordionContainer {
-    border: 1px solid #e0e0e0;
     border-radius: 8px;
     background-color: #ffffff;
     margin-bottom: 5px;
@@ -9,7 +8,6 @@
 
 html[data-theme='dark'] .accordionContainer {
     background-color: #242526;
-    border-color: #303030;
 }
 
 .accordionHeader {

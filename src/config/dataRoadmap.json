@@ -86,5 +86,77 @@
         }
       ]
     }
+  },
+  {
+    "title": "Data Catalog",
+    "icon": "data-catalog",
+    "defaultOpen": false,
+    "type": "roadmap",
+    "items": {
+      "newFeatures": [
+        {
+          "title": "Real-Time collaboration",
+          "date": "Q1 2025",
+          "description": [
+            "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book"
+          ],
+          "tags": ["Collaboration", "Real-time", "Productivity"]
+        }
+      ]
+    }
+  },
+  {
+    "title": "MFE Composer",
+    "icon": "microfrontend-composer",
+    "defaultOpen": false,
+    "type": "roadmap",
+    "items": {
+      "newFeatures": [
+        {
+          "title": "Real-Time collaboration",
+          "date": "Q1 2025",
+          "description": [
+            "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book"
+          ],
+          "tags": ["Collaboration", "Real-time", "Productivity"]
+        }
+      ]
+    }
+  },
+  {
+    "title": "Marketplace",
+    "icon": "marketplace",
+    "defaultOpen": false,
+    "type": "roadmap",
+    "items": {
+      "newFeatures": [
+        {
+          "title": "Real-Time collaboration",
+          "date": "Q1 2025",
+          "description": [
+            "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book"
+          ],
+          "tags": ["Collaboration", "Real-time", "Productivity"]
+        }
+      ]
+    }
+  },
+  {
+    "title": "Software Catalog",
+    "icon": "software-catalog",
+    "defaultOpen": false,
+    "type": "roadmap",
+    "items": {
+      "newFeatures": [
+        {
+          "title": "Real-Time collaboration",
+          "date": "Q1 2025",
+          "description": [
+            "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book"
+          ],
+          "tags": ["Collaboration", "Real-time", "Productivity"]
+        }
+      ]
+    }
   }
 ]

@@ -1,8 +1,8 @@
 import React from 'react';
 import styles from './featureList.module.css';
 
-// --- Icone Interne al Componente (invariate) ---
-
+// --- Internal SVG Icon Components ---
+// These are stateless functional components used to render icons for each section header.
 const NewFeatureIcon = () => (
   <svg viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
     <g transform="translate(-1065 -23)">
@@ -21,51 +21,70 @@ const BugFixIcon = () => (
   </svg>
 );
 
-// --- Componente Helper: Il nostro Parser di Link ---
-// Questo componente prende una stringa, cerca i link in formato Markdown
-// e restituisce un mix di testo e tag <a>.
+/**
+ * A helper component that parses a string for markdown-style links `[text](url)`
+ * and converts them into HTML anchor (`<a>`) tags.
+ * @param {object} props - The component props.
+ * @param {string} props.text - The text content to parse for links.
+ */
 const LinkParser = ({text}) => {
+  // Regex to find all instances of markdown links: [linkText](url)
   const linkRegex = /\[([^\]]+)\]\(([^)]+)\)/g;
   const parts = [];
   let lastIndex = 0;
   let match;
 
+  // Iterate over all matches of the regex in the input text.
   while ((match = linkRegex.exec(text)) !== null) {
     const [fullMatch, linkText, url] = match;
     const matchIndex = match.index;
 
-    // Aggiunge il testo prima del link
+    // Add the plain text part that comes before the link.
     if (matchIndex > lastIndex) {
       parts.push(text.substring(lastIndex, matchIndex));
     }
 
-    // Aggiunge il link come elemento React
+    // Add the matched link as a React `<a>` element.
     parts.push(
       <a href={url} key={matchIndex} rel="noopener noreferrer" target="_blank">
         {linkText}
       </a>
     );
 
+    // Update the index to continue searching from the end of the current match.
     lastIndex = linkRegex.lastIndex;
   }
 
-  // Aggiunge il testo rimanente dopo l'ultimo link
+  // Add any remaining plain text that follows the last link.
   if (lastIndex < text.length) {
     parts.push(text.substring(lastIndex));
   }
 
+  // Return the combined array of strings and React elements to be rendered.
   return <>{parts}</>;
 };
 
 
+/**
+ * Renders categorized lists for new features, improvements, and bug fixes.
+ * @param {object} props - The component props.
+ * @param {Array<object>} [props.newFeatures] - Array of new feature objects, each with title, description, etc.
+ * @param {Array<object>} [props.improvements] - Array of improvement objects, structured like new features.
+ * @param {Array<string>} [props.bugFixes] - Array of simple strings describing each bug fix.
+ */
 export default function FeatureList({newFeatures, improvements, bugFixes}) {
 
-  // Helper aggiornato per gestire la 'description' come array
+  /**
+   * A local helper function to render a list of complex items (features or improvements).
+   * It handles items that are objects containing a title, a description array, and optional images.
+   * @param {Array<object>} items - The array of feature/improvement objects to render.
+   */
   const renderFeatureList = (items) => {
     return items.map((item, index) => (
       <div className={styles.item} key={index}>
         <h3 className={styles.itemTitle}>{item.title}</h3>
 
+        {/* Conditionally render a gallery of images if the item has them. */}
         {item.images && item.images.length > 0 && (
           <div className={styles.imagesContainer}>
             {item.images.map((src, imgIndex) => (
@@ -74,10 +93,11 @@ export default function FeatureList({newFeatures, improvements, bugFixes}) {
           </div>
         )}
 
-        {/* Mappa l'array 'description' e renderizza un paragrafo per ogni stringa */}
+        {/* The item's description is an array of strings, each rendered as a separate paragraph. */}
         <div className={styles.itemDescription}>
           {item.description.map((paragraph, pIndex) => (
             <p key={pIndex}>
+              {/* Use the LinkParser to transform any markdown links within the paragraph. */}
               <LinkParser text={paragraph} />
             </p>
           ))}
@@ -88,40 +108,52 @@ export default function FeatureList({newFeatures, improvements, bugFixes}) {
 
   return (
     <div className={styles.container}>
-      {/* Sezione New Features */}
+      {/* New Features Section */}
+      {/* This section is rendered only if the `newFeatures` array exists and is not empty. */}
       {newFeatures && newFeatures.length > 0 && (
         <section className={styles.section}>
           <h2 className={styles.sectionHeader}>
-            <span className={styles.sectionIcon}><NewFeatureIcon /></span>
-            New Features
+            <span className={styles.sectionIcon}>
+              <NewFeatureIcon />
+            </span>
+            {`New Features`}
           </h2>
           <div className={styles.sectionContent}>
+            {/* Use the helper function to render the list of new feature items. */}
             {renderFeatureList(newFeatures)}
           </div>
         </section>
       )}
 
-      {/* Sezione Improvements */}
+      {/* Improvements Section */}
+      {/* This section is rendered only if the `improvements` array exists and is not empty. */}
       {improvements && improvements.length > 0 && (
         <section className={styles.section}>
           <h2 className={styles.sectionHeader}>
-            <span className={styles.sectionIcon}><ImprovementIcon /></span>
-            Improvements
+            <span className={styles.sectionIcon}>
+              <ImprovementIcon />
+            </span>
+            {`Improvements`}
           </h2>
           <div className={styles.sectionContent}>
+            {/* Use the same helper function to render the list of improvement items. */}
             {renderFeatureList(improvements)}
           </div>
         </section>
       )}
 
-      {/* Sezione Bug Fixes */}
+      {/* Bug Fixes Section */}
+      {/* This section is rendered only if the `bugFixes` array exists and is not empty. */}
       {bugFixes && bugFixes.length > 0 && (
         <section className={styles.section}>
           <h2 className={styles.sectionHeader}>
-            <span className={styles.sectionIcon}><BugFixIcon /></span>
-            Bug fixes
+            <span className={styles.sectionIcon}>
+              <BugFixIcon />
+            </span>
+            {`Bug fixes`}
           </h2>
           <div className={styles.sectionContent}>
+            {/* Bug fixes are treated as simple strings and rendered in a `<ul>` list, unlike the other sections. */}
             <ul className={styles.bugList}>
               {bugFixes.map((bug, index) => (
                 <li key={index}>
