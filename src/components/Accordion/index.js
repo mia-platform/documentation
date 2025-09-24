@@ -149,19 +149,19 @@ export default function Accordion({data}) {
                         <span className={styles.accordionTitle}>{title}</span>
                     </div>
                     <div className={styles.badges}>
-                        {newFeatures.length > 0 && (
+                        {newFeatures && newFeatures.length > 0 && (
                             <span className={classNames(styles.badge, styles.newFeatureBadge)}>
                             <NewFeatureIcon/>
                                 {newFeatures.length}
                         </span>
                         )}
-                        {improvements.length > 0 && (
+                        {improvements && improvements.length > 0 && (
                             <span className={classNames(styles.badge, styles.improvementBadge)}>
                             <ImprovementIcon/>
                                 {improvements.length}
                         </span>
                         )}
-                        {bugFixes.length > 0 && (
+                        {bugFixes && bugFixes.length > 0 && (
                             <span className={classNames(styles.badge, styles.bugFixBadge)}>
                             <BugFixIcon/>
                                 {bugFixes.length}
