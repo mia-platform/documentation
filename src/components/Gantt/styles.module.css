@@ -5,11 +5,11 @@
     --gantt-current-text: #ffffff;
     --gantt-next-bg: #d1e3ff;
     --gantt-next-text: #174ea6;
-
     overflow-x: auto;
     padding: 1rem 0;
     border: 1px solid var(--ifm-color-emphasis-200);
     border-radius: 8px;
+    box-sizing: border-box;
 }
 
 html[data-theme='dark'] .ganttContainer {
