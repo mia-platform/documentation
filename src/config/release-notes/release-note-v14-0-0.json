@@ -83,20 +83,14 @@
     "defaultOpen": false,
     "type": "versions",
     "items": {
-      "newFeatures": [
-        {
-          "title": "Back-Lit Library",
-          "description": [
-            "The new version `v1.5.17` of the back-kit library is available!",
-            "Refer to back-kit [changelog](/products/microfrontend-composer/back-kit/changelog.md) for finer-grained details of new versions."
-          ]
-        }
-      ],
+      "newFeatures": [],
       "improvements": [
         {
-          "title": "Form Validation Support for Custom Footer Actions in `bk-dynamic-form-modal`",
+          "title": "Back-kit: Form Validation Support for Custom Footer Actions in `bk-dynamic-form-modal`",
           "description": [
-            "Added possibility to validate the form content when performing a custom footer action in `bk-dynamic-form-modal` component."
+            "The new version `v1.5.17` of the back-kit library is available!",
+            "Added possibility to validate the form content when performing a custom footer action in `bk-dynamic-form-modal` component.",
+            "Refer to back-kit [changelog](/products/microfrontend-composer/back-kit/changelog.md) for finer-grained details of new versions."
           ]
         }
       ],
@@ -130,7 +124,7 @@
     }
   },
   {
-    "title": "Versions: Software Catalog",
+    "title": "Software Catalog",
     "icon": "software-catalog",
     "defaultOpen": false,
     "type": "versions",
