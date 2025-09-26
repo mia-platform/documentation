@@ -14,7 +14,7 @@ A **manifest** is a JSON representation of an entity that can be [applied](/prod
 The manifest of an [ITD](/products/software-catalog/basic-concepts/10_items-types.md) contains metadata about the definition itself and specifications regarding the items of the defined type.
 
 :::tip
-The full JSON schema is available [on GitHub](https://raw.githubusercontent.com/mia-platform/console-sdk/refs/tags/%40mia-platform/console-types%400.38.11/packages/console-types/schemas/catalog/item-type-definition.schema.json).
+The full JSON schema is available [on GitHub](https://raw.githubusercontent.com/mia-platform/console-sdk/refs/tags/%40mia-platform/console-types%400.39.2/packages/console-types/schemas/software-catalog/item-type-definition.schema.json).
 :::
 
 <SchemaViewer schema={catalogItemTypeDefinitionSchema} />
@@ -26,7 +26,7 @@ The full JSON schema is available [on GitHub](https://raw.githubusercontent.com/
 What follows is the formal definition of a generic manifest, with the other pages of this section documenting how the **assets** (field `resources`) should be shaped for each type.
 
 :::tip
-The full JSON schema is available [on GitHub](https://raw.githubusercontent.com/mia-platform/console-sdk/refs/tags/%40mia-platform/console-types%400.38.11/packages/console-types/schemas/catalog/item-manifest.schema.json).
+The full JSON schema is available [on GitHub](https://raw.githubusercontent.com/mia-platform/console-sdk/refs/tags/%40mia-platform/console-types%400.39.2/packages/console-types/schemas/software-catalog/item-manifest.schema.json).
 :::
 
 <SchemaViewer schema={catalogItemManifestSchema} />

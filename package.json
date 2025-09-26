@@ -30,7 +30,7 @@
     "@docusaurus/preset-classic": "3.8.1",
     "@docusaurus/theme-mermaid": "^3.8.1",
     "@mdx-js/react": "^3.0.0",
-    "@mia-platform/console-types": "^0.39.1",
+    "@mia-platform/console-types": "^0.39.2",
     "clsx": "^2.0.0",
     "docusaurus-json-schema-plugin": "^1.15.0",
     "klaw": "^4.1.0",
