@@ -19,11 +19,11 @@ A large insurance company relies on a monolithic, on-premise mainframe system as
 
 The architecture team leverages **Fast Data Engine 2.0** to create a modern, high-performance read layer that shields the mainframe from traffic spikes, implementing a CQRS (Command Query Responsibility Segregation) pattern.
 
-1.  **Real-Time Data Capture**: **[Mongezium CDC](/products/fast_data/fast_data_engine_v2/mongezium_cdc/overview.md)** captures all changes from the mainframe's database and streams them to Kafka topics with high throughput and fault tolerance.
+1.  **Real-Time Data Capture**: **Mongezium CDC** captures all changes from the mainframe's database and streams them to Kafka topics with high throughput and fault tolerance.
 
-2.  **Data Transformation**: **[Stream Processor](/products/fast_data/fast_data_engine_v2/stream_processor/overview.md)** transforms and enriches the policy data in real-time using secure JavaScript environments, creating optimized data structures for fast querying.
+2.  **Data Transformation**: **Stream Processor** transforms and enriches the policy data in real-time using secure JavaScript environments, creating optimized data structures for fast querying.
 
-3.  **Data Persistence**: **[Kango](/products/fast_data/fast_data_engine_v2/kango/overview.md)** persists the processed policy data to MongoDB collections with optimized performance, creating a denormalized, query-ready projection of the mainframe data.
+3.  **Data Persistence**: **Kango** persists the processed policy data to MongoDB collections with optimized performance, creating a denormalized, query-ready projection of the mainframe data.
 
 4.  **API Exposure**: The MongoDB projection is exposed through modern REST APIs, providing millisecond response times for policy queries while maintaining data consistency with the source system.
 

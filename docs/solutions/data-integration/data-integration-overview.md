@@ -23,16 +23,16 @@ As companies evolve, they face significant hurdles in making their data accessib
 
 ### External Data Ingestion with Integration Connector Agent
 
-The **[Integration Connector Agent](/runtime-components/plugins/integration-connector-agent/overview.md)** connects to external sources and synchronizes changes between various systems and MongoDB. It supports multiple data sources including GitHub, Jira, Google Cloud Platform, AWS CloudTrail, and Azure Activity Logs. The agent processes data through configurable pipelines and delivers it to MongoDB collections, creating a unified entry point for external data.
+The **Integration Connector Agent** connects to external sources and synchronizes changes between various systems and MongoDB. It supports multiple data sources including GitHub, Jira, Google Cloud Platform, AWS CloudTrail, and Azure Activity Logs. The agent processes data through configurable pipelines and delivers it to MongoDB collections, creating a unified entry point for external data.
 
 ### Real-Time Processing with Fast Data Engine 2.0
 
-**[Fast Data Engine 2.0](/products/fast_data/fast_data_engine_v2/overview.md)** revolutionizes data processing through four specialized workloads that replace traditional monolithic components:
+**Fast Data Engine 2.0** revolutionizes data processing through four specialized workloads that replace traditional monolithic components:
 
-* **[Mongezium CDC](/products/fast_data/fast_data_engine_v2/mongezium_cdc/overview.md)**: Captures changes from MongoDB collections and streams them to Kafka topics with high performance and fault tolerance.
-* **[Stream Processor](/products/fast_data/fast_data_engine_v2/stream_processor/overview.md)**: Transforms data using secure JavaScript sandbox environments, supporting both stateless and stateful processing.
-* **[Farm Data Aggregator](/products/fast_data/fast_data_engine_v2/farm_data/overview.md)**: Aggregates multiple data streams into one, structured data product.
-* **[Kango](/products/fast_data/fast_data_engine_v2/kango/overview.md)**: Persists processed data from Kafka to MongoDB with optimized throughput and transaction support.
+* **Mongezium CDC**: Captures changes from MongoDB collections and streams them to Kafka topics with high performance and fault tolerance.
+* **Stream Processor**: Transforms data using secure JavaScript sandbox environments, supporting both stateless and stateful processing.
+* **Farm Data**: Aggregates multiple data streams into one, structured data product.
+* **Kango**: Persists processed data from Kafka to MongoDB with optimized throughput and transaction support.
 
 ### Unified Real-Time Data Architecture
 

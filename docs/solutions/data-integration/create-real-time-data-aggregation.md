@@ -25,13 +25,13 @@ A multi-brand retail company has its customer data spread across multiple, disco
 
 The company leverages **Integration Connector Agent** and **Fast Data Engine 2.0** to create a unified, real-time customer 360° view.
 
-1. **External Data Ingestion**: **[Integration Connector Agent](/runtime-components/plugins/integration-connector-agent/overview.md)** connects to GitHub, Jira, AWS CloudTrail, and Azure Activity Logs, synchronizing development activities, support tickets, and infrastructure events directly into MongoDB collections.
+1. **External Data Ingestion**: **Integration Connector Agent** connects to GitHub, Jira, AWS CloudTrail, and Azure Activity Logs, synchronizing development activities, support tickets, and infrastructure events directly into MongoDB collections.
 
-2. **Real-Time Data Capture**: **[Mongezium CDC](/products/fast_data/fast_data_engine_v2/mongezium_cdc/overview.md)** captures changes from all data sources (CRM, e-commerce, marketing platforms, and external systems) and streams them to Kafka topics with high performance.
+2. **Real-Time Data Capture**: **Mongezium CDC** captures changes from all data sources (CRM, e-commerce, marketing platforms, and external systems) and streams them to Kafka topics with high performance.
 
-3. **Data Transformation and Aggregation**: **[Farm Data Aggregator](/products/fast_data/fast_data_engine_v2/farm_data/overview.md)** combines multiple data streams into a unified customer profile, while **[Stream Processor](/products/fast_data/fast_data_engine_v2/stream_processor/overview.md)** enriches and transforms data using JavaScript logic.
+3. **Data Transformation and Aggregation**: **Farm Data** combines multiple data streams into a unified customer profile, while **Stream Processor** enriches and transforms data using JavaScript logic.
 
-4. **Unified Single View Creation**: **[Kango](/products/fast_data/fast_data_engine_v2/kango/overview.md)** persists the aggregated customer data to MongoDB, creating the `customer_sv` collection with complete 360° customer profiles that include traditional business data plus development activities, support interactions, and infrastructure insights.
+4. **Unified Single View Creation**: **Kango** persists the aggregated customer data to MongoDB, creating the `customer_sv` collection with complete 360° customer profiles that include traditional business data plus development activities, support interactions, and infrastructure insights.
 
 5. **API Exposure**: Modern REST APIs expose the unified customer single view, providing millisecond response times for applications requiring complete customer context.
 
