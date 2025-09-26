@@ -13,7 +13,7 @@ In an organization that adopts a "you build it, you run it" approach, developmen
 * **Slowness and Bottlenecks**: The ticket-based process is slow. A developer can wait for days to get a new database, effectively blocking the development of new features.
 * **Resource Inconsistency**: Manual provisioning by the Ops team can lead to inconsistent configurations. A database might be created with different performance parameters than another, or without the correct backup policies.
 * **Excessive Load on the Ops Team**: The Cloud Operations team is swamped with repetitive, low-value requests, diverting time and energy from more strategic activities like cost optimization and security improvement.
-* **Lack of Self-Service**: Developers are not truly autonomous. Their speed is limited by the overreliance on another team, which hinders effective DevOps practices fulfilment.
+* **Lack of Self-Service**: Developers are not truly autonomous. Their speed is limited by the overreliance on another team, which hinders effective DevOps practices implementation.
 
 ### The Solution with Mia-Platform
 
