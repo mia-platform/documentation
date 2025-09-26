@@ -17,26 +17,23 @@ A large insurance company relies on a monolithic, on-premise mainframe system as
 
 ### The Solution with Mia-Platform
 
-The architecture team decides to use **Mia-Platform Fast Data** to create a scalable read layer that shields the mainframe from high traffic, a pattern known as CQRS (Command Query Responsibility Segregation).
+The architecture team leverages **Fast Data Engine 2.0** to create a modern, high-performance read layer that shields the mainframe from traffic spikes, implementing a CQRS (Command Query Responsibility Segregation) pattern.
 
-1.  **Setting Up the Event Stream**: The team uses a Change Data Capture (CDC) tool to capture any changes (creates, updates, deletes) to the policy data in the mainframe's database. These changes are published as events to a Kafka topic.
+1.  **Real-Time Data Capture**: **[Mongezium CDC](/products/fast_data/fast_data_engine_v2/mongezium_cdc/overview.md)** captures all changes from the mainframe's database and streams them to Kafka topics with high throughput and fault tolerance.
 
-2.  **Creating a Projection**: In Mia-Platform Console, they configure a **Fast Data Projection** named `policies_projection`. This Projection is essentially a new MongoDB collection designed to be a denormalized, query-optimized read model of the policy data.
+2.  **Data Transformation**: **[Stream Processor](/products/fast_data/fast_data_engine_v2/stream_processor/overview.md)** transforms and enriches the policy data in real-time using secure JavaScript environments, creating optimized data structures for fast querying.
 
-3.  **Configuring the Real-Time Updater**: They deploy the **Real-Time Updater (RTU)**, a key component of Fast Data. The RTU is configured to:
-    * Consume events from the Kafka topic where the mainframe changes are published.
-    * Process these events and apply the corresponding changes to the `policies_projection` in MongoDB.
-      This ensures that the Projection is kept in sync with the mainframe in near real-time.
+3.  **Data Persistence**: **[Kango](/products/fast_data/fast_data_engine_v2/kango/overview.md)** persists the processed policy data to MongoDB collections with optimized performance, creating a denormalized, query-ready projection of the mainframe data.
 
-4.  **Exposing the Projection via API**: A **CRUD Service** is created, and an **Endpoint** `/policies` is configured to expose the `policies_projection`. This instantly creates a fast, modern, and scalable REST API on top of the Projection.
+4.  **API Exposure**: The MongoDB projection is exposed through modern REST APIs, providing millisecond response times for policy queries while maintaining data consistency with the source system.
 
-5.  **Redirecting Read Traffic**: The new web portal and mobile app are reconfigured to send their read requests to the new `/policies` endpoint instead of directly to the mainframe. Write operations (like creating a new policy) still go to the mainframe to maintain it as the single source of truth.
+5.  **Traffic Redirection**: Digital channels are redirected to query the high-performance projection layer, while write operations continue to flow to the mainframe as the authoritative source of truth.
 
 ### The Outcome
 
 * **Drastic Performance Improvement**: The user-facing applications now query the highly performant MongoDB Projection. Page load times are reduced from seconds to milliseconds, significantly improving the customer experience.
 * **Legacy System Protection**: The mainframe is completely shielded from high-volume read traffic. Its load is reduced to its core transactional function, eliminating the risk of performance degradation or outages caused by the new digital channels.
 * **Developer Empowerment**: Developers can now build new features against a modern, flexible, and fast REST API. They can use the full power of MongoDB queries without worrying about impacting the legacy SoR.
-* **Scalability and Elasticity**: The read layer (the Projection and the CRUD Service) can be scaled independently of the mainframe. If traffic to the portal increases, the company can simply add more replicas of the CRUD Service, ensuring the system remains responsive.
+* **Scalability and Elasticity**: The read layer can be scaled independently of the mainframe. If traffic to the portal increases, the company can simply add more replicas of the CRUD Service, ensuring the system remains responsive.
 
-By using Fast Data Projections, the company successfully modernized its architecture, unlocking the data from its legacy system and enabling the development of fast, modern applications without a costly and risky "big bang" migration.
+By using Fast Data, the company successfully modernized its architecture, unlocking the data from its legacy system and enabling the development of fast, modern applications without a costly and risky "big bang" migration.
