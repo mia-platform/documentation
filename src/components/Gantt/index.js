@@ -62,7 +62,7 @@ const findQuarter = (dateString) => {
 
 // --- Main Component ---
 export default function GanttChart({config, renderAs = 'chart'}) {
-    if (!config || !config.timeline || !config.tasks) {
+    if (!config || !config.tasks || (renderAs === 'chart' && !config.timeline)) {
         return <pre><code>{`Error: The 'config' prop is missing or invalid.`}</code></pre>;
     }
 

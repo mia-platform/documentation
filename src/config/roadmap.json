@@ -1,0 +1,192 @@
+[
+  {
+    "title": "Mia-Platform Console",
+    "icon": "console",
+    "defaultOpen": false,
+    "type": "roadmap",
+    "items": {
+      "newFeatures": [
+        {
+          "title": "Company/Profile management optimization",
+          "description": [],
+          "tags": ["Governance"]
+        },
+        {
+          "title": "Extended FinOps integration",
+          "description": [],
+          "tags": ["Governance"]
+        },
+        {
+          "title": "Customizable Home Page",
+          "description": [],
+          "tags": ["Governance"]
+        },
+        {
+          "title": "Customizable metrics dashboards",
+          "description": [],
+          "tags": ["Governance"]
+        },
+        {
+          "title": "Enhanced CLI",
+          "description": [],
+          "tags": ["DevX"]
+        },
+        {
+          "title": "Enhanced Pair with AI",
+          "description": [],
+          "tags": ["DevX"]
+        },
+        {
+          "title": "Improved Secret Managers integrations",
+          "description": [],
+          "tags": ["DevX"]
+        },
+        {
+          "title": "Console public API reference documentation",
+          "description": [],
+          "tags": ["Extensibility"]
+        },
+        {
+          "title": "Extended support for Infrastructure Management",
+          "description": [],
+          "tags": ["Extensibility"]
+        }
+      ]
+    }
+  },
+  {
+    "title": "Mia-Platform Data Fabric",
+    "icon": "fast-data",
+    "defaultOpen": false,
+    "type": "roadmap",
+    "items": {
+      "newFeatures": [
+        {
+          "title": "New AI-Native Data Pipeline configurator",
+          "description": [],
+          "tags": ["Fast Data"]
+        },
+        {
+          "title": "Runtime aggregation performance improvements for Fast Data",
+          "description": [],
+          "tags": ["Fast Data"]
+        },
+        {
+          "title": "Data processing functions generation & testing with AI support",
+          "description": [],
+          "tags": ["Fast Data"]
+        },
+        {
+          "title": "MongoDB-Kafka Connector",
+          "description": [],
+          "tags": ["Fast Data"]
+        }
+      ]
+    }
+  },
+  {
+    "title": "Data Catalog",
+    "icon": "data-catalog",
+    "defaultOpen": false,
+    "type": "roadmap",
+    "items": {
+      "newFeatures": [
+        {
+          "title": "Export Data Catalog assets at scale",
+          "description": [],
+          "tags": []
+        },
+        {
+          "title": "Excel integration for bulk metadata enrichment and sync with the Catalog",
+          "description": [],
+          "tags": []
+        },
+        {
+          "title": "Improved management of schema validation and indexes for MongoDB assets",
+          "description": [],
+          "tags": ["Database Management"]
+        }
+      ]
+    }
+  },
+  {
+    "title": "Software Catalog",
+    "icon": "software-catalog",
+    "defaultOpen": false,
+    "type": "roadmap",
+    "items": {
+      "newFeatures": [
+        {
+          "title": "Improved Governance",
+          "description": [],
+          "tags": []
+        },
+        {
+          "title": "Enhanced PBC (Application) Lifecycle",
+          "description": [],
+          "tags": []
+        },
+        {
+          "title": "Modular PBCs",
+          "description": [],
+          "tags": []
+        },
+        {
+          "title": "Catalog Items Enrichment",
+          "description": [],
+          "tags": []
+        },
+        {
+          "title": "Catalog integration with third-party tools",
+          "description": [],
+          "tags": []
+        },
+        {
+          "title": "AI-driven Catalog Items discovery",
+          "description": [],
+          "tags": []
+        }
+      ]
+    }
+  },
+  {
+    "title": "Microfrontend Composer",
+    "icon": "microfrontend-composer",
+    "defaultOpen": false,
+    "type": "roadmap",
+    "items": {
+      "newFeatures": [
+        {
+          "title": "Drag & Drop components",
+          "description": [],
+          "tags": []
+        },
+        {
+          "title": "New Component Library",
+          "description": [],
+          "tags": []
+        }
+      ]
+    }
+  },
+  {
+    "title": "Runtime Components",
+    "icon": "runtime-components",
+    "defaultOpen": false,
+    "type": "roadmap",
+    "items": {
+      "newFeatures": [
+        {
+          "title": "AI-Native Flows configuration",
+          "description": [],
+          "tags": ["Flow Manager"]
+        },
+        {
+          "title": "Guided sagas and state machines Flow configuration",
+          "description": [],
+          "tags": ["Flow Manager"]
+        }
+      ]
+    }
+  }
+]
