@@ -1,0 +1,21 @@
+{
+  "timeline": [
+    {"year": 2025, "quarter": "Q1", "months": ["Jan", "Feb", "Mar"]},
+    {"year": 2025, "quarter": "Q2", "months": ["Apr", "May", "Jun"]},
+    {"year": 2025, "quarter": "Q3", "months": ["Jul", "Ago", "Sep"]},
+    {"year": 2025, "quarter": "Q4", "months": ["Oct", "Nov", "Dec"]},
+    {"year": 2026, "quarter": "Q1", "months": ["Jan", "Feb", "Mar"]},
+    {"year": 2026, "quarter": "Q2", "months": ["Apr", "May", "Jun"]},
+    {"year": 2026, "quarter": "Q3", "months": ["Jul", "Ago", "Sep"]},
+    {"year": 2026, "quarter": "Q4", "months": ["Oct", "Nov", "Dec"]}
+  ],
+  "tasks": [
+    {"name": "v13.3.x", "start": "2025-01-16", "end": "2025-04-17"},
+    {"name": "v13.7.x", "start": "2025-04-17", "end": "2025-07-17"},
+    {"name": "v14.0.x", "start": "2025-07-17", "end": "2025-10-23"},
+    {"name": "v14.1.x", "start": "2025-10-23", "end": "2026-01-15"},
+    {"name": "v14.3.x", "start": "2026-01-15", "end": "2026-04-16"},
+    {"name": "v14.7.x", "start": "2026-04-16", "end": "2026-07-16"},
+    {"name": "v15.0.x", "start": "2026-07-16", "end": "2026-10-22"}
+  ]
+}

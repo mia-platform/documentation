@@ -511,7 +511,7 @@ Here is a look at the incredible features we are developing for you.
   * `fast-data`
   * `data-catalog`
   * `microfrontend-composer`
-  * `marketplace`
+  * `runtime-components`
   * `software-catalog`
 
 ## Gantt component

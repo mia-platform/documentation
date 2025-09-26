@@ -4,8 +4,9 @@ title: Mia-Platform stable versions
 sidebar_label: Stable versions
 ---
 
-import GanttChart from "/../src/components/Gantt/";
-import StableVersions from "/../src/config/stable-versions.json";
+import GanttChart from "@site/src/components/Gantt/";
+import StableVersionsTable from "@site/src/config/stable-versions-table.json";
+import StableVersionsGantt from "@site/src/config/stable-versions-gantt.json";
 
 A **stable release** is version that is as reliable as possible and on which a defined maintenance time window (MTW) is guaranteed.
 
@@ -33,11 +34,11 @@ As the transition period from one MTW to the next approaches, more precise dates
 
 ### Stable Versions Chart
 
-<GanttChart config={StableVersions} />
+<GanttChart config={StableVersionsGantt} />
 
 ### Stable Versions Table
 
-<GanttChart config={StableVersions} renderAs="table" />
+<GanttChart config={StableVersionsTable} renderAs="table" />
 
 
 *Stable Versions may be subject to review and may change in the time before release

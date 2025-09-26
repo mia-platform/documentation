@@ -4,6 +4,9 @@ title: Roadmap
 sidebar_label: Roadmap
 ---
 
+import Accordion from '@site/src/components/Accordion/index.js';
+import dataRoadmap from '@site/src/config/roadmap.json';
+
 This page shows the public roadmap of Mia-Platform. This is the result of our strategic vision and the collaboration of partners and stakeholder needs.
 
 Our Roadmap is aimed at:
@@ -20,44 +23,7 @@ Listed below you find which product features will be released in the following m
 Our Product is constantly evolving and every week we release new features, so it is possible that this list may not be always up-to-date.
 On this page we keep you aligned on the most important issues:
 
-- **Mia-Platform Console**:
-  - _Governance_  
-    - Company/Profile management optimization
-    - Extended FinOps integration
-    - Customizable Home Page
-    - Customizable metrics dashboards
-  - _DevX_
-    - Enhanced CLI
-    - Enhanced Pair with AI
-    - Improved Secret Managers integrations
-  - _Extensibility_
-    - Console public API reference documentation
-    - Extended support for Infrastructure Management
-- **Mia-Platform Data Fabric**
-  - _Fast Data_
-    - New AI-Native Data Pipeline configurator
-    - Runtime aggregation performance improvements for Fast Data
-    - Data processing functions generation & testing with AI support
-    - MongoDB-Kafka Connector
-  - _Data Catalog_
-    - Export Data Catalog assets at scale
-    - Excel integration for bulk metadata enrichment and sync with the Catalog
-  - _Database Management_
-    - Improved management of schema validation and indexes for MongoDB assets
-- **Software Catalog**
-  - Improved Governance
-  - Enhanced PBC (Application) Lifecycle
-  - Modular PBCs
-  - Catalog Items Enrichment
-  - Catalog integration with third-party tools
-  - AI-driven Catalog Items discovery
-- **Components**
-  - _Microfrontend Composer_
-    - Drag & Drop components
-    - New Component Library
-  - _Flow Manager_
-    - AI-Native Flows configuration
-    - Guided sagas and state machines Flow configuration
+<Accordion data={dataRoadmap} />
 
 ## How to contribute to the roadmap
 
