@@ -3,7 +3,7 @@
     gap: 1rem;
     padding: 1.5rem 0;
     border-bottom: 1px solid var(--ifm-color-emphasis-200);
-    align-items: center; /* AGGIUNTO: Centra verticalmente l'icona con tutto il contenuto */
+    align-items: center;
 }
 
 .itemContainer:last-child {
@@ -45,7 +45,7 @@ html[data-theme='dark'] .iconWrapper {
 
 .title {
     font-size: 1rem;
-    font-weight: 600; /* MODIFICATO: Reso più grassetto (semibold) */
+    font-weight: 600;
     color: var(--ifm-font-color-base);
     margin: 0;
 }
@@ -56,7 +56,7 @@ html[data-theme='dark'] .iconWrapper {
     border-radius: 6px;
     padding: 3px 8px;
     font-size: 0.75rem;
-    font-weight: 600; /* MODIFICATO: Reso più grassetto (semibold) */
+    font-weight: 600;
 }
 
 html[data-theme='dark'] .quarterBadge {
@@ -84,15 +84,15 @@ html[data-theme='dark'] .quarterBadge {
 }
 
 .tag {
-    background-color: #F0F2F5;
+    background-color: #F2F2F2;
     border-radius: 9999px;
-    padding: 3px 10px; /* MODIFICATO: Ridotto il padding verticale per renderli più piccoli */
-    font-size: 0.75rem;  /* MODIFICATO: Ridotta la dimensione del testo */
+    padding: 3px 10px;
+    font-size: 0.75rem;
     color: #606770;
     border: none;
 }
 
 html[data-theme='dark'] .tag {
-    background-color: var(--ifm-background-color-secondary);
+    background-color: #464646;
     color: var(--ifm-font-color-secondary);
 }
