@@ -132,7 +132,7 @@ Finally, you can group the commands above and run them inside a pipeline, e.g. a
 # Insert that after your pipeline stages
 delivery:
     stage: deploy
-    image: ghcr.io/mia-platform/miactl:v0.21.0
+    image: ghcr.io/mia-platform/miactl:v0.21.1
 
     script:
       - miactl version
