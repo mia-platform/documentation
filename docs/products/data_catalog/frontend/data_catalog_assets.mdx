@@ -238,60 +238,6 @@ In case the unknown metadata is no more consistent or useful on the specific ass
 Please note that this action leads to the removal of the metadata value saved on DB for that specific asset. The custom property remains instead applied on all the other assets that match the expected asset type.
 :::
 
-### Metadata Inheritance
-
-:::caution
-This feature is currently in **BETA**, so pay attention when using it.  
-
-This feature is supported by versions of [Fabric BFF](/products/data_catalog/data_catalog_fabric_bff.mdx), [Open Lineage](/products/data_catalog/data_catalog_open_lineage.mdx), [Data Catalog Frontend](/products/data_catalog/frontend/overview.mdx) >= v0.3.x. Give a look at the [Data Catalog service latest versions](/products/data_catalog/compatibility_matrix.md#service-latest-versions).
-:::
-
-The **Metadata Inheritance** feature allows the propagation of metadata from parent assets to their child assets.  
-This ensures consistency and simplifies data governance.  
-The inheritance mechanism follows the hierarchical structure in Data Catalog: **SoR (System of Record)** → **Tables** → **Columns**.
-
-:::info
-Metadata Inheritance feature is applicable **exclusively on [real assets](/products/data_catalog/frontend/data_lineage.mdx#assets-real-and-virtual)**.
-:::
-
-#### Applying Custom Properties with Inheritance
-
-When adding a custom property to a **SoR** or a **Table**, a flag can be enabled to propagate the metadata to all its child assets:
-
-<div style={{display: 'flex', justifyContent: 'center'}}>
-  <div style={{display: 'flex', width: '400px'}}>
-
-![Add custom property with inheritance](./../img/add_custom_property_with_inheritance.png)
-
-  </div>
-</div>
-
-- If a custom property is added to a **SoR**, enabling inheritance will apply the property to all **Tables** and **Columns** under that SoR.
-- If a custom property is added to a **Table**, enabling inheritance will apply the property to all its **Columns**.
-
-Inherited properties will be visible at both **Table** and **Column** levels (or only at **Column** level, this depends on where in the hierarchy level the inheritance has been applied), marked with an ***Inherited*** tag indicating their origin (either from a SoR or a Table).
-
-![Inherited custom property](./../img/inherited_custom_property.png)
-
-#### Updating and Deleting Inherited Properties
-
-- **Updates**: Any update to an inherited custom property at the parent level (SoR or Table) will **overwrite** the value across all child assets (if already present).
-- **Deletions**: Removing a custom property at the parent level will also remove it from all child assets.
-
-:::info
-Child assets (Tables and/or Columns) that inherit properties **cannot** modify or delete them specifically. The inheritance is strictly enforced from the parent level.
-:::
-
-#### Example Use Case
-
-1. A custom property **"Location"** is added to **SoR X** with inheritance enabled.
-2. All **Tables** and **Columns** belonging to **SoR X** automatically receive the **"Location"** property with the assigned value.
-3. If the **"Location"** property is updated at **SoR X**, the new value is applied to all child **Tables** and **Columns**.
-4. If the **"Location"** property is deleted at **SoR X**, it is also removed from all child **Tables** and **Columns**.
-5. A user accessing a **Column** under **SoR X** can see the inherited property but cannot modify or remove it.
-
-In case the inherited custom property is displayed among the Unknown Custom Properties card, you can go to the [Custom Properties Management tab](#custom-properties-management) and modify consistently the *Applicable asset type* field for that specific custom property.
-
 ## Bulk Actions
 
 Data Catalog UI allows to perform bulk actions on metadata enrichment.  
