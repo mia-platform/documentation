@@ -22,40 +22,52 @@ const BugFixIcon = () => (
 );
 
 /**
- * A helper component that parses a string for markdown-style links `[text](url)`
- * and converts them into HTML anchor (`<a>`) tags.
+ * A component that parses a string for markdown-style links `[text](url)`
+ * and backticked code ``code``, converting them into HTML `<a>` and `<code>` tags.
  * @param {object} props - The component props.
- * @param {string} props.text - The text content to parse for links.
+ * @param {string} props.text - The text content to parse.
  */
-const LinkParser = ({text}) => {
-  // Regex to find all instances of markdown links: [linkText](url)
-  const linkRegex = /\[([^\]]+)\]\(([^)]+)\)/g;
+const MarkdownParser = ({text}) => {
+  // Regular expression to find all instances of markdown-style links OR backticked code.
+  const markdownRegex = /\[([^\]]+)\]\(([^)]+)\)|`([^`]+)`/g;
   const parts = [];
   let lastIndex = 0;
   let match;
 
   // Iterate over all matches of the regex in the input text.
-  while ((match = linkRegex.exec(text)) !== null) {
-    const [fullMatch, linkText, url] = match;
+  while ((match = markdownRegex.exec(text)) !== null) {
+    // Destructure the match. Depending on what was matched, some groups will be `undefined`.
+    // match[1] and match[2] are for links.
+    // match[3] is for code.
+    const [fullMatch, linkText, url, codeText] = match;
     const matchIndex = match.index;
 
-    // Add the plain text part that comes before the link.
+    // Add the plain text part that comes before the current match.
     if (matchIndex > lastIndex) {
       parts.push(text.substring(lastIndex, matchIndex));
     }
 
-    // Add the matched link as a React `<a>` element.
-    parts.push(
-      <a href={url} key={matchIndex} rel="noopener noreferrer" target="_blank">
-        {linkText}
-      </a>
-    );
+    // Check if a link was matched.
+    if (linkText && url) {
+      parts.push(
+        <a href={url} key={matchIndex} rel="noopener noreferrer" target="_blank">
+          {linkText}
+        </a>
+      );
+      // Otherwise, check if a code block was matched.
+    } else if (codeText) {
+      parts.push(
+        <code key={matchIndex}>
+          {codeText}
+        </code>
+      );
+    }
 
     // Update the index to continue searching from the end of the current match.
-    lastIndex = linkRegex.lastIndex;
+    lastIndex = markdownRegex.lastIndex;
   }
 
-  // Add any remaining plain text that follows the last link.
+  // Add any remaining plain text that follows the last match.
   if (lastIndex < text.length) {
     parts.push(text.substring(lastIndex));
   }
@@ -97,8 +109,8 @@ export default function FeatureList({newFeatures, improvements, bugFixes}) {
         <div className={styles.itemDescription}>
           {item.description.map((paragraph, pIndex) => (
             <p key={pIndex}>
-              {/* Use the LinkParser to transform any markdown links within the paragraph. */}
-              <LinkParser text={paragraph} />
+              {/* Use the Markdown Parser to transform any markdown links and code within the paragraph. */}
+              <MarkdownParser text={paragraph} />
             </p>
           ))}
         </div>
@@ -157,7 +169,7 @@ export default function FeatureList({newFeatures, improvements, bugFixes}) {
             <ul className={styles.bugList}>
               {bugFixes.map((bug, index) => (
                 <li key={index}>
-                  <LinkParser text={bug} />
+                  <MarkdownParser text={bug} />
                 </li>
               ))}
             </ul>
