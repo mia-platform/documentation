@@ -100,7 +100,7 @@ Blanks cell in the following table are for tools that do not require a specific 
          <td>3 GB</td>
       </tr>
       <tr>
-         <td rowspan="2"><strong>Secret Manager</strong></td>
+         <td rowspan="3"><strong>Secret Manager</strong></td>
          <td><img src="/img/gitlab.png" width="15" height="15"/> GitLab</td>
          <td>&gt;= 14.x<br/>&lt;= 18.x , SaaS</td>
          <td></td>
