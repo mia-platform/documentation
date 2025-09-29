@@ -107,6 +107,12 @@ Blanks cell in the following table are for tools that do not require a specific 
          <td></td>
       </tr>
       <tr>
+         <td><img src="/img/microsoft.ico" width="15" height="15"/> Azure Key Vault</td>
+         <td>SaaS</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
          <td><img src="/img/vault.png" width="15" height="15"/> Vault</td>
          <td>SaaS</td>
          <td></td>
