@@ -647,3 +647,50 @@ import ganttData from '@site/src/config/version_roadmap.json';
 
 <GanttChart config={ganttData} renderAs="table" />
 ```
+
+## Changelog component
+
+The `Changelog` component creates a styled timeline from standard Markdown. It's a "wrapper" component—you write your content normally and simply wrap it with the `<Changelog />` tags to apply the special formatting.
+
+The component automatically handles the timeline, icons, date placement, and adds each release to the page's table of contents.
+
+---
+
+### Complete Example
+
+Here is a full example of a `release-notes.mdx` page. You can copy this entire block and modify the content inside the `<Changelog>` tags.
+
+The structure for each entry is a Level 2 Heading (`##`) for the title, followed by the date in italics (`*...*`), and then any content you need. Use a horizontal rule (`---`) to separate entries.
+
+```mdx
+---
+id: versions
+title: Mia-Platform release notes
+sidebar_label: Mia-Platform release notes
+---
+
+import Changelog from '@site/src/components/Changelog';
+
+# Version History
+
+Stay up to date on all the new features and improvements to the platform.
+
+<Changelog>
+
+  ## [v14.2.1](/docs/release-notes/v14.2.1)
+  *September 18, 2025*
+
+  This version introduces stability improvements and fixes several important bugs.
+  - Fixed a rendering issue in the admin panel.
+  - Improved image loading speed by 20%.
+
+  ---
+
+   ## [v14.2.0](/docs/release-notes/v14.2.0)
+  *September 4, 2025*
+
+  Introducing a new analytics dashboard with real-time interactive charts.
+  ![New Dashboard](/img/accordions/new_dashboard.png)
+
+</Changelog>
+```
