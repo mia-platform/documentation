@@ -1,0 +1,21 @@
+[
+  {
+    "title": "Console",
+    "icon": "console",
+    "defaultOpen": false,
+    "type": "versions",
+    "items": {
+      "newFeatures": [],
+      "improvements": [
+        {
+          "title": "Project list improved with table view",
+          "description": [
+            "The **Project list** is now displayed in a **table view** instead of cards.",
+            "This change improves performance, simplifies search, and makes navigation in Console more efficient when working with multiple Projects."
+          ]
+        }
+      ],
+      "bugFixes": []
+    }
+  }
+]
