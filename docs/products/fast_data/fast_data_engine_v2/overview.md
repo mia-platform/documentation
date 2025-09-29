@@ -119,9 +119,8 @@ Achieve greater flexibility and control over your pipeline configuration with:
 
 Fast Data 2.0 provides maximum flexibility in handling diverse message formats during ingestion while
 maintaining a consistent **Fast Data message structure** internally.
-All Fast Data 2.0 workloads adopt this **standardized Fast Data message format** that ensures seamless interoperability throughout the pipeline.
-
-TO DO - to insert the message format
+All Fast Data 2.0 workloads adopt this [**standardized Fast Data message format**](/products/fast_data/fast_data_engine_v2/concepts.mdx#fast-data-message-format)
+that ensures seamless interoperability throughout the pipeline.
 
 This standard provides:
 
