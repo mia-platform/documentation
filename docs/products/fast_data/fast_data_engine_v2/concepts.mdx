@@ -5,7 +5,7 @@ sidebar_label: Concepts
 ---
 
 import EventPayloadSchema from "@site/static/schemas/fast_data/event-payload.schema.json"
-import SchemaViewer from "../snippets/schema_viewer.mdx"
+import SchemaViewer from "@site/src/components/SchemaViewer"
 
 ## Data Source
 
@@ -83,9 +83,9 @@ Here is provided the JSON schema of both message components:
   "title": "Key Schema",
   "type": "object",
   "additionalProperties": true
-}} />
+}} disableExampleTab />
 
-<SchemaViewer schema={EventPayloadSchema} />
+<SchemaViewer schema={EventPayloadSchema} disableExampleTab />
 
 :::note
 The raw JSON schema of the message's payload can also be downloaded from <a target="_blank" href="/schemas/fast_data/event-payload.schema.json">here</a>.
