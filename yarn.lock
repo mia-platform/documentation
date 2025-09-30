@@ -3275,6 +3275,18 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@mermaid-js/layout-elk@npm:^0.2.0":
+  version: 0.2.0
+  resolution: "@mermaid-js/layout-elk@npm:0.2.0"
+  dependencies:
+    d3: "npm:^7.9.0"
+    elkjs: "npm:^0.9.3"
+  peerDependencies:
+    mermaid: ^11.0.2
+  checksum: 10/bfad703cdcce811364f2ec7fbac742911b44645e8e81b7d3dff980a90c443d381d36ec07fdcf991337022c7f4b3fe79f8a3453ff66bf1223a1b458858f21c635
+  languageName: node
+  linkType: hard
+
 "@mermaid-js/parser@npm:^0.6.2":
   version: 0.6.2
   resolution: "@mermaid-js/parser@npm:0.6.2"
@@ -7430,6 +7442,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"elkjs@npm:^0.9.3":
+  version: 0.9.3
+  resolution: "elkjs@npm:0.9.3"
+  checksum: 10/397986e271827a5e13d2722b1883aea3557006d2777be8c34568f8fe743e81f4f71210e4e81b9958f597b0af8e96afaa883d2705eba84a3d5d0973bcb02fa59e
+  languageName: node
+  linkType: hard
+
 "emoji-regex@npm:^8.0.0":
   version: 8.0.0
   resolution: "emoji-regex@npm:8.0.0"
@@ -10928,6 +10947,7 @@ __metadata:
     "@docusaurus/types": "npm:3.9.1"
     "@ianvs/prettier-plugin-sort-imports": "npm:4.7.0"
     "@mdx-js/react": "npm:^3.0.0"
+    "@mermaid-js/layout-elk": "npm:^0.2.0"
     "@mia-platform/console-types": "npm:^0.39.3"
     clsx: "npm:^2.0.0"
     docusaurus-json-schema-plugin: "npm:^1.15.0"
