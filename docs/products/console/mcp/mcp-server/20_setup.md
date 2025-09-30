@@ -20,15 +20,21 @@ sidebar_label: Setup
       (the only one supported at this time) the `Client Secret Basic` one. In that case you can access to just one
       company at a time.
 
-> **_WARNING_**
->
-> When using miactl session, auto-refresh by the MCP Server is not currently supported,
-> once the session created with miactl expires you have to refresh it with miactl again.
+:::warning
+
+When using miactl session, auto-refresh by the MCP Server is not currently supported,
+once the session created with miactl expires you have to refresh it with miactl again.
+
+:::
+
 ---
-> **_IMPORTANT_**
->
-> When using miactl session, the host you provide to the MCP Server **MUST** be the exact same as the one
-> you have logged in with miactl, including scheme and any possible trailing slash.
+
+:::important
+
+When using miactl session, the host you provide to the MCP Server **MUST** be the exact same as the one
+you have logged in with miactl, including scheme and any possible trailing slash.
+
+:::
 
 ### VS Code
 
@@ -38,10 +44,12 @@ called `.vscode/mcp.json` in your workspace.
 
 Once you have done it, toggle Agent mode (located by the Copilot Chat text input) and the server will start.
 
-> **_Note:_**
->
-> The `mcp` key is not needed in the `.vscode/mcp.json` file.  
-> Also note that you can change the host of the Console instance to your custom installation
+:::note
+
+The `mcp` key is not needed in the `.vscode/mcp.json` file.  
+Also note that you can change the host of the Console instance to your custom installation
+
+:::
 
 This is the configuration if you are using miactl (a)
 
