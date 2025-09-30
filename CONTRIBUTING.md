@@ -504,7 +504,7 @@ Here is a look at the incredible features we are developing for you.
 
 ### Useful References
 
-* **Creating a Link**: In any `description` or `bugFixes` field, you can create a link using the syntax `[Link Text](https://website.com)`.
+* **Creating a Link**: In any `description` or `bugFixes` field, you can create a link using the syntax `[Link Text](https://website.com), for internal link use /docs/path/to/the/file/file_id (please note, start with /docs and end with the file's id!`.
 * **Making Text Bold**: In any  `description` or `bugFixes` field, you can make text bold using the syntax **Your Text**.
 * **Highlighting with Italic**: In any  `description` or `bugFixes` field, you can italicize text using the syntax _Your Text_.
 * **Formatting as Code**: In any  `description` or `bugFixes` field, you can format text as inline code using the syntax `Your Text`.
