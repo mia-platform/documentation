@@ -29,7 +29,7 @@
         "title": "Single View Trigger Generator",
         "description": [
           "The new version `v3.5.0` of the _Single View Trigger Generator_ is available!",
-          "For more information check out the service [changelog](/runtime-components/plugins/single-view-trigger-generator/changelog.md)."
+          "For more information check out the service [changelog](/docs/runtime-components/plugins/single-view-trigger-generator/changelog)."
         ]
       }
       ],

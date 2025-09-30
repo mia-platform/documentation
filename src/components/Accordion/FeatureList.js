@@ -46,11 +46,19 @@ const MarkdownParser = ({text}) => {
 
     // Check which syntax was matched and create the correct React element.
     if (linkText && url) {
-      parts.push(
-        <a href={url} key={matchIndex} rel="noopener noreferrer" target="_blank">
-          {linkText}
-        </a>
-      );
+      if(url.startsWith("http")) {
+        parts.push(
+          <a href={url} key={matchIndex} rel="noopener noreferrer" target="_blank">
+            {linkText}
+          </a>
+        );
+      } else {
+        parts.push(
+          <a href={url} key={matchIndex} target="_self">
+            {linkText}
+          </a>
+        )
+      }
     } else if (codeText) {
       parts.push(<code key={matchIndex}>{codeText}</code>);
     } else if (strongText) {
