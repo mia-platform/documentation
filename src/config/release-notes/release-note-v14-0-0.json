@@ -67,9 +67,9 @@
         {
           "title": "MongoDB Connection support in Data Catalog",
           "description": [
-            "[Support for MongoDB](/docs/products/data_catalog/frontend/data_catalog_connectionsx#mongodb) as a new connection provider has been introduced in Data Catalog. Users can now define a connection string to connect directly to a MongoDB instance. When collections include a MongoDB JSON Schema validation, the agent is able to automatically detect field structures and types.",
+            "[Support for MongoDB](/docs/products/data_catalog/frontend/data_catalog_connections#mongodb) as a new connection provider has been introduced in Data Catalog. Users can now define a connection string to connect directly to a MongoDB instance. When collections include a MongoDB JSON Schema validation, the agent is able to automatically detect field structures and types.",
             "Retrieval of databases and collections can be managed through multiple configuration modes.",
-            "Check the full list of available options in the [official documentation](/docs/products/data_catalog/frontend/data_catalog_connectionsx#mongodb-databases-settings) to configure the behavior according to your needs."
+            "Check the full list of available options in the [official documentation](/docs/products/data_catalog/frontend/data_catalog_connections#mongodb-databases-settings) to configure the behavior according to your needs."
           ]
         }
       ],
@@ -116,7 +116,7 @@
           "title": "Teleconsultation Service Backend",
           "description": [
             "The new version `2.1.0` of the Teleconsultation Service Backend is available!",
-            "This version adds support for [Kaleyra transcription](/docshttps://developers.kaleyra.io/reference/video-recording), which allows you to obtain a transcription of the teleconsultation session."
+            "This version adds support for [Kaleyra transcription](https://developers.kaleyra.io/reference/video-recording), which allows you to obtain a transcription of the teleconsultation session."
           ]
         }
       ],
