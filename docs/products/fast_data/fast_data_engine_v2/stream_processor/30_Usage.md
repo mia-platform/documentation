@@ -16,7 +16,7 @@ To use the plugin, the following requirements must be met:
 
 ## Messages Spec
 
-In this section are show the schema of each input and output message components.
+In this section are shown the schemas of each input and output message components.
 The service expects those messages to comply with their corresponding schema to
 effectively read and transform them.
 
@@ -162,7 +162,6 @@ Here the main takeaway is the fact that output payload MUST be an **object**.
 Output message may optionally be compliant with [Fast Data message format](/products/fast_data/fast_data_engine_v2/concepts.mdx#fast-data-message-format).
 
 :::
-
 
 ### Processing Function
 
@@ -333,17 +332,17 @@ its return value is any of the following:
 #### Errors 🚨
 
 It is important to notice that when the processor function throws an error, or
-it rejects a promise that it has returned, the service treat it as an **unexpected
-behavior**. Therefore, it stops the consumption of the input stream and terminates
+it rejects a promise that it has returned, the service treats it as an **unexpected
+behavior**. Therefore, it **stops the consumption** of the input stream and **terminates**
 itself to prevent improper handling of the events.
 
 For this reason, please **ensure** that all the functions or methods that may throw
-an error are either wrapped in a `try`/`catch` block or `.catch()` method
-is attached to the promise.
+an error is either wrapped in a `try`/`catch` block or handled using the `.catch()` method
+on the promise.
 
 Failing to do so would lead to a stop in the stream
 consumption, which would cause the consumer group lag to increase and the losing
-of the near real-time property.
+of the near real-time capability.
 
 In case this behavior is desired, that is no further processing would occur until
 **manual intervention** is applied, it is recommended to set up an alarm on the
@@ -555,7 +554,7 @@ export default function ({ key, payload }) {
 In case such events should be processed differently, the processor function may
 be written to address them according to your business needs.  
 For example, a tombstone event may be transformed into a "Fast Data" `DELETE` message,
-whose `before` and `after` as set to `null` value. This transformation is useful to
+whose `before` and `after` are set to `null` value. This transformation is useful to
 notify a change event of delete when the record's prior value is not available within
 the payload of the input event.   
 

@@ -14,11 +14,11 @@ To use the plugin, the following requirements must be met:
   to aid in the generation of them it is possible to exploit provided tools, such as
   the `indexer` command of `the_world_outside` CLI. This command connects to the
   configured persistence layer and, analyzing the aggregation graph, automatically
-  generate the recommended indexes for your use case; 
+  generate the recommended indexes for your use case. 
 
 ## Messages Spec
 
-In this section are show the schema of each input and output message components.
+In this section are shown the schemas of each input and output message components.
 The service expects those messages to comply with their corresponding schema to
 effectively read and transform them.
 
@@ -173,14 +173,14 @@ Output messages are compliant with [Fast Data message format](/products/fast_dat
 
 ## Persistence
 
-As explained in the [Configuration](/products/fast_data/fast_data_engine_v2/farm_data/20_Configuration.mdx) page Farm-Data service
-process events using a stateful model and therefore it needs to store intermediate
+As explained in the [Configuration page](/products/fast_data/fast_data_engine_v2/farm_data/20_Configuration.mdx), Farm Data service
+processes events using a stateful model and therefore it needs to store intermediate
 results on persistent storage system.  
-Currently, Farm-Data supports only MongoDB as external persistence system. 
+Currently, Farm Data supports only MongoDB as external persistence system. 
 
 ### MongoDB Persistence
 
-When using MongoDB as persistence storage, Farm-Data service needs the details
+When using MongoDB as persistence storage, Farm Data service needs the details
 for connecting to a MongoDB cluster, which allows the service to create the
 needed collections and store there the intermediate aggregated documents.
 
@@ -210,7 +210,7 @@ the indexes defined:
       "__pk": 1
     }
     ```
-- and index for each `value` property of the current aggregation node, which
+- an index for each `value` property of the current aggregation node, which
   is employed for lookup operations by children nodes (in the aggregation graph).  
   For example:
     ```json
@@ -218,7 +218,7 @@ the indexes defined:
       "value.userId": 1
     }
     ```
-- and index for each `dependency.*.__pk` property of the current aggregation node, which
+- an index for each `dependency.*.__pk` property of the current aggregation node, which
   is employed for lookup operations by current towards children nodes
   (in the aggregation graph).  
   For example:
@@ -269,7 +269,7 @@ you can connect to it from your machine.
 The aggregation graph is a [Direct Acyclic Graph](https://en.wikipedia.org/wiki/Directed_acyclic_graph)
 that describes how streams are connected among them and how they should be merged
 together into a single one.  
-Each node represents a stream that participate in the aggregation process, while
+Each node represents a stream that participates in the aggregation process, while
 edges describe how events of two linked streams are merged together.
 
 ## Nodes
@@ -301,9 +301,9 @@ only outgoing edges are associated with it:
 
 ## Edges
 
-An edge of the graph establish a directed link between two streams and define the
+An edge of the graph establishes a directed link between two streams and defines the
 rules for combining their records into a single stream. It owns two properties,
-which are its identifier, necessary to reference it within node `edges` property
+which are its identifier, necessary to reference it within node `edges` property,
 and a filter for restricting how stream events are merged.
 
 When no filter is provided, the cartesian product of all the streams events will be
@@ -340,7 +340,7 @@ In the example below, `users` stream is joined with `posts` stream, ensuring tha
 
 :::note
 
-Edge identifier can get any value as long as it is unique with respect to other edges.
+An edge identifier can get any value as long as it is unique with respect to other edges.
 In the examples found in these pages, edges identifiers represent the link between two
 nodes, which helps in understanding where it is employed in the graph.
 
@@ -353,8 +353,8 @@ between a parent stream (`local`) and the children one (`foreign`). In particula
 each rule can either match between fields of the two events, identified by a
 _field path_, or between one of `local` or `foreign` field and a constant value, such as:
 
-- `string` 
-- `number` 
+- `string`
+- `number`
 - `boolean`
 - `null`
 - `an array of primitive types` (when using `$in`/`$contains`/`$nin`/`$contains` operators)
@@ -554,7 +554,7 @@ Farm Data supports different output modes that control how the service generates
 
 **Configuration**: `"read-delete"`
 
-This is the default output mode that optimizes payload size by transforming Farm-Data create/update operations into read operations.
+This is the default output mode that optimizes payload size by transforming Farm Data create/update operations into read operations.
 
 **Characteristics**:
 - The `before` field is never set in the output payload
@@ -562,7 +562,7 @@ This is the default output mode that optimizes payload size by transforming Farm
 - Delete operations (`d`) maintain their original format
 - Reduces output payload size compared to operation-forwarding mode
 
-**Use Case**: Ideal for scenarios where you only need the current state of records and don't require change tracking information.
+**Use Case**: Ideal for scenarios where you only need the current state of records and do not require change tracking information.
 
 **Example Output**:
 ```json
@@ -581,12 +581,12 @@ This is the default output mode that optimizes payload size by transforming Farm
 
 **Configuration**: `"operation-forwarding"`
 
-This mode preserves the original Farm-Data operations occurring on HEAD units while transforming operations on internal nodes into updates.
+This mode preserves the original Farm Data operations occurring on HEAD units while transforming operations on internal nodes into updates.
 
 **Characteristics**:
 - HEAD unit operations (create, update, delete) are forwarded with their original operation type
 - Internal node operations are produced as update operations
-- Both `before` and `after` properties are set according to the original Farm-Data operation
+- Both `before` and `after` properties are set according to the original Farm Data operation
 - Maintains full change tracking information
 
 **Use Case**: Best for scenarios requiring complete audit trails and change tracking capabilities.

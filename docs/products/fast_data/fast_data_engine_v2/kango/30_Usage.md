@@ -4,7 +4,7 @@ title: Usage
 sidebar_label: Usage
 ---
 
-### Requirements
+## Requirements
 
 To use the application, the following requirements must be met:
 
@@ -12,7 +12,7 @@ To use the application, the following requirements must be met:
 - Kafka topic must exist on the Kafka cluster, with the appropriate number of partitions (which constrain service replicas), retention and replication factor;
 - MongoDB collection must be defined on the MongoDB cluster with the necessary indexes; in particular, all the fields of the message key should belong to a unique index, which would ensure record uniqueness on the database
 
-### Write Mode
+## Write Mode
 
 Service supports two write modes, which modifies the behavior of insert and update action
 on the database when a document already exists for such change event:
@@ -25,10 +25,10 @@ In particular, `strict` mode ensures that after writing a record onto the databa
 document corresponds to the value in the `after` payload. This means that insert operations
 act as _replace_ one to ignore unknown fields, while update operations _unset_ unknown fields,
 that are fields that may occur in the `before` payload, but not in the `after` one.
-On the contrary, `partial` mode treat insert operations as _upserts_, while updates just
-update fields found within the `after` payload.
+On the contrary, `partial` mode treats insert operations as _upserts_, while updates just
+updated fields found within the `after` payload.
 
-### Messages Spec
+## Messages Spec
 
 Input Kafka messages key is compliant with the following schema:
 

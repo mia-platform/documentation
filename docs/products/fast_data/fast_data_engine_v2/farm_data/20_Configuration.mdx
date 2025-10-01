@@ -25,11 +25,11 @@ Currently `<HOME>` value is set to `/home/farm_data`, which is based on how the 
 
 ## Configuration File
 
-The farm-data service configuration is stored in `config.json` file, and
+The Farm Data service configuration is stored in `config.json` file, and
 it specifies various aspects of the system, including connections, consumers,
 producers, and data processing.
-Its content respect the JSON schema specification provided below.
-In the next sections its properties description are further explained and clarified.
+Its content respects the JSON schema specification provided below.
+In the next sections, its properties description are further explained and clarified.
 
 <SchemaViewer schema={FarmDataSchema} example={FarmDataConfigExample} />
 
@@ -59,8 +59,8 @@ is an object where each key can represent a specific Kafka consumer configuratio
 * `topic`: The name of the Kafka topic from which the consumer will poll.
 * `connectionName`: The name of the Kafka connection to use from the `connections` map.
 * `commitIntervalMs`: An optional property defining the number of milliseconds between commits, 
-  with a default of 500ms and a minimum of 0. In case the need to change this value should arise
-  we recommend to assign the same value to all the consumer.
+  with a default of 500ms and a minimum of 0. In case the need to change this value should arise,
+  we recommend to assign the same value to all the consumers.
 
 Additional properties for Kafka consumer configuration can be found in the [librdkafka](https://docs.confluent.io/platform/current/clients/librdkafka/html/md_CONFIGURATION.html) documentation.
 
@@ -71,11 +71,11 @@ When configuring the service, it is important to configure the following Kafka c
 queued.min.messages
 queued.max.messages.kbytes
 ```
-since they regulate the amount of memory consumed by the service. These values should be
-adjusted depending on the resources (CPU and memory) that can assigned to the service
+Since they regulate the amount of memory consumed by the service, these values should be
+tuned depending on the resources (CPU and memory) that can assigned to the service
 and the size of the underlying database. Indeed, those external factors affect the processing
-throughput, and therefore retaining in the consumer fetch queue more messages than
-the amount it can process may risk to waste service memory.
+throughput; therefore, retaining more messages in the consumer fetch queue than
+the amount the service can process may risk to waste service memory.
 
 For example, when using a MongoDB M30 instance with a maximum of 2400 IOPS for read+write,
 we recommend to start by setting these values to:
@@ -91,7 +91,7 @@ When configuring consumers, it is important to know that different configuration
 would trigger the creation of different consumer clients. This may be necessary to enable
 the same stream to be aggregated in different manners.
 
-Please, notice that instantiating additional consumer may require to increase service
+Please, notice that the instantiation of additional consumers may require to increase service
 memory requests and limits, since these consumers would have their own internal fetch queue.
 :::
 
@@ -103,7 +103,7 @@ The following Kafka consumer properties are not configurable:
 
 The first parameter is included to enforce user responsibility over topics creation,
 so that the proper configurations, such as number of partitions, replication factor
-and retention policy are set. In addition, the latter property disable driver
+and retention policy are set. In addition, the latter property disables the driver
 auto-commit feature in favour of an ad-hoc internal logic.
 :::
 
@@ -166,7 +166,7 @@ Example of connection configuration:
 
 :::warning
 
-Farm-data service heavily rely on the persistence layer to cache the current stream
+Farm Data service heavily relies on the persistence layer to cache the current stream
 state. Consequently, it is highly recommended to configure MongoDB instance to
 actually sustain a heavy IO load, setting maximum IOPS to at least a value of 2400 IOPS (1200 read + 1200 write),
 though higher values would only benefit the service throughput.
@@ -248,7 +248,7 @@ average message consumption rate. It is possible to observer:
 
 to check the average values.
 
-For _Farm-Data_ service, an example of configuration can be the following one:
+For _Farm Data_ service, an example of configuration can be the following one:
 
 ```json
 {
@@ -263,7 +263,7 @@ a value lower than `1024`.
 
 #### Internal Updates Consumer
 
-`internal-updates` consumer requires an ad-hoc consumer configuration due
+`internal-updates` consumer requires an **ad-hoc consumer configuration** due
 to its messages' uniqueness. In fact, `internal-update` messages are very small
 (in the bytes range), but they trigger a larger computation that may require different
 milliseconds to complete.
@@ -274,7 +274,7 @@ to fetch and buffer a large amount of events, since they are small, but it takes
 amount of time to clear them from the queue. This prevents the consumer from fetching newer
 messages within the constraint set by `max.poll.interval.ms` (a default interval of 5 minutes).
 Once that time elapses, the consumer instance is considered dead by the Kafka broker and
-force it to leave the group, triggering a restart of the service since its events stream is
+forces it to leave the group, triggering a restart of the service since its events stream has
 terminated.
 
 To prevent this unwanted situation that hinders the advancement of events processing, it
@@ -290,7 +290,7 @@ Kafka consumer of the `internal-updates` configuration:
 }
 ```
 
-As it can be observed, here also `fetch.message.max.bytes` parameter is changes, since
+As it can be observed, here also `fetch.message.max.bytes` parameter has changed, since
 it governs how many bytes are fetched per topic+partition the first time the consumer
 connects. Consequently, leaving the default value of 1MB would lead to a behavior where
 the service starts, aggregates events for about 5 minutes and then it restarts because
@@ -299,7 +299,7 @@ it has been forced out of the consumer group.
 :::danger
 
 When a consumer instance is forced out of its consumer group, such instance may not have
-the chance of committing the work it has already carried out. Thus, setting
+the chance to commit the work it has already carried out. Thus, setting
 the proper values is fundamental to guaranteed service stability and progress in
 consuming messages from Kafka topic.
 
@@ -335,7 +335,7 @@ ones, although they can be changed according to your needs:
 
 :::note
 
-Memory usage also depends on the parameter described in the previous sections, that is:
+Memory usage also depends on the parameters described in the previous sections, that are:
 - the number of input topics
 - the number of spawned internal consumer
 - how each Kafka consumer queue is configured
