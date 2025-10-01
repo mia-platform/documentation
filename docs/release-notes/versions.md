@@ -19,8 +19,6 @@ TO DO
 
 ---
 
-<Changelog>
-
 ## [v14.2.1](/release-notes/v14.2.1.mdx)
 *October 2nd, 2025*
 
