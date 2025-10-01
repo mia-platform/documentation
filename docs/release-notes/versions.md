@@ -10,8 +10,19 @@ import Changelog from '@site/src/components/Changelog';
 
 <Changelog>
 
+## [v14.3.0](/release-notes/v14.3.0.mdx)
+*October 2nd, 2025*
+
+TO DO
+
+[Read the release notes](/release-notes/v14.2.1.mdx)
+
+---
+
+<Changelog>
+
 ## [v14.2.1](/release-notes/v14.2.1.mdx)
-*September 18th, 2025*
+*October 2nd, 2025*
 
 This release introduces a **new tabular view for Microservices** as a **Feature Preview**, designed to make navigation more intuitive. The new interface allows you to quickly view endpoints, mark favorites and add custom tags to **better filter and organize your workflows**. Additionally, conversations with Mia-Assistant can now be **exported in PDF format**, in addition to the existing .txt option.
 
