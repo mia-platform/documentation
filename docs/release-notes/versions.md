@@ -13,7 +13,7 @@ import Changelog from '@site/src/components/Changelog';
 ## [v14.3.0](/release-notes/v14.3.0.mdx)
 *October 2nd, 2025*
 
-This release introduces the **Fast Data Engine 2.0**, a new suite of workloads designed to build highly scalable and efficient real-time pipelines, delivering **up to 10x performance improvements** in data aggregation. Management of the **Software Catalog** is also significantly enhanced, with new features for organizing and enriching items, including support for **maintainers and labels**, and the ability to **map relationships** between components. This update is rounded out by other minor improvements to increase overall platform stability.
+This release introduces the **Fast Data Engine 2.0**, a new suite of workloads designed to build highly scalable and efficient real-time pipelines, delivering **up to 10x performance improvements** in data aggregation. Management of the **Software Catalog** is also significantly enhanced, with new features for organizing and enriching items, including support for **maintainers and labels**, and the ability to **map relationships** between components. This update is rounded out by other minor improvements to increase overall Console stability.
 
 [Read the release notes](/release-notes/v14.3.0.mdx)
 
