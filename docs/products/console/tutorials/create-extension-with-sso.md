@@ -452,7 +452,7 @@ func validateAndExtractUserName(headers map[string]string, envs config.Environme
 
 4. Modify the `/routes.go` file to add the routes you just created.
 
-```
+```go
 package main
 
  import (

@@ -75,14 +75,7 @@ Linking a resource to another one inside the documentation is done using the fol
 - Linking internal resources using https://docs.mia-platform.eu/ **is NOT allowed**.
 
 An automatic check is performed on each push to verify that the links are correct.
-The check is performed to each file in the /docs/ folder excluding the folder managed by the **doc aggregator**:
-
-- docs/runtime_suite
-- docs/runtime_suite_examples
-- docs/runtime_suite_templates
-- docs/runtime_suite_libraries
-- docs/runtime_suite_tools
-- docs/business_suite
+The check is performed to each file in the /docs/ folder.
 
 ### Deleting a page
 
@@ -342,3 +335,362 @@ All contribution which could improve the existent code base are welcome!
 
 To keep a fork up to date, you can follow this [GitHub guide](https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/syncing-a-fork).
 For all the information about forks, [see this link](https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/working-with-forks).
+
+
+## Accordion component
+
+To create or update an accordion section, you will always follow these three steps:
+
+1.  **✍️ Write the Content**: You will create a special text file (called a JSON file) where you'll enter all the titles, descriptions, and other information.
+2.  **🖼️ Upload Images**: If your section needs images, you will upload them to a specific folder.
+3.  **📍 Add to the Page**: You will insert a short snippet of code into your `.mdx` page to tell the system to display the content you've prepared.
+
+---
+
+### 1. Where to Put Your Files
+
+Before you begin, it's important to know where to save the files you'll create.
+
+* **Content Files (.json)**
+  * Save them here: `/src/config/`
+  * *Example: `/src/config/release_notes_september_2025.json`*
+
+* **Image Files (.png, .jpg, etc.)**
+  * Save them here: `/static/img/accordions/`
+  * *Example: `/static/img/accordions/new_dashboard.png`*
+
+---
+
+### 2. Writing the Content (The JSON File)
+
+The content of each accordion is defined in a `.json` file. You can think of this file as a form to fill out. There are two types of "forms" you can use, depending on what you want to display.
+
+#### #### Type 1: Release Notes
+
+Use this format to announce what's new in a software release. The content will be automatically grouped into "New Features," "Improvements," and "Bug Fixes."
+
+**➡️ Copy and paste this template into a new file (e.g., `v3-1-0.json`) and edit it:**
+
+```json
+[
+  {
+    "title": "Version 3.1.0 - New Dashboard",
+    "icon": "console",
+    "defaultOpen": true,
+    "type": "versions",
+    "items": {
+      "newFeatures": [
+        {
+          "title": "Interactive Analytics Dashboard",
+          "description": [
+            "We have released a brand new dashboard that allows for real-time data analysis.",
+            "To learn more, read our [complete guide](https://example.com)."
+          ],
+          "images": [
+            "/img/accordions/new_dashboard.png"
+          ]
+        }
+      ],
+      "improvements": [
+        {
+          "title": "50% faster loading speeds",
+          "description": [
+            "The time it takes to access the platform has been drastically reduced."
+          ]
+        }
+      ],
+      "bugFixes": [
+        "Fixed a menu display issue on Firefox.",
+        "Corrected a rare bug that prevented saving."
+      ]
+    }
+  }
+]
+```
+
+**Field Descriptions:**
+
+| Key             | Description                                                                                          |
+| :-------------- | :--------------------------------------------------------------------------------------------------- |
+| `title`         | The main title of the section (e.g., "Version 3.1.0").                                               |
+| `icon`          | The name of the icon to display. You can find the full list at the end of this guide.                |
+| `defaultOpen`   | Write `true` if you want the section to be open on page load, otherwise `false`.                     |
+| `type`          | Always leave this as `"versions"` for this type of content.                                          |
+| `newFeatures`   | Enter your new features here. You can add as many as you need.                                       |
+| `improvements`  | Enter your improvements here.                                                                        |
+| `bugFixes`      | Enter your bug fixes here (as simple lines of text).                                                 |
+
+---
+
+#### #### Type 2: Product Roadmap
+
+Use this format to show upcoming features. Each feature will appear as a separate card.
+
+**➡️ Copy and paste this template into a new file (e.g., `roadmap_2026.json`) and edit it:**
+
+```json
+[
+  {
+    "title": "2026 Roadmap: Artificial Intelligence",
+    "icon": "fast-data",
+    "defaultOpen": false,
+    "type": "roadmap",
+    "items": {
+      "newFeatures": [
+        {
+          "title": "AI Writing Assistant",
+          "quarter": "Q1 2026",
+          "description": [
+            "An intelligent assistant will help you write better content by suggesting phrases and correcting errors."
+          ],
+          "tags": ["AI", "Beta", "Productivity"]
+        },
+        {
+          "title": "Smart Search",
+          "quarter": "Q2 2026",
+          "description": [
+            "You will be able to search for documents using natural language, as if you were asking a person a question."
+          ],
+          "tags": ["AI", "Search"]
+        }
+      ],
+      "improvements": [],
+      "bugFixes": []
+    }
+  }
+]
+```
+
+**Field Descriptions:**
+
+| Key             | Description                                                                                          |
+| :-------------- | :--------------------------------------------------------------------------------------------------- |
+| `title`, `icon`, `defaultOpen` | These work the same as in the previous template.                                       |
+| `type`          | Always leave this as `"roadmap"` for this type of content.                                           |
+| `items`         | Inside `items`, you can add cards to `newFeatures`, `improvements`, or `bugFixes`.                   |
+| `title`         | The title of the individual card/feature.                                                            |
+| `quarter`       | (Optional) A label to indicate the time frame (e.g., "Q1 2026").                                     |
+| `description`   | The description of the feature.                                                                      |
+| `tags`          | (Optional) Colored labels to categorize the feature.                                                 |
+
+---
+
+### ### 3. Adding the Accordion to the Page
+
+Once your `.json` file is ready and saved in `/src/config/`, go to the `.mdx` page where you want the accordion to appear.
+
+1.  **At the top of the page**, add a line to "import" your content file.
+2.  **In the exact spot where you want the accordion**, insert the `<Accordion />` tag, telling it which file to use.
+
+**Complete example of a page `my-roadmap.mdx`:**
+
+```mdx
+---
+id: roadmap
+title: Our Roadmap
+sidebar_label: Roadmap
+---
+
+import Accordion from '@site/src/components/Accordion';
+import roadmap2026 from '@site/src/config/roadmap_2026.json';
+
+# What the future holds
+
+Here is a look at the incredible features we are developing for you.
+
+<Accordion data={roadmap2026} />
+
+```
+
+### Useful References
+
+* **Creating a Link**: In any `description` or `bugFixes` field, you can create a link using the syntax `[Link Text](https://website.com), for internal link use /docs/path/to/the/file/file_id (please note, start with /docs and end with the file's id!`.
+* **Making Text Bold**: In any  `description` or `bugFixes` field, you can make text bold using the syntax **Your Text**.
+* **Highlighting with Italic**: In any  `description` or `bugFixes` field, you can italicize text using the syntax _Your Text_.
+* **Formatting as Code**: In any  `description` or `bugFixes` field, you can format text as inline code using the syntax `Your Text`.
+* **New Paragraphs**: To create a new paragraph in a `description`, simply add a new line of text in quotes. Example: `"description": ["First paragraph.", "Second paragraph."]`
+* **Available Icons**: You can use any of the following names in the `"icon"` field:
+  * `console`
+  * `fast-data`
+  * `data-catalog`
+  * `microfrontend-composer`
+  * `runtime-components`
+  * `software-catalog`
+
+## Gantt component
+
+To create or update a chart, the process is very simple:
+
+1.  **✍️ Write the Content**: You will enter all dates and tasks into a configuration file (JSON).
+2.  **📍 Add to the Page**: You will insert a short snippet of code into your `.mdx` page to display the chart or table.
+
+---
+
+### ### 1. Where to Put Your Content File
+
+The configuration file that contains all your chart data must be saved in a specific location.
+
+* **Content Files (.json)**
+  * Save them here: `/src/config/`
+  * *Example: `/src/config/version_roadmap.json`*
+
+---
+
+### ### 2. Writing the Content (The JSON File)
+
+The JSON file is the "brain" of your chart. It is divided into two main sections: `timeline` (the time axis) and `tasks` (the bars on the chart).
+
+#### #### The `timeline`
+
+This section defines the entire time scale that will be visible in the chart. You must specify every quarter you want to display.
+
+* `year`: The year.
+* `quarter`: The name of the quarter (e.g., "Q4").
+* `months`: The abbreviated names of the months in that quarter.
+
+```json
+{
+  "timeline": [
+    {
+      "year": 2024,
+      "quarter": "Q4",
+      "months": ["Oct", "Nov", "Dec"]
+    },
+    {
+      "year": 2025,
+      "quarter": "Q1",
+      "months": ["Jan", "Feb", "Mar"]
+    },
+    {
+      "year": 2025,
+      "quarter": "Q2",
+      "months": ["Apr", "May", "Jun"]
+    }
+  ]
+}
+
+```
+
+> **Important**: Make sure the `timeline` covers the entire period of your tasks. If a task has a date that falls outside the timeline, it will not be displayed correctly.
+
+#### #### The `tasks`
+
+This section defines the bars that will appear on the chart. Each object represents a single task or version.
+
+* `name`: The name that will appear on the bar (e.g., "v13.1.x").
+* `start`: The start date, in **YYYY-MM-DD** format.
+* `end`: The end date, in **YYYY-MM-DD** format.
+
+```json
+{
+  "tasks": [
+    {"name": "v13.1.x", "start": "2024-10-24", "end": "2025-01-16"},
+    {"name": "v13.3.x", "start": "2025-01-16", "end": "2025-04-17"}
+  ]
+}
+```
+
+> **Warning**: The date format `YYYY-MM-DD` (e.g., `2025-04-17`) is **mandatory** and must be followed exactly.
+
+#### Complete Example to Copy
+
+Here is a full template you can copy, save into a new file in `/src/config/`, and modify with your own data.
+
+```json
+{
+  "timeline": [
+    {"year": 2024, "quarter": "Q4", "months": ["Oct", "Nov", "Dec"]},
+    {"year": 2025, "quarter": "Q1", "months": ["Jan", "Feb", "Mar"]},
+    {"year": 2025, "quarter": "Q2", "months": ["Apr", "May", "Jun"]},
+    {"year": 2025, "quarter": "Q3", "months": ["Jul", "Aug", "Sep"]},
+    {"year": 2025, "quarter": "Q4", "months": ["Oct", "Nov", "Dec"]}
+  ],
+  "tasks": [
+    {"name": "v13.1.x", "start": "2024-10-24", "end": "2025-01-16"},
+    {"name": "v13.3.x", "start": "2025-01-16", "end": "2025-04-17"},
+    {"name": "v13.7.x", "start": "2025-04-17", "end": "2025-07-17"},
+    {"name": "v14.0.x", "start": "2025-07-17", "end": "2025-10-23"}
+  ]
+}
+```
+
+### ### 3. Adding the Gantt to the Page
+
+Once your JSON file is created, you can display it on your `.mdx` page. The component is flexible and can display the same data in two different ways: as a **chart** or as a **table**.
+
+#### #### Option 1: Display the Gantt Chart (Default)
+
+This is the main view with colored bars. The color changes automatically: past tasks, the current one, and future tasks will all have different colors.
+
+To use it, import your configuration file and add the component tag.
+
+```mdx
+import GanttChart from '@site/src/components/GanttChart';
+import ganttData from '@site/src/config/version_roadmap.json';
+
+## Version Roadmap
+
+<GanttChart config={ganttData} />
+```
+
+#### #### Option 2: Display a Table
+
+If you prefer a simpler, text-based view, you can show the same data in a sorted table. The dates will be automatically formatted for better readability.
+
+To do this, add the `renderAs="table"` option to the component.
+
+```mdx
+import GanttChart from '@site/src/components/GanttChart';
+import ganttData from '@site/src/config/version_roadmap.json';
+
+## Version Table
+
+<GanttChart config={ganttData} renderAs="table" />
+```
+
+## Changelog component
+
+The `Changelog` component creates a styled timeline from standard Markdown. It's a "wrapper" component—you write your content normally and simply wrap it with the `<Changelog />` tags to apply the special formatting.
+
+The component automatically handles the timeline, icons, date placement, and adds each release to the page's table of contents.
+
+---
+
+### Complete Example
+
+Here is a full example of a `release-notes.mdx` page. You can copy this entire block and modify the content inside the `<Changelog>` tags.
+
+The structure for each entry is a Level 2 Heading (`##`) for the title, followed by the date in italics (`*...*`), and then any content you need. Use a horizontal rule (`---`) to separate entries.
+
+```mdx
+---
+id: versions
+title: Mia-Platform release notes
+sidebar_label: Mia-Platform release notes
+---
+
+import Changelog from '@site/src/components/Changelog';
+
+# Version History
+
+Stay up to date on all the new features and improvements to the platform.
+
+<Changelog>
+
+  ## [v14.2.1](/docs/release-notes/v14.2.1)
+  *September 18, 2025*
+
+  This version introduces stability improvements and fixes several important bugs.
+  - Fixed a rendering issue in the admin panel.
+  - Improved image loading speed by 20%.
+
+  ---
+
+   ## [v14.2.0](/docs/release-notes/v14.2.0)
+  *September 4, 2025*
+
+  Introducing a new analytics dashboard with real-time interactive charts.
+  ![New Dashboard](/img/accordions/new_dashboard.png)
+
+</Changelog>
+```

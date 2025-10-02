@@ -5,6 +5,9 @@ sidebar_label: v14.0.0
 image: "img/release-note-link-preview.png"
 ---
 
+import Accordion from '@site/src/components/Accordion/index.js';
+import dataAccordion from '@site/src/config/release-notes/release-note-v14-0-0.json';
+
 export const Highlight = ({children, color}) => (
   <span
     style={{
@@ -68,79 +71,10 @@ We recommend updating any existing integrations to align with the [latest APIs](
 
 Additionally, it is no longer possible to manage the Marketplace items from the Console CMS, and the `marketplace_CMS` group has been removed.
 
-## Console
+## Other New Features, Improvements and Bug Fixes
 
-### Improvements
-
-#### Download Microservices Environment Variables
-
-You can now download as `.env` file the Environment Variables of your Microservices directly on the related section within the detail of a Microservice!
-
-#### See Project Template's description when creating a Project
-
-From now on, when creating a Project, you can read the description of the Project Template you are selecting.
-
-#### See Project Template used in a Project
-
-Starting from now, newly created Projects of traditional type Application will show to the user the name of the Project Template from which the Project has been created. This information will be visible in the Settings of the Project, inside the General tab.
-
-#### Import Flow Configuration in Flow Manager Configurator
-
-You can now import a Flow Manager configuration directly from the configurator, either by uploading a file or pasting a JSON snippet. Once imported, the flow will be immediately rendered in the canvas.
-Uploading a new service configuration will overwrite the existing one in the canvas.
-
-## Fast Data
-
-### Fast Data Services
-
-#### Single View Trigger Generator
-
-The new version `v3.4.1` of the _Single View Trigger Generator_ is available!
-
-##### Fixed
-
-- The service now correctly handles message processing from topics not managed by the control plane, maintaining a resume state and avoiding malfunctioning.
-
-For more information check out the service [changelog](/runtime-components/plugins/single-view-trigger-generator/changelog.md).
-
-## Data Catalog
-
-### MongoDB Connection support in Data Catalog
-
-[Support for MongoDB](/products/data_catalog/frontend/data_catalog_connections.mdx#mongodb) as a new connection provider has been introduced in Data Catalog. Users can now define a connection string to connect directly to a MongoDB instance. When collections include a MongoDB JSON Schema validation, the agent is able to automatically detect field structures and types.  
-Retrieval of databases and collections can be managed through multiple configuration modes.  
-Check the full list of available options in the [official documentation](/products/data_catalog/frontend/data_catalog_connections.mdx#mongodb-databases-settings) to configure the behavior according to your needs.
-
-## Microfrontend Composer
-
-### Back-Lit Library
-
-The new version `v1.5.17` of the back-kit library is available!
-
-Refer to back-kit [changelog](/products/microfrontend-composer/back-kit/changelog.md) for finer-grained details of new versions.
-
-#### Improvements
-
-##### Form Validation Support for Custom Footer Actions in `bk-dynamic-form-modal`
-
-Added possibility to validate the form content when performing a custom footer action in `bk-dynamic-form-modal` component.
-
-## Marketplace
-
-### Marketplace Updates
-
-#### Swagger Aggregator
-
-The new version `3.9.4` of the Swagger Aggregator is available!
-
-This version fixes sidebar scrolling and filter selection issues in API Portal.
-
-#### Teleconsultation Service Backend
-
-The new version `2.1.0` of the Teleconsultation Service Backend is available!
-
-This version adds support for [Kaleyra transcription](https://developers.kaleyra.io/reference/video-recording), which allows you to obtain a transcription of the teleconsultation session. 
+<Accordion data={dataAccordion} />
 
 ## How to update your Console
 
-For self-hosted installations, please head to the [self hosted upgrade guide](/infrastructure/self-hosted/installation-chart/100_how-to-upgrade.md) or contact your Mia-Platform referent and upgrade to _Console Helm Chart_ `v14.2.1`.
+For self-hosted installations, please head to the [self hosted upgrade guide](/infrastructure/self-hosted/installation-chart/100_how-to-upgrade.md) or contact your Mia-Platform referent and upgrade to _Console Helm Chart_ `v14.2.1-0`.

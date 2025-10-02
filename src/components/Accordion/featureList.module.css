@@ -1,0 +1,83 @@
+.container {
+    /* Contenitore principale */
+}
+
+.section {
+    padding: 1.5rem 0;
+    border-bottom: 1px solid var(--ifm-color-emphasis-200);
+}
+
+.section:first-child {
+    padding-top: 0;
+}
+
+.section:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.sectionHeader {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--ifm-font-color-base);
+    margin: 0 0 1rem 0;
+}
+
+.sectionIcon {
+    display: flex;
+    align-items: center;
+    color: var(--ifm-font-color-secondary);
+}
+
+.sectionIcon svg {
+    width: 20px;
+    height: 20px;
+}
+
+.sectionContent {
+    /* Contenitore per gli item */
+}
+
+/* Stili per gli item di New Features e Improvements */
+.item {
+    margin-bottom: 1.5rem;
+}
+
+.item:last-child {
+    margin-bottom: 0;
+}
+
+.itemTitle {
+    font-size: 1rem;
+    font-weight: 600;
+    margin: 0 0 0.25rem 0;
+    color: var(--ifm-font-color-base);
+}
+
+.itemDescription {
+    font-size: 1rem;
+    color: var(--ifm-font-color-secondary);
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* Stili per la lista di Bug Fixes */
+.bugList {
+    list-style-position: outside;
+    padding-left: 1.25rem;
+    margin: 0;
+}
+
+.bugList li {
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
+    color: var(--ifm-font-color-secondary);
+    line-height: 1.6;
+}
+
+.bugList li:last-child {
+    margin-bottom: 0;
+}

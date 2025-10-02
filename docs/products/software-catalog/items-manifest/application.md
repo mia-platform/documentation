@@ -12,7 +12,7 @@ Applications are **bundles of resources** that brings together [services](/produ
 To [create or edit](/products/software-catalog/items-management/overview.md) an application, you need to provide a [manifest](/products/software-catalog/items-manifest/overview.md), whose `resources` property should adhere to the following JSON schema.
 
 :::tip
-The JSON schemas of the [application resources](https://raw.githubusercontent.com/mia-platform/console-sdk/refs/tags/%40mia-platform/console-types%400.38.11/packages/console-types/schemas/catalog/application.resources.schema.json) and of the [full application manifest](https://raw.githubusercontent.com/mia-platform/console-sdk/refs/tags/%40mia-platform/console-types%400.38.11/packages/console-types/schemas/catalog/application.manifest.schema.json) are available on GitHub.
+The JSON schemas of the [application resources](https://raw.githubusercontent.com/mia-platform/console-sdk/refs/tags/%40mia-platform/console-types%400.39.2/packages/console-types/schemas/software-catalog/application.resources.schema.json) and of the [full application manifest](https://raw.githubusercontent.com/mia-platform/console-sdk/refs/tags/%40mia-platform/console-types%400.39.2/packages/console-types/schemas/software-catalog/application.manifest.schema.json) are available on GitHub.
 :::
 
 <SchemaViewer schema={catalogWellKnownItems['application'].resourcesSchema} />

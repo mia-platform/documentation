@@ -27,7 +27,7 @@ An item lives through different **[development phases](/products/software-catalo
 Practically speaking, an item is a **JSON document** containing some defining keys, a set of metadata, and the resources needed to make use of it.
 
 :::tip
-The full JSON schema is available [on GitHub](https://raw.githubusercontent.com/mia-platform/console-sdk/refs/tags/%40mia-platform/console-types%400.38.11/packages/console-types/schemas/catalog/item.schema.json).
+The full JSON schema is available [on GitHub](https://raw.githubusercontent.com/mia-platform/console-sdk/refs/tags/%40mia-platform/console-types%400.39.2/packages/console-types/schemas/software-catalog/item.schema.json).
 :::
 
 <SchemaViewer schema={catalogItemSchema} />

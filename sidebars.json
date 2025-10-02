@@ -1136,6 +1136,135 @@
       "type": "doc"
     },
     {
+      "type": "category",
+      "label": "Fast Data Engine 2.0",
+      "collapsed": true,
+      "link": {
+        "id": "products/fast_data/fast_data_engine_v2/overview",
+        "type": "doc"
+      },
+      "items": [
+        {
+          "id": "products/fast_data/fast_data_engine_v2/concepts",
+          "label": "Concepts",
+          "type": "doc"
+        },
+        {
+          "type": "category",
+          "label": "Mongezium CDC",
+          "collapsed": true,
+          "link": {
+            "id": "products/fast_data/fast_data_engine_v2/mongezium_cdc/overview",
+            "type": "doc"
+          },
+          "items": [
+            {
+              "id": "products/fast_data/fast_data_engine_v2/mongezium_cdc/configuration",
+              "type": "doc"
+            },
+            {
+              "id": "products/fast_data/fast_data_engine_v2/mongezium_cdc/usage",
+              "type": "doc"
+            },
+            {
+              "id": "products/fast_data/fast_data_engine_v2/mongezium_cdc/metrics",
+              "type": "doc"
+            },
+            {
+              "id": "products/fast_data/fast_data_engine_v2/mongezium_cdc/changelog",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "type": "category",
+          "label": "Stream Processor",
+          "collapsed": true,
+          "link": {
+            "id": "products/fast_data/fast_data_engine_v2/stream_processor/overview",
+            "type": "doc"
+          },
+          "items": [
+            {
+              "id": "products/fast_data/fast_data_engine_v2/stream_processor/configuration",
+              "type": "doc"
+            },
+            {
+              "id": "products/fast_data/fast_data_engine_v2/stream_processor/usage",
+              "type": "doc"
+            },
+            {
+              "id": "products/fast_data/fast_data_engine_v2/stream_processor/metrics",
+              "type": "doc"
+            },
+            {
+              "id": "products/fast_data/fast_data_engine_v2/stream_processor/changelog",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "type": "category",
+          "label": "Farm Data",
+          "collapsed": true,
+          "link": {
+            "id": "products/fast_data/fast_data_engine_v2/farm_data/overview",
+            "type": "doc"
+          },
+          "items": [
+            {
+              "id": "products/fast_data/fast_data_engine_v2/farm_data/configuration",
+              "type": "doc"
+            },
+            {
+              "id": "products/fast_data/fast_data_engine_v2/farm_data/usage",
+              "type": "doc"
+            },
+            {
+              "id": "products/fast_data/fast_data_engine_v2/farm_data/metrics",
+              "type": "doc"
+            },
+            {
+              "id": "products/fast_data/fast_data_engine_v2/farm_data/changelog",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "type": "category",
+          "label": "Kango",
+          "collapsed": true,
+          "link": {
+            "id": "products/fast_data/fast_data_engine_v2/kango/overview",
+            "type": "doc"
+          },
+          "items": [
+            {
+              "id": "products/fast_data/fast_data_engine_v2/kango/configuration",
+              "type": "doc"
+            },
+            {
+              "id": "products/fast_data/fast_data_engine_v2/kango/usage",
+              "type": "doc"
+            },
+            {
+              "id": "products/fast_data/fast_data_engine_v2/kango/metrics",
+              "type": "doc"
+            },
+            {
+              "id": "products/fast_data/fast_data_engine_v2/kango/changelog",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "products/fast_data/fast_data_engine_v2/secrets_resolution",
+          "label": "Secrets Resolution",
+          "type": "doc"
+        }
+      ]
+    },
+    {
       "id": "products/fast_data/no_code_overview",
       "type": "doc"
     },
@@ -1602,6 +1731,96 @@
       "type": "doc"
     }
   ],
+  "platform-engineering": [
+    {
+      "id": "solutions/platform-engineering/platform-engineering-overview",
+      "type": "doc"
+    },
+    {
+      "id": "solutions/platform-engineering/automate-infrastructure-provisioning",
+      "type": "doc"
+    },
+    {
+      "id": "solutions/platform-engineering/standardize-microservices-development",
+      "type": "doc"
+    },
+    {
+      "id": "solutions/platform-engineering/gain-visibility-and-control-across-projects",
+      "type": "doc"
+    },
+    {
+      "id": "solutions/platform-engineering/implement-secure-governance",
+      "type": "doc"
+    }
+  ],
+  "application-development": [
+    {
+      "id": "solutions/application-development/application-development-overview",
+      "type": "doc"
+    },
+    {
+      "id": "solutions/application-development/building-rest-api",
+      "type": "doc"
+    },
+    {
+      "id": "solutions/application-development/accelerating-frontend-development",
+      "type": "doc"
+    },
+    {
+      "id": "solutions/application-development/orchestrating-complex-business-processes",
+      "type": "doc"
+    }
+  ],
+  "cloud-operations": [
+    {
+      "id": "solutions/cloud-operations/cloud-operations-overview",
+      "type": "doc"
+    },
+    {
+      "id": "solutions/cloud-operations/simplifying-multi-cloud-management",
+      "type": "doc"
+    },
+    {
+      "id": "solutions/cloud-operations/monitoring-and-troubleshooting-runtime",
+      "type": "doc"
+    }
+  ],
+  "data-integration": [
+    {
+      "id": "solutions/data-integration/data-integration-overview",
+      "type": "doc"
+    },
+    {
+      "id": "solutions/data-integration/scaling-legacy-system",
+      "type": "doc"
+    },
+    {
+      "id": "solutions/data-integration/create-real-time-data-aggregation",
+      "type": "doc"
+    }
+  ],
+  "ai-agent-lifecycle": [
+    {
+      "id": "solutions/ai-agent-lifecycle/ai-agent-lifecycle-overview",
+      "type": "doc"
+    },
+    {
+      "id": "solutions/ai-agent-lifecycle/prototyping-rag-application",
+      "type": "doc"
+    },
+    {
+      "id": "solutions/ai-agent-lifecycle/orchestrating-multi-agent-ai-workflows",
+      "type": "doc"
+    },
+    {
+      "id": "solutions/ai-agent-lifecycle/building-custom-ai-agent",
+      "type": "doc"
+    },
+    {
+      "id": "solutions/ai-agent-lifecycle/leveraging-software-catalog-with-mia-assistant",
+      "type": "doc"
+    }
+  ],
   "gettingStarted": [
     {
       "id": "getting-started/mia-platform-overview",
@@ -1934,6 +2153,7 @@
         "id": "release-notes/versions"
       },
       "items": [
+        { "id": "release-notes/v14.3.0", "type": "doc" },
         { "id": "release-notes/v14.2.1", "type": "doc" },
         { "id": "release-notes/v14.2.0", "type": "doc" },
         { "id": "release-notes/v14.1.0", "type": "doc" },

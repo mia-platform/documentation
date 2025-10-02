@@ -1,0 +1,395 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Configuration",
+  "type": "object",
+  "properties": {
+    "caches": {
+      "type": "object",
+      "additionalProperties": {
+        "$ref": "#/definitions/Cache"
+      },
+      "default": {}
+    },
+    "consumer": {
+      "$ref": "#/definitions/ConsumerConfig"
+    },
+    "controlPlane": {
+      "anyOf": [
+        {
+          "$ref": "#/definitions/ControlPlaneConfig"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "processor": {
+      "$ref": "#/definitions/ProcessorConfig"
+    },
+    "producer": {
+      "$ref": "#/definitions/ProducerConfig"
+    }
+  },
+  "required": [
+    "consumer",
+    "producer",
+    "processor"
+  ],
+  "definitions": {
+    "Cache": {
+      "oneOf": [
+        {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "string",
+              "const": "in-memory"
+            }
+          },
+          "required": [
+            "type"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "string",
+              "const": "mongodb"
+            }
+          },
+          "allOf": [
+            {
+              "$ref": "#/definitions/MongodbCacheConfig"
+            }
+          ],
+          "required": [
+            "type"
+          ]
+        }
+      ]
+    },
+    "ConsumerConfig": {
+      "oneOf": [
+        {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "string",
+              "const": "kafka"
+            }
+          },
+          "allOf": [
+            {
+              "$ref": "#/definitions/KafkaConsumerConfig"
+            }
+          ],
+          "required": [
+            "type"
+          ]
+        }
+      ]
+    },
+    "ControlPlaneConfig": {
+      "type": "object",
+      "properties": {
+        "feedbackInterval": {
+          "description": "Interval in milliseconds that must elapse between two feedback events sent to Control Plane Operator.\nIt defaults to `3000` ms when not provided during deserialization.",
+          "type": "integer",
+          "format": "uint64",
+          "default": 3000,
+          "minimum": 0
+        },
+        "grpcAddress": {
+          "description": "Address to the gRPC server that should receive service feedback events",
+          "type": "string",
+          "examples": [
+            "http://control-plane-operator:50052"
+          ]
+        },
+        "resumeAfterMs": {
+          "description": "The number of milliseconds to wait before running the processing logic\nwhen connection with control plane operator failed\nand no desired fast data state was ever received.",
+          "type": [
+            "integer",
+            "null"
+          ],
+          "format": "uint64",
+          "default": null,
+          "minimum": 0
+        }
+      },
+      "required": [
+        "grpcAddress"
+      ]
+    },
+    "KafkaConsumerConfig": {
+      "type": "object",
+      "properties": {
+        "commitIntervalMs": {
+          "description": "number of milliseconds between one commit and another",
+          "type": "integer",
+          "format": "uint64",
+          "default": 500,
+          "minimum": 0
+        },
+        "config": {
+          "description": "librdkafka Kafka consumer configuration properties | https://github.com/confluentinc/librdkafka/blob/master/CONFIGURATION.md",
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/Secret"
+          }
+        },
+        "topic": {
+          "description": "name of the Kafka topic from which the consumer will read messages",
+          "type": "string"
+        }
+      },
+      "required": [
+        "config",
+        "topic"
+      ]
+    },
+    "KafkaProducerConfig": {
+      "type": "object",
+      "properties": {
+        "config": {
+          "description": "librdkafka Kafka producer configuration properties | https://github.com/confluentinc/librdkafka/blob/master/CONFIGURATION.md",
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/Secret"
+          }
+        },
+        "topic": {
+          "description": "name of the Kafka topic to which the producer will send messages",
+          "type": "string"
+        }
+      },
+      "required": [
+        "config",
+        "topic"
+      ]
+    },
+    "MongodbCacheConfig": {
+      "type": "object",
+      "properties": {
+        "appName": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "collection": {
+          "type": "string"
+        },
+        "database": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "url": {
+          "$ref": "#/definitions/Secret"
+        }
+      },
+      "required": [
+        "url",
+        "collection"
+      ]
+    },
+    "ProcessorConfig": {
+      "oneOf": [
+        {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "string",
+              "const": "javascript"
+            }
+          },
+          "allOf": [
+            {
+              "$ref": "#/definitions/SandboxConfig"
+            }
+          ],
+          "required": [
+            "type"
+          ]
+        }
+      ]
+    },
+    "ProducerConfig": {
+      "oneOf": [
+        {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "string",
+              "const": "kafka"
+            }
+          },
+          "allOf": [
+            {
+              "$ref": "#/definitions/KafkaProducerConfig"
+            }
+          ],
+          "required": [
+            "type"
+          ]
+        }
+      ]
+    },
+    "SandboxConfig": {
+      "type": "object",
+      "properties": {
+        "consoleBuffer": {
+          "description": "Size in bytes available to the console object in the sandbox",
+          "type": "integer",
+          "format": "uint",
+          "default": 1024,
+          "minimum": 0
+        },
+        "interruptMs": {
+          "description": "Max time in milliseconds a single function can be running within the sandbox",
+          "type": "integer",
+          "format": "uint64",
+          "default": 5000,
+          "minimum": 0
+        },
+        "maxHeapSize": {
+          "description": "Max heap size in bytes. When not set quickjs's default will be used",
+          "type": [
+            "integer",
+            "null"
+          ],
+          "format": "uint",
+          "default": null,
+          "minimum": 0
+        },
+        "maxStackSize": {
+          "description": "Max stack size in bytes. When not set quickjs's default will be used",
+          "type": [
+            "integer",
+            "null"
+          ],
+          "format": "uint",
+          "default": null,
+          "minimum": 0
+        },
+        "payloadSerdeStrategy": {
+          "description": "Option to configure the deserialization\nfor incoming payload, a.k.a. the method to call\non payload before to inject it in the sandbox message argument",
+          "allOf": [
+            {
+              "$ref": "#/definitions/SerdeSettings"
+            }
+          ],
+          "default": {
+            "deserialize": "json"
+          }
+        }
+      }
+    },
+    "Secret": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "encoding": {
+              "description": "Define which type of encoding the library supports when it needs to read the actual secret value.",
+              "type": "string",
+              "enum": [
+                "base64"
+              ]
+            },
+            "key": {
+              "type": "string"
+            },
+            "type": {
+              "const": "env"
+            }
+          },
+          "required": [
+            "type",
+            "key"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "encoding": {
+              "description": "Define which type of encoding the library supports when it needs to read the actual secret value.",
+              "type": "string",
+              "enum": [
+                "base64"
+              ]
+            },
+            "key": {
+              "type": "string"
+            },
+            "path": {
+              "type": "string"
+            },
+            "type": {
+              "const": "file"
+            }
+          },
+          "required": [
+            "type",
+            "path"
+          ]
+        }
+      ],
+      "examples": [
+        "my-secret",
+        {
+          "key": "CUSTOM_ENV_VAR",
+          "type": "env"
+        },
+        {
+          "encoding": "base64",
+          "key": "CUSTOM_ENV_VAR",
+          "type": "env"
+        },
+        {
+          "path": "/path/to/file",
+          "type": "file"
+        }
+      ]
+    },
+    "SerdeMode": {
+      "description": "Describe which serialization or deserialization strategy\nshould be applied to the key of a Kafka message",
+      "oneOf": [
+        {
+          "description": "serialize/deserialize the content as a JSON Object",
+          "type": "string",
+          "const": "json"
+        },
+        {
+          "description": "serialize/deserialize the content as a JSON Object\nwith compatibility for schema+payload when\nKafka uses a schema registry. The payload is in a\nsubkey payload",
+          "type": "string",
+          "const": "jsonWithSchema"
+        },
+        {
+          "description": "serialize/deserialize the key as a string: useful\nwhen payload bytes have to be processed raw inside the\nsandbox",
+          "type": "string",
+          "const": "string"
+        }
+      ]
+    },
+    "SerdeSettings": {
+      "type": "object",
+      "properties": {
+        "deserialize": {
+          "allOf": [
+            {
+              "$ref": "#/definitions/SerdeMode"
+            }
+          ],
+          "default": "json"
+        }
+      }
+    }
+  }
+}

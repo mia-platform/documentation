@@ -5,7 +5,7 @@ import CodeBlock from '@theme/CodeBlock'
 import JSONSchemaViewer from "@theme/JSONSchemaViewer"
 import PropTypes from "prop-types";
 
-export default function SchemaViewer({schema, example}) {
+export default function SchemaViewer({schema, example, disableExampleTab}) {
     return (
         <Tabs groupId='json-schema-viewer' queryString>
             <TabItem label="Schema Viewer" value="viewer">
@@ -16,16 +16,18 @@ export default function SchemaViewer({schema, example}) {
                     {JSON.stringify(schema, null, 2)}
                 </CodeBlock>
             </TabItem>
-            {renderExample(example, schema?.examples)}
+            {disableExampleTab === true ? null : renderExample(example, schema?.examples)}
         </Tabs>
     )
 }
 
 function renderExample(providedExample, schemaExamples) {
-    if (providedExample !== null) {
+    if (providedExample !== null && providedExample !== undefined) {
        return (
            <TabItem label="Example" value="example">
-               <CodeBlock language="json">{JSON.stringify(providedExample, null, 2)}</CodeBlock>
+               <CodeBlock language="json">
+                 {JSON.stringify(providedExample, null, 2)}
+               </CodeBlock>
            </TabItem>
        )   
     }
@@ -33,7 +35,9 @@ function renderExample(providedExample, schemaExamples) {
     if (schemaExamples?.length > 0) {
         return (
             <TabItem label="Example" value="example">
-                <CodeBlock language="json">{JSON.stringify(schemaExamples?.[0], null, 2)}</CodeBlock>
+                <CodeBlock language="json">
+                  {JSON.stringify(schemaExamples?.[0], null, 2)}
+                </CodeBlock>
             </TabItem>
         )
     }
@@ -46,6 +50,7 @@ function renderExample(providedExample, schemaExamples) {
 }
 
 SchemaViewer.propTypes = {
+    disableExampleTab: PropTypes.boolean,
     example: PropTypes.object,
     schema: PropTypes.object,
 }

@@ -10,12 +10,14 @@ const config = {
     baseUrl: "/",
     organizationName: "Mia-Platform",
     projectName: "Mia-Platform",
-    onBrokenLinks: "throw",
-    onBrokenMarkdownLinks: 'throw',
     onBrokenAnchors: 'ignore',
     themes: ["docusaurus-json-schema-plugin", "@docusaurus/theme-mermaid"],
     markdown: {
         mermaid: true,
+        hooks: {
+          onBrokenMarkdownLinks: "throw",
+          onBrokenMarkdownImages: "throw"
+        }
     },
     themeConfig: {
         prism: {
@@ -86,6 +88,44 @@ const config = {
                             docId: "runtime-components/overview_marketplace",
                             label: "Runtime components",
                             activeBaseRegex: "(docs|docs/\\d.x)/runtime-components"
+                        }
+                    ]
+                },
+                {
+                    label: "Solutions",
+                    position: "left",
+                    activeBaseRegex: "(docs|docs/\\d.x)/solutions",
+                    type: "dropdown",
+                    items: [
+                        {
+                            type: 'doc',
+                            docId: "solutions/application-development/application-development-overview",
+                            label: "Application Development",
+                            activeBaseRegex: "(docs|docs/\\d.x)/solutions/application-development"
+                        },
+                        {
+                            type: 'doc',
+                            docId: "solutions/platform-engineering/platform-engineering-overview",
+                            label: "Platform Engineering",
+                            activeBaseRegex: "(docs|docs/\\d.x)/solutions/platform-engineering"
+                        },
+                        {
+                            type: 'doc',
+                            docId: "solutions/ai-agent-lifecycle/ai-agent-lifecycle-overview",
+                            label: "AI Agent Lifecycle",
+                            activeBaseRegex: "(docs|docs/\\d.x)/solutions/ai-agent-lifecycle"
+                        },
+                        {
+                            type: 'doc',
+                            docId: "solutions/cloud-operations/cloud-operations-overview",
+                            label: "Cloud Operations",
+                            activeBaseRegex: "(docs|docs/\\d.x)/solutions/cloud-operations"
+                        },
+                        {
+                            type: 'doc',
+                            docId: "solutions/data-integration/data-integration-overview",
+                            label: "Data Integration",
+                            activeBaseRegex: "(docs|docs/\\d.x)/solutions/data-integration"
                         }
                     ]
                 },

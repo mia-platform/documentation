@@ -1,7 +1,7 @@
 import React from "react";
 import Layout from "@theme/Layout";
 import HomePageComponent from "../components/HomePage/HomePageComponent";
-import configuration from "./config.json";
+import configuration from "../config/homepage.json";
 
 
 function Home() {

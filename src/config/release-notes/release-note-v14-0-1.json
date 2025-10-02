@@ -1,0 +1,97 @@
+[
+  {
+    "title": "Console",
+    "icon": "console",
+    "defaultOpen": false,
+    "type": "versions",
+    "items": {
+      "newFeatures": [],
+      "improvements": [
+        {
+          "title": "Migration to Env Based available on Project's Advanced tab",
+          "description": [
+            "From now on, you can start the migration flow to the new Env Based workflow directly form the Advanced tab available in the Project's Settings section."
+          ]
+        },
+        {
+          "title": "Model used by Mia-Assistant is visible in the chatbot",
+          "description": [
+            "From now on, information about the model used by Mia-Assistant is visible to users interacting with the chatbot."
+          ]
+        },
+        {
+          "title": "Secrets support in Flow Manager Configurator",
+          "description": [
+            "Starting from version `2.7.0` of the Flow Manager service, it is now possible to instruct the service to use **secrets** in specific parts of the configuration provided via the Configurator.",
+            "For details on how to use this feature, please refer to the [official documentation](/docs/products/console/api-console/api-design/flow-manager-configurator/overview#secrets)."
+          ]
+        },
+        {
+          "title": "Support for Empty Dir volumes",
+          "description": [
+            "Added support to specify an empty dir mount point for a service and/or its additional containers"
+          ]
+        }
+      ],
+      "bugFixes": [
+        "It has been fixed a bug that was showing a blank page when entering the Console for the first time"
+      ]
+    }
+  },
+  {
+    "title": "Microfrontend Composer",
+    "icon": "microfrontend-composer",
+    "defaultOpen": false,
+    "type": "versions",
+    "items": {
+      "newFeatures": [],
+      "improvements": [
+        {
+          "title": "Back-kit",
+          "description": [
+            "The new version `v1.5.18` of the back-kit library is available!",
+            "Refer to back-kit [changelog](/docs/products/microfrontend-composer/back-kit/changelog) for finer-grained details of new versions."
+          ]
+        },
+        {
+          "title": "Support for Title and Content Interpolation in `bk-notifications`",
+          "description": [
+            "Added possibility to interpolate title and content of the `bk-notifications` component"
+          ]
+        }
+      ],
+      "bugFixes": [
+        "Fixed `bk-table` wrong column widths introduced with the new Chrome/Chromium version"
+      ]
+    }
+  },
+  {
+    "title": "Marketplace",
+    "icon": "runtime-components",
+    "defaultOpen": false,
+    "type": "versions",
+    "items": {
+      "newFeatures": [],
+      "improvements": [
+        {
+          "title": "Flow Manager Service 2.7.0",
+          "description": [
+            "The new version `2.7.0` of the Flow Manager Service is available!",
+            "The Flow Manager supports the resolution of Kubernetes secrets for a set of configuration properties.",
+            "Please refer to the [official documentation](/docs/runtime-components/plugins/flow-manager-service/configuration#secrets-resolution) for more details."
+          ]
+        },
+        {
+          "title": "FHIR Adapter 1.2.0",
+          "description": [
+            "The new version `1.2.0` of the FHIR Adapter is available!",
+            "This version adds support for bundle transactions, that can be triggered by a request to the new `POST /transaction/:transactionId` endpoint."
+          ]
+        }
+      ],
+      "bugFixes": [
+        "Flow Manager: Fix errors that occur during the deep merge hook execution are now properly logged by the service."
+      ]
+    }
+  }
+]

@@ -1,0 +1,162 @@
+[
+  {
+    "title": "Roadmap: Platform Engineering",
+    "icon": "console",
+    "defaultOpen": false,
+    "type": "roadmap",
+    "items": {
+      "newFeatures": [
+        {
+          "title": "Real-Time collaboration",
+          "quarter": "Q1 2025",
+          "description": [
+            "Lorem Ipsum [link a Google](https://google.com) is simply dummy text of the printing and typesetting industry.",
+            "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book"
+          ],
+          "images": [
+            "/img/accordions/test.png"
+          ],
+          "tags": ["Collaboration", "Real-time", "Productivity"]
+        },
+        {
+          "title": "Real-Time collaboration 2",
+          "quarter": "Q1 2028",
+          "description": [
+            "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+            "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book"
+          ],
+          "tags": ["Collaboration", "Real-time", "Productivity"]
+        },
+        {
+          "title": "Real-Time collaboration",
+          "quarter": "Q1 2025",
+          "description": [
+            "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+            "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book"
+          ],
+          "tags": ["Collaboration", "Real-time", "Productivity"]
+        },
+        {
+          "title": "Real-Time collaboration",
+          "quarter": "Q1 2025",
+          "description": [
+            "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book"
+          ],
+          "tags": ["Collaboration", "Real-time", "Productivity"]
+        }
+      ],
+      "improvements": [
+        {
+          "title": "Real-Time collaboration",
+          "quarter": "Q1 2025",
+          "description": [
+            "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+            "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book"
+          ],
+          "tags": ["Collaboration", "Real-time", "Productivity"]
+        }
+      ],
+      "bugFixes": [
+        {
+          "title": "Real-Time collaboration",
+          "quarter": "Q1 2025",
+          "description": [
+            "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+            "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book"
+          ],
+          "tags": ["Collaboration", "Real-time", "Productivity"]
+        }
+      ]
+    }
+  },
+  {
+    "title": "Fast Data",
+    "icon": "fast-data",
+    "defaultOpen": false,
+    "type": "roadmap",
+    "items": {
+      "newFeatures": [
+        {
+          "title": "Real-Time collaboration",
+          "date": "Q1 2025",
+          "description": [
+            "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book"
+          ],
+          "tags": ["Collaboration", "Real-time", "Productivity"]
+        }
+      ]
+    }
+  },
+  {
+    "title": "Data Catalog",
+    "icon": "data-catalog",
+    "defaultOpen": false,
+    "type": "roadmap",
+    "items": {
+      "newFeatures": [
+        {
+          "title": "Real-Time collaboration",
+          "date": "Q1 2025",
+          "description": [
+            "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book"
+          ],
+          "tags": ["Collaboration", "Real-time", "Productivity"]
+        }
+      ]
+    }
+  },
+  {
+    "title": "MFE Composer",
+    "icon": "microfrontend-composer",
+    "defaultOpen": false,
+    "type": "roadmap",
+    "items": {
+      "newFeatures": [
+        {
+          "title": "Real-Time collaboration",
+          "date": "Q1 2025",
+          "description": [
+            "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book"
+          ],
+          "tags": ["Collaboration", "Real-time", "Productivity"]
+        }
+      ]
+    }
+  },
+  {
+    "title": "Marketplace",
+    "icon": "runtime-components",
+    "defaultOpen": false,
+    "type": "roadmap",
+    "items": {
+      "newFeatures": [
+        {
+          "title": "Real-Time collaboration",
+          "date": "Q1 2025",
+          "description": [
+            "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book"
+          ],
+          "tags": ["Collaboration", "Real-time", "Productivity"]
+        }
+      ]
+    }
+  },
+  {
+    "title": "Software Catalog",
+    "icon": "software-catalog",
+    "defaultOpen": false,
+    "type": "roadmap",
+    "items": {
+      "newFeatures": [
+        {
+          "title": "Real-Time collaboration",
+          "date": "Q1 2025",
+          "description": [
+            "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book"
+          ],
+          "tags": ["Collaboration", "Real-time", "Productivity"]
+        }
+      ]
+    }
+  }
+]

@@ -1,0 +1,138 @@
+[
+  {
+    "title": "Versions: Console",
+    "icon": "console",
+    "defaultOpen": false,
+    "type": "versions",
+    "items": {
+      "newFeatures": [
+        {
+          "title": "Real-Time collaboration",
+          "description": [
+            "Questo è il primo paragrafo. Supporta i [link a Google](https://google.com) senza problemi.",
+            "Questo è il secondo paragrafo, creato semplicemente aggiungendo una nuova stringa all'array."
+          ],
+          "images": [
+            "/img/accordions/test.png"
+          ]
+        },
+        {
+          "title": "Another Real-Time collaboration",
+          "description": [
+            "Questo è il primo paragrafo. Supporta i [link a Google](https://google.com) senza problemi.",
+            "Questo è il secondo paragrafo, creato semplicemente aggiungendo una nuova stringa all'array."
+          ]
+        }
+      ],
+      "improvements": [
+        {
+          "title": "Real-Time collaboration",
+          "description": [
+            "Questo è il primo paragrafo. Supporta i [link a Google](https://google.com) senza problemi.",
+            "Questo è il secondo paragrafo, creato semplicemente aggiungendo una nuova stringa all'array."
+          ]
+        }
+      ],
+      "bugFixes": [
+        "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+        "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.",
+        "When an unknown printer took a galley of type and scrambled it to make a type specimen book."
+      ]
+    }
+  },
+  {
+    "title": "Versions: Fast Data",
+    "icon": "fast-data",
+    "defaultOpen": false,
+    "type": "versions",
+    "items": {
+      "newFeatures": [
+        {
+          "title": "Real-Time collaboration",
+          "description": [
+            "Questo è il primo paragrafo. Supporta i [link a Google](https://google.com) senza problemi.",
+            "Questo è il secondo paragrafo, creato semplicemente aggiungendo una nuova stringa all'array."
+          ]
+        }
+      ],
+      "improvements": [],
+      "bugFixes": []
+    }
+  },
+  {
+    "title": "Versions: Data Catalog",
+    "icon": "data-catalog",
+    "defaultOpen": false,
+    "type": "versions",
+    "items": {
+      "newFeatures": [
+        {
+          "title": "Real-Time collaboration",
+          "description": [
+            "Questo è il primo paragrafo. Supporta i [link a Google](https://google.com) senza problemi.",
+            "Questo è il secondo paragrafo, creato semplicemente aggiungendo una nuova stringa all'array."
+          ]
+        }
+      ],
+      "improvements": [],
+      "bugFixes": []
+    }
+  },
+  {
+    "title": "Versions: Microfrontend Composer",
+    "icon": "microfrontend-composer",
+    "defaultOpen": false,
+    "type": "versions",
+    "items": {
+      "newFeatures": [
+        {
+          "title": "Real-Time collaboration",
+          "description": [
+            "Questo è il primo paragrafo. Supporta i [link a Google](https://google.com) senza problemi.",
+            "Questo è il secondo paragrafo, creato semplicemente aggiungendo una nuova stringa all'array."
+          ]
+        }
+      ],
+      "improvements": [],
+      "bugFixes": []
+    }
+  },
+  {
+    "title": "Versions: Marketplace",
+    "icon": "marketplace",
+    "defaultOpen": false,
+    "type": "versions",
+    "items": {
+      "newFeatures": [
+        {
+          "title": "Real-Time collaboration",
+          "description": [
+            "Questo è il primo paragrafo. Supporta i [link a Google](https://google.com) senza problemi.",
+            "Questo è il secondo paragrafo, creato semplicemente aggiungendo una nuova stringa all'array."
+          ]
+        }
+      ],
+      "improvements": [],
+      "bugFixes": []
+    }
+  },
+  {
+    "title": "Versions: Software Catalog",
+    "icon": "software-catalog",
+    "defaultOpen": false,
+    "type": "versions",
+    "items": {
+      "newFeatures": [
+        {
+          "title": "Real-Time collaboration",
+          "description": [
+            "Questo è il primo paragrafo. Supporta i [link a Google](https://google.com) senza problemi.",
+            "Questo è il secondo paragrafo, creato semplicemente aggiungendo una nuova stringa all'array."
+          ]
+        }
+      ],
+      "improvements": [],
+      "bugFixes": []
+    }
+  }
+]

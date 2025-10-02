@@ -11,6 +11,16 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.4.4] 2025-07-28
+
+### Fixed
+
+- Missing notification handlers now don't cause service failure
+
+### Changed
+
+- Disable by default HTML newline escape introduced with v2.4.0 and add `email.escapeNewlines` configuration option to enable it
+
 ## [2.4.3] 2024-12-18
 
 ### Fixed

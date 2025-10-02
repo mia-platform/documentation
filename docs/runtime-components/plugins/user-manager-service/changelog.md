@@ -11,6 +11,17 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.6.0] 2025-09-05
+
+### [Added]
+
+- Added the 'connection' property to the body for the user creation on
+
+### [Changed]
+
+- Update to Node.JS 22 (lts/jod)
+- Update Dockerfile to distroless
+
 ## [1.5.2] 2024-11-26
 
 ### [Fixed]

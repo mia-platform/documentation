@@ -4,6 +4,10 @@ title: Software Catalog API
 sidebar_label: Software Catalog API
 ---
 
+:::danger
+The Software Catalog API is in **alpha**, interfaces may change in the future.
+:::
+
 The Console exposes a set of APIs that powers both miactl and the Software Catalog UI. You can leverage these APIs yourself to gain programmatic access to the data and build alternative clients.
 
 :::caution

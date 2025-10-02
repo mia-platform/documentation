@@ -1,0 +1,44 @@
+[
+  {
+    "title": "Fast Data",
+    "icon": "fast-data",
+    "defaultOpen": false,
+    "type": "versions",
+    "items": {
+      "newFeatures": [
+        {
+        "title": "Introducing Mongezium: MongoDB to Kafka CDC Connector",
+        "description": [
+          "**Mongezium** is a CDC (Change Data Capture) connector that captures changes in MongoDB collections and push them to Kafka topics.",
+          "Mongezium uses MongoDB change streams to listen for changes in the collections and maps MongoDB change events into events compliant with [Fast-Data message format](/docs/products/fast_data/fast_data_engine_v2/concepts#fast-data-message-format).",
+          "Mongezium can be configured with different startup behaviors, such as performing always an initial snapshot on startup, or resuming the change stream from the last known resume token.",
+          "To know more about how to configure Mongezium CDC, visit the [official documentation](/docs/products/fast_data/fast_data_engine_v2/mongezium_cdc/overview)."
+        ]
+      }
+      ],
+      "improvements": [],
+      "bugFixes": []
+    }
+  },
+  {
+    "title": "Microfrontend Composer",
+    "icon": "microfrontend-composer",
+    "defaultOpen": false,
+    "type": "versions",
+    "items": {
+      "newFeatures": [],
+      "improvements": [
+        {
+          "title": "Back-Lit Library",
+          "description": [
+            "The new version `v1.5.19` of the back-kit library is available!",
+            "Refer to back-kit [changelog](/docs/products/microfrontend-composer/back-kit/changelog) for finer-grained details of new versions."
+          ]
+        }
+      ],
+      "bugFixes": [
+        "`bk-form-wizard` now sends correct data when field is an array of strings"
+      ]
+    }
+  }
+]

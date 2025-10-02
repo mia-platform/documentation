@@ -12,8 +12,8 @@ Here is described the compatibility between Data Catalog application components 
 Please ensure that versions shown in the matrix are respected in your deployed environments.
 
 
-| Service                                                     | Version       | MongoDB | Redis  |
-|-------------------------------------------------------------|---------------|---------|--------|
+| Service                                                              | Version       | MongoDB | Redis  |
+| -------------------------------------------------------------------- | ------------- | ------- | ------ |
 | [Fabric BFF](/products/data_catalog/data_catalog_fabric_bff.mdx)     | 0.1.x - 0.3.x | \>=5.0  | _N/A_  |
 | [Open Lineage](/products/data_catalog/data_catalog_open_lineage.mdx) | 0.1.x - 0.3.x | \>=5.0  | \>=7.0 |
 | [Job Runner](/products/data_catalog/data_catalog_job_runner.mdx)     | 0.1.x - 0.2.x | \>=5.0  | _N/A_  |
@@ -22,13 +22,13 @@ Please ensure that versions shown in the matrix are respected in your deployed e
 
 ## Service Latest Versions
 
-#### 2025-06-26 | v14.0.2
+#### 2025-09-04 | v14.2.0
 
-| Service                                                      | Version |
-|--------------------------------------------------------------|---------|
+| Service                                                               | Version |
+| --------------------------------------------------------------------- | ------- |
 | [Fabric BFF](/products/data_catalog/data_catalog_fabric_bff.mdx)      | 0.3.4   |
 | [Open Lineage](/products/data_catalog/data_catalog_open_lineage.mdx)  | 0.3.8   |
-| [Job Runner](/products/data_catalog/data_catalog_job_runner.mdx)      | 0.2.2   |
+| [Job Runner](/products/data_catalog/data_catalog_job_runner.mdx)      | 0.2.5   |
 | [Data Catalog Frontend](/products/data_catalog/frontend/overview.mdx) | 0.3.4   |
 | [Fabric Admin](/products/data_catalog/database_setup.mdx)             | 0.5.3   |
 
@@ -39,10 +39,20 @@ should be deployed together at each Console release. This ensures that
 features introduced in a specific release are properly supported by all
 Data Catalog components.
 
+#### 2025-06-26 | v14.0.2
+
+| Service                                                               | Version |
+| --------------------------------------------------------------------- | ------- |
+| [Fabric BFF](/products/data_catalog/data_catalog_fabric_bff.mdx)      | 0.3.4   |
+| [Open Lineage](/products/data_catalog/data_catalog_open_lineage.mdx)  | 0.3.8   |
+| [Job Runner](/products/data_catalog/data_catalog_job_runner.mdx)      | 0.2.2   |
+| [Data Catalog Frontend](/products/data_catalog/frontend/overview.mdx) | 0.3.4   |
+| [Fabric Admin](/products/data_catalog/database_setup.mdx)             | 0.5.3   |
+
 #### 2025-02-20 | v13.6.0
 
-| Service                                                      | Version |
-|--------------------------------------------------------------|---------|
+| Service                                                               | Version |
+| --------------------------------------------------------------------- | ------- |
 | [Fabric BFF](/products/data_catalog/data_catalog_fabric_bff.mdx)      | 0.3.3   |
 | [Open Lineage](/products/data_catalog/data_catalog_open_lineage.mdx)  | 0.3.5   |
 | [Job Runner](/products/data_catalog/data_catalog_job_runner.mdx)      | 0.2.2   |

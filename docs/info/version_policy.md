@@ -13,7 +13,7 @@ Mia-Platform version numbers consists of three, dot separated, parts: *MAJOR*.*M
 ## Release history
 
 This section lists all the Major versions released over time;
-for self-hosted installation read the [Stable version release policy](/release-notes/stable versions.md) to find out which version are receiving official support.
+for self-hosted installation read the [Stable version release policy](/release-notes/stable-versions.md) to find out which version are receiving official support.
 
 :::note
 Mia-Platform guarantees **security patches** for the two preceding versions to the current Major.

@@ -11,6 +11,18 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 3.9.0 - 2025-07-14
+
+### Updated
+
+- Using go v1.24.0
+- Updated libraries:
+    - golang.org/x/crypto@v0.35.0
+    - github.com/getkin/kin-openapi@v0.131.0
+    - github.com/go-jose/go@v4.0.5
+    - golang.org/x/oauth2@v0.27.0
+- Add support to Mongo v8.0
+
 ## 3.8.0 - 24-01-2025
 
 ### Added
