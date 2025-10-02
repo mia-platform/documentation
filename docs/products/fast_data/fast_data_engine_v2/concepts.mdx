@@ -48,11 +48,11 @@ modification that occurred to the record. In particular, the message contains
 - an identifier of the record that was modified
 - the type of operation it was applied onto the record, which ca be:
 
-  - `READ` &rarr; the record is extracted from the static data source during
+  - `READ (r)` &rarr; the record is extracted from the static data source during
     a snapshot procedure
-  - `CREATE` &rarr; the record was just inserted in the static data source
-  - `UPDATE` &rarr; the record was updated on the static data source
-  - `DELETE` &rarr; the record was deleted from the static data source
+  - `CREATE (c)` &rarr; the record was just inserted in the static data source
+  - `UPDATE (u)` &rarr; the record was updated on the static data source
+  - `DELETE (d)` &rarr; the record was deleted from the static data source
 
 - the value of the record before the modification occurred
   (available in `UPDATE` and `DELETE` operations)
