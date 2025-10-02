@@ -1,4 +1,5 @@
 {
+  "$schema": "https://raw.githubusercontent.com/streetsidesoftware/cspell/main/cspell.schema.json",
   "version": "0.2",
   "language": "en",
   "words": [
@@ -15,6 +16,7 @@
     "antd",
     "ascensore",
     "axerve",
+    "backon",
     "belfiore",
     "Bianchi",
     "BNPL",
@@ -68,6 +70,7 @@
     "FAIREAI",
     "fastify",
     "fatiscente",
+    "fetchq",
     "fhir",
     "Fluentd",
     "fnmpay",
@@ -112,6 +115,7 @@
     "JWTs",
     "kaleyra",
     "Kango",
+    "kango",
     "kyaml",
     "Kmongo",
     "kpis",
@@ -128,6 +132,7 @@
     "kustomization",
     "kustomize",
     "Linkerd",
+    "librdkafka",
     "locustfile",
     "LOINC",
     "Lucene",
@@ -155,6 +160,7 @@
     "mongezium",
     "mongocryptd",
     "mqragguagliati",
+    "msrv",
     "mTLS",
     "MTTR",
     "nexi",
@@ -188,11 +194,13 @@
     "Prelios",
     "PRELIOS",
     "principale",
+    "println",
     "Proto",
     "qiankun",
     "quarkus",
     "rapidoc",
     "rawp",
+    "rdkafka",
     "redirector",
     "redoc",
     "REGO",
@@ -203,6 +211,7 @@
     "ristrutturato",
     "Rönd",
     "SaMD",
+    "serde",
     "serp",
     "servlet",
     "sharded",
@@ -406,5 +415,6 @@
     "\".*\": \".*\"",
     "`.*`",
     "/^\\s*```[\\s\\S]*?^\\s*```/gm"
-  ]
+  ],
+  "failFast": true
 }

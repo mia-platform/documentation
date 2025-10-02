@@ -27,7 +27,7 @@
         {
           "title": "Improved customization of Marketplace items",
           "description": [
-            "From now on, for on-premise installations, it is possible to define a set of regex rules to apply during [MarketplaceSync job](/docs/infrastructure/self-hosted/installation-chart/helm-values/45_marketplace) with corresponding replacement values directly in the Helm chart. This allows you to precisely rewrite image registry paths as needed.",
+            "From now on, for on-premise installations, it is possible to define a set of regex rules to apply during [MarketplaceSync job](/docs/infrastructure/self-hosted/installation-chart/helm-values/marketplace) with corresponding replacement values directly in the Helm chart. This allows you to precisely rewrite image registry paths as needed.",
             "For more details, check out the [documentation](/docs/runtime-components/overview_marketplace#edit-mia-platform-catalog-items)."
           ]
         }
@@ -68,7 +68,7 @@
           "title": "Orchestrator Generator Template 1.0.0",
           "description": [
             "The Orchestrator Generator template has been published in the Marketplace.",
-            "For usage instructions and setup details, refer to the [official documentation](/docs/products/console/company-configuration/providers/extensions/orchestrator-generator/overviewx)"
+            "For usage instructions and setup details, refer to the [official documentation](/docs/products/console/company-configuration/providers/extensions/orchestrator-generator/overview)"
           ]
         },
         {
@@ -77,9 +77,9 @@
             "The Integration Connector Agent received new updates to enable:",
             "- aggregating information from Cloud Vendors (specifically GCP, AWS and Azure)",
             "- receiving events from GitHub webhooks",
-            "- build custom processors with Golang code, thanks to the new `rpc-plugin` processors and the [Integration Connector Agent Processor Template](/docshttps://github.com/mia-platform-marketplace/integration-connector-agent-processor)",
+            "- build custom processors with Golang code, thanks to the new `rpc-plugin` processors and the [Integration Connector Agent Processor Template](https://github.com/mia-platform-marketplace/integration-connector-agent-processor)",
             "",
-            "To learn more about all the features and how to configure it, visit the [official documentation](/docs/runtime-components/plugins/integration-connector-agent/10_overview)."
+            "To learn more about all the features and how to configure it, visit the [official documentation](/docs/runtime-components/plugins/integration-connector-agent/overview)."
           ]
         }
       ],

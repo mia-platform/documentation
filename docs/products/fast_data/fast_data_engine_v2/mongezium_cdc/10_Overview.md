@@ -1,13 +1,11 @@
 ---
 id: overview
-title: Overview
-sidebar_label: Overview
+title: Mongezium CDC Overview
+sidebar_label: Mongezium CDC
 ---
 
-
-
 __Mongezium__ is a CDC (Change Data Capture) application from MongoDB to Kafka.
-It can be used to track changes in a set of MongoDB collection and broadcast events to 
+It can be used to track changes in a set of MongoDB collection and broadcast events to
 downstream consumers.
 
 Common use cases for this application include:
@@ -17,7 +15,7 @@ Common use cases for this application include:
 - **Aggregation**: Prepare collection documents for aggregation with other data sources.
 
 Internally Mongezium uses MongoDB change streams to listen for changes in the collections and
-maps MongoDB events into schemaless [Debezium-like messages](https://debezium.io/documentation/reference/stable/connectors/mongodb.html#mongodb-events).
+maps MongoDB events into messages adopting Fast Data message schema.
 
 Mongezium recognize 4 different types of events:
 

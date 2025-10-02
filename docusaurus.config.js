@@ -10,12 +10,14 @@ const config = {
     baseUrl: "/",
     organizationName: "Mia-Platform",
     projectName: "Mia-Platform",
-    onBrokenLinks: "throw",
-    onBrokenMarkdownLinks: 'throw',
     onBrokenAnchors: 'ignore',
     themes: ["docusaurus-json-schema-plugin", "@docusaurus/theme-mermaid"],
     markdown: {
         mermaid: true,
+        hooks: {
+          onBrokenMarkdownLinks: "throw",
+          onBrokenMarkdownImages: "throw"
+        }
     },
     themeConfig: {
         prism: {

@@ -10,7 +10,7 @@
         {
           "title": "Define Allow rules on Fine-Grained Access Control",
           "description": [
-            "Users can now define a list of rules that allow a specific action in Design by specificing an `allowedRuleSet`. By doing so, only changes explicitly permitted by these rules are allowed, while all others are denied.",
+            "Users can now define a list of rules that allow a specific action in Design by specifying an `allowedRuleSet`. By doing so, only changes explicitly permitted by these rules are allowed, while all others are denied.",
             "Discover more about this improvement to the Fine-Grained Access Control functionality in the [dedicated documentation](/docs/products/console/api-console/api-design/fine-grained-access-control)."
           ]
         },
@@ -53,9 +53,9 @@
             "-  GET `/assets/export`",
             "- POST `/assets/export/init`",
             "",
-            "For more information, check the Data Catalog [compatibility matrix](/docs/products/data_catalog/compatibility_matrix).",
+            "For more information, check the Data Catalog [compatibility matrix](/docs/products/data_catalog/data_catalog_compatibility_matrix).",
             "",
-            "Check the full list of capabilities of export feature in the specific [documentation page](/docs/products/data_catalog/frontend/data_catalog_assetsx#export-metadata)."
+            "Check the full list of capabilities of export feature in the specific [documentation page](/docs/products/data_catalog/frontend/data_catalog_assets#export-metadata)."
           ]
         }
       ],
@@ -74,7 +74,7 @@
         {
           "title": "Oauth Login Site 8.1.3",
           "description": [
-            "Oauth Login Site is now available as a Marketplace plugin. Check the [documentation](/docs/runtime-components/plugins/oauth-login-site/10_overview) and service [changelog](/docs/runtime-components/plugins/oauth-login-site/changelog) for more details."
+            "Oauth Login Site is now available as a Marketplace plugin. Check the [documentation](/docs/runtime-components/plugins/oauth-login-site/overview) and service [changelog](/docs/runtime-components/plugins/oauth-login-site/changelog) for more details."
           ]
         }
       ],
