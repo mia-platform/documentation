@@ -1167,6 +1167,10 @@
               "type": "doc"
             },
             {
+              "id": "products/fast_data/fast_data_engine_v2/mongezium_cdc/metrics",
+              "type": "doc"
+            },
+            {
               "id": "products/fast_data/fast_data_engine_v2/mongezium_cdc/changelog",
               "type": "doc"
             }
@@ -1218,10 +1222,6 @@
             },
             {
               "id": "products/fast_data/fast_data_engine_v2/farm_data/metrics",
-              "type": "doc"
-            },
-            {
-              "id": "products/fast_data/fast_data_engine_v2/farm_data/cache-apis",
               "type": "doc"
             },
             {

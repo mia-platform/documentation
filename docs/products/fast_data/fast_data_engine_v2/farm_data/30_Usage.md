@@ -631,10 +631,10 @@ This mode provides maximum payload size optimization by sending only message key
 - Transforms create/update operations into read operations
 - Does NOT send the payload data in the message
 - Output messages contain only the message key
-- Payloads can be retrieved via REST API using the message key
 - Achieves maximum bandwidth efficiency (payload reduced to few bytes)
 
-**Use Case**: Perfect for high-throughput scenarios where bandwidth is critical, and consumers can retrieve full payloads on-demand via the REST API.
+**Use Case**: Perfect for high-throughput scenarios where bandwidth is critical, and data product consumers
+can retrieve full payloads later on-demand.
 
 **Example Output**:
 ```json
@@ -644,15 +644,6 @@ This mode provides maximum payload size optimization by sending only message key
   "after": null
 }
 ```
-
-**Payload Recovery**: 
-When using key-only mode, consumers can retrieve the full payload using the Farm Data REST API:
-
-```http request
-GET /heads/{node}/items/{base64_encoded_key}
-```
-
-Where `{base64_encoded_key}` is the URL-safe, non-padded base64 UTF-8 string representation of the message key.
 
 ### Configuration Example
 
@@ -671,11 +662,11 @@ Output mode is configured in the processor section of the configuration file:
 
 ### Performance Considerations
 
-| Mode                   | Payload Size | Network Usage | API Dependency | Change Tracking |
-|------------------------|--------------|---------------|----------------|-----------------|
-| `operation-forwarding` | Largest      | Highest       | None           | Full            |
-| `read-delete`          | Medium       | Medium        | None           | Minimal         |
-| `key-only`             | Smallest     | Lowest        | Required       | Minimal         |
+| Mode                   | Payload Size | Network Usage | Persistence Access | Change Tracking |
+|------------------------|--------------|---------------|--------------------|-----------------|
+| `operation-forwarding` | Largest      | Highest       | None               | Full            |
+| `read-delete`          | Medium       | Medium        | None               | Minimal         |
+| `key-only`             | Smallest     | Lowest        | Required           | Minimal         |
 
 ### Choosing the Right Output Mode
 
@@ -687,10 +678,11 @@ Output mode is configured in the processor section of the configuration file:
 - **Use `read-delete`** when:
   - You only need current state information
   - Moderate payload size optimization is desired
-  - No external API dependencies are acceptable
+  - No external access to the Farm Data persistence layer
 
 - **Use `key-only`** when:
   - Maximum throughput and minimal network usage are critical
-  - You can implement REST API calls in consumer applications
+  - You can extend your consumer applications to retrieve
+    the aggregated data from the Farm Data persistence layer
   - Bandwidth costs are a significant concern
   - Not all messages need to be processed immediately (lazy loading pattern)

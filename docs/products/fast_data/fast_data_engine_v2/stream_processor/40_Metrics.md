@@ -19,13 +19,13 @@ However, it is recommended to not configure it and use its default value.
 
 These metrics are specific to the service functionality and provide insights into data processing and stream operations.
 
-| Metric name             | Type    | Help                                        | Labels                                                             |
+| Metric name             | Type    | Description                                 | Labels                                                             |
 |-------------------------|---------|---------------------------------------------|--------------------------------------------------------------------|
 | `sp_processed_messages` | Counter | Number of messages that have been processed | topic=\<topic-name\> partition=\<partition-id\> result=\<ok\|err\> |
 
 ## Kafka Producer Metrics
 
-| Metric name                           | Type  | Help                                                                                                  | Labels                                      |
+| Metric name                           | Type  | Description                                                                                           | Labels                                      |
 |---------------------------------------|-------|-------------------------------------------------------------------------------------------------------|---------------------------------------------|
 | `kafka_producer_replyq`               | Gauge | Number of ops (callbacks, events, etc) waiting in queue for application to serve with rd_kafka_poll() |                                             |
 | `kafka_producer_tx_total`             | Gauge | Total number of requests sent to Kafka brokers                                                        |                                             |
@@ -55,7 +55,7 @@ These metrics are specific to the service functionality and provide insights int
 
 ## Kafka Consumer Metrics
 
-| Metric name                                     | Type  | Help                                                                                                       | Labels                                                                        |
+| Metric name                                     | Type  | Description                                                                                                | Labels                                                                        |
 |-------------------------------------------------|-------|------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------|
 | `kafka_consumer_replyq`                         | Gauge | Number of ops (callbacks, events, etc) waiting in queue for application to serve with rd_kafka_poll()      | consumer_group=\<consumer-group\>                                             |
 | `kafka_consumer_tx_total`                       | Gauge | Total number of requests sent to Kafka brokers                                                             | consumer_group=\<consumer-group\>                                             |
