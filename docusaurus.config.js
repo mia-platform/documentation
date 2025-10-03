@@ -1,5 +1,6 @@
 const createEditUrl = require("./scripts/createEditUrl");
 const createRedirects = require("./scripts/createRedirects");
+const versions = require('./versions.json');
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
@@ -302,20 +303,17 @@ const config = {
                 docs: {
                     sidebarPath: './sidebars.js',
                     editUrl: createEditUrl,
-                    lastVersion: "current",
+                    lastVersion: versions[1],
                     versions: {
                         current: {
-                            label: "14.x",
-                            path: ""
+                          label: "Canary"
                         },
-                        "13.x.x": {
-                            label: "13.7",
-                            path: "13.x",
-                        },
-                        "12.x.x": {
-                            label: "12.4",
-                            path: "12.x",
-                        }
+                        ...versions.reduce((acc, ver, i) => {
+                            return {
+                              ...acc,
+                              [ver]: { label: i === 0 ? `${ver} - Next` : ver }
+                            }
+                        }, {}),
                     },
                     async sidebarItemsGenerator({
                                                     isCategoryIndex: defaultCategoryIndexMatcher,
