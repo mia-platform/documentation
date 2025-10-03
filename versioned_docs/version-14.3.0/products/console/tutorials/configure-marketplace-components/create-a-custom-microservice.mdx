@@ -6,7 +6,7 @@ sidebar_label: Create a custom Microservice
 
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
-import SourceCodeBlock from "../../../../../src/components/SourceCodeBlock";
+import SourceCodeBlock from "@site/src/components/SourceCodeBlock";
 
 In this tutorial, we will see how to create and develop a new microservice starting from one of the [templates](/runtime-components/templates/mia_templates.md), offered by the [Mia-Platform Marketplace](/runtime-components/overview_marketplace.md), up to the actual coding of the endpoints. We will also deep dive into the functionalities that Mia-Platform Console offers to the developer during the whole software lifecycle.
 
@@ -441,7 +441,7 @@ Once we have installed the required packages we can create and open the `Shippin
 Disclamer: for demonstration purposes, the current example has a simplified structure.
 :::
 
-```java title=/src/test/java/eu/miaplatform/customplugin/springboot/ShippingControllerTest.java
+```java title=@site/src/test/java/eu/miaplatform/customplugin/springboot/ShippingControllerTest.java
 package eu.miaplatform.customplugin.springboot;
 
 import com.github.tomakehurst.wiremock.client.WireMock;
@@ -517,7 +517,7 @@ In this test we tested only the "happy path", that is the case in which returnin
 Tests to get full coverage:
 
 
-```java title=/src/test/java/eu/miaplatform/customplugin/springboot/ShippingControllerTest.java
+```java title=@site/src/test/java/eu/miaplatform/customplugin/springboot/ShippingControllerTest.java
 package eu.miaplatform.customplugin.springboot;
 
 import com.github.tomakehurst.wiremock.client.WireMock;
@@ -1247,7 +1247,7 @@ First we need to create the classes that will represent the data models we are g
 
 The `Shipping` class will be:
 
-```java title="/src/main/java/eu/miaplatform/customplugin/springboot/models/Shipping.java"
+```java title="@site/src/main/java/eu/miaplatform/customplugin/springboot/models/Shipping.java"
 package eu.miaplatform.customplugin.springboot.models;
 
 public class Shipping {
@@ -1263,7 +1263,7 @@ public class Shipping {
 
 The `customer` class will be:
 
-```java title="/src/main/java/eu/miaplatform/customplugin/springboot/models/Customer.java"
+```java title="@site/src/main/java/eu/miaplatform/customplugin/springboot/models/Customer.java"
 package eu.miaplatform.customplugin.springboot.models;
 
 public class Customer {
@@ -1298,7 +1298,7 @@ Now we need to write the manager itself for:
 
 The handler code will be the following one:
 
-```java title="/src/main/java/eu/miaplatform/customplugin/springboot/controllers/ShippingController.java"
+```java title="@site/src/main/java/eu/miaplatform/customplugin/springboot/controllers/ShippingController.java"
 package eu.miaplatform.customplugin.springboot.controllers;
 
 import com.google.gson.Gson;
@@ -1558,7 +1558,7 @@ npm run coverage
 
 To do so, decorate the function to register it with spring:
 
-```java {24-25,33-36} title="/src/main/java/eu/miaplatform/customplugin/springboot/controllers/ShippingController.java"
+```java {24-25,33-36} title="@site/src/main/java/eu/miaplatform/customplugin/springboot/controllers/ShippingController.java"
 package eu.miaplatform.customplugin.springboot.controllers;
 
 import com.google.gson.Gson;
@@ -1831,7 +1831,7 @@ Now you can commit and push the code to the master branch.
 
 First of all we want to create test-specific variables, so we create the file `application-test.proprieties` and enter the default variables:
 
-```title="/src/main/java/resources/application-test.properties"
+```title="@site/src/main/java/resources/application-test.properties"
 constants.shipping.new=5.99
 constants.shipping.default=10
 constants.crud.url=http://crud-service:5127
@@ -1839,7 +1839,7 @@ constants.crud.url=http://crud-service:5127
 
 And update also the tests:
 
-```java {8,13-18} title=/src/test/java/eu/miaplatform/customplugin/springboot/ShippingControllerTest.java
+```java {8,13-18} title=@site/src/test/java/eu/miaplatform/customplugin/springboot/ShippingControllerTest.java
 package eu.miaplatform.customplugin.springboot;
 
 ...
@@ -1870,7 +1870,7 @@ public class ShippingControllerTest {
 
 We need also to add the variabiles to the `application.properties` in order to make the environment variabiles accessible to spring handler:
 
-```title="/src/main/java/resources/application.properties"
+```title="@site/src/main/java/resources/application.properties"
 constants.shipping.new=${NEW_CUSTOMER_SHIPPING_COST}
 constants.shipping.default=${DEFAULT_SHIPPING_COST}
 constants.crud.url=${CRUD_BASE_URL}
@@ -1878,7 +1878,7 @@ constants.crud.url=${CRUD_BASE_URL}
 
 And finally we update the handler to use the variabiles:
 
-```java {13,28-33} title="/src/main/java/eu/miaplatform/customplugin/springboot/controllers/ShippingController.java"
+```java {13,28-33} title="@site/src/main/java/eu/miaplatform/customplugin/springboot/controllers/ShippingController.java"
 package eu.miaplatform.customplugin.springboot.controllers;
 
 import com.google.gson.Gson;
