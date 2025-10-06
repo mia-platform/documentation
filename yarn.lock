@@ -3296,9 +3296,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@mia-platform/console-types@npm:^0.39.3":
-  version: 0.39.3
-  resolution: "@mia-platform/console-types@npm:0.39.3"
+"@mia-platform/console-types@npm:^0.39.4":
+  version: 0.39.4
+  resolution: "@mia-platform/console-types@npm:0.39.4"
   dependencies:
     "@types/json-schema": "npm:^7.0.9"
     json-schema-to-ts: "npm:^2.9.2"
@@ -3306,7 +3306,7 @@ __metadata:
   peerDependencies:
     "@fastify/swagger": ">= 8 || ^6"
     fastify: ">= 3 < 6"
-  checksum: 10/7403389f79e00f5d2dca5f9feab6b6d5aa47b4f66e979b329102fb3876d01118e79879a1c5fa8366236870d14c142dc8ae9e9740d5702958f8dc7e43915ff636
+  checksum: 10/c2bdf38e590b0ad76a0eaed1ac070d871b922110d5ad4a7283ac1f543c94873c1aedf22705be10010a9c25e53c5e91ac0479ac9d73baea3981961c3233d606b9
   languageName: node
   linkType: hard
 
@@ -10948,7 +10948,7 @@ __metadata:
     "@ianvs/prettier-plugin-sort-imports": "npm:4.7.0"
     "@mdx-js/react": "npm:^3.0.0"
     "@mermaid-js/layout-elk": "npm:^0.2.0"
-    "@mia-platform/console-types": "npm:^0.39.3"
+    "@mia-platform/console-types": "npm:^0.39.4"
     clsx: "npm:^2.0.0"
     docusaurus-json-schema-plugin: "npm:^1.15.0"
     eslint: "npm:^9.36.0"
