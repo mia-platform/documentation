@@ -138,11 +138,11 @@ const config = {
                     docId: "infrastructure/infrastructure_overview"
                 },
                 {
-                    type: 'doc',
-                    docId: "release-notes/versions",
                     label: "Release Notes",
                     position: "left",
-                    activeBaseRegex: "(docs|docs/\\d.x)/(release-notes|info/(version_policy|bug_policy|support-policy))"
+                    type: "doc",
+                    docId: "versions",
+                    docsPluginId: "release-notes-doc",
                 },
                 {
                     href: "https://makeitapp.atlassian.net/servicedesk/customer/portal/21",
@@ -157,8 +157,6 @@ const config = {
                 {
                     type: "docsVersionDropdown",
                     position: "right",
-                    dropdownItemsBefore: [],
-                    dropdownItemsAfter: []
                 }
             ],
         },
@@ -166,25 +164,26 @@ const config = {
             style: "dark",
             links: [{
                 title: "Mia-Platform",
-                items: [{
+                items: [
+                    {
                     label: "How to install",
-                    to: "/docs/info/how_to_install",
-                },
+                    to: "/info/how_to_install",
+                    },
                     {
                         label: "Bug Policy",
-                        to: "/docs/info/bug_policy",
+                        to: "/release-notes/info/bug_policy",
                     },
                     {
                         label: "Supported browsers",
-                        to: "/docs/info/supported_browser",
+                        to: "/info/supported_browser",
                     },
                     {
                         label: "Open Source Software",
-                        to: "/docs/info/oss",
+                        to: "/info/oss",
                     },
                     {
                         label: "Subprocessor",
-                        to: "/docs/info/subprocessor",
+                        to: "/info/subprocessor",
                     },
                     {
                         label: "Service Level Agreement",
@@ -192,7 +191,7 @@ const config = {
                     },
                     {
                         label: "Audit Process",
-                        to: "/docs/info/audit_process",
+                        to: "/info/audit_process",
                     },
                 ],
             },
@@ -240,7 +239,7 @@ const config = {
                         },
                         {
                             label: "Release Notes",
-                            to: "/docs/release-notes/versions",
+                            to: "/release-notes/versions",
                         },
                     ],
                 },
@@ -344,6 +343,23 @@ const config = {
         ],
     ],
     plugins: [
+        [
+            '@docusaurus/plugin-content-docs',
+            {
+                id: 'release-notes-doc',
+                path: 'release-notes',
+                routeBasePath: 'release-notes',
+                sidebarPath: './sidebarsReleaseNotes.js',
+            },
+        ],
+        [
+            '@docusaurus/plugin-content-docs',
+            {
+                id: 'info-doc',
+                path: 'info',
+                routeBasePath: 'info',
+            },
+        ],
         [
             "@docusaurus/plugin-client-redirects",
             {

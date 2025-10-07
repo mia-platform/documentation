@@ -13,7 +13,7 @@ Mia-Platform version numbers consists of three, dot separated, parts: *MAJOR*.*M
 ## Release history
 
 This section lists all the Major versions released over time;
-for self-hosted installation read the [Stable version release policy](/release-notes/stable-versions.md) to find out which version are receiving official support.
+for self-hosted installation read the [Stable version release policy](/release-notes/stable-versions) to find out which version are receiving official support.
 
 :::note
 Mia-Platform guarantees **security patches** for the two preceding versions to the current Major.
@@ -46,8 +46,8 @@ New Mia-Platform version may include features that are not yet considered stable
 tag denoting the current feature state.
 
 :::info
-These early access feature are generally disabled by default and can be enabled using the Feature Preview pages (depending whether the feature has impact on [specific users](/products/console/user-settings/feature-preview.md)
-or whole [Projects](/products/console/project-configuration/project-settings.md#feature-preview)).
+These early access feature are generally disabled by default and can be enabled using the Feature Preview pages (depending whether the feature has impact on [specific users](/docs/products/console/user-settings/feature-preview)
+or whole [Projects](/docs/products/console/project-configuration/project-settings#feature-preview)).
 :::
 
 The current feature state classifications are as follows:

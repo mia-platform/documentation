@@ -1,9 +1,8 @@
 ---
 id: versions
-title: Mia-Platform release notes
-sidebar_label: Mia-Platform release notes
+title: Overview
+sidebar_label: Overview
 image: "img/release-note-link-preview.png"
-slug: "/release-notes/versions"
 ---
 
 import Changelog from '@site/src/components/Changelog';

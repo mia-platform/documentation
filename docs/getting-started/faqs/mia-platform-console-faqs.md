@@ -234,7 +234,7 @@ Mia-Platform follows semantic versioning with a `MAJOR.MINOR.PATCH` format:
 * **MINOR** (e.g., v14.1.0): Increased for new features and functional improvements.
 * **PATCH** (e.g., v14.1.1): Increased for bug fixes, stability, performance or small improvements.
   The documentation also specifies which features are in `Beta` or `Preview`.
-  [Discover more](/info/version_policy.md)
+  [Discover more](/info/version_policy)
 
 #### What is Mia-Platform's bug fixing policy?
 Bugs are assessed based on symptom severity, with three levels:
@@ -242,5 +242,5 @@ Bugs are assessed based on symptom severity, with three levels:
 * **Severity 2 (Major)**: A key feature is unavailable, or performance is significantly degraded.
 * **Severity 3 (Minor)**: An issue with a viable workaround, or a cosmetic defect.
   Fixes are delivered in patch releases, and customers need to upgrade to a release containing the fix to receive it.
-  [Discover more](/info/bug_policy.md)
+  [Discover more](/info/bug_policy)
 

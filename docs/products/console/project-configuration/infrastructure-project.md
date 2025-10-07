@@ -19,7 +19,7 @@ By consolidating these repositories, Infrastructure Projects simplify the releas
 These Projects are distinct from traditional [Application Projects](/products/console/project-configuration/application-project.md) as they are specifically designed to manage infrastructure resources, enabling better control, automation, and governance in the context of IaC. They can be connected to multiple repositories containing code and scripts to deploy resources in your infrastructure, providing the ability to deploy quickly with a review of the affected resources.
 
 :::info
-Infrastructure Projects are currently a [**BETA** feature](/info/version_policy.md#feature-preview-and-beta) and are under active development.
+Infrastructure Projects are currently a [**BETA** feature](/info/version_policy#feature-preview-and-beta) and are under active development.
 
 At this time, they only support **GitLab** and **Azure DevOps** repositories with a specific pipeline configuration. Support for other providers will be added in future Console releases. You can find out more in the [technical limitations](#technical-limitations) section below.
 
