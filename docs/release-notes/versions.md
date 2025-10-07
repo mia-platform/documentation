@@ -10,6 +10,15 @@ import Changelog from '@site/src/components/Changelog';
 
 <Changelog>
 
+## [v14.3.1](/release-notes/v14.3.1.mdx)
+*October 16th, 2025*
+
+TODO
+
+[Read the release notes](/release-notes/v14.3.1.mdx)
+
+---
+
 ## [v14.3.0](/release-notes/v14.3.0.mdx)
 *October 2nd, 2025*
 
@@ -34,6 +43,15 @@ This release introduces a **new tabular view for Microservices** as a **Feature 
 This release enhances project management by introducing the ability to **configure projects locally via the `miactl CLI`**, using the new `describe` and `apply` commands. Two major efficiency improvements have also been introduced: the ability to **redeploy a configuration directly from the Deploy History** and a new `Tag Deleted` **webhook event** for automations. This update is rounded out by several minor fixes and improvements to increase **overall platform stability**.
 
 [Read the release notes](/release-notes/v14.2.0.mdx)
+
+---
+
+## [14.1.1](/release-notes/v14.1.1.mdx)
+*October16th, 2025*
+
+TODO
+
+[Read the release notes](/release-notes/v14.1.1.mdx)
 
 ---
 

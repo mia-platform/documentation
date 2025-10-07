@@ -1,0 +1,17 @@
+---
+id: v14.1.1
+title: Version 14.1.1 Release Notes
+sidebar_label: v14.1.1
+image: "img/release-note-link-preview.png"
+---
+
+_October 16th, 2025_
+
+## Bug fix
+
+We resolved an issue that occurred in a specific scenario: when a ConfigMap was deleted and immediately recreated with the same name, the Console could fail to save the change correctly, causing configuration corruption.  
+This configuration can then only be restored using a previous snapshot, which is possible within the [dedicated Revision History modal](/products/console/set-up-infrastructure/revisions-and-versions#revision-history.md).
+
+## How to update your Console
+
+For self-hosted installations, please head to the [self hosted upgrade guide](/infrastructure/self-hosted/installation-chart/100_how-to-upgrade.md) or contact your Mia-Platform referent and upgrade to _Console Helm Chart_ `v14.2.2-0`.
