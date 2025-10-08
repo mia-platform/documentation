@@ -1,18 +1,18 @@
 ---
-id: v14.1.1
-title: Version 14.1.1 Release Notes
-sidebar_label: v14.1.1
+id: v14.3.1
+title: Version 14.3.1 Release Notes
+sidebar_label: v14.3.1
 image: "img/release-note-link-preview.png"
 ---
 
+import Accordion from '@site/src/components/Accordion/index.js';
+import dataAccordion from '@site/src/config/release-notes/release-note-v14-3-1.json';
+
 _October 16th, 2025_
 
-## Bug fix
+## Bug Fix
 
-We resolved an issue that occurred in a specific scenario: when a ConfigMap was deleted and immediately recreated with the same name, the Console could fail to save the change correctly, causing configuration corruption.  
-This configuration can then only be restored using a previous snapshot, which is possible within the [dedicated Revision History modal](/products/console/set-up-infrastructure/revisions-and-versions#revision-history.md).
-
-This fix has been implemented also on Console chart v14.2.2-0.
+<Accordion data={dataAccordion} />
 
 ## How to update your Console
 
