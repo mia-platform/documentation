@@ -1,6 +1,6 @@
 const createEditUrl = require("./scripts/createEditUrl");
 const createRedirects = require("./scripts/createRedirects");
-const versions = require('./versions.json');
+const versionsList = require('./versions.json');
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
@@ -155,8 +155,19 @@ const config = {
                     label: "Community"
                 },
                 {
-                    type: "docsVersionDropdown",
-                    position: "right",
+                  type: 'custom-CustomArchivedItem',
+                  position: 'right',
+                  dropdownItemsAfter: [
+                      {
+                          type: 'html',
+                          value: '<hr style="margin: 4px 0;">',
+                      },
+                      {
+                          type: 'html',
+                          value: '<b style="margin-left: 8px; font-size: 14px;">Archived versions</b>',
+                      },
+                    ],
+                  archivedVersions: versionsList.filter(v => v.includes('x.x')),
                 }
             ],
         },
@@ -302,17 +313,11 @@ const config = {
                 docs: {
                     sidebarPath: './sidebars.js',
                     editUrl: createEditUrl,
-                    lastVersion: versions[1],
+                    lastVersion: versionsList[1],
                     versions: {
                         current: {
-                          label: "Canary"
-                        },
-                        ...versions.reduce((acc, ver, i) => {
-                            return {
-                              ...acc,
-                              [ver]: { label: i === 0 ? `${ver} - Next` : ver }
-                            }
-                        }, {}),
+                          label: "Canary 🚧"
+                        }
                     },
                     async sidebarItemsGenerator({
                                                     isCategoryIndex: defaultCategoryIndexMatcher,

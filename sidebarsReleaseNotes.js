@@ -69,6 +69,35 @@ export default {
       ]
     },
     {
+      "label": "v12",
+      "type": "category",
+      "collapsed": true,
+      "link": {
+        "type": "doc",
+        "id": "v12/v12-overview"
+      },
+      "items": [
+        {"id": "v12/versions", "type": "doc"},
+        {"id": "v12/v12.4.0", "type": "doc"},
+        {"id": "v12/v12.3.6", "type": "doc"},
+        {"id": "v12/v12.3.5", "type": "doc"},
+        {"id": "v12/v12.3.4", "type": "doc"},
+        {"id": "v12/v12.3.3", "type": "doc"},
+        {"id": "v12/v12.3.2", "type": "doc"},
+        {"id": "v12/v12.3.1", "type": "doc"},
+        {"id": "v12/v12.3.0", "type": "doc"},
+        {"id": "v12/v12.2.1", "type": "doc"},
+        {"id": "v12/v12.2.0", "type": "doc"},
+        {"id": "v12/v12.1.2", "type": "doc"},
+        {"id": "v12/v12.1.1", "type": "doc"},
+        {"id": "v12/v12.1.0", "type": "doc"},
+        {"id": "v12/v12.0.3", "type": "doc"},
+        {"id": "v12/v12.0.2", "type": "doc"},
+        {"id": "v12/v12.0.1", "type": "doc"},
+        {"id": "v12/v12.0.0", "type": "doc"}
+      ]
+    },
+    {
       "id": "stable-versions",
       "type": "doc"
     },
