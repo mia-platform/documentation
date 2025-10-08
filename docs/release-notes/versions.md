@@ -10,15 +10,6 @@ import Changelog from '@site/src/components/Changelog';
 
 <Changelog>
 
-## [v14.3.1](/release-notes/v14.3.1.mdx)
-*October 16th, 2025*
-
-TODO
-
-[Read the release notes](/release-notes/v14.3.1.mdx)
-
----
-
 ## [v14.3.0](/release-notes/v14.3.0.mdx)
 *October 2nd, 2025*
 

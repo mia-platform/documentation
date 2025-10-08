@@ -2153,7 +2153,6 @@
         "id": "release-notes/versions"
       },
       "items": [
-        { "id": "release-notes/v14.3.1", "type": "doc" },
         { "id": "release-notes/v14.3.0", "type": "doc" },
         { "id": "release-notes/v14.2.1", "type": "doc" },
         { "id": "release-notes/v14.2.0", "type": "doc" },
