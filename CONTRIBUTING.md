@@ -331,7 +331,6 @@ The links defined in the `a` properties link the main item menu to a single **si
 ```
 
 - To add an item linked to  page  you have to add an object with `"type": "doc"` and the property `"id"` valued with the final id of the page.
-
 - To create a sub-element that contains other elements you have to add an object with `"type": "category"` and the property `"label"` valued with the label of the item.
 
 #### Repository deploy rules

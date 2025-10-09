@@ -14,6 +14,7 @@ export default {
         {"id": "v14.3.0", "type": "doc"},
         {"id": "v14.2.1", "type": "doc"},
         {"id": "v14.2.0", "type": "doc"},
+        {"id": "v14.1.1", "type": "doc"},
         {"id": "v14.1.0", "type": "doc"},
         {"id": "v14.0.3", "type": "doc"},
         {"id": "v14.0.2", "type": "doc"},
