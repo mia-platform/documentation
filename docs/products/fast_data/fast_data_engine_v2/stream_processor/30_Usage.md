@@ -611,3 +611,20 @@ export default function ({key, payload}) {
   return [{ key, payload }]
 }
 ```
+
+#### Sandbox Context
+
+When writing a function that will run within the sandbox, please take into account that
+only the following objects are available within its `globalThis` context:
+
+> `Object`, `Function`, `Error`, `EvalError`, `RangeError`, `ReferenceError`,
+> `SyntaxError`, `TypeError`, `URIError`, `InternalError`, `AggregateError`, `Iterator`,
+> `Array`, `parseInt`, `parseFloat`, `isNaN`, `isFinite`, `queueMicrotask`, `decodeURI`,
+> `decodeURIComponent`, `encodeURI`, `encodeURIComponent`, `escape`, `unescape`,
+> `Infinity`, `NaN`, `undefined`, `Number`, `Boolean`, `String`, `Math`, `Reflect`,
+> `Symbol`, `eval`, `globalThis`, `Date`, `RegExp`, `JSON`, `Proxy`, `Map`, `Set`,
+> `WeakMap`, `WeakSet`, `ArrayBuffer`, `SharedArrayBuffer`, `Uint8ClampedArray`,
+> `Int8Array`, `Uint8Array`, `Int16Array`, `Uint16Array`, `Int32Array`, `Uint32Array`,
+> `BigInt64Array`, `BigUint64Array`, `Float16Array`, `Float32Array`, `Float64Array`,
+> `DataView`, `Atomics`, `Promise`, `BigInt`, `WeakRef`, `FinalizationRegistry`,
+> `performance`, `console`, `CacheError`
