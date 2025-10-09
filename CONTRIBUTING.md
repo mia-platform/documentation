@@ -123,11 +123,7 @@ The repo provides a series of content test that must be passed:
 
 ## Documentation releases management
 
-The `docs` folder contains **only** the version of the documentation corresponding to the development environment.
-
-Everytime a new documentation version is created, the most recent one corresponds to the `next` environment and the second most recent corresponds to the `prod` environment.
-
-Older versions are merged by minor.
+The `docs` folder contains **only** the version of the documentation corresponding to the development environment. Other documentations are availablein `versioned_docs` folder.
 
 ### Release notes
 
