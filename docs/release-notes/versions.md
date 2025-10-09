@@ -37,6 +37,15 @@ This release enhances project management by introducing the ability to **configu
 
 ---
 
+## [14.1.1](/release-notes/v14.1.1.mdx)
+*October 16th, 2025*
+
+This release enhances Console stability by resolving a critical bug that could cause configuration corruption when specific resources were updated under particular conditions.
+
+[Read the release notes](/release-notes/v14.1.1.mdx)
+
+---
+
 ## [14.1.0](/release-notes/v14.1.0.mdx)
 *September 4th, 2025*
 

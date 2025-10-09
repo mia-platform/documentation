@@ -23,7 +23,9 @@ When an item is in the *published state*, it is considered stable, ready for pro
 In *Maintenance*, the item is still available, but will not receive any new features or major improvements. It is only supported by bug fixes and critical security patches. This phase has a defined duration, typically 1 year. At the end of the maintenance period, the item may be deprecated or removed from the Marketplace.
 
 #### **5. Deprecated**
-An item in the *Deprecated state* is no longer supported with bug fixes, new features, or updates. It is a signal that the item is being phased out, and a plan for its removal from the Marketplace is in place. The deprecation phase typically precedes an item's removal, which occurs during a future major release of the console or platform. Users are encouraged to migrate to a newer version or alternative.
+An item in the *Deprecated state* is no longer actively maintained: it will not receive bug fixes, new features, or updates. This status indicates that the item is being phased out and a plan for its removal from the Marketplace is in place. Deprecation typically precedes the item's removal, which may occur in a future major release of the console or platform.
+
+If you have already instantiated an item before it was marked as deprecated, it will remain fully operational — no changes will be applied retroactively. However, the item will not benefit from future improvements or maintenance, and users are strongly encouraged to migrate to a supported version or alternative solution.
 
 :::caution
 It's important to consider the alternatives to a deprecated item. Using updated and supported items ensures better performance, security, and compatibility.
