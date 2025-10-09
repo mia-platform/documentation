@@ -112,12 +112,28 @@ The repo provides a series of content test that must be passed:
       Contains Docusaurus components customized.
 - `docs/`
   Contains markdown documentation page for current version.
+- `release-notes/` Contains the release notes of all versions. Pages are not intendend to be versioned.
+- `info` Contains the pages under `/info` url. Pages are not intendend to be versioned.
 - `versioned_docs/`
   Contains versioned documentation pages.
     - `versioned_docs/version-5.x.x`
       Contains the files related to v5
 - `versioned_sidebars/`
   Contains versioned sidebars config.
+
+## Documentation releases management
+
+The `docs` folder contains **only** the version of the documentation corresponding to the development environment.
+
+Everytime a new documentation version is created, the most recent one corresponds to the `next` environment and the second most recent corresponds to the `prod` environment.
+
+Older versions are merged by minor.
+
+### Release notes
+
+Release notes are inside `release-notes` folder and are excluded from the documentation versioning. First folder children are the current major releases release notes related files while older major releases related files are inside the corresponding major folder, like `v12` or `v13`. 
+
+To create a new release note, add a new file with the name of the new version, i.e. `v14.5.8`, in the `release-notes/` folder.
 
 ## Create a new documentation version
 
@@ -132,7 +148,7 @@ In order to bump a new documentation version you have to follow through this che
 1. update hompage quick links targeting information relevant to the previous version
 1. update version policy page to include the new release support period
 
-### Freeze previous version
+### Tag a new version
 
 Each tagged version has a dedicated folder: `versioned_docs/version-<number version>`. To create a new one and freeze the **previous** version run the following command:
 
