@@ -3,7 +3,6 @@ id: versions
 title: Overview
 sidebar_label: Overview
 image: "img/release-note-link-preview.png"
-slug: "/release-notes/versions"
 ---
 | Release | Release notes                                       |
 |---------|-----------------------------------------------------|
