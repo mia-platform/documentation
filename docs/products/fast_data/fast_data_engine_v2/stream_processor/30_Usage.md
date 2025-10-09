@@ -412,11 +412,27 @@ async function asyncTransform() {
 }
 ```
 
-:::danger
+It is also possible to use [`async function`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function) syntax.
+The previous example can be expressed as follows:
 
-`async/await` keywords are not supported. Construct a `Promise` object and return it.
+```js
+export default async function asyncProcessing({ key, payload }, caches) {
+  try {
+    const result = await asyncTransform()
+    
+    return [{ key, payload: result }]
+  } catch(err) {
+      // IMPORTANT: when the async execution throw an erorr,
+      //            the outer promise MUST be rejected
+      throw err
+  }
+}
 
-:::
+async function asyncTransform() {
+  // custom business logic
+}
+```
+
 
 #### Cache Access 🪙
 
@@ -448,37 +464,45 @@ For example, `cache-1` can be defined as follows:
 and it can be retrieved by the `caches` function and used as shown in the function below:
 
 ```js
-export default function cacheValue({ key, payload }, caches) {
-  return new Promise((resolve, reject) => {
-    const testCache = caches?.("cache-1")
+export default async function cacheValue({key, payload}, caches) {
+  const testCache = caches?.("test")
 
-    if (testCache) {
-      testCache.get("testKey")
-        .then(result => {
-          if (!result) {
-            // NOTE: set throws in case a value already exists for selected key
-            testCache.set("testKey", payload)
-          } else {
-            // NOTE: to permit concurrent modifications, the current value version
-            //       MUST be provided. On the contrary, a mismatched version
-            //       would raise a concurrent modification
-            testCache.update("testKey", payload, result.v)
-          }
-        })
-        .then(() => testCache.get("testKey"))
-        .then(value => {
-          console.log(value)
-          return value
-        })
-        .then(value => resolve([{ key, payload: value }]))
-        // IMPORTANT: promises MUST be catched and the outer promise MUST be rejected
-        //            to ensure proper closure of the sandbox process
-        .catch(err => reject(err))
-    } else {
-      // IMPORTANT: when cache is not found, the outer promise MUST be rejected
-      reject("cache not found")
+  if (testCache) {
+    // NOTE: get method either return the result or undefined
+    const result = await testCache.get("testKey")
+
+    try {
+
+      if (!result) {
+        // NOTE: set method throws in case a value already exists
+        //       for selected key
+        await testCache.set("testKey", payload)
+      } else {
+        // NOTE: to permit concurrent modifications, the current value
+        //       version MUST be provided. On the contrary, a mismatched
+        //       version would raise a concurrent modification
+        await testCache.update("testKey", payload, result.v)
+      }
+
+      const nextValue = await testCache.get("testKey")
+      console.log(nextValue)
+
+      return [
+        { key, payload: nextValue }
+      ]
+    } catch(error) {
+      // IMPORTANT: promises MUST be caught and the outer promise MUST be
+      //            rejected to ensure proper closure of the sandbox process
+      console.log('failed to use cache', error)
+
+      return []
     }
-  })
+  } else {
+    // IMPORTANT: when cache is not found, it is recommended to signal such
+    //            unexpected situation and terminate the processing to avoid
+    //            producing invalid events
+    throw new Error("cache not found")
+  }
 }
 ```
 
