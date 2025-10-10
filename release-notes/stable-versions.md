@@ -16,7 +16,7 @@ Typically, a new stable version is announced every quarter of the year. Therefor
 
 For each stable version, a **Maintenance Time Window (MTW)** will be granted for a three-months period approximately, pending the next stable version.
 
-Thus, once a [Major/Minor version](/info/version_policy) is labeled as stable, patches on this specific version will be provided throughout the Maintenance Time Window in case of relevant detected bugs.
+Thus, once a [Major/Minor version](/release-notes/info/version_policy) is labeled as stable, patches on this specific version will be provided throughout the Maintenance Time Window in case of relevant detected bugs.
 Then, we recommend regularly upgrading to the latest patch of the stable release.  
 Once a new stable release is announced, it is suggested to upgrade to the new stable version to ensure guaranteed future support in case of malfunctions or relevant bugs detection.
 

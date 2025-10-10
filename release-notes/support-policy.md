@@ -11,7 +11,7 @@ Read [Stable Versions](./stable-versions.md) to find out the stable version road
 :::
 
 :::note
-Read [Version Policy](/info/version_policy) to find all the information regarding how new Mia-Platform versions are named.
+Read [Version Policy](/release-notes/info/version_policy) to find all the information regarding how new Mia-Platform versions are named.
 :::
 
 :::note
