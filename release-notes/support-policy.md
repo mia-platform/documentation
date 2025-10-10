@@ -15,5 +15,5 @@ Read [Version Policy](/release-notes/info/version_policy) to find all the inform
 :::
 
 :::note
-Read the [Bug policy](/info/bug_policy) to find out how bugs are disclosed and treated.
+Read the [Bug policy](/release-notes/info/bug_policy) to find out how bugs are disclosed and treated.
 :::

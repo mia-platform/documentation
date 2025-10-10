@@ -242,5 +242,5 @@ Bugs are assessed based on symptom severity, with three levels:
 * **Severity 2 (Major)**: A key feature is unavailable, or performance is significantly degraded.
 * **Severity 3 (Minor)**: An issue with a viable workaround, or a cosmetic defect.
   Fixes are delivered in patch releases, and customers need to upgrade to a release containing the fix to receive it.
-  [Discover more](/info/bug_policy)
+  [Discover more](/release-notes/info/bug_policy)
 
