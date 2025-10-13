@@ -8,6 +8,7 @@
     "docusaurus": "docusaurus",
     "start": "docusaurus start",
     "build": "yarn build-redirects && USE_SIMPLE_CSS_MINIFIER=true docusaurus build",
+    "docs:version": "docusaurus docs:version",
     "swizzle": "docusaurus swizzle",
     "deploy": "docusaurus deploy",
     "clear": "docusaurus clear",

@@ -58,7 +58,7 @@ const checkLink = (link) => {
 
     if(path.toLowerCase().startsWith('http') || path.toLowerCase().startsWith('https')) {
         if (path.toLowerCase().includes('docs.mia-platform.eu')) errors.push("httpLinkToInternalDocs");
-    } else {
+    } else if(!path.includes('/release-notes/') && !path.includes('/info')) {
         if(path.toLowerCase() !== "/" && !path.toLowerCase().startsWith('/#')) {
             if (!path.toLowerCase().includes('.md') && !path.toLowerCase().includes('.mdx')) errors.push("missingExtension");
             if (path.startsWith('.')) errors.push("relativePath");

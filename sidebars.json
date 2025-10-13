@@ -2139,52 +2139,6 @@
       ]
     }
   ],
-  "releaseNotes": [
-    {
-      "id": "release-notes/v14-overview",
-      "type": "doc"
-    },
-    {
-      "label": "Versions",
-      "type": "category",
-      "collapsed": true,
-      "link": {
-        "type": "doc",
-        "id": "release-notes/versions"
-      },
-      "items": [
-        { "id": "release-notes/v14.3.0", "type": "doc" },
-        { "id": "release-notes/v14.2.1", "type": "doc" },
-        { "id": "release-notes/v14.2.0", "type": "doc" },
-        { "id": "release-notes/v14.1.1", "type": "doc" },
-        { "id": "release-notes/v14.1.0", "type": "doc" },
-        { "id": "release-notes/v14.0.3", "type": "doc" },
-        { "id": "release-notes/v14.0.2", "type": "doc" },
-        { "id": "release-notes/v14.0.1", "type": "doc" },
-        { "id": "release-notes/v14.0.0", "type": "doc" }
-      ]
-    },
-    {
-      "id": "release-notes/stable-versions",
-      "type": "doc"
-    },
-    {
-      "id": "release-notes/roadmap",
-      "type": "doc"
-    },
-    {
-      "id": "info/version_policy",
-      "type": "doc"
-    },
-    {
-      "id": "info/bug_policy",
-      "type": "doc"
-    },
-    {
-      "id": "release-notes/support-policy",
-      "type": "doc"
-    }
-  ],
   "software-catalog": [
     {
       "id": "products/software-catalog/overview",

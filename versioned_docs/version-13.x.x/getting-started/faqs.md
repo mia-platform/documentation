@@ -292,7 +292,7 @@ The "Merge" feature in the Mia-Platform console does not perform a traditional G
 
 ### How do I update the Console?
 #### How can I update the Console for both PaaS and on-premise installations?
-If you're using **Mia-Platform PaaS**, the Console updates automatically. For **on-premise installations**, contact your Mia-Platform referent to use the appropriate Helm chart as indicated in the [release notes](/release-notes/versions.md).
+If you're using **Mia-Platform PaaS**, the Console updates automatically. For **on-premise installations**, contact your Mia-Platform referent to use the appropriate Helm chart as indicated in the [release notes](/release-notes/v13/versions).
 
 ### Can I deploy selected microservices only?
 #### Is it possible to deploy only certain microservices instead of the entire project?

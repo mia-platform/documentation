@@ -8,11 +8,11 @@ sidebar_label: Mia-Platform FAQs
 
 ### How Can I update the Console?
 
-If you are using **Mia-Platform PaaS** you don't have to do anything, the Console will automatically update. For **on-premise Console installations**, please contact your Mia-Platform referent to know how to use the Helm chart version indicated in the [release note](/release-notes/versions.md) of the version you want to update.
+If you are using **Mia-Platform PaaS** you don't have to do anything, the Console will automatically update. For **on-premise Console installations**, please contact your Mia-Platform referent to know how to use the Helm chart version indicated in the [release note](/release-notes/v12/versions) of the version you want to update.
 
 ### Which browsers does Console support?
 
-Verify it checking out the [dedicated page](/info/supported_browser.md).
+Verify it checking out the [dedicated page](/info/supported_browser).
 
 ## CMS
 

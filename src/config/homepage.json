@@ -10,13 +10,13 @@
     "buttons": [
       {
         "label": "View roadmap",
-        "link": "/docs/release-notes/roadmap",
+        "link": "/release-notes/roadmap",
         "primary": true,
         "target": "_self"
       },
       {
         "label": "View release note",
-        "link": "/docs/release-notes/v14-overview",
+        "link": "/release-notes/v14-overview",
         "primary": true,
         "target": "_self"
       }

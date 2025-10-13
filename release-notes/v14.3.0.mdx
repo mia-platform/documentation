@@ -1,0 +1,51 @@
+---
+id: v14.3.0
+title: Version 14.3.0 Release Notes
+sidebar_label: v14.3.0
+image: "img/release-note-link-preview.png"
+---
+
+import Accordion from '@site/src/components/Accordion/index.js';
+import dataAccordion from '@site/src/config/release-notes/release-note-v14-3-0.json';
+
+_October 2nd, 2025_
+
+:::info
+
+Mia-Platform Console v14.3.0 is **now in Preview** and will be generally available on October 16th.
+
+Console SaaS users can try out v14.3.0 latest improvements in Preview! Open a Service Request to ask for the creation of a sandbox Company in case you do not have access to any Company.
+
+For self-hosted installations, please read the [following guidelines](#how-to-update-your-console).
+:::
+
+## Fast Data Engine 2.0
+
+We introduce the **Fast Data Engine 2.0**, a new suite of workloads designed to replace and significantly outperform traditional components for building Fast Data pipelines.
+
+- **[Stream Processor](/docs/products/fast_data/fast_data_engine_v2/stream_processor/overview)** enables advanced and secure real-time data transformation, supporting both stateless and stateful processing for complex business logic
+- **[Farm Data](/docs/products/fast_data/fast_data_engine_v2/farm_data/overview)** powers the core logic for building data products through high-performance multiple data stream aggregation
+- **[Kango](/docs/products/fast_data/fast_data_engine_v2/kango/overview)** enables data product persistence from Kafka topics to MongoDB collections
+
+Experience **up to 10x performance improvement** in aggregation operations, enabling scalable and efficient real-time Fast Data pipelines.
+
+Discover all the benefits and capabilities of Fast Data Engine 2.0 in the [official documentation](/docs/products/fast_data/fast_data_engine_v2/overview).
+
+## Enhanced Software Catalog Management Features
+
+We’ve added new capabilities to improve Catalog item management and customization:
+
+- support for adding **maintainers, useful links, labels,** and **annotations** to Catalog items;
+- ability to map **relationships between existing Catalog items**, as well as define relationships with **custom entities**.
+
+These features provide greater flexibility in organizing and enriching your Software Catalog.
+
+Please refer to the [documentation](/docs/products/software-catalog/basic-concepts/items-relationships) for more information.
+
+## Other New Features, Improvements and Bug Fixes
+
+<Accordion data={dataAccordion} />
+
+## How to update your Console
+
+For self-hosted installations, please head to the [self hosted upgrade guide](/docs/infrastructure/self-hosted/installation-chart/how-to-upgrade) or contact your Mia-Platform referent and upgrade to _Console Helm Chart_ `v15.0.3-beta.2`.
