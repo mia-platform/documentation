@@ -273,12 +273,12 @@ with respect to the input ones.
 
 ```js
 export default function transform({ key, payload }) {
-    if (!payload) {
-      // forward TOMBSTONE event
-      return [{ key, payload }]
-    }
+  if (!payload) {
+    // forward TOMBSTONE event
+    return [{ key, payload }]
+  }
 
-    return [{ key, payload: mapFields(payload) }]
+  return [{ key, payload: mapFields(payload) }]
 }
 
 function mapFields(payload) {
@@ -299,18 +299,18 @@ This effect can be achieved by setting the function result to a _void_ value.
 
 ```js
 export default function validate({ key, payload }) {
-    if (!payload) {
-      // forward TOMBSTONE event
-      return [{ key, payload }]
-    }
-    
-    if (!isValid(key, payload)) {
-      // no messages are returned, since the input is invalid;
-      // consequently no events are forwarded onto the output topic 
-      return []
-    }
-
+  if (!payload) {
+    // forward TOMBSTONE event
     return [{ key, payload }]
+  }
+  
+  if (!isValid(key, payload)) {
+    // no messages are returned, since the input is invalid;
+    // consequently no events are forwarded onto the output topic 
+    return []
+  }
+
+  return [{ key, payload }]
 }
 
 function isValid(key, payload) {
@@ -353,28 +353,28 @@ An alarm can be setup to monitor `kafka_consumer_group_lag` Prometheus metric
 
 ```js
 export default function transform({ key, payload }) {
-    if (!payload) {
-      // forward TOMBSTONE event
-      return [{ key, payload }]
-    }
-    
-    let parsedKey
-    try {
-      parsedKey = JSON.parse(key)
-    } catch (error) {
-      // DESIRED EFFECT: skip the input event when key
-      //                 cannot be parsed as object
-      return []
-    }
-
-    // DESIRED EFFECT: in case the function throws, this stream
-    //                 processing is terminated until either the input
-    //                 event is manually inspected and then skipped
-    //                 (update consumer lag) or the function is updated
-    //                 to account for such situation
-    let updatedPayload = mayThrowFunction(payload)
-
+  if (!payload) {
+    // forward TOMBSTONE event
     return [{ key, payload }]
+  }
+  
+  let parsedKey
+  try {
+    parsedKey = JSON.parse(key)
+  } catch (error) {
+    // DESIRED EFFECT: skip the input event when key
+    //                 cannot be parsed as object
+    return []
+  }
+
+  // DESIRED EFFECT: in case the function throws, this stream
+  //                 processing is terminated until either the input
+  //                 event is manually inspected and then skipped
+  //                 (update consumer lag) or the function is updated
+  //                 to account for such situation
+  let updatedPayload = mayThrowFunction(payload)
+
+  return [{ key, payload }]
 }
 
 function mayThrowFunction(payload) {
@@ -401,8 +401,10 @@ export default function asyncProcessing({ key, payload }, caches) {
   return new Promise((resolve, reject) => {
     asyncTransform()
       .then(result => resolve([{ key, payload: result }]))
-      // IMPORTANT: when the async execution throw an erorr,
-      //            the outer promise MUST be rejected
+      // IMPORTANT: when the async execution throws an error,
+      //            the outer promise MUST be resolved or rejected,
+      //            depending on your use case, so that underlying
+      //            runtime can properly handle the promise execution
       .catch(err => reject(err))
   })
 }
@@ -422,8 +424,7 @@ export default async function asyncProcessing({ key, payload }, caches) {
     
     return [{ key, payload: result }]
   } catch(err) {
-      // IMPORTANT: when the async execution throw an erorr,
-      //            the outer promise MUST be rejected
+      // here processing is halted until this event properly process
       throw err
   }
 }
