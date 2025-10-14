@@ -1,0 +1,16 @@
+{
+  "14.3.0": {
+    "isNext": true
+  },
+  "14.2.1": {
+    "isProd": true
+  },
+  "13.x.x": {
+    "isStable": true,
+    "isArchived": true
+  },
+  "12.x.x": {
+    "isStable": false,
+    "isArchived": true
+}
+}

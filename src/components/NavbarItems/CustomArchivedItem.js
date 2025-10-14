@@ -16,6 +16,7 @@ import {translate} from '@docusaurus/Translate';
 import {useHistorySelector} from '@docusaurus/theme-common';
 import DefaultNavbarItem from '@theme/NavbarItem/DefaultNavbarItem';
 import DropdownNavbarItem from '@theme/NavbarItem/DropdownNavbarItem';
+import {ProdTag, StableTag, NextTag, CanaryTag} from './Tags';
 
 function getVersionItems(
   versions,
@@ -93,7 +94,7 @@ export default function CustomArchivedItem({
   docsPluginId,
   dropdownActiveClassDisabled,
   dropdownItemsAfter,
-  archivedVersions,
+  versionsMap,
   versions: configs,
   ...props
 }) {
@@ -107,45 +108,48 @@ export default function CustomArchivedItem({
     versionItems,
   })
 
-  function versionItemToLink(showStableTag) {
-    return ({version, label}, index) => {
-      const targetDoc = getVersionTargetDoc(version, activeDocContext);
+  function versionItemToLink({version, label, isStable, isProd, isNext}) {
+    const targetDoc = getVersionTargetDoc(version, activeDocContext);
 
-      let itemLabel = label
-      if(showStableTag && index === 1) {
-        itemLabel = (
-          <div>
-            {label}
-            <span
-              style={{
-                color: '#08979c',
-                background: '#e6fffb',
-                border: '1px solid #87e8de',
-                padding: '0 7px',
-                borderRadius: '4px',
-                marginLeft: '8px',
-              }}
-            >
-              {'Next'}
-            </span>
-          </div>
-        )
-      }
-
-      return {
-        label: itemLabel,
-        // preserve ?search#hash suffix on version switches
-        to: `${targetDoc.path}${search}${hash}`,
-        isActive: () => version === activeDocContext.activeVersion,
-        onClick: () => savePreferredVersionName(version.name),
-      };
+    let itemLabel = label
+    if(isNext) {
+      itemLabel = <NextTag label={label} />
+    } else if(isProd) {
+      itemLabel = <ProdTag label={label} />
+    } else if(isStable) {
+      itemLabel = <StableTag label={label} />
+    } else if(version.name === 'current') {
+      itemLabel = <CanaryTag label={label} />
     }
+
+    return {
+      label: itemLabel,
+      // preserve ?search#hash suffix on version switches
+      to: `${targetDoc.path}${search}${hash}`,
+      isActive: () => version === activeDocContext.activeVersion,
+      onClick: () => savePreferredVersionName(version.name),
+    };
   }
 
+  const archivedVersions = []
+  const versions = []
+  versionItems.forEach(({version, label}) => {
+    const versionInfo = versionsMap[version.name]
+    if(versionInfo) {
+      if(versionInfo.isArchived) {
+        archivedVersions.push({label, version, ...versionInfo})
+      } else {
+        versions.push({label, version, ...versionInfo})
+      }
+    } else if(version.name === 'current') {
+      versions.push({label, version, isCurrent: true})
+    }
+  })
+
   const items = [
-    ...versionItems.filter(item => !archivedVersions.includes(item.version.name)).map(versionItemToLink(true)),
+    ...versions.map(versionItemToLink),
     ...dropdownItemsAfter,
-    ...versionItems.filter(item => archivedVersions.includes(item.version.name)).map(versionItemToLink(false))
+    ...archivedVersions.map(versionItemToLink)
   ];
 
   // Mobile dropdown is handled a bit differently

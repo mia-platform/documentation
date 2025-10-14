@@ -1,6 +1,6 @@
 const createEditUrl = require("./scripts/createEditUrl");
 const createRedirects = require("./scripts/createRedirects");
-const versionsList = require('./versions.json');
+const versionsMap = require('./versionsMap.json');
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
@@ -167,7 +167,7 @@ const config = {
                           value: '<b style="margin-left: 8px; font-size: 14px;">Archived versions</b>',
                       },
                     ],
-                  archivedVersions: versionsList.filter(v => v.includes('x.x')),
+                  versionsMap
                 }
             ],
         },
@@ -313,10 +313,10 @@ const config = {
                 docs: {
                     sidebarPath: './sidebars.js',
                     editUrl: createEditUrl,
-                    lastVersion: versionsList[1],
+                    lastVersion: Object.keys(versionsMap).filter(key => versionsMap[key].isProd)?.[0],
                     versions: {
                         current: {
-                          label: "Canary 🚧"
+                          label: "Canary"
                         }
                     },
                     async sidebarItemsGenerator({
