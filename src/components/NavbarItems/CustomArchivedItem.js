@@ -94,7 +94,7 @@ export default function CustomArchivedItem({
   docsPluginId,
   dropdownActiveClassDisabled,
   dropdownItemsAfter,
-  versionsMap,
+  archivedVersions,
   versions: configs,
   ...props
 }) {
@@ -108,18 +108,20 @@ export default function CustomArchivedItem({
     versionItems,
   })
 
-  function versionItemToLink({version, label, isStable, isProd, isNext}) {
+  function versionItemToLink(isArchivedVersion) {
+    return ({version, label}, index) => {
     const targetDoc = getVersionTargetDoc(version, activeDocContext);
 
     let itemLabel = label
-    if(isNext) {
-      itemLabel = <NextTag label={label} />
-    } else if(isProd) {
-      itemLabel = <ProdTag label={label} />
-    } else if(isStable) {
-      itemLabel = <StableTag label={label} />
-    } else if(version.name === 'current') {
-      itemLabel = <CanaryTag label={'14.x.x'} />
+    if(!isArchivedVersion) {
+      switch(index) {
+        case 0: itemLabel = <CanaryTag label={'14.x.x'} />; break;
+        case 1: itemLabel = <NextTag label={label} />; break;
+        case 2: itemLabel = <ProdTag label={label} />; break;
+      }
+  
+      // TODO infer when version.name is a stable version
+      //  itemLabel = <StableTag label={label} />
     }
 
     return {
@@ -130,26 +132,12 @@ export default function CustomArchivedItem({
       onClick: () => savePreferredVersionName(version.name),
     };
   }
-
-  const archivedVersions = []
-  const versions = []
-  versionItems.forEach(({version, label}) => {
-    const versionInfo = versionsMap[version.name]
-    if(versionInfo) {
-      if(versionInfo.isArchived) {
-        archivedVersions.push({label, version, ...versionInfo})
-      } else {
-        versions.push({label, version, ...versionInfo})
-      }
-    } else if(version.name === 'current') {
-      versions.push({label, version, isCurrent: true})
-    }
-  })
+  }
 
   const items = [
-    ...versions.map(versionItemToLink),
+    ...versionItems.filter(item => !archivedVersions.includes(item.version.name)).map(versionItemToLink(false)),
     ...dropdownItemsAfter,
-    ...archivedVersions.map(versionItemToLink)
+    ...versionItems.filter(item => archivedVersions.includes(item.version.name)).map(versionItemToLink(true))
   ];
 
   // Mobile dropdown is handled a bit differently
