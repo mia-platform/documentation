@@ -59,7 +59,7 @@ To make a Marketplace item accessible to the public, i.e. any user that access t
 
 By default, for retrocompatibility reasons, Marketplace items without the `tenantId` are exposed to the public, regardless of the presence of the `visibility.public` field.
 
-Since v12.x.x, **the `tenantId` field is mandatory**; the upgrade script will take care of adding a default `tenantId` and `visibility.public: true` only to Mia-Platform supported Marketplace items.
+Since v12.4.0, **the `tenantId` field is mandatory**; the upgrade script will take care of adding a default `tenantId` and `visibility.public: true` only to Mia-Platform supported Marketplace items.
 
 If you have any Marketplace item supported by you without a `tenantId`, **you have the responsibility to set a `tenantId`** to them. Failing to do so may result in errors in the next Console releases. Remember also to update their `visibility` according to your needs
 
