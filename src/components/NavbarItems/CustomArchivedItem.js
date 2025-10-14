@@ -119,7 +119,7 @@ export default function CustomArchivedItem({
     } else if(isStable) {
       itemLabel = <StableTag label={label} />
     } else if(version.name === 'current') {
-      itemLabel = <CanaryTag label={label} />
+      itemLabel = <CanaryTag label={'14.x.x'} />
     }
 
     return {

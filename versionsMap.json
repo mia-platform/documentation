@@ -1,4 +1,5 @@
 {
+  "$schema": "./schemas/versionsMap.schema.json",
   "14.3.0": {
     "isNext": true
   },
@@ -12,5 +13,5 @@
   "12.4.0": {
     "isStable": false,
     "isArchived": true
-}
+  }
 }

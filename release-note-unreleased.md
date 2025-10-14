@@ -1,7 +1,6 @@
 ---
 id: v_VERSION_
 title: Version v_VERSION_ Release Notes
-sidebar_label: v_VERSION_
 image: "img/release-note-link-preview.png"
 ---
 
