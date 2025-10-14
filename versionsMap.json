@@ -5,7 +5,7 @@
   "14.2.1": {
     "isProd": true
   },
-  "13.x.x": {
+  "13.7.5": {
     "isStable": true,
     "isArchived": true
   },

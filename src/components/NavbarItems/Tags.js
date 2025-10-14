@@ -15,8 +15,7 @@ export function ProdTag({label}) {
           marginLeft: '8px',
         }}
       >
-        {/* Che scriviamo?*/}
-        {'Prod'}
+        {'Current'}
       </span>
     </div>
   )
@@ -37,8 +36,7 @@ export function StableTag({label}) {
           marginLeft: '8px',
         }}
       >
-        {/* Che scriviamo? */}
-        {'Stable'}
+        {'LTS'}
       </span>
     </div>
   )
