@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json.schemastore.org/tsconfig.json",
+  "include": ["./scripts"],
+  "compilerOptions": {
+    "allowJs": true,
+    "target": "ESNext",
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "noEmit": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "resolveJsonModule": true,
+    "experimentalDecorators": true,
+    "noUncheckedIndexedAccess": true,
+    "rootDir": ".",
+    "baseUrl": ".",
+  }
+}
