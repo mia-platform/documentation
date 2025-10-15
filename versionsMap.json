@@ -1,0 +1,17 @@
+{
+  "$schema": "./schemas/versionsMap.schema.json",
+  "14.3.0": {
+    "isNext": true
+  },
+  "14.2.1": {
+    "isProd": true
+  },
+  "13.7.5": {
+    "isStable": true,
+    "isArchived": true
+  },
+  "12.4.0": {
+    "isStable": false,
+    "isArchived": true
+  }
+}

@@ -2,6 +2,8 @@ const createEditUrl = require("./scripts/createEditUrl");
 const createRedirects = require("./scripts/createRedirects");
 const versionsList = require('./versions.json');
 
+const prodVersion = versionsList[1]
+
 /** @type {import('@docusaurus/types').Config} */
 const config = {
     title: "Mia-Platform Documentation",
@@ -167,7 +169,7 @@ const config = {
                           value: '<b style="margin-left: 8px; font-size: 14px;">Archived versions</b>',
                       },
                     ],
-                  archivedVersions: versionsList.filter(v => v.includes('x.x')),
+                  archivedVersions: versionsList.filter(v => !prodVersion.includes(v.split('.')[0]))
                 }
             ],
         },
@@ -313,12 +315,7 @@ const config = {
                 docs: {
                     sidebarPath: './sidebars.js',
                     editUrl: createEditUrl,
-                    lastVersion: versionsList[1],
-                    versions: {
-                        current: {
-                          label: "Canary 🚧"
-                        }
-                    },
+                    lastVersion: prodVersion,
                     async sidebarItemsGenerator({
                                                     isCategoryIndex: defaultCategoryIndexMatcher,
                                                     defaultSidebarItemsGenerator,

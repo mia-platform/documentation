@@ -16,6 +16,7 @@ import {translate} from '@docusaurus/Translate';
 import {useHistorySelector} from '@docusaurus/theme-common';
 import DefaultNavbarItem from '@theme/NavbarItem/DefaultNavbarItem';
 import DropdownNavbarItem from '@theme/NavbarItem/DropdownNavbarItem';
+import {ProdTag, StableTag, NextTag, CanaryTag} from './Tags';
 
 function getVersionItems(
   versions,
@@ -107,45 +108,36 @@ export default function CustomArchivedItem({
     versionItems,
   })
 
-  function versionItemToLink(showStableTag) {
+  function versionItemToLink(isArchivedVersion) {
     return ({version, label}, index) => {
-      const targetDoc = getVersionTargetDoc(version, activeDocContext);
+    const targetDoc = getVersionTargetDoc(version, activeDocContext);
 
-      let itemLabel = label
-      if(showStableTag && index === 1) {
-        itemLabel = (
-          <div>
-            {label}
-            <span
-              style={{
-                color: '#08979c',
-                background: '#e6fffb',
-                border: '1px solid #87e8de',
-                padding: '0 7px',
-                borderRadius: '4px',
-                marginLeft: '8px',
-              }}
-            >
-              {'Next'}
-            </span>
-          </div>
-        )
+    let itemLabel = label
+    if(!isArchivedVersion) {
+      switch(index) {
+        case 0: itemLabel = <CanaryTag label={'14.x.x'} />; break;
+        case 1: itemLabel = <NextTag label={label} />; break;
+        case 2: itemLabel = <ProdTag label={label} />; break;
       }
-
-      return {
-        label: itemLabel,
-        // preserve ?search#hash suffix on version switches
-        to: `${targetDoc.path}${search}${hash}`,
-        isActive: () => version === activeDocContext.activeVersion,
-        onClick: () => savePreferredVersionName(version.name),
-      };
+  
+      // TODO infer when version.name is a stable version
+      //  itemLabel = <StableTag label={label} />
     }
+
+    return {
+      label: itemLabel,
+      // preserve ?search#hash suffix on version switches
+      to: `${targetDoc.path}${search}${hash}`,
+      isActive: () => version === activeDocContext.activeVersion,
+      onClick: () => savePreferredVersionName(version.name),
+    };
+  }
   }
 
   const items = [
-    ...versionItems.filter(item => !archivedVersions.includes(item.version.name)).map(versionItemToLink(true)),
+    ...versionItems.filter(item => !archivedVersions.includes(item.version.name)).map(versionItemToLink(false)),
     ...dropdownItemsAfter,
-    ...versionItems.filter(item => archivedVersions.includes(item.version.name)).map(versionItemToLink(false))
+    ...versionItems.filter(item => archivedVersions.includes(item.version.name)).map(versionItemToLink(true))
   ];
 
   // Mobile dropdown is handled a bit differently

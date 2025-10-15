@@ -297,66 +297,6 @@
     "destination": "/docs/runtime_suite_applications/backoffice-on-prem/configuration",
     "addedOn": "2023-05-10"
   },
-  "/docs/release-notes/mia-platform-v10-overview": {
-    "destination": "/docs/10.x/release-notes/mia-platform-v10-overview",
-    "addedOn": "2023-05-10"
-  },
-  "/docs/release-notes/v10.3.0": {
-    "destination": "/docs/10.x/release-notes/v10.3.0",
-    "addedOn": "2023-05-10"
-  },
-  "/docs/release-notes/v10.1.0": {
-    "destination": "/docs/10.x/release-notes/v10.1.0",
-    "addedOn": "2023-05-10"
-  },
-  "/docs/release-notes/v10.1.1": {
-    "destination": "/docs/10.x/release-notes/v10.1.1",
-    "addedOn": "2023-05-10"
-  },
-  "/docs/release-notes/v10.5.0": {
-    "destination": "/docs/10.x/release-notes/v10.5.0",
-    "addedOn": "2023-05-10"
-  },
-  "/docs/release-notes/v10.5.1": {
-    "destination": "/docs/10.x/release-notes/v10.5.1",
-    "addedOn": "2023-05-10"
-  },
-  "/docs/release-notes/v10.6.0": {
-    "destination": "/docs/10.x/release-notes/v10.6.0",
-    "addedOn": "2023-05-10"
-  },
-  "/docs/release-notes/v10.2.0": {
-    "destination": "/docs/10.x/release-notes/v10.2.0",
-    "addedOn": "2023-05-10"
-  },
-  "/docs/release-notes/v10.4.0": {
-    "destination": "/docs/10.x/release-notes/v10.4.0",
-    "addedOn": "2023-05-10"
-  },
-  "/docs/release-notes/v10.9.0": {
-    "destination": "/docs/10.x/release-notes/v10.9.0",
-    "addedOn": "2023-05-10"
-  },
-  "/docs/release-notes/v10.8.0": {
-    "destination": "/docs/10.x/release-notes/v10.8.0",
-    "addedOn": "2023-05-10"
-  },
-  "/docs/release-notes/v10.0.0": {
-    "destination": "/docs/10.x/release-notes/v10.0.0",
-    "addedOn": "2023-05-10"
-  },
-  "/docs/release-notes/v10.7.0": {
-    "destination": "/docs/10.x/release-notes/v10.7.0",
-    "addedOn": "2023-05-10"
-  },
-  "/docs/release-notes/v10.0.1": {
-    "destination": "/docs/10.x/release-notes/v10.0.1",
-    "addedOn": "2023-05-10"
-  },
-  "/docs/release-notes/v10.7.1": {
-    "destination": "/docs/10.x/release-notes/v10.7.1",
-    "addedOn": "2023-05-10"
-  },
   "/docs/development_suite/deploy/deploy": {
     "destination": "/docs/products/console/deploy/deploy",
     "addedOn": "2025-09-11"
@@ -5498,5 +5438,37 @@
   "/docs/runtime-components/plugins/mongezium-cdc/usage": {
     "destination": "/docs/products/fast_data/fast_data_engine_v2/mongezium_cdc/usage",
     "addedOn": "2025-09-23"
+  },
+   "/docs/13.x/release-notes": {
+    "destination": "/release-notes/v13",
+    "addedOn": "2025-10-14"
+  },
+  "/docs/12.x/release-notes": {
+    "destination": "/release-notes/v12",
+    "addedOn": "2025-10-14"
+  },
+   "/docs/13.x/info": {
+    "destination": "/info",
+    "addedOn": "2025-10-14"
+  },
+  "/docs/12.x/info": {
+    "destination": "/info",
+    "addedOn": "2025-10-14"
+  },
+  "/docs/13.x": {
+    "destination": "/docs/13.7.5",
+    "addedOn": "2025-10-14"
+  },
+  "/docs/12.x": {
+    "destination": "/docs/12.4.0",
+    "addedOn": "2025-10-14"
+  },
+  "/docs/release-notes": {
+    "destination": "/release-notes",
+    "addedOn": "2025-10-14"
+  },
+  "/docs/info": {
+    "destination": "/info",
+    "addedOn": "2025-10-14"
   }
 }

@@ -5,12 +5,7 @@ const newVersion = process.argv.slice(-1)[0]
     .replace(/^v/, '');
 let unreleased = fs.readFileSync('./release-note-unreleased.md', {encoding: 'utf8'});
 unreleased = unreleased.replace(/_VERSION_/g, newVersion)
-const desiredMinorFolder = newVersion.split('.').slice(0, -1).join('-')
-const newFolder = `RN_v${desiredMinorFolder}`
-const dir = path.join(__dirname, 'docs', 'release-notes', newFolder)
-if (!fs.existsSync(dir)){
-    fs.mkdirSync(dir, {recursive: true});
-}
-const versionForFileName = newVersion.split('.').join('-').replace(/^v/, '')
-const fileName = `platform_${versionForFileName}_releasenotes.md`
+
+const dir = path.join(__dirname, '..', 'release-notes')
+const fileName = `v${newVersion}.md`
 fs.writeFileSync(path.join(dir, fileName), unreleased)
