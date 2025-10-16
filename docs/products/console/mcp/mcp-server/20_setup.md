@@ -12,7 +12,9 @@ Please also consider that this is available only for projects and companies in t
 
 From version `v14.3.1` of the Mia Platform Console, it is possible to connect to the remote MCP Server from the dedicated endpoint, simplifying the configuration process and requiring only to authenticate at the server startup before to use all the tools and prompts of the official Mia-Platform Console MCP Server.
 
-You can simply use your favourite AI Client (like VS Code, Gemini CLI, Claude Desktop and others) and use the endpoint `https://console.cloud.mia-platform.eu/console-mcp-server/mcp`.
+This will simplify the usage of the MCP Server in your client, by connecting to the latest stable version.
+
+You can add it to your favourite AI Client that supports MCP servers (like VS Code, Gemini CLI, Claude Desktop and others) by creating a new configuration and using the following endpoint: `https://console.cloud.mia-platform.eu/console-mcp-server/mcp`.
 
 ## Using Docker
 
