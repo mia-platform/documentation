@@ -98,7 +98,7 @@
     }
   },
   {
-    "title": "Marketplace",
+    "title": "Runtime Components",
     "icon": "runtime-components",
     "defaultOpen": false,
     "type": "versions",
@@ -120,17 +120,6 @@
           ]
         }
       ],
-      "bugFixes": []
-    }
-  },
-  {
-    "title": "Software Catalog",
-    "icon": "software-catalog",
-    "defaultOpen": false,
-    "type": "versions",
-    "items": {
-      "newFeatures": [],
-      "improvements": [],
       "bugFixes": []
     }
   }
