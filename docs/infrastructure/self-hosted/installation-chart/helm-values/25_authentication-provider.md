@@ -142,14 +142,12 @@ To know more about user synchronization with an Identity Provider, visit the [de
 
 ## Additional Authentication Clients
 
-:::warning
-This feature is **deprecated** and will be removed with v10 of the Mia-Platform Console Installation Chart!
-:::
-
 With the `additionalAuthenticationClients` you can set up more providers by defining a list of object with the following properties:
 
 | Name | Type | Description | Default | Optional |
 |:----:|:----:|:-----------:|:-------:|:--------:|
 | `app` | string | A unique name for the app |  | ❌ |
+| `isWebsiteApp` | boolean | Handle the website session or returns a jwt token in header |  | ❌ |
+| `redirectUrl` | boolean | URL of the redirect during the OAuth2 authentication flow |  | ❌ |
 | `isWebsiteApp` | boolean | Handle the website session or returns a jwt token in header |  | ❌ |
 | `providers` | [array](#supported-authentication-providers) | The providers configuration for authentication |  | ❌ |
