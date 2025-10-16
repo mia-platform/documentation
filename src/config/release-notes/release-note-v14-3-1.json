@@ -11,6 +11,13 @@
           "description": [
             "Users can now access past conversations with the Mia-Assistant through a chat history view, which displays a list of previous chats with automatically generated titles and allows them to be reopened directly from the chat interface."
           ]
+        },
+        {
+          "title": "Remote access to the Mia-Platform Console MCP Server",
+          "description": [
+            "The Mia-Platform Console MCP Server is now accessible remotely, and external AI clients (like Visual Studio Code) can connect to it using the available server endpoint to their configuration.",
+            "This feature improves flexibility by allowing users to communicate and perform operations on their projects using an MCP Server always running and always updated with the latest tools and prompts from the Mia-Platform Console."
+          ]
         }
       ],
       "improvements": [
