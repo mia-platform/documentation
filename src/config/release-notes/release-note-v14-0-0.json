@@ -48,12 +48,12 @@
           "title": "Single View Trigger Generator",
           "description": [
             "The new version `v3.4.1` of the _Single View Trigger Generator_ is available!",
-            "For more information check out the service [changelog](/runtime-components/plugins/single-view-trigger-generator/changelog.md)"
+            "For more information check out the service [changelog](/docs/runtime-components/plugins/single-view-trigger-generator/changelog)"
           ]
         }
       ],
       "bugFixes": [
-        "The service now correctly handles message processing from topics not managed by the control plane, maintaining a resume state and avoiding malfunctioning. For more information check out the service [changelog](/runtime-components/plugins/single-view-trigger-generator/changelog.md)"
+        "The service now correctly handles message processing from topics not managed by the control plane, maintaining a resume state and avoiding malfunctioning. For more information check out the service [changelog](/docs/runtime-components/plugins/single-view-trigger-generator/changelog)"
       ]
     }
   },
@@ -67,9 +67,9 @@
         {
           "title": "MongoDB Connection support in Data Catalog",
           "description": [
-            "[Support for MongoDB](/products/data_catalog/frontend/data_catalog_connections.mdx#mongodb) as a new connection provider has been introduced in Data Catalog. Users can now define a connection string to connect directly to a MongoDB instance. When collections include a MongoDB JSON Schema validation, the agent is able to automatically detect field structures and types.",
+            "[Support for MongoDB](/docs/products/data_catalog/frontend/data_catalog_connections#mongodb) as a new connection provider has been introduced in Data Catalog. Users can now define a connection string to connect directly to a MongoDB instance. When collections include a MongoDB JSON Schema validation, the agent is able to automatically detect field structures and types.",
             "Retrieval of databases and collections can be managed through multiple configuration modes.",
-            "Check the full list of available options in the [official documentation](/products/data_catalog/frontend/data_catalog_connections.mdx#mongodb-databases-settings) to configure the behavior according to your needs."
+            "Check the full list of available options in the [official documentation](/docs/products/data_catalog/frontend/data_catalog_connections#mongodb-databases-settings) to configure the behavior according to your needs."
           ]
         }
       ],
@@ -90,7 +90,7 @@
           "description": [
             "The new version `v1.5.17` of the back-kit library is available!",
             "Added possibility to validate the form content when performing a custom footer action in `bk-dynamic-form-modal` component.",
-            "Refer to back-kit [changelog](/products/microfrontend-composer/back-kit/changelog.md) for finer-grained details of new versions."
+            "Refer to back-kit [changelog](/docs/products/microfrontend-composer/back-kit/changelog) for finer-grained details of new versions."
           ]
         }
       ],
@@ -129,15 +129,7 @@
     "defaultOpen": false,
     "type": "versions",
     "items": {
-      "newFeatures": [
-        {
-          "title": "Real-Time collaboration",
-          "description": [
-            "Questo è il primo paragrafo. Supporta i [link a Google](https://google.com) senza problemi.",
-            "Questo è il secondo paragrafo, creato semplicemente aggiungendo una nuova stringa all'array."
-          ]
-        }
-      ],
+      "newFeatures": [],
       "improvements": [],
       "bugFixes": []
     }

@@ -1,5 +1,8 @@
 const createEditUrl = require("./scripts/createEditUrl");
 const createRedirects = require("./scripts/createRedirects");
+const versionsList = require('./versions.json');
+
+const prodVersion = versionsList[1]
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
@@ -10,12 +13,14 @@ const config = {
     baseUrl: "/",
     organizationName: "Mia-Platform",
     projectName: "Mia-Platform",
-    onBrokenLinks: "throw",
-    onBrokenMarkdownLinks: 'throw',
     onBrokenAnchors: 'ignore',
     themes: ["docusaurus-json-schema-plugin", "@docusaurus/theme-mermaid"],
     markdown: {
         mermaid: true,
+        hooks: {
+          onBrokenMarkdownLinks: "throw",
+          onBrokenMarkdownImages: "throw"
+        }
     },
     themeConfig: {
         prism: {
@@ -135,11 +140,11 @@ const config = {
                     docId: "infrastructure/infrastructure_overview"
                 },
                 {
-                    type: 'doc',
-                    docId: "release-notes/versions",
                     label: "Release Notes",
                     position: "left",
-                    activeBaseRegex: "(docs|docs/\\d.x)/(release-notes|info/(version_policy|bug_policy|support-policy))"
+                    type: "doc",
+                    docId: "versions",
+                    docsPluginId: "release-notes-doc",
                 },
                 {
                     href: "https://makeitapp.atlassian.net/servicedesk/customer/portal/21",
@@ -152,10 +157,19 @@ const config = {
                     label: "Community"
                 },
                 {
-                    type: "docsVersionDropdown",
-                    position: "right",
-                    dropdownItemsBefore: [],
-                    dropdownItemsAfter: []
+                  type: 'custom-CustomArchivedItem',
+                  position: 'right',
+                  dropdownItemsAfter: [
+                      {
+                          type: 'html',
+                          value: '<hr style="margin: 4px 0;">',
+                      },
+                      {
+                          type: 'html',
+                          value: '<b style="margin-left: 8px; font-size: 14px;">Archived versions</b>',
+                      },
+                    ],
+                  archivedVersions: versionsList.filter(v => !prodVersion.includes(v.split('.')[0]))
                 }
             ],
         },
@@ -163,25 +177,26 @@ const config = {
             style: "dark",
             links: [{
                 title: "Mia-Platform",
-                items: [{
+                items: [
+                    {
                     label: "How to install",
-                    to: "/docs/info/how_to_install",
-                },
+                    to: "/info/how_to_install",
+                    },
                     {
                         label: "Bug Policy",
-                        to: "/docs/info/bug_policy",
+                        to: "/release-notes/info/bug_policy",
                     },
                     {
                         label: "Supported browsers",
-                        to: "/docs/info/supported_browser",
+                        to: "/info/supported_browser",
                     },
                     {
                         label: "Open Source Software",
-                        to: "/docs/info/oss",
+                        to: "/info/oss",
                     },
                     {
                         label: "Subprocessor",
-                        to: "/docs/info/subprocessor",
+                        to: "/info/subprocessor",
                     },
                     {
                         label: "Service Level Agreement",
@@ -189,7 +204,7 @@ const config = {
                     },
                     {
                         label: "Audit Process",
-                        to: "/docs/info/audit_process",
+                        to: "/info/audit_process",
                     },
                 ],
             },
@@ -237,7 +252,7 @@ const config = {
                         },
                         {
                             label: "Release Notes",
-                            to: "/docs/release-notes/versions",
+                            to: "/release-notes/versions",
                         },
                     ],
                 },
@@ -300,19 +315,10 @@ const config = {
                 docs: {
                     sidebarPath: './sidebars.js',
                     editUrl: createEditUrl,
-                    lastVersion: "current",
+                    lastVersion: prodVersion,
                     versions: {
                         current: {
-                            label: "14.x",
-                            path: ""
-                        },
-                        "13.x.x": {
-                            label: "13.7",
-                            path: "13.x",
-                        },
-                        "12.x.x": {
-                            label: "12.4",
-                            path: "12.x",
+                          label: "Canary"
                         }
                     },
                     async sidebarItemsGenerator({
@@ -344,6 +350,23 @@ const config = {
         ],
     ],
     plugins: [
+        [
+            '@docusaurus/plugin-content-docs',
+            {
+                id: 'release-notes-doc',
+                path: 'release-notes',
+                routeBasePath: 'release-notes',
+                sidebarPath: './sidebarsReleaseNotes.js',
+            },
+        ],
+        [
+            '@docusaurus/plugin-content-docs',
+            {
+                id: 'info-doc',
+                path: 'info',
+                routeBasePath: 'info',
+            },
+        ],
         [
             "@docusaurus/plugin-client-redirects",
             {

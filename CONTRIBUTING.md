@@ -64,7 +64,9 @@ To contribute to the Mia-Platform docs:
 
 ### Internal Links
 
-Linking a resource to another one inside the documentation is done using the following rules:
+Documentation folders are: `docs/`, `/release-notes` and `info`.
+
+Linking a resource to another one inside the same documentation is done using the following rules:
 
 - Each link must be relative to the /docs/ of the project (including subfolders).
     - e.g. if you want to link to the page `/docs/getting_started/faq.md` you have to write `[FAQ](/getting_started/faq.md)`.
@@ -73,6 +75,17 @@ Linking a resource to another one inside the documentation is done using the fol
     - e.g. if you want to link to the section `#how-to-contribute` of the page `/docs/getting_started/faq.md` you have to write `[How to contribute](/docs/getting_started/faq.md#how-to-contribute)`.
     - e.g. if you want to link an anchor inside the same page you have to write `[How to contribute](#how-to-contribute)`.
 - Linking internal resources using https://docs.mia-platform.eu/ **is NOT allowed**.
+
+
+Linking a resource to another in another documentation, for example from `/release-notes` to `/docs` (or a versioned documentation), is done using the following rules:
+
+- Each link must be relative to the /docs/ or the /versioned_docs/version-x.x.x of the project (including subfolders).
+    - e.g. if you want to link to the page `/docs/getting_started/faq` you have to write `[FAQ](/docs/getting_started/faq)`.
+- If the link is relative to a versioned documentation, instead of writing only `/docs/...`, the version has to be included in the link `/docs/x.x.x/...`.
+  - e.g. if you want to link a page in documentation v13.7.5, you have to write `/docs/13.7.5/...`
+- Links must contain the **id** of the markdown file without the file extension.
+- The link can include an anchor to a specific section of the page.
+    - e.g. if you want to link to the section `#how-to-contribute` of the page `/docs/getting_started/faq` you have to write `[How to contribute](/docs/getting_started/faq#how-to-contribute)`.
 
 An automatic check is performed on each push to verify that the links are correct.
 The check is performed to each file in the /docs/ folder.
@@ -112,84 +125,90 @@ The repo provides a series of content test that must be passed:
       Contains Docusaurus components customized.
 - `docs/`
   Contains markdown documentation page for current version.
+- `release-notes/` Contains the release notes of all versions. Pages are not intendend to be versioned.
+- `info/` Contains the pages under `/info` url. Pages are not intendend to be versioned.
 - `versioned_docs/`
   Contains versioned documentation pages.
     - `versioned_docs/version-5.x.x`
       Contains the files related to v5
 - `versioned_sidebars/`
   Contains versioned sidebars config.
+- `versions.json` contains the list of documentations versions. The first element always represents the preview (next) version of the Console, while the second element corresponds to the current production version.
 
-## Create a new documentation version
+## Documentation releases management
 
-In order to bump a new documentation version you have to follow through this checklist of activities:
+The documentation follows the pattern suggest by Docusaurus: it shows the documentation of each minor release of the current Console major version, the documentation of the Console  version on preview and the documentation of the Console in test. On top of that, we also show the documentation of the old Console major versions.
 
-1. freeze previous version
-1. bump newer version
-1. remove the versioned docs that reached EOL
-1. clear the previous version overview page to create space for the newer one
-1. remove all the previous release notes pages and prepare a single release page for the new version
-1. update homepage banner
-1. update hompage quick links targeting information relevant to the previous version
-1. update version policy page to include the new release support period
+The canary documentation is available at `<base-url>/docs/next/...`, the current documentation is available at `<base-url>/docs/...` while all the other versions, included the next one, are available at `<base-url>/docs/x.x.x/...`.
 
-### Freeze previous version
+The `docs` folder contains **only** the current documentation corresponding to the development environment. Other documentations are available in `versioned_docs` folder.
 
-Each tagged version has a dedicated folder: `versioned_docs/version-<number version>`. To create a new one and freeze the **previous** version run the following command:
+### Release notes
 
-```bash
-yarn run docusaurus docs:version <x.x.x>
+Release notes are inside `release-notes` folder and are excluded from the documentation versioning. First folder children are the current major releases release notes related files while older major releases related files are inside the corresponding major folder, like `v12` or `v13`. 
+
+To create a new release note, run the related script with `yarn release-note <version>`.
+
+The script:
+1. creates a new file with the name of the new version, i.e. `v14.5.8`, in the `release-notes/` folder. This file contains the complete release notes for the version.
+2.  creates a new file in `src/config/release-notes`. This file creates an accordion-summary for the release note page, see [accordion component](#accordion-component) for more information.
+   
+Then, manually add the sidebar element corresponding to the new release note in `sidebarsReleaseNotes.js` file.
+
+If the new release note corresponds to the next version, all links must use the `/docs/next/...` path.
+
+### Create a new documentation version for the current major
+
+To create a new documentation version, execute:
+
+```
+yarn create-version <version> 
 ```
 
-> [!IMPORTANT]
-> Do not include the `v` in the target version!
-> e.g.: if you need to create the docs for v100 you will have to freeze v99, therefore run
->
-> ```bash
-> $ yarn run docusaurus docs:version 99.x.x
-> ```
+The command:
+1. checks that the version does not exists in `versions.json`.
+2. runs `yarn docusaurus docs:version <version>`, so that the content in `docs/` is copied in the new folder `versioned_docs/version-<version>`, `version_sidebars/version-<version>-sidebars` is created and `vesions.json` is updated.
+3. updates the links in the release notes of the canary, next and current version.
+4. deletes the oldest patch version if the next version is a patch of the current version.
 
-### Bump new version
+Then, manually update version policy page to include the new release support period.
 
-There is no need to **tag the new version**, however you have update the `docusaurus.config.js` file in order to support the newer version. The property to edit is `presets."@docusaurus/preset-classic".versions`:
+### Delete a documentation version
 
-<details>
-<summary>docusaurus.config.js example</summary>
+To delete a documentation version, execute:
 
-```js
-  presets: [
-    [
-      "@docusaurus/preset-classic",
-      {
-        docs: {
-          ...
-          lastVersion: "current",
-          versions: {
-            current: {
-              label: "100.x (Current)",
-              path: "",
-              banner: "none"
-            },
-            "99.x.x": {
-              label: "99.9.x",
-              path: "99.x",
-            },
-            "98.x.x": {
-              label: "98.8.x",
-              path: "98.x",
-            },
-          },
-        }
-      }
-    ]
-  ]
+```
+yarn delete-version <version> 
 ```
 
-</details>
+It deletes the corresponding versioned documentation and sidebar, and updates the `versions.json` file by removing the version.
 
-<br>
+>[!WARNING]
+> After deleting a version, related links in other documentations will be broken. Replace them with the new working links and add redirects in `301redirects.json` file if needed.
 
-> [!TIP]
-> Check out the [docusaurus official doc](https://v2.docusaurus.io/docs/versioning/) for more information.
+
+### Create a new documentation major
+
+Creating a new documentation must be done with a lot of attention.
+
+Steps for the documentation only:
+1. Delete all the documentations and keep only the latest version of the old major.
+2. Delete all the sidebar of the deleted documentations.
+3. Check all links and eventually add redirects.
+
+Steps for the release notes:
+1. create a new folder in `release-notes` with the name of the current major and the soon-to-be old major (e.g. `v13`).
+2. move all vx.x.x release note files in the new folder.
+3. move `versions.md` file and create a new one with the same name.
+4. move the `release-notes/img` folder in the new folder and create a new `release-notes/img` folder.
+5. update all release notes links inside the new folder files in order to work with the only documentation version for that major.
+6. fix the urls in `sidebarsReleaseNotes.js` file and create a new category for the new major.
+7. in `release-notes`, create `mia-platform-v<version-major>.mdx` file.
+
+Other steps not to forget:
+1. update links in the homepage related to `view roadmap` and `view release note` to point to the new major links.
+2. update homepage banner
+3. update version policy page to include the new release support period
 
 ## Documentations pages
 
@@ -319,14 +338,11 @@ The links defined in the `a` properties link the main item menu to a single **si
 ```
 
 - To add an item linked to  page  you have to add an object with `"type": "doc"` and the property `"id"` valued with the final id of the page.
-
 - To create a sub-element that contains other elements you have to add an object with `"type": "category"` and the property `"label"` valued with the label of the item.
 
 #### Repository deploy rules
 
-All changes pushed to the branch `main` trigger a pipeline that will deploy the docs site on [https://next.docs.mia-platform.eu/](https://next.docs.mia-platform.eu/). So you can see the changes before carrying over to the main site.
-
-To carry over the changes on the main site [https://docs.mia-platform.eu/](https://docs.mia-platform.eu/), you have to tag a new version here on GitHub.
+All changes pushed to the branch `main` trigger a pipeline that will deploy the docs site on [https://docs.mia-platform.eu/](https://docs.mia-platform.eu/).
 
 ## Fork
 
@@ -504,7 +520,10 @@ Here is a look at the incredible features we are developing for you.
 
 ### Useful References
 
-* **Creating a Link**: In any `description` or `bugFixes` field, you can create a link using the syntax `[Link Text](https://website.com)`.
+* **Creating a Link**: In any `description` or `bugFixes` field, you can create a link using the syntax `[Link Text](https://website.com), for internal link use /docs/path/to/the/file/file_id (please note, start with /docs and end with the file's id!`.
+* **Making Text Bold**: In any  `description` or `bugFixes` field, you can make text bold using the syntax **Your Text**.
+* **Highlighting with Italic**: In any  `description` or `bugFixes` field, you can italicize text using the syntax _Your Text_.
+* **Formatting as Code**: In any  `description` or `bugFixes` field, you can format text as inline code using the syntax `Your Text`.
 * **New Paragraphs**: To create a new paragraph in a `description`, simply add a new line of text in quotes. Example: `"description": ["First paragraph.", "Second paragraph."]`
 * **Available Icons**: You can use any of the following names in the `"icon"` field:
   * `console`
@@ -643,4 +662,51 @@ import ganttData from '@site/src/config/version_roadmap.json';
 ## Version Table
 
 <GanttChart config={ganttData} renderAs="table" />
+```
+
+## Changelog component
+
+The `Changelog` component creates a styled timeline from standard Markdown. It's a "wrapper" component—you write your content normally and simply wrap it with the `<Changelog />` tags to apply the special formatting.
+
+The component automatically handles the timeline, icons, date placement, and adds each release to the page's table of contents.
+
+---
+
+### Complete Example
+
+Here is a full example of a `release-notes.mdx` page. You can copy this entire block and modify the content inside the `<Changelog>` tags.
+
+The structure for each entry is a Level 2 Heading (`##`) for the title, followed by the date in italics (`*...*`), and then any content you need. Use a horizontal rule (`---`) to separate entries.
+
+```mdx
+---
+id: versions
+title: Mia-Platform release notes
+sidebar_label: Mia-Platform release notes
+---
+
+import Changelog from '@site/src/components/Changelog';
+
+# Version History
+
+Stay up to date on all the new features and improvements to the platform.
+
+<Changelog>
+
+  ## [v14.2.1](/docs/release-notes/v14.2.1)
+  *September 18, 2025*
+
+  This version introduces stability improvements and fixes several important bugs.
+  - Fixed a rendering issue in the admin panel.
+  - Improved image loading speed by 20%.
+
+  ---
+
+   ## [v14.2.0](/docs/release-notes/v14.2.0)
+  *September 4, 2025*
+
+  Introducing a new analytics dashboard with real-time interactive charts.
+  ![New Dashboard](/img/accordions/new_dashboard.png)
+
+</Changelog>
 ```

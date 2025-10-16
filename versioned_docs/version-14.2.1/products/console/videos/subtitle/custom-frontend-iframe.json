@@ -1,0 +1,70 @@
+{
+  "videoId": "KApjZrvQ8cU",
+  "subtitles": [
+    {
+      "startTimeString": "00:00:01,200",
+      "endTimeString": "00:00:06,200 ",
+      "text": "Hi everyone and welcome to the Mia-Platform tutorials. Today we're going to take a look at"
+    },
+    {
+      "startTimeString": "00:00:06,200",
+      "endTimeString": "00:00:13,560 ",
+      "text": "Custom frontend as an IFrame. What is an IFrame? An IFrame is a simple way to embed a web page or"
+    },
+    {
+      "startTimeString": "00:00:13,560",
+      "endTimeString": "00:00:19,960 ",
+      "text": "a web component in another web page or another web component. The most common use of an IFrame is to"
+    },
+    {
+      "startTimeString": "00:00:19,960",
+      "endTimeString": "00:00:26,240 ",
+      "text": "load content from another page into another site within the page. The child site can load its own"
+    },
+    {
+      "startTimeString": "00:00:26,240",
+      "endTimeString": "00:00:32,240 ",
+      "text": "content and cookies so sites may allow it where they don't allow direct hot linking content. Using"
+    },
+    {
+      "startTimeString": "00:00:32,240",
+      "endTimeString": "00:00:45,160 ",
+      "text": "an IFrame is the accepted way to embed a YouTube video or a Google Maps content into your web page. We brought this concept to our Mia-Platform Console. Since our Console is a tool born to embed"
+    },
+    {
+      "startTimeString": "00:00:45,160",
+      "endTimeString": "00:00:57,000 ",
+      "text": "other Cloud Native tools, we have an interface where you can configure more advanced features and our users can directly access a different interface within the console. For this example,"
+    },
+    {
+      "startTimeString": "00:00:57,000",
+      "endTimeString": "00:01:07,200 ",
+      "text": "let's imagine that you are someone who uses Backstage and the Mia-Platform Console on a regular working day. In this video we will enter the Core Enterprise Platform section in our"
+    },
+    {
+      "startTimeString": "00:01:07,200",
+      "endTimeString": "00:01:13,880 ",
+      "text": "companies and we will go to the Backstage icon. As you can see, here you have the Mia-Platform demo"
+    },
+    {
+      "startTimeString": "00:01:13,880",
+      "endTimeString": "00:01:19,360 ",
+      "text": "Backstage app within the Mia-Platform Console itself. Here you can enter as a guest user and"
+    },
+    {
+      "startTimeString": "00:01:19,360",
+      "endTimeString": "00:01:24,960 ",
+      "text": "carry out with your proceedings. As you can see this is a super easy way for you to integrate"
+    },
+    {
+      "startTimeString": "00:01:24,960",
+      "endTimeString": "00:01:30,640 ",
+      "text": "another web page into the Mia-Platform Console. We hope this was helpful and as always if you have"
+    },
+    {
+      "startTimeString": "00:01:30,640",
+      "endTimeString": "00:01:41,320 ",
+      "text": "any questions feel free to reach out to us or book a demo on the Mia-Platform website. Thank you!"
+    }
+  ]
+}

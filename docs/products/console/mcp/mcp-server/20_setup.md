@@ -31,6 +31,10 @@ You can add it to your favourite AI Client that supports MCP servers (like VS Co
 Authentication to the Console MCP Server via OAuth2 flow is available from the v1.2.0 of the Console MPC Server, and replaces the possibility to use the access token locally stored in [`miactl`][miactl].
 :::
 
+:::important
+When using Service Account session, the host you provide to the MCP Server **MUST** be the exact same as the one
+you created the Service Account in, including scheme and any possible trailing slash.
+:::
 
 ### VS Code
 
@@ -71,42 +75,40 @@ This is the configuration if you are using a predefined Service Account.
 
 ```json
 {
-  "mcp": {
-    "inputs": [
-      {
-        "type": "promptString",
-        "id": "mia_client_id",
-        "description": "Mia-Platform Client ID",
-        "password": false
-      },
-      {
-        "type": "promptString",
-        "id": "mia_client_secret",
-        "description": "Mia-Platform Client Secret",
-        "password": true
-      }
-    ],
-    "servers": {
-      "mia-platform-console": {
-        "command": "docker",
-        "args": [
-          "run",
-          "-i",
-          "--rm",
-          "-e",
-          "MIA_PLATFORM_CLIENT_ID",
-          "-e",
-          "MIA_PLATFORM_CLIENT_SECRET",
-          "ghcr.io/mia-platform/console-mcp-server",
-          "mcp-server",
-          "start",
-          "--stdio",
-          "--host=https://console.cloud.mia-platform.eu"
-        ],
-        "env": {
-          "MIA_PLATFORM_CLIENT_ID": "${input:mia_client_id}",
-          "MIA_PLATFORM_CLIENT_SECRET": "${input:mia_client_secret}"
-        }
+  "inputs": [
+    {
+      "type": "promptString",
+      "id": "mia_client_id",
+      "description": "Mia-Platform Client ID",
+      "password": false
+    },
+    {
+      "type": "promptString",
+      "id": "mia_client_secret",
+      "description": "Mia-Platform Client Secret",
+      "password": true
+    }
+  ],
+  "servers": {
+    "mia-platform-console": {
+      "command": "docker",
+      "args": [
+        "run",
+        "-i",
+        "--rm",
+        "-e",
+        "MIA_PLATFORM_CLIENT_ID",
+        "-e",
+        "MIA_PLATFORM_CLIENT_SECRET",
+        "ghcr.io/mia-platform/console-mcp-server",
+        "mcp-server",
+        "start",
+        "--stdio",
+        "--host=https://console.cloud.mia-platform.eu"
+      ],
+      "env": {
+        "MIA_PLATFORM_CLIENT_ID": "${input:mia_client_id}",
+        "MIA_PLATFORM_CLIENT_SECRET": "${input:mia_client_secret}"
       }
     }
   }

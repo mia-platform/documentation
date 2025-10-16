@@ -1,0 +1,42 @@
+[
+  {
+    "title": "Console",
+    "icon": "console",
+    "defaultOpen": false,
+    "type": "versions",
+    "items": {
+      "newFeatures": [],
+      "improvements": [
+        {
+          "title": "Improved visibility of production environments status",
+          "description": [
+            "We’ve enhanced the way production environment information is displayed on the new Projects list: the **status of your production environment** is now directly visible from the **Projects table**.",
+            "This gives you an immediate overview of any issues or confirmations about the health of your production environments when looking at your Company's Projects."
+          ]
+        }
+      ],
+      "bugFixes": []
+    }
+  },
+  {
+    "title": "Fast Data",
+    "icon": "fast-data",
+    "defaultOpen": false,
+    "type": "versions",
+    "items": {
+      "newFeatures": [
+        {
+        "title": "Single View Trigger Generator",
+        "description": [
+          "The new version `v3.5.0` of the _Single View Trigger Generator_ is available!",
+          "For more information check out the service [changelog](/docs/runtime-components/plugins/single-view-trigger-generator/changelog)."
+        ]
+      }
+      ],
+      "improvements": [],
+      "bugFixes": [
+        "The service now correctly supports the `null` condition in ER-Schema. Previously, such condition, if present in the ER-Schema, would cause an error when loading a strategy."
+      ]
+    }
+  }
+]
