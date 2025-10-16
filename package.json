@@ -8,7 +8,8 @@
     "docusaurus": "docusaurus",
     "start": "docusaurus start",
     "build": "yarn build-redirects && USE_SIMPLE_CSS_MINIFIER=true docusaurus build",
-    "docs:version": "docusaurus docs:version",
+    "create-version": "tsx ./scripts/create-version.ts",
+    "delete-version": "tsx ./scripts/delete-version.ts",
     "swizzle": "docusaurus swizzle",
     "deploy": "docusaurus deploy",
     "clear": "docusaurus clear",
@@ -40,7 +41,9 @@
     "prism-react-renderer": "^2.3.0",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
-    "react-youtube": "^10.1.0"
+    "react-youtube": "^10.1.0",
+    "tsx": "^4.20.6",
+    "typescript-eslint": "^8.46.1"
   },
   "devDependencies": {
     "@babel/eslint-parser": "^7.28.4",
@@ -53,7 +56,8 @@
     "glob": "^11.0.3",
     "gray-matter": "^4.0.3",
     "prettier": "3.6.2",
-    "prompts": "^2.4.2"
+    "prompts": "^2.4.2",
+    "typescript": "^5.9.3"
   },
   "overrides": {
     "marked": "15.0.12"
