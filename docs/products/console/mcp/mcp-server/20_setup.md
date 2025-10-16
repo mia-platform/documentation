@@ -14,7 +14,7 @@ From version `v14.3.1` of the Mia Platform Console, it is possible to connect to
 
 This will simplify the usage of the MCP Server in your client, by connecting to the latest stable version.
 
-You can add it to your favourite AI Client that supports MCP servers (like VS Code, Gemini CLI, Claude Desktop and others) by creating a new configuration and using the following endpoint: `https://console.cloud.mia-platform.eu/console-mcp-server/mcp`.
+You can add it to your favorite AI Client that supports MCP servers (like VS Code, Gemini CLI, Claude Desktop and others) by creating a new configuration and using the following endpoint: `https://console.cloud.mia-platform.eu/console-mcp-server/mcp`.
 
 ## Using Docker
 
