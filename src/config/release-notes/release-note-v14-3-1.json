@@ -2,11 +2,28 @@
   {
     "title": "Console",
     "icon": "console",
-    "defaultOpen": false,
+    "defaultOpen": true,
     "type": "versions",
     "items": {
-      "newFeatures": [],
-      "improvements": []
+      "newFeatures": [
+        {
+          "title": "Introduced Chat History for Mia-Assistant",
+          "description": [
+            "Users can now access past conversations with the Mia-Assistant through a chat history view, which displays a list of previous chats with automatically generated titles and allows them to be reopened directly from the chat interface."
+          ]
+        }
+      ],
+      "improvements": [
+        {
+          "title": "UX/UI Improvements of Projects List",
+          "description": [
+            "The Projects list now includes the project creation date, supports sorting by name and creation date, and firstly displays the Favorites tab by default."
+          ]
+        }
+      ],
+      "bugFixes": [
+        "We resolved an issue where clicking on the Mia-Platform Console logo caused an infinite loading state instead of redirecting the user to the list of their companies."
+      ]
     }
   }
 ]

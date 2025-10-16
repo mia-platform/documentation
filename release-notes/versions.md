@@ -9,6 +9,15 @@ import Changelog from '@site/src/components/Changelog';
 
 <Changelog>
 
+## [v14.3.1](/release-notes/v14.3.0.mdx)
+*October 16th, 2025*
+
+This release introduces **chat history support** for Mia-Assistant, enhances the usability of the **Projects list** with sorting options and a default Favorites tab, and fixes a **navigation issue** when clicking the Console logo.
+
+[Read the release notes](/release-notes/v14.3.1.mdx)
+
+---
+
 ## [v14.3.0](/release-notes/v14.3.0.mdx)
 *October 2nd, 2025*
 
