@@ -46,9 +46,10 @@ const updateReleaseNoteLinks = (rnVersion: string, oldLink: string, newLink: str
  *    13.2.1
  */
 const main = async () => {
-  console.log('Create version script');
-  
+ 
   const newVersion = process.argv.slice(-1)[0]?.replace(/^v/, '')
+  console.log('Creating new version: ', newVersion);
+
   if (!newVersion || !newVersion.match(semVerRegex)) {
     console.error('Version not provided or does not follow semver. Usage: yarn create-version <new-version>')
     process.exit(1)
@@ -65,9 +66,6 @@ const main = async () => {
     console.error(`Error executing "docusaurus docs:version"`, error);
   }
 
-  // CANARY /docs/next - not in versions.json
-  // NEXT /docs/x.x.x
-  // PROD /docs/
   const versionsFileContent = fs.readFileSync(`${root}/versions.json`, { encoding: 'utf8', flag: 'r' })
   const updatedVersions = JSON.parse(versionsFileContent)
   const prevNextVersion = updatedVersions[1]
