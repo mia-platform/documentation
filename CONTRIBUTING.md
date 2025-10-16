@@ -133,7 +133,7 @@ The repo provides a series of content test that must be passed:
       Contains the files related to v5
 - `versioned_sidebars/`
   Contains versioned sidebars config.
-- `versions.json` contains the list of documentations versions. The first element always represents the preview (canary) version of the Console, while the second element corresponds to the current production version.
+- `versions.json` contains the list of documentations versions. The first element always represents the preview (next) version of the Console, while the second element corresponds to the current production version.
 
 ## Documentation releases management
 
