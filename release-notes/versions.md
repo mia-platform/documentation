@@ -12,14 +12,14 @@ import Changelog from '@site/src/components/Changelog';
 ## [v14.3.1](/release-notes/v14.3.1.mdx)
 *October 16th, 2025*
 
-This release introduces **chat history support** for Mia-Assistant, enhances the usability of the **Projects list** with sorting options and a default Favorites tab, and fixes a **navigation issue** when clicking the Console logo.
+This release introduces the **Chat history** for Mia-Assistant, enables **remote access** to the Mia-Platform Console MCP Server from external tools, and brings **usability improvements** to the Projects list page. For Microfrontend Composer, there is a back-kit update and a fix for table rendering issues.
 
 [Read the release notes](/release-notes/v14.3.1.mdx)
 
 ---
 
 ## [v14.3.0](/release-notes/v14.3.0.mdx)
-*October 2nd, 2025*
+*October 16th, 2025*
 
 This release introduces the **Fast Data Engine 2.0**, a new suite of workloads designed to build highly scalable and efficient real-time pipelines, delivering **up to 10x performance improvements** in data aggregation. Management of the **Software Catalog** is also significantly enhanced, with new features for organizing and enriching items, including support for **maintainers and labels**, and the ability to **map relationships** between components. This update is rounded out by other minor improvements to increase overall Console stability.
 
