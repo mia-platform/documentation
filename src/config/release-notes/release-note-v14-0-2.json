@@ -64,7 +64,7 @@
     }
   },
   {
-    "title": "Marketplace",
+    "title": "Runtime Components",
     "icon": "runtime-components",
     "defaultOpen": false,
     "type": "versions",

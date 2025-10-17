@@ -17,12 +17,12 @@
         {
           "title": "More insights on production environments from the Projects table",
           "description": [
-            "We resolved an issue that occurred in a specific scenario: when a ConfigMap was deleted and immediately recreated with the same name, the Console could fail to save the change correctly, causing configuration corruption. This configuration can then only be restored using a previous snapshot, which is possible within the [dedicated Revision History modal](/docs/products/console/set-up-infrastructure/revisions-and-versions#revision-history). This fix has been implemented also on _Console Helm Chart_ `v14.2.2-0`."
+            "We've enriched the Projects list to provide quick access to key production metrics. Now, by simply hovering over a tooltip near the production environment's name, you can instantly see its last deploy time, along with its current CPU and memory usage. This enhancement gives you a faster and easier way to monitor the health and status of your production environments directly from the Projects table."
           ]
         }
       ],
       "bugFixes": [
-        "We resolved an issue that occurred in a specific scenario: when a ConfigMap was deleted and immediately recreated with the same name, the Console could fail to save the change correctly, causing configuration corruption. This configuration can then only be restored using a previous snapshot, which is possible within the [dedicated Revision History modal](/docs/products/console/set-up-infrastructure/revisions-and-versions#revision-history). This fix has been implemented also on _Console Helm Chart_ `v15.0.3-beta.2`."
+        "We resolved an issue that occurred in a specific scenario: when a ConfigMap was deleted and immediately recreated with the same name, the Console could fail to save the change correctly, causing configuration corruption. This configuration can then only be restored using a previous snapshot, which is possible within the [dedicated Revision History modal](/docs/products/console/set-up-infrastructure/revisions-and-versions#revision-history). This fix has been implemented also on _Console Helm Chart_ `v15.0.0-0`."
       ]
     }
   }

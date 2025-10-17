@@ -16,7 +16,7 @@
     "serve": "docusaurus serve",
     "lint": "eslint --ext js .",
     "spellcheck": "npx cspell './docs/**'",
-    "release-note": "node ./scripts/new-release-note.js",
+    "release-note": "node ./scripts/release-notes/new-release-note.js",
     "check-content": "node ./scripts/validate-links.js && node ./scripts/check-content.js",
     "validate-links": "node ./scripts/validate-links.js",
     "build-redirects": "node ./scripts/build-permanent-redirects.js",
