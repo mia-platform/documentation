@@ -316,6 +316,11 @@ const config = {
                     sidebarPath: './sidebars.js',
                     editUrl: createEditUrl,
                     lastVersion: prodVersion,
+                    versions: {
+                        current: {
+                          label: "Canary"
+                        }
+                    },
                     async sidebarItemsGenerator({
                                                     isCategoryIndex: defaultCategoryIndexMatcher,
                                                     defaultSidebarItemsGenerator,
