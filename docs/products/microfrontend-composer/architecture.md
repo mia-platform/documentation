@@ -10,7 +10,7 @@ The following sections are intended to give the reader a general idea of the act
 
 ## How Microfrontend Composer is served
 
-![Architecture](img/architecture.svg)
+![Architecture](img/architecture.png)
 
 Being composed at runtime, Mia-Platform Microfrontend Composer needs a couple of configuration files to build your frontend application. These files can be easily generated using the low-code/no-code configurator provided by the Console, and then served through a microservice called [Middleware](https://micro-lc.io/add-ons/backend/middleware) that acts both as web server and configurations provider for the Microfrontend Composer. 
 
@@ -22,7 +22,7 @@ The service can be easily deployed using one of two [marketplace applications](/
 
 At runtime the Microfrontend Composer uses the [configuration files](#how-microfrontend-composer-is-served) to structure the desired frontend application, which in turn needs to fetch resources and create connections to populate its pages.
 
-![Page composition](img/page-composition.svg)
+![Page composition](img/page-composition.png)
 
 In pages composed by Web Components the custom elements have to be sourced remotely, for example from a CDN or a web server. Either way, the components are used by the underlying engine (i.e., [micro-lc](https://micro-lc.io/docs)) to build the pages following the blueprints provided by configuration files. 
 
