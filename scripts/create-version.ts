@@ -7,22 +7,32 @@ const versions = require('../versions.json')
 
 const root = process.cwd()
 
-const updateReleaseNoteLinks = (rnVersion: string, oldLink: string, newLink: string) => {
+const updateLinks = (filePath: string, oldLink: string, newLink: string) => {
+  console.log(`Updating links in ${filePath} from ${oldLink} to ${newLink}`)
   
-  let filePath = `${root}/release-notes/v${rnVersion}.md`
-  if(!fs.existsSync(filePath)) {
-    filePath += 'x'
-    if(!fs.existsSync(filePath)) {
-      console.log(`Warning: release note file for version ${rnVersion} not found`)
-      return
-    }
-  }
-  
-  console.log(`Updating release note links in ${filePath} from ${oldLink} to ${newLink}`)
   const releaseNote = fs.readFileSync(filePath, { encoding: 'utf8', flag: 'r' })
   const updatedReleaseNotes = releaseNote.replaceAll(oldLink, newLink)
 
   fs.writeFileSync(filePath, updatedReleaseNotes)
+}
+
+const updateReleaseNoteLinks = (rnVersion: string, oldLink: string, newLink: string) => {
+  let releaseNoteFilePath = `${root}/release-notes/v${rnVersion}.md`
+  if(!fs.existsSync(releaseNoteFilePath)) {
+    releaseNoteFilePath += 'x'
+    if(!fs.existsSync(releaseNoteFilePath)) {
+      console.log(`Warning: release note file for version ${rnVersion} not found`)
+      return
+    }
+  }
+  updateLinks(releaseNoteFilePath, oldLink, newLink)
+  
+  const releaseNoteAccordionFilePath = `${root}/src/config/release-notes/release-note-v${rnVersion.replaceAll('.', '-')}.json`
+  if(!fs.existsSync(releaseNoteAccordionFilePath)) {
+    console.log(`Warning: release note accordion config file for version ${rnVersion} not found`)
+    return
+  }
+  updateLinks(releaseNoteAccordionFilePath, oldLink, newLink)
 }
 
 
