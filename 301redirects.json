@@ -5439,36 +5439,36 @@
     "destination": "/docs/products/fast_data/fast_data_engine_v2/mongezium_cdc/usage",
     "addedOn": "2025-09-23"
   },
-   "/docs/13.x/release-notes": {
-    "destination": "/release-notes/v13",
+   "/docs/13.x/release-notes/(.*)": {
+    "destination": "/release-notes/v13/$1",
     "addedOn": "2025-10-14"
   },
-  "/docs/12.x/release-notes": {
-    "destination": "/release-notes/v12",
+  "/docs/12.x/release-notes/(.*)": {
+    "destination": "/release-notes/v12/$1",
     "addedOn": "2025-10-14"
   },
-   "/docs/13.x/info": {
-    "destination": "/info",
+   "/docs/13.x/info/(.*)": {
+    "destination": "/info/$1",
     "addedOn": "2025-10-14"
   },
-  "/docs/12.x/info": {
-    "destination": "/info",
+  "/docs/12.x/info/(.*)": {
+    "destination": "/info/$1",
     "addedOn": "2025-10-14"
   },
-  "/docs/13.x": {
-    "destination": "/docs/13.7.5",
+  "/docs/13.x/(.*)": {
+    "destination": "/docs/13.7.5/$1",
     "addedOn": "2025-10-14"
   },
-  "/docs/12.x": {
-    "destination": "/docs/12.4.0",
+  "/docs/12.x/(.*)": {
+    "destination": "/docs/12.4.0/$1",
     "addedOn": "2025-10-14"
   },
-  "/docs/release-notes": {
-    "destination": "/release-notes",
+  "/docs/release-notes/(.*)": {
+    "destination": "/release-notes/$1",
     "addedOn": "2025-10-14"
   },
-  "/docs/info": {
-    "destination": "/info",
+  "/docs/info/(.*)": {
+    "destination": "/info/$1",
     "addedOn": "2025-10-14"
   }
 }

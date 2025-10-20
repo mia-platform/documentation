@@ -4,6 +4,12 @@ title: CHANGELOG
 sidebar_label: CHANGELOG
 ---
 
+## [1.5.21] - 2025-10-10
+
+### Fixed
+
+- Fixed table loops when switching from data tab to empty tab
+  
 ## [1.5.20] - 2025-07-18
 
 ### Fixed
