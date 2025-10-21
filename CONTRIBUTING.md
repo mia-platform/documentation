@@ -161,11 +161,12 @@ If the new release note corresponds to the next version, all links must use the 
 
 To create a new documentation version, execute:
 
-```
+```sh
 yarn create-version <version> 
 ```
 
 The command:
+
 1. checks that the version does not exists in `versions.json`.
 2. runs `yarn docusaurus docs:version <version>`, so that the content in `docs/` is copied in the new folder `versioned_docs/version-<version>`, `version_sidebars/version-<version>-sidebars` is created and `vesions.json` is updated.
 3. updates the links in the release notes of the canary, next and current version.
@@ -173,11 +174,14 @@ The command:
 
 Then, manually update version policy page to include the new release support period.
 
+> [!WARNING]
+> After creating a new documentation version remember to **tag the repository** to [trigger](./.github/workflows/generate-embeddings.yml) Mia-Platform Assistant embeddings generaion. Use the documentation version as tag version.
+
 ### Delete a documentation version
 
 To delete a documentation version, execute:
 
-```
+```sh
 yarn delete-version <version> 
 ```
 
@@ -185,7 +189,6 @@ It deletes the corresponding versioned documentation and sidebar, and updates th
 
 >[!WARNING]
 > After deleting a version, related links in other documentations will be broken. Replace them with the new working links and add redirects in `301redirects.json` file if needed.
-
 
 ### Create a new documentation major
 
@@ -352,14 +355,13 @@ All contribution which could improve the existent code base are welcome!
 To keep a fork up to date, you can follow this [GitHub guide](https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/syncing-a-fork).
 For all the information about forks, [see this link](https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/working-with-forks).
 
-
 ## Accordion component
 
 To create or update an accordion section, you will always follow these three steps:
 
-1.  **✍️ Write the Content**: You will create a special text file (called a JSON file) where you'll enter all the titles, descriptions, and other information.
-2.  **🖼️ Upload Images**: If your section needs images, you will upload them to a specific folder.
-3.  **📍 Add to the Page**: You will insert a short snippet of code into your `.mdx` page to tell the system to display the content you've prepared.
+1. **✍️ Write the Content**: You will create a special text file (called a JSON file) where you'll enter all the titles, descriptions, and other information.
+2. **🖼️ Upload Images**: If your section needs images, you will upload them to a specific folder.
+3. **📍 Add to the Page**: You will insert a short snippet of code into your `.mdx` page to tell the system to display the content you've prepared.
 
 ---
 

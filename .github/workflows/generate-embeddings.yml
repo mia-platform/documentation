@@ -1,11 +1,16 @@
 name: "Generate Embeddings"
 
 on:
+  push:
+    tags:
+      - "v*"
   workflow_dispatch:
 
 jobs:
   generate-embeddings:
     runs-on: ubuntu-latest
+    env:
+      DOCUMENTATION_VERSION: ${{ github.event_name == 'push' && github.ref_name || '' }}
     steps:
       - uses: eic/trigger-gitlab-ci@v3
         with:
@@ -14,4 +19,5 @@ jobs:
           token: ${{ secrets.MIA_ASSISTANT_GITLAB_TOKEN }}
           variables: |
             GENERATE_EMBEDDINGS=true
+            DOCUMENTATION_VERSION=${{ env.DOCUMENTATION_VERSION }}
           ref_name: master

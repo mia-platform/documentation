@@ -3,15 +3,9 @@ on:
   push:
     branches:
       - "main"
-      - "preview"
-      - "prod"
-    tags:
-      - "*"
   pull_request:
     branches:
       - "main"
-      - "preview"
-      - "prod"
 
 jobs:
   install:
