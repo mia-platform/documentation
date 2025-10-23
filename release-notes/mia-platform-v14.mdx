@@ -16,7 +16,59 @@ export const Highlight = ({children, color}) => (
   </span>
 );
 
-# Welcome to Mia-Platform v14!
+export const Tag = ({children, color}) => (
+  <span
+    style={{
+      backgroundColor: color,
+      borderRadius: '8px',
+      color: '#fff',
+      padding: '0.3rem',
+    }}>
+    {children}
+  </span>
+);
+
+## Mia-Platform v14 Fall Edition
+#### The speed of Power. The confidence of Control
+
+This release brings powerful new capabilities designed to help teams build, operate, and govern data products with greater **power** and **control**.
+From a next-generation Fast Data engine that boosts performances, to expanded catalog features that enhance governance and flexibility.
+
+### Fast Data Engine 2.0
+
+**Fast Data Engine 2.0** introduces a new suite of workloads that redefine how real-time data pipelines are built and optimized.
+- *Stream Processor* enables advanced and secure real-time data transformation, supporting both stateless and stateful processing for complex business logic.
+- *Farm Data* powers high-performance aggregation across multiple data streams, forming the core of modern data products
+- *Kango* provides seamless persistence from Kafka topics to MongoDB collections.
+
+Experience up to **10× faster aggregation performance**, unlocking scalable and efficient Fast Data pipelines for even the most demanding workloads.
+Discover all the benefits of Fast Data Engine 2.0 in the [official documentation].
+
+### Excel Plugin – coming soon
+A new Excel integration designed to bring data products directly where users work every day. (More details to follow in upcoming updates.)
+
+### Enhanced Software Catalog
+
+The Software Catalog now supports **custom item types**, extending beyond predefined entities to model internal tools, components, or processes in a unified way.
+Custom items can be registered, organized, and documented like any other catalog entry — offering greater flexibility in representing your software ecosystem.
+
+![Item Type Definition](img/item-type-definition.png)
+
+New catalog management capabilities include:
+- Adding *maintainers*, *useful links*, *labels*, and *annotations* to items.
+- Mapping *relationships* between existing and custom entities.
+
+These improvements provide a more powerful and adaptable catalog experience, enabling consistent governance across all your software assets.
+
+### Manage Projects locally with miactl
+
+The miactl CLI now lets you manage Project configurations locally with the new `describe` and `apply` commands — export, edit, and reapply changes seamlessly for easier troubleshooting misconfiguration, migration, and reuse.
+
+Refer to the [documentation](/docs/14.2.1/products/console/api-console/api-design/miactl-commands) for more details.
+
+---
+
+## Welcome to Mia-Platform v14!
 
 ## AI Native DevX
 
@@ -150,7 +202,9 @@ To explore all the new features and learn how to manage Software Catalog items, 
 
 The Marketplace APIs have been optimized and are now officially published on the API portal, ensuring easy access for all users.
 
-### Environment centric workflow for Projects (only for Enhanced Projects) <Highlight color="#e5c762">BETA</Highlight>
+### Environment-centric workflow for Projects (only for Enhanced Projects)
+
+<Tag color="#e5c762">BETA</Tag>
 
 ![Migration Process](img/migration-process.png)
 
