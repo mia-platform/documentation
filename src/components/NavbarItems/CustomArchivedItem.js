@@ -16,7 +16,7 @@ import {translate} from '@docusaurus/Translate';
 import {useHistorySelector} from '@docusaurus/theme-common';
 import DefaultNavbarItem from '@theme/NavbarItem/DefaultNavbarItem';
 import DropdownNavbarItem from '@theme/NavbarItem/DropdownNavbarItem';
-import {ProdTag, StableTag, NextTag, CanaryTag} from './Tags';
+import {ProdTag, NextTag, CanaryTag} from './Tags';
 
 function getVersionItems(
   versions,
