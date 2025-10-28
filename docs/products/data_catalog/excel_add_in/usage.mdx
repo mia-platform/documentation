@@ -1,18 +1,20 @@
 ---
 id: usage
-title: Excel Plugin Usage
+title: Usage
 sidebar_label: Usage
 ---
 
-This guide provides comprehensive instructions for using the Excel Plugin to interact with the Data Catalog, import assets, enrich metadata, and synchronize updates.
+This guide provides comprehensive instructions for using the Excel Add-in to interact with the Data Catalog, import assets, enrich metadata, and synchronize updates.
 
 ## Authentication
 
-Once the plugin has been properly configured and installed (see [Installation Guide](./how_to_install)), access the Data Catalog Excel Add-in and perform login by entering the Data Catalog credentials. Upon successful login, you'll see your profile information in the Profile page. You can logout at any time from this panel.
+Once the add-in has been properly configured and installed (see [Installation Guide](./how_to_install)), access the Data Catalog Excel Add-in and perform login by entering the Data Catalog credentials. Upon successful login, you'll see your profile information in the Profile page. You can logout at any time from this panel.
 
 ## Pull Assets Metadata
 
 The **Pull Assets** page allows you to import metadata from the Data Catalog into your Excel worksheet.
+
+![Pull Assets Page](../img/pull_assets_page.png)
 
 ### Search and Import
 
@@ -25,10 +27,9 @@ The **Pull Assets** page allows you to import metadata from the Data Catalog int
 Once imported, each row that represents an asset contains various metadata fields as columns.
 
 **Read-Only Fields** (Values in these columns cannot be modified):
-- `assetId` - Unique asset identifier
 - `assetType` - Type of asset (SoR, Table, Column)
-- `catalogName` - Data Catalog name
-- `schema` - Database schema name
+- `catalogName` - Data Catalog name (*if present, depending on the provider type of the asset*)
+- `schema` - Database schema name (*if present, depending on the provider type of the asset*)
 - `sorName` - System of Record name
 - `tableName` - Table name  
 - `columnName` - Column name
@@ -63,7 +64,7 @@ For advanced use cases, you can import assets based on Data Catalog search URLs:
 
 1. Perform an advanced search in the Data Catalog interface
 2. Copy the URL from your browser
-3. Paste the URL in the **Paste URL** section of the plugin
+3. Paste the URL in the **Paste URL** section of the add-in
 4. Click **Pull** to import all assets matching that search criteria
 
 This feature is particularly useful for importing assets with specific metadata, tags, or other advanced search conditions.
@@ -85,7 +86,7 @@ Once the rows have been chosen, you can also select which metadata to synchroniz
 
 ### Validation Process
 
-Once the Push Assets action is triggered from the proper button, the plugin begins a pre-push validation process that ensures data integrity before synchronization. The system performs structure validation by verifying column names and formats, checking for required asset identifiers, and validating custom property types and values to ensure compatibility with the Data Catalog schema.
+Once the Push Assets action is triggered from the proper button, the add-in begins a pre-push validation process that ensures data integrity before synchronization. The system performs structure validation by verifying column names and formats, checking for required asset identifiers, and validating custom property types and values to ensure compatibility with the Data Catalog schema.
 
 ### Synchronization
 
@@ -103,14 +104,14 @@ The Backup Sheet contains the original state of assets before synchronization, s
 
 ## Working with CSV Exports
 
-The plugin is fully compatible with CSV files previously exported from the Data Catalog (see [Export documentation](../../export)).
+The add-in is fully compatible with CSV files previously exported from the Data Catalog (see [Export documentation](../../export)).
 Thus, in case stakeholders need to work offline or prefer to use CSV files for metadata enrichment, they can follow this workflow:
 1. **Import CSV**: Load previously exported CSV files into Excel
-2. **Compatible Format**: The CSV structure matches the plugin's pull format
+2. **Compatible Format**: The CSV structure matches the add-in's pull format
 3. **Enrich Data**: Perform bulk enrichment on the imported data
-4. **Push Updates**: Use the plugin to synchronize changes back to the Data Catalog
+4. **Push Updates**: Use the add-in to synchronize changes back to the Data Catalog
 
-When offline work is complete, ensure you follow the [data integrity rules](#data-integrity) to allow push validation to pass when synchronizing back to the Data Catalog from the Excel plugin.
+When offline work is complete, ensure you follow the [data integrity rules](#data-integrity) to allow push validation to pass when synchronizing back to the Data Catalog from the Excel add-in.
 
 ## Best Practices and Recommendations
 
