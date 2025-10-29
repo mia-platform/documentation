@@ -22,7 +22,8 @@
         }
       ],
       "bugFixes": [
-        "We resolved an issue that occurred in a specific scenario: when a ConfigMap was deleted and immediately recreated with the same name, the Console could fail to save the change correctly, causing configuration corruption. This configuration can then only be restored using a previous snapshot, which is possible within the [dedicated Revision History modal](/docs/products/console/set-up-infrastructure/revisions-and-versions#revision-history). This fix has been implemented also on _Console Helm Chart_ `v15.0.0-0`."
+        "We resolved an issue that occurred in a specific scenario: when a ConfigMap was deleted and immediately recreated with the same name, the Console could fail to save the change correctly, causing configuration corruption. This configuration can then only be restored using a previous snapshot, which is possible within the [dedicated Revision History modal](/docs/products/console/set-up-infrastructure/revisions-and-versions#revision-history). This fix has been implemented also on _Console Helm Chart_ `v15.0.0-0`.",
+        "We fixed an issue where changing the version of a microservice in the Design Area did not have any impact on the update of its Docker image name."
       ]
     }
   }

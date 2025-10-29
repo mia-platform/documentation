@@ -1,0 +1,211 @@
+---
+id: how_to_install
+title: Configuration and Installation
+sidebar_label: How to install
+---
+
+This guide provides step-by-step instructions for installing the Data Catalog Excel Add-in on your system.
+
+## Compatibility
+
+The Data Catalog Excel Add-in is compatible with **Microsoft Excel Desktop** and **Microsoft Excel 365** (Excel for the web).
+
+## Prerequisites
+
+Before installing the add-in, ensure you have:
+- A Data Catalog instance released on a Mia-Platform Console Project environment
+- Valid Data Catalog authentication credentials (username and password)
+- Microsoft Excel Desktop installed by your organization or access to Excel 365 online
+- Network access to your organization's Data Catalog instance
+- The Add-in must be deployed in the same namespace as your Data Catalog instance
+
+## Plugin Configuration and Deployment
+
+To configure the Data Catalog Excel Add-in software item, follow these steps:
+- Enter Mia-Platform Console Project revision where Data Catalog application has been configured
+- Search on the available software items and choose the Data Catalog Excel Add-in
+- Click on Create button to instantiate in your Project revision the Data Catalog Excel Add-In
+
+Once created, make sure to properly configure the necessary environment variables and configMaps.
+
+### Environment variables
+
+Set the `DATA_FABRIC_BASE_URL` env var with the base URL of your Data Catalog instance where the Excel Add-in is deployed (e.g. `https://my-data-catalog.example.eu`).
+
+### ConfigMaps
+
+Configure the `excel-add-in-config` ConfigMap with the following `configuration.json` file:
+
+```json
+{
+  "api": {
+    "data-catalog": "/api"
+  },
+  "auth": {
+    "appId": "<DATA_CATALOG_APP_ID>",
+    "providerId": "<PROVIDER_ID>"
+  },
+  "name": "Mia-Platform Data Catalog Excel Add-in",
+  "version": "1.0.0.0"
+}
+```
+
+Replace the following placeholders with your actual values:
+- **`<DATA_CATALOG_APP_ID>`**: The Application ID configured for your Data Catalog instance in the authentication provider
+- **`<PROVIDER_ID>`**: The Provider ID used for authentication in your Data Catalog setup
+
+:::info
+These authentication parameters must match the configuration of your Data Catalog instance to ensure proper integration and user authentication.
+:::
+
+Once the configuration is complete, proceed with the deploy of the plugin in the same runtime environment in which the Data Catalog application is deployed.
+
+## Installation Methods
+
+There are two methods to install the Data Catalog Excel Add-in, depending on your organization's setup and the Excel platform you're using.
+
+### Method A: Centralized Deployment (Recommended for Organizations)
+
+This method allows administrators to deploy the add-in organization-wide through the Microsoft 365 Admin Center, making it available to all authorized users.
+
+#### Step 1: Administrator Setup
+
+The user performing this installation step must have one of the following roles in Microsoft 365:
+- **Exchange Administrator**
+- **Application Administrator**
+
+**Installation procedure**:
+
+1. **Prepare the add-in package**:
+   - Access your Data Catalog instance and download the following files:
+     - `manifest.json` (available at `https://<your-data-catalog-url>/excel/manifest.json`)
+     - `assets/icons/Plugin-32.png` (available at `https://<your-data-catalog-url>/excel/assets/icons/Plugin-32.png`)
+     - `assets/icons/Plugin-80.png` (available at `https://<your-data-catalog-url>/excel/assets/icons/Plugin-80.png`)
+   - Organize the files maintaining this folder structure:
+     ```
+     data-catalog-addon/
+     ├── manifest.json
+     └── assets/
+         └── icons/
+             ├── Plugin-32.png
+             └── Plugin-80.png
+     ```
+   - Create a ZIP archive of the entire folder
+
+2. **Upload to Microsoft 365 Admin Center**:
+   - Navigate to [https://admin.microsoft.com](https://admin.microsoft.com)
+   - Go to **Settings** > **Integrated Apps**
+   - Click **Upload custom apps**
+   - Upload the ZIP file you created
+   - Click **Next** through the configuration steps
+   - Click **Finish** to complete the upload
+
+3. **Deploy for Organization's users**:
+   - Still in the Microsoft 365 Admin Center, go to **Settings** > **Integrated Apps** > **Available Apps**
+   - In the search bar, type **"Data Catalog"** to find your newly uploaded add-in
+   - Click on the add-in name
+   - Click **Deploy**
+   - Select the users or groups who should have access to the add-in
+   - Confirm the deployment
+
+:::info
+After deployment, it may take a few minutes for the add-in to become available to end users.
+:::
+
+#### Step 2: End User Activation
+
+Each user who has been granted access and enough permissions by the administrator can follow these steps to activate the add-in in their Excel application.
+
+**Installation procedure**:
+
+1. **Open Microsoft Excel** (Desktop or Excel 365)
+2. Navigate to the **Home** tab in the ribbon
+3. Click on **Add-ins**
+4. In the add-ins menu, select **Advanced**
+5. Choose **My Organization**
+6. Locate the **Data Catalog** add-in in the list
+7. Click on it to install
+8. The add-in will be installed and a new **Data Catalog** tab will appear in the Excel ribbon
+
+### Method B: Individual Installation (Office.com Only)
+
+This method allows individual users who have access to office.com and enough permissions to install the add-in directly without administrator intervention. **This method works only for Excel 365 (Excel for the web)**.
+
+**Installation procedure**:
+
+1. **Download the manifest file**:
+   - Access your Data Catalog instance at `https://<your-data-catalog-url>/excel/manifest.xml`
+   - Download and save the file with the `.xml` extension
+
+2. **Install in Excel Online**:
+   - Open [office.com](https://office.com) in your browser
+   - Launch **Excel 365** (Excel for the web)
+   - Navigate to the **Home** tab
+   - Click on **Add-ins**
+   - Select **Advanced**
+   - Click **Upload My Add-in**
+   - Click **Browse** and select the `.xml` manifest file you downloaded
+   - Complete the upload procedure
+   - The add-in will be installed and the **Data Catalog** tab will appear in the Excel ribbon
+
+:::caution
+Method B (Individual Installation) is only available for Excel 365 (web version) and does not work for Excel Desktop applications. For Excel Desktop, use Method A with administrator deployment.
+:::
+
+## First Access and Authentication
+
+After successfully installing the add-in using either method, you can start using it:
+
+1. **Open the Data Catalog tab**: Look for the **Data Catalog** tab in your Excel ribbon
+2. **Access the Profile section**: In the **Setup** group, click the **Profile** button
+3. **Authenticate**: A task pane will open on the right side of Excel
+4. **Enter your credentials**: Use your Data Catalog username and password to log in
+5. **Start working**: Once authenticated, you can start using the add-in features to pull and manage metadata!
+
+Visit the [usage documentation](/products/data_catalog/excel_add_in/usage.mdx) to learn how to pull assets, enrich metadata, and push updates back to the Data Catalog.
+
+## Troubleshooting
+
+### Add-in Not Visible After Deployment
+
+If the add-in doesn't appear after administrator deployment:
+- **Wait 5-10 minutes**: Deployment can take time to propagate across Microsoft 365
+- **Sign out and sign back in**: Log out of Microsoft 365 and log back in to refresh your session
+- **Restart Excel**: Close Excel completely and reopen it
+- **Clear Office cache**: Clear the Office cache and restart the application
+
+### Cannot Find "Data Catalog" in My Organization
+
+If you cannot locate the Data Catalog add-in in the My Organization section:
+- **Verify deployment**: Confirm with your administrator that you were included in the deployment
+- **Check permissions**: Ensure your user account has the necessary permissions to install add-ins
+- **License verification**: Verify that your Microsoft 365 account has the required licenses
+
+### Upload Fails in Method B
+
+If the manifest upload fails when using Method B:
+- **File format**: Ensure you downloaded the `.xml` file correctly (check it's not saved as `.txt`)
+- **Network access**: Verify you have network access to your Data Catalog instance
+- **URL accessibility**: Check that the manifest URL is accessible from your browser
+- **File integrity**: Try downloading the manifest file again
+
+### Authentication Issues
+
+If you cannot authenticate after installation:
+- **Credentials**: Verify your Data Catalog username and password are correct
+- **Network connectivity**: Ensure you have network access to the Data Catalog instance URL
+- **Browser settings**: For Excel 365, check that your browser allows pop-ups from the Data Catalog domain
+- **Firewall**: Verify that your organization's firewall is not blocking access to the Data Catalog
+
+### Add-in Shows Errors or Doesn't Load
+
+If the add-in displays errors or fails to load properly:
+- **Clear browser cache**: For Excel 365, clear your browser cache and cookies
+- **Check SSL certificate**: Ensure the Data Catalog server has a valid SSL certificate
+- **Verify URLs**: Confirm all URLs in the manifest are correct and accessible
+- **Try different browser**: For Excel 365, try using a different browser
+- **Check Excel version**: Verify you're using a supported version of Excel
+
+:::tip
+If problems persist after trying these solutions, contact your IT administrator or Mia-Platform community support.
+:::
