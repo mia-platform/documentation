@@ -30,7 +30,8 @@
         }
       ],
       "bugFixes": [
-        "We resolved an issue where clicking on the Mia-Platform Console logo caused an infinite loading state instead of redirecting the user to the list of their companies."
+        "We resolved an issue where clicking on the Mia-Platform Console logo caused an infinite loading state instead of redirecting the user to the list of their companies.",
+        "We resolved a bug in Design Area that caused an error when attempting to add new microservices from Internal Company Marketplace using start-from-code templates."
       ]
     }
   },

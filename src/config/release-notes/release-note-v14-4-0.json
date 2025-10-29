@@ -1,0 +1,22 @@
+[
+  {
+    "title": "Console",
+    "icon": "console",
+    "defaultOpen": true,
+    "type": "versions",
+    "items": {
+      "newFeatures": [],
+      "improvements": []
+    }
+  },
+    {
+    "title": "Microfrontend Composer",
+    "icon": "microfrontend-composer",
+    "defaultOpen": false,
+    "type": "versions",
+    "items": {
+      "newFeatures": [],
+      "improvements": []
+    }
+  }
+]

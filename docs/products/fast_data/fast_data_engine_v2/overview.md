@@ -4,10 +4,6 @@ title: Fast Data Engine 2.0
 sidebar_label: Fast Data Engine 2.0
 ---
 
-:::warning
-Fast Data Engine 2.0 will be available in production environment when Console v14.3.0 will be released.
-:::
-
 In today's rapidly evolving business landscape, organizations demand more than just data aggregation—they need **real-time responsiveness**, **enterprise-scale performance**, and **maximum flexibility** to adapt to business changing requirements.
 
 **Fast Data Engine 2.0** addresses these needs by:

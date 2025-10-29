@@ -9,8 +9,17 @@ import Changelog from '@site/src/components/Changelog';
 
 <Changelog>
 
+## [v14.4.0](/release-notes/v14.4.0.mdx)
+*October 30th, 2025*
+
+TO-DO
+
+[Read the release notes](/release-notes/v14.4.0.mdx)
+
+---
+
 ## [v14.3.1](/release-notes/v14.3.1.mdx)
-*October 16th, 2025*
+*October 30th, 2025*
 
 This release introduces the **Chat history** for Mia-Assistant, enables **remote access** to the Mia-Platform Console MCP Server from external tools, and brings **usability improvements** to the Projects list page. For Microfrontend Composer, there is a back-kit update and a fix for table rendering issues.
 
