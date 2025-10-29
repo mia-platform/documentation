@@ -128,10 +128,21 @@ If an Infrastructure Component is missing the related webhook on the git Provide
 
 ## Runtime Visibility
 
-After the deployment of your infrastructure components, runtime data retrieval can be integrated in the Console by leveraging the [Infrastructure Component Runtime Software Catalog item type](/products/software-catalog/items-manifest/infrastructure-component-runtime.md).
+This feature is currently in [BETA](/info/version_policy.md#feature-preview-and-beta), so the visualization of runtime resources is not natively implemented.
 
-:::tip
-You can later access the data via API or by creating a custom extension using the [Composer extensions](/products/console/company-configuration/extensions.md#add-new-extension)
+To get the infrastructure components generated after deployment for each project, you can generate an [Infrastructure Component Runtime Software Catalog item type](/software-catalog/items-manifest/infrastructure-component-runtime.md) on the software catalog from the same pipeline via [miactl](/software-catalog/items-management/miactl.md).
+
+Subsequently, this information can be retrieved either by using the Marketplace API or by creating a [Composer extension](/console/company-configuration/extensions.md#add-new-extension).
+
+:::info
+To retrieve the information of the available [Infrastructure Component Runtime Software Catalog item type](/software-catalog/items-manifest/infrastructure-component-runtime.md), you can use the following software catalog endpoint and filter by the project of interest:
+
+```shell
+curl -X GET \
+  -H "Authorization: Bearer <YOUR_TOKEN>" \
+  '<console-url>/api/marketplace?tenantId=<your-tenant-id>&types=infrastructure-component-runtime'
+```  
+
 :::
 
 ## Access and Permissions
