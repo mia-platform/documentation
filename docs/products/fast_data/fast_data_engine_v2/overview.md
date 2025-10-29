@@ -16,6 +16,8 @@ In today's rapidly evolving business landscape, organizations demand more than j
 
 Fast Data 2.0 introduces four workloads designed to replace and significantly outperform traditional components like Real-Time Updater (RTU), Projection Storer (PS), Single View Trigger Generator (SVTG), and Single View Creator (SVC).
 
+![Fast Data Engine v2](img/fast-data-engine-v2.png)
+
 ### Mongezium - MongoDB to Kafka CDC Connector
 
 Mongezium provides real-time data streaming from MongoDB collections to Kafka topics using MongoDB change streams.
