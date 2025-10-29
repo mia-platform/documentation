@@ -1,33 +1,13 @@
 [
   {
-    "title": "Console",
-    "icon": "console",
-    "defaultOpen": true,
-    "type": "versions",
-    "items": {
-      "newFeatures": [],
-      "improvements": []
-    }
-  },
-    {
     "title": "Microfrontend Composer",
     "icon": "microfrontend-composer",
     "defaultOpen": false,
     "type": "versions",
     "items": {
       "newFeatures": [],
-      "improvements": [
-        {
-          "title": "Back-kit",
-          "description": [
-            "The new version `v1.5.22` of the back-kit library is available!",
-            "Refer to back-kit [changelog](/docs/products/microfrontend-composer/back-kit/changelog) for finer-grained details of new versions."
-          ]
-        }
-      ],
-      "bugFixes": [
-        "Fixed editor component formatting on text paste"
-      ]
+      "improvements": [],
+      "bugFixes": []
     }
   }
 ]

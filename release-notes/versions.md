@@ -12,7 +12,7 @@ import Changelog from '@site/src/components/Changelog';
 ## [v14.4.0](/release-notes/v14.4.0.mdx)
 *October 30th, 2025*
 
-TO-DO
+This release introduces the **Data Catalog Excel Add-in**, a powerful tool that seamlessly integrates with the Mia-Platform Data Catalog, enabling users to import asset metadata into Excel, perform bulk metadata enrichment, and synchronize updates back to the Catalog while ensuring data quality through pre-push validation. For Microfrontend Composer, there is a back-kit update.
 
 [Read the release notes](/release-notes/v14.4.0.mdx)
 
