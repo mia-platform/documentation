@@ -1,6 +1,6 @@
 {
   "name": "mia-platform-docs",
-  "version": "14.3.0",
+  "version": "14.3.1",
   "private": true,
   "packageManager": "yarn@4.10.2",
   "license": "SEE LICENSE IN LICENSE",
