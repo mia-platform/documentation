@@ -1708,6 +1708,25 @@
       ]
     },
     {
+      "type": "category",
+      "label": "Data Catalog Excel Add-in",
+      "collapsed": true,
+      "link": {
+        "id": "products/data_catalog/excel_add_in/overview",
+        "type": "doc"
+      },
+      "items": [
+        {
+          "id": "products/data_catalog/excel_add_in/usage",
+          "type": "doc"
+        },
+        {
+          "id": "products/data_catalog/excel_add_in/how_to_install",
+          "type": "doc"
+        }
+      ]
+    },
+    {
       "id": "products/data_catalog/data_catalog_fabric_bff",
       "type": "doc"
     },

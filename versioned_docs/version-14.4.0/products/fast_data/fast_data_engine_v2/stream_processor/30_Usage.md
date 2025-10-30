@@ -177,17 +177,17 @@ alongside the data types involved in its arguments.
 // ------------------ PROCESSING FUNCTION DATA TYPES ------------------ // 
 
 type ProcessFn<P = unknown> = (
-  message: InMessage<P>, caches?: ProcessorCaches | null | undefined
+    message: InMessage<P>, caches?: ProcessorCaches | null | undefined
 ) => Promise<OutMessage[] | null | undefined>
 
 interface InMessage<P = unknown> {
-  key: string | null | undefined,
-  payload: P
+    key: string | null | undefined,
+    payload: P
 }
 
 interface OutMessage {
-  key: unknown,
-  payload: unknown
+    key: unknown,
+    payload: unknown
 }
 
 type ProcessorCaches = (name: string) => ProcessorCache | null | undefined
@@ -195,12 +195,12 @@ type ProcessorCaches = (name: string) => ProcessorCache | null | undefined
 // ------------------ CACHE DATA TYPES ------------------ // 
 
 interface ProcessorCache {
-  get: (key: unknown) => Promise<GetResult | null | undefined>,
-  set: (key: unknown, value: unknown) => Promise<SetResult>,
-  update: (
-    key: unknown, value: unknown, version: number
-  ) => Promise<UpdateResult>,
-  delete: (key: unknown) => Promise<DeleteResult | null | undefined>,
+    get: (key: unknown) => Promise<GetResult | null | undefined>,
+    set: (key: unknown, value: unknown) => Promise<SetResult>,
+    update: (
+        key: unknown, value: unknown, version: number
+    ) => Promise<UpdateResult>,
+    delete: (key: unknown) => Promise<DeleteResult | null | undefined>,
 }
 
 interface GetResult {
@@ -227,30 +227,30 @@ interface DeleteResult {
 type CacheError = Error & {message: string} & (
   | { cause: 'NotFound' }
   | {
-  cause: 'AlreadyExists'
-  payload: {
-    value: unknown,
-    v: number
+    cause: 'AlreadyExists'
+    payload: {
+      value: unknown,
+      v: number
+    }
   }
-}
   | {
-  cause: 'ConcurrentModification',
-  paylaod: {
-    value: unknown,
-    v: number
+    cause: 'ConcurrentModification',
+    paylaod: {
+      value: unknown,
+      v: number
+    }
   }
-}
   | {
-  cause: 'Unimplemented',
-  payload: {
-    op: 'get' | 'set' | 'update' | 'delete'
+    cause: 'Unimplemented',
+    payload: {
+      op: 'get' | 'set' | 'update' | 'delete'
+    }
   }
-}
   | {
-  cause: 'Unhandled',
-  payload: string
-}
-  )
+    cause: 'Unhandled',
+    payload: string
+  }
+)
 ```
 
 The above definition translates into the following example function. This represents
@@ -258,7 +258,7 @@ the most basic version of a processing function, which just forward input events
 
 ```js
 export default function identity({ key, payload }, caches) {
-  return [{ key, payload }]
+    return [{ key, payload }]
 }
 ```
 
@@ -303,7 +303,7 @@ export default function validate({ key, payload }) {
     // forward TOMBSTONE event
     return [{ key, payload }]
   }
-
+  
   if (!isValid(key, payload)) {
     // no messages are returned, since the input is invalid;
     // consequently no events are forwarded onto the output topic 
@@ -357,7 +357,7 @@ export default function transform({ key, payload }) {
     // forward TOMBSTONE event
     return [{ key, payload }]
   }
-
+  
   let parsedKey
   try {
     parsedKey = JSON.parse(key)
@@ -581,7 +581,7 @@ be written to address them according to your business needs.
 For example, a tombstone event may be transformed into a "Fast Data" `DELETE` message,
 whose `before` and `after` are set to `null` value. This transformation is useful to
 notify a change event of delete when the record's prior value is not available within
-the payload of the input event.
+the payload of the input event.   
 
 ```js
 export default function ({key, payload}) {

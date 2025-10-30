@@ -4,10 +4,6 @@ title: Fast Data Engine 2.0
 sidebar_label: Fast Data Engine 2.0
 ---
 
-:::warning
-Fast Data Engine 2.0 will be available in production environment when Console v14.3.0 will be released.
-:::
-
 In today's rapidly evolving business landscape, organizations demand more than just data aggregation—they need **real-time responsiveness**, **enterprise-scale performance**, and **maximum flexibility** to adapt to business changing requirements.
 
 **Fast Data Engine 2.0** addresses these needs by:
@@ -19,6 +15,8 @@ In today's rapidly evolving business landscape, organizations demand more than j
 ## Brand New Workloads: The Power Behind Fast Data 2.0
 
 Fast Data 2.0 introduces four workloads designed to replace and significantly outperform traditional components like Real-Time Updater (RTU), Projection Storer (PS), Single View Trigger Generator (SVTG), and Single View Creator (SVC).
+
+![Fast Data Engine v2](img/fast-data-engine-v2.png)
 
 ### Mongezium - MongoDB to Kafka CDC Connector
 
