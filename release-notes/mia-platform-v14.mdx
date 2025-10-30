@@ -1,22 +1,91 @@
 ---
 id: v14-overview
-title: Mia-Platform v14
+title: Welcome to Mia-Platform v14
 image: "img/release-note-link-preview.png"
 ---
 
-export const Highlight = ({children, color}) => (
+export const BetaTag = () => (
   <span
     style={{
-      backgroundColor: color,
-      borderRadius: '8px',
-      color: '#fff',
-      padding: '0.3rem',
-    }}>
-    {children}
+      display: 'flex',
+      alignItems: 'center',
+      width: 'fit-content',
+      padding: '0 18px',
+      color: '#531dab',
+      background: '#f9f0ff',
+      borderRadius: '12px',
+      marginBottom: '20px',
+      marginTop: '-10px',
+    }}
+  >
+    { 'BETA' }
   </span>
 );
 
-# Welcome to Mia-Platform v14!
+## Mia-Platform v14 Fall Edition
+
+**The speed of Power. The confidence of Control.**
+
+This release brings powerful new capabilities designed to help teams build, operate, and govern software and data products with greater **power** and **control**.
+From a next-generation Fast Data engine that boosts performances of real-time data pipelines, to expanded catalog features that enhance governance and flexibility.
+
+### Fast Data Engine 2.0
+
+Fast Data Engine 2.0 introduces a new suite of workloads that take real-time data pipeline development and optimization to the next level.  
+The engine delivers advanced, secure stream processing and achieves up to **10× faster aggregation performance**, ensuring scalable efficiency even for large-scale production environments.  
+
+New modular data pipelines not only enable faster aggregations, but also personalized business scenarios.
+
+![Fast Data Engine v2](img/fast-data-engine-v2.png)
+
+Discover the new Fast Data suite and all the benefits of Fast Data Engine 2.0 in the [official documentation](/docs/products/fast_data/fast_data_engine_v2/overview).
+
+### Data Catalog Excel Add-in
+
+The Data Catalog Excel Add-in seamlessly integrates with the Mia-Platform Data Catalog, enabling users to import asset metadata into Excel, perform bulk enrichment, and synchronize updated metadata back to the Catalog.  
+By bridging the gap between Excel and the Data Catalog, it simplifies advanced metadata enrichment while ensuring data quality and governance standards are maintained.  
+
+![Data Catalog Excel Add-in](img/data-catalog-excel-add-in.png)
+
+To discover all the benefits and how to use the Data Catalog Excel Add-in, visit the [official documentation](/docs/next/products/data_catalog/excel_add_in/overview).
+
+### Enhanced Software Catalog
+
+The Software Catalog now supports **custom item types**, extending beyond predefined entities to model internal tools, components, or processes in a unified way.
+Custom items can be registered, organized, and documented like any other catalog entry — offering greater flexibility in representing your software ecosystem.
+
+![Item Type Definition](img/item-type-definition.png)
+
+New catalog management capabilities include:
+
+- Adding *maintainers*, *useful links*, *labels*, and *annotations* to items.
+- Mapping *relationships* between existing and custom entities with user-defined schemas.
+
+These improvements provide a more powerful and adaptable catalog experience, enabling consistent governance across all your software assets.
+
+For more details, see the [documentation](/docs/14.2.1/products/software-catalog/basic-concepts/items-types).
+
+### AI-Enhanced Vibe Platform with Mia-Assistant
+
+Mia-Assistant is now a full operational MCP Client capable of querying and interacting with multiple MCP Servers for faster productivity. It provides real-time access to Console data, service checks, debugging, and automatic deployments—all via chat. This creates a unified, **AI-powered vibe platform experience**, offering constant, seamless support to elevate your daily workflows.  
+
+![AI-Enhanced Vibe Platform](img/vibe-ai-platform.png)
+
+The v14 Fall Release brings several powerful new features:
+- **Remote access** to the Console MCP Server, enabling AI-powered operations from external tools like Visual Studio Code.
+- **Pin chat** to keep Mia-Assistant open while working, ensuring uninterrupted assistance.
+- **Export conversations** in both **PDF** and **.txt** formats for easy sharing and archiving.
+- **Chat history view** to revisit and reopen past interactions with a single click.
+
+### Manage Projects locally with miactl
+
+The miactl CLI now lets you manage Project configurations locally with the new `describe` and `apply` commands — export, edit, and reapply changes seamlessly for easier troubleshooting misconfiguration, migration, and reuse.
+
+Refer to the [documentation](/docs/products/console/api-console/api-design/miactl-commands) for more details.
+
+---
+
+# Mia-Platform v14 - May 2025
 
 ## AI Native DevX
 
@@ -150,13 +219,15 @@ To explore all the new features and learn how to manage Software Catalog items, 
 
 The Marketplace APIs have been optimized and are now officially published on the API portal, ensuring easy access for all users.
 
-### Environment centric workflow for Projects (only for Enhanced Projects) <Highlight color="#e5c762">BETA</Highlight>
+### Environment-centric workflow for Projects (only for Enhanced Projects)
 
-![Migration Process](img/migration-process.png)
+<BetaTag />
 
 Mia-Platform Console now features a redesigned environment management system, significantly streamlining your Design workflow. 
 The concept of branches in the Design area has been replaced, with the environment now serving as the central element for each area.   
 Users will work directly within specific environments across all Mia-Platform Console sections, establishing a consistent and intuitive experience and aligning the Design area with the logical structure of other Mia-Platform Console areas.
+
+![Migration Process](img/migration-process.png)
 
 To discover more, head to the related [documentation](/docs/products/console/set-up-infrastructure/env-based-management).
 
@@ -166,7 +237,7 @@ Iframe extensions now benefit from a unified and secure authentication framework
 
 ![Extensions SSO](img/extensions-sso.png)
 
-### Auto-generated form in Infrastructure Resource Creation 
+### Auto-generated form in Infrastructure Resource Creation
 
 Creating new Infrastructure Resources in the Design area is now easier than ever.  
 For Marketplace resources with defined JSON schemas, the system will automatically generate a user-friendly form. This form clearly displays all required properties along with helpful descriptions, guiding users through the configuration process.
@@ -175,7 +246,7 @@ For Marketplace resources with defined JSON schemas, the system will automatical
 
 You can now manage your container registries more effectively within your Projects. Access a dedicated section in your Project settings to view, create, and delete registries as needed. This provides centralized monitoring and control over your container registry landscape and allows you to specify the desired registry directly at the service level in the Design area.
 
-### Monitor Audit Logs of your Company 
+### Monitor Audit Logs of your Company
 
 Stay informed and in control with our new Audit Logs feature, designed to provide clear visibility into actions performed across your Company. Effortlessly track and monitor user activities through this powerful and centralized tool. By centralizing these logs, you can significantly enhance security protocols, streamline compliance efforts, and develop a deeper understanding of your Company's operational flow.
 
@@ -187,7 +258,9 @@ To discover more, head to the related [documentation](/docs/products/console/ide
 
 Upholding high standards of service reliability and maintaining the comprehensive security posture required for business operations within complex, distributed platform environments is key for IT Organizations. This involves the implementation and management of Infrastructure resources, robust operational controls, cost and resources utilization monitoring, security measures, and resilience strategies.
 
-### Projects for Infrastructure Provisioning <Highlight color="#e5c762">BETA</Highlight>
+### Projects for Infrastructure Provisioning
+
+<BetaTag />
 
 Take greater control over your infrastructure provisioning with the new dedicated Project category in the Mia-Platform Console. Designed for Operations teams, these specialized Projects facilitate management of infrastructure resources within the Console, aligning with Infrastructure as Code practices. Easily visualize and manage your infrastructure state, and execute provisioning actions with improved efficiency for your infrastructure-related tasks.
 
@@ -195,6 +268,6 @@ Take greater control over your infrastructure provisioning with the new dedicate
 
 To discover more, head to the related [documentation](/docs/products/console/project-configuration/infrastructure-project).
 
-### Kubernetes Import via miactl 
+### Kubernetes Import via miactl
 
 You can now perform a more efficient way to bring your existing Kubernetes environments into your Console Projects thanks to the new miactl project import command. This feature allows you to seamlessly onboard Kubernetes workloads by importing your YAML configurations directly into a new Project. This process significantly speeds up integration and reduces the effort of rebuilding your Kubernetes setup from the ground up within the Console.

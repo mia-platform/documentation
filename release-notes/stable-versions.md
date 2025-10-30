@@ -41,4 +41,4 @@ As the transition period from one MTW to the next approaches, more precise dates
 <GanttChart config={StableVersionsTable} renderAs="table" />
 
 
-*Stable Versions may be subject to review and may change in the time before release
+*Stable Versions may be subject to review and may change in the time before release*

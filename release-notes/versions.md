@@ -9,10 +9,19 @@ import Changelog from '@site/src/components/Changelog';
 
 <Changelog>
 
-## [v14.3.1](/release-notes/v14.3.1.mdx)
-*October 16th, 2025*
+## [v14.4.0](/release-notes/v14.4.0.mdx)
+*October 30th, 2025*
 
-This release introduces the **Chat history** for Mia-Assistant, enables **remote access** to the Mia-Platform Console MCP Server from external tools, and brings **usability improvements** to the Projects list page. For Microfrontend Composer, there is a back-kit update and a fix for table rendering issues.
+This release introduces the **Data Catalog Excel Add-in**, a powerful tool that seamlessly integrates with the Mia-Platform Data Catalog, enabling users to import asset metadata into Excel, perform bulk metadata enrichment, and synchronize updates back to the Catalog while ensuring data quality through pre-push validation. For Microfrontend Composer, there is a back-kit update.
+
+[Read the release notes](/release-notes/v14.4.0.mdx)
+
+---
+
+## [v14.3.1](/release-notes/v14.3.1.mdx)
+*October 30th, 2025*
+
+This release introduces the **Chat history** for Mia-Assistant, enables **remote access** to the Mia-Platform Console MCP Server from external tools, and brings **usability improvements** to the Projects list page. For Microfrontend Composer, there is a back-kit update.
 
 [Read the release notes](/release-notes/v14.3.1.mdx)
 
