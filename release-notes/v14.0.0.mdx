@@ -7,29 +7,9 @@ image: "img/release-note-link-preview.png"
 import Accordion from '@site/src/components/Accordion/index.js';
 import dataAccordion from '@site/src/config/release-notes/release-note-v14-0-0.json';
 
-export const Highlight = ({children, color}) => (
-  <span
-    style={{
-      backgroundColor: color,
-      borderRadius: '8px',
-      color: '#fff',
-      padding: '0.3rem',
-    }}>
-    {children}
-  </span>
-);
-
 _May 22nd, 2025_
 
-## Environment centric workflow for Projects (only for Enhanced Projects) <Highlight color="#e5c762">BETA</Highlight>
-
-We've redesigned environment management in Console, significantly simplifying your Design workflow. The environment is now central, replacing branches. You'll work directly within specific environments across all Console sections, ensuring a consistent and intuitive experience.
-
-![Migration Process](img/migration-process.png)
-
-For more information, go to the [documentation](/docs/14.2.1/products/console/set-up-infrastructure/env-based-management) and visit [Mia-Platform Console v14 Overview](/release-notes/mia-platform-v14.mdx#environment-centric-workflow-for-projects-only-for-enhanced-projects-beta).
-
-## Projects for Infrastructure Provisioning <Highlight color="#e5c762">BETA</Highlight>
+## Projects for Infrastructure Provisioning
 
 We've introduced Infrastructure Projects, a new Project type for greater control over infrastructure provisioning in Console. Designed for Operations teams, these new type of Projects let you manage infrastructure resources directly, aligning with Infrastructure as Code. You can now easily visualize, manage, and efficiently execute provisioning actions.
 Just create an Infrastructure Project and start provisioning infrastructure to your Developers!

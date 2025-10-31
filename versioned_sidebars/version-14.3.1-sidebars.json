@@ -465,10 +465,6 @@
             {
               "id": "products/console/set-up-infrastructure/new-deployment-workflow",
               "type": "doc"
-            },
-            {
-              "id": "products/console/set-up-infrastructure/env-based-management",
-              "type": "doc"
             }
           ]
         },

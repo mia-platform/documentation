@@ -32,7 +32,7 @@ To create a new Project, you must first have a Company, a Git Provider, a CI/CD 
 
 #### What is the Enhanced Project Workflow and why should I use it?
 The Enhanced Project Workflow is a significant evolution from the standard, Git-centric model. It improves the developer experience by managing the project's logical state directly within the Console, rather than relying on Git for every change. This results in much faster performance in the Design area. Kubernetes configurations are generated only at deploy time, which also enables a pull-based, **GitOps** deployment strategy. It is the recommended workflow for all new projects.
-[Discover more](/products/console/set-up-infrastructure/env-based-management.md)
+[Discover more](/products/console/set-up-infrastructure/overview.md)
 
 #### What is the difference between a branch and a revision in the Console?
 * In the **Standard Workflow**, the Console uses **branches** that directly correspond to Git branches in your configuration repository. All configuration changes are saved via commits to these branches.

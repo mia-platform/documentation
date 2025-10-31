@@ -5470,5 +5470,9 @@
   "/docs/info/(.*)": {
     "destination": "/info/$1",
     "addedOn": "2025-10-14"
+  },
+  "/docs/products/console/set-up-infrastructure/env-based-management": {
+    "destination": "/docs/products/console/set-up-infrastructure/enhanced-project-workflow",
+    "addedOn": "2025-10-31"
   }
 }
