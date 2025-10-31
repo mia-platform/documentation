@@ -50,6 +50,16 @@ mia-console:
 
 ### Configure software-catalog-sync dockerImage customization
 
+#### Using `registry`
+
+```yaml
+configurations:
+  ...
+  registry: "my-custom-registry.io"
+```
+
+#### Using `softwareCatalogSyncCustomizations`
+
 ```yaml
 mia-console:
   configurations:
@@ -61,3 +71,5 @@ mia-console:
         - filter: "nexus.example/core/(.*)"
           replace: "my-registry-example-2.com/$1"
 ```
+
+Customization done with `softwareCatalogSyncCustomizations` configuration has priority over the one made with `registry`, so when both configured at the same time only `softwareCatalogSyncCustomizations` will have effect.
