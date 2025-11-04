@@ -23,8 +23,12 @@ const createRedirects = (path) => {
 
   if (redirectPath) return [redirectPath];
 
-  // Redirects all url without docs to docs/../..
-  return [path.replace(/^\/docs/g, "")];
+  // Redirects all url without docs to docs/..
+  if (path.startsWith('/docs')) {
+    return [path.replace(/^\/docs/g, "")];
+  }
+
+  return undefined
 };
 
 module.exports = createRedirects;
