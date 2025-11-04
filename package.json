@@ -43,7 +43,7 @@
     "react-dom": "^19.2.0",
     "react-youtube": "^10.1.0",
     "tsx": "^4.20.6",
-    "typescript-eslint": "^8.46.2"
+    "typescript-eslint": "^8.46.3"
   },
   "devDependencies": {
     "@babel/eslint-parser": "^7.28.5",
