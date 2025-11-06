@@ -68,11 +68,52 @@ Replace the following placeholders with your actual values:
 These authentication parameters must match the configuration of your Data Catalog instance to ensure proper integration and user authentication.
 :::
 
+### Authentication service update
+
+In the configMap of the Authentication service used by your Data Catalog instance, add the following JSON configuration. Make sure to replace `<DATA_CATALOG_APP_ID>` and `<PROVIDER_ID>` placeholders with the same values used in the `excel-add-in-config` ConfigMap.
+
+```json
+"<DATA_CATALOG_APP_ID>": {
+  "providers": {
+    "<PROVIDER_ID>": {
+      "order": 10,
+      "type": "<PROVIDER_TYPE>",
+      "label": "Login with <PROVIDER_TYPE> ",
+      "clientId": "{{CLIENT_ID}}",
+      "clientSecret": "{{CLIENT_SECRET}}",
+      "baseUrl": "{{BASE_URL}}",
+      "authUrl": "{{BASE_URL}}/oauth2/v1/authorize",
+      "tokenUrl": "{{BASE_URL}}/oauth2/v1/token",
+      "userInfoUrl": "{{BASE_URL}}/oauth2/v1/userinfo",
+      "userSettingsURL": "{{BASE_URL}}/enduser/settings",
+      "logoutUrl": "{{BASE_URL}}/oauth2/v1/logout",
+      "scope": [
+        "openid",
+        "profile",
+        "email",
+        "offline_access",
+        "groups"
+      ]
+    }
+  },
+  "redirectUrl": "{{DATA_FABRIC_BASE_URL}}/excel/web-login/oauth/callback",
+  "defaultRedirectUrlOnSuccessfulLogin": "/excel/profile",
+  "authorizeStateRequired": true,
+  "realm": "<REALM_NAME>",
+  "isWebsiteApp": true,
+  "issuer": "<ISSUER_ID>",
+  "defaultGroups": [],
+  "customTokenClaims": {
+    "metadataFieldsToInclude": []
+  }
+}
+```
+
 ### Endpoints
 
 Along with the configuration of the plugin, add the following endpoint to your Mia-Platform Console Project revision:
 
-- `/excel` pointing to the Excel Add-in service, exposed on the Container Port `http 80:8080`; once created, go to Advanced tab of the endpoint detail page, and inside the `Iframe embedding options`, select `Any origin`.
+- `/excel` pointing to the Excel Add-in service, exposed on the Container Port `http 80:8080`; once created, go to Advanced tab of the endpoint detail page, and inside the `Iframe embedding options`, select **Any origin**.
 
 ### Deploy the Plugin
 
