@@ -498,16 +498,52 @@ If `USERS_API_ENDPOINT` is not set, the users data is retrieved as in previous v
 
 ## Channels configuration
 
+This section illustrates how to setup the external providers you can use to send messages on different channels.
+
 ### Kaleyra integration
+
 The outbound calling and the whatsapp services will need the Kaleyra integration to work properly. In order to setup the Kaleyra integration, you will need, firstly, to create a Kaleyra account and create an API Key. To successfully set up your Kaleyra account, please refer to the [Getting Started section of the official Kaleyra documentation][kaleyra-getting-started]. The obtained Kaleyra API Key and SID will be provided to the `notification-manager` via environment variables, namely `KALEYRA_API_KEY` and `KALEYRA_API_SID`.
 
 #### Outbound calls
+
 In order to use the outbound calls service, you will then need to setup a valid bridge number, that will be provided to the `notification-manager` in the service configuration map, as stated in the next section.
 
 #### Whatsapp messaging
+
 In order to use the Whatsapp messaging service, you need firstly to enable the Whatsapp channel on your Kaleyra account. When setting up the Whatsapp channel, you will need to create a [WhatsApp Business account][facebook-whatsapp-api] on the Meta developer platform. This account will be then linked to your Kaleyra account. You will also need a [valid phone number][facebook-whatsapp-add-number] to associate to your Whatsapp business account, which will be the number that will appear to users who will receive your messages. This number will be provided to the `notification-manager` in the service configuration map, as stated in the next section.
 
 In order to set up a correct configuration, we kindly recommend to follow the [official Kaleyra documentation for Whatsapp integration][kaleyra-whatsapp-api].
+
+#### Firebase push notifications
+
+If you are configuring the service to send push notifications directly with Firebase, you need a Google service account. Step-by-step instructions to generate the private key file for your Google service account are available on the [Firebase official documentation][firebase-credentials].
+
+If you need to send notifications to a single application, you should configure the `GOOGLE_APPLICATION_CREDENTIALS` environment variable to load the generated private key from a secret.
+
+If you need to send notifications to multiple applications, you must associate each private key to a different client by following these steps:
+
+- add each private key as microservice secret (e.g. `/home/secrets/service-account-A.json` and `/home/secrets/service-account-B.json`);
+- add the clients under the `clients` configuration option (e.g. `client-A` and `client-B`);
+- on each client, set the `googleServiceAccountFilePath` configuration field with the absolute path of the secret containing the private key.
+
+For backward compatibility, the private key specified in the `GOOGLE_APPLICATION_CREDENTIALS` environment variable will be used as default, whenever a client is not specified or does not match any of the configured ones.
+
+After these steps, the `clients` part of your service configuration should look like this:
+
+```json
+{
+  "clients": {
+    "mia-care": {
+      "client-A": {
+        "googleServiceAccountFilePath": "/home/secrets/service-account-A.json"
+      },
+      "client-B": {
+        "googleServiceAccountFilePath": "/home/secrets/service-account-B.json"
+      }
+    }
+  }
+}
+```
 
 ## Service configuration
 
@@ -601,6 +637,10 @@ If you use an alphanumeric sender ID please avoid generic names (e.g. SMS, Info.
     }
     ```
 
+- **clients** - `object`: an object whose keys are client identifiers (`string`) and values are client-specific configurations (`object`). Each value must be an object with the following fields:
+  - **googleServiceAccountFilePath** - `string`: the absolute path of the JSON file containing the Google service account credentials - we strongly recommend to mount the file as microservice secret;
+  - **androidIntentAction** - `string`: a client-specific override of the **androidIntentAction** configuration field.
+
 It follows an example of a valid configuration file.
 
 ```json
@@ -610,7 +650,7 @@ It follows an example of a valid configuration file.
     "emailAddress": "mail",
     "phoneNumber": "phone",
     "clusters": "departments",
-    "groups": "teams",
+    "groups": "teams"
   },
   "activeChannels": [
     "email",
@@ -641,7 +681,15 @@ It follows an example of a valid configuration file.
     "metadataSchema": {
       "channels": "notifications.channels",
       "recipients": "buyer.name",
-      "templateId": "notification.channel",
+      "templateId": "notification.channel"
+    }
+  },
+  "clients": {
+    "mia-care": {
+      "push": {
+        "androidIntentAction": "io.mia-care.fakeactivity",
+        "googleServiceAccountFilePath": "/home/app/google-service-accounts/mia-care.json"
+      }
     }
   }
 }
@@ -890,11 +938,11 @@ The following default reminder event handlers both filter the notification setti
 
 :::
 
-
 [bcp-47-language-tag]: https://en.wikipedia.org/wiki/IETF_language_tag
 [e164]: https://www.twilio.com/docs/glossary/what-e164
 [facebook-whatsapp-api]: https://developers.facebook.com/docs/whatsapp/cloud-api/get-started#set-up-developer-assets
 [facebook-whatsapp-add-number]: https://developers.facebook.com/docs/whatsapp/cloud-api/get-started/add-a-phone-number
+[firebase-credentials]: https://firebase.google.com/docs/admin/setup#initialize_the_sdk_in_non-google_environments
 [google-firebase-push-config]: https://firebase.google.com/docs/reference/fcm/rest/v1/projects.messages#apnsconfig
 [iso-8601-datetime]: https://datatracker.ietf.org/doc/html/rfc3339#section-5.6
 [iso-8601-duration]: https://en.wikipedia.org/wiki/ISO_8601#Durations
