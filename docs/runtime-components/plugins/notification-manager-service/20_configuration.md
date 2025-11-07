@@ -524,7 +524,7 @@ If you need to send notifications to multiple applications, you must associate e
 
 - add each private key as microservice secret (e.g. `/home/secrets/service-account-A.json` and `/home/secrets/service-account-B.json`);
 - add the clients under the `clients` configuration option (e.g. `client-A` and `client-B`);
-- on each client, set the `googleServiceAccountFilePath` configuration field with the absolute path of the secret containing the private key.
+- on each client, set the `googleApplicationCredentials` configuration field with the absolute path of the secret containing the private key.
 
 For backward compatibility, the private key specified in the `GOOGLE_APPLICATION_CREDENTIALS` environment variable will be used as default, whenever a client is not specified or does not match any of the configured ones.
 
@@ -533,14 +533,12 @@ After these steps, the `clients` part of your service configuration should look 
 ```json
 {
   "clients": {
-    "mia-care": {
       "client-A": {
-        "googleServiceAccountFilePath": "/home/secrets/service-account-A.json"
+        "googleApplicationCredentials": "/home/secrets/service-account-A.json"
       },
       "client-B": {
-        "googleServiceAccountFilePath": "/home/secrets/service-account-B.json"
+        "googleApplicationCredentials": "/home/secrets/service-account-B.json"
       }
-    }
   }
 }
 ```
@@ -638,7 +636,7 @@ If you use an alphanumeric sender ID please avoid generic names (e.g. SMS, Info.
     ```
 
 - **clients** - `object`: an object whose keys are client identifiers (`string`) and values are client-specific configurations (`object`). Each value must be an object with the following fields:
-  - **googleServiceAccountFilePath** - `string`: the absolute path of the JSON file containing the Google service account credentials - we strongly recommend to mount the file as microservice secret;
+  - **googleApplicationCredentials** - `string`: the absolute path of the JSON file containing the Google service account credentials, overriding the ``GOOGLE_APPLICATION_CREDENTIALS` environment variable - we strongly recommend to mount the file as microservice secret;
   - **androidIntentAction** - `string`: a client-specific override of the **androidIntentAction** configuration field.
 
 It follows an example of a valid configuration file.
@@ -688,7 +686,7 @@ It follows an example of a valid configuration file.
     "mia-care": {
       "push": {
         "androidIntentAction": "io.mia-care.fakeactivity",
-        "googleServiceAccountFilePath": "/home/app/google-service-accounts/mia-care.json"
+        "googleApplicationCredentials": "/home/app/google-service-accounts/mia-care.json"
       }
     }
   }

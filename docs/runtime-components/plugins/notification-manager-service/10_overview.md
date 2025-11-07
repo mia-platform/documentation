@@ -172,7 +172,9 @@ SMS message recipients need the following fields in the [*users* CRUD collection
 
 :::info
 
-Starting with `v2.5.0` you can use different Firebase credentials in your [custom handlers][custom-handlers] on multi-tenant installations.
+**v2.5.0**
+
+Since version 2.5.0 you can use different Firebase credentials in your [custom handlers][custom-handlers] to send push notifications to different mobile applications.
 
 :::
 
