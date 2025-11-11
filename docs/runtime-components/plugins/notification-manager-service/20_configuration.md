@@ -498,7 +498,7 @@ If `USERS_API_ENDPOINT` is not set, the users data is retrieved as in previous v
 
 ## Channels configuration
 
-This section illustrates how to setup the external providers you can use to send messages on different channels.
+This section illustrates how to setup the external providers to send messages on different channels.
 
 ### Kaleyra integration
 
@@ -518,15 +518,15 @@ In order to set up a correct configuration, we kindly recommend to follow the [o
 
 If you are configuring the service to send push notifications directly with Firebase, you need a Google service account. Step-by-step instructions to generate the private key file for your Google service account are available on the [Firebase official documentation][firebase-credentials].
 
-If you need to send notifications to a single application, you should configure the `GOOGLE_APPLICATION_CREDENTIALS` environment variable to load the generated private key from a secret.
+If you want to send notifications to a single application, you should configure the `GOOGLE_APPLICATION_CREDENTIALS` environment variable to load the generated private key from a secret.
 
-If you need to send notifications to multiple applications, you must associate each private key to a different client by following these steps:
+If you want to send notifications to multiple applications, you must associate each private key to a different client by following these steps:
 
-- add each private key as microservice secret (e.g. `/home/secrets/service-account-A.json` and `/home/secrets/service-account-B.json`);
-- add the clients under the `clients` configuration option (e.g. `client-A` and `client-B`);
-- on each client, set the `googleApplicationCredentials` configuration field with the absolute path of the secret containing the private key.
+- add the private keys as microservice secrets (e.g. `/home/secrets/service-account-A.json` and `/home/secrets/service-account-B.json`);
+- configure the clients under the `clients` configuration field (e.g. `client-A` and `client-B`);
+- for each client, set the `googleApplicationCredentials` configuration field with the absolute path of the secret containing the corresponding private key.
 
-For backward compatibility, the private key specified in the `GOOGLE_APPLICATION_CREDENTIALS` environment variable will be used as default, whenever a client is not specified or does not match any of the configured ones.
+For backward compatibility, the private key specified in the `GOOGLE_APPLICATION_CREDENTIALS` environment variable will be used as global default, whenever a client is not specified or does not match any of the configured ones.
 
 After these steps, the `clients` part of your service configuration should look like this:
 
@@ -635,7 +635,7 @@ If you use an alphanumeric sender ID please avoid generic names (e.g. SMS, Info.
     }
     ```
 
-- **clients** - `object`: an object whose keys are client identifiers (`string`) and values are client-specific configurations (`object`). Each value must be an object with the following fields:
+- **clients** - `object` (new in `v2.5.0`): an object whose keys are client identifiers (`string`) and values are client-specific configurations (`object`). Each value must be an object with the following fields:
   - **googleApplicationCredentials** - `string`: the absolute path of the JSON file containing the Google service account credentials, overriding the ``GOOGLE_APPLICATION_CREDENTIALS` environment variable - we strongly recommend to mount the file as microservice secret;
   - **androidIntentAction** - `string`: a client-specific override of the **androidIntentAction** configuration field.
 
@@ -684,10 +684,8 @@ It follows an example of a valid configuration file.
   },
   "clients": {
     "mia-care": {
-      "push": {
-        "androidIntentAction": "io.mia-care.fakeactivity",
-        "googleApplicationCredentials": "/home/app/google-service-accounts/mia-care.json"
-      }
+      "androidIntentAction": "io.mia-care.fakeactivity",
+      "googleApplicationCredentials": "/home/app/google-service-accounts/mia-care.json"
     }
   }
 }

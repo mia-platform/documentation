@@ -992,20 +992,21 @@ In the message templates you can use the following variables for interpolation:
 
 #### Parameters
 
-| Parameter name | Required | Description                                                            |
-|----------------|----------|------------------------------------------------------------------------|
-| service        | Yes      | Fastify decorated instance                                             |
-| event          | Yes      | An [event][crud-events] with id, name and payload                      |
-| user           | Yes      | A user from the [users CRUD][crud-users]                               |
-| messages       | Yes      | A list of notification messages with channel, template and attachments |
+| Parameter name | Type               | Required | Description                                                                       |
+| -------------- | ------------------ | -------- | --------------------------------------------------------------------------------- |
+| service        | `Object`           | Yes      | Fastify decorated instance                                                        |
+| event          | `Object`           | Yes      | An [event][crud-events] with id, name and payload                                 |
+| user           | `Object`           | Yes      | A user from the [users CRUD][crud-users]                                          |
+| messages       | `Array of objects` | Yes      | A list of notification messages with channel, template, client ID and attachments |
 
-Each message must an object with the following fields:
+Each message shall be an object with the following fields:
 
-| Name         | Type     | Required | Description                                                   |
-| ------------ | -------- | -------- | ------------------------------------------------------------- |
-| channel      | `String` | Yes      | The [channel][channels] to send the notification on           |
-| templateName | `String` | Yes      | The name of the [message template][crud-templates] to use     |
-| clientId     | `String` | No       | The client ID to use to apply client-specific configurations. |
+| Name         | Type               | Required | Description                                                   |
+| ------------ | ------------------ | -------- | ------------------------------------------------------------- |
+| channel      | `String`           | Yes      | The [channel][channels] to send the notification on           |
+| templateName | `String`           | Yes      | The name of the [message template][crud-templates] to use     |
+| clientId     | `String`           | No       | The client ID to use to apply client-specific configurations. |
+| attachments  | `Array of objects` | No       | A list of attachments available on the Files Service.         |
 
 Here's an example of a message with all fields set:
 
@@ -1013,7 +1014,10 @@ Here's an example of a message with all fields set:
 {
   "channel": "email",
   "templateName": "patient-updated-appointment",
-  "clientId": "mia-care"
+  "clientId": "mia-care",
+  "attachments": [
+    {"file": "file-service-file-id"}
+  ]
 }
 ```
 

@@ -174,7 +174,8 @@ SMS message recipients need the following fields in the [*users* CRUD collection
 
 **v2.5.0**
 
-Since version 2.5.0 you can use different Firebase credentials in your [custom handlers][custom-handlers] to send push notifications to different mobile applications.
+Since version 2.5.0 you can use different Firebase credentials to send push notifications to different mobile applications.
+This feature is currently available only on [custom handlers][custom-handlers] and is supported by the [`sendMessages` custom handler API][utils-send-messages].
 
 :::
 
@@ -281,6 +282,20 @@ So, to send an email to a couple of recipients you can send a request with a bod
 The [`POST /send`][post-send] endpoint still requires the template ID, while you can reference a template by name only in the notification settings, which are used when processing an event sent to the [`POST /notification-events/`][post-notification-events] endpoint.
 
 :::
+
+## Clients
+
+:::info
+
+**v2.5.0**. The features described in this section are available since version 2.5.0.
+
+:::
+
+If you need to setup the service in a multitenant environment, you can override the global configuration to provide client-specific settings.
+
+Each client is identified by an ID and you can specify its configuration in the `clients` section of the [service configuration][service-configuration].
+
+To apply the client configurations in your [custom handler][custom-handlers], you simply have to enrich your message with an additional field - called `clientId` - containing the client ID - and send it with the [`sendMessage` API][utils-send-messages].
 
 ## Events
 
@@ -620,3 +635,4 @@ The users targeted by these tests all share the same phone number, and therefore
 [post-saga-send]: /runtime-components/plugins/notification-manager-service/30_usage.md#post-sagasend
 [post-send]: /runtime-components/plugins/notification-manager-service/30_usage.md#post-send
 [post-notification-events]: /runtime-components/plugins/notification-manager-service/30_usage.md#post-notification-events
+[utils-send-messages]: /runtime-components/plugins/notification-manager-service/30_usage.md#sendmessages
