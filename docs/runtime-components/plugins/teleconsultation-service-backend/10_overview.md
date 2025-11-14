@@ -6,6 +6,12 @@ sidebar_label: Overview
 
 
 
+:::danger
+
+The Teleconsultation Service is deprecated and under maintenance (bug fixes and security updates only) until end-of-life is reached in July 2026.
+
+:::
+
 The Teleconsultation Service Backend is a Mia-Platform plugin that acts as a BFF (Backend For Frontend) for the [Teleconsultation Service Frontend][teleconsultation-service-fe], that manages the teleconsultation UI and all the features and tools available during a call using an iframe.
 
 The teleconsultation service uses the [SaaS Kaleyra Service][kaleyra] which allows you to create a video call between two or more people, providing also different tools (like chat, whiteboard, screen sharing, file upload ecc.). It provides also supports image background management and language management (only `it` and `en` are supported at the moment).

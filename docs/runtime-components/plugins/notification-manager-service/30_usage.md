@@ -967,6 +967,12 @@ The function throws an error if the CRUD service does not respond correctly or a
 
 :::info
 
+**v2.5.0**. Messages can have an additional field - `clientId` - specifying with client-specific configurations should apply.
+
+:::
+
+:::info
+
 **v2.3.0**. Custom attachments specified in the message `attachments` field will be sent if the `email` channel is specified.
 
 :::
@@ -986,12 +992,34 @@ In the message templates you can use the following variables for interpolation:
 
 #### Parameters
 
-| Parameter name | Required | Description                                                            |
-|----------------|----------|------------------------------------------------------------------------|
-| service        | Yes      | Fastify decorated instance                                             |
-| event          | Yes      | An [event][crud-events] with id, name and payload                      |
-| user           | Yes      | A user from the [users CRUD][crud-users]                               |
-| messages       | Yes      | A list of notification messages with channel, template and attachments |
+| Parameter name | Type               | Required | Description                                                                       |
+| -------------- | ------------------ | -------- | --------------------------------------------------------------------------------- |
+| service        | `Object`           | Yes      | Fastify decorated instance                                                        |
+| event          | `Object`           | Yes      | An [event][crud-events] with id, name and payload                                 |
+| user           | `Object`           | Yes      | A user from the [users CRUD][crud-users]                                          |
+| messages       | `Array of objects` | Yes      | A list of notification messages with channel, template, client ID and attachments |
+
+Each message shall be an object with the following fields:
+
+| Name         | Type               | Required | Description                                                   |
+| ------------ | ------------------ | -------- | ------------------------------------------------------------- |
+| channel      | `String`           | Yes      | The [channel][channels] to send the notification on           |
+| templateName | `String`           | Yes      | The name of the [message template][crud-templates] to use     |
+| clientId     | `String`           | No       | The client ID to use to apply client-specific configurations. |
+| attachments  | `Array of objects` | No       | A list of attachments available on the Files Service.         |
+
+Here's an example of a message with all fields set:
+
+```json
+{
+  "channel": "email",
+  "templateName": "patient-updated-appointment",
+  "clientId": "mia-care",
+  "attachments": [
+    {"file": "file-service-file-id"}
+  ]
+}
+```
 
 #### Return value
 
