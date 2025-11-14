@@ -209,8 +209,6 @@ or, as an alternative, just one:
 
 - `pushData`: the full notification payload, which overrides the `pushTitle`, `pushSubtitle` and `pushMessage` fields.
 
-Additional information on the [Firebase Message fields][firebase-message] are available on the [official developer documentation][firebase-message].
-
 Push notification recipients need the following fields in the [*users* CRUD collection][crud-users]:
 
 - `deviceToken`: if the field has a different name in your collection, remember to set the custom name in the [service configuration][service-configuration] `userFields.deviceToken` field.
@@ -610,7 +608,6 @@ The users targeted by these tests all share the same phone number, and therefore
 [handlebars-custom-helpers]: https://handlebarsjs.com/guide/#custom-helpers
 [handlebars-helpers]: https://github.com/helpers/handlebars-helpers
 [bcp-47-language-tag]: https://en.wikipedia.org/wiki/IETF_language_tag
-[firebase-message]: https://firebase.google.com/docs/reference/fcm/rest/v1/projects.messages
 
 [sms-service]: /runtime-components/plugins/sms-service/20_configuration.md
 [ses-mail-notification]: /runtime-components/plugins/ses-mail-notification-service/configuration.md
