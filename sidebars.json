@@ -1685,7 +1685,7 @@
       "label": "Tutorials",
       "items": [
         {
-          "id": "data_catalog/tutorials/data-catalog-tutorial",
+          "id": "products/data_catalog/tutorials/data-catalog-tutorial",
           "type": "doc"
         }
       ]
