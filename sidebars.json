@@ -1680,6 +1680,17 @@
       "type": "doc"
     },
     {
+      "collapsed": true,
+      "type": "category",
+      "label": "Tutorials",
+      "items": [
+        {
+          "id": "products/data_catalog/tutorials/data-catalog-tutorial",
+          "type": "doc"
+        }
+      ]
+    },
+    {
       "type": "category",
       "label": "Data Catalog UI",
       "collapsed": true,
