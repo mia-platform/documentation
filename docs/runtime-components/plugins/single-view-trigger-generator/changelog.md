@@ -11,6 +11,20 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [3.5.1] 2025-10-07
+
+### Changed
+
+- overhauled logic managing consumer group rebalance operation
+
+### Fixed
+
+- ensured that failed heartbeat due to rebalance operation in progress does
+  not terminate the service
+- extend which Kafka consumer properties can be customized
+- set Kafka producer as idempotent
+- decrease default `maxWaitTimeInMs` from `5000` to `500` milliseconds
+
 ## [3.5.0] 2025-09-05
 
 ### Changed
