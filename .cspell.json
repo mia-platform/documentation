@@ -279,7 +279,7 @@
     "FKMUVK",
     "Drun",
     "wnameless",
-    "redevelopable"
+    "redevelopable",
     "jdbc",
     "Dgroup",
     "Dartifact",
@@ -388,7 +388,7 @@
     "SDLC",
     "IMDRF",
     "autho",
-    "FSTDEP021"
+    "FSTDEP021",
     "twox"
   ],
   "dictionaries": [
