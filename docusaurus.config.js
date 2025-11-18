@@ -1,6 +1,7 @@
 const createEditUrl = require("./scripts/createEditUrl");
 const createRedirects = require("./scripts/createRedirects");
 const versionsList = require('./versions.json');
+const installationChartPlugin = require('./src/plugins/installation-chart')
 
 const prodVersion = versionsList[1]
 
@@ -357,6 +358,7 @@ const config = {
                 path: 'release-notes',
                 routeBasePath: 'release-notes',
                 sidebarPath: './sidebarsReleaseNotes.js',
+                remarkPlugins: [installationChartPlugin]
             },
         ],
         [
