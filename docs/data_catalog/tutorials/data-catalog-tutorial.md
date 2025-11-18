@@ -66,9 +66,10 @@ The Data Catalog solution relies on a set of collections to carry out most of it
 To properly set up the database, please refer to the following [documentation page](/products/data_catalog/database_setup.mdx) that describes how to configure the `fabric-admin` CronJob.
 
 For the complete configuration of its manifest, please insert:
-* <URL_TO_CONTAINER_REGISTRY> → the URL to your Container Registry of reference;
-* <NAME_CONTAINER_REGISTRY_SECRET> → name of the secret containing the credentials for connecting to your Container Registry;
-* {{MONGODB_ADMIN_URL}} → refers to the secreted value that contains the connection string to your MongoDB database.
+
+* `<URL_TO_CONTAINER_REGISTRY>` → the URL to your Container Registry of reference;
+* `<NAME_CONTAINER_REGISTRY_SECRET>` → name of the secret containing the credentials for connecting to your Container Registry;
+* `{{MONGODB_ADMIN_URL}}` → refers to the secreted value that contains the connection string to your MongoDB database.
 
 Once configured, deploy it to your runtime environment and then [launch the cronjob](/products/console/monitoring/resources/cronjobs.md#manually-launching-a-cronjob) for database preparation.
 
