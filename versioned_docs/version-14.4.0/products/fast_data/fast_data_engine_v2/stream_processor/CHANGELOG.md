@@ -10,6 +10,66 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.5.4] - 2025-11-18
+
+### Added
+
+- Add dlq for processing errors
+- Allow connection grouping in config file
+
+### Dependencies
+
+- Update rust crate axum to 0.8.6
+- Update docker.io/rust:1.90.0-alpine3.22 docker digest to b4b54b1
+
+### Fixed
+
+- `onError` is not required
+
+## [0.5.3] - 2025-10-14
+
+### Added
+
+- Add md5 hashing function to caches object
+
+### Dependencies
+
+- Upgrade axum@0.8.6
+- Update grafana/tempo docker tag to v2.9.0
+- Update docker.io/alpine docker tag to v3.22.2
+- Update rust crate serde to 1.0.228
+- Update grafana/grafana docker tag to v12.2.0
+
+## [0.5.2] - 2025-09-26
+
+### Changed
+
+- Reduce default commit interval from 3000ms to 1500ms
+
+### Dependencies
+
+- Update prom/prometheus docker tag to v3.6.0
+- Update rust crate serde to 1.0.226
+- Update docker.io/rust docker tag to v1.90.0
+- Update rust crate serde to 1.0.225
+- Update rust crate anyhow to 1.0.100
+- Update rust crate typed-builder to 0.22.0
+- Update httputils@0.2.0
+- Update rust crate serde to 1.0.224
+- Update apache/kafka docker tag to v4.1.0
+- Update rust crate twox-hash to 2.1.2
+
+### Documentation
+
+- Align pages with public documentation
+- Remove typo
+- Introduce first documentation pages for the service
+
+### Fixed
+
+- Trace parent is now correctly assigned to consumer span
+- Ensure trace context is propagated in Kafka headers
+
 ## [0.5.1] - 2025-09-01
 
 ### Added
