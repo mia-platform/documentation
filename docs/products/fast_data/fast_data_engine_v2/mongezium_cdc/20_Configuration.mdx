@@ -33,21 +33,17 @@ the following JSON schema configuration.
 
 <SchemaViewer schema={MongeziumSchema} example={MongeziumConfigExample} />
 
-Starting from version _v0.4.3_, the Mongezium configuration file supports the `connections` property, which can be used to create
-references of Kafka connections and MongoDB connections and reuse them, respectively, inside the `stream` property
-and the `persistence` property.
-This trait is similar to other Fast Data services like [Stream Processor](/products/fast_data/fast_data_engine_v2/stream_processor/10_Overview.md),
-[FarmData](/products/fast_data/fast_data_engine_v2/farm_data/10_Overview.md) and [Kango](/products/fast_data/fast_data_engine_v2/kango/10_Overview.md),
-and it will help you to simplify the structure of the configuration file, avoiding to write multiple times Kafka or MongoDB connections.
+Starting from version _v0.4.3_, the Mongezium configuration file supports a `connections` property.
+This property allows you to create references to Kafka and MongoDB connections, which can then be reused within the `stream` and `persistence` properties, respectively.
+This feature, already present in other Fast Data services like [Stream Processor](/products/fast_data/fast_data_engine_v2/stream_processor/10_Overview.md),
+[Farm Data](/products/fast_data/fast_data_engine_v2/farm_data/10_Overview.md), and [Kango](/products/fast_data/fast_data_engine_v2/kango/10_Overview.md),
+simplifies the configuration file by eliminating the need to repeat connection details.
 
 :::warning
 
-While you can decide to define Kafka connections or Mongo connections either inside the `connections` property
-or inside the related configuration section, please consider that we are going to move towards a configuration
-structure where these configuration can only be included inside the `connections` property.
+Although you can currently define Kafka or MongoDB connections either within the `connections` property or directly in their respective configuration sections, please be aware that support for the latter is deprecated.
 
-This update will be included in one of the next versions of Mongezium, therefore it is highly suggested to use `connections` property
-as soon as you upgrade to _v0.4.3_ of Mongezium.
+Future versions of Mongezium will exclusively support connection definitions inside the `connections` property. Therefore, it is highly recommended to adopt this approach as soon as you upgrade to Mongezium _v0.4.3_ or a later version.
 
 :::
 
