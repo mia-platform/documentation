@@ -6,6 +6,12 @@ sidebar_label: Overview
 
 
 
+:::danger
+
+The Teleconsultation Service is deprecated and under maintenance (bug fixes and security updates only) until end-of-life is reached in July 2026.
+
+:::
+
 The teleconsultation service relies on the [SaaS Bandyer Service][bandyer] to create a video call between two or more people, providing also a variety of tools, like chat, whiteboard, screen sharing, file upload, etcetera.
 
 The **Teleconsultation Service Frontend** handles and visualizes the teleconsultation UI and all its relative tools for the call using iframe.
