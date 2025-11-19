@@ -15,14 +15,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Use of "connections" property in configuration file
 
-### Dependencies
-
-- Update grafana/tempo docker tag to v2.9.0
-- Update docker.io/alpine docker tag to v3.22.2
-- Update rust crate thiserror to 2.0.17
-- Update rust crate serde to 1.0.228
-- Update grafana/grafana docker tag to v12.2.0
-
 ## [0.5.1] - 2025-09-26
 
 ### Changed
