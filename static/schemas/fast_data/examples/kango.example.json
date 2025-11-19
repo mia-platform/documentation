@@ -1,23 +1,37 @@
 {
-  "$schema": "https://docs.mia-platform.eu/schemas/fast_data/kango.0.5.1.schema.json",
-  "persistence": {
-    "url": {
-      "type": "file",
-      "path": "/run/secrets/mongodb/url"
+  "$schema": "https://docs.mia-platform.eu/schemas/fast_data/kango.0.5.2.schema.json",
+  "connections": {
+    "mongo-connection": {
+      "type": "mongo",
+      "config": {
+        "url": {
+          "type": "file",
+          "path": "/run/secrets/mongodb/url"
+        }
+      }
     },
+    "kafka-connection": {
+      "type": "kafka",
+      "config": {
+        "bootstrap.servers": {
+          "type": "file",
+          "path": "/run/secrets/kafka/bootstrap.servers"
+        },
+        "client.id": "fd.kango.consumer"
+      }
+    }
+  },
+  "persistence": {
+    "connectionName": "mongo-connection",
     "database": "test",
     "collection": "fd_kango_output"
   },
   "consumer": {
     "type": "kafka",
     "topic": "fd.kango-topic.input",
+    "connection": "kafka-connection",
     "config": {
-      "bootstrap.servers": {
-        "type": "file",
-        "path": "/run/secrets/kafka/bootstrap.servers"
-      },
-      "group.id": "fd.kango",
-      "client.id": "fd.kango.consumer"
+      "group.id": "fd.kango"
     }
   }
 }

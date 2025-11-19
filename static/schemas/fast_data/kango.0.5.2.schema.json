@@ -4,6 +4,13 @@
   "description": "Main Kango service configuration struct",
   "type": "object",
   "properties": {
+    "connections": {
+      "type": "object",
+      "additionalProperties": {
+        "$ref": "#/$defs/ConnectionConfig"
+      },
+      "default": {}
+    },
     "consumer": {
       "$ref": "#/$defs/ConsumerConfig"
     },
@@ -29,12 +36,25 @@
   },
   "examples": [
     {
-      "consumer": {
-        "config": {
-          "bootstrap.servers": "localhost:9092",
-          "client.id": "kango",
-          "group.id": "kango"
+      "connections": {
+        "kafka-conn": {
+          "config": {
+            "bootstrap.servers": "localhost:9092",
+            "client.id": "kango",
+            "group.id": "kango"
+          },
+          "type": "kafka"
         },
+        "mongodb-conn": {
+          "config": {
+            "database": "test",
+            "url": "mongodb://localhost:27017/test?replicaSet=local"
+          },
+          "type": "mongo"
+        }
+      },
+      "consumer": {
+        "connectionName": "kafka-conn",
         "topic": "test-topic-1",
         "type": "kafka"
       },
@@ -43,8 +63,7 @@
       },
       "persistence": {
         "collection": "test-collection-1",
-        "database": "test",
-        "url": "mongodb://localhost:27017/test?replicaSet=local"
+        "connectionName": "mongo-conn"
       }
     }
   ],
@@ -53,6 +72,43 @@
     "consumer"
   ],
   "$defs": {
+    "ConnectionConfig": {
+      "description": "Describes the possible type of connections that can be defined in the configuration file",
+      "oneOf": [
+        {
+          "type": "object",
+          "properties": {
+            "config": {
+              "$ref": "#/$defs/KafkaConnectionConfig"
+            },
+            "type": {
+              "type": "string",
+              "const": "kafka"
+            }
+          },
+          "required": [
+            "type",
+            "config"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "config": {
+              "$ref": "#/$defs/MongodbConnectionConfig"
+            },
+            "type": {
+              "type": "string",
+              "const": "mongodb"
+            }
+          },
+          "required": [
+            "type",
+            "config"
+          ]
+        }
+      ]
+    },
     "ConsumerConfig": {
       "description": "Describes the configuration of streaming layer, that is Kafka, to be adopted by the service",
       "oneOf": [
@@ -104,6 +160,12 @@
         "grpcAddress"
       ]
     },
+    "KafkaConnectionConfig": {
+      "type": "object",
+      "additionalProperties": {
+        "$ref": "#/$defs/Secret"
+      }
+    },
     "KafkaConsumerConfig": {
       "type": "object",
       "properties": {
@@ -115,11 +177,19 @@
           "minimum": 0
         },
         "config": {
-          "description": "librdkafka Kafka consumer configuration properties | https://github.com/confluentinc/librdkafka/blob/master/CONFIGURATION.md",
+          "description": "librdkafka Kafka consumer configuration properties",
           "type": "object",
           "additionalProperties": {
             "$ref": "#/$defs/Secret"
-          }
+          },
+          "default": {}
+        },
+        "connectionName": {
+          "description": "Reference to the Kafka configuration stored inside the Connection (`KafkaConnectionConfig`)",
+          "type": [
+            "string",
+            "null"
+          ]
         },
         "topic": {
           "description": "name of the Kafka topic from which the consumer will read messages",
@@ -127,8 +197,34 @@
         }
       },
       "required": [
-        "config",
         "topic"
+      ]
+    },
+    "MongodbConnectionConfig": {
+      "type": "object",
+      "properties": {
+        "appName": {
+          "description": "The application name employed by MongoDB driver when performing queries.\nThis is useful for debugging purposes, such as recognizing which application\nis launching a query towards the database.",
+          "type": [
+            "string",
+            "null"
+          ],
+          "default": null
+        },
+        "database": {
+          "description": "MongoDB database where events will be written to",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "url": {
+          "description": "MongoDB connection string",
+          "$ref": "#/$defs/Secret"
+        }
+      },
+      "required": [
+        "url"
       ]
     },
     "PersistenceConfiguration": {
@@ -147,9 +243,19 @@
           "description": "MongoDB collection where events will be written to",
           "type": "string"
         },
+        "connectionName": {
+          "description": "Reference to the MongoDB configuration stored inside the Connection (`MongodbConnectionConfig`)",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
         "database": {
           "description": "MongoDB database where events will be written to",
-          "type": "string"
+          "type": [
+            "string",
+            "null"
+          ]
         },
         "maxBatchSize": {
           "description": "Number of change events that should be buffered before\noffloading them in bulk onto the persistence layer",
@@ -160,7 +266,14 @@
         },
         "url": {
           "description": "MongoDB connection string",
-          "$ref": "#/$defs/Secret"
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Secret"
+            },
+            {
+              "type": "null"
+            }
+          ]
         },
         "writeIntervalMs": {
           "description": "Number of milliseconds that should elapse between two writes\non persistence layer when the maximum batch size is not reached\nwithin the interval",
@@ -171,8 +284,6 @@
         }
       },
       "required": [
-        "url",
-        "database",
         "collection"
       ]
     },

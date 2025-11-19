@@ -11,6 +11,70 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.4.3] - 2025-11-14
+
+### Added
+
+- Use of "connections" property in configuration file
+
+### Dependencies
+
+- Update grafana/tempo docker tag to v2.9.0
+- Update rust crate serde to 1.0.228
+- Update grafana/grafana docker tag to v12.2.0
+
+## [0.4.2] - 2025-09-26
+
+### Added
+
+- Add data source modification and workload processing timestamps to produced change events
+
+### Dependencies
+
+- Update serde_json@1.0.145
+- Update prom/prometheus docker tag to v3.6.0
+- Update rust crate serde to 1.0.226
+- Update rust docker tag to v1.90.0
+- Update rust crate anyhow to 1.0.100
+- Update httputils@0.2.0
+
+### Documentation
+
+- Add description of otlp endpoint variable
+- Clarify memory unit
+- Update secret_rs link
+
+### Fixed
+
+- Ensure trace context is propagated in Kafka headers
+
+## [0.4.1] - 2025-09-11
+
+### Added
+
+- Signal OK as soon as service starts
+- Add logs on start-cdc fn and `appName` for mongezium
+
+### Dependencies
+
+- Update rust crate typed-builder to 0.21.2
+- Update rust crate anyhow to 1.0.99
+- Update rust crate mongodb to 3.3.0
+- Update apache/kafka docker tag to v4.1.0
+- Update rust crate uuid to 1.18.1
+- Update rust crate serde_json to 1.0.143
+- Update grafana/tempo docker tag to v2.8.2
+- Update grafana/grafana docker tag to v12.1.1
+- Update rust docker tag to v1.89.0
+- Update rust crate tokio to 1.47.1
+- Update rust crate backon to 1.5.2
+- Update memcached docker tag to v1.6.39
+- Update rust crate rstest to 0.26.1
+- Update rust:1.88.0-alpine3.21 docker digest to 54e937b
+- Update ghcr.io/kafbat/kafka-ui docker tag to v1.3.0
+- Update alpine docker tag to v3.22.1
+- Update prom/prometheus docker tag to v3.5.0
+
 ## [0.4.0] - 2025-06-25
 
 ### Changed
@@ -21,7 +85,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Add start up behavior description
 
-### Fixed
+### Dependencies
 
 - Update rust crate tokio to 1.45.1
 - Update rust crate uuid to 1.17.0

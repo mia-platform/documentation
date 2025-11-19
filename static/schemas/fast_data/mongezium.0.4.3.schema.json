@@ -25,6 +25,14 @@
           "$ref": "#/definitions/StreamConfiguration"
         }
       ]
+    },
+    "connections": {
+      "description": "Includes the connection configurations to be used by stream and persistence layers.",
+      "type": "object",
+      "additionalProperties": {
+        "$ref": "#/definitions/ConnectionConfig"
+      },
+      "default": {}
     }
   },
   "required": [
@@ -86,10 +94,27 @@
       "properties": {
         "url": {
           "description": "MongoDB connection string",
-          "allOf": [
+          "anyOf": [
             {
               "$ref": "#/definitions/Secret"
+            },
+            {
+              "type": "null"
             }
+          ]
+        },
+        "database": {
+          "description": "MongoDB database where events will be written to. To be included if not specified in the url.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "connectionName": {
+          "description": "Reference to the MongoDB configuration stored inside the Connection (`MongodbConnectionConfig`)",
+          "type": [
+            "string",
+            "null"
           ]
         },
         "appName": {
@@ -99,10 +124,7 @@
             "null"
           ]
         }
-      },
-      "required": [
-        "url"
-      ]
+      }
     },
     "Secret": {
       "examples": [
@@ -179,30 +201,118 @@
       "type": "object",
       "properties": {
         "consumer": {
-          "description": "Configurations related to the Kafka Consumer employed to retrieve\nthe latest state produced by the service alongside previous change events.\n\n`bootstrap.servers` property MUST have the value of the corresponding property in the `producer` configuration.",
-          "type": "object",
-          "additional_properties": {
-            "$ref": "#/definitions/Secret"
-          },
-          "required": [
-            "bootstrap.servers"
+          "description": "Configurations related to the Kafka Consumer employed to retrieve\nthe latest state produced by the service alongside previous change events.\n\nIt must include either the `connectionName` property or the `bootstrap.servers` property. If included,\nthe property MUST have the value of the corresponding property in the `producer` configuration.",
+          "allOf": [
+            {
+              "$ref": "#/definitions/KafkaConfiguration"
+            }
           ]
         },
         "producer": {
-          "description": "Configurations related to the Kafka Producer for sending to Kafka topics\nchange events occurring on the persistence layer.\n\n`bootstrap.servers` property MUST have the value of the corresponding property in the `consumer` configuration.",
-          "type": "object",
-          "additional_properties": {
-            "description": "librdkafka producer config | https://github.com/confluentinc/librdkafka/blob/master/CONFIGURATION.md",
-            "$ref": "#/definitions/Secret"
-          },
-          "required": [
-            "bootstrap.servers"
+          "description": "Configurations related to the Kafka Producer for sending to Kafka topics\nchange events occurring on the persistence layer.\n\nIt must include either the `connectionName` property or the `bootstrap.servers` property. If included,\nthe property MUST have the value of the corresponding property in the consumer` configuration.",
+          "allOf": [
+            {
+              "$ref": "#/definitions/KafkaConfiguration"
+            }
           ]
         }
       },
       "required": [
         "consumer",
         "producer"
+      ]
+    },
+    "KafkaConfiguration": {
+      "description": "librdkakfa client configuration, as specified by library documentation: https://docs.confluent.io/platform/current/clients/librdkafka/html/md_CONFIGURATION.html",
+      "type": "object",
+      "properties": {
+        "connectionName": {
+          "description": "Reference to the Kafka configuration stored inside the Connection (`KafkaConnectionConfig`)",
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "additional_properties": {
+        "$ref": "#/definitions/Secret"
+      },
+      "required": [
+        "bootstrap.servers"
+      ]
+    },
+    "ConnectionConfig": {
+      "description": "Describes the possible type of connections that can be defined in the configuration file",
+      "oneOf": [
+        {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "string",
+              "const": "kafka"
+            },
+            "config": {
+              "$ref": "#/definitions/KafkaConnectionConfig"
+            }
+          },
+          "required": [
+            "type",
+            "config"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "string",
+              "const": "mongodb"
+            },
+            "config": {
+              "$ref": "#/definitions/MongodbConnectionConfig"
+            }
+          },
+          "required": [
+            "type",
+            "config"
+          ]
+        }
+      ]
+    },
+    "KafkaConnectionConfig": {
+      "type": "object",
+      "additionalProperties": {
+        "$ref": "#/definitions/Secret"
+      }
+    },
+    "MongodbConnectionConfig": {
+      "type": "object",
+      "properties": {
+        "url": {
+          "description": "MongoDB connection string",
+          "allOf": [
+            {
+              "$ref": "#/definitions/Secret"
+            }
+          ]
+        },
+        "database": {
+          "description": "MongoDB database where events will be written to. To be included if not specified in the url.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "appName": {
+          "description": "The application name employed by MongoDB driver when performing queries.\nThis is useful for debugging purposes, such as recognizing which application\nis launching a query towards the database.",
+          "type": [
+            "string",
+            "null"
+          ],
+          "default": null
+        }
+      },
+      "required": [
+        "url"
       ]
     }
   }
