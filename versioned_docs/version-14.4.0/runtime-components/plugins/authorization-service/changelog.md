@@ -11,6 +11,16 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## 3.0.0 - 18-11-2025
+
+### Breaking Change
+
+- fixed a bug where non-defined routes used to match existing route configurations with prefix names instead of subroute configurations (e.g. `/foo-bar` used to match `/foo` authorization config, if any, or fallbacks to `/`). This causes routes to be more strictier and can fallback to parent routes only if ends with `/`.
+
+### Updates
+
+- Updated several dependencies, including `go` to _v1.24_
+
 ## 2.4.3 - 04-12-2024
 
 ### Added
