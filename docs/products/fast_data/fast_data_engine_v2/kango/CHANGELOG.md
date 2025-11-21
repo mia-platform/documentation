@@ -9,6 +9,40 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.5.2] - 2025-11-14
+
+### Added
+
+- Use of "connections" property in configuration file
+
+## [0.5.1] - 2025-09-26
+
+### Changed
+
+- Review telemetry and added further span tracking
+
+### Dependencies
+
+- Update prom/prometheus docker tag to v3.6.0
+- Update rust crate serde to 1.0.226
+- Update docker.io/rust docker tag to v1.90.0
+- Update rust crate anyhow to 1.0.100
+- Update httputils@0.2.0
+- Update rust crate mongodb to 3.3.0
+- Update rust crate uuid to 1.18.1
+
+### Documentation
+
+- Add description of otlp endpoint variable
+- Add paragraph explaining k8s status probes
+- Clarify memory unit
+- Review documentation and add metrics page
+
+### Fixed
+
+- Trace parent is now correctly assigned to consumer span
+- Do not increment flushed messages metric when not needed
+
 ## [0.5.0] - 2025-09-11
 
 ### Changed
