@@ -90,14 +90,8 @@ The `connections` field is a map where each key is a connection name and its val
 a `ConnectionConfig`.
 A Kafka connection configuration can include additional properties defined by the `Secret`
 schema.
-These connections can be then referenced in the `consumer` and `producer` configurations
+The connection name has to be referenced in both `consumer` and `producer` configurations
 using the `connectionName` field.  
-
-:::note
-Instead of defining the connection details directly in the `connections` field, it is possible also to define them in the
-`consumer` and `producer` fields. However, it is recommended to use the `connections` field when the same connection details are shared across multiple
-consumers and producers.
-:::
 
 #### Consumer Configuration
 
