@@ -177,7 +177,7 @@ alongside the data types involved in its arguments.
 // ------------------ PROCESSING FUNCTION DATA TYPES ------------------ // 
 
 type ProcessFn<P = unknown> = (
-    message: InMessage<P>, caches?: ProcessorCaches | null | undefined
+    message: InMessage<P>, caches: ProcessorCaches
 ) => Promise<OutMessage[] | null | undefined>
 
 interface InMessage<P = unknown> {
@@ -190,7 +190,14 @@ interface OutMessage {
     payload: unknown
 }
 
-type ProcessorCaches = (name: string) => ProcessorCache | null | undefined
+interface ProcessorCaches {
+  (name: string) => ProcessorCache | null | undefined
+  hash: {
+    md5: {
+      digest: (data: string | ArrayBuffer | Uint8Array) => Promise<string>
+    },
+  }
+}
 
 // ------------------ CACHE DATA TYPES ------------------ // 
 
@@ -434,7 +441,6 @@ async function asyncTransform() {
 }
 ```
 
-
 #### Cache Access 🪙
 
 As described in the configuration file, the processor function can access an
@@ -548,6 +554,29 @@ In the table below are reported the available cache types with their supported o
 
 It is up to each cache implementation to provide their underlying logic. When
 no logic is defined for one of the methods, calling it returns an `Unimplemented` error.
+
+#### Dead Letter Queue (DLQ) Error Handling
+
+The Stream Processor provides robust error handling capabilities through Dead Letter Queue (DLQ) configuration. When processing errors occur (such as thrown exceptions, timeouts, memory exhaustion, or built-in function failures like `JSON.parse()` or `new URL()`), messages can be automatically sent to a DLQ topic instead of causing the entire processing engine to fail.
+
+This is particularly useful in scenarios where errors need to be captured and potentially handled manually later (e.g., through resubmit) without blocking the processing pipeline. The DLQ approach ensures business continuity while preserving failed messages in their original format for easier troubleshooting and reprocessing.
+
+To know how to configure DLQ, read the related configuration [here](/products/fast_data/fast_data_engine_v2/stream_processor/20_Configuration.mdx#processor-configuration).
+
+**Example Processing Function:**
+
+```javascript
+export default function transformEvent({ key, payload }) {
+   
+    if (payload.after !== null && payload.after.customer === null) {
+        throw new TypeError('invalid assignee')
+    }
+
+    return [{key, payload}]
+}
+```
+
+In this example, when the `customer` validation fails, the original message is sent to the DLQ topic while processing continues with the next message.
 
 #### Tombstone Events Management 🪦
 
