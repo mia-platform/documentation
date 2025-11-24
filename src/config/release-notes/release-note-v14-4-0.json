@@ -1,5 +1,27 @@
 [
   {
+    "title": "Console",
+    "icon": "console",
+    "defaultOpen": false,
+    "type": "versions",
+    "items": {
+      "newFeatures": [
+        {
+          "title": "Mia-Assistant - Added support for GPT-4.1, GPT-4.1-mini, and GPT-5-mini",
+          "description": [
+            "This release adds the support to Mia-Assistant for GPT-4.1, GPT-4.1-mini, and GPT-5-mini, allowing you to select the model that best fits your workflow.",
+            "This feature is supported **only in Mia-Platform PaaS**."
+          ]
+        }
+      ],
+      "improvements": [],
+      "bugFixes": [
+        "When using the [Orchestrator Generator](/docs/products/console/company-configuration/providers/extensions/orchestrator-generator/overview), the sent payload now correctly includes also emptyDirs and serviceAccounts information belonging to each microservice.",
+        "We fixed an issue that prevented more than 10 extensions from being displayed in the Extensions Manager section of the Company Overview."
+      ]
+    }
+  },
+  {
     "title": "Microfrontend Composer",
     "icon": "microfrontend-composer",
     "defaultOpen": false,
