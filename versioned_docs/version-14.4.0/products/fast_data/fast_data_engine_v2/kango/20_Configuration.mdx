@@ -4,8 +4,8 @@ title: Configuration
 sidebar_label: Configuration
 ---
 
-import KangoSchema from "@site/static/schemas/fast_data/kango.0.5.1.schema.json"
-import KangoConfigExample from "@site/static/schemas/fast_data/examples/kango.0.5.1.example.json"
+import KangoSchema from "@site/static/schemas/fast_data/kango.0.5.2.schema.json"
+import KangoConfigExample from "@site/static/schemas/fast_data/examples/kango.example.json"
 import SchemaViewer from "@site/src/components/SchemaViewer"
 
 In order to configure the service, a set of environment variables are adopted for
@@ -33,12 +33,29 @@ the following JSON schema configuration.
 
 <SchemaViewer schema={KangoSchema} example={KangoConfigExample} />
 
+Starting from version _v0.5.2_, the Kango configuration file introduces a `connections` property.
+This feature enables you to define references for Kafka and MongoDB connections, which can be reused in the `consumer` property
+and `persistence` properties.
+This approach is consistent with other Fast Data services like [Mongezium](/products/fast_data/fast_data_engine_v2/mongezium_cdc/10_Overview.md),
+[Stream Processor](/products/fast_data/fast_data_engine_v2/stream_processor/10_Overview.md) and [Farm Data](/products/fast_data/fast_data_engine_v2/farm_data/10_Overview.md),
+and helps to better organize your configuration file by centralizing connection details.
+
+:::warning
+
+You can currently define Kafka or MongoDB connections within the `connections` property property or directly in their respective configuration sections.
+However, please note that defining them in their respective sections is a deprecated practice.
+
+Future Kango versions will require all connections to be defined within the `connections` property.
+We strongly advise adopting this structure when you upgrade to Kango v0.5.2 or a newer version.
+
+:::
+
+In addition, Kafka configurations and MongoDB persistence properties support [**secret resolution**](/products/fast_data/fast_data_engine_v2/secrets_resolution.md).
+
 :::note
 
-The raw JSON schema can also be found <a target="_blank" href="/schemas/fast_data/kango.0.5.1.schema.json">here</a>.
+The raw JSON schema can also be found <a target="_blank" href="/schemas/fast_data/kango.0.5.2.schema.json">here</a>.
 
-In addition, Kafka configurations and MongoDB persistence properties
-support [**secret resolution**](/products/fast_data/fast_data_engine_v2/secrets_resolution.md).
 
 :::
 
