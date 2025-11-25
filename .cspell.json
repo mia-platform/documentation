@@ -242,6 +242,7 @@
     "unpause",
     "unsecreted",
     "UNSUBMITTED",
+    "upgrader",
     "upsert",
     "upserts",
     "urandom",
