@@ -109,6 +109,10 @@ export default {
       "type": "doc"
     },
     {
+      "id": "security-overview",
+      "type": "doc"
+    },
+    {
       "id": "info/version_policy",
       "type": "doc",
     },
