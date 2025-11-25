@@ -7,7 +7,7 @@ sidebar_label: Security
 To help prevent [supply-chain attacks], some Mia-Platform released artifacts are cryptographically signed so you can
 be sure to have downloaded are the ones built and distributed by Mia-Platform.
 
-You can verify the signing in every momento to be sure that there was no tampering of the released artifact that you
+You can verify the signing in every moment to be sure that there was no tampering of the released artifact that you
 are about to install.
 
 The public certificates that are required for the verification are available on this website and may depend on the
@@ -17,16 +17,16 @@ artifact you need to verify. At this time of writing all the artifacts are signe
 
 Here you can find all the artifacts and the starting version when they are being signed and verifiable with `cosign`:
 
-| Container Image | Starting Tag |
-| --- | --- |
-| nexus.mia-platform.eu/rond-authz/rond | v1.12.9 |
-| nexus.mia-platform.eu/rond-authz/rond | v1.12.9 |
-| nexus.mia-platform.eu/microlc/micro-lc | 2.4.3 |
-| nexus.mia-platform.eu/microlc/middleware | 3.3.3 |
-| nexus.mia-platform.eu/console/scripts/software-catalog-sync | 0.2.0 |
-| nexus.mia-platform.eu/console/catalog-service | 1.0.0 |
+| Container Image                                             | Starting Tag |
+| ----------------------------------------------------------- | ------------ |
+| nexus.mia-platform.eu/rond-authz/rond                       | v1.12.9      |
+| nexus.mia-platform.eu/rond-authz/rond                       | v1.12.9      |
+| nexus.mia-platform.eu/microlc/micro-lc                      | 2.4.3        |
+| nexus.mia-platform.eu/microlc/middleware                    | 3.3.3        |
+| nexus.mia-platform.eu/console/scripts/software-catalog-sync | 0.2.0        |
+| nexus.mia-platform.eu/console/catalog-service               | 1.0.0        |
 
-Our PEM-encoded public key can be downloaded [here] and you can see and example of verification of the signature
+Our PEM-encoded public key can be [downloaded](/public-keys/mia-platform-pubkey-2023-10-01.pem), and you can see and example of verification of the signature
 using cosing:
 
 ```shell
@@ -68,4 +68,3 @@ cosign verify-attestation --type spdxjson --key "${KEY}" "${IMAGE}" | jq '.paylo
 ```
 
 [supply-chain attacks]: https://en.wikipedia.org/wiki/Supply_chain_attack
-[here]: /public-keys/mia-platform-pubkey-2023-10-01.pem "Mia-Platform PEM-encoded public key"
