@@ -7,10 +7,9 @@
     "items": {
       "newFeatures": [
         {
-          "title": "Mia-Assistant - Added support for GPT-4.1, GPT-4.1-mini, and GPT-5-mini",
+          "title": "More OpenAI models available in Mia-Assistant",
           "description": [
-            "This release adds the support to Mia-Assistant for GPT-4.1, GPT-4.1-mini, and GPT-5-mini, allowing you to select the model that best fits your workflow.",
-            "This feature is supported **only in Mia-Platform PaaS**."
+            "This release adds the availability of the selection of more OpenAI models from Mia-Assistant chat, allowing you to choose the model that best fits your workflow."
           ]
         }
       ],
