@@ -31,16 +31,16 @@
         "title": "Kango",
         "description": [
           "The new version `v0.5.2` of the _Kango_ is available!",
-          "The support for `connection` key in [configuration file](/docs/14.4.0/products/fast_data/fast_data_engine_v2/kango/configuration#configuration-file) has been added.",
-          "For more information check out the service [changelog](/docs/14.4.0/products/fast_data/fast_data_engine_v2/kango/changelog)."
+          "The support for `connection` key in [configuration file](/docs/products/fast_data/fast_data_engine_v2/kango/configuration#configuration-file) has been added.",
+          "For more information check out the service [changelog](/docs/products/fast_data/fast_data_engine_v2/kango/changelog)."
           ]
         },
         {
         "title": "Mongezium",
         "description": [
           "The new version `v0.4.3` of the _Mongezium_ is available!",
-          "The support for `connection` key in [configuration file](/docs/14.4.0/products/fast_data/fast_data_engine_v2/mongezium_cdc/configuration#configuration-file) has been added.",
-          "For more information check out the service [changelog](/docs/14.4.0/products/fast_data/fast_data_engine_v2/mongezium_cdc/changelog)."
+          "The support for `connection` key in [configuration file](/docs/products/fast_data/fast_data_engine_v2/mongezium_cdc/configuration#configuration-file) has been added.",
+          "For more information check out the service [changelog](/docs/products/fast_data/fast_data_engine_v2/mongezium_cdc/changelog)."
           ]
         },
         {
@@ -48,7 +48,7 @@
         "description": [
           "The new version `v0.5.4` of the _Stream Processor_ is available!",
           "It has been added the support of a DLQ, useful to isolate unprocessable messages and prevent degradation or blockage of the main flow, ensuring system resilience and continuity in data processing.",
-          "For more information check out the service [changelog](/docs/14.4.0/products/fast_data/fast_data_engine_v2/stream_processor/changelog)."
+          "For more information check out the service [changelog](/docs/products/fast_data/fast_data_engine_v2/stream_processor/changelog)."
           ]
         }
       ],
@@ -69,7 +69,7 @@
         "description": [
           "The new version `v3.0.0` of the _Authorization Service_ is available!",
           "**BREAKING CHANGE!** Starting from version 3.0.0, route matching has been made stricter. Non-defined routes will no longer match existing route configurations with prefix names, but only sub-routes (but only if their configuration end with `/`).",
-          "For more information check out the service [configuration](/docs/14.4.0/runtime-components/plugins/authorization-service/configuration)."
+          "For more information check out the service [configuration](/docs/runtime-components/plugins/authorization-service/configuration)."
           ]
         }
       ],

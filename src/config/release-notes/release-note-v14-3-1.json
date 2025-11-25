@@ -17,7 +17,7 @@
           "description": [
             "The Mia-Platform Console MCP Server is now accessible remotely, and external AI clients (like Visual Studio Code) can connect to it using the available server endpoint to their configuration.",
             "This feature improves flexibility by allowing users to communicate and perform operations on their projects using an MCP Server always running and always updated with the latest tools and prompts from the Mia-Platform Console.",
-            "The feature is available **only in Mia-Platform PaaS**. For more information on how to use it, please read the [related documentation page](/docs/products/console/mcp/mcp-server/setup)."
+            "The feature is available **only in Mia-Platform PaaS**. For more information on how to use it, please read the [related documentation page](/docs/14.3.1/products/console/mcp/mcp-server/setup)."
           ]
         }
       ],
@@ -47,7 +47,7 @@
           "title": "Back-kit",
           "description": [
             "The new version `v1.5.21` of the back-kit library is available!",
-            "Refer to back-kit [changelog](/docs/products/microfrontend-composer/back-kit/changelog) for finer-grained details of new versions."
+            "Refer to back-kit [changelog](/docs/14.3.1/products/microfrontend-composer/back-kit/changelog) for finer-grained details of new versions."
           ]
         }
       ],
@@ -67,7 +67,7 @@
         "title": "Single View Trigger Generator",
         "description": [
           "The new version `v3.5.1` of the _Single View Trigger Generator_ is available!",
-          "For more information check out the service [changelog](/docs/runtime-components/plugins/single-view-trigger-generator/changelog)."
+          "For more information check out the service [changelog](/docs/14.3.1/runtime-components/plugins/single-view-trigger-generator/changelog)."
         ]
       }
       ],
