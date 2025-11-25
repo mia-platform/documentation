@@ -11,6 +11,38 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.4.3] - 2025-11-14
+
+### Added
+
+- Use of "connections" property in configuration file
+
+## [0.4.2] - 2025-09-26
+
+### Added
+
+- Add data source modification and workload processing timestamps to produced change events
+
+### Dependencies
+
+- Update serde_json@1.0.145
+- Update prom/prometheus docker tag to v3.6.0
+- Update rust crate serde to 1.0.226
+- Update rust docker tag to v1.90.0
+- Update rust crate anyhow to 1.0.100
+- Update httputils@0.2.0
+
+### Fixed
+
+- Ensure trace context is propagated in Kafka headers
+
+## [0.4.1] - 2025-09-11
+
+### Added
+
+- Signal OK as soon as service starts
+- Add logs on start-cdc fn and `appName` for mongezium
+
 ## [0.4.0] - 2025-06-25
 
 ### Changed
@@ -21,7 +53,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Add start up behavior description
 
-### Fixed
+### Dependencies
 
 - Update rust crate tokio to 1.45.1
 - Update rust crate uuid to 1.17.0
