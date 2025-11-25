@@ -16,7 +16,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 
 - correctly handle deserialization of empty value for fields of option type 
-- delete empty custom propery of type array on push
+- delete empty custom property of type array on push
 
 ## [0.3.1] - 2025-10-24
 
@@ -28,7 +28,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
-- Tables infinte scrolling
+- Tables infinite scrolling
 - Prevent push of unselected fields or hidden columns 
 
 ### Added
