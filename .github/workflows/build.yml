@@ -69,9 +69,7 @@ jobs:
         run: yarn install --frozen-lockfile
       - name: Build site
         env:
-          NODE_ENV: "production"
-          INLINE_RUNTIME_CHUNK: "false"
-          NODE_OPTIONS: "--max_old_space_size=6144"
+          NODE_OPTIONS: "--max_old_space_size=4096"
         run: yarn build
       - name: Configure docker metadata
         id: meta
