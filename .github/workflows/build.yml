@@ -19,16 +19,7 @@ jobs:
         uses: actions/setup-node@v6
         with:
           node-version-file: '.nvmrc'
-          cache: "yarn"
-      - name: Cache Node Modules
-        id: cache-node-modules
-        uses: actions/cache@v4
-        with:
-          path: node_modules
-          key: node-modules-${{ steps.node.outputs.node-version }}-${{ hashFiles('yarn.lock') }}
-      - name: Install deps
-        if: steps.cache-node-modules.outputs.cache-hit != 'true'
-        run: yarn install --frozen-lockfile
+          cache: yarn
       - name: Check lint
         run: yarn lint
       - name: Check spell
@@ -37,7 +28,7 @@ jobs:
         run: yarn check-content
       - name: Verify build
         env:
-          NODE_OPTIONS: "--max_old_space_size=4096"
+          NODE_OPTIONS: "--max_old_space_size=8192"
         run: yarn build
         if: github.event_name == 'pull_request'
 
@@ -48,7 +39,7 @@ jobs:
     runs-on: ubuntu-latest
     concurrency:
       group: docs-${{ github.ref }}
-      cancel-in-progress: false 
+      cancel-in-progress: false
     steps:
       - name: Checkout code
         uses: actions/checkout@v6
@@ -58,18 +49,9 @@ jobs:
         with:
           node-version-file: '.nvmrc'
           cache: yarn
-      - name: Cache Node Modules
-        id: cache-node-modules
-        uses: actions/cache@v4
-        with:
-          path: node_modules
-          key: node-modules-${{ steps.node.outputs.node-version }}-${{ hashFiles('yarn.lock') }}
-      - name: Install deps
-        if: steps.cache-node-modules.outputs.cache-hit != 'true'
-        run: yarn install --frozen-lockfile
       - name: Build site
         env:
-          NODE_OPTIONS: "--max_old_space_size=4096"
+          NODE_OPTIONS: "--max_old_space_size=8192"
         run: yarn build
       - name: Configure docker metadata
         id: meta
