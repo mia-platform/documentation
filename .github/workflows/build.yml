@@ -41,7 +41,6 @@ jobs:
         if: github.event_name == 'pull_request'
 
   build:
-    timeout-minutes: 15
     needs: install
     name: Build docker image
     if: github.event_name != 'pull_request'
