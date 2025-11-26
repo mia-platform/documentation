@@ -20,6 +20,8 @@ jobs:
         with:
           node-version-file: '.nvmrc'
           cache: yarn
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
       - name: Check lint
         run: yarn lint
       - name: Check spell
@@ -49,6 +51,8 @@ jobs:
         with:
           node-version-file: '.nvmrc'
           cache: yarn
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
       - name: Build site
         env:
           NODE_OPTIONS: "--max_old_space_size=8192"
