@@ -2,7 +2,9 @@ const createEditUrl = require("./scripts/createEditUrl");
 const createRedirects = require("./scripts/createRedirects");
 const versionsList = require('./versions.json');
 
-const prodVersion = versionsList[1]
+// TODO: restore once we have a "preview" version
+// const prodVersion = versionsList[1]
+const prodVersion = versionsList[0]
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
