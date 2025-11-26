@@ -5474,5 +5474,9 @@
   "/docs/products/console/set-up-infrastructure/env-based-management": {
     "destination": "/docs/products/console/set-up-infrastructure/enhanced-project-workflow",
     "addedOn": "2025-10-31"
+  },
+  "/docs/products/console/api-console/advanced-section/advanced-section": {
+    "destination": "/docs/products/console/api-console/advanced-section/",
+    "addedOn": "2025-11-26"
   }
 }
