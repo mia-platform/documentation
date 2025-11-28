@@ -1729,6 +1729,10 @@
         {
           "id": "products/data_catalog/excel_add_in/how_to_install",
           "type": "doc"
+        },
+        {
+          "id": "products/data_catalog/excel_add_in/changelog",
+          "type": "doc"
         }
       ]
     },
