@@ -551,9 +551,34 @@ In the table below are reported the available cache types with their supported o
 | Cache Type | Get | Set | Update | Delete |
 |------------|:---:|:---:|:------:|:------:|
 | `mongodb`  | ✔️  | ✔️  |   ✔️   |   ✔️   |
+| `farmdata` | ✔️  | ❌  |   ❌   |   ❌   |
+| `http-rest`| ✔️  | ❌  |   ❌   |   ❌   |
 
 It is up to each cache implementation to provide their underlying logic. When
 no logic is defined for one of the methods, calling it returns an `Unimplemented` error.
+
+####### FarmData Cache
+
+It is meant to be used in conjunction with fast data `Farm Data` service. In case output
+messages from aggregation are too large to fit in a single Kafka message, they can be stored
+in `Farm Data` cache. `Farm Data` will send a message with empty `after` and `before` fields
+and the `Kafka` key can be used in the `farmdata` cache in the `Stream Processor` to retrieve
+the full content via HTTP REST API.
+
+####### HTTP-REST Cache
+
+Performs a generic HTTP REST call to a user-defined endpoint to retrieve data.
+The key argument for the get must be an object with the following shape for the cache GET operation:
+
+```typescript
+interface HttpRestCacheGetKey {
+  params?: {
+    query?: Array<{ key: string; value: string }>;
+    path?: { [key: string]: string }; // path parameters
+  }
+  headers?: Array<{ key: string; value: string }>;
+}
+```
 
 #### Dead Letter Queue (DLQ) Error Handling
 
