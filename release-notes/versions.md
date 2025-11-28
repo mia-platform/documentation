@@ -54,6 +54,15 @@ This release enhances project management by introducing the ability to **configu
 
 ---
 
+## [14.1.2](/release-notes/v14.1.2.mdx)
+*November 28th, 2025*
+
+This release resolves a bug in the Company’s Provider section that prevented establishing a connection to Azure DevOps when the Git Provider capability and Client Credentials authentication method settings were selected.
+
+[Read the release notes](/release-notes/v14.1.2.mdx)
+
+---
+
 ## [14.1.1](/release-notes/v14.1.1.mdx)
 *October 16th, 2025*
 
