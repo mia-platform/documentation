@@ -55,7 +55,7 @@
     "fs-extra": "^11.3.1",
     "glob": "^13.0.0",
     "gray-matter": "^4.0.3",
-    "prettier": "3.6.2",
+    "prettier": "3.7.3",
     "prompts": "^2.4.2",
     "typescript": "^5.9.3"
   },
