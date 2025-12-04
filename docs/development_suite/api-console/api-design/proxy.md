@@ -86,4 +86,4 @@ curl --request GET
 
 The proxy endpoints are exposed on the [API gateway](/runtime_suite/api-gateway/10_overview.md) so you can call them from your microservices making an HTTP request to the API Gateway: `http://api-gateway:8080/your-endpoint`.
 
-You can also use the [Mia-Platform Service Libraries](/runtime_suite_libraries/custom-plugin-lib/http_client.md) that help you to get a proxy towards the API Gateway.
+You can also use the [Mia-Platform Service Libraries](/libraries/mia-service-libraries.md) that help you to get a proxy towards the API Gateway.

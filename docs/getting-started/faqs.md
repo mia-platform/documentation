@@ -312,11 +312,11 @@ Yes, you can create a [microservice from a Docker Image](/development_suite/api-
 
 ### Do I have to start coding my microservice from a template?
 #### Is starting from a Mia-Platform Template mandatory?
-No, it's not mandatory. However, starting from a [Mia-Platform Template](/marketplace/templates/mia_templates.md) or using Mia-Platform Service Libraries ensures compliance with best practices.
+No, it's not mandatory. However, starting from a [Mia-Platform Template](/marketplace/templates/mia_templates.md) or using [Mia-Platform Service Libraries](/libraries/mia-service-libraries.md) ensures compliance with best practices.
 
 ### Can I create my own templates?
 #### How can I create custom templates for my microservices?
-Yes, you can. Follow this [guideline](/software-catalog/items-management/overview.md) and [open an issue with the Marketplace contribution template](https://github.com/mia-platform/community/issues/new?labels=marketplace&template=marketplace-contribution.md&title=Add+new+marketplace+item).
+Yes, you can. Follow this [guideline](/software-catalog/manage-items/overview.md) and [open an issue with the Marketplace contribution template](https://github.com/mia-platform/community/issues/new?labels=marketplace&template=marketplace-contribution.md&title=Add+new+marketplace+item).
 
 ### How can I change the state of a document?
 #### What is the process to change the state of a document in CRUD?
@@ -332,7 +332,7 @@ You can change endpoint visibility in the Endpoint Management section by disabli
 
 ### How can I call a proxy endpoint from my microservices?
 #### What is the procedure to call a proxy endpoint from a microservice?
-[Proxy endpoints](/development_suite/api-console/api-design/proxy.md) are exposed on the [API gateway](/runtime_suite/api-gateway/10_overview.md). You can call them via HTTP requests to the API Gateway: `http://api-gateway:8080/your-endpoint`. You can also use the [Mia-Platform Service Library](/runtime_suite_libraries/custom-plugin-lib/http_client.md) to get a proxy towards the API Gateway.
+[Proxy endpoints](/development_suite/api-console/api-design/proxy.md) are exposed on the [API gateway](/runtime_suite/api-gateway/10_overview.md). You can call them via HTTP requests to the API Gateway: `http://api-gateway:8080/your-endpoint`. You can also use the [Mia-Platform Service Libraries](/libraries/mia-service-libraries.md) to get a proxy towards the API Gateway.
 
 :::tip
 Check out the [Mia service Node.js Library documentation](https://github.com/mia-platform/custom-plugin-lib/blob/master/docs/http_client.md) to learn how to call platform services with a proxy object.

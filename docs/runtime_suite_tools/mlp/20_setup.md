@@ -41,13 +41,13 @@ If you have [Golang] installed with a version >= 1.13 in your system and you hav
 install `mlp` like this:
 
 ```sh
-go install github.com/mia-platform/mlp@v2.0.2
+go install github.com/mia-platform/mlp@v2.0.1
 ```
 
 Or like this if the `install` command is not available
 
 ```sh
-go get -u github.com/mia-platform/mlp@v2.0.2
+go get -u github.com/mia-platform/mlp@v2.0.1
 ```
 
 #### Binary Download
@@ -56,11 +56,11 @@ You can install `mlp` with the use of `curl` or `wget` and downloading the lates
 choosing the correct platform and operating system:
 
 ```sh
-curl -fsSL --proto '=https' --tlsv1.2 https://github.com/mia-platform/mlp/releases/download/v2.0.2/mlp-linux-amd64 -o /tmp/mlp
+curl -fsSL --proto '=https' --tlsv1.2 https://github.com/mia-platform/mlp/releases/download/v2.0.1/mlp-linux-amd64 -o /tmp/mlp
 ```
 
 ```sh
-wget -q --https-only --secure-protocol=TLSv1_2 https://github.com/mia-platform/mlp/releases/download/v2.0.2/mlp-linux-amd64 -O /tmp/mlp
+wget -q --https-only --secure-protocol=TLSv1_2 https://github.com/mia-platform/mlp/releases/download/v2.0.1/mlp-linux-amd64 -O /tmp/mlp
 ```
 
 After you have downloaded the file you can validate it against the checksum you can find at this [url] running the
@@ -81,7 +81,7 @@ sudo install -g root -o root /tmp/mlp /usr/local/bin
 If you want to run the cli in its environment or you want to test the cli you can use the Docker image:
 
 ```sh
-docker run ghcr.io/mia-platform/mlp:v2.0.2
+docker run ghcr.io/mia-platform/mlp:v2.0.1
 ```
 
 ### Windows

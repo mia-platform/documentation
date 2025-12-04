@@ -4,7 +4,7 @@ title: Overview
 sidebar_label: Overview
 ---
 
-The Flow Manager Configurator is a tool that allows to easily configure [Flow Manager](/runtime_suite/flow-manager-service/10_overview.md) services thanks to its intuitive graphical interface.
+The Flow Manager Configurator is a tool that allows to easily configure Flow Manager services thanks to its intuitive graphical interface.
 
 ## Supported Versions
 
@@ -18,8 +18,6 @@ The Configurator does not support versions interpolated using variables. In this
 
 ![Unsupported Version](img/unsupported-version.png)
 
-As a rule of thumb, the Configurator shipped with the latest version on Console supports up until the latest version of the Flow Manager service. Lower versions of the Configurator may only have a **partial support** to newer services (e.g., Console versions lower that *v14.0.1* do not support the use of secrets introduced in Flow Manager version *2.7.0*).
-
 ## Link
 
 Each Flow Manager service can be manually linked at any time, this allows the usage of the Flow Manager Configurator in order to build the service configuration.
@@ -31,7 +29,6 @@ Once the Flow Manager service is linked, a commit is required in order to proper
 ![Link Service](img/link-service.png)
 
 There are some cases in which the Flow Manager service cannot be linked to the Configurator, those cases are:
-
 - missing environment variable `CONFIGURATIONS_FILE_PATH`
 - wrong `CONFIGURATIONS_FILE_PATH` value
 - missing config map
@@ -64,7 +61,6 @@ No edits are allowed in this mode.
 ## Highlight Mode
 
 The highlight mode allows the user to focus on a subset of states, logic blocks, and events of the flow. The following rules are applied:
-
 - Click on a turned off state &rarr; the state is highlighted. In the new layout, clicking on the state highlights both the state and the logic block (which consists of the command and external executor).
 - Click on a turned off event (i.e. edge)
   - Case source and target states turned off &rarr; nothing is highlighted
@@ -75,22 +71,3 @@ The highlight mode allows the user to focus on a subset of states, logic blocks,
 - Click on an highlighted event &rarr; the event is turned off and every following state, logic block and event is turned off if they are not highlighted by another branch
 
 ![Highlight Mode](img/highlight-mode.png)
-
-## Secrets
-
-:::caution
-This feature is available from Console version `14.0.1`.
-:::
-
-Starting from version `2.7.0`, Flow Manager service supports [secrets resolution](/runtime_suite/flow-manager-service/30_configuration.md#secrets-resolution) in various parts of the config.
-
-The Configurator offers the possibility to configure secrets with a UI like this:
-
-![Secret](img/secret.png)
-
-The **plain text** option works just the same as before: a text input is presented to insert the value plainly (which is **highly unadvisable**), or via environment variable interpolation.
-
-The **from secret** option allows you to source the value from one of the [secrets mount on the microservice](/development_suite/api-console/api-design/services.md#secrets). In this scenario you have to select:
-
-- one of the secrets of the service (from which the *mount path* will be derived), and
-- the key of the secret that contains the value.

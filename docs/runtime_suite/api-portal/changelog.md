@@ -10,22 +10,6 @@ DO NOT MODIFY IT BY HAND.
 Instead, modify the source file and run the aggregator to regenerate this file.
 -->
 
-## [2.2.2] - 2025-05-14
-
-### Fixed
-
-- Fixed scroll in tags and filters with select
-
-### Security
-
-- Fix vulnerabilities
-
-## [2.2.1] - 2025-05-07
-
-### Fixed
-
-- Fixed missing fallback language
-
 ## [2.2.0] - 2025-02-14
 
 ### Added
@@ -73,7 +57,7 @@ Instead, modify the source file and run the aggregator to regenerate this file.
 
 ## [2.0.0] - 2024-06-17
 
-###  BREAKING CHANGES
+### BREAKING CHANGES
 
 - The service now fetches specifications from `/api/openapi/json`
 - The service now fetches subswaggers from `/api/openapi/subswaggers`
@@ -174,7 +158,7 @@ Instead, modify the source file and run the aggregator to regenerate this file.
 
 ## 1.15.0 - 2022-01-20
 
-### Added
+### Added 
 
 - added anchors to explorer routes.
 
@@ -261,202 +245,177 @@ Instead, modify the source file and run the aggregator to regenerate this file.
 
 ### Changed
 
-- updated api-explorer 6.5.3
+ - updated api-explorer 6.5.3
 
 ## 1.13.3 - 2020-10-13
 
 ### Changed
 
-- updated api-explorer 6.5.2
+ - updated api-explorer 6.5.2
 
 ## 1.13.2 - 2020-10-05
 
 ### Fixed
 
-- typo for it internationalization
+ - typo for it internationalization
 
 ## 1.13.1 - 2020-08-05
 
 ### Changed
 
-- updated api-explorer 6.5.1
+ - updated api-explorer 6.5.1
 
 ## 1.13.0 - 2020-07-28
 
 ### Changed
 
-- @mia-platform/api-explorer ^6.5.0
-- decrease for an error of lint `eslint-plugin-react` from `^7.12.4` to `7.12.3`. problem persist in `7.20.4`, see this [issue](https://github.com/yannickcr/eslint-plugin-react/issues/2728)
+ - @mia-platform/api-explorer ^6.5.0
+ - decrease for an error of lint `eslint-plugin-react` from `^7.12.4` to `7.12.3`. problem persist in `7.20.4`, see this [issue](https://github.com/yannickcr/eslint-plugin-react/issues/2728)
 
 ## 1.12.0 - 2020-07-08
 
 ### Changed
 
-- @mia-platform/api-explorer ^6.4.1
+ - @mia-platform/api-explorer ^6.4.1
 
 ### Changed
-
-- remove option 'All' subswagger from category select by using `includeAll=false` query param
+ - remove option 'All' subswagger from category select by using `includeAll=false` query param
 
 ## 1.11.2 - 2020-06-24
 
 ### Updated
-
-- @mia-platform/api-explorer ^6.3.6
+ - @mia-platform/api-explorer ^6.3.6
 
 ### Fixed
-
-- Custom multipart fields are ignored and not inserted in the request
-- Render error when press enter in a integer/number field with content-type multipart/form-data
+ - Custom multipart fields are ignored and not inserted in the request
+ - Render error when press enter in a integer/number field with content-type multipart/form-data
 
 ## 1.11.1 - 2020-06-12
 
-### Fixed
-
-- Added minWidth in Logo to fix the overlap with name project
+### Fixed:
+ - Added minWidth in Logo to fix the overlap with name project
 in Safari e Firefox
-- Form - handle field value when clear the input (unset for number and integer, empty string for type string)
-- Form - render UI correctly when preview the image to upload
+ - Form - handle field value when clear the input (unset for number and integer, empty string for type string)
+ - Form - render UI correctly when preview the image to upload
 
 ### Changed
 
-- @mia-platform/api-explorer ^6.3.5
+ - @mia-platform/api-explorer ^6.3.5
 
 ## 1.11.0 - 2020-06-03
 
-### Changed
+### Changed:
+ - Change position of Auth button & DownloadSchemas component
 
-- Change position of Auth button & DownloadSchemas component
 
-### Updates
+### Updates:
+ - @mia-platform/api-explorer ^6.3.2 with new UI for the forms
+ - moved tags list on the left
+ - download API documentation as yaml
 
-- @mia-platform/api-explorer ^6.3.2 with new UI for the forms
-- moved tags list on the left
-- download API documentation as yaml
-
-### Fixed
-
-- changed string "Open Api 3" into "OpenAPI 3" and added alert for swagger 2
+### Fixed:
+ - changed string "Open Api 3" into "OpenAPI 3" and added alert for swagger 2
 
 ## 1.10.0 - 2020-05-19
 
-### Added
+### Added:
+ - Add `DownloadModal` component to download swagger file in ApiViewer container
 
-- Add `DownloadModal` component to download swagger file in ApiViewer container
-
-### Updates
-
-- `reactord` 2.19.1
+### Updates:
+ - `reactord` 2.19.1
 
 ## 1.9.0 - 2020-04-16
 
 ### Changed
 
-- Updated base API to download newer OpenAPI v3 schemas
+ - Updated base API to download newer OpenAPI v3 schemas
 
 ## 1.8.0 - 2020-03-10
 
-### Added
-
-- integrated APIExplorer @6.1.0 adding support for `anyOf`, `oneOf`, `allOf` and `not` schemas
+### Added:
+  - integrated APIExplorer @6.1.0 adding support for `anyOf`, `oneOf`, `allOf` and `not` schemas
 
 ## 1.7.1 - 2020-02-11
 
 ### Changed
 
-- new icon for authentication security input
+  - new icon for authentication security input
 
-### Fixed
-
-- improved rendering performances disabling text conversion of openapi files
+### Fixed:
+  - improved rendering performances disabling text conversion of openapi files
 
 ## 1.7.0 - 2019-12-01
 
 ### Changed
 
-- Remove Menu from the Header
-- api-explorer with new form
+  - Remove Menu from the Header
+  - api-explorer with new form
 
-### Added
+### Added:
+  - Add button to authenticate all routes
+  - edit data form using a json
 
-- Add button to authenticate all routes
-- edit data form using a json
-
-### Fixed
-
-- choose type of data field
+### Fixed:
+  - choose type of data field
 
 ## [1.6.2] - 2019-10-5
 
-### Added
+### Added:
+  - Add InputSearch component in Header
 
-- Add InputSearch component in Header
-
-### Fixes
-
-- Fixed window resize
+### Fixes:
+  - Fixed window resize
 
 ## [1.6.1] - 2019-09-10
 
-### Updates
-
-- updated api-explorer
+### Updates:
+  - updated api-explorer
 
 ## [1.6.0] - 2019-07-31
 
-### Added
+### Added:
+  - api search and method filter
 
-- api search and method filter
+### Updates:
+  - update `reactord@1.8.0`
+  - update `api-explorer@5.8.4`.
 
-### Updates
-
-- update `reactord@1.8.0`
-- update `api-explorer@5.8.4`.
-
-### Fixes
-
-- change error handling and fix subswagger URL
+### Fixes:
+  - change error handling and fix subswagger URL
 
 ## [1.5.0] - 2019-07-22
 
-### Updates
-
-- updated api-explorer
-- shows JsonSchema of request and response
-- added category (subswagger) selection, restructured codebase
-- updated reactor-design lib
-- added tags filter
+### Updates:
+  - updated api-explorer
+  - shows JsonSchema of request and response
+  - added category (subswagger) selection, restructured codebase
+  - updated reactor-design lib
+  - added tags filter
 
 ## [1.4.0] - 2019-07-05
 
-### Restyling
-
-- Restyled the whole API presentation, removed the sidebar and added the index bar to navigate through API tags.
+### Restyling:
+  - Restyled the whole API presentation, removed the sidebar and added the index bar to navigate through API tags.
 
 ## [1.3.0] 2019-06-27
 
-### Added
+### Added:
+  - updated api-explorer
+  - shows the body when status code is 401
 
-- updated api-explorer
-- shows the body when status code is 401
-
-### Restyling
-
-- response headers are shown in a more readable way
+### Restyling:
+  - response headers are shown in a more readable way
 
 ## [1.2.0] 2019-06-25
 
-### Added
-
-- Tag all apis in sidebar
+### Added:
+  - Tag all apis in sidebar
 
 ## [1.1.0] 2019-06-19
 
-### Added
+### Added:
+  - In the sidebar are shown the tags inserted in the swagger
+  - Support for multipart request
 
-- In the sidebar are shown the tags inserted in the swagger
-- Support for multipart request
-
-### Fixes
-
-- It's shown the correct project name
+### Fixes:
+  - It's shown the correct project name

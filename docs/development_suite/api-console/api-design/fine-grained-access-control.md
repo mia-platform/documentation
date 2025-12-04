@@ -1,4 +1,4 @@
---- 
+---
 id: fine-grained-access-control
 title: Fine-Grained Access Control in Design
 sidebar_label: Fine-Grained Access Control
@@ -14,24 +14,11 @@ This feature introduces a mechanism for managing user interactions within the ap
 
 If a user attempts to save a configuration after performing some changes that are forbidden by the configured rules, the saving is blocked and an error is returned.
 
-*Rules* and *user roles* can be configured at both the Project and Company levels. The following logic applies:
+*Rules* and *user roles* can be configured at both the Project and the Company levels.
+The following logic is applied:
 
-**Rules:**  
-It is possible to define both Project and Company rules, supporting both "allow" and "disallow" types:
-
-- **Allow rules (`allowedRuleSet`)**: Only changes explicitly permitted by these rules are allowed; all others are denied.
-- **Disallow rules (`disallowedRuleSet`)**: Only changes explicitly denied by these rules are blocked; all others are allowed.
-
-Disallow rules are always evaluated first. If an action matches a disallow rule, it is denied immediately and allow rules are not checked.
-
-**User Roles:**  
-If a user has roles assigned at the Project level, only those roles are used to determine applicable rules. If no Project-level roles are assigned, the roles defined at the Company level are used instead.
-
-:::info  
-Rules defined at the Company and Project levels are combined, but with an important distinction:  
-- For **allow** rules: if an allow rule is assigned to a specific role at the Company level, any allow rules for the same role at the Project level are ignored. This ensures that permissions granted at the Project level cannot exceed those defined at the Company level for that role.  
-- For **disallow** rules: both Company-level and Project-level disallow rules for the same role are applied together. Project-level disallow rules can only further restrict what is denied at the Company level.
-:::
+- **Rules**: Project and Company rules are combined together without conflict, as only disallow rules are used.  
+- **User Roles**: If a user has roles assigned at the Project level, only those roles used to find the applicable rules. If no Project-level roles are assigned, the roles defined at the Company level are used instead.
 
 ## Configuration definition
 
@@ -39,24 +26,19 @@ To enable this feature the `Project` or `Company` `configurationManagement.saveC
 
 | Field               | Type        | Description                                   | Optional |
 | ------------------- | ----------- | --------------------------------------------- | -------- |
-| `disallowedRuleSet` | `RuleSet[]` | list of rules that prohibit a specific action | See note |
-| `allowedRuleSet`    | `RuleSet[]` | list of rules that allow a specific action    | See note |
+| `disallowedRuleSet` | `RuleSet[]` | list of rules that prohibit a specific action | ❌       |
 | `roleIds`           | `String[]`  | List of user roles to which the rules apply   | ❌       |
-
-:::info  
-At least one of `disallowedRuleSet` or `allowedRuleSet` must be specified. You can provide either or both these fields.
-:::
 
 The `RuleSet` object has these fields:
 
 | Field               | Type               | Description                                                     | Optional |
 | ------------------- | ------------------ | --------------------------------------------------------------- | -------- |
-| `jsonPath`          | `String`           | JSONPath of the resource on which the action must be controlled.| ✅       |
+| `jsonPath`          | `String`           | JSONPath of the resource on which the action must be prevented. | ✅       |
 | `processingOptions` | `ProcessingOption` | Additional options of the rule                                  | ✅       |
-| `ruleId`            | `String`           | Reference to a rule from a predefined set                       | ✅       |
+| `ruleId`            | `String`           | Reference a to a rule from a predefined set                     | ✅       |
 
 ___
-A `RuleSet` can be configured in 3 ways, and these apply to both `allowedRuleSet` and `disallowedRuleSet`:
+A `disallowedRuleSet` can be configured in 3 ways:
 
 - [Via `jsonPath`](#via-jsonpath)
 - [Via `jsonPath` and `processingOptions`](#via-jsonpath-and-processingoptions)
@@ -64,23 +46,19 @@ A `RuleSet` can be configured in 3 ways, and these apply to both `allowedRuleSet
 
 ### Via `jsonPath`
 
-The `jsonPath` field is used to extract a target resource by applying a JSONPath expression on the JSON structure of the configuration. The rule will control (allow or disallow) any updates on the extracted resource, depending on whether it is in the `allowedRuleSet` or `disallowedRuleSet`.
+The `jsonPath` field is used to extract a target resource applying a JSONPath expression on the JSON structure of the configuration. On the extracted resource are not permitted any updates.
 
 ### Via `jsonPath` and `processingOptions`
 
 - The `jsonPath` is used to extract the target resource.
-- The `processingOptions` define the `actions` (`create`, `delete`, or both) to allow or prevent on the resource. If the resource captured by the jsonPath is of array type, the field `primaryKey` must be specified.
+- The `processingOptions` define the `action` (`create`, `delete`) to prevent on the resource. If the resource captured by the jsonPath are of array type, the field `primaryKey` must be specified.
 
 The `ProcessingOption` object has the following structure:
 
-| Field        | Type         | Description                                                                                              | Optional |
-| ------------ | ------------ | -------------------------------------------------------------------------------------------------------- | -------- |
-| `actions`    | `string[]`   | Actions to be controlled on the resource defined via the jsonPath. Possible values: `create`, `delete`. You can specify more than one action in the array. | ❌       |
-| `primaryKey` | `String`     | Primary key of the resource captured by the jsonPath. Mandatory if resource is of array type             | ✅       |
-
-:::caution   
-The `actions` field replaces the previous `action` field and **must be an array**. You can specify multiple actions to be controlled by the rule.
-:::
+| Field        | Type       | Description                                                                                          | Optional |
+| ------------ | ---------- | ---------------------------------------------------------------------------------------------------- | -------- |
+| `action`     | `string[]` | Action to be prevented on the resource defined via the jsonPath. Possible values: `create`, `delete` | ❌       |
+| `primaryKey` | `String`   | Primary key of the resource captured by the jsonPath. Mandatory if resource is of array type         | ✅       |
 
 ### Via `ruleId`
 
@@ -90,185 +68,7 @@ The `ruleId` references a rule from a predefined set of rules, that define a spe
 
 | `ruleId`                  | Description                                                                                         |
 | ------------------------- | --------------------------------------------------------------------------------------------------- |
-| `endpoints.security.edit` | Controls edit of the fields [`public`, `acl`, `secreted`] of `endpoints` and `routes` inside endpoints |
-
-## Examples of allow and disallow rules
-
-The following examples illustrate how to configure both `allowedRuleSet` and `disallowedRuleSet` for common scenarios. Each example demonstrates how to explicitly allow or disallow specific actions for a given user role. You can use these examples as templates when defining your own rules in the configuration or when constructing the body of API requests (see [Configuring rules via API](#configuring-rules-via-api))
-
-- **Control edit of the `dockerImage` of all services for the role `maintainer`**
-
-*Disallow: prevent editing*
-
-```json
-{
-  "configurationManagement": {
-    "saveChangesRules": [
-      {
-        "disallowedRuleSet": [
-          {
-            "jsonPath": "$.services.*.dockerImage"
-          }
-        ],
-        "roleIds": ["maintainer"]
-      }
-    ]
-  }
-}
-```
-
-*Allow: only allow editing*
-
-```json
-{
-  "configurationManagement": {
-    "saveChangesRules": [
-      {
-        "allowedRuleSet": [
-          {
-            "jsonPath": "$.services.*.dockerImage"
-          }
-        ],
-        "roleIds": ["maintainer"]
-      }
-    ]
-  }
-}
-```
-
-- **Control creation and deletion of the resource `collections` for the role `maintainer`**
-
-*Disallow: prevent creation and deletion*
-
-```json
-{
-  "configurationManagement": {
-    "saveChangesRules": [
-      {
-        "disallowedRuleSet": [
-          {
-            "jsonPath": "$.collections",
-            "processingOptions": {
-              "actions": ["create", "delete"]
-            }
-          }
-        ],
-        "roleIds": ["maintainer"]
-      }
-    ]
-  }
-}
-```
-
-*Allow: only allow creation and deletion*
-
-```json
-{
-  "configurationManagement": {
-    "saveChangesRules": [
-      {
-        "allowedRuleSet": [
-          {
-            "jsonPath": "$.collections",
-            "processingOptions": {
-              "actions": ["create", "delete"]
-            }
-          }
-        ],
-        "roleIds": ["maintainer"]
-      }
-    ]
-  }
-}
-```
-
-- **Control creation and deletion of services of a specific type (`custom-resource`) for the role `maintainer`**
-
-*Disallow: prevent creation and deletion*
-
-```json
-{
-  "configurationManagement": {
-    "saveChangesRules": [
-      {
-        "disallowedRuleSet": [
-          {
-            "jsonPath": "$.services.[?(@.type==\"custom-resource\")]",
-            "processingOptions": { "actions": ["create", "delete"] }
-          }
-        ],
-        "roleIds": ["maintainer"]
-      }
-    ]
-  }
-}
-```
-
-*Allow: only allow creation and deletion*
-
-```json
-{
-  "configurationManagement": {
-    "saveChangesRules": [
-      {
-        "allowedRuleSet": [
-          {
-            "jsonPath": "$.services.[?(@.type==\"custom-resource\")]",
-            "processingOptions": { "actions": ["create", "delete"] }
-          }
-        ],
-        "roleIds": ["maintainer"]
-      }
-    ]
-  }
-}
-```
-
-- **Configure the predefined rule with `ruleId` "endpoints.security.edit" for the role `maintainer`**
-
-*Disallow: prevent specified fields edit*
-
-```json
-{
-  "configurationManagement": {
-    "saveChangesRules": [
-      {
-        "disallowedRuleSet": [
-          {
-            "ruleId": "endpoints.security.edit"
-          }
-        ],
-        "roleIds": ["maintainer"]
-      }
-    ]
-  }
-}
-```
-
-*Allow: only specified fields edit*
-
-```json
-{
-  "configurationManagement": {
-    "saveChangesRules": [
-      {
-        "allowedRuleSet": [
-          {
-            "ruleId": "endpoints.security.edit"
-          }
-        ],
-        "roleIds": ["maintainer"]
-      }
-    ]
-  }
-}
-```
-
-:::note  
-When using only `allowedRuleSet`, all actions are denied except those explicitly allowed.  
-When using only `disallowedRuleSet`, all actions are allowed except those explicitly disallowed.  
-If both are specified, disallow rules take precedence: if a disallow rule violation is found, allow rules are not evaluated for that action.
-:::
+| `endpoints.security.edit` | block edit of the fields [`public`, `acl`, `secreted`] of `endpoints` and `routes` inside endpoints |
 
 ## Fetching and configuring rules with `miactl`
 
@@ -324,7 +124,7 @@ This API is meant for internal use and will be subject to breaking changes.
 
 ##### Body
 
-The **body** of the request has the structure described in [Configuration definition](#configuration-definition), and shown in  [Examples of allow and disallow rules](#examples-of-allow-and-disallow-rules)
+The **body** of the request has the structure described in [Configuration definition](#configuration-definition)
 
 ### Updating rules on a Company
 
@@ -348,5 +148,88 @@ This API is meant for internal use and will be subject to breaking changes.
 
 ##### Body
 
-The **body** of the request is identical for the Project and Company update. The body structure is described in [Configuration definition](#configuration-definition). Examples can be seen in [Examples of allow and disallow rules](#examples-of-allow-and-disallow-rules)
-The **body** of the request is identical for the Project and Company update. The body structure is described in [Configuration definition](#configuration-definition). Examples can be seen in [Examples of allow and disallow rules](#examples-of-allow-and-disallow-rules)
+The **body** of the request the structure described in [Configuration definition](#configuration-definition)
+
+Below are some **examples of request bodies** for the Update Rules API. The request body format is identical for both the Update Project and Update Company APIs.
+
+- prevent edit of the `dockerImage` of all services to the role `maintainer`
+
+```json
+  {
+      "configurationManagement": {
+          "saveChangesRules": [
+              {
+                  "disallowedRuleSet": [
+                      {
+                          "jsonPath": "$.services.*.dockerImage"
+                      },
+                  ],
+                  "roleIds": [
+                      "maintainer"
+                  ]
+              }
+          ]
+      }
+  }
+```
+
+- prevent creation of the resource `secrets` to the role `maintainer`
+
+```json
+{
+  "configurationManagement": {
+    "saveChangesRules": [
+      {
+        "disallowedRuleSet": [
+          {
+            "jsonPath": "$.collections",
+            "processingOptions": {
+              "action": "create"
+            }
+          }
+        ],
+        "roleIds": ["maintainer"]
+      }
+    ]
+  }
+}
+```
+
+- prevent the creation of a services of a specific type (`custom-resource`) to the role `maintainer`
+
+```json
+{
+  "configurationManagement": {
+    "saveChangesRules": [
+      {
+        "disallowedRuleSet": [
+          {
+            "jsonPath": "$.services.[?(@.type==\"cursom-resource\")]",
+            "processingOptions": { "action": "create" }
+          }
+        ],
+        "roleIds": ["maintainer"]
+      }
+    ]
+  }
+}
+```
+
+- configure the predefined rule with `ruleId` "endpoints.security.edit" to the role `maintainer`
+
+```json
+{
+  "configurationManagement": {
+    "saveChangesRules": [
+      {
+        "disallowedRuleSet": [
+          {
+            "ruleId": "endpoints.security.edit"
+          }
+        ],
+        "roleIds": ["maintainer"]
+      }
+    ]
+  }
+}
+```

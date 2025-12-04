@@ -61,7 +61,7 @@ The Mia-Platform [Microfrontend Composer](../../microfrontend-composer/overview)
 
 :::info
 
-This array is designed to store IDs computed from another assignment property. For instance, it can be used to assign a questionnaire to users of a specific cluster (such as users in the same company or department). You can use a [PRE decorator](/runtime_suite_libraries/custom-plugin-lib/decorators.md) to manipulate a `POST` or a `PATCH` of an assignment and update the `automaticAssignments` array accordingly.
+This array is designed to store IDs computed from another assignment property. For instance, it can be used to assign a questionnaire to users of a specific cluster (such as users in the same company or department). You can use a [PRE decorator](../../development_suite/api-console/api-design/plugin_baas_4#pre-and-post-decorators) to manipulate a `POST` or a `PATCH` of an assignment and update the `automaticAssignments` array accordingly.
 
 :::
 

@@ -48,7 +48,6 @@ The FHIR Adapter exposes APIs which allow to:
 * read the history of an element in a collection
 * read the version of an element in a collection
 * count number of versions of an element in a collection
-* execute a pre-configured transaction via a dedicated endpoint
 
 ### Conventions
 
@@ -291,54 +290,6 @@ You can delete an entity, that means deleting one ore more resources in one or m
 ```bash
 curl --request DELETE https://your-url/Patient/1234
 ```
-
-### Transaction
-You can execute a pre-configured transaction using the following endpoint:
-
-```bash
-POST /transaction/:transactionId
-```
-or
-```bash
-POST /transaction/:transactionId/
-```
-The :transactionId path parameter specifies the transaction to be executed.
-The request body must be in JSON format and adhere to the structure expected by the corresponding transaction configuration.
-
-This endpoint supports mapped custom input data. The number and type of FHIR resources created, updated, or linked are determined by the internal transaction definition.
-
-**Example**
-```bash
-curl --request POST \
-  --url https://your-url/transaction/clinical-impression \
-  --header 'accept: application/json' \
-  --header 'content-type: application/json' \
-  --header 'client-key: client-key' \
-  --data '{
-    "firstName": "John",
-    "lastName": "Doe",
-    "birthDate": "12-03-1987",
-    "height": "177"
-  }'
-```
-
-**Response**
-The response includes the FHIR resources that were created or updated during the transaction, each identified by its `_id` field:
-```json
-{
-  "Patient": {
-    "_id": "1234"
-  },
-  "Observation": {
-    "_id": "5678"
-  }
-}
-```
-
-:::note
-Currently, the structure of the output returned by the transaction API cannot be customized.
-The response always returns an array of objects containing only the `resourceType` and `_id` of each created resource.
-:::
 
 ### History
 

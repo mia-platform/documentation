@@ -116,43 +116,6 @@ type Locale = {
 
 where [LocalizedText][localized-text] is either a string or an object mapping language acronyms to strings.
 
-It is possible to interpolate the title and content of the notification with the field of the HTTP response.
-
-For example:
-
-```json
-{
-  "tag": "bk-notifications",
-  "properties": {
-    "successEventMap": {
-      "create-data": {
-        "title": {
-          "en": "Data was created correctly with id:{{_id}}!",
-          "it": "Dato creato correttamente con id: {{_id}}!"
-        },
-        "content": {
-          "en": "The data has been created correctly",
-          "it": "I dati sono stati creati correttamente"
-        },
-        "type": "success"
-      }
-    }
-  }
-}
-```
-
-In the case of an error type notification, the interpolation must have the keyword error before the field of the response, such as `{{error.status}}`.
-
-Example of error response:
-
-```json
-{
-  "status": 404,
-  "message": "Not found"
-}
-```
-
-To interpolate the status you have to use `{{error.status}}`, to interpolate the error message you have to use: `{{error.message}}`.
 
 ## Examples
 

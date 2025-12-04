@@ -10,26 +10,6 @@ DO NOT MODIFY IT BY HAND.
 Instead, modify the source file and run the aggregator to regenerate this file.
 -->
 
-## [3.9.4] 2024-05-14
-
-### Updated
-
-- Updated Api Portal to version `2.2.2`
-
-## [3.9.3] 2024-05-07
-
-### Updated
-
-- Updated Api Portal to version `2.2.1`
-
-### Changed
-
-- Removed `simple-get` package to fix `socket hang up` errors when downloading documentations
-
-### Versioning
-
-- `nock@^14.0.0`
-
 ## [3.9.2] 2024-02-28
 
 ### Changed

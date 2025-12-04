@@ -22,42 +22,46 @@ On this page we keep you aligned on the most important issues:
 
 - **Mia-Platform Console**:
   - _Governance_  
+    - Empowered IAM
     - Company/Profile management optimization
+    - Enhanced Runtime Resources Monitoring and management
     - Extended FinOps integration
     - Customizable Home Page
     - Customizable metrics dashboards
   - _DevX_
     - Enhanced CLI
     - Enhanced Pair with AI
-    - Improved Secret Managers integrations
+    - Improved Vault integrations
   - _Extensibility_
-    - Console public API reference documentation
-    - Extended support for Infrastructure Management
+    - New K8s auth
+    - Better integration with 3rd party plugins
+    - Support Ingress Controller
+    - Extend your Console with Microfrontend Composer
+    - New Dev Portal for public API reference
+    - Native Multi-runtime and Serverless support (e.g. Lambda)
+    - Integration with other tools (Jira, Github, ...) to gather metrics
 - **Mia-Platform Data Fabric**
   - _Fast Data_
-    - New AI-Native Data Pipeline configurator
-    - Runtime aggregation performance improvements for Fast Data
-    - Data processing functions generation & testing with AI support
-    - MongoDB-Kafka Connector
+    - New Fast data pipeline UX configuration in Design Area
+    - Fast Data Control Plane at Company level
+    - Pre/Post data filtering logics on Fast Data pipelines
   - _Data Catalog_
-    - Export Data Catalog assets at scale
-    - Excel integration for bulk metadata enrichment and sync with the Catalog
-  - _Database Management_
-    - Improved management of schema validation and indexes for MongoDB assets
-- **Software Catalog**
-  - Improved Governance
+    - Data Catalog application new features
+    - Data Lineage solution with Fast Data integration
+- **Mia-Platform Marketplace**
+  - Improved Marketplace Governance
+  - Marketplace management through Miactl
+  - Improved Marketplace Monitoring
   - Enhanced PBC (Application) Lifecycle
   - Modular PBCs
-  - Catalog Items Enrichment
-  - Catalog integration with third-party tools
-  - AI-driven Catalog Items discovery
 - **Components**
   - _Microfrontend Composer_
+    - Custom Template Management
     - Drag & Drop components
     - New Component Library
   - _Flow Manager_
-    - AI-Native Flows configuration
-    - Guided sagas and state machines Flow configuration
+    - Enhanced No Code configuration
+    - Retry functionality
 
 ## How to contribute to the roadmap
 

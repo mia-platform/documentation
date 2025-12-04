@@ -6,7 +6,7 @@ sidebar_label: Project Usage Handbook
 
 The **Mia-Platform Console** is a powerful **Internal Developer Portal** that let you govern all projects in one place and helps you industrialize and automate DevOps, avoid organizational bottlenecks, self-serve developers, solve cloud complexity and enhance accountability & reliability.
 
-On the Console you can build complex [projects](/development_suite/api-console/api-design/overview.md) and use an ever-growing list of [plugins](/marketplace/plugins/mia-platform-plugins.md) but there are some common actions that you will do everyday.
+On the Console you can build complex [projects](/development_suite/api-console/api-design/overview.md) and use an ever-growing list of [plugins](/plugins/mia-platform-plugins.md) but there are some common actions that you will do everyday.
 
 In this page we will see the most frequently performed actions on the Mia-Platform Console.
 

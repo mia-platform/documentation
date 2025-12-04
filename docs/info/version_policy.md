@@ -21,8 +21,7 @@ Mia-Platform guarantees **security patches** for the two preceding versions to t
 
 Release | Release Date |  End of Life Date
 -------| -------|-------
-v14 (current)| May 2025 | End of 2026
-v13| May 2024 | End of 2025
+v13 (current)| May 2024 | End of 2025
 v12| November 2023 | May 2025
 v11| May 2023 | End of 2024
 v10| October 2022 | May 2024
@@ -46,12 +45,14 @@ New Mia-Platform version may include features that are not yet considered stable
 tag denoting the current feature state.
 
 :::info
-These early access feature are generally disabled by default and can be enabled using the Feature Preview pages (depending whether the feature has impact on [specific users](/development_suite/user-settings/feature-preview.md)
+Preview and beta feature are usually disabled by default and can be enabled using the Feature Preview pages (depending whether the feature has impact on [specific users](/development_suite/user-settings/feature-preview.md)
 or whole [Projects](/console/project-configuration/project-settings.md#feature-preview)).
 :::
 
-The current feature state classifications are as follows:
+The currently used feature states are the following:
 
-- Beta: The minimum viable product (MVP) for the feature is complete and functional, with no undocumented breaking changes anticipated. However, due to various factors (such as insufficient validation for specific use cases), it may still be deemed unsuitable or limited for production environments, so caution is advised when using it.
-- Preview: This designation typically indicates the initial iteration of a new feature. While the feature is accessible for use, it may not be fully developed and could be subject to undocumented breaking changes.
-- Experimental: This label is applied to features that are in the early stages of development and undergoing significant changes.
+- **experimental**: used for feature that are under heavy development;
+- **preview**: generally representing the first iteration for a new feature;
+it means that the feature is available for use but it may not be completed yet or could be subject to undocumented breaking changes;
+- **beta**: the feature implementation is completed and there will not be any undocumented breaking changes. However, for different reasons
+(e.g. lack of proper validation on certain use-cases), it may be yet considered unsuitable for use in production, hence it must be used carefully.

@@ -23,10 +23,6 @@ Most configurations (almost all actually) are taken from the configurations file
 
 ## Configurations file
 
-:::tip
-A full JSON schema of the configuration file can be found at <https://cdn.mia-platform.eu/runtime/flow-manager/service_version/schemas/config.schema.json>.
-:::
-
 The configurations file required by the *Flow Manager* is in the JSON format and is divided in three sections:
 
 - **communicationProtocols**: the section dedicated to the [*Communication protocols*](#communication-protocols) used to communicate with other services
@@ -40,7 +36,7 @@ The configurations file is validated by the *Flow Manager*, pay attention to the
 
 Following the details of each section.
 
-### Communication Protocols
+## Communication Protocols
 
 It contains a list of JSON Objects with the configurations of the communication protocol (**channel**, from now on).
 
@@ -51,7 +47,7 @@ Each *channel type* must be one of the supported types. Following the supported 
 - [**kafka**](#kafka-communication-protocol): the channel that will be connected to an [*Apache Kafka*](https://kafka.apache.org/) server and will allow the service to publish/consume messages (*commands/events*)
 - [**REST**](#rest-communication-protocol): the channel that will allow the service to send *commands* and receive *events* through REST API
 
-#### Kafka communication protocol
+### Kafka communication protocol
 
 This *channel* type allows the service to connect to a kafka server and consume/produce messages on it.
 
@@ -63,55 +59,10 @@ The channel properties are the following:
   - **brokers** (required):
     - a list of strings that represent the kafka brokers, or:
     - a string with the comma separated list of brokers
-
-    :::info
-      Since version `2.7.0`, this property supports [secrets resolution](#secrets-resolution). E.g.,
-
-      ```json
-      {
-        "brokers": {
-          "type": "file",
-          "path": "/secrets/brokers"
-        }
-      }
-      ```
-
-    :::
   - **inputTopics**: a list of strings that contains the topics to subscribe to consume messages; **NB.** this property is **required** if the property *outputTopics* is missing
   - **outputTopics**: a list of strings that contains the topics to send messages; **NB.** this property is **required** if the property *inputTopics* is missing
   - **consumerGroup**: the consumer group id, will be used by the *Kafka Consumer* to consume messages; **NB.** this property is **required** if there's the *inputTopics* one
   - **authenticationProperties**: a *JSON Object* with the kafka authentication properties. [**It must be KafkaJs compliant**](https://kafka.js.org/docs/configuration#ssl)
-
-    :::info
-      Since version `2.7.0`, the following keys of this property support [secrets resolution](#secrets-resolution):
-        - `ssl.ca`
-        - `ssl.key`
-        - `ssl.passphrase`
-        - `ssl.cert`
-        - `sasl.username`
-        - `sasl.password`
-
-      E.g.,
-
-      ```json
-      {
-        "authenticationProperties": {
-          "sasl": {
-            "mechanism": "plain",
-            "username": {
-              "type": "file",
-              "path": "/secrets/sasl-username"
-            },
-            "password": {
-              "type": "file",
-              "path": "/secrets/sasl-password"
-            }
-          }
-        }
-      }
-      ```
-
-      :::
 
 The *Flow Manager* behavior will be the following:
 
@@ -120,7 +71,7 @@ The *Flow Manager* behavior will be the following:
 
 Following some examples with explanation.
 
-##### Kafka - consumer only - ssl auth - brokers as list
+#### Kafka - consumer only - ssl auth - brokers as list
 
 ```json
 {
@@ -147,7 +98,7 @@ Following some examples with explanation.
 }
 ```
 
-##### Kafka - producer only - no auth - brokers as string
+#### Kafka - producer only - no auth - brokers as string
 
 ```json
 {
@@ -162,7 +113,7 @@ Following some examples with explanation.
 }
 ```
 
-##### Kafka - complete configurations
+#### Kafka - complete configurations
 
 ```json
 {
@@ -191,7 +142,7 @@ Following some examples with explanation.
 }
 ```
 
-##### Sending commands
+#### Sending commands
 
 The *Flow Manager* sends commands via Kafka messages using the _Saga id_ as key, while the message payload should be in the form:
 
@@ -202,7 +153,7 @@ The *Flow Manager* sends commands via Kafka messages using the _Saga id_ as key,
 }
 ```
 
-##### Receiving events
+#### Receiving events
 
 The *Flow Manager* receives events via Kafka messages using the _Saga id_ as key, while the message payload should be in the form:
 
@@ -213,7 +164,7 @@ The *Flow Manager* receives events via Kafka messages using the _Saga id_ as key
 }
 ```
 
-#### REST communication protocol
+### REST communication protocol
 
 This *channel* type allows the service to exchange commands and events with external services through REST API.
 
@@ -227,22 +178,6 @@ The channel properties are the following:
   - **method** (required): the *method* to use to send the command; it **must be one of the allowed values** --> [*POST*, *PUT*, *PATCH*]
   - **path**: the *path* to interact with the service (the default one is the *root*, the simple slash */*)
   - **headers**: the *headers* to use
-
-    :::info
-    Since version `2.7.0`, this property supports [secrets resolution](#secrets-resolution). E.g.,
-
-    ```json
-    {
-      "headers": {
-        "x-req-id": "abc",
-        "authorization": {
-          "type": "file",
-          "path": "/secrets/auth"
-        }
-      }
-    }
-    ```
-    :::
   - **port**: the *port* to use
 
 The *Flow Manager* behavior will be the following:
@@ -252,7 +187,7 @@ The *Flow Manager* behavior will be the following:
 
 More details in the following sections.
 
-##### Sending commands
+#### Sending commands
 
 The *Flow Manager* sends commands to the services through the following route:
 
@@ -272,7 +207,7 @@ with the following body:
 
 The *Flow Manager* expects a successful response (*code 2xx*), and it does not care about the response payload.
 
-##### Receiving events
+#### Receiving events
 
 To receive events, the *Flow Manager* exposes the route `POST - /event` that accepts a body that must be structured as follows:
 
@@ -305,7 +240,7 @@ To receive events, the *Flow Manager* exposes the route `POST - /event` that acc
 }
 ```
 
-### Persistency Manager
+## Persistency Manager
 
 This section contains the configurations for the *Persistency Manager*, that is responsible for:
 
@@ -327,7 +262,7 @@ The **persistencyManagement** section must contain a JSON object with the config
 
 For more about the *Persistency Manager* look the [**dedicated documentation**](./how_it_works#the-persistency-manager).
 
-#### REST Persistency Manager
+### REST Persistency Manager
 
 The *REST* persistency manager uses the REST protocol to contact the service for read and insert/update the sagas.
 
@@ -340,22 +275,6 @@ Following the properties for this type:
   - **method** (required): the *method* to use to **upsert** the saga (same endpoint/path for insert and upsert)
   - **path**: the *path* to interact with the service (the default one is the *root*, the simple slash */*)
   - **headers**: the *headers* to use
-
-    :::info
-    Since version `2.7.0`, this property supports [secrets resolution](#secrets-resolution). E.g.,
-
-    ```json
-    {
-      "headers": {
-        "x-req-id": "abc",
-        "authorization": {
-          "type": "file",
-          "path": "/secrets/auth"
-        }
-      }
-    }
-    ```
-    :::
   - **port**: the *port* to use
 
 **NB.** the interactions between the *Flow Manager* and the *Persistency Manager* are the following:
@@ -419,7 +338,7 @@ and with the sagaId **EXAMPLE_123456_SAGA**, the operations will be:
 
   `GET - http://my-persistency-manager:3000/EXAMPLE_123456_SAGA`
 
-#### Mongo Persistency Manager
+### Mongo Persistency Manager
 
 The Mongo persistency manager directly connects to a MongoDB cluster for reading and inserting/updating the saga information.
 
@@ -428,19 +347,6 @@ The properties for this type, which are **all required**, follows:
 - **type**: the type of the persistency manager, it must be **mongo**
 - **configurations**: an object containing the other configurations of the manager
   - **connectionUri**: the connection string of the Mongo instance (e.g. `mongodb://...`)
-
-    :::info
-      Since version `2.7.0`, this property supports [secrets resolution](#secrets-resolution). E.g.,
-
-      ```json
-      {
-        "connectionUri": {
-          "type": "file",
-          "path": "/secrets/mongo"
-        }
-      }
-      ```
-    :::
   - **collectionName**: the collection in which the sagas will be stored
 
 **NB.** the interactions between the *Flow Manager* and the *Persistency Manager* are the following:
@@ -497,7 +403,7 @@ and with the sagaId **EXAMPLE_123456_SAGA**, the operations will be:
   `collection(my-collection)`
   `findOne(EXAMPLE_123456_SAGA)`
 
-#### CRUD Persistency Manager
+### CRUD Persistency Manager
 
 The CRUD persistency manager connects to a CRUD service instance for reading and inserting/updating the saga information.
 
@@ -509,22 +415,6 @@ To configure the CRUD Persitency Manager use the following properties:
   - **host**: the *host* of the CRUD service (it **defaults** to *crud-service*)
   - **collectionName** (required): the URL path of the collection in which the sagas will be stored
   - **headers**: the *headers* to use
-
-    :::info
-    Since version `2.7.0`, this property supports [secrets resolution](#secrets-resolution). E.g.,
-
-    ```json
-    {
-      "headers": {
-        "x-req-id": "abc",
-        "authorization": {
-          "type": "file",
-          "path": "/secrets/auth"
-        }
-      }
-    }
-    ```
-    :::
   - **port**: the *port* to use (it **defaults** to *80*)
 
 Furthermore, you need to create a CRUD collection with a URL path named as *collectionName* from the console using this <a download target="_blank" href="/docs_files_to_download/flow-manager-service/saga-collection.json">schema</a>
@@ -585,7 +475,7 @@ and with the sagaId **EXAMPLE_123456_SAGA**, the operations will be:
 
   `GET - http://my-crud-service:80/?sagaId=EXAMPLE_123456_SAGA`
 
-### Machine Definition
+## Machine Definition
 
 This is the core section of the *Flow Manager* configurations, because it contains the *Final State Machine* definition.
 
@@ -597,7 +487,7 @@ Following the *Machine Definition* configurations:
 - **businessStates** (required): an array that contains the list of the states that matters for business ([explained below](#business-states-of-the-machine))
 - **businessEvents**: an array that contains the list of the events that matter for business ([explained below](#business-events-of-the-machine))
 
-#### States of the machine
+### States of the machine
 
 The states of the machine are used by the *Flow Manager* to know how to move forward the saga through the flow.
 
@@ -621,7 +511,7 @@ Each state must have the following configurations:
   - **businessEventId**: the ID of the [business event](#business-events-of-the-machine) (**NB.** must exist in the *businessEvents* list)
   - **payloadValidationSchema** (starting from version `2.6.5`): a [JSON schema](https://json-schema.org/) object against which the event payload should be validated
 
-#### Business states of the machine
+### Business states of the machine
 
 The business states of the machine are a superset of the machine that represents the states of the saga that matter for the business.
 
@@ -634,7 +524,7 @@ Following the configurations of the business states:
 
 **NB.** the id and the description of the business state will be stored by the *Persistency Manager*.
 
-#### Business events of the machine
+### Business events of the machine
 
 The business events of the machine are a superset of the machine that represents the events of the saga that matter for the business.
 
@@ -645,7 +535,7 @@ Following the configurations of the business states:
 - **id** (required): the ID of the business event (is usually a integer code)
 - **description**: a full description of the business event
 
-#### Command hook
+### Command hook
 
 :::caution
 This feature is available starting from version `2.6.0`.
@@ -671,7 +561,7 @@ Here is an example:
 export default ({ saga, messageLabel }) => { return { payload: { sagaId: saga.sagaId, metadata: saga.metadata } }}
 ```
 
-### Settings
+## Settings
 
 :::caution
 This feature is available starting from version `2.6.0`.
@@ -686,106 +576,6 @@ Here is the list of supported additional settings:
     - **encoding**: accepted values are ```plain``` and ```base64```. By default it is ```plain```
     - **content** (required): the ```customizer``` function implementation encoded accordingly
 - **throwOnUnexpectedEvents** (starting from version `2.6.5`): a boolean value that defines if an event received while the saga is in a state that does not list the event label in its outgoing transitions should throw (this will cause the `/event` route to respond with an error)
-
-## Secrets resolution
-
-:::caution
-This feature is available starting from version `2.7.0`.
-:::
-
-The Flow Manager supports the resolution of [Kubernetes secrets](/development_suite/api-console/api-design/services.md#secrets) for the following configuration properties.
-
-- The `connectionUri` property of the [Mongo persistency manager](#mongo-persistency-manager),
-- the `headers` property of the [REST persistency manager](#rest-persistency-manager),
-- the `headers` property of the [CRUD persistency manager](#crud-persistency-manager),
-- the `brokers` property of the [Kafka communication protocols](#kafka-communication-protocol),
-- the `headers` property of the [REST communication protocols](#rest-communication-protocol), and
-- some keys of the `authenticationProperties` property of the [Kafka communication protocols](#kafka-communication-protocol), namely:
-  - `ssl.ca`
-  - `ssl.key`
-  - `ssl.passphrase`
-  - `ssl.cert`
-  - `sasl.username`
-  - `sasl.password`
-
-The resolution mechanism allows injecting secrets within the configuration file at **runtime** (i.e., after the config map is mounted and read by the service), avoiding an unauthorized access to sensitive information *even by users with access to K8s config maps*.
-
-Secrets can be injected via secret resolution as:
-
-- [plain text](#plain-text), that is providing the real or interpolated value, or
-- [reference to a file](#file-reference).
-
-Consequently, the JSON schema of the properties supporting secrets resolution is the following:
-
-```json
-{
-  "oneOf": [
-    { "type": "string" },
-    {
-      "type": "object",
-      "properties": {
-        "type": { "type": "string", "const": "file" }
-        "path": { "type": "string" }
-      },
-      "required": ["type", "path"],
-      "additionalProperties": false
-    }
-  ]
-}
-```
-
-### Plain text
-
-The field is set to be a string and it is loaded directly from the Config Map itself.
-
-```json
-{
-  "persistencyManagement": {
-    "type": "mongo",
-    "configurations": {
-      // highlight-next-line
-     "connectionUri": "{{MONGOBD_URL}}",
-     "collectionName": "saga"
-    }
-  }
-}
-```
-
-:::danger
-Remember to use [external environment variables](/console/project-configuration/manage-environment-variables/index.md), to avoid store them in plain in your Console configuration!
-:::
-
-This mode provides **backward compatibility** with any of your existing configurations, so that:
-
-- you may upgrade your services with confidence without the need to change your config maps, or
-- you may try out the secret resolution method and potentially revert your changes without breaking your service.
-
-### File reference
-
-The field is populated by the content of [a file mounted inside the microservice](/development_suite/api-console/api-design/services.md#secrets), such as K8s secret.
-
-:::tip
-To help creating K8s secrets, consider using the [`mpl`](/runtime_suite_tools/mlp/30_generate.md) tool, which automate secrets creation of the ones configured in the `mlp.yaml` file that can be found within your Console Project repository.
-:::
-
-The following configuration will instruct the service to load the content of a file within the configuration property.
-
-```json
-{
-  "persistencyManagement": {
-    "type": "mongo",
-    "configurations": {
-    // highlight-start
-    "connectionUri": {
-      "type": "file",
-      "path": "/path/to/file"
-    },
-    // highlight-end
-     "collectionName": "saga"
-    }
-  }
-}
-```
 
 ## Configuration example
 
@@ -1102,90 +892,6 @@ The following example configurations can be used as templates.
         "content": "export default (objValue, srcValue) => { return objValue.concat(srcValue) }"
       }
     }
-  }
-}
-```
-
-### Secrets example
-
-```json
-{
-  "communicationProtocols": [
-    {
-      "id": "mainKafka",
-      "type": "kafka",
-      "configurations": {
-        "brokers": {
-          "type": "file",
-          "path": "/secrets/kafka/brokers",
-        },
-        "inputTopics": [
-          "common-events",
-          "orders-events"
-        ],
-        "outputTopics": [
-          "commands"
-        ],
-        "consumerGroup": "flow-manager-consumer",
-        "authenticationProperties": {
-          "ssl": true,
-          "sasl": {
-            "mechanism": "plain",
-            "username": {
-              "type": "file",
-              "path": "/secrets/kafka/username",
-            },
-            "password": {
-              "type": "file",
-              "path": "/secrets/kafka/password",
-            }
-          }
-        }
-      }
-    },
-    {
-      "id": "mainRest",
-      "type": "rest",
-      "configurations": {
-        "protocol": "https",
-        "method": "POST",
-        "endpoint": "/",
-        "headers": {
-          "authorization": {
-            "type": "file",
-            "path": "/secrets/auth"
-          }
-        }
-      }
-    }
-  ],
-  "persistencyManagement": {
-    "type": "mongo",
-    "configurations": {
-     "connectionUri": {
-      "type": "file",
-      "path": "/secrets/mongo"
-     },
-     "collectionName": "saga"
-    }
-  },
-  "machineDefinition": {
-    "initialState": "sagaCreated",
-    "creationEvent": "__created__",
-    "states": [
-      {
-        "id": "sagaCreated",
-        "description": "The saga has been created",
-        "isFinal": true,
-        "businessStateId": 0
-      }
-    ],
-    "businessStates": [
-      {
-        "id": 0,
-        "description": "The saga has been created"
-      }
-    ]
   }
 }
 ```

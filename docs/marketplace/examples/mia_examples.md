@@ -33,4 +33,4 @@ Mia-Platforms currently supports the following examples:
 
 Their code is open source, feel free to open a PR to contribute to any of them!
 
-If you want to create your own example, head to the [dedicated page](/software-catalog/items-management/overview.md) page for further information.
+If you want to create your own example, head to the [Create your Company Marketplace](/software-catalog/manage-items/overview.md) page for further information.

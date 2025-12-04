@@ -5,7 +5,7 @@ sidebar_label: Mia-Platform Templates
 ---
 A **Template** is a base repository from which you can start to create a new Microservice.  
 
-Usually they depend on specific Mia Service libraries.
+Usually they depend on specific [Mia Service libraries](/libraries/mia-service-libraries.md).
 
 Mia-Platforms currently supports the following examples:
 
@@ -21,4 +21,6 @@ Mia-Platforms currently supports the following examples:
 | [Ktor template](https://github.com/mia-platform-marketplace/Ktor-Template)                            | Ktor, Kotlin                                                       |
 | [Ktor multi module template](https://github.com/mia-platform-marketplace/Ktor-Multi-Module-Template)  | Ktor, Kotlin                                                       | . |
 
-You can also [build a template](/software-catalog/items-management/overview.md) by yourself.
+You can also [build a template](/software-catalog/manage-items/mia-ctl/create/create-item-by-type/create_template_or_example.md) by yourself.
+
+Head to the [Create your Company Marketplace](/software-catalog/manage-items/overview.md) page for further information on how to create and upload it to the Marketplace.

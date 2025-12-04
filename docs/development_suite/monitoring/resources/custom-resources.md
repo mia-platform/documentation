@@ -11,7 +11,7 @@ If deployed, the information on the [Custom Resources](/console/design-your-proj
 :::caution
 If you created one or more Custom Kubernetes Resource from a marketplace template **prior** to Console release v13.3.0, the resources **will not be visible by default**. 
 
-Please ensure to [update your resource](/software-catalog/items-manifest/infrastructure-resource.md) version via [miactl](/cli/miactl/10_overview.md) to one that has the properties `resourceId` and `type` correctly set in the `runtime` object field of its definition, otherwise the Custom Kubernetes Resources won't be visible in the section even if the resource is active.
+Please ensure to [update your resource](/software-catalog/manage-items/mia-ctl/create/create-item-by-type/create_infrastructure_resource.mdx#update-a-custom-resource-to-the-console-v1330) version via [miactl](/cli/miactl/10_overview.md) to one that has the properties `resourceId` and `type` correctly set in the `runtime` object field of its definition, otherwise the Custom Kubernetes Resources won't be visible in the section even if the resource is active.
 
 :::
 

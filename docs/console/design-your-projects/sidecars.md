@@ -54,7 +54,7 @@ If you want to create a new instance of a sidecar you are already using in some 
 
 :::tip
 It is possible to define and publish sidecar resource definitions on the Marketplace.
-Find out more in the [dedicated section](/software-catalog/items-management/overview.md).
+Find out more in the [Publish your sidecar to the Marketplace](/software-catalog/manage-items/mia-ctl/create/create-item-by-type/create_sidecar.md) guide.
 :::
 
 #### Clone a sidecar

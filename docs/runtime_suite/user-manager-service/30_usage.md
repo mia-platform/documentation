@@ -239,9 +239,8 @@ This request accepts the following 'standard' fields:
 - **email** - `string`: the user email address;
 - **blocked** - `boolean`: to create a 'blocked' user;
 - **userGroup (required)** - `string`: the group to which the user belongs;
-- **roles** - `array`: the roles to be assigned to the user via Rönd;
-- **expirationDate** - `Date` (from v1.4.0): the expiration date/time of the user account;
-- **connection** - `string` (available since v1.6.0): the auth connection used to create the user.
+- **roles** - `array`: the roles to be assigned to the user via Rönd.
+- **expirationDate** - `Date` (from v1.4.0): the expiration date/time of the user account.
 
 :::note
 

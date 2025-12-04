@@ -46,7 +46,7 @@ If configured, linked decorators will be shown below the button. Please note tha
 
 ### Develop a decorator from scratch
 
-Even though there're several Mia-Platform libraries that abstract the concept of decorator, providing a simple programming interface you might find yourself in the need of design your decorator from scratch.
+Even though there're [several Mia-Platform libraries](/libraries/mia-service-libraries.md) that abstract the concept of decorator, providing a simple programming interface you might find yourself in the need of design your decorator from scratch.
 
 In order to do so it is important to know the interface that Mia-Platform uses to send decorator requests and how does it interpret the decorator response.
 

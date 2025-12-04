@@ -64,7 +64,21 @@ Each device can be assigned to different patients across its lifespan. When a de
 Once a device is assigned to a patient, the generated health data is received by the service, that automatically stores a copy of the raw health data and schedule a background job to normalize it based on some customizable rules to ensure sintactic and semantic consistency across different providers and devices, allowing health data analysis and visualization no matter the source and format of the health data.
 The service provides some default normalization rules for health data coming from officially supported medical or wearables devices, that you can later customize or completely override based on your specific needs.
 
-![Data acquisition flow diagram](img/data-acquisition-flow.png)
+```mermaid
+flowchart TD
+    NewDeviceData[New device data] --> |Save raw data| RawDataSaved[Raw data saved]
+    NewDeviceData --> |Error saving data| Failure[Failure]
+    RawDataSaved --> |Creating job| JobCreated[Job created]
+    RawDataSaved --> |Sending response| Success[Success]
+    JobCreated --> |Starting job| JobStarted[Job started]
+    JobCreated --> |Error starting job| JobFailed[Job failed]
+    JobStarted --> |Normalizing data| NormalizedData[Data normalized]
+    JobStarted --> |Error normalizing data| JobFailed
+    NormalizedData --> |Submit detections| DetectionsSubmitted[Detections submitted]
+    NormalizedData --> |Error submitting detections| DetectionsNotSubmitted[Detections failed]
+    DetectionsSubmitted --> Success
+    DetectionsNotSubmitted --> JobFailed
+```
 
 | State                | Description                                                                                           |
 |----------------------|-------------------------------------------------------------------------------------------------------|

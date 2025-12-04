@@ -7,7 +7,7 @@ Following we will see how to create a Microservice using the [Console](/developm
 
 :::info
 The following guide is generic, so you can follow it to create any type of Microservice from template.  
-You can read [here](/runtime_suite_libraries/custom-plugin-lib/apidoc.md) a dedicated guide about creating from the **Node.js Template**
+You can read [here](/development_suite/api-console/api-design/plugin_baas_4.md) a dedicated guide about creating from the **Node.js Template**
 :::
 
 ### 1. Microservice creation

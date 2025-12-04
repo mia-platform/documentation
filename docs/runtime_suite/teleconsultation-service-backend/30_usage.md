@@ -696,54 +696,9 @@ In case the service is not able to get user authentication from the request head
 401: { "error": "Unauthorized user" } 
 ```
 
-### GET /transcription/:roomId/:sessionId
-
-:::note
-Available from version 2.1.0. The transcription is only available if the `DEFAULT_RECORDING_TYPE` is set to `manual` or `automatic`.
-:::
-
-Retrieves the transcription for a specific session within a teleconsultation room, as stored on Kaleyra([reference][kaleyra-get-transcription]).
-
-#### Path parameters
-
-##### roomId (required)
-
-**Type**: `string`
-**Description**: The ID of the teleconsultation room.
-
-##### sessionId (required)
-
-**Type**: `string`
-**Description**: The ID of the specific session within the room.
-
-#### Query parameters
-
-##### format (optional)
-
-**Type**: `string`
-**Description**: The format of the transcription. Supported formats are `txt` and `srt`. Defaults to `txt`.
-
-
-**Example GET Request**
-```
-curl -X GET "https://my_project_url/transcription/room_xyz/session_abc?format=srt"
-```
-
-#### Response
-
-In case the transcription is successfully retrieved, a 200 status code will be returned alongside with an object containing the transcription:
-
-Example Response:
-```json
-{
-  "transcription": "This is the transcription of the session..."
-}
-```
-
 
 [kaleyra-get-room]: https://developers.kaleyra.io/reference/video-room-get
 [kaleyra-video-react-native-module]: https://github.com/KaleyraVideo/VideoReactNativeModule
-[kaleyra-get-transcription]: https://developers.kaleyra.io/reference/video-v2-sessiontranscription-get
 
 [auth0-client]: /runtime_suite/auth0-client/10_overview.md
 [console-mia-headers]: /runtime_suite/authorization-service/30_usage.md#headers-set-by-auth

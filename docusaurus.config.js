@@ -108,12 +108,6 @@ async function createConfig() {
           href: "https://github.com/mia-platform/community/discussions",
           position: "left",
           label: "Community"
-        },
-        {
-          type: "docsVersionDropdown",
-          position: "right",
-          dropdownItemsBefore: [],
-          dropdownItemsAfter: []
         }
         ],
       },
@@ -241,6 +235,13 @@ async function createConfig() {
         },
         ],
         copyright: `Copyright © ${new Date().getFullYear()} Mia srl. All rights reserved. Built with Docusaurus.`,
+      },
+      announcementBar: {
+        id: 'archived',
+        content: 'This documentation refers to Console version 13, which is currently archived. Please, check the <a target="_blank" rel="noopener noreferrer" href="https://docs.mia-platform.eu/">current version</a> for up-to-date information.',
+        backgroundColor: '#def2ff',
+        textColor: '#193c47',
+        isCloseable: false,
       }
     },
     presets: [
@@ -256,21 +257,6 @@ async function createConfig() {
             }],
             editUrl: createEditUrl,
             sidebarPath: require.resolve("./sidebars.js"),
-            lastVersion: "current",
-            versions: {
-              current: {
-                label: "14.x",
-                path: ""
-              },
-              "13.x.x": {
-                label: "13.7",
-                path: "13.x",
-              },
-              "12.x.x": {
-                label: "12.4",
-                path: "12.x",
-              }
-            },
             async sidebarItemsGenerator({
               isCategoryIndex: defaultCategoryIndexMatcher,
               defaultSidebarItemsGenerator,

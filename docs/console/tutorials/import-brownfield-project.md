@@ -6,7 +6,7 @@ sidebar_label: Import Brownfield Project
 
 # Import Brownfield Project
 
-Starting from version `0.17` of `miactl` and version `13.6.0` of Mia-Platform Console, the `import` command is supported. This command allows you to import declarative YML definitions of Kubernetes resources into an empty project in the Mia-Platform Console. 
+Starting from version `0.17` of `miactl`, the `import` command is supported. This command allows you to import declarative YML definitions of Kubernetes resources into an empty project in the Mia-Platform Console. 
 
 The `import` command takes one or more YML files describing Kubernetes resources as input and converts them into configurations for the Mia-Platform Console, so they can be used within the project where they are being imported.
 

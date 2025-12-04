@@ -40,13 +40,13 @@ Blanks cell in the following table are for tools that do not require a specific 
       </tr>
       <tr>
          <td><img src="/img/gitlab.png" width="15" height="15"/> GitLab</td>
-         <td>&gt;= 14.x<br/>&lt;= 17.x , SaaS</td>
+         <td>> 14.x</td>
          <td></td>
          <td></td>
       </tr>
       <tr>
          <td><img src="/img/github.png" width="15" height="15"/> GitHub</td>
-         <td>3.x , SaaS</td>
+         <td>> 3.x</td>
          <td></td>
          <td></td>
       </tr>
@@ -64,26 +64,26 @@ Blanks cell in the following table are for tools that do not require a specific 
       </tr>
       <tr>
          <td><img src="/img/bitbucket-server.ico" width="15" height="15"/> Bitbucket Server</td>
-         <td>8.x</td>
+         <td>&gt; 8.x</td>
          <td>2 cores</td>
          <td>3 GB</td>
       </tr>
       <tr>
          <td><img src="/img/keycloak.ico" width="15" height="15"/> Keycloak</td>
-         <td>&gt;= 16.x<br/>&lt;= 26.x</td>
+         <td>SaaS</td>
          <td></td>
          <td></td>
       </tr>
       <tr>
          <td rowspan="4"><strong>Git Provider</strong></td>
          <td><img src="/img/gitlab.png" width="15" height="15"/> GitLab</td>
-         <td>&gt;= 14.x<br/>&lt;= 17.x , SaaS</td>
+         <td>&gt; 14.x</td>
          <td>4 cores</td>
          <td>4 GB</td>
       </tr>
       <tr>
          <td><img src="/img/github.png" width="15" height="15"/> GitHub</td>
-         <td>3.x & SaaS</td>
+         <td>&gt; 3.x</td>
          <td>4 cores</td>
          <td>32 GB</td>
       </tr>
@@ -95,14 +95,14 @@ Blanks cell in the following table are for tools that do not require a specific 
       </tr>
       <tr>
          <td><img src="/img/bitbucket-server.ico" width="15" height="15"/> Bitbucket Server</td>
-         <td>8.x</td>
+         <td>&gt; 8.x</td>
          <td>2 cores</td>
          <td>3 GB</td>
       </tr>
       <tr>
          <td rowspan="2"><strong>Secret Manager</strong></td>
          <td><img src="/img/gitlab.png" width="15" height="15"/> GitLab</td>
-         <td>&gt;= 14.x<br/>&lt;= 17.x , SaaS</td>
+         <td>SaaS</td>
          <td></td>
          <td></td>
       </tr>
@@ -115,13 +115,13 @@ Blanks cell in the following table are for tools that do not require a specific 
       <tr>
          <td rowspan="4"><strong>CI/CD Tool</strong></td>
          <td><img src="/img/gitlab.png" width="15" height="15"/> GitLab CI Runners</td>
-         <td>&gt;= 14.x<br/>&lt;= 17.x , SaaS</td>
+         <td>&gt; 14.x</td>
          <td>1 core</td>
          <td>2 GB</td>
       </tr>
       <tr>
          <td><img src="/img/github.png" width="15" height="15"/> GitHub Actions</td>
-         <td>3.x , SaaS</td>
+         <td>SaaS</td>
          <td></td>
          <td></td>
       </tr>
@@ -133,7 +133,7 @@ Blanks cell in the following table are for tools that do not require a specific 
       </tr>
       <tr>
          <td><img src="/img/jenkins.png" width="15" height="15"/> Jenkins</td>
-         <td>2.x</td>
+         <td>SaaS</td>
          <td></td>
          <td></td>
       </tr>
@@ -154,7 +154,7 @@ Blanks cell in the following table are for tools that do not require a specific 
       <tr>
          <td><strong>Runtime</strong></td>
          <td><img src="/img/kubernetes.png" width="15" height="15"/> Kubernetes</td>
-         <td>&gt;= 1.21<br/>&lt;= 1.31</td>
+         <td>&gt;= 1.21<br/>&lt;= 1.30</td>
          <td>2 CPU requests</td>
          <td>4 GiB Memory requests</td>
       </tr>
@@ -210,11 +210,11 @@ The following is an example architecture for a proper installation of the Mia-Pl
 | **Tool**                  | **Version** | **Nodes**      | **CPU** | **RAM** | **Storage** |
 |---------------------------|-------------|----------------|---------|---------|-------------|
 | Okta                      |   SaaS      |                |         |      |          |
-| GitLab                    | 17          | 1              | 8 core  | 32 GB   | 200 GB      |
-| GitLab CI Runners         | 17          | 2              | 1 core  | 2 GB    | 25 GB       |
+| GitLab                    | 14          | 1              | 8 core  | 32 GB   | 200 GB      |
+| GitLab CI Runners         | 14          | 2              | 1 core  | 2 GB    | 25 GB       |
 | MongoDB Enterprise        | 5           | 3              | 2 core  | 8 GB    | 20 GB       |
 | Redis                     | 7           |                |         | 1 GB    | 1 GB       |
-| Google Kubernetes Engine  | 1.30        | 2 worker nodes | 4 core  | 8 GB    |          |
+| Google Kubernetes Engine  | 1.28        | 2 worker nodes | 4 core  | 8 GB    |          |
 | Google Container Registry |   SaaS      |                |      |      |          |
 | Google Cloud Storage      |   SaaS      |                |      |      |          |
 | Google Cloud Platform KMS |   SaaS      |                |      |      |          |

@@ -1,6 +1,6 @@
 ---
 id: fnmpay
-title: Fnmpay
+title: Stripe
 sidebar_label: Fnmpay
 ---
 
@@ -18,7 +18,7 @@ In this page you will find the required information to perform REST calls relate
 
 |              | Enabled |
 |--------------|---------|
-| Pay By Link  | ✗       |
+| Pay By Link  | ✓       |
 
 ## Endpoints
 
@@ -40,9 +40,6 @@ You can always define the following optional fields in `providerData`:
   "required": ["transactionsType"],
   "properties": {
     "transactionsType": {
-      "type": "string"
-    },
-    "shopId": {
       "type": "string"
     },
     "description": {

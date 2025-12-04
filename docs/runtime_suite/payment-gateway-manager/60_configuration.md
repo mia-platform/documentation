@@ -92,14 +92,6 @@ The config map located at **EXTERNAL_PROVIDERS_CONFIG** must comply with the fol
 * **FLOWPAY_PUBLIC_KEY** (required): Public Key to verify the [Webhooks signature](https://docs.flowpay.it/#section/Webhooks/Signature.
 * **FLOWPAY_CALLBACK_URL** (required): Address to which Flowpay will send webhooks.
 
-### Fnmpay
-
-* **FNMPAY_BASE_URL** (required): address to Fnmpay API base url. Currently, there are 2 environment, staging and production.
-* **FNMPAY_API_KEY** (required): api key for authenticating Fnmpay requests.
-* **FNMPAY_SHOP_ID** (required): Shop ID of the Fnmpay account, value specified in the `/pay` request payload will take precedence.
-* **FNMPAY_MERCHANT_ID** (required): Merchant ID of the Fnmpay account.
-* **FNMPAY_CALLBACK_URL**: address to which Fnmpay will send webhooks, value specified in the `/pay` request payload will take precedence.
-
 ### Nexi
 
 * **NEXI_BASE_URL** (required): address to Nexi API base url. Currently, there are 2 environment, staging and production.

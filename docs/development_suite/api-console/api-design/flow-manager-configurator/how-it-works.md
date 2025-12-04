@@ -4,6 +4,10 @@ title: How does it work?
 sidebar_label: How it works
 ---
 
+:::caution
+The new Flow Manager Configurator layout, which includes the canvas view for external executors, is available starting from Console version **13.5.1**. Once you switch to the new layout, this action is irreversible.
+:::
+
 
 The following image represents what a user visualizes for a Flow Manager service linked to the Configurator.
 
@@ -24,19 +28,24 @@ The header is always displayed on top of the Configurator, it provides the follo
 
 - **History Buttons**: the history buttons are placed on the right side of the header. They provide the standard history actions: *undo* and *redo*. The history is based on actions that result in configuration changes: the maximum supported length is 10 actions.
 
-- **Settings**: the settings buttons are placed on the right side of the header. They provide a dropdown menu with the following options:
+- **Settings**: the settings button is placed on the right side of the header. It provides a dropdown menu with the following options:
     - Persistency Management
+    - Service configuration
     - Service settings
     - Unlink microservice (only for linked services)
     - New layout (only if you have not switched to the new layout yet)
-    - Download service configuration
-    - Upload service configuration
 
 #### Persistency Management
 
 The persistency management modal allows to configure the persistency method used by the Flow Manager service. The displayed types depend on the Flow Manager version as described [here](/runtime_suite/flow-manager-service/changelog.md).
 
 ![Persistency Management](img/persistency-management.png)
+
+#### Service configuration
+
+The Service Configuration modal allows you to download and copy the configuration of the Flow Manager Service, regardless of whether the service is linked to the configurator.
+
+![Service Configuration](img/service-configuration.png)
 
 #### Service settings
 
@@ -65,21 +74,6 @@ The unlink microservice modal alerts the user before actually performing the [un
 #### New Layout
 
 The New Layout modal allows you to switch to the new layout, which includes the canvas view for external executors. Once you switch to the new layout, this action is irreversible, and the option to switch will no longer be visible.
-
-#### Download service configuration
-
-The Service Configuration modal allows you to download and copy the configuration of the Flow Manager Service, regardless of whether the service is linked to the configurator.
-
-![Service Configuration](img/service-configuration.png)
-
-#### Upload service configuration
-
-The Upload service configuration modal allows you to upload a configuration of the flow manager service from an existing json file or by typing the json in the editor.
-It is possible to choose the version of the flow manager service's configuration that will be uploaded.
-
-![Upload service configuration file](img/upload-config.png)
-
-![Upload service configuration editor](img/upload-config-editor.png)
 
 ## Canvas
 

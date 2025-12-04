@@ -21,7 +21,7 @@ gitTag.latest(function (res) {
         head: "HEAD"
     })
         .then(fileNames => {
-            fs.writeFileSync(path.join(__dirname, "../src/components/LastPages/raw-links.json"), JSON.stringify(fileNames.reduce((acc, name) => {
+            fs.writeFileSync(path.join(__dirname, "src/components/LastPages/raw-links.json"), JSON.stringify(fileNames.reduce((acc, name) => {
                 const nameWithoutExtentionMatch = name.match(/(.*)\.mdx?$/)
                 if (nameWithoutExtentionMatch && !nameWithoutExtentionMatch[0].match(/changelog/i)) {
                     let title

@@ -75,7 +75,7 @@ and you will pass to it the following parameters:
 - `handler`: `helloHandler`, function that contains the actual behavior. It must respect the same interface defined in the documentation of the handlers of fastify.
 - `schema`: `helloSchema` , definition of the request and response data schema. The format is the one accepted by fastify.
 
-A more detailed description on how to use our `custom-plugin-lib` to define the behavior of your microservice in response to an HTTP request can be found in [its related section](/runtime_suite_libraries/custom-plugin-lib/apidoc.md) of Mia-Platform documentation.
+A more detailed description on how to use our `custom-plugin-lib` to define the behavior of your microservice in response to an HTTP request can be found in [its related section](../../development_suite/api-console/api-design/plugin_baas_4/) of Mia-Platform documentation.
 
 In order to proceed, you need to define a handler, a schema and pass them as parameters to this function.  
 Below, you can see how the _index.js_ file will look like after having defined all the parameters required by `service.addRawCustomPlugin` function:

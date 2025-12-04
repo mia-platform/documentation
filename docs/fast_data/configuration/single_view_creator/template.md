@@ -21,7 +21,7 @@ For further information contact your Mia Platform representative.
 ## Code overview
 
 The service starts in `index.js` file.
-First, the template uses the [Custom Plugin Lib](/runtime_suite_libraries/custom-plugin-lib/apidoc.md) to instantiate a service.
+First, the template uses the [Custom Plugin Lib](/development_suite/api-console/api-design/plugin_baas_4.md) to instantiate a service.
 Inside its callback, the `single-view-creator-lib` is initialized to deal with the complexity of the Fast Data components.
 
 ```js

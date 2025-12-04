@@ -77,20 +77,19 @@ Remember to set the `CRUD_HEALTH_DATA_TYPE_ENDPOINT` environment variable with t
 
 :::
 
-| Name                 | Type               | Required | Encryption | Description                                                                             |
-| -------------------- | ------------------ | -------- | ---------- | --------------------------------------------------------------------------------------- |
-| identifier           | `string`           | true     | false      | Unique identifier of the data type                                                      |
-| code                 | `string`           | false    | false      | Machine-friendly code for the data type (like [LOINC][loinc] or [SNOMED CT][snomed-ct]) |
-| name                 | `string`           | false    | false      | Human-friendly name of the data type                                                    |
-| version              | `string`           | false    | false      | Data type version                                                                       |
-| providerId           | `string`           | false    | false      | ID of the device provider                                                               |
-| dataType             | `string`           | false    | false      | The type of the health data (e.g. blood pressure)                                       |
-| format               | `string`           | false    | false      | The format of the health data (e.g. Medisanté JSON or FHIR)                             |
-| schema               | `Object`           | false    | false      | The JSON schema of the health data                                                      |
-| metrics              | `Array of strings` | false    | false      | List of metrics collected included in a sample of the health data                       |
-| normalizedDataType   | `string`           | false    | false      | ID of the normalized data type                                                          |
-| normalizedDataSchema | `Object`           | false    | false      | The JSON schema of the normalized data                                                  |
-| normalizationRules   | `Object`           | false    | false      | Normalization rules                                                                     |
+| Name                 | Type               | Required | Encryption | Description                                                       |
+|----------------------|--------------------|----------|------------|-------------------------------------------------------------------|
+| identifier           | `string`           | true     | false      | Unique identifier of the data type                                |
+| name                 | `string`           | false    | false      | Human-friendly name of the data type                              |
+| version              | `string`           | false    | false      | Data type version                                                 |
+| providerId           | `string`           | false    | false      | ID of the device provider                                         |
+| dataType             | `string`           | false    | false      | The type of the health data (e.g. blood pressure)                 |
+| format               | `string`           | false    | false      | The format of the health data (e.g. Medisanté JSON or FHIR)       |
+| schema               | `Object`           | false    | false      | The JSON schema of the health data                                |
+| metrics              | `Array of strings` | false    | false      | List of metrics collected included in a sample of the health data |
+| normalizedDataType   | `string`           | false    | false      | ID of the normalized data type                                    |
+| normalizedDataSchema | `Object`           | false    | false      | The JSON schema of the normalized data                            |
+| normalizationRules   | `Object`           | false    | false      | Normalization rules                                               |
 
 :::warning
 
@@ -140,34 +139,17 @@ If you use a different schema the following endpoints may not work as intended:
 
 ## Environment variables
 
-| Name                                  | Required | Default                            | Description                                                                                |
-| ------------------------------------- | -------- | ---------------------------------- | ------------------------------------------------------------------------------------------ |
-| **LOG_LEVEL**                         | No       | `info`                             | Logging level.                                                                             |
-| **HTTP_PORT**                         | No       | `3000`                             | The port on which the HTTP server will listen.                                             |
-| **USERID_HEADER_KEY**                 | No       | `miauserid`                        | HTTP header key used to identify the user ID.                                              |
-| **GROUPS_HEADER_KEY**                 | No       | `miausergroups`                    | HTTP header key for user groups.                                                           |
-| **CLIENTTYPE_HEADER_KEY**             | No       | `clienttype`                       | HTTP header key for client type.                                                           |
-| **BACKOFFICE_HEADER_KEY**             | No       | `isbackoffice`                     | HTTP header key to indicate if the request is from backoffice.                             |
-| **MICROSERVICE_GATEWAY_SERVICE_NAME** | No       | `microservicegateway`              | Name of the microservice gateway service.                                                  |
-| **USER_PROPERTIES_HEADER_KEY**        | No       | `miauserproperties`                | HTTP header key for additional user properties.                                            |
-| **CRUD_SERVICE_URL**                  | Yes      | `http//crud-service`               | The HTTP(S) URL of the CRUD service.                                                       |
-| **CRUD_DEVICES_ENDPOINT**             | Yes      | `/tdm-dm-devices`                  | Internal endpoint of the devices CRUD                                                      |
-| **CRUD_HEALTH_DATA_ENDPOINT**         | Yes      | `/tdm-dm-health-data`              | Internal endpoint of the health data CRUD                                                  |
-| **CRUD_HEALTH_DATA_TYPE_ENDPOINT**    | Yes      | `/tdm-dm-health-data-type`         | Internal endpoint of the health data types CRUD                                            |
-| **TMM_SERVICE_URL**                   | Yes      | `http//therapy-monitoring-manager` | URL of the Therapy Monitoring Manager (TMM)service.                                        |
-| **TMM_MONITORINGS_ENDPOINT**          | No       | `/monitorings`                     | Internal endpoint of the TMM monitorings service.                                          |
-| **TMM_DETECTIONS_ENDPOINT**           | No       | `/detections`                      | Internal endpoint of the TMM detections.                                                   |
-| **TMM_PROTOTYPES_ENDPOINT**           | No       | `/prototypes`                      | Internal endpoint of the TMM prototypes.                                                   |
-| **MEDISANTE_PROVIDER**                | No       | `medisante`                        | Identifier for the Medisante data provider.                                                |
-| **HEALTHKIT_PROVIDER**                | No       | `healthkit`                        | Identifier for the HealthKit data provider.                                                |
-| **STANDARD_JSON_MEDISANTE**           | No       | `medisantestandard-json`           | Identifier for the standard JSON format from Medisante.                                    |
-| **STANDARD_JSON_HEALTHKIT**           | No       | `healthkitstandard-json`           | Identifier for the standard JSON format from HealthKit.                                    |
-| **MONGODB_URL**                       | Yes      | -                                  | The string to connect to MongoDB database storing information about data acquisition jobs. |
-| **DATA_ACQUISITION_JOB_COLLECTION**   | Yes      | `dataAcquisitionJobs`              | The name of the MongoDB collection for data acquisition jobs.                              |
+| Name                                | Required | Default                           | Description                                                                                |
+|-------------------------------------|----------|-----------------------------------|--------------------------------------------------------------------------------------------|
+| **LOG_LEVEL**                       | No       | info                              |                                                                                            |
+| **CRUD_SERVICE_URL**                | Yes      | http://crud-service               | The HTTP(S) URL of the CRUD service                                                        |
+| **CRUD_DEVICES_ENDPOINT**           | Yes      | /tdm-dm-devices                   | Internal endpoint of the devices CRUD                                                      |
+| **CRUD_HEALTH_DATA_ENDPOINT**       | Yes      | /tdm-dm-health-data               | Internal endpoint of the health data CRUD                                                  |
+| **CRUD_HEALTH_DATA_TYPE_ENDPOINT**  | No       | /tdm-dm-health-data-type          | Internal endpoint of the health data types CRUD                                            |
+| **MONGODB_URL**                     | Yes      | -                                 | The string to connect to MongoDB database storing information about data acquisition jobs. |
+| **DATA_ACQUISITION_JOB_COLLECTION** | Yes      | dataAcquisitionJobs               | The name of the MongoDB collection for data acquisition jobs.                              |
+| **TMM_SERVICE_URL**                 | Yes      | http://therapy-monitoring-manager | The HTTP(S) URL of the Therapy and Monitoring Manager (TMM) service.                       |
 
-
-[loinc]: https://loinc.org/
-[snomed-ct]: https://www.snomed.org/
 
 [get-chart-data]: 30_usage.md#get-chart-data
 [get-prototypes]: 30_usage.md#get-prototypes

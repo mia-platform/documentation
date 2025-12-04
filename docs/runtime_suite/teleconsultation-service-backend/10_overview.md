@@ -81,12 +81,9 @@ The **Teleconsultation Service Backend** service exposes the APIs listed in the 
 | `POST /credentials`                                                | 1.4.0                    |                     | Return a valid accessToken for clients using SDK authentication.                          |
 | `POST /settings/background-image`                                  | 1.6.0                    |                     |                                                                                           |
 | `PATCH /settings/update`                                           | 1.6.0                    |                     |                                                                                           |
-| `GET /transcription/:roomId/:sessionId` | 2.1.0 |  | Retrieves the session transcription. Requires `DEFAULT_RECORDING_TYPE` to be set to `automatic` or `manual`. See [USAGE][transcription-usage] for details. |
 
 
 [kaleyra]: https://www.kaleyra.com/
 [kaleyra-rest-api]: https://developers.kaleyra.com/support/home
 
 [teleconsultation-service-fe]: /runtime_suite/teleconsultation-service-frontend/10_overview.md
-
-[transcription-usage]: ./30_usage.md#get-transcriptionroomidsessionid

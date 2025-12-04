@@ -53,7 +53,7 @@ In creation, you will see the preview of the generated manifest.
 #### Create an Infrastructure Resource from Marketplace
 
 :::info
-To allow users to add a Infrastructure Resource to their project from marketplace, you need to apply it to your Company Software Catalog ([see here for details](/software-catalog/items-management/overview.md)).
+To allow users to add a Infrastructure Resource to their project from marketplace, you need to apply it using `miactl` ([see here for details](/software-catalog/manage-items/mia-ctl/create/create-item-by-type/create_infrastructure_resource.mdx)) or using [`Software Catalog`](/software-catalog/manage-items/mia-ctl/create/create-item-by-type/create_infrastructure_resource.mdx)
 :::
 
 To create a resource from Marketplace, you need to select the Infrastructure Resource you want to create.
@@ -131,7 +131,7 @@ Users with appropriate permissions can manage the lifecycle of a Infrastructure 
 
 Infrastructure Resources are published to the Marketplace using the `custom-resource` type in the marketplace item schema. Versioning is supported, allowing users to make updates without overwriting previous versions of the Infrastructure Resource.
 
-To learn more on how to add or manage a Infrastructure Resource in the Marketplace, see the [dedicated section](/software-catalog/items-management/overview.md) section.
+To learn more on how to add or manage a Infrastructure Resource in the Marketplace, see the [Add Custom Resource to the Marketplace](/software-catalog/manage-items/mia-ctl/create/create-item-by-type/create_infrastructure_resource.mdx) section.
 
 ### Template-based Infrastructure Resource management
 
@@ -152,7 +152,7 @@ resources:
     archive: https://example.com/path/to/archive.zip
 ...
 ```
-Refer to [Infrastructure Resource definition](/software-catalog/items-manifest/infrastructure-resource.md) schema
+Refer to [Infrastructure Resource definition](/software-catalog/manage-items/mia-ctl/create/create-item-by-type/create_infrastructure_resource.mdx#infrastructure-resource-definition) schema
 :::
 
 

@@ -160,7 +160,7 @@ patches:
 With the example above, the `istio-proxy` container will be added to deployments with **all the specified labels and annotations**.
 
 :::info
-You can apply labels to microservices inside the Design section of the Mia-Platform Console, or, in case of Self-Hosted installation, you can [set default labels](/software-catalog/items-manifest/plugin.md) to the microservices created from Marketplace.
+You can apply labels to microservices inside the Design section of the Mia-Platform Console, or, in case of Self-Hosted installation, you can [set default labels](/software-catalog/manage-items/mia-ctl/create/create-item-by-type/create_plugin.md#properties-of-plugin-resources) to the microservices created from Marketplace.
 :::
 
 ### Enable **High Availability** for business critical microservices

@@ -119,12 +119,6 @@ The User Manager Service accepts the following environment variables.
 | **TIMER_SERVICE_HEADERS**                 | No       | -              | A comma-separated list of headers from the incoming request that the Timer Service will send when blocking the user on expiration.            |
 | **CONFIGURATION_PATH**                    | No       | -              | The path of a configuration file used by the service to add properties to the users, getting the information from Auth0.                      |
 
-:::warning
-
-To avoid compatibility issues and ensure data integrity and consistency, you should store all service data (users, jobs, etc.) in the same MongoDB database, by making sure that `MONGODB_URL` and `CRUD_SERVICE` (through its own `MONGODB_URL` environment variable) point to the exact same database.
-
-:::
-
 :::info
 
 When the `ROLES_CRUD_ENDPOINT` environment variable is set and the `permissions` property is added to the `USERINFO_ADDITIONAL_PROPERTIES` env var,

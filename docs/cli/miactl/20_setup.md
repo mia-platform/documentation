@@ -38,7 +38,7 @@ If you have [Golang] installed with a version >= 1.13 in your system and you hav
 install `miactl` like this:
 
 ```sh
-go install github.com/mia-platform/miactl/cmd/miactl@v0.19.0
+go install github.com/mia-platform/miactl/cmd/miactl@v0.17.3
 ```
 
 Or like this if the `install` command is not available
@@ -53,11 +53,11 @@ You can install `miactl` with the use of `curl` or `wget` and downloading the la
 choosing the correct platform and operating system:
 
 ```sh
-curl -fsSL --proto '=https' --tlsv1.2 https://github.com/mia-platform/miactl/releases/download/v0.19.0/miactl-linux-amd64 -o /tmp/miactl
+curl -fsSL --proto '=https' --tlsv1.2 https://github.com/mia-platform/miactl/releases/download/v0.17.3/miactl-linux-amd64 -o /tmp/miactl
 ```
 
 ```sh
-wget -q --https-only --secure-protocol=TLSv1_2 https://github.com/mia-platform/miactl/releases/download/v0.19.0/miactl-linux-amd64 -O /tmp/miactl
+wget -q --https-only --secure-protocol=TLSv1_2 https://github.com/mia-platform/miactl/releases/download/v0.17.3/miactl-linux-amd64 -O /tmp/miactl
 ```
 
 After you have downloaded the file you can validate it against the checksum you can find at this [url] running the
@@ -85,7 +85,7 @@ sudo mv /tmp/miactl /usr/local/bin
 If you want to run the cli in its environment or you want to test the cli you can use the Docker image:
 
 ```sh
-docker run ghcr.io/mia-platform/miactl:v0.19.0 miactl
+docker run ghcr.io/mia-platform/miactl:v0.17.3 miactl
 ```
 
 ### Windows
@@ -184,7 +184,7 @@ only via APIs.
 
 [Homebrew]: https://brew.sh "The Missing Package Manager for macOS (or Linux)"
 [Golang]: https://go.dev "Build simple, secure, scalable systems with Go"
-[url]: https://github.com/mia-platform/miactl/releases/download/v0.19.0/checksums.txt "miactl checksums"
+[url]: https://github.com/mia-platform/miactl/releases/download/v0.17.3/checksums.txt "miactl checksums"
 [`bash-completion`]: https://github.com/scop/bash-completion "Programmable completion functions for bash"
 [`oh-my-zsh`]: https://ohmyz.sh "Oh My Zsh is a delightful, open source, community-driven
 	framework for managing your Zsh configuration"

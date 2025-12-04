@@ -82,29 +82,25 @@ miactl deploy development --no-semver --revision tags/v1.0.0
 
 ## Deploy Project using a service account from a CD pipeline
 
-The commands are the same used above in the [Deploy Project](#deploy-project) section, but you need to use a
-_Service Account_ for that.  
+The commands are the same used above in the [Deploy Project](#deploy-project) section, but you need to use a _Service Account_ for that.
 If you don't know how to create a _Service Account_, read the [dedicated documentation](../../development_suite/identity-and-access-management/manage-service-accounts).
 
 The _Service Account_ can be created with [two different authentication methods](../../development_suite/identity-and-access-management/manage-service-accounts#adding-a-service-account):
-
 * _Client Secret Basic_: the service account authenticates by presenting its `client_id` and `client_secret`;
 * _Private Key JWT_: the service account authenticates by signing a `JWT` (JSON Web Token) using its private key.
 
+
 After creating the _Service Account_, the first step to setup the `miactl` is **create an auth context**.
-With an _auth context_ you can choose how to be authenticated with the Mia-Platform APIs in all your different contexts
-you create with the `miactl`.
+With an _auth context_ you can choose how to be authenticated with the Mia-Platform APIs in all your different contexts you create with the `miactl`.
 
 Based on the authentication method of your _Service Account_, you can create the auth context with the following command:
 
 * _Client Secret Basic_:
-
   ```sh
   miactl context auth <miactl-auth-name> --client-id <sa-client-id> --client-secret <sa-client-secret>
   ```
 
 * _Private Key JWT_:
-
   ```sh
   miactl context auth <miactl-auth-name> --jwt-json <path-to-json-containing-the-json-config-of-a-jwt-service-account>
   ```
@@ -112,8 +108,7 @@ Based on the authentication method of your _Service Account_, you can create the
 Now you can create the context you want use the `miactl` to.
 
 :::warning
-Remember to specify the auth context to be used with the `---auth-name` flag, otherwise the `miactl` will try to perform
-a user authentication through the default browser.
+Remember to specify the auth context to be used with the `---auth-name` flag, otherwise the `miactl` will try to perform a user authentication through the default browser.
 :::
 
 ```sh
@@ -138,7 +133,7 @@ Finally, you can group the commands above and run them inside a pipeline, e.g. a
 # Insert that after your pipeline stages
 delivery:
     stage: deploy
-    image: ghcr.io/mia-platform/miactl:v0.19.0
+    image: ghcr.io/mia-platform/miactl:v0.17.3
 
     script:
       - miactl version

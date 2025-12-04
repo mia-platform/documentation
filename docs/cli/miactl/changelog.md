@@ -15,29 +15,6 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [v0.19.0] - 2025-06-18
-
-### Changed
-
-- update go version to 1.24.4
-- add field `AllowedRuleSet` to `SaveChangesRules`
-- add field `Actions` to `SaveChangesRules`. Kept also `Action` for compatibility to console version before 14.1
-
-## [v0.18.0] - 2025-06-03
-
-### Changed
-
-- deprecated `marketplace` when console version is greater than or equal 14.0.0
-- update go version to 1.24.3
-- update mergo to 1.0.2
-- update oauth2 to 0.30.0
-- update sync to 0.14.0
-- update text to 0.25.0
-
-### Added
-
-- new command: `catalog`
-
 ## [v0.17.3] - 2025-03-20
 
 ### Changed
@@ -386,9 +363,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - create cli sdk
 - create cli renderer
 
-[unreleased]: https://github.com/mia-platform/miactl/compare/v0.19.0...HEAD
-[v0.19.0]: https://github.com/mia-platform/miactl/compare/v0.18.0...v0.19.0
-[v0.18.0]: https://github.com/mia-platform/miactl/compare/v0.17.3...v0.18.0
+[unreleased]: https://github.com/mia-platform/miactl/compare/v0.17.3...HEAD
 [v0.17.3]: https://github.com/mia-platform/miactl/compare/v0.17.2...v0.17.3
 [v0.17.2]: https://github.com/mia-platform/miactl/compare/v0.17.1...v0.17.2
 [v0.17.1]: https://github.com/mia-platform/miactl/compare/v0.17.0...v0.17.1

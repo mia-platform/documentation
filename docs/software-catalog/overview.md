@@ -3,18 +3,9 @@ id: overview
 title: Software Catalog overview
 sidebar_label: Overview
 ---
+The Mia-Platform Software Catalog is a centralized solution that enables organizations to track, manage, and document the software within their ecosystem. It serves as a single source of truth, offering visibility into software ownership, metadata, lifecycle status, and versions, ensuring accountability throughout the entire software landscape of the organization.
 
-The Software Catalog is a comprehensive, centralized solution designed to help organizations efficiently track, manage, and document all the software within their ecosystem.  It is a curated ecosystem of reusable software items that, by organizing and managing these assets in one place, simplifies the development process, reduces duplication of effort, and promotes best practices across teams.
-
-In essence, the Software Catalog empowers development teams provides visibility into critical aspects such as software ownership, metadata, lifecycle status, and versioning. This ensures accountability, transparency, and consistent governance across the entire software landscape of the organization.
-
-The Software Catalog is composed by:
-
-- **Public Catalog**: a ready-to-use collection of runtime components offered by Mia-Platform to simplify and accelerate application development. This catalog may also include components from Mia-Platform's trusted partners, further extending its capabilities.
-
-- **Private Catalog**: a dedicated space where organizations can store and standardize their internal software components. These items are curated and designed to promote reuse, modularity, and composability within the organization’s development processes.
-
-![overview table](./img/software-catalog-overview.png)
+![overview table](./img/table-overview.png)
 
 Here are the **key challenges** that a software catalog addresses.
 
@@ -23,12 +14,47 @@ Here are the **key challenges** that a software catalog addresses.
 - **Onboarding and knowledge transfer**: new team members or teams may struggle to understand the existing software ecosystem without a complete catalog, which can slow down the onboarding and knowledge transfer process. 
 - **Accountability and ownership**: without defined ownership details, it becomes challenging to assign responsibility for maintaining and updating software, leading to delays in issue resolution.
 
+## Items
 
-## Marketplace
+An **item** is the basic unit of the Software Catalog and represents a software resource available for use within Mia-Platform projects.
 
-The Marketplace is a centralized hub where software items, whether public or private, created within the Software Catalog are made available for use. Whenever a software item is added to the Software Catalog — be it a reusable template, plugin, or cloud resource — it is automatically published to the Marketplace based on the [visibility settings](/software-catalog/basic-concepts/40_items-visibility.md) applied to it.
+### Item types
 
-The Marketplace serves as the primary repository for all available software assets that can be accessed and used by developers. These assets are organized according to the visibility settings, ensuring that users only see items from a specific company or those shared across multiple companies.
+The catalog supports the following item types:
 
-Developers can easily discover and instantiate software items directly from the *Design Area* of the Console. The Marketplace offers an intuitive interface for searching, filtering, and selecting the components needed for application development, streamlining the workflow and promoting efficient reuse across teams.
+- *plugin*: a ready-to-use microservice that can be easily integrated;
+- *template*: a basic repository with boilerplate code to start creating a microservice;
+- *example*: a pre-configured model with business logic, ready to modify for custom needs;
+- *application*: a set of resources that includes plugins, templates, examples and other components;
+- *infrastructure Resource*: defines custom objects beyond the standard Console-supported resources;
+- *sidecar*: a secondary container that enhances microservices with features like security, logging, or data synchronization;
+- *proxy*: centralizes external API access and cross-namespace microservice communication, simplifying configuration;
+- *extension*: expands the Console with custom sections.
 
+Please refer to [this documentation](/software-catalog/manage-items/overview.md#item-types) for more details on item types.
+
+### Items Versioning
+
+:::info
+This feature is currently available for the Plugin, Infrastructure Resource, Example and Template types.
+:::
+
+The versioning system in the Software Catalog provides detailed control over the different iterations of each item. For technical details on how versioning works, please refer to [this documentation](/software-catalog/manage-items/overview.md#versioned-resources).
+
+Each version includes key information, such as the release date and whether it is marked as the latest version. Additionally, if available, you can view the associated release notes to understand what changes or improvements were made in that particular version.
+
+In cases where a version is listed as *N/A*, it indicates a default version for an item that supports versioning but has not yet had any versions added. New versions can be introduced if needed.
+
+### Items Lifecycle
+
+Each item in the Software Catalog is associated with a lifecycle status that reflects its current phase of development and maintenance. The available lifecycle statuses are:
+
+- coming soon
+- preview
+- beta
+- stable
+- deprecated
+
+For a more detailed explanation of each status, please refer to the [dedicated section](/software-catalog/manage-items/overview.md#the-release-stage-of-an-item) of the documentation.
+
+A lifecycle status indicates where an item stands in its lifecycle, from its initial creation to its active use, and eventually to being deprecated when it's no longer maintained or supported. This helps users quickly understand the maturity and stability of an item.
