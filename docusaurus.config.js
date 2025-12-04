@@ -95,12 +95,6 @@ async function createConfig() {
           href: "https://github.com/mia-platform/community/discussions",
           position: "left",
           label: "Community"
-        },
-        {
-          type: "docsVersionDropdown",
-          position: "right",
-          dropdownItemsBefore: [],
-          dropdownItemsAfter: []
         }
         ],
       },
@@ -243,22 +237,7 @@ async function createConfig() {
             }],
             editUrl: createEditUrl,
             sidebarPath: require.resolve("./sidebars.js"),
-            lastVersion: "current",
-            versions: {
-              current: {
-                label: "12.x (Current)",
-                path: "",
-                banner: "none"
-              },
-              "11.x.x": {
-                label: "11.7.x",
-                path: "11.x",
-              },
-              "10.x.x": {
-                label: "10.9.x",
-                path: "10.x",
-              },
-            },
+            disableVersioning: true,
             async sidebarItemsGenerator({
               isCategoryIndex: defaultCategoryIndexMatcher,
               defaultSidebarItemsGenerator,
