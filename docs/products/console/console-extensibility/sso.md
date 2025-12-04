@@ -68,6 +68,10 @@ When accessing an extension from within the Mia-Platform Console, the user is al
 This means that in the sequence above, the (B) part is done without requiring any user action. This behavior may however change in the future.
 :::
 
+:::info
+If your extension uses Mia-Platform [Authorization service](/runtime-components/plugins/authorization-service/10_overview.md), make sure to set the **TRUST_MIA_USER_HEADERS** environment variable to `true`. For more info about Authorization service env var, follow the [related documentation page](/runtime-components/plugins/authorization-service/20_configuration.md#environment-variables)
+:::
+
 ## Extension Login Entry Point
 
 This is the entry point for the entire authorization flow. It can be any of:
@@ -169,7 +173,7 @@ The access token is contained in the response body as a `JSON` structured in thi
 {
     "accessToken": "my-access-token",
     "refreshToken": "my-refresh-token",
-    "expireAt": 1234567890
+    "expiresAt": 1234567890
 }
 ```
 
