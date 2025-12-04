@@ -19,6 +19,13 @@ async function createConfig() {
         additionalLanguages: ['rego', 'java', 'csharp', 'kotlin'],
       },
       image: "img/documentation-link-preview.png",
+      announcementBar: {
+        id: 'archived',
+        content: 'This documentation refers to Console version 12, which is currently archived. Please, check the <a target="_blank" rel="noopener noreferrer" href="https://docs.mia-platform.eu/">current version</a> for up-to-date information.',
+        backgroundColor: '#def2ff',
+        textColor: '#193c47',
+        isCloseable: false,
+      },
       algolia: {
         placeholder: "Search for terms, features and more...",
         apiKey: "602a752c6342891e2488bea38b0d9292",
@@ -237,7 +244,6 @@ async function createConfig() {
             }],
             editUrl: createEditUrl,
             sidebarPath: require.resolve("./sidebars.js"),
-            disableVersioning: true,
             async sidebarItemsGenerator({
               isCategoryIndex: defaultCategoryIndexMatcher,
               defaultSidebarItemsGenerator,
