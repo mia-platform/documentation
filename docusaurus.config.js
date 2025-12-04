@@ -279,7 +279,7 @@ async function createConfig() {
           sitemap: {
             changefreq: "weekly",
             priority: 0.5,
-            ignorePatterns: ['/docs/12.x/**', '/docs/13.x/**'],
+            ignorePatterns: ['/docs/13.x/**'],
             filename: 'sitemap.xml',
           }
         },
