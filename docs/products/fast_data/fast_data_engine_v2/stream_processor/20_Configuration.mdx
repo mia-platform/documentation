@@ -187,6 +187,18 @@ Each cache can be:
 - **In-Memory Cache** (`type: "in-memory"`): Simple in-memory key-value storage.
   Use only when sharing the stream state across different service
   instances is not necessary. However, when it is possible use a sharable stream state.
+- **Farm Data Cache** (`type: "farmdata"`): Cache backed by Farm Data Service.
+    - `url`: Farm Data Service endpoint URL
+    - `head`: Head collection for aggregation
+    - `http2`: set http2_prior_knowledge to true when connecting to an http2 enabled endpoint (default: false) 
+- **Http Rest** (`type: "http-rest"`): Cache backed by Farm Data Service.
+    - `url`: Base URL endpoint
+    - `http2`: set http2_prior_knowledge to true when connecting to an http2 enabled endpoint (default: false)
+    - `get`: GET request configuration
+        - `path`: path to perform GET requests (dynamic parameters can be used by wrapping them in `{}` brackets)
+        - `headers`: optional headers to include in GET requests as an array of objects with `key` and `value` properties
+        - `query`: optional query parameters to include in GET requests as an array of objects with `key` and `value` properties
+        - `method`: HTTP method to use for GET requests
 
 For more details on how to interact with the caches, please read the
 [dedicated section](/products/fast_data/fast_data_engine_v2/stream_processor/30_Usage.md#cache-access-) in the Usage page.
