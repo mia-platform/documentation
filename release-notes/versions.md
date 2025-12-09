@@ -12,7 +12,7 @@ import Changelog from '@site/src/components/Changelog';
 ## [v14.4.1](/release-notes/v14.4.1.mdx)
 *December 11th, 2025*
 
-This release brings improvements to Monaco editors across the Mia-Platform Console, **enabling schema retrieval from Mia CDN** for enhanced code autocomplete, validation, and linting. The Fast Data **Stream Processor now supports schema imports** for better configuration validation, while several bug fixes address issues with Azure DevOps connections, Mia-Assistant model retention, and clipboard functionality in iframe extensions.
+This release delivers some **bug fixes**, resolving issues with Azure DevOps connections when using the Git Provider capability with Client Credentials authentication, correcting Mia-Assistant model retention when pinning chats, and restoring clipboard functionality in iframe extensions. Additionally, the Fast Data Stream Processor now supports schema imports from the Mia CDN, enabling improved configuration validation.
 
 [Read the release notes](/release-notes/v14.4.1.mdx)
 

@@ -6,14 +6,7 @@
     "type": "versions",
     "items": {
       "newFeatures": [],
-      "improvements": [
-        {
-          "title": "Monaco editors can now retrieve schemas from Mia CDN",
-          "description": [
-            "In Mia-Platform Console, Monaco editors can now retrieve schemas from Mia CDN, improving the user experience for code autocomplete, schema-based validation, and linting."
-          ]
-        }
-      ],
+      "improvements": [],
       "bugFixes": [
         "Resolved an issue in the Company’s Provider section that prevented establishing a connection to Azure DevOps when the `Git Provider` capability and `Client Credentials` authentication method settings were selected.",
         "We fixed a bug that prevented the selected Mia-Assistant model from being retained when pinning the chat.",
