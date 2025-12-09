@@ -41,7 +41,7 @@
       "newFeatures": [],
       "improvements": [],
       "bugFixes": [
-        "Fixed a bug in the Asset tab editor of a Software Catalog item that prevented JSON validation errors from being highlighted, causing users to see only a generic error message."
+        "Fixed a bug in the Asset tab editor of a Software Catalog item that prevented JSON validation errors from being highlighted, causing users to see only a generic error message upon saving changes."
       ]
     }
   }
