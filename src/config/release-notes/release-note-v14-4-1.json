@@ -2,11 +2,40 @@
   {
     "title": "Console",
     "icon": "console",
-    "defaultOpen": false,
+    "defaultOpen": true,
     "type": "versions",
     "items": {
       "newFeatures": [],
-      "improvements": []
+      "improvements": [
+        {
+          "title": "Monaco editors can now retrieve schemas from Mia CDN",
+          "description": [
+            "In Mia-Platform Console, Monaco editors can now retrieve schemas from Mia CDN, improving the user experience for code autocomplete, schema-based validation, and linting."
+          ]
+        }
+      ],
+      "bugFixes": [
+        "Resolved an issue in the Company’s Provider section that prevented establishing a connection to Azure DevOps when the `Git Provider` capability and `Client Credentials` authentication method settings were selected.",
+        "We fixed a bug that prevented the selected Mia-Assistant model from being retained when pinning the chat.",
+        "We fixed an issue that prevented clipboard copy/paste actions from working in iframe extensions."
+      ]
+    }
+  },
+  {
+    "title": "Fast Data",
+    "icon": "fast-data",
+    "defaultOpen": true,
+    "type": "versions",
+    "items": {
+      "newFeatures": [],
+      "improvements": [
+        {
+        "title": "Import Stream Processor schema in service configuration",
+        "description": [
+          "In the Design Area, when configuring the `config.json` file of the Stream Processor, now it is possible to import the [Stream Processor schema](https://cdn.mia-platform.eu/runtime/platform/data-fabric/stream-processor/v0.5.4/stream-processor.schema.json) from Mia CDN, to enable code autocompletion, schema-based validation, and linting in Monaco editors."         ]
+        }
+      ],
+      "bugFixes": []
     }
   }
 ]
