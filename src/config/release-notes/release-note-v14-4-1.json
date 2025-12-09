@@ -1,0 +1,12 @@
+[
+  {
+    "title": "Console",
+    "icon": "console",
+    "defaultOpen": false,
+    "type": "versions",
+    "items": {
+      "newFeatures": [],
+      "improvements": []
+    }
+  }
+]
