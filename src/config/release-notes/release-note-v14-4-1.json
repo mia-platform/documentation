@@ -25,7 +25,8 @@
         {
         "title": "Import Stream Processor schema in service configuration",
         "description": [
-          "In the Design Area, when configuring the `config.json` file of the Stream Processor, now it is possible to import the [Stream Processor schema](https://cdn.mia-platform.eu/runtime/platform/data-fabric/stream-processor/v0.5.4/stream-processor.schema.json) from Mia CDN, to enable code autocompletion, schema-based validation, and linting in Monaco editors."         ]
+          "In the Design Area, when configuring the `config.json` file of the Stream Processor, now it is possible to import the [Stream Processor schema](https://cdn.mia-platform.eu/runtime/platform/data-fabric/stream-processor/v0.5.4/stream-processor.schema.json) from Mia CDN, to enable schema-based validation and linting in Monaco editors."
+        ]
         }
       ],
       "bugFixes": []
