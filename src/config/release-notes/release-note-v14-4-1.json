@@ -31,5 +31,18 @@
       ],
       "bugFixes": []
     }
+  },
+  {
+    "title": "Software Catalog",
+    "icon": "software-catalog",
+    "defaultOpen": true,
+    "type": "versions",
+    "items": {
+      "newFeatures": [],
+      "improvements": [],
+      "bugFixes": [
+        "Fixed a bug in the Asset tab editor of a Software Catalog item that prevented JSON validation errors from being highlighted, causing users to see only a generic error message."
+      ]
+    }
   }
 ]
