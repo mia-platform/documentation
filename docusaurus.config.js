@@ -1,6 +1,7 @@
 const createEditUrl = require("./scripts/createEditUrl");
 const createRedirects = require("./scripts/createRedirects");
 const versionsList = require('./versions.json');
+const archivedVersions = require('./versionsArchived.json');
 
 const prodVersion = versionsList[1]
 
@@ -168,8 +169,8 @@ const config = {
               type: 'html',
               value: '<b style="margin-left: 8px; font-size: 14px;">Archived versions</b>',
             },
-          ],
-          archivedVersions: versionsList.filter(v => !prodVersion.includes(v.split('.')[0]))
+            ...Object.entries(archivedVersions).map(([versionName, versionUrl]) => ({ label: versionName, href: versionUrl })),
+          ]
         }
       ],
     },

@@ -108,21 +108,19 @@ export default function CustomArchivedItem({
     versionItems,
   })
 
-  function versionItemToLink(isArchivedVersion) {
+  function versionItemToLink() {
     return ({version, label}, index) => {
     const targetDoc = getVersionTargetDoc(version, activeDocContext);
 
     let itemLabel = label
-    if(!isArchivedVersion) {
-      switch(index) {
-        case 0: itemLabel = <CanaryTag label={'14.x.x'} />; break;
-        case 1: itemLabel = <NextTag label={label} />; break;
-        case 2: itemLabel = <ProdTag label={label} />; break;
-      }
-  
-      // TODO infer when version.name is a stable version
-      //  itemLabel = <StableTag label={label} />
+    switch(index) {
+      case 0: itemLabel = <CanaryTag label={'14.x.x'} />; break;
+      case 1: itemLabel = <NextTag label={label} />; break;
+      case 2: itemLabel = <ProdTag label={label} />; break;
     }
+
+    // TODO infer when version.name is a stable version
+    //  itemLabel = <StableTag label={label} />
 
     return {
       label: itemLabel,
@@ -134,11 +132,7 @@ export default function CustomArchivedItem({
   }
   }
 
-  const items = [
-    ...versionItems.filter(item => !archivedVersions.includes(item.version.name)).map(versionItemToLink(false)),
-    ...dropdownItemsAfter,
-    ...versionItems.filter(item => archivedVersions.includes(item.version.name)).map(versionItemToLink(true))
-  ];
+  const items = [...versionItems.map(versionItemToLink()), ...dropdownItemsAfter];
 
   // Mobile dropdown is handled a bit differently
   const dropdownLabel =
