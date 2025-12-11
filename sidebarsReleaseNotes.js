@@ -11,6 +11,7 @@ export default {
       },
       "items": [
         {"id": "versions", "type": "doc"},
+        {"id": "v14.4.1", "type": "doc", "label": "v14.4.1"},
         {"id": "v14.4.0", "type": "doc", "label": "v14.4.0"},
         {"id": "v14.3.1", "type": "doc", "label": "v14.3.1"},
         {"id": "v14.3.0", "type": "doc", "label": "v14.3.0"},

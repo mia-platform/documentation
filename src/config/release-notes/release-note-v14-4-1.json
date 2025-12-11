@@ -1,0 +1,48 @@
+[
+  {
+    "title": "Console",
+    "icon": "console",
+    "defaultOpen": true,
+    "type": "versions",
+    "items": {
+      "newFeatures": [],
+      "improvements": [],
+      "bugFixes": [
+        "Resolved an issue in the Company’s Provider section that prevented establishing a connection to Azure DevOps when the `Git Provider` capability and `Client Credentials` authentication method settings were selected.",
+        "We fixed a bug that prevented the selected Mia-Assistant model from being retained when pinning the chat.",
+        "We fixed an issue that prevented clipboard copy/paste actions from working in iframe extensions."
+      ]
+    }
+  },
+  {
+    "title": "Fast Data",
+    "icon": "fast-data",
+    "defaultOpen": true,
+    "type": "versions",
+    "items": {
+      "newFeatures": [],
+      "improvements": [
+        {
+        "title": "Import Stream Processor schema in service configuration",
+        "description": [
+          "In the Design Area, when configuring the `config.json` file of the Stream Processor, now it is possible to import the [Stream Processor schema](https://cdn.mia-platform.eu/runtime/platform/data-fabric/stream-processor/v0.5.4/stream-processor.schema.json) from Mia CDN, to enable schema-based validation and linting in Monaco editors."
+        ]
+        }
+      ],
+      "bugFixes": []
+    }
+  },
+  {
+    "title": "Software Catalog",
+    "icon": "software-catalog",
+    "defaultOpen": true,
+    "type": "versions",
+    "items": {
+      "newFeatures": [],
+      "improvements": [],
+      "bugFixes": [
+        "Fixed a bug in the Asset tab editor of a Software Catalog item that prevented JSON validation errors from being highlighted, causing users to see only a generic error message upon saving changes."
+      ]
+    }
+  }
+]

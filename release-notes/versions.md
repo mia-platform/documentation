@@ -9,6 +9,15 @@ import Changelog from '@site/src/components/Changelog';
 
 <Changelog>
 
+## [v14.4.1](/release-notes/v14.4.1.mdx)
+*December 11th, 2025*
+
+This release resolves issues with Azure DevOps connections when using the Git Provider capability with Client Credentials authentication, fixes Mia-Assistant model retention when pinning chats, and restores clipboard functionality in iframe extensions. For Fast Data, the Stream Processor now supports schema imports from the Mia CDN, enabling improved configuration validation. Additionally, the Software Catalog fixes JSON validation error highlighting in the Asset tab editor.
+
+[Read the release notes](/release-notes/v14.4.1.mdx)
+
+---
+
 ## [v14.4.0](/release-notes/v14.4.0.mdx)
 *October 30th, 2025*
 
