@@ -26,13 +26,6 @@ async function createConfig() {
         textColor: '#193c47',
         isCloseable: false,
       },
-      algolia: {
-        placeholder: "Search for terms, features and more...",
-        apiKey: "602a752c6342891e2488bea38b0d9292",
-        appId: "58NJDUVYVW",
-        indexName: "mia-platform-docs",
-        contextualSearch: true,
-      },
       colorMode: {
         // "light" | "dark"
         defaultMode: "light",
