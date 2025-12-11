@@ -1,0 +1,100 @@
+{
+  "videoId": "c2J8xdLT-LI",
+  "subtitles": [
+    {
+      "startTimeString": "00:00:00,600",
+      "endTimeString": "00:00:05,520 ",
+      "text": "Hi everyone and welcome to the Mia-Platform tutorials. Today we're going to see a new"
+    },
+    {
+      "startTimeString": "00:00:05,520",
+      "endTimeString": "00:00:11,240 ",
+      "text": "way of managing providers in the Mia-Platform Console at the platform level. Providers can"
+    },
+    {
+      "startTimeString": "00:00:11,240",
+      "endTimeString": "00:00:16,520 ",
+      "text": "be generically defined as a means of storing information about external services.To begin"
+    },
+    {
+      "startTimeString": "00:00:16,520",
+      "endTimeString": "00:00:21,640 ",
+      "text": "with we're on the main Mia-Platform homepage, let's go ahead and enter one of the projects."
+    },
+    {
+      "startTimeString": "00:00:21,640",
+      "endTimeString": "00:00:31,080 ",
+      "text": "As you can see here in the left hand side menu there is a tab and under Administration you can find the provider section. You can see some of the providers we've already created such"
+    },
+    {
+      "startTimeString": "00:00:31,080",
+      "endTimeString": "00:00:36,920 ",
+      "text": "as Mia-Platform GitLab and Azure DevOps. Each provider is listed with the type of capacity"
+    },
+    {
+      "startTimeString": "00:00:36,920",
+      "endTimeString": "00:00:42,560 ",
+      "text": "and service that is used. Let's go ahead and try to add a new provider connection. Here"
+    },
+    {
+      "startTimeString": "00:00:42,560",
+      "endTimeString": "00:00:55,600 ",
+      "text": "you can see a modal window is displayed with all of the providers existing: there's Azure DevOps, BitBucket, GitHub, GitLab and more. For this example let's go ahead and click on GitLab. As"
+    },
+    {
+      "startTimeString": "00:00:55,600",
+      "endTimeString": "00:01:11,640 ",
+      "text": "you can see here all of the capabilities that you want to use this provider for have been selected, but you can go ahead and select whichever ones you like from Secret Manager, CI/CD Tool and GitProvider. Once you're happy with that go ahead and click on next: here you can add your provider"
+    },
+    {
+      "startTimeString": "00:01:11,640",
+      "endTimeString": "00:01:29,920 ",
+      "text": "name, then you need to add the API base URL, and then you need to add just the base URL."
+    },
+    {
+      "startTimeString": "00:01:31,480",
+      "endTimeString": "00:01:36,320 ",
+      "text": "You can also enter a short description if you'd like. Once you're happy with filling in"
+    },
+    {
+      "startTimeString": "00:01:36,320",
+      "endTimeString": "00:01:41,080 ",
+      "text": "the provider details, you can go ahead to the credentials section. In the credential section"
+    },
+    {
+      "startTimeString": "00:01:41,080",
+      "endTimeString": "00:01:48,160 ",
+      "text": "you need to add an access token. Once that is added we will move on to the Advance section."
+    },
+    {
+      "startTimeString": "00:01:48,160",
+      "endTimeString": "00:01:54,200 ",
+      "text": "In the advance section you can add a Certificate Authority and also a proxy if you'd like. Once"
+    },
+    {
+      "startTimeString": "00:01:54,200",
+      "endTimeString": "00:01:59,320 ",
+      "text": "you're happy with this let's go ahead and add provider. Now you can see a provider connection"
+    },
+    {
+      "startTimeString": "00:01:59,320",
+      "endTimeString": "00:02:05,280 ",
+      "text": "has been created. You can go ahead and close the model and go to your provider itself. As you can"
+    },
+    {
+      "startTimeString": "00:02:05,280",
+      "endTimeString": "00:02:21,520 ",
+      "text": "see in this list you will be able to see the new provider that we just created; if you would like to make any edits to this you can just click on the arrow and go ahead and edit the credentials, the advanced credentials or even remove the connection if you like. With this we have seen"
+    },
+    {
+      "startTimeString": "00:02:21,520",
+      "endTimeString": "00:02:26,920 ",
+      "text": "how we can create a provider connection and manage it in the Mia-Platform Console. With this feature"
+    },
+    {
+      "startTimeString": "00:02:26,920",
+      "endTimeString": "00:02:37,480 ",
+      "text": "you can manage providers from one place, defining their capabilities, entering their credentials, certificate authorities and proxies. Thank you for watching and as always if you have"
+    }
+  ]
+}

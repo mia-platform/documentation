@@ -116,10 +116,8 @@ export default function CustomArchivedItem({
     if(!isArchivedVersion) {
       switch(index) {
         case 0: itemLabel = <CanaryTag label={'14.x.x'} />; break;
-        case 1: itemLabel = <ProdTag label={label} />; break;
-        // TODO: restore once we have a "preview" version
-        // case 1: itemLabel = <NextTag label={label} />; break;
-        // case 2: itemLabel = <ProdTag label={label} />; break;
+        case 1: itemLabel = <NextTag label={label} />; break;
+        case 2: itemLabel = <ProdTag label={label} />; break;
       }
   
       // TODO infer when version.name is a stable version

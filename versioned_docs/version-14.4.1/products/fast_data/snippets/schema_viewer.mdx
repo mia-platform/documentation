@@ -1,0 +1,26 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import JSONSchemaViewer from "@theme/JSONSchemaViewer";
+import CodeBlock from '@theme/CodeBlock';
+
+<Tabs groupId='json-schema-viewer' queryString>
+
+<TabItem value="viewer" label="Schema Viewer">
+
+<JSONSchemaViewer schema={props.schema} />
+
+</TabItem>
+
+<TabItem value="raw" label="Raw JSON Schema">
+
+<CodeBlock language="json">
+{JSON.stringify(props.schema, null, 2)}
+</CodeBlock>
+
+</TabItem>
+
+<TabItem value="example" label="Example">
+    <CodeBlock language="json">{props.schema?.examples?.length > 0 ? JSON.stringify(props.schema?.examples?.[0], null, 2) : "example not provided"}</CodeBlock>
+</TabItem>
+
+</Tabs>
