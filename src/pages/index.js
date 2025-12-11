@@ -10,8 +10,6 @@ import HowToBox from "../components/HowToBox";
 import LastPages from "../components/LastPages";
 import {desktop} from "../lib/constants";
 
-import SearchBar from "@theme/SearchBar";
-
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import {useWindowSize} from "@docusaurus/theme-common";
 
@@ -192,9 +190,6 @@ function Home() {
               <div className="container">
                 <Logo />
                 <p className="hero__subtitle">{siteConfig.tagline}</p>
-              </div>
-              <div className="searchBarBox home">
-                <SearchBar avoidKeyboardShortcuts />
               </div>
             </div>
           </header>
