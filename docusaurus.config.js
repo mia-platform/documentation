@@ -1,9 +1,7 @@
 const createEditUrl = require("./scripts/createEditUrl");
 const createRedirects = require("./scripts/createRedirects");
-const versionsList = require('./versions.json');
 const archivedVersions = require('./versionsArchived.json');
-
-const prodVersion = versionsList[1]
+const versionsMap = require('./versionsMap')
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
@@ -158,7 +156,7 @@ const config = {
           label: "Community"
         },
         {
-          type: 'custom-CustomArchivedItem',
+          type: 'custom-CustomVersionsDropdown',
           position: 'right',
           dropdownItemsAfter: [
             {
@@ -317,7 +315,7 @@ const config = {
           sidebarPath: './sidebars.js',
           editUrl: createEditUrl,
           includeCurrentVersion: process.env.NODE_ENV !== "production",
-          lastVersion: prodVersion,
+          lastVersion: versionsMap.default.current,
           versions: process.env.NODE_ENV !== "production" ? { current: { label: "Canary" } } : {},
           async sidebarItemsGenerator({
             isCategoryIndex: defaultCategoryIndexMatcher,
