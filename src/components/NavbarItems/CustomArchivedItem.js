@@ -101,7 +101,7 @@ export default function CustomVersionsDropdown({
       let itemLabel = label
 
       // If we are in development mode, the first version of the list is the canary version
-      let isCanary = process.env.NODE_ENV !== "production" && index === 0
+      const isCanary = process.env.NODE_ENV !== "production" && index === 0
 
       if (isCanary) {
         itemLabel = <CanaryTag label={'14.x.x'} />
