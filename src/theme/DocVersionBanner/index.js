@@ -88,9 +88,6 @@ const BannerLabelComponents = {
 };
 
 function BannerLabel(props) {
-  // eslint-disable-next-line no-console
-  console.log(props.versionMetadata);
-
   let bannerType = props.versionMetadata.banner;
 
   // If we are in development mode, the version called 'current' is the canary version

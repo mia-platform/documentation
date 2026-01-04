@@ -23,7 +23,8 @@
     "check-redirects": "node ./scripts/check-permanent-redirects.js",
     "build-subtitle": "node ./scripts/parse-subtitle.js",
     "generate-last-edited": "node scripts/last-pages-edited.js",
-    "mv": "node ./scripts/mv.js"
+    "mv": "node ./scripts/mv.js",
+    "versions": "tsx ./scripts/versions-mgt/index.ts"
   },
   "dependencies": {
     "@docusaurus/core": "^3.9.2",
@@ -42,6 +43,7 @@
     "react": "^19.2.3",
     "react-dom": "^19.2.3",
     "react-youtube": "^10.1.0",
+    "semver": "^7.7.3",
     "tsx": "^4.21.0",
     "typescript-eslint": "^8.51.0"
   },
@@ -50,6 +52,9 @@
     "@docusaurus/module-type-aliases": "^3.9.2",
     "@docusaurus/types": "3.9.2",
     "@ianvs/prettier-plugin-sort-imports": "4.7.0",
+    "@inquirer/core": "^11.1.0",
+    "@inquirer/prompts": "^8.1.0",
+    "@types/semver": "^7",
     "eslint": "^9.39.2",
     "eslint-plugin-react": "^7.37.5",
     "fs-extra": "^11.3.3",
