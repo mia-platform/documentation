@@ -26,7 +26,7 @@ const assertGitTreeClean = () => {
 }
 
 const main = async () => {
-  // assertGitTreeClean()
+  assertGitTreeClean()
 
   const command: 'create-version' | 'promote-version' | 'patch-lts' = await select({
     message: 'What do you want to do?',
