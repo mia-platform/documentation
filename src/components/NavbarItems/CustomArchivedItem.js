@@ -17,7 +17,7 @@ import {useHistorySelector} from '@docusaurus/theme-common'
 import DefaultNavbarItem from '@theme/NavbarItem/DefaultNavbarItem'
 import DropdownNavbarItem from '@theme/NavbarItem/DropdownNavbarItem'
 import {ProdTag, NextTag, CanaryTag} from './Tags'
-import versionsMap, {isCurrent, isNext, isLts} from '../../../versionsMap'
+import versionsMap from '../../../versionsMap.json'
 
 function getVersionItems(versions, configs) {
   if (configs) {
@@ -105,9 +105,9 @@ export default function CustomVersionsDropdown({
 
       if (isCanary) {
         itemLabel = <CanaryTag label={'14.x.x'} />
-      } else if (isCurrent(version.name)) {
+      } else if (versionsMap.current === version.name) {
         itemLabel = <ProdTag label={label} />
-      } else if (isNext(version.name)) {
+      } else if (versionsMap.next === version.name) {
         itemLabel = <NextTag label={label} />
       } 
 

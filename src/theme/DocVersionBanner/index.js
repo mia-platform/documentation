@@ -12,7 +12,8 @@ import {
   useDocsPreferredVersion,
   useDocsVersion,
 } from '@docusaurus/plugin-content-docs/client';
-import {isNext, isLts} from '../../../versionsMap'
+import {satisfies} from 'semver'
+import versionsMap from '../../../versionsMap.json'
 
 function CanaryVersionLabel() {
   return (
@@ -95,9 +96,9 @@ function BannerLabel(props) {
 
   if (isCanary) {
     bannerType = 'canary'
-  } else if (isNext(props.versionMetadata.version)) {
+  } else if (versionsMap.next === props.versionMetadata.version) {
     bannerType = 'next'
-  } else if (isLts(props.versionMetadata.version)) {
+  } else if (versionsMap.lts.some((range) => satisfies(props.versionMetadata.version, range))) {
     bannerType = 'lts'
   }
 
