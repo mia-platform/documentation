@@ -1,10 +1,10 @@
 import { ExitPromptError } from "@inquirer/core"
-
-import patchLts from './patch-lts'
-import promoteVersion from './promote-version'
 import { select } from '@inquirer/prompts'
 
+import createVersion from './create-version'
 import { assertGitTreeClean } from "./lib"
+import patchLts from './patch-lts'
+import promoteVersion from './promote-version'
 
 export type SelectChoice<Value> = {
   value: Value
@@ -21,12 +21,12 @@ const main = async () => {
       {
         value: 'create-version',
         name: 'Promote Canary to Next and Next to Current',
-        description: ''
+        description: 'Promote Canary version to Next, and Next to Current.'
       },
         {
         value: 'promote-version',
         name: 'Just promote Next to Current',
-        description: 'Promote Next version to Current, and unset Next version'
+        description: 'Promote Next version to Current, and unset Next version.'
       },
       {
         value: 'patch-lts',
@@ -37,12 +37,10 @@ const main = async () => {
   })
 
   switch (command) {
-    case 'create-version': break;
+    case 'create-version': await createVersion(); break;
     case 'promote-version': await promoteVersion(); break;
     case 'patch-lts': await patchLts(); break;
   }
-
-  console.log('All done!')
 }
 
 main().catch((err) => {
