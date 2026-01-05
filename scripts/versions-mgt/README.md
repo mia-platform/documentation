@@ -1,4 +1,6 @@
-# Scenarios
+# Versions management
+
+It follows a list of common scenarios regarding the management of documentation versions.
 
 ## Promotion of a version from next to current AND promotion of a version from canary to next
 
@@ -151,5 +153,3 @@ Versions dropdown after:
    2. next `1.3.0` -> `1.4.0`
    3. lts `1.2.0, 1.1.0, 1.0.0`
 3. Change any link to `/docs/1.3.0/...` to `/docs/...`
-
-## Release of a new patch of an LTS version
