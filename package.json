@@ -8,8 +8,6 @@
     "docusaurus": "docusaurus",
     "start": "docusaurus start",
     "build": "yarn build-redirects && USE_SIMPLE_CSS_MINIFIER=true docusaurus build",
-    "create-version": "tsx ./scripts/create-version.ts",
-    "delete-version": "tsx ./scripts/delete-version.ts",
     "swizzle": "docusaurus swizzle",
     "deploy": "docusaurus deploy",
     "clear": "docusaurus clear",
