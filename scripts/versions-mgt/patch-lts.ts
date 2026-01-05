@@ -4,7 +4,7 @@ import { select, confirm } from '@inquirer/prompts'
 import { inc, satisfies } from 'semver'
 
 import versions from '../../versions.json'
-import versionsMap from '../../versionsMap'
+import versionsMap from '../../versionsMap.json'
 import type { SelectChoice } from '.'
 
 const buildLtsOptions = (): SelectChoice<[string, string]>[] => {

@@ -1,9 +1,10 @@
-import { execSync } from 'node:child_process'
-
 import { ExitPromptError } from "@inquirer/core"
 
 import patchLts from './patch-lts'
+import promoteVersion from './promote-version'
 import { select } from '@inquirer/prompts'
+
+import { assertGitTreeClean } from "./lib"
 
 export type SelectChoice<Value> = {
   value: Value
@@ -11,22 +12,8 @@ export type SelectChoice<Value> = {
   disabled?: string
 }
 
-const assertGitTreeClean = () => {
-    try {
-    const gitStatus = execSync('git status --porcelain', { encoding: 'utf-8' })
-    
-    if (gitStatus.trim() !== '') {
-      console.error('Git tree is not clean. Please commit or stash your changes.')
-      process.exit(1)
-    }
-  } catch (error) {
-    console.error('Error checking git status:', error)
-    process.exit(1)
-  }
-}
-
 const main = async () => {
-  assertGitTreeClean()
+  // assertGitTreeClean()
 
   const command: 'create-version' | 'promote-version' | 'patch-lts' = await select({
     message: 'What do you want to do?',
@@ -39,7 +26,7 @@ const main = async () => {
         {
         value: 'promote-version',
         name: 'Just promote Next to Current',
-        description: ''
+        description: 'Promote Next version to Current, and unset Next version'
       },
       {
         value: 'patch-lts',
@@ -51,8 +38,8 @@ const main = async () => {
 
   switch (command) {
     case 'create-version': break;
-    case 'promote-version': break;
-    case 'patch-lts': patchLts()
+    case 'promote-version': await promoteVersion(); break;
+    case 'patch-lts': await patchLts(); break;
   }
 
   console.log('All done!')
@@ -65,4 +52,3 @@ main().catch((err) => {
 
   process.exit(1)
 })
-
