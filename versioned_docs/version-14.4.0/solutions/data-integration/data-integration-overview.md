@@ -17,17 +17,17 @@ As companies evolve, they face significant hurdles in making their data accessib
 * **Lack of Real-Time Insights**: Traditional data integration methods often rely on nightly ETL (Extract, Transform, Load) jobs. This means that business decisions and customer-facing applications are based on data that is up to 24 hours old, which is unacceptable in today's fast-paced market.
 * **High Development Cost for Data Access**: For every new application that needs data, developers often have to build custom integration logic, which is time-consuming, duplicates effort, and increases the maintenance burden.
 
-## The Modern Solution: Integration Connector Agent and Fast Data Engine 2.0
+## The Modern Solution: Integration Connector Agent and Fast Data v2
 
-**Mia-Platform** addresses these data integration challenges through two complementary technologies: the **Integration Connector Agent** for external data ingestion and the **Fast Data Engine 2.0** for high-performance real-time processing.
+**Mia-Platform** addresses these data integration challenges through two complementary technologies: the **Integration Connector Agent** for external data ingestion and the **Fast Data v2** for high-performance real-time processing.
 
 ### External Data Ingestion with Integration Connector Agent
 
 The **Integration Connector Agent** connects to external sources and synchronizes changes between various systems and MongoDB. It supports multiple data sources including GitHub, Jira, Google Cloud Platform, AWS CloudTrail, and Azure Activity Logs. The agent processes data through configurable pipelines and delivers it to MongoDB collections, creating a unified entry point for external data.
 
-### Real-Time Processing with Fast Data Engine 2.0
+### Real-Time Processing with Fast Data v2
 
-**Fast Data Engine 2.0** revolutionizes data processing through four specialized workloads that replace traditional monolithic components:
+**Fast Data v2** revolutionizes data processing through four specialized workloads that replace traditional monolithic components:
 
 * **Mongezium CDC**: Captures changes from MongoDB collections and streams them to Kafka topics with high performance and fault tolerance.
 * **Stream Processor**: Transforms data using secure JavaScript sandbox environments, supporting both stateless and stateful processing.
@@ -91,4 +91,4 @@ For simpler use cases that don't require the full power of an event-driven archi
 
 ## Competitive Advantage Through Unified Data
 
-By leveraging Integration Connector Agent and Fast Data Engine 2.0, organizations can break down data silos, unlock the value of their legacy systems, and build a modern, real-time data integration architecture. The result is not just technical improvement, but a fundamental business advantage: the ability to make data-driven decisions in real-time, deliver superior customer experiences, and rapidly adapt to market changes with complete visibility across all business operations.
+By leveraging Integration Connector Agent and Fast Data v2, organizations can break down data silos, unlock the value of their legacy systems, and build a modern, real-time data integration architecture. The result is not just technical improvement, but a fundamental business advantage: the ability to make data-driven decisions in real-time, deliver superior customer experiences, and rapidly adapt to market changes with complete visibility across all business operations.

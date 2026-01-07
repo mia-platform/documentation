@@ -23,7 +23,7 @@ A multi-brand retail company has its customer data spread across multiple, disco
 
 ### The Solution with Mia-Platform
 
-The company leverages **Integration Connector Agent** and **Fast Data Engine 2.0** to create a unified, real-time customer 360° view.
+The company leverages **Integration Connector Agent** and **Fast Data v2** to create a unified, real-time customer 360° view.
 
 1. **External Data Ingestion**: **Integration Connector Agent** connects to GitHub, Jira, AWS CloudTrail, and Azure Activity Logs, synchronizing development activities, support tickets, and infrastructure events directly into MongoDB collections.
 
