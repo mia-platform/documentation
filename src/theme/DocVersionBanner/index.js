@@ -30,8 +30,7 @@ function NextVersionLabel() {
   return (
     <div>
       { 'This is the documentation for the Mia-Platform Console version currently available ' }
-      <b>{ 'in Preview' }</b>
-      { ' for SaaS users.' }
+      <b>{ 'in Preview.' }</b>
     </div>
   )
 }
@@ -109,7 +108,7 @@ function BannerLabel(props) {
 function LatestVersionSuggestionLabel({versionLabel, to, onClick}) {
   return (
     <Translate
-      description="The label used to tell the user to check the latest version"
+      description="The label used to tell the user to check the latest GA version"
       id="theme.docs.versions.latestVersionSuggestionLabel"
       values={{
         versionLabel,
@@ -120,7 +119,7 @@ function LatestVersionSuggestionLabel({versionLabel, to, onClick}) {
                 description="The label used for the latest version suggestion link label"
                 id="theme.docs.versions.latestVersionLinkLabel"
               >
-                { "latest version" }
+                { "latest GA version" }
               </Translate>
             </Link>
           </b>
