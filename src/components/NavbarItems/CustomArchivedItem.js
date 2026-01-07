@@ -5,50 +5,45 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import React from 'react';
+import React from 'react'
 import {
   useVersions,
   useActiveDocContext,
   useDocsVersionCandidates,
   useDocsPreferredVersion,
-} from '@docusaurus/plugin-content-docs/client';
-import {translate} from '@docusaurus/Translate';
-import {useHistorySelector} from '@docusaurus/theme-common';
-import DefaultNavbarItem from '@theme/NavbarItem/DefaultNavbarItem';
-import DropdownNavbarItem from '@theme/NavbarItem/DropdownNavbarItem';
-import {ProdTag, NextTag, CanaryTag} from './Tags';
+} from '@docusaurus/plugin-content-docs/client'
+import {translate} from '@docusaurus/Translate'
+import {useHistorySelector} from '@docusaurus/theme-common'
+import DefaultNavbarItem from '@theme/NavbarItem/DefaultNavbarItem'
+import DropdownNavbarItem from '@theme/NavbarItem/DropdownNavbarItem'
+import {ProdTag, NextTag, CanaryTag} from './Tags'
+import versionsMap from '../../../versionsMap.json'
 
-function getVersionItems(
-  versions,
-  configs,
-) {
+function getVersionItems(versions, configs) {
   if (configs) {
     // Collect all the versions we have
     const versionMap = new Map(
       versions.map((version) => [version.name, version]),
     )
 
-    const toVersionItem = (
-      name,
-      config,
-    ) => {
-      const version = versionMap.get(name);
+    const toVersionItem = (name, config) => {
+      const version = versionMap.get(name)
       if (!version) {
         throw new Error(`No docs version exist for name '${name}', please verify your 'docsVersionDropdown' navbar item versions config.
-Available version names:\n- ${versions.map((v) => `${v.name}`).join('\n- ')}`);
+Available version names:\n- ${versions.map((v) => `${v.name}`).join('\n- ')}`)
       }
-      return {version, label: config?.label ?? version.label};
-    };
+      return {version, label: config?.label ?? version.label}
+    }
 
     if (Array.isArray(configs)) {
-      return configs.map((name) => toVersionItem(name, undefined));
+      return configs.map((name) => toVersionItem(name, undefined))
     } else {
       return Object.entries(configs).map(([name, config]) =>
         toVersionItem(name, config),
-      );
+      )
     }
   } else {
-    return versions.map((version) => ({version, label: version.label}));
+    return versions.map((version) => ({version, label: version.label}))
   }
 }
 
@@ -56,40 +51,33 @@ function useVersionItems({
   docsPluginId,
   configs,
 }) {
-  const versions = useVersions(docsPluginId);
-  return getVersionItems(versions, configs);
+  const versions = useVersions(docsPluginId)
+  return getVersionItems(versions, configs)
 }
 
 function getVersionMainDoc(version) {
-  return version.docs.find((doc) => doc.id === version.mainDocId);
+  return version.docs.find((doc) => doc.id === version.mainDocId)
 }
 
-function getVersionTargetDoc(
-  version,
-  activeDocContext,
-) {
+function getVersionTargetDoc(version, activeDocContext) {
   // We try to link to the same doc, in another version
   // When not possible, fallback to the "main doc" of the version
   return (
     activeDocContext.alternateDocVersions[version.name] ??
     getVersionMainDoc(version)
-  );
+  )
 }
 
-// The version item to use for the "dropdown button"
-function useDisplayedVersionItem({
-  docsPluginId,
-  versionItems,
-}) {
+function useDisplayedVersionItem({docsPluginId, versionItems}) {
   // The order of the candidates matters!
-  const candidates = useDocsVersionCandidates(docsPluginId);
+  const candidates = useDocsVersionCandidates(docsPluginId)
   const candidateItems = candidates
     .map((candidate) => versionItems.find((vi) => vi.version === candidate))
-    .filter((vi) => vi !== undefined);
-  return candidateItems[0] ?? versionItems[0];
+    .filter((vi) => vi !== undefined)
+  return candidateItems[0] ?? versionItems[0]
 }
 
-export default function CustomArchivedItem({
+export default function CustomVersionsDropdown({
   mobile,
   docsPluginId,
   dropdownActiveClassDisabled,
@@ -98,58 +86,57 @@ export default function CustomArchivedItem({
   versions: configs,
   ...props
 }) {
-  const search = useHistorySelector((history) => history.location.search);
-  const hash = useHistorySelector((history) => history.location.hash);
-  const activeDocContext = useActiveDocContext(docsPluginId);
-  const {savePreferredVersionName} = useDocsPreferredVersion(docsPluginId);
-  const versionItems = useVersionItems({docsPluginId, configs});
-  const displayedVersionItem = useDisplayedVersionItem({
-    docsPluginId,
-    versionItems,
-  })
+  const search = useHistorySelector((history) => history.location.search)
+  const hash = useHistorySelector((history) => history.location.hash)
+  const activeDocContext = useActiveDocContext(docsPluginId)
+  const {savePreferredVersionName} = useDocsPreferredVersion(docsPluginId)
+  const versionItems = useVersionItems({docsPluginId, configs})
+  const displayedVersionItem = useDisplayedVersionItem({docsPluginId, versionItems})
 
+  // TODO: should we show a badge also for the LTS versions?
   function versionItemToLink() {
     return ({version, label}, index) => {
-    const targetDoc = getVersionTargetDoc(version, activeDocContext);
+      const targetDoc = getVersionTargetDoc(version, activeDocContext)
 
-    let itemLabel = label
-    switch(index) {
-      case 0: itemLabel = <CanaryTag label={'14.x.x'} />; break;
-      case 1: itemLabel = <NextTag label={label} />; break;
-      case 2: itemLabel = <ProdTag label={label} />; break;
+      let itemLabel = label
+
+      // If we are in development mode, the first version of the list is the canary version
+      const isCanary = process.env.NODE_ENV !== "production" && index === 0
+
+      if (isCanary) {
+        itemLabel = <CanaryTag label={'14.x.x'} />
+      } else if (versionsMap.current === version.name) {
+        itemLabel = <ProdTag label={label} />
+      } else if (versionsMap.next === version.name) {
+        itemLabel = <NextTag label={label} />
+      } 
+
+      return {
+        label: itemLabel,
+        // preserve ?search#hash suffix on version switches
+        to: `${targetDoc.path}${search}${hash}`,
+        isActive: () => version === activeDocContext.activeVersion,
+        onClick: () => savePreferredVersionName(version.name),
+      }
     }
-
-    // TODO infer when version.name is a stable version
-    //  itemLabel = <StableTag label={label} />
-
-    return {
-      label: itemLabel,
-      // preserve ?search#hash suffix on version switches
-      to: `${targetDoc.path}${search}${hash}`,
-      isActive: () => version === activeDocContext.activeVersion,
-      onClick: () => savePreferredVersionName(version.name),
-    };
-  }
   }
 
-  const items = [...versionItems.map(versionItemToLink()), ...dropdownItemsAfter];
+  const items = [...versionItems.map(versionItemToLink()), ...dropdownItemsAfter]
 
   // Mobile dropdown is handled a bit differently
   const dropdownLabel =
     mobile && items.length > 1 ?
       translate({
-          id: 'theme.navbar.mobileVersionsDropdown.label',
-          message: 'Versions',
-          description:
-            'The label for the navbar versions dropdown on mobile view',
-        }) :
-      displayedVersionItem.label;
+        id: 'theme.navbar.mobileVersionsDropdown.label',
+        message: 'Versions',
+        description: 'The label for the navbar versions dropdown on mobile view',
+      }) :
+      displayedVersionItem.label
 
   const dropdownTo =
     mobile && items.length > 1 ?
       undefined :
-      getVersionTargetDoc(displayedVersionItem.version, activeDocContext)
-          .path;
+      getVersionTargetDoc(displayedVersionItem.version, activeDocContext).path
 
   // We don't want to render a version dropdown with 0 or 1 item. If we build
   // the site with a single docs version (onlyIncludeVersions: ['1.0.0']),
@@ -163,7 +150,7 @@ export default function CustomArchivedItem({
         mobile={mobile}
         to={dropdownTo}
       />
-    );
+    )
   }
 
   return (
@@ -175,5 +162,5 @@ export default function CustomArchivedItem({
       mobile={mobile}
       to={dropdownTo}
     />
-  );
+  )
 }
