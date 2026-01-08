@@ -1137,12 +1137,12 @@
       "label": "Fast Data Engine 2.0",
       "collapsed": true,
       "link": {
-        "id": "products/fast_data/fast_data_engine_v2/overview",
+        "id": "products/fast_data_v2/overview",
         "type": "doc"
       },
       "items": [
         {
-          "id": "products/fast_data/fast_data_engine_v2/concepts",
+          "id": "products/fast_data_v2/concepts",
           "label": "Concepts",
           "type": "doc"
         },
@@ -1151,24 +1151,24 @@
           "label": "Mongezium CDC",
           "collapsed": true,
           "link": {
-            "id": "products/fast_data/fast_data_engine_v2/mongezium_cdc/overview",
+            "id": "products/fast_data_v2/mongezium_cdc/overview",
             "type": "doc"
           },
           "items": [
             {
-              "id": "products/fast_data/fast_data_engine_v2/mongezium_cdc/configuration",
+              "id": "products/fast_data_v2/mongezium_cdc/configuration",
               "type": "doc"
             },
             {
-              "id": "products/fast_data/fast_data_engine_v2/mongezium_cdc/usage",
+              "id": "products/fast_data_v2/mongezium_cdc/usage",
               "type": "doc"
             },
             {
-              "id": "products/fast_data/fast_data_engine_v2/mongezium_cdc/metrics",
+              "id": "products/fast_data_v2/mongezium_cdc/metrics",
               "type": "doc"
             },
             {
-              "id": "products/fast_data/fast_data_engine_v2/mongezium_cdc/changelog",
+              "id": "products/fast_data_v2/mongezium_cdc/changelog",
               "type": "doc"
             }
           ]
@@ -1178,24 +1178,24 @@
           "label": "Stream Processor",
           "collapsed": true,
           "link": {
-            "id": "products/fast_data/fast_data_engine_v2/stream_processor/overview",
+            "id": "products/fast_data_v2/stream_processor/overview",
             "type": "doc"
           },
           "items": [
             {
-              "id": "products/fast_data/fast_data_engine_v2/stream_processor/configuration",
+              "id": "products/fast_data_v2/stream_processor/configuration",
               "type": "doc"
             },
             {
-              "id": "products/fast_data/fast_data_engine_v2/stream_processor/usage",
+              "id": "products/fast_data_v2/stream_processor/usage",
               "type": "doc"
             },
             {
-              "id": "products/fast_data/fast_data_engine_v2/stream_processor/metrics",
+              "id": "products/fast_data_v2/stream_processor/metrics",
               "type": "doc"
             },
             {
-              "id": "products/fast_data/fast_data_engine_v2/stream_processor/changelog",
+              "id": "products/fast_data_v2/stream_processor/changelog",
               "type": "doc"
             }
           ]
@@ -1205,24 +1205,24 @@
           "label": "Farm Data",
           "collapsed": true,
           "link": {
-            "id": "products/fast_data/fast_data_engine_v2/farm_data/overview",
+            "id": "products/fast_data_v2/farm_data/overview",
             "type": "doc"
           },
           "items": [
             {
-              "id": "products/fast_data/fast_data_engine_v2/farm_data/configuration",
+              "id": "products/fast_data_v2/farm_data/configuration",
               "type": "doc"
             },
             {
-              "id": "products/fast_data/fast_data_engine_v2/farm_data/usage",
+              "id": "products/fast_data_v2/farm_data/usage",
               "type": "doc"
             },
             {
-              "id": "products/fast_data/fast_data_engine_v2/farm_data/metrics",
+              "id": "products/fast_data_v2/farm_data/metrics",
               "type": "doc"
             },
             {
-              "id": "products/fast_data/fast_data_engine_v2/farm_data/changelog",
+              "id": "products/fast_data_v2/farm_data/changelog",
               "type": "doc"
             }
           ]
@@ -1232,30 +1232,30 @@
           "label": "Kango",
           "collapsed": true,
           "link": {
-            "id": "products/fast_data/fast_data_engine_v2/kango/overview",
+            "id": "products/fast_data_v2/kango/overview",
             "type": "doc"
           },
           "items": [
             {
-              "id": "products/fast_data/fast_data_engine_v2/kango/configuration",
+              "id": "products/fast_data_v2/kango/configuration",
               "type": "doc"
             },
             {
-              "id": "products/fast_data/fast_data_engine_v2/kango/usage",
+              "id": "products/fast_data_v2/kango/usage",
               "type": "doc"
             },
             {
-              "id": "products/fast_data/fast_data_engine_v2/kango/metrics",
+              "id": "products/fast_data_v2/kango/metrics",
               "type": "doc"
             },
             {
-              "id": "products/fast_data/fast_data_engine_v2/kango/changelog",
+              "id": "products/fast_data_v2/kango/changelog",
               "type": "doc"
             }
           ]
         },
         {
-          "id": "products/fast_data/fast_data_engine_v2/secrets_resolution",
+          "id": "products/fast_data_v2/secrets_resolution",
           "label": "Secrets Resolution",
           "type": "doc"
         }
@@ -2245,6 +2245,141 @@
         {
           "type": "autogenerated",
           "dirName": "products/software-catalog/tutorials"
+        }
+      ]
+    }
+  ],
+  "fastDataV2": [
+    {
+      "id": "products/fast_data_v2/overview",
+      "type": "doc"
+    },
+    {
+      "id": "products/fast_data_v2/concepts",
+      "label": "Concepts",
+      "type": "doc"
+    },
+    {
+      "type": "category",
+      "label": "Fast Data Engine",
+      "collapsed": true,
+      "link": {
+        "id": "products/fast_data_v2/fast_data_engine",
+        "type": "doc"
+      },
+      "items": [
+        {
+          "type": "category",
+          "label": "Mongezium CDC",
+          "collapsed": true,
+          "link": {
+            "id": "products/fast_data_v2/mongezium_cdc/overview",
+            "type": "doc"
+          },
+          "items": [
+            {
+              "id": "products/fast_data_v2/mongezium_cdc/configuration",
+              "type": "doc"
+            },
+            {
+              "id": "products/fast_data_v2/mongezium_cdc/usage",
+              "type": "doc"
+            },
+            {
+              "id": "products/fast_data_v2/mongezium_cdc/metrics",
+              "type": "doc"
+            },
+            {
+              "id": "products/fast_data_v2/mongezium_cdc/changelog",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "type": "category",
+          "label": "Stream Processor",
+          "collapsed": true,
+          "link": {
+            "id": "products/fast_data_v2/stream_processor/overview",
+            "type": "doc"
+          },
+          "items": [
+            {
+              "id": "products/fast_data_v2/stream_processor/configuration",
+              "type": "doc"
+            },
+            {
+              "id": "products/fast_data_v2/stream_processor/usage",
+              "type": "doc"
+            },
+            {
+              "id": "products/fast_data_v2/stream_processor/metrics",
+              "type": "doc"
+            },
+            {
+              "id": "products/fast_data_v2/stream_processor/changelog",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "type": "category",
+          "label": "Farm Data",
+          "collapsed": true,
+          "link": {
+            "id": "products/fast_data_v2/farm_data/overview",
+            "type": "doc"
+          },
+          "items": [
+            {
+              "id": "products/fast_data_v2/farm_data/configuration",
+              "type": "doc"
+            },
+            {
+              "id": "products/fast_data_v2/farm_data/usage",
+              "type": "doc"
+            },
+            {
+              "id": "products/fast_data_v2/farm_data/metrics",
+              "type": "doc"
+            },
+            {
+              "id": "products/fast_data_v2/farm_data/changelog",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "type": "category",
+          "label": "Kango",
+          "collapsed": true,
+          "link": {
+            "id": "products/fast_data_v2/kango/overview",
+            "type": "doc"
+          },
+          "items": [
+            {
+              "id": "products/fast_data_v2/kango/configuration",
+              "type": "doc"
+            },
+            {
+              "id": "products/fast_data_v2/kango/usage",
+              "type": "doc"
+            },
+            {
+              "id": "products/fast_data_v2/kango/metrics",
+              "type": "doc"
+            },
+            {
+              "id": "products/fast_data_v2/kango/changelog",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "products/fast_data_v2/secrets_resolution",
+          "label": "Secrets Resolution",
+          "type": "doc"
         }
       ]
     }

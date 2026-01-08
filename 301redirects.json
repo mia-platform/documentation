@@ -5428,15 +5428,15 @@
     "addedOn": "2025-09-11"
   },
   "/docs/runtime-components/plugins/mongezium-cdc/overview": {
-    "destination": "/docs/products/fast_data/fast_data_engine_v2/mongezium_cdc/overview",
+    "destination": "/docs/products/fast_data_v2/mongezium_cdc/overview",
     "addedOn": "2025-09-23"
   },
   "/docs/runtime-components/plugins/mongezium-cdc/configuration": {
-    "destination": "/docs/products/fast_data/fast_data_engine_v2/mongezium_cdc/configuration",
+    "destination": "/docs/products/fast_data_v2/mongezium_cdc/configuration",
     "addedOn": "2025-09-23"
   },
   "/docs/runtime-components/plugins/mongezium-cdc/usage": {
-    "destination": "/docs/products/fast_data/fast_data_engine_v2/mongezium_cdc/usage",
+    "destination": "/docs/products/fast_data_v2/mongezium_cdc/usage",
     "addedOn": "2025-09-23"
   },
   "/docs/13.(.*)": {
@@ -5462,5 +5462,9 @@
   "/docs/products/console/api-console/advanced-section/advanced-section": {
     "destination": "/docs/products/console/api-console/advanced-section/",
     "addedOn": "2025-11-26"
+  },
+  "/docs/products/fast_data/fast_data_engine_v2/(.*)": {
+    "destination": "/docs/products/fast_data_v2/$1",
+    "addedOn": "2026-01-07"
   }
 }

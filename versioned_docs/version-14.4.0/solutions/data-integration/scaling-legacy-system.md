@@ -17,7 +17,7 @@ A large insurance company relies on a monolithic, on-premise mainframe system as
 
 ### The Solution with Mia-Platform
 
-The architecture team leverages **Fast Data Engine 2.0** to create a modern, high-performance read layer that shields the mainframe from traffic spikes, implementing a CQRS (Command Query Responsibility Segregation) pattern.
+The architecture team leverages **Fast Data v2** to create a modern, high-performance read layer that shields the mainframe from traffic spikes, implementing a CQRS (Command Query Responsibility Segregation) pattern.
 
 1.  **Real-Time Data Capture**: **Mongezium CDC** captures all changes from the mainframe's database and streams them to Kafka topics with high throughput and fault tolerance.
 
