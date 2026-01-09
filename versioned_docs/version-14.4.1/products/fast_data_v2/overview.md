@@ -20,19 +20,11 @@ Experience **up to 10x performance improvement** in aggregation operations, dram
 
 ### Enhanced Flexibility & Security
 
-Achieve greater flexibility and control over your pipeline configuration with:
-
-- Custom JavaScript processing logic in the Stream Processor, featuring sandboxed execution environments for secure custom code
-- Configurable message transformation, filtering and validation rules
-- Flexible entity relationship definitions within Aggregation graphs
+Empower your pipelines with secure, sandboxed JavaScript execution for custom data logic. Easily configure advanced transformation, filtering, and validation rules while maintaining full architectural flexibility for complex entity relationships in aggregation graphs.
 
 ### Infrastructure Resource consumption efficiency
 
-- Less memory to allocate for running workloads
-- Lower Kafka infrastructure costs by diminishing the number of required Kafka topics (compared with previous Fast Data architectures)
-- Decreased maintenance overhead and operational complexity
-- Faster and easier adaptation to pipeline changes and new business needs
-- Faster implementation of new data pipelines, strongly improving the Time-to-Market
+Fast Data v2 significantly reduces resource consumption through optimized memory allocation for workloads and lower Kafka infrastructure costs by requiring fewer topics compared to previous architectures. This translates to decreased maintenance overhead, reduced operational complexity, and faster adaptation to pipeline changes and evolving business requirements, ultimately delivering improved time-to-market for new data pipeline implementations.
 
 ### Standardized Internal Processing
 
@@ -41,34 +33,18 @@ All Fast Data v2 workloads adopt this [**standardized Fast Data message format**
 
 The Fast Data message format includes operation types (`c`, `r`, `u`, `d`), current and previous values, and comprehensive metadata to support complex aggregation scenarios.
 
-## Upgrade to Fast Data v2
+## Getting Started with Fast Data v2
 
-The transition to Fast Data v2 fundamentally enhances how organizations handle data transformation, aggregation, and persistence. These new workloads have been specifically designed to replace and significantly outperform traditional Fast Data components like Real-Time Updater, Projection Storer, Single View Trigger Generator, and Single View Creator.
+To discover more about Fast Data v2 and understand how to leverage its capabilities, we recommend following this learning path:
 
-### Advanced Data Transformation
-
-Traditional data casting and mapping operations are now significantly outperformed by Stream Processor, which provides unprecedented **security, reliability, and performance** in implementing transformation, mapping, filtering, and validation logic. Unlike the rigid environment variable-based configurations of traditional components, Stream Processor offers maximum flexibility through secure JavaScript sandbox execution, allowing you to implement exactly the logic your use case demands while maintaining enterprise-grade security and isolation.
-
-### Centralized High-Performance Aggregation
-
-The complex strategies and aggregation logics previously configured in SVTG and SVC components are now centralized and simplified by Farm Data Aggregation, delivering up to **10x performance improvement** in aggregation operations. This eliminates the complexity of managing multiple components while dramatically reducing initial load times and enabling true real-time processing at enterprise scale.
-
-### Decoupled and More Specialized Architecture
-
-The actual approach of RTU, PS, and SVC, which combined data persistence with complex stream processing logic, has been **decoupled** into more specialized workloads. Stream Processor handles all streaming and transformation logic, while Kango focuses exclusively on high-performance persistence. This architectural separation improves scalability and flexibility, enabling surgical modifications to pipelines without cascading changes across multiple components and/or pipeline steps.
-
-This decoupling means you can now:
-
-- Persist data at any point in your pipeline without rigid schemas or procedures
-- Make targeted changes to specific pipeline steps without affecting the entire flow
-- Scale individual components based on your specific performance requirements
-- Adapt quickly to new business needs with minimal operational overhead
+1. **[Concepts](/products/fast_data_v2/concepts.mdx)** - Understand the foundational concepts, including the Fast Data message format and architectural principles
+2. **[Fast Data Engine](/products/fast_data_v2/fast_data_engine.md)** - Explore the four specialized workloads that power Fast Data v2 and learn how they work together to build high-performance data pipelines
 
 ## Next Roadmap Steps
 
-Fast Data v2 is designed as the foundation step for some new roadmap initiatives:
+Following the delivery of the Fast Data Engine v2, additional features and capabilities are in roadmap for future releases:
 
+- **Control Plane Runtime Management**: Enable full support of Fast Data runtime management capabilities provided by compatibility with [Fast Data v1 Control Plane](/products/fast_data/runtime_management/overview.mdx),
+  providing comprehensive monitoring and control over your Fast Data operations at runtime.
 - **Data Pipeline Configurator**: An upcoming UX/UI canvas-based configurator will allow you to
   build data pipelines visually, further streamlining the development experience and boost interoperation and synergies with other Mia-Platform product suite components.
-- **Control Plane Runtime Management**: Enable full support of Fast Data runtime management capabilities provided by compatibility with [Fast Data Control Plane](/products/fast_data/runtime_management/overview.mdx),
-  providing comprehensive monitoring and control over your Fast Data operations at runtime.
