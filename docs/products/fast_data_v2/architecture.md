@@ -8,7 +8,7 @@ The modular nature of Fast Data Engine v2 workloads enables you to compose pipel
 
 :::info
 The following paragraphs illustrate several Fast Data architecture patterns.  
-To fully grasp the core concepts discussed on this page, we recommend reviewing the [Fast Data Engine Presentation](/docs/products/fast_data_v2/fast_data_engine.md) page before proceeding with these examples.
+To fully grasp the core concepts discussed on this page, we recommend reviewing the [Fast Data Engine Presentation](/products/fast_data_v2/fast_data_engine.md) page before proceeding with these examples.
 :::
 
 ### Single View Data Product Architecture
