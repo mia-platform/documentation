@@ -10,7 +10,8 @@
       "bugFixes": [
         "Resolved an issue in the Company’s Provider section that prevented establishing a connection to Azure DevOps when the `Git Provider` capability and `Client Credentials` authentication method settings were selected.",
         "We fixed a bug that prevented the selected Mia-Assistant model from being retained when pinning the chat.",
-        "We fixed an issue that prevented clipboard copy/paste actions from working in iframe extensions."
+        "We fixed an issue that prevented clipboard copy/paste actions from working in iframe extensions.",
+        "Fixed an issue that caused an error during the creation of microservices from templates in private GitHub repositories."
       ]
     }
   },
@@ -23,10 +24,10 @@
       "newFeatures": [],
       "improvements": [
         {
-        "title": "Import Stream Processor schema in service configuration",
-        "description": [
-          "In the Design Area, when configuring the `config.json` file of the Stream Processor, now it is possible to import the [Stream Processor schema](https://cdn.mia-platform.eu/runtime/platform/data-fabric/stream-processor/v0.5.4/stream-processor.schema.json) from Mia CDN, to enable schema-based validation and linting in Monaco editors."
-        ]
+          "title": "Import Stream Processor schema in service configuration",
+          "description": [
+            "In the Design Area, when configuring the `config.json` file of the Stream Processor, now it is possible to import the [Stream Processor schema](https://cdn.mia-platform.eu/runtime/platform/data-fabric/stream-processor/v0.5.4/stream-processor.schema.json) from Mia CDN, to enable schema-based validation and linting in Monaco editors."
+          ]
         }
       ],
       "bugFixes": []
