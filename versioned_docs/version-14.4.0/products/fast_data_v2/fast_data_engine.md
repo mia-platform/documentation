@@ -6,7 +6,7 @@ sidebar_label: Fast Data Engine
 
 Fast Data v2 introduces four specialized workloads that form the **Fast Data Engine v2** - a new generation of components designed to replace and significantly outperform Fast Data v1.
 
-Each workload focuses on a specific aspect of the data pipeline, providing unprecedented performance, more architectural flexibility, and ease of configuration compared to traditional Fast Data components.
+Each workload focuses on a specific aspect of the data pipeline, providing unprecedented performance, more architectural flexibility, and ease of configuration compared to Fast Data v1 components.
 
 ![Fast Data Engine v2](img/fast-data-engine-v2.png)
 
@@ -61,9 +61,9 @@ Kango (Kafka to Mongo) enables reliable data persistence from Kafka streams to M
 
 [**Learn More →**](/products/fast_data_v2/kango/10_Overview.md)
 
-## The Power Behind Fast Data v2
+## What Makes Fast Data v2 Better
 
-Fast Data v2 fundamentally enhances how organizations handle data transformation, aggregation, and persistence through this **new generation of specialized workloads** designed to replace and significantly outperform traditional Fast Data v1 components.
+Beyond individual workload capabilities, Fast Data v2 delivers **fundamental architectural improvements** that address the core limitations of traditional data processing approaches. These innovations provide measurable performance gains, enhanced security, and unprecedented flexibility in building modern data pipelines.
 
 ### Advanced Data Transformation
 
