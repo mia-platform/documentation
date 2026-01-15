@@ -4,11 +4,11 @@ title: Architecture
 sidebar_label: Architecture
 ---
 
-With Fast Data v2, you can compose modular data pipelines tailored to your specific business needs. Whether you need to stream data in real-time, build data products, decouple legacy systems, or implement complex multi-stream aggregations, [**Fast Data v2 Engine**](/products/fast_data_v2/architecture.md) provides the flexibility to design the optimal architecture while maintaining clear separation of concerns and operational simplicity.
+With Fast Data v2, you can compose modular data pipelines tailored to your specific business needs. Whether you need to stream data in real-time, build data products, decouple legacy systems, or implement complex multi-stream aggregations, [**Fast Data v2 Engine**](/products/fast_data_v2/fast_data_engine.md) provides the flexibility to design the optimal architecture while maintaining clear separation of concerns and operational simplicity.
 
 :::info
 This section illustrates common examples of **Fast Data architecture patterns**.  
-We recommend starting with the [**Fast Data Engine overview page**](/products/fast_data_v2/architecture.md) to fully grasp the core functional concepts before exploring the architecture examples below.
+We recommend starting with the [**Fast Data Engine overview page**](/products/fast_data_v2/fast_data_engine.md) to fully grasp the core functional concepts before exploring the architecture examples below.
 :::
 
 ### Single View Data Product Architecture
