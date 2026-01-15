@@ -18,6 +18,12 @@ Farm Data specializes in **stream aggregation and joining**, allowing organizati
 - **Generate Single Views**: produce unified data representations by aggregating related events from multiple sources
 - **Process in Real-Time**: handle high-throughput streaming data with minimal latency
 
+:::warning
+
+Input messages **must** be compliant with [Fast Data message format](/products/fast_data_v2/concepts.mdx#fast-data-message-format).
+
+:::
+
 ### Service Architecture
 
 The service follows a modular, event-driven architecture consisting of several key components:

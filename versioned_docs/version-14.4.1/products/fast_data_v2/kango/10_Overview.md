@@ -11,7 +11,13 @@ which is Apache Kafka, and saves them onto a sink system, that is MongoDB databa
 The common use case for adopting this workload is:
 - **Data Sink**: storing data, occurring as events on a data stream, in an optimized manner, so that other applications can quickly retrieve and analyze it.
 
-Change events read by Kango must comply with the **Fast Data format**, which includes the operation performed on the record, along with its current and previous values (i.e., before and after the modification).
+:::warning
+
+Input messages **must** be compliant with [Fast Data message format](/products/fast_data_v2/concepts.mdx#fast-data-message-format).
+
+:::
+
+Change events read by Kango includes the operation performed on the record, along with its current and previous values (i.e., before and after the modification).
 
 In particular, Kango is able to recognize four different types of change events
 operation:
