@@ -2146,9 +2146,14 @@
       "type": "doc"
     },
     {
+      "id": "products/fast_data_v2/architecture",
+      "label": "Architecture",
+      "type": "doc"
+    },
+    {
       "type": "category",
       "label": "Fast Data Engine",
-      "collapsed": true,
+      "collapsed": false,
       "link": {
         "id": "products/fast_data_v2/fast_data_engine",
         "type": "doc"
