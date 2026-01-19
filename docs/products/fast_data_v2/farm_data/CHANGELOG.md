@@ -9,6 +9,73 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.5.5] - 2025-12-29
+
+### Added
+
+- Implementation of mongodb config coming from connections
+- Add MongodbConnectionConfig
+
+### Fixed
+
+- Format
+- Tests
+- Updated test fixtures in processors tests
+- Format issues
+
+## [0.5.4] - 2025-11-19
+
+### Dependencies
+
+- Update compatible dependencies
+- Update docker.io/rust:1.90.0-alpine3.22 docker digest to b4b54b1
+- Update rust crate axum to 0.8.6
+- Update rust crate reqwest to 0.12.24
+- Update rust crate regex to 1.12.2
+- Update docker.io/alpine docker tag to v3.22.2
+- Update rust crate thiserror to 2.0.17
+- Update rust crate serde to 1.0.228
+- Update rust crate tempfile to 3.23.0
+- Update grafana/grafana docker tag to v12.2.0
+
+### Fixed
+
+- Invalid mongodb pipeline on empty filters
+
+## [0.5.3] - 2025-09-26
+
+### Changed
+
+- Address linter warnings
+- Enrich control-plane log
+
+### Dependencies
+
+- Update prom/prometheus docker tag to v3.6.0
+- Update rust crate serde to 1.0.226
+- Update rust crate serde to 1.0.225
+- Update docker.io/rust docker tag to v1.90.0
+- Update httputils@0.2.0
+- Update rust crate serde_json to 1.0.145
+- Update rust crate tempfile to 3.22.0
+- Update rust crate mongodb to 3.3.0
+- Update apache/kafka docker tag to v4.1.0
+- Update rust crate twox-hash to 2.1.2
+- Update rust crate uuid to 1.18.1
+
+### Documentation
+
+- Clarify persistence paragraph in usage page
+- Describe persistence usage guidelines and index management
+- Extend initial documentation to provide more and clearer details
+
+### Fixed
+
+- Trace parent is now correctly assigned to consumer span
+- Ensure trace context is propagated in Kafka headers
+- Properly handle $in and $contains operators
+- Introduce $contains operator to support reverse filter on arrays
+
 ## [0.5.2] - 2025-09-01
 
 ### Added
