@@ -746,8 +746,8 @@ On the contrary, actions of type `event` prompt a result event to be emitted fro
 |`loadingDebounce`|`loading-debounce`|number|400|min time in milliseconds between loading swaps (when less it doesn't trigger `loading` rendering) |
 |`loadingOnAction`|`loading-on-action`|boolean|false|configures the button to be loading while action is in progress |
 |`navigationStrategy`| - |"disable" \| "hide"| - |determines the button behavior upon navigating nested objects. Allowed values are 'disable' and 'hide'. By default, the button does not react to navigation events. |
-|`shape`|`shape`|string|'round'|button shape property |
-|`type`|`type`|string|'primary'|button type property |
+|`shape`|`shape`|string|'round'|button shape property. One of: 'default', 'circle', 'round' |
+|`type`|`type`|string|'primary'|button type property. One of: 'primary', 'ghost', 'dashed', 'link', 'text', 'default' |
 |`urlMask`|`url-mask`|[UrlMask][url-mask]|''|url mask to apply to the current path to extract dynamic parameters |
 |`action`| - |[Action][action]| - | schema describing How to configure onClick event |
 |`bulkButton`| - | boolean | false | whether to use it as a bulk button or not. If set to true, it listens to selected-data-bulk event |
