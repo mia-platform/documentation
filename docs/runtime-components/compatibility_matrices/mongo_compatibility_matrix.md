@@ -30,6 +30,7 @@ The table shows a compatibility matrix for MongoDB versions support of Marketpla
 | [Flow Manager](/products/console/tutorials/configure-marketplace-components/flow-manager.md)    | ≤ v2.2.0  |   ❌    |   ❌    |   ❌    |   ❌    |
 | [Mongo2Kafka](/runtime-components/plugins/mongo2kafka/configuration.md)                             | v1.1.2    |   ✅    |   ✅    |   ❌    |   ❌    |
 | [Mongo2Kafka](/runtime-components/plugins/mongo2kafka/configuration.md)                             | v1.1.1    |   ❌    |   ❌    |   ❌    |   ❌    |
+| [Files Service](/runtime-components/plugins/files-service/configuration.mdx)                        | ≥ v2.10.4 |   ✅    |   ✅    |   ✅    |   ✅    |
 | [Files Service](/runtime-components/plugins/files-service/configuration.mdx)                        | ≥ v2.10.1 |   ✅    |   ✅    |   ✅    |   ❌    |
 | [Files Service](/runtime-components/plugins/files-service/configuration.mdx)                        | ≥ v2.9.0  |   ✅    |   ✅    |   ❌    |   ❌    |
 | [Files Service](/runtime-components/plugins/files-service/configuration.mdx)                        | ≥ v2.3.x  |   ❌    |   ❌    |   ❌    |   ❌    |
