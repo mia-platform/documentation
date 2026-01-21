@@ -4,6 +4,12 @@ title: CHANGELOG
 sidebar_label: CHANGELOG
 ---
 
+## [1.5.25] - 2026-01-20
+
+### Fixed
+
+- Fixed isPartialFormat date in bk-form-wizard
+
 ## [1.5.24] - 2026-01-20
 
 ### Fixed
