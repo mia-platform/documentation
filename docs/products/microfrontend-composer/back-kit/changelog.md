@@ -4,17 +4,49 @@ title: CHANGELOG
 sidebar_label: CHANGELOG
 ---
 
+## [1.5.25] - 2026-01-20
+
+### Fixed
+
+- Fixed isPartialFormat date in bk-form-wizard
+
+## [1.5.24] - 2026-01-20
+
+### Fixed
+
+- managed `formOptions.isPartialFormat` in filter parsing and export
+
+## [1.5.23] - 2025-11-12
+
+### Changed
+
+- update nginx image
+- update ci script
+- generated image SBOM
+
+## [1.5.22] - 2025-10-27
+
+### Fixed
+
+- fixed editor formatting on text paste
+
+## [1.5.21] - 2025-10-10
+
+### Fixed
+
+-  fixed table loops when switching from data tab to empty tab
+
 ## [1.5.20] - 2025-07-18
 
 ### Fixed
 
-- Fixed partial date format on `bk-form-wizard` component
+- fixed partial date format on `bk-form-wizard` component
 
 ## [1.5.19] - 2025-07-04
 
 ### Fixed
 
-- Fixed enum arrays in form wizard
+- fixed enum arrays in form wizard
 
 ## [1.5.18] - 2025-06-06
 
@@ -24,7 +56,7 @@ sidebar_label: CHANGELOG
 
 ### Fixed
 
-- Fixed `bk-table` columns when Chrome version is 136 or above.
+- fixed `bk-table` columns when Chrome version is 136 or above.
 
 ## [1.5.17] - 2025-05-07
 

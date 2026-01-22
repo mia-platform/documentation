@@ -9,8 +9,17 @@ import Changelog from '@site/src/components/Changelog';
 
 <Changelog>
 
+## [v14.4.2](/release-notes/v14.4.2.mdx)
+*January 22nd, 2026*
+
+This release brings significant improvements to Fast Data with updated Stream Processor v0.5.6 and Farm Data v0.5.5.
+
+[Read the release notes](/release-notes/v14.4.2.mdx)
+
+---
+
 ## [v14.4.1](/release-notes/v14.4.1.mdx)
-*December 11th, 2025*
+*January 22nd, 2026*
 
 This release resolves issues with Azure DevOps connections when using the Git Provider capability with Client Credentials authentication, fixes Mia-Assistant model retention when pinning chats, and restores clipboard functionality in iframe extensions. For Fast Data, the Stream Processor now supports schema imports from the Mia CDN, enabling improved configuration validation. Additionally, the Software Catalog fixes JSON validation error highlighting in the Asset tab editor.
 
@@ -19,7 +28,7 @@ This release resolves issues with Azure DevOps connections when using the Git Pr
 ---
 
 ## [v14.4.0](/release-notes/v14.4.0.mdx)
-*October 30th, 2025*
+*November 27th, 2025*
 
 This release introduces the **Data Catalog Excel Add-in**, a powerful tool that seamlessly integrates with the Mia-Platform Data Catalog, enabling users to import asset metadata into Excel, perform bulk metadata enrichment, and synchronize updates back to the Catalog while ensuring data quality through pre-push validation. For Microfrontend Composer, there is a back-kit update.
 
