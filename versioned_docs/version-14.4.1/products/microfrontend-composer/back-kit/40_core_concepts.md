@@ -355,7 +355,7 @@ Filter operators can be selected from the following list:
 
 ```typescript
 type FilterOperator = |
-  'equal' |
+  'equals' |
   'exists' |
   'notEqual' |
   'greater' |
