@@ -11684,7 +11684,7 @@ __metadata:
     gray-matter: "npm:^4.0.3"
     klaw: "npm:^4.1.0"
     medium-zoom: "npm:^1.1.0"
-    prettier: "npm:3.8.0"
+    prettier: "npm:3.8.1"
     prism-react-renderer: "npm:^2.3.0"
     prompts: "npm:^2.4.2"
     react: "npm:^19.2.3"
@@ -14025,12 +14025,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"prettier@npm:3.8.0":
-  version: 3.8.0
-  resolution: "prettier@npm:3.8.0"
+"prettier@npm:3.8.1":
+  version: 3.8.1
+  resolution: "prettier@npm:3.8.1"
   bin:
     prettier: bin/prettier.cjs
-  checksum: 10/a643c62f095c2987a34cea4fceddce8dea12cc3ee024494aff690cfac22ef20be835e212b39b718c833014fd22890ae156be67b75a26e2bc9b7acde9a34d31fa
+  checksum: 10/3da1cf8c1ef9bea828aa618553696c312e951f810bee368f6887109b203f18ee869fe88f66e65f9cf60b7cb1f2eae859892c860a300c062ff8ec69c381fc8dbd
   languageName: node
   linkType: hard
 
