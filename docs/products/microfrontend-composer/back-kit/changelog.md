@@ -4,6 +4,12 @@ title: CHANGELOG
 sidebar_label: CHANGELOG
 ---
 
+## [1.5.26] - 2026-01-28
+
+## Added
+
+- Editor now supports tables
+
 ## [1.5.25] - 2026-01-20
 
 ### Fixed
@@ -15,7 +21,6 @@ sidebar_label: CHANGELOG
 ### Fixed
 
 - managed `formOptions.isPartialFormat` in filter parsing and export
-- editor now supports tables
 
 ## [1.5.23] - 2025-11-12
 

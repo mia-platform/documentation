@@ -15,7 +15,6 @@ sidebar_label: CHANGELOG
 ### Fixed
 
 - managed `formOptions.isPartialFormat` in filter parsing and export
-- editor now supports tables
 
 ## [1.5.23] - 2025-11-12
 
