@@ -1,0 +1,50 @@
+---
+id: overview
+title: Runtime Management
+sidebar_label: Runtime Management
+---
+
+# Runtime Management
+
+## Fast Data Control Plane
+
+Mia-Platform Fast Data includes a Runtime Management solution, **Fast Data Control Plane**.  
+
+It provides a general overview of the Fast Data pipelines released on one or more runtime environments,
+and allows users to monitor and govern the execution of their Fast Data systems.
+
+In particular, this Fast Data suite component offers functionalities to pause and resume the 
+consumption of data streams along Fast Data pipelines with just a few clicks.  
+
+Therefore, processes such as Fast Data [Initial Load management and Full Refresh](/products/fast_data/concepts/data_loading.mdx) actions can be 
+easily managed from a user-friendly web interface supported by robust backend functionalities.
+
+### Benefits
+
+With Fast Data Control Plane, user can govern the execution of Fast Data microservices involved 
+in messages consumption along the overall data pipeline with fine-grained control.  
+
+This Fast Data Runtime Management flexibility, enables strategic management of the runtime environment in various scenarios:
+
+- **Strategic Resource Allocation**: 
+  - Dynamically allocate resources by pausing and resuming microservices involved in messages consumption based on workload and resource availability.
+  - Efficiently utilize computing resources and prioritize critical processes during peak demand
+  
+  This leads to performance optimization, ensuring data consistency.
+- **Initial Load and Full Refresh processes management**: Govern and control initial load and full refresh processes directly from a user 
+  interface without frictions and without altering your workloads configuration deployed in runtime. 
+  
+  For example, start the ingestion of a massive data system into the Fast Data environment. Only after the ingestion process is complete, 
+  initiate the processing of updates from the Real Time Updater (and the Single View Trigger Generator if active) to generate Single Views.  
+- **Performance Testing and Simulation**: 
+  - Simulate different scenarios for performance testing by pausing and resuming messages consumption along pipeline.
+  - Observe system behavior under various conditions to identify bottlenecks and optimize resource allocation.
+- **Enhanced System Reliability**: 
+  - Gracefully handle unexpected situations or system maintenance by pausing specific data pipeline steps.
+  - Resume operations post-maintenance to minimize downtime and enhance overall system reliability.
+
+## Fast Data Pipeline Concepts
+
+## Architecture
+
+## Useful Resources
