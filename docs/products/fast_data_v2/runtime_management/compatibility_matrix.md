@@ -13,10 +13,7 @@ Please ensure that versions shown in the matrix are respected in your deployed e
 
 | Service                 | Version | MongoDB |
 |-------------------------|---------|---------|
-| Control Plane Frontend  | 0.1.0   | \>=6.0  |
 | Control Plane           | 0.1.0   | \>=6.0  |
-
-<sup>*</sup><em>_N/A_</em> means the service does not depend on the resource
 
 ## Fast Data Services
 
