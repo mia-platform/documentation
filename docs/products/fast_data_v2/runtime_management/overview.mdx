@@ -44,9 +44,9 @@ The Fast Data Control Plane architecture is designed to provide comprehensive mo
 
 The Control Plane consists of two main services that must be deployed in the same namespace as the Fast Data Engine workloads:
 
-- **Control Plane Frontend (FE)**: Provides the user interface for visualizing and managing Fast Data pipelines. Users interact with this web-based interface to monitor pipeline status, pause/resume operations, and access real-time feedback about the system state.
+- **Control Plane Frontend**: Provides the user interface for visualizing and managing Fast Data pipelines. Users interact with this web-based interface to monitor pipeline status, pause/resume operations, and access real-time feedback about the system state.
 
-- **Control Plane Piper**: Acts as the orchestration engine that communicates with the Fast Data Engine workloads. It manages state transitions, coordinates pause/resume operations across pipeline components, and ensures consistent pipeline governance.
+- **Control Plane**: Acts as the orchestration engine that communicates with the Fast Data Engine workloads. It manages state transitions, coordinates pause/resume operations across pipeline components, and ensures consistent pipeline governance.
 
 All components communicate through dedicated **State/Feedback channels** that enable:
 - Real-time status monitoring and health checks

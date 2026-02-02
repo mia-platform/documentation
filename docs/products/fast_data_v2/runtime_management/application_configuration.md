@@ -10,15 +10,13 @@ sidebar_label: Application Configuration
 
 ### Control Plane Frontend
 
-### Piper
+### Control Plane
 
 ### Envoy API Gateway
 
 ### Endpoints
 
 ## Workloads Configuration
-
-## Secure Access
 
 ## Application Deployment
 
