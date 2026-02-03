@@ -865,7 +865,7 @@ By using the `routes.locationId` option, you can specify where the extension is 
 you can create an extension shown on the Project runtime and activate it for the whole Company context.
 Such extension will be visible by all the Projects.
 
-For further information checkout the [official documentation](/products/console/console-extensibility/extension-activation).
+For further information checkout the [official documentation](/products/console/console-extensibility/activation.md).
 :::
 
 Usage:
