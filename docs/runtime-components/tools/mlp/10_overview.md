@@ -23,14 +23,14 @@ the ability to use different configuration for different runtime environments.
 ## Functionalities
 
 - `deploy`: the main command, is used for creating, updating and pruning resources in a kubernetes
-	environment using the resource files created by the Mia-Platform Console
+  environment using the resource files created by the Mia-Platform Console
 - `generate`: create kubernetes `ConfigMap` and `Secret` based on a configuration file
 - `hydrate`: is an helper function for configuring correctly the kustomization files inside the target folder
-	with all the files and patches found
+  with all the files and patches found
 - `interpolate`: will run through all the files passed and run through a templating function for render the final
-	manifests
+  manifests
 - `kustomize`: is the same command of `kustomize build` and can be used if you project is using the kustomize structure
-	to render the resources to pass to the `interpolate` command
+  to render the resources to pass to the `interpolate` command
 
 For more information about the various options available to the various commands you can always run
 `mlp <command> --help` to see the helpers.
