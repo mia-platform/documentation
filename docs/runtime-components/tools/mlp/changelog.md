@@ -9,6 +9,35 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [v2.6.0] - 2026-01-30
+
+###  Changed
+
+- update to go 1.25.6
+- update jlp to v0.10.0
+- update kubernetes libraries to 0.34.3
+- update cobra to v1.10.2
+- update kustomize/api to v0.21.0
+- update kyaml to v0.21.0
+- update yaml to v1.6.0
+
+## [v2.5.0] - 2025-11-04
+
+### Changed
+
+- update to go 1.25.3
+
+### Added
+
+- `allow-missing-filenames` flag to `interpolate` command for ignoring errors when paths
+ are not found
+
+## [v2.4.2] - 2025-09-29
+
+### Fixed
+
+- interpolate command now actually interpolate files inside a folder path
+
 ## [v2.4.1] - 2025-09-26
 
 ### Fixed
@@ -90,7 +119,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 
 - hydrate command now add metadata to kustomize file to avoid "empty kubernetes file"
-	errors during deploy
+  errors during deploy
 
 ## [v2.0.0-rc.1] - 2025-01-23
 
@@ -108,7 +137,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - hanging if no resources has been applied successfully in a step
 - error if a group/kind of a resource saved in the old inventory format is not availbale anymore in the cluster
-	now we skip the resource because we cannot retrieve it
+  now we skip the resource because we cannot retrieve it
 
 ## [v2.0.0-beta.2] - 2024-10-04
 
@@ -119,7 +148,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 
 - hydrate command now add metadata to kustomize file to avoid "empty kubernetes file"
-	errors during deploy
+  errors during deploy
 
 ## [v2.0.0-beta.1] - 2024-09-19
 
@@ -166,7 +195,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - default order for `SecretProviderClass` resource kind
 - new annotation `mia-platform.eu/apply-before-kinds` to override default resources application order
 - support for jobs annotation `mia-platform.eu/await-completion` for waiting job completion after it has been applied
-	on the cluster
+  on the cluster
 - support for resource `ExternalSecrets` for the annotation `mia-platform.eu/await-completion`
 - add some debugging logs
 - add support to kubernetes version 1.23
@@ -174,7 +203,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 
 - fixed a bug in `createPatch` that caused all annotations to be deleted in the resulting patch if the target resource
-	was annotated with `kubectl.kubernetes.io/last-applied-configuration`
+  was annotated with `kubectl.kubernetes.io/last-applied-configuration`
 - fixed a bug that will panic if multiple patch files would be filtered out when hydrating kustomize files
 
 ## [v1.1.0] - 2022-03-17
@@ -231,8 +260,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 
 - fix annotation length by using an unique name,
-	`mia-platform.eu/dependenciesChecksum`, for all dependencies and its value is a object of key-values of all
-	the dependencies.
+  `mia-platform.eu/dependenciesChecksum`, for all dependencies and its value is a object of key-values of all
+  the dependencies.
 
 ## v0.4.0 - 2021-03-17
 
@@ -282,6 +311,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Initial Release 🎉🎉🎉
 
+[v2.6.0]: https://github.com/mia-platform/mlp/compare/v2.5.0...v2.6.0
+[v2.5.0]: https://github.com/mia-platform/mlp/compare/v2.4.2...v2.5.0
+[v2.4.2]: https://github.com/mia-platform/mlp/compare/v2.4.1...v2.4.2
 [v2.4.1]: https://github.com/mia-platform/mlp/compare/v2.4.0...HEAD
 [v2.4.0]: https://github.com/mia-platform/mlp/compare/v2.3.0...v2.4.0
 [v2.3.0]: https://github.com/mia-platform/mlp/compare/v2.2.0...v2.3.0
