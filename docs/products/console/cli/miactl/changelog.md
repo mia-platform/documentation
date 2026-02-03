@@ -9,6 +9,42 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [v0.22.0] - 2026-02-03
+
+### Changed
+
+- update go version to 1.25.6
+- update cobra to v1.10.2
+- update oauth2 to v0.34.0
+- update sync to v0.19.0
+- update text to v0.33.0
+- update kyaml to v0.21.0
+
+### Added
+
+- `miactl deploy latest` for getting the latest successful deployment for a project in a specified environment
+- `miactl runtime create job` has two additional new flags:
+  - `--waitJobCompletion` (default `false`) - if enabled, the `miactl` will wait for the job completion
+  - `--waitJobTimeoutSeconds` (default `600` seconds) - if `--waitJobCompletion` is enabled, the maximum wait timeout
+    for the job completion
+- `miactl project version list` for listing available versions for a project
+- `miactl project version create` for create a new version for a project
+
+### Fixed
+
+- value parsing from a triggered deploy in certain configurations
+
+### Removed
+
+- removed `miactl deploy ENVIRONMENT` deprecated command, use `miactl deploy trigger` instead that
+ is available since 0.15.x
+
+## [v0.21.2] - 2025-10-09
+
+### Fixed
+
+- `miactl project describe` erroneously adding trailing slash to API endpoint for enhanced workflow projects
+
 ## [v0.21.1] - 2025-09-26
 
 ### Fixed
@@ -47,7 +83,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - added `project describe` command. It supports `--revision`, `--version` flags for enhanced workflow projects and
-	`--branch`, `--tag` flags for standard workflow projects.
+  `--branch`, `--tag` flags for standard workflow projects.
 - added `project apply` command. It supports `--revision` flag as only enhanced workflow is supported for project apply
 
 ## [v0.19.0] - 2025-06-18
@@ -151,7 +187,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### BREAKING
 
 - updated `extension apply` command to support new request body schema. The older version of miactl will not be
-	compatible with the Console version upper or equal to 13.2.0.
+  compatible with the Console version upper or equal to 13.2.0.
 
 ## [v0.14.0] - 2024-07-25
 
@@ -229,7 +265,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### BREAKING
 
-- move serviceaccount commads under `company iam add`
+- move serviceaccount commands under `company iam add`
 
 ### Added
 
@@ -254,7 +290,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
-- remove conflicting shortand flag `-v` from `miactl marketplace delete` command
+- remove conflicting shorthand flag `-v` from `miactl marketplace delete` command
 - creation of basic auth service account
 
 ## [v0.10.0] - 2023-12-20
@@ -287,9 +323,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - update oauth2 to v0.15.0
 - update exp to v0.0.0-20231127185646-65229373498e
 - modified `miactl marketplace delete` command to accept either the `objectId` or a `companyId`-`itemId`-`version`
-	tuple that identifies the item to be deleted.
+  tuple that identifies the item to be deleted.
 - modified `miactl marketplace get` command to accept either the `objectId` or a `companyId`-`itemId`-`version` tuple
-	that identifies the item to be retrieved.
+  that identifies the item to be retrieved.
 
 ### Fixed
 
@@ -421,6 +457,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - create cli sdk
 - create cli renderer
 
+[v0.22.0]: https://github.com/mia-platform/miactl/compare/v0.21.2...v0.22.0
+[v0.21.2]: https://github.com/mia-platform/miactl/compare/v0.21.1...v0.21.2
 [v0.21.1]: https://github.com/mia-platform/miactl/compare/v0.21.0...v0.21.1
 [v0.21.0]: https://github.com/mia-platform/miactl/compare/v0.20.0...v0.21.0
 [v0.20.0]: https://github.com/mia-platform/miactl/compare/v0.19.0...v0.20.0

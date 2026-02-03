@@ -80,10 +80,10 @@ The commands are the same used above in the [Deploy Project](#deploy-project) se
 _Service Account_ for that.  
 If you don't know how to create a _Service Account_, read the [dedicated documentation](/products/console/identity-and-access-management/manage-service-accounts.md).
 
-The _Service Account_ can be created with [two different authentication methods](/products/console/identity-and-access-management/manage-service-accounts.md#adding-a-service-account):
+The _Service Account_ can be created with [two different authentication methods](/products/console/identity-and-access-management/manage-service-accounts.md#service-account-authentication):
 
-* _Client Secret Basic_: the service account authenticates by presenting its `client_id` and `client_secret`;
-* _Private Key JWT_: the service account authenticates by signing a `JWT` (JSON Web Token) using its private key.
+- _Client Secret Basic_: the service account authenticates by presenting its `client_id` and `client_secret`;
+- _Private Key JWT_: the service account authenticates by signing a `JWT` (JSON Web Token) using its private key.
 
 After creating the _Service Account_, the first step to setup the `miactl` is **create an auth context**.
 With an _auth context_ you can choose how to be authenticated with the Mia-Platform APIs in all your different contexts
@@ -91,13 +91,13 @@ you create with the `miactl`.
 
 Based on the authentication method of your _Service Account_, you can create the auth context with the following command:
 
-* _Client Secret Basic_:
+- _Client Secret Basic_:
 
   ```sh
   miactl context auth <miactl-auth-name> --client-id <sa-client-id> --client-secret <sa-client-secret>
   ```
 
-* _Private Key JWT_:
+- _Private Key JWT_:
 
   ```sh
   miactl context auth <miactl-auth-name> --jwt-json <path-to-json-containing-the-json-config-of-a-jwt-service-account>
@@ -132,7 +132,7 @@ Finally, you can group the commands above and run them inside a pipeline, e.g. a
 # Insert that after your pipeline stages
 delivery:
     stage: deploy
-    image: ghcr.io/mia-platform/miactl:v0.21.1
+    image: ghcr.io/mia-platform/miactl:v0.22.0
 
     script:
       - miactl version
