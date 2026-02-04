@@ -10,6 +10,19 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.6.0] - 2026-02-02
+
+### BREAKING
+
+- Stabilize cache hash and add script to compute it in JS
+- New [schema](https://cdn.mia-platform.eu/runtime/platform/data-fabric/stream-processor/v0.6.0/stream-processor.schema.json) with required connection configuration in service config and modified cache configuration in service config
+
+### Added
+
+- Added support to Fast Data Control Plane v2
+- Add ci for v branches
+- Remove hard fail on console.log buffer exceeded
+
 ## [0.5.6] - 2026-01-13
 
 ### Added

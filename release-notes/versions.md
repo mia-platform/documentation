@@ -9,8 +9,17 @@ import Changelog from '@site/src/components/Changelog';
 
 <Changelog>
 
+## [v14.5.0](/release-notes/v14.5.0.mdx)
+*February 05th, 2026*
+
+TO-DO
+
+[Read the release notes](/release-notes/v14.5.0.mdx)
+
+---
+
 ## [v14.4.2](/release-notes/v14.4.2.mdx)
-*January 22nd, 2026*
+*February 05th, 2026*
 
 This release brings significant improvements to Fast Data with updated Stream Processor v0.5.6 and Farm Data v0.5.5.
 
