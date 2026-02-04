@@ -8,17 +8,19 @@ sidebar_label: Application Configuration
 
 In order to configure the Fast Data Control Plane application in your Fast Data Project, enter the Project Design Area, and find it inside the Application section.
 
+![Control Plane Fast Data Application Item](img/control-plane-app-item.png)
+
+The application is composed by 3 services (Control Plane, Control Plane Frontend, Envoy API Gateway), and 2 endpoints. Follow the creation wizard to instantiate these components in few clicks.
+
 :::note
 In case the application is not available in your Marketplace, please contact your Console administrator to verify if the Fast Data license is active for your Company.
 :::
 
-The application is composed by 3 services (Control Plane, Control Plane Frontend, Envoy API Gateway), and 2 endpoints.
-
-In the following paragraphs, you can find the guidelines to instantiate Control Plane application in few clicks and to deploy it on your namespace.
+In the following paragraphs, you can find the guidelines to configure the Fast Data Control Plane resources to deploy them on your namespace.
 
 ### Control Plane
 
-Once the application has been instantiated inside the Design Area, move to the Control Plane microservice detail page.
+Once you have successfully created the application in the Design Area, move to the Control Plane microservice detail page.
 
 #### Configuration File
 
