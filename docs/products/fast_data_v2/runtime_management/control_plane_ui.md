@@ -13,7 +13,7 @@ Fast Data Control Plane shows various artifacts that represent different aspects
 
 ### Data Streams
 
-Data Streams represent the channels through which data flows between different execution steps in your pipeline. In the Fast Data v2 architecture, these are Kafka topics that tipically carry [Fast Data compliant messages](/products/fast_data_v2/concepts#fast-data-message-format) between workloads.
+Data Streams represent the channels through which data flows between different execution steps in your pipeline. In the Fast Data v2 architecture, these are Kafka topics that typically carry [Fast Data compliant messages](/products/fast_data_v2/concepts#fast-data-message-format) between workloads.
 
 Each Data Stream lists its associated consumers, detailing essential metadata such as consumer names, runtime states, and the consumer groups that define each Fast Data workload.
 
@@ -62,7 +62,7 @@ The Aggregate step offers three tabs in its detail panel:
 
 The Aggregation Graph Canvas is a specialized visual interface within the Aggregate step that displays the entity relationship diagram configured for your aggregation logic. This canvas shows how different data streams are structurally combined to produce the final aggregated output.
 
-The Aggregation Graph Canvas offers a comprehensive visual representation of entity relationships within the aggregation process, clearly illustrating how different data entities are related with each other to build the final aggregateed output. This interface provides detailed information about relationship configurations that define how entities are joined and aggregated together.  
+The Aggregation Graph Canvas offers a comprehensive visual representation of entity relationships within the aggregation process, clearly illustrating how different data entities are related with each other to build the final aggregated output. This interface provides detailed information about relationship configurations that define how entities are joined and aggregated together.  
 The canvas enables interactive exploration of the entire aggregation logic, allowing you to select any two data streams in the graph to examine the specific relationship configuration that governs their interaction, including join conditions and aggregation rules.
 
 Moreover, from the Aggregation Graph Canvas, it is possible to control the runtime state for data consumption from the rendered data streams. For more information on how to control flows, proceed to the following paragraphs.
@@ -90,7 +90,7 @@ Running steps are typically indicated by blue dotted line in the UI.
 
 The **Paused** state means that the workload's consumer has stopped consuming data from its input streams. This is typically a user-initiated action for maintenance, testing, or controlled processing scenarios.
 
-In Paused state, the workload remains healthy and responsive, no new messages are being consumed from input streams; thus, in case of new input messagges, the displayed consumer lag will consequently increase.
+In Paused state, the workload remains healthy and responsive, no new messages are being consumed from input streams; thus, in case of new input messages, the displayed consumer lag will consequently increase.
 
 Paused steps are typically indicated by grey line in the UI.
 

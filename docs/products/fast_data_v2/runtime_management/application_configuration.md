@@ -77,7 +77,7 @@ roleRef:
 Commit these two files inside the `overlays/<YOUR_ENV>` project git folder, according to the specific runtime environment in which Fast Data control plane, as well as Fast Data workloads, will be deployed.
 
 :::note
-Note that these two YAML files must be committed **in each runtime environment** of your project in hich we want to deploy the Fast Data Control Plane.
+Note that these two YAML files must be committed **in each runtime environment** of your project in which we want to deploy the Fast Data Control Plane.
 :::
 
 **Step 3: Apply the Configuration**
