@@ -13,7 +13,7 @@ Please ensure that versions shown in the matrix are respected in your deployed e
 
 | Service                 | Version | MongoDB |
 |-------------------------|---------|---------|
-| Control Plane           | 0.1.0   | \>=6.0  |
+| Control Plane           | 0.1.0   | \>=7.0  |
 
 ## Fast Data Services
 
@@ -41,7 +41,7 @@ Please ensure that your services respect the following matrix.
 |---------------------------:|:----------------------:|:-------------------:|:---------:|:----------------:|:---------:|:-----:|
 | Control Plane Frontend - 0.1.0 |         _N/A_          |        0.1.0        |   0.5.0   |      0.6.0       |   0.6.0   | 0.6.0 |
 | Control Plane Piper - 0.1.0    |         0.1.0          |        _N/A_        |   0.5.0   |      0.6.0       |   0.6.0   | 0.6.0 |
-| Mongezium - 0.5.0               |         0.1.0          |        0.1.0        |   _N/A_   |      0.6.0       |   0.6.0   | 0.6.0 |
-| Stream Processor - 0.6.0        |         0.1.0          |        0.1.0        |   0.5.0   |      _N/A_       |   0.6.0   | 0.6.0 |
+| Mongezium - 0.5.0               |         0.1.0          |        0.1.0       |   _N/A_   |      0.6.0       |   0.6.0   | 0.6.0 |
+| Stream Processor - 0.6.0        |         0.1.0         |        0.1.0       |   0.5.0   |      _N/A_       |   0.6.0   | 0.6.0 |
 | Farm Data - 0.6.0               |         0.1.0          |        0.1.0        |   0.5.0   |      0.6.0       |   _N/A_   | 0.6.0 |
 | Kango - 0.6.0                   |         0.1.0          |        0.1.0        |   0.5.0   |      0.6.0       |   0.6.0   | _N/A_ |

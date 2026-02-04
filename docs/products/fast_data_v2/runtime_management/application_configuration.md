@@ -6,7 +6,7 @@ sidebar_label: Application Configuration
 
 ## Application Configuration
 
-In order to configure in your Fast Data Project the Fast Data Control Plane application, enter the Project Design Area, and find it inside the Application section.
+In order to configure the Fast Data Control Plane application in your Fast Data Project, enter the Project Design Area, and find it inside the Application section.
 
 :::note
 In case the application is not available in your Marketplace, please contact your Console administrator to verify if the Fast Data license is active for your Company.
@@ -14,7 +14,7 @@ In case the application is not available in your Marketplace, please contact you
 
 The application is composed by 3 services (Control Plane, Control Plane Frontend, Envoy API Gateway), and 2 endpoints.
 
-In the following paragraph, you can find the guidelines to instantiate Control Plane application in few clicks and to deploy it on your Fast Data namespace.
+In the following paragraphs, you can find the guidelines to instantiate Control Plane application in few clicks and to deploy it on your namespace.
 
 ### Control Plane
 
@@ -23,9 +23,9 @@ Once the application has been instantiated inside the Design Area, move to the C
 #### Configuration File
 
 Fill the `config.json` file of the `piper-configuration` configMap with the correct MongoDB connection.  
-To know more how to set properly the connection configuration properties, give a look to the [secret resolution](/products/fast_data_v2/secrets_resolution.md) documentation page.
+To know more how to set properly the connection configuration properties, visit the [secret resolution](/products/fast_data_v2/secrets_resolution.md) documentation page.
 
-The MongoDB connection set is useful to correctly handle and persist in a MongoDB collection the desired states of each Fast Data pipeline steps. This persistence layer allows to retrieve in every moment the last saved runtime steps even in worst cases of service restarts or failures.
+Control Plane microservice handles and persists in a MongoDB collection the desired states of each Fast Data pipeline step. This persistence layer allows to retrieve in every moment the last saved runtime states for your Fast Data pipeline even in worst cases of service restarts or failures.
 
 #### Required Kubernetes Permissions
 
@@ -33,19 +33,19 @@ The Control Plane service requires specific RBAC permissions to automatically di
 
 **Step 1: Identify the Service Account**
 
-Go to your Control Plane microservice detail page in the Console and check the **Container** section to find the service account name. It's typically something like `my-control-plane-service-account` or follows your project naming convention.
+Identify the service account name within the Control Plane microservice detail page. According the application setup, this name corresponds to the microservice itself, resulting in `control-plane`.
 
 **Step 2: Create the RBAC Configuration**
 
-Create a YAML file (e.g., `control-plane-rbac.yaml`) with the following content:
+Create two separate YAML files in your project Git repository to define the Role and RoleBinding:
+
+**`control-plane-role.yaml` file**
 
 ```yaml
-# Role that allows operations on deployments and configmaps
 apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
 metadata:
   name: control-plane-role
-  namespace: {YOUR_NAMESPACE}
 rules:
   - apiGroups: [""]
     resources: ["configmaps"]
@@ -53,51 +53,41 @@ rules:
   - apiGroups: ["apps"]
     resources: ["deployments"]
     verbs: ["get", "list", "watch"]
+```
 
----
+**`control-plane-role-binding.yaml` file**
 
-# Binding of the role above to the control plane service account
+```yaml
 apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
   name: control-plane-role-binding
-  namespace: {YOUR_NAMESPACE}
 subjects:
   - kind: ServiceAccount
-    name: {YOUR_SERVICE_ACCOUNT_NAME}
-    namespace: {YOUR_NAMESPACE}
+    name: control-plane
+    namespace: {KUBE_NAMESPACE}
 roleRef:
   kind: Role
   name: control-plane-role
   apiGroup: rbac.authorization.k8s.io
 ```
 
+Commit these two files inside the `overlays/<YOUR_ENV>` project git folder, according to the specific runtime environment in which Fast Data control plane, as well as Fast Data workloads, will be deployed.
+
+:::note
+Note that these two YAML files must be committed **in each runtime environment** of your project in hich we want to deploy the Fast Data Control Plane.
+:::
+
 **Step 3: Apply the Configuration**
 
-Replace the placeholders:
-- `{YOUR_NAMESPACE}`: Your Fast Data project namespace
-- `{YOUR_SERVICE_ACCOUNT_NAME}`: The service account name found in Step 1
-
-Apply the configuration to your Kubernetes cluster:
-
-```bash
-kubectl apply -f control-plane-rbac.yaml
-```
-
-**Step 4: Verify the Configuration**
-
-Check that the role and binding were created successfully:
-
-```bash
-kubectl get role,rolebinding -n {YOUR_NAMESPACE}
-```
+During the deployment process, the files will be automatically applied to the according namespace, and the `{KUBE_NAMESPACE}` placeholder will be automatically replaced with your project's actual Kubernetes namespace.
 
 Without these permissions, the Control Plane service cannot discover Fast Data workloads (Mongezium, Stream Processor, Farm Data, Kango) in your namespace and the Control Plane Frontend will not display your pipeline.
 
 #### In-Memory Storage
 
 You can opt for in-memory storage for your pipeline runtime states instead of persisting them.  
-To do so, change the control plane dockerImage by removing the `-mongodb` suffix from the image (e.g., use `-piper:0.1.1` instead of `-piper:0.1.1-mongodb`).
+To do so, change the control plane dockerImage by removing the `-mongodb` suffix from the image (e.g., use `/data-fabric/piper:0.1.1` instead of `/data-fabric/piper:0.1.1-mongodb`).
 
 :::caution
 Please note that in-memory storage is volatile. Unlike the persistence layer, it **does not support state recovery**; any service restart or failure will result in the **permanent loss** of all active pipeline runtime states.  
@@ -127,63 +117,35 @@ The application pre-configures two endpoints that are automatically routed by En
 
 - **`/`** - Routes requests to the Control Plane Frontend service  
 
-#### Secure Access
-
-For production environments, it is strongly recommended to secure access to the Control Plane Frontend UI to prevent unauthorized pipeline management operations.
-
-**Basic Authentication with Traefik**
-
-If your infrastructure uses Traefik as ingress controller, you can implement basic authentication by creating a middleware and applying it to your ingress routes:
-
-1. **Create an authentication secret:**
-
-```bash
-# Create htpasswd file with username/password
-htpasswd -c auth myuser
-kubectl create secret generic authsecret --from-file=auth
-```
-
-2. **Create a Traefik middleware for basic auth:**
-
-```yaml
-apiVersion: traefik.io/v1alpha1
-kind: Middleware
-metadata:
-  name: control-plane-basicauth
-spec:
-  basicAuth:
-    secret: authsecret
-```
-
-3. **Apply the middleware to your IngressRoute:**
-
-```yaml
-apiVersion: traefik.io/v1alpha1
-kind: IngressRoute
-metadata:
-  name: control-plane-ingress
-spec:
-  entryPoints:
-    - websecure
-  routes:
-    - match: "Host(`your-domain.com`) && PathPrefix(`/`)"
-      kind: Rule
-      middlewares:
-        - name: control-plane-basicauth
-      services:
-        - name: api-gateway
-          port: 8080
-```
-
-:::warning
-The Control Plane Frontend provides direct control over data pipeline operations. Ensure that only authorized users have access to prevent accidental data flow interruptions or unauthorized pipeline runtime states modifications.
-:::
-
 ## Workloads Configuration
 
 To enable proper communication between the Control Plane and the Fast Data workloads deployed in your namespace, each Fast Data workload must be configured to connect to the Control Plane.
 
 For each of the Fast Data workloads (Mongezium, Stream Processor, Farm Data, and Kango), you need to add the following configuration block to their respective JSON configuration files:
+
+```json
+{
+  "controlPlane": {
+    "grpcAddress": "http://control-plane:50051"
+  }
+}
+```
+
+:::note
+Without this configuration, the Fast Data workloads will operate independently and will not be visible or controllable through the Control Plane interface.
+:::
+
+### Additional Configuration Parameters
+
+Optionally, it is possible to add other parameters to the "control plane" config block, in particular:
+- **`resumeAfterMs`**: Time in milliseconds to wait before automatically resuming operations after a pause (15 seconds)
+- **`onCreate`**: Initial state when the workload for the first time is deployed and connects to the control plane. Available values are `"pause"` or `"resume"`. Set to `"pause"` to ensure the workload waits for explicit Control Plane commands from UI before start data consumption from data streams.
+
+:::note
+If no `onCreate` behavior is defined in the microservice ConfigMap, the **default runtime state** is **Running**. This design choice safeguards real-time data flows by preventing service interruptions when adding Control Plane connectivity to established Fast Data workloads.
+
+`onCreate` is applied solely if the Fast Data workload is the first time that is deployed. Otherwise, the parameter will be not considered by Control Plane, as it reads the last saved runtime state.
+:::
 
 ```json
 {
@@ -194,16 +156,6 @@ For each of the Fast Data workloads (Mongezium, Stream Processor, Farm Data, and
   }
 }
 ```
-
-### Configuration Parameters
-
-- **`grpcAddress`**: The gRPC endpoint of the Control Plane service. Uses the internal Kubernetes service name `control-plane` on port `50051`
-- **`resumeAfterMs`**: Time in milliseconds to wait before automatically resuming operations after a pause (15 seconds)
-- **`onCreate`**: Initial state when the workload starts. Set to `"pause"` to ensure workloads wait for explicit Control Plane commands before processing data
-
-:::note
-Without this configuration, the Fast Data workloads will operate independently and will not be visible or controllable through the Control Plane interface.
-:::
 
 ## Application Deployment
 
@@ -219,4 +171,4 @@ Verify the success of your deploy by:
 ## Embed as Console Extension
 
 The Control Plane UI can be easily embedded as iFrame in either Overview Area or Runtime Area of your Fast Data Project.
-To know how to manage extensions in Console, visit the dedicated [documentation page](/products/console/company-configuration/extensions.md). 
+To know how to manage extensions in Console, visit the dedicated [documentation page](/products/console/company-configuration/extensions.md).
