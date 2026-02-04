@@ -2273,6 +2273,33 @@
           "type": "doc"
         }
       ]
+    },
+    {
+      "label": "Runtime Management",
+      "type": "category",
+      "collapsed": false,
+      "link": {
+        "id": "products/fast_data_v2/runtime_management/overview",
+        "type": "doc"
+      },
+      "items": [
+        {
+          "id": "products/fast_data_v2/runtime_management/control_plane_ui",
+          "type": "doc"
+        },
+        {
+          "id": "products/fast_data_v2/runtime_management/application_configuration",
+          "type": "doc"
+        },
+        {
+          "id": "products/fast_data_v2/runtime_management/compatibility_matrix",
+          "type": "doc"
+        },
+        {
+          "id": "products/fast_data_v2/runtime_management/best_practices",
+          "type": "doc"
+        }
+      ]
     }
   ]
 }
