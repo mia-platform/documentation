@@ -4,6 +4,11 @@ title: Authorization Flow
 sidebar_label: Authorization Flow
 ---
 
+:::caution
+This documentation page refers to a legacy methodology to deal with authentication and authorization mechanisms.  
+We strongly recommmend to look at the [**New Auth Flow** documentation page](/products/console/project-configuration/auth-flow/auth-flow.mdx)
+:::
+
 Security is a matter of great importance for all companies. In order to protect your digital assets it is important to have a secure infrastructure.
 Mia-Platform can help you to set up your infrastructure by providing you strong and reliable **authentication** and **authorization** mechanisms.  
 In this page, you can find out how Mia-Platform authorization flow works.
@@ -31,7 +36,7 @@ Mia-Platform built a secure infrastructure that provides both authentication and
 For each request to any resource, the user identity is verified and its permissions checked. This way, only authorized users will be given access to the requested resource.
 Below you can see an image that shows Mia-Platform authentication and authorization flow:
 
-![Authorization Flow Sequence](./img/authorization-flow-sequence.png)
+![Authorization Flow Sequence](../img/authorization-flow-sequence.png)
 
 As you can see, different components are involved and each of them has a specific role in this flow.  
 We will now proceed in describing them and explaining how they interact with each other.
@@ -53,7 +58,7 @@ The Authentication Manager should then return a response body containing user id
 
 :::info
 
-For more information about how you can configure the Authorization Service to call a custom Authentication Manager and how to choose the headers that should be proxied to it, visit this [link](/runtime-components/plugins/authorization-service/30_usage.md)
+For more information about how you can configure the Authorization Service to call a custom Authentication Manager and how to choose the headers that should be proxied to it, visit the [Authorization Service usage documentation](/runtime-components/plugins/authorization-service/30_usage.md)
 
 :::
 
@@ -62,9 +67,9 @@ For more information about how you can configure the Authorization Service to ca
 Since every authentication process differs from the others for certain aspects it is advisable that you create your own service that will handle authentication and that will contact an Identity Provider (IDP), if you intend to use one.
 In any case, Mia-Platform has a set of services that can handle the authentication process:
 
-* [Client Credentials](/runtime-components/plugins/client-credentials/10_configuration.md)
-* [Auth0 Client](/runtime-components/plugins/auth0-client/20_configuration.md)
-* Authentication Service
+- [Client Credentials](/runtime-components/plugins/client-credentials/10_configuration.md)
+- [Auth0 Client](/runtime-components/plugins/auth0-client/20_configuration.md)
+- Authentication Service
 
 This component is expected to receive a subset of the request headers from the Authorization Service. One of these headers should contain the token that the user obtained during the login process.
 This token will be verified by the Authentication Manager (either internally or by sending them to an IDP). In case the received token is valid, this custom Authentication Manager should then send the retrieved user properties back as response body to the Authorization service.
@@ -81,12 +86,12 @@ Its purpose is to receive the request, perform some custom application logic and
 
 ## Authorization with Rönd
 
-In addition to the above-mentioned services that are involved in an authentication and authorization flow, 
-Mia-Platform provides another service: Rönd.  
+In addition to the above-mentioned services that are involved in an authentication and authorization flow,
+Mia-Platform provides another service: Rönd.
 [Rönd](https://rond-authz.io) is an authorization mechanism integrated in Console that provides more advanced and efficient authorization logics, guaranteeing security and governance benefits in managing your project.
 
-Rönd is the core service responsible for handling advanced authorization mechanisms through the 
-[evaluation of policies](https://rond-authz.io/docs/policy-integration) written in Rego, 
+Rönd is the core service responsible for handling advanced authorization mechanisms through the
+[evaluation of policies](https://rond-authz.io/docs/policy-integration) written in Rego,
 the [OPA](https://www.openpolicyagent.org/docs/latest/) language.
 
 In order to prevent single point of failures in your project architecture, authorization policies are evaluated with a decentralized strategy by different Rönd instances that are distributed within your project.  
@@ -95,9 +100,9 @@ In fact, when you enable Rönd on one of your services, a new instance of Rönd 
 Rönd intercepts the traffic directed to your service and executes the authorization
 logics, evaluating your policies and performing related decisions or actions, such as:
 
-* authorization enforcement on request attributes (such as: request path, headers, query parameters, path parameters, client type, etc) and all the user properties provided by the Authorization Service in the `miauserid` and `miausergroups` platform headers. [See more information here](https://rond-authz.io/docs/policy-integration#rbac-data-model)
-* query generation for data [filtering on request](https://rond-authz.io/docs/policy-integration#rows-filtering).
-* [response body filtering](https://rond-authz.io/docs/policy-integration#response-filtering) to remove or change data returned by your services.
+- authorization enforcement on request attributes (such as: request path, headers, query parameters, path parameters, client type, etc) and all the user properties provided by the Authorization Service in the `miauserid` and `miausergroups` platform headers. [See more information here](https://rond-authz.io/docs/policy-integration#rbac-data-model)
+- query generation for data [filtering on request](https://rond-authz.io/docs/policy-integration#rows-filtering).
+- [response body filtering](https://rond-authz.io/docs/policy-integration#response-filtering) to remove or change data returned by your services.
 
-To know more about how managing and implementing RBAC functionalities, 
+To know more about how managing and implementing RBAC functionalities,
 visit the [Rönd documentation page](https://rond-authz.io/docs/policy-integration).
