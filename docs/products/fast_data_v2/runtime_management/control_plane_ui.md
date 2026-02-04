@@ -13,7 +13,7 @@ Fast Data Control Plane shows various artifacts that represent different aspects
 
 ### Data Streams
 
-Data Streams represent the channels through which data flows between different execution steps in your pipeline. In the Fast Data v2 architecture, these are Kafka topics that typically carry [Fast Data compliant messages](/products/fast_data_v2/concepts#fast-data-message-format) between workloads.
+Data Streams represent the channels through which data flows between different execution steps in your pipeline. In the Fast Data v2 architecture, these are Kafka topics that typically carry [Fast Data compliant messages](/products/fast_data_v2/concepts.mdx#fast-data-message-format) between workloads.
 
 Each Data Stream lists its associated consumers, detailing essential metadata such as consumer names, runtime states, and the consumer groups that define each Fast Data workload.
 
@@ -29,7 +29,7 @@ Execution Steps are the core processing components of your Fast Data pipeline, i
 
 ### Ingest
 
-The **Ingest** step is implemented by [Mongezium](/products/fast_data_v2/mongezium_cdc/overview), that acts as Change Data Capture (CDC) from MongoDB collections to Kafka streams.  
+The **Ingest** step is implemented by [Mongezium](/products/fast_data_v2/mongezium_cdc/10_Overview.md), that acts as Change Data Capture (CDC) from MongoDB collections to Kafka streams.  
 
 The Ingest step monitors MongoDB change streams in real-time and converts database operations (insert, update, delete) into Fast Data compliant messages that flow to downstream processing steps.
 
@@ -40,7 +40,7 @@ When you click on an Ingest step, the detail panel shows two tabs:
 
 ### Process
 
-The **Process** step is implemented by [Stream Processor](/products/fast_data_v2/stream_processor/overview) and provides powerful data transformation capabilities using custom JavaScript logic executed in a secure sandbox environment.
+The **Process** step is implemented by [Stream Processor](/products/fast_data_v2/stream_processor/10_Overview.md) and provides powerful data transformation capabilities using custom JavaScript logic executed in a secure sandbox environment.
 
 The Process step detail panel contains three tabs:
 
@@ -50,7 +50,7 @@ The Process step detail panel contains three tabs:
 
 ### Aggregate
 
-The **Aggregate** step is implemented by [Farm Data](/products/fast_data_v2/farm_data/overview) and performs real-time multi-stream data aggregation to create data products.
+The **Aggregate** step is implemented by [Farm Data](/products/fast_data_v2/farm_data/10_Overview.md) and performs real-time multi-stream data aggregation to create data products.
 
 The Aggregate step offers three tabs in its detail panel:
 
@@ -69,7 +69,7 @@ Moreover, from the Aggregation Graph Canvas, it is possible to control the runti
 
 ### Persist
 
-The **Persist** step is implemented by [Kango](/products/fast_data_v2/kango/overview) and handles the final storage of processed data from Kafka streams to MongoDB collections (Persisted Assets).
+The **Persist** step is implemented by [Kango](/products/fast_data_v2/kango/10_Overview.md) and handles the final storage of processed data from Kafka streams to MongoDB collections (Persisted Assets).
 
 The Persist step detail panel includes two tabs:
 
@@ -124,7 +124,7 @@ Each data flows inside the pipeline provides **Pause** and **Play** buttons that
 Pause and Play buttons are available whenever you click on a pipeline step that supports runtime state control for specific data flows.  
 Additionally, for the Aggregate execution step, these same controls are also available directly within the Aggregation Graph Canvas, providing enhanced utility for managing Initial Load and Full Refresh scenarios, allowing for more efficient and optimized runtime control in these and other operational scenarios.
 
-For more detailed operational strategies and best practices on using these runtime controls effectively, visit the [Best Practices documentation](/products/fast_data_v2/runtime_management/best_practices).
+For more detailed operational strategies and best practices on using these runtime controls effectively, visit the [Best Practices documentation](/products/fast_data_v2/runtime_management/best_practices.md).
 
 ## Navigating UI
 
