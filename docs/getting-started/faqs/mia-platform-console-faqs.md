@@ -189,7 +189,7 @@ You can secure an endpoint from its configuration page in the **Design -> Endpoi
 3.  The Authorization Service calls an **Authentication Manager** (like the `auth0-client`) to validate the credentials and get user information (ID, groups, etc.).
 4.  The Authorization Service evaluates the endpoint's **User Group Permission** expression against the user's info.
 5.  If authorized, it returns success to the API Gateway, which then forwards the request to the target microservice, adding headers like `miauserid` and `miausergroups`.
-    [Discover more](/products/console/project-configuration/auth-flow/authorization-flow)
+    [Discover more](/products/console/project-configuration/authorization-flow.md)
 
 #### How can I implement more advanced authorization with policies?
 For advanced authorization, you can enable **Rönd**, an open-source sidecar based on Open Policy Agent (OPA). With Rönd, you can write declarative policies in the **Rego** language to enforce complex rules, such as:

@@ -30,6 +30,6 @@ Here is an example of a possible flow where a user logins into an application th
 
 :::info
 
-If you want an in-depth description of how Mia-Platform authorization flow works after the login process visit the [authorization flow documentation](/products/console/project-configuration/auth-flow/authorization-flow)
+If you want an in-depth description of how Mia-Platform  authorization flow works after the login process visit this [link](/products/console/project-configuration/authorization-flow.md)
 
 :::

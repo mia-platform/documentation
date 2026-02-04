@@ -7,7 +7,7 @@ sidebar_label: 'Use Case: JWT Authentication'
 Among the wide variety of features provided by the Envoy API Gateway, you can enable JWT authentication for your project.
 
 :::info
-This use case is tailored to our [Authorization Flow](/products/console/project-configuration/auth-flow/authorization-flow). However, you can customize this extensions based on your application's needs.
+This use case is tailored to our [Authorization Flow](/products/console/project-configuration/authorization-flow.md). However, you can customize this extensions based on your application's needs.
 :::
 
 To do so, you need to combine different extensions in advanced mode:
