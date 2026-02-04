@@ -4,6 +4,13 @@ title:  Merge of configurations
 sidebar_label: Merge of configurations
 ---
 
+:::info
+A **new interface for merging configurations** is available in **Beta** stage starting with v14.5.0.  
+To try it, go the **Feature Preview** section inside your **Project settings**, and activate it.
+:::
+
+![New interface for merging revisions](img/merge-collaboration/new-interface-for-merging-revisions.png)
+
 :::caution
 During the merge process, please remember that:
 
