@@ -24,7 +24,7 @@ Let's welcome the **Fast Data Control Plane v2**, the runtime management solutio
 
 Fast Data Control Plane application provides a general overview of the Fast Data v2 pipelines released on the runtime environment, and allows to monitor and govern the execution steps of your data pipelines.
 
-Discover all the capabilities and benefits of Fast Data Control Plane v2 in the [official documentation](/docs/next/products/fast_data_v2/runtime_management/overview).
+Discover all the capabilities and benefits of Fast Data Control Plane v2 in the [official documentation](/docs/14.5.0/products/fast_data_v2/runtime_management/overview).
 
 ![Control Plane Fast Data Pipeline](img/fast-data-pipeline.png)
 
@@ -52,8 +52,49 @@ To try it, go the **Feature Preview** section inside your **Project settings**, 
 
 ## How to update your Console
 
-For self-hosted installations, please head to the [self hosted upgrade guide](/docs/infrastructure/self-hosted/installation-chart/how-to-upgrade) or contact your Mia-Platform referent and upgrade to _Console Helm Chart_ `vX.X.X-beta.X`.
+For self-hosted installations, please head to the [self hosted upgrade guide](/docs/infrastructure/self-hosted/installation-chart/how-to-upgrade) or contact your Mia-Platform referent and upgrade to _Console Helm Chart_ `v15.0.8-beta.0`.
 
 ### Bill of materials
 
-TO-DO
+| Image repository                                                        | Version  |
+| ----------------------------------------------------------------------- | :------: |
+| docker.io/envoyproxy/ratelimit                                          | 19f2079f |
+| nexus.mia-platform.eu/api-portal/website                                |  2.2.0   |
+| nexus.mia-platform.eu/back-kit/mfe-toolkit-on-prem                      |  1.3.12  |
+| nexus.mia-platform.eu/backoffice/login-site                             |  7.2.3   |
+| nexus.mia-platform.eu/console/aggregated-website                        |  1.5.56  |
+| nexus.mia-platform.eu/console/api-gateway                               |  0.2.9   |
+| nexus.mia-platform.eu/console/backend                                   |  32.8.5  |
+| nexus.mia-platform.eu/console/catalog-service                           |  1.7.1   |
+| nexus.mia-platform.eu/console/deploy-service                            |  8.1.2   |
+| nexus.mia-platform.eu/console/environments-variables                    |  3.6.1   |
+| nexus.mia-platform.eu/console/events-manager                            |  1.4.4   |
+| nexus.mia-platform.eu/console/extensibility-manager                     |  2.1.0   |
+| nexus.mia-platform.eu/console/favorites-service                         |  2.3.1   |
+| nexus.mia-platform.eu/console/feature-toggle-service                    |  1.3.7   |
+| nexus.mia-platform.eu/console/kubernetes-service                        |  8.4.6   |
+| nexus.mia-platform.eu/console/license-manager                           |  3.0.3   |
+| nexus.mia-platform.eu/console/license-metrics-generator                 |  6.0.6   |
+| nexus.mia-platform.eu/console/mcp-server                                |  1.2.1   |
+| nexus.mia-platform.eu/console/mia-assistant                             |  1.3.8   |
+| nexus.mia-platform.eu/console/mia-craft-bff                             |  1.2.5   |
+| nexus.mia-platform.eu/console/notification-provider                     |  2.2.5   |
+| nexus.mia-platform.eu/console/project-service                           |  2.1.0   |
+| nexus.mia-platform.eu/console/rbac-manager-bff                          |  2.1.2   |
+| nexus.mia-platform.eu/console/scripts/bindings-cleaner                  |  1.2.2   |
+| nexus.mia-platform.eu/console/scripts/configuration-history-cleaner     |  0.4.1   |
+| nexus.mia-platform.eu/console/scripts/marketplace-sync                  | 10.10.1  |
+| nexus.mia-platform.eu/console/scripts/mia-assistant-embeddings-importer |  latest  |
+| nexus.mia-platform.eu/console/scripts/software-catalog-sync             |  0.7.14  |
+| nexus.mia-platform.eu/console/scripts/version-upgrader                  |  11.1.4  |
+| nexus.mia-platform.eu/console/tenant-overview                           |  4.1.0   |
+| nexus.mia-platform.eu/core/authentication-service                       |  3.13.1  |
+| nexus.mia-platform.eu/core/authorization-service                        |  2.4.3   |
+| nexus.mia-platform.eu/core/client-credentials                           |  3.4.1   |
+| nexus.mia-platform.eu/core/crud-service                                 |  6.10.3  |
+| nexus.mia-platform.eu/core/proxy-manager                                |  3.5.0   |
+| nexus.mia-platform.eu/core/swagger-aggregator                           |  3.9.6   |
+| nexus.mia-platform.eu/microlc/middleware                                |  3.4.0   |
+| nexus.mia-platform.eu/plugins/files-service                             |  2.10.5  |
+| nexus.mia-platform.eu/plugins/ses-mail-notification-service             |  3.5.0   |
+| nexus.mia-platform.eu/rond-authz/rond                                   |  1.14.2  |
