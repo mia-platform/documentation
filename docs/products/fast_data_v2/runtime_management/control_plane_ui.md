@@ -7,21 +7,13 @@ sidebar_label: Control Plane UI
 The Fast Data Control Plane UI provides a comprehensive visual interface for managing and monitoring your Fast Data v2 pipelines.  
 This web-based interface allows you to visualize the entire data pipeline architecture, monitor real-time performance, and control runtime states of your Fast Data Engine workloads with just a few clicks.
 
-## Artifacts
-
 Fast Data Control Plane shows various artifacts that represent different aspects of the overall architecture of Fast Data pipelines.
 
-### Data Streams
+## Data Streams
 
 Data Streams represent the channels through which data flows between different execution steps in your pipeline. In the Fast Data v2 architecture, these are Kafka topics that typically carry [Fast Data compliant messages](/products/fast_data_v2/concepts.mdx#fast-data-message-format) between workloads.
 
 Each Data Stream lists its associated consumers, detailing essential metadata such as consumer names, runtime states, and the consumer groups that define each Fast Data workload.
-
-### Persisted Assets
-
-Persisted Assets represent data that is stored persistently at a certain step of the pipeline. These can be often the final data products (Single Views) that result from your Fast Data pipeline operations.
-
-Each Persisted Asset displays useful metadat and other information about the persistor.
 
 ## Execution Steps
 
