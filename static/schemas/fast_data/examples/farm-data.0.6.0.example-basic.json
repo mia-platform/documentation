@@ -1,0 +1,77 @@
+{
+  "id": "farm_prod",
+  "consumers": {
+    "type": "kafka",
+    "connectionName": "kafka-main",
+    "topic": "product-events"
+  },
+  "producer": {
+    "type": "kafka",
+    "connectionName": "kafka-main",
+    "topic": "product-aggregated"
+  },
+  "connections": {
+    "kafka-main": {
+      "type": "kafka",
+      "config": {
+        "bootstrap.servers": "localhost:9092"
+      }
+    },
+    "mongodb-main": {
+      "type": "mongodb",
+      "config": {
+        "url": "mongodb://localhost:27017/farm",
+        "database": "farm"
+      }
+    }
+  },
+  "processor": {
+    "graph": {
+      "nodes": [
+        {
+          "id": "users",
+          "edges": {
+            "in": [],
+            "out": ["users->posts"]
+          }
+        },
+        {
+          "id": "posts",
+          "edges": {
+            "in": ["users->posts"],
+            "out": []
+          }
+        }
+      ],
+      "edges": [
+        {
+          "id": "users->posts",
+          "filter": {
+            "$eq": [
+              {
+                "foreign": [
+                  "userId"
+                ]
+              },
+              {
+                "local": [
+                  "id"
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "persistence": {
+      "type": "mongodb",
+      "connectionName": "mongodb-main",
+      "database": "farm"
+    },
+    "internalUpdates": {
+      "type": "kafka",
+      "connectionName": "kafka-main",
+      "topic": "farm-internal-updates"
+    }
+  }
+}

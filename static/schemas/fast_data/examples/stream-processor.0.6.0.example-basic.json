@@ -1,0 +1,23 @@
+{
+  "connections": {
+    "kafka-main": {
+      "type": "kafka",
+      "config": {
+        "bootstrap.servers": "localhost:9092"
+      }
+    }
+  },
+  "consumer": {
+    "type": "kafka",
+    "connectionName": "kafka-main",
+    "topic": "input-topic"
+  },
+  "producer": {
+    "type": "kafka",
+    "connectionName": "kafka-main",
+    "topic": "output-topic"
+  },
+  "processor": {
+    "type": "javascript"
+  }
+}

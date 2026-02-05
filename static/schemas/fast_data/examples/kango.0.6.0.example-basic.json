@@ -1,0 +1,33 @@
+{
+  "connections": {
+    "kafka-main": {
+      "type": "kafka",
+      "config": {
+        "bootstrap.servers": "localhost:9092"
+      }
+    },
+    "mongodb-main": {
+      "type": "mongodb",
+      "config": {
+        "url": "mongodb://localhost:27017/kango"
+      }
+    }
+  },
+  "consumer": {
+    "type": "kafka",
+    "connectionName": "kafka-main",
+    "topic": "changes-input",
+    "config": {
+      "group.id": "kango-consumer"
+    }
+  },
+  "persistence": {
+    "connectionName": "mongodb-main",
+    "collection": "events",
+    "maxBatchSize": 1000,
+    "writeIntervalMs": 1000
+  },
+  "settings": {
+    "writeMode": "strict"
+  }
+}

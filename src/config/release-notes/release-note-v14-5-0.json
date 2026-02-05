@@ -1,0 +1,59 @@
+[
+  {
+    "title": "Fast Data",
+    "icon": "fast-data",
+    "defaultOpen": true,
+    "type": "versions",
+    "items": {
+      "newFeatures": [
+        {
+          "title": "Stream Processor v0.6.0",
+          "description": [
+            "The new version `v0.6.0` of the _Stream Processor_ is available!",
+            "**Breaking changes**: This version introduces connection management refactoring that requires updating configuration files.",
+            "Refer to the [JSON Schema](https://cdn.mia-platform.eu/runtime/platform/data-fabric/stream-processor/v0.6.0/stream-processor.schema.json) for configuration details and check the service [changelog](/docs/14.5.0/products/fast_data_v2/stream_processor/changelog) for more information."
+          ]
+        },
+        {
+          "title": "Farm Data v0.6.0",
+          "description": [
+            "The new version `v0.6.0` of the _Farm Data_ is available!",
+            "**Breaking changes**: Configuration structure has been updated with new connection management system.",
+            "Refer to the [JSON Schema](https://cdn.mia-platform.eu/runtime/platform/data-fabric/farm-data/v0.6.0/farm-data.schema.json) for configuration details and check the service [changelog](/docs/14.5.0/products/fast_data_v2/farm_data/changelog) for more information."
+          ]
+        },
+        {
+          "title": "Kango v0.6.0",
+          "description": [
+            "The new version `v0.6.0` of the _Kango_ service is available!",
+            "**Breaking changes**: Connection configuration has been refactored to use the new connections management system.",
+            "Refer to the [JSON Schema](https://cdn.mia-platform.eu/runtime/platform/data-fabric/kango/v0.6.0/kango.schema.json) for configuration details and check the service [changelog](/docs/14.5.0/products/fast_data_v2/kango/changelog) for more information."
+          ]
+        },
+        {
+          "title": "Mongezium v0.5.0",
+          "description": [
+            "The new version `v0.5.0` of the _Mongezium_ service is available!",
+            "**Breaking changes**: Connection management has been refactored with mandatory `connectionName` properties in persistence and stream configurations.",
+            "Refer to the [JSON Schema](https://cdn.mia-platform.eu/runtime/platform/data-fabric/mongezium/v0.5.0/mongezium.schema.json) for configuration details and check the service [changelog](/docs/14.5.0/products/fast_data_v2/mongezium_cdc/changelog) for more information."
+          ]
+        }
+      ],
+      "improvements": [],
+      "bugFixes": []
+    }
+  },
+  {
+    "title": "Microfrontend Composer",
+    "icon": "microfrontend-composer",
+    "defaultOpen": false,
+    "type": "versions",
+    "items": {
+      "newFeatures": [],
+      "improvements": [],
+      "bugFixes": [
+        "Fixed security vulnerabilities in data-visualization and timeline-viewer plugins"
+      ]
+    }
+  }
+]
