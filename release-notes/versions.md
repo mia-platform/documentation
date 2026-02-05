@@ -14,7 +14,7 @@ import Changelog from '@site/src/components/Changelog';
 
 This release introduces the **Fast Data Control Plane v2**, the runtime management solution for Fast Data v2, that allows to visualize and control Fast Data v2 pipelines at runtime.  
 Additionally, a new **interface for merging configurations** is now available in Beta, improving the DevX in the Console Design Area.  
-All Fast Data workloads have been updated to support communication with he Fast Data Control Plane.
+All Fast Data workloads have been updated to support communication with the Fast Data Control Plane v2.
 
 [Read the release notes](/release-notes/v14.5.0.mdx)
 
