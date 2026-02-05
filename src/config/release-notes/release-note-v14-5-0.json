@@ -52,7 +52,7 @@
       "newFeatures": [],
       "improvements": [],
       "bugFixes": [
-        "Fixed security vulnerabilities in data-visualization and timeline viewer plugins"
+        "Fixed security vulnerabilities in data-visualization and timeline-viewer plugins"
       ]
     }
   }
