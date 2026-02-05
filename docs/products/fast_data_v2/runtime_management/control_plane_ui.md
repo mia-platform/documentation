@@ -25,6 +25,10 @@ Execution Steps are the core processing components of your Fast Data pipeline, i
 
 The **Ingest** step is implemented by [Mongezium](/products/fast_data_v2/mongezium_cdc/10_Overview.md), that acts as Change Data Capture (CDC) from MongoDB collections to Kafka streams.  
 
+:::note
+If input data streams originate from a custom CDC plugin or a CDC deployed in a different Kubernetes namespace, the Ingest execution step will not be rendered in Control Plane canvas. Consequently, visibility is limited to input streams consumed by Fast Data workloads within the current namespace.
+:::
+
 The Ingest step monitors MongoDB change streams in real-time and converts database operations (insert, update, delete) into Fast Data compliant messages that flow to downstream processing steps.
 
 When you click on an Ingest step, the detail panel shows two tabs:
@@ -36,7 +40,7 @@ When you click on an Ingest step, the detail panel shows two tabs:
 
 ### Process
 
-The **Process** step is implemented by [Stream Processor](/products/fast_data_v2/stream_processor/10_Overview.md) and provides powerful data transformation capabilities using custom JavaScript logic executed in a secure sandbox environment.
+The **Process** step is implemented by [Stream Processor](/products/fast_data_v2/stream_processor/10_Overview.md), that provides powerful data transformation capabilities.
 
 ![Process Detail](img/process-detail.png)
 
@@ -48,7 +52,7 @@ The Process step detail panel contains three tabs:
 
 ### Aggregate
 
-The **Aggregate** step is implemented by [Farm Data](/products/fast_data_v2/farm_data/10_Overview.md) and performs real-time multi-stream data aggregation to create data products.
+The **Aggregate** step is implemented by [Farm Data](/products/fast_data_v2/farm_data/10_Overview.md) and performs real-time multi-stream data aggregation useful to create data products.
 
 ![Aggregate Detail](img/aggregate-detail.png)
 
@@ -88,7 +92,7 @@ Each execution step in your pipeline can be in one of four distinct runtime stat
 
 The **Running** state indicates that the workload's consumer is actively consuming data from the input stream.  
 
-Running steps are typically indicated by blue dotted line in the UI.
+Running steps are indicated by blue dotted line in the UI.
 
 ### Paused
 
@@ -96,7 +100,7 @@ The **Paused** state means that the workload's consumer has stopped consuming da
 
 In Paused state, the workload remains healthy and responsive, no new messages are being consumed from input streams; thus, in case of new input messages, the displayed consumer lag will consequently increase.
 
-Paused steps are typically indicated by grey line in the UI.
+Paused steps are indicated by grey line in the UI.
 
 ### Unsubscribed
 
@@ -114,7 +118,7 @@ The **Unknown** state indicates that the Control Plane cannot determine the curr
 
 Unknown states require investigation and usually indicate operational issues that need immediate attention.
 
-Unknown steps are typically indicated by red line in the UI.
+Unknown steps are indicated by red line in the UI.
 
 ## Control Runtime States
 
