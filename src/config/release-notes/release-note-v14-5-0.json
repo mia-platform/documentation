@@ -42,5 +42,18 @@
       "improvements": [],
       "bugFixes": []
     }
+  },
+  {
+    "title": "Microfrontend Composer",
+    "icon": "microfrontend-composer",
+    "defaultOpen": false,
+    "type": "versions",
+    "items": {
+      "newFeatures": [],
+      "improvements": [],
+      "bugFixes": [
+        "Fixed security vulnerabilities in data-visualization and timeline viewer plugins"
+      ]
+    }
   }
 ]
