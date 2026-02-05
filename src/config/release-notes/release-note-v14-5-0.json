@@ -11,7 +11,7 @@
           "description": [
             "The new version `v0.6.0` of the _Stream Processor_ is available!",
             "**Breaking changes**: This version introduces connection management refactoring that requires updating configuration files.",
-            "Refer to the [JSON Schema](https://static.mia-platform.io/schemas/fast_data/stream-processor.0.6.0.schema.json) for configuration details and check the service [changelog](/docs/products/fast_data_v2/stream_processor/changelog) for more information."
+            "Refer to the [JSON Schema](https://cdn.mia-platform.eu/runtime/platform/data-fabric/stream-processor/v0.6.0/stream-processor.schema.json) for configuration details and check the service [changelog](/docs/products/fast_data_v2/stream_processor/changelog) for more information."
           ]
         },
         {
@@ -19,7 +19,7 @@
           "description": [
             "The new version `v0.6.0` of the _Farm Data_ is available!",
             "**Breaking changes**: Configuration structure has been updated with new connection management system.",
-            "Refer to the [JSON Schema](https://static.mia-platform.io/schemas/fast_data/farm-data.0.6.0.schema.json) for configuration details and check the service [changelog](/docs/products/fast_data_v2/farm_data/changelog) for more information."
+            "Refer to the [JSON Schema](https://cdn.mia-platform.eu/runtime/platform/data-fabric/farm-data/v0.6.0/farm-data.schema.json) for configuration details and check the service [changelog](/docs/products/fast_data_v2/farm_data/changelog) for more information."
           ]
         },
         {
@@ -27,7 +27,7 @@
           "description": [
             "The new version `v0.6.0` of the _Kango_ service is available!",
             "**Breaking changes**: Connection configuration has been refactored to use the new connections management system.",
-            "Refer to the [JSON Schema](https://static.mia-platform.io/schemas/fast_data/kango.0.6.0.schema.json) for configuration details and check the service [changelog](/docs/runtime-components/applications/kango/changelog) for more information."
+            "Refer to the [JSON Schema](https://cdn.mia-platform.eu/runtime/platform/data-fabric/kango/v0.6.0/kango.schema.json) for configuration details and check the service [changelog](/docs/runtime-components/applications/kango/changelog) for more information."
           ]
         },
         {
@@ -35,7 +35,7 @@
           "description": [
             "The new version `v0.5.0` of the _Mongezium_ service is available!",
             "**Breaking changes**: Connection management has been refactored with mandatory `connectionName` properties in persistence and stream configurations.",
-            "Refer to the [JSON Schema](https://static.mia-platform.io/schemas/fast_data/mongezium.0.5.0.schema.json) for configuration details and check the service [changelog](/docs/runtime-components/applications/mongezium/changelog) for more information."
+            "Refer to the [JSON Schema](https://cdn.mia-platform.eu/runtime/platform/data-fabric/mongezium/v0.5.0/mongezium.schema.json) for configuration details and check the service [changelog](/docs/runtime-components/applications/mongezium/changelog) for more information."
           ]
         }
       ],
