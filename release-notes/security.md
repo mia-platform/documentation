@@ -10,6 +10,9 @@ You can verify the signing in every moment to be sure that there was no tamperin
 
 The public certificates that are required for the verification are available on this website and may depend on the artifact you need to verify. At this time of writing all the artifacts are signed using the same underling key.
 
+Our images are using the latest bundle version so the verification can be done only on `cosign` v3+ or if you are
+using an older version, be sure to append the `--new-bundle-format=true` commands flag.
+
 ## Container Images
 
 Here you can find all the artifacts and the starting version when they are being signed and verifiable with `cosign`:
