@@ -90,7 +90,9 @@ Each execution step in your pipeline can be in one of four distinct runtime stat
 
 ### Running
 
-The **Running** state indicates that the workload's consumer is actively consuming data from the input stream.  
+The **Running** state indicates that the workload's consumer is actively consuming data from the input stream.
+
+![Running State](img/running-state.png)
 
 Running steps are indicated by blue dotted line in the UI.
 
@@ -100,6 +102,8 @@ The **Paused** state means that the workload's consumer has stopped consuming da
 
 In Paused state, the workload remains healthy and responsive, no new messages are being consumed from input streams; thus, in case of new input messages, the displayed consumer lag will consequently increase.
 
+![Pause State](img/pause-state.png)
+
 Paused steps are indicated by grey line in the UI.
 
 ### Unsubscribed
@@ -107,6 +111,8 @@ Paused steps are indicated by grey line in the UI.
 The **Unsubscribed** state indicates that the workload's consumer is not subscribed to its input streams and therefore cannot consume any data.
 
 This commonly occurs when the consumer group has been unsubscribed from that topic, or when the workload has no replicas running (scaled down completely).
+
+![Unsubscribed State](img/unsubscribed-state.png)
 
 In this state, the consumer cannot process any data and it is no more possible to interact with Play/Pause button and to know about consumer lag info.
 
@@ -117,6 +123,8 @@ Unsubscribed steps are typically indicated by orange line in the UI.
 The **Unknown** state indicates that the Control Plane cannot determine the current state of the workload. This typically happens when the service is not reachable or responsive, the workload has crashed or encountered fatal errors, network issues prevent state communication, the service is in an invalid or corrupted state.
 
 Unknown states require investigation and usually indicate operational issues that need immediate attention.
+
+![Unknown State](img/unknown-state.png)
 
 Unknown steps are indicated by red line in the UI.
 
