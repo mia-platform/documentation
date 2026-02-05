@@ -17,7 +17,7 @@ It provides an overall **visualization** of the Fast Data pipelines released on 
 Fast Data Control Plane enables strategic management of the runtime environment in various scenarios:
 
 - **Visualize Fast Data Pipelines while building them**:
-  - During the Fast Data pipeline development phase, users can seamlessly configure and deploy new pipeline steps while the Control Plane UI provides a step-by-step visual representation of the architecture.
+  - During the Fast Data pipeline development phase, users can seamlessly configure Fast Data Engine workloads in Design Area and deploy new data pipeline steps while the Control Plane UI provides a step-by-step visual representation of the architecture increments.
   - Development is streamlined through incremental rendering on the frontend with continuous deployment, offering immediate visual feedback as the pipeline is built.
 
 - **Strategic resource allocation and performance optimization**: 
@@ -26,7 +26,7 @@ Fast Data Control Plane enables strategic management of the runtime environment 
   
 - **Initial Load and Full Refresh processes management**: 
   - Govern and control each step of the Initial Load (or Full Refresh) from the Control Plane UI without any frictions.
-  - Monitor consumer lag and workload health during these processes to ensure smooth execution.
+  - Monitor consumer lag and workload runtime state during these processes to ensure smooth execution.
 
 - **Performance Testing and Simulation**: 
   - Simulate different scenarios for performance testing by pausing and resuming messages consumption along pipeline.
@@ -46,14 +46,14 @@ The Control Plane consists of two main services that must be deployed in the sam
 
 - **Control Plane Frontend**: Provides the user interface for visualizing and managing Fast Data pipelines. Users interact with this web-based interface to monitor pipeline status, pause/resume operations, and access real-time feedback about the system state.
 
-- **Control Plane**: Acts as the orchestration engine that communicates with the Fast Data Engine workloads. It manages state transitions, coordinates pause/resume operations across pipeline components, and ensures consistent pipeline governance.
+- **Control Plane**: Acts as the orchestration engine that communicates with the Fast Data workloads. It manages state transitions, coordinates pause/resume operations across pipeline components, and ensures consistent pipeline governance.
 
 All components communicate through dedicated **State/Feedback channels** that enable:
 - Real-time status monitoring and health checks
 - Coordinated pause/resume operations across pipeline steps
-- Bidirectional communication for control commands and status updates
+- Communication for control commands and runtime state updates
 
-The **API Gateway** provides secure access to the Control Plane services, while **States Persistence** MongoDB collection ensures that pipeline states and configurations are maintained consistently across system restarts and deployments.
+The **Runtime States Persistence** MongoDB collection ensures that pipeline states and configurations are maintained consistently across system restarts and incremental deployments.
 
 ## Useful Resources
 
