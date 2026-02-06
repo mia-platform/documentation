@@ -7,21 +7,15 @@ sidebar_label: Control Plane UI
 The Fast Data Control Plane UI provides a comprehensive visual interface for managing and monitoring your Fast Data v2 pipelines.  
 This web-based interface allows you to visualize the entire data pipeline architecture, monitor real-time performance, and control runtime states of your Fast Data Engine workloads with just a few clicks.
 
-## Artifacts
-
 Fast Data Control Plane shows various artifacts that represent different aspects of the overall architecture of Fast Data pipelines.
 
-### Data Streams
+## Data Streams
 
 Data Streams represent the channels through which data flows between different execution steps in your pipeline. In the Fast Data v2 architecture, these are Kafka topics that typically carry [Fast Data compliant messages](/products/fast_data_v2/concepts.mdx#fast-data-message-format) between workloads.
 
+![Data Stream Detail](img/data-stream-detail.png)
+
 Each Data Stream lists its associated consumers, detailing essential metadata such as consumer names, runtime states, and the consumer groups that define each Fast Data workload.
-
-### Persisted Assets
-
-Persisted Assets represent data that is stored persistently at a certain step of the pipeline. These can be often the final data products (Single Views) that result from your Fast Data pipeline operations.
-
-Each Persisted Asset displays useful metadat and other information about the persistor.
 
 ## Execution Steps
 
@@ -31,6 +25,10 @@ Execution Steps are the core processing components of your Fast Data pipeline, i
 
 The **Ingest** step is implemented by [Mongezium](/products/fast_data_v2/mongezium_cdc/10_Overview.md), that acts as Change Data Capture (CDC) from MongoDB collections to Kafka streams.  
 
+:::note
+If input data streams originate from a custom CDC plugin or a CDC deployed in a different Kubernetes namespace, the Ingest execution step will not be rendered in Control Plane canvas. Consequently, visibility is limited to input streams consumed by Fast Data workloads within the current namespace.
+:::
+
 The Ingest step monitors MongoDB change streams in real-time and converts database operations (insert, update, delete) into Fast Data compliant messages that flow to downstream processing steps.
 
 When you click on an Ingest step, the detail panel shows two tabs:
@@ -38,9 +36,13 @@ When you click on an Ingest step, the detail panel shows two tabs:
 - **Output Topics**: Lists all Kafka topics where change events are published. Each topic corresponds to a MongoDB collection being monitored for changes.
 - **Details**: Provides useful metadata like the type of the execution step, the version of the microservice that implements the steps and the number of replicas.
 
+![Ingest Detail](img/ingest-detail.png)
+
 ### Process
 
-The **Process** step is implemented by [Stream Processor](/products/fast_data_v2/stream_processor/10_Overview.md) and provides powerful data transformation capabilities using custom JavaScript logic executed in a secure sandbox environment.
+The **Process** step is implemented by [Stream Processor](/products/fast_data_v2/stream_processor/10_Overview.md), that provides powerful data transformation capabilities.
+
+![Process Detail](img/process-detail.png)
 
 The Process step detail panel contains three tabs:
 
@@ -50,7 +52,9 @@ The Process step detail panel contains three tabs:
 
 ### Aggregate
 
-The **Aggregate** step is implemented by [Farm Data](/products/fast_data_v2/farm_data/10_Overview.md) and performs real-time multi-stream data aggregation to create data products.
+The **Aggregate** step is implemented by [Farm Data](/products/fast_data_v2/farm_data/10_Overview.md) and performs real-time multi-stream data aggregation useful to create data products.
+
+![Aggregate Detail](img/aggregate-detail.png)
 
 The Aggregate step offers three tabs in its detail panel:
 
@@ -62,6 +66,8 @@ The Aggregate step offers three tabs in its detail panel:
 
 The Aggregation Graph Canvas is a specialized visual interface within the Aggregate step that displays the entity relationship diagram configured for your aggregation logic. This canvas shows how different data streams are structurally combined to produce the final aggregated output.
 
+![Aggregation Graph Detail](img/aggregation-graph-detail.png)
+
 The Aggregation Graph Canvas offers a comprehensive visual representation of entity relationships within the aggregation process, clearly illustrating how different data entities are related with each other to build the final aggregated output. This interface provides detailed information about relationship configurations that define how entities are joined and aggregated together.  
 The canvas enables interactive exploration of the entire aggregation logic, allowing you to select any two data streams in the graph to examine the specific relationship configuration that governs their interaction, including join conditions and aggregation rules.
 
@@ -70,6 +76,8 @@ Moreover, from the Aggregation Graph Canvas, it is possible to control the runti
 ### Persist
 
 The **Persist** step is implemented by [Kango](/products/fast_data_v2/kango/10_Overview.md) and handles the final storage of processed data from Kafka streams to MongoDB collections (Persisted Assets).
+
+![Persist Detail](img/persist-detail.png)
 
 The Persist step detail panel includes two tabs:
 
@@ -82,9 +90,11 @@ Each execution step in your pipeline can be in one of four distinct runtime stat
 
 ### Running
 
-The **Running** state indicates that the workload's consumer is actively consuming data from the input stream.  
+The **Running** state indicates that the workload's consumer is actively consuming data from the input stream.
 
-Running steps are typically indicated by blue dotted line in the UI.
+![Running State](img/running-state.png)
+
+Running steps are indicated by blue dotted line in the UI.
 
 ### Paused
 
@@ -92,13 +102,17 @@ The **Paused** state means that the workload's consumer has stopped consuming da
 
 In Paused state, the workload remains healthy and responsive, no new messages are being consumed from input streams; thus, in case of new input messages, the displayed consumer lag will consequently increase.
 
-Paused steps are typically indicated by grey line in the UI.
+![Pause State](img/pause-state.png)
+
+Paused steps are indicated by grey line in the UI.
 
 ### Unsubscribed
 
 The **Unsubscribed** state indicates that the workload's consumer is not subscribed to its input streams and therefore cannot consume any data.
 
 This commonly occurs when the consumer group has been unsubscribed from that topic, or when the workload has no replicas running (scaled down completely).
+
+![Unsubscribed State](img/unsubscribed-state.png)
 
 In this state, the consumer cannot process any data and it is no more possible to interact with Play/Pause button and to know about consumer lag info.
 
@@ -110,13 +124,17 @@ The **Unknown** state indicates that the Control Plane cannot determine the curr
 
 Unknown states require investigation and usually indicate operational issues that need immediate attention.
 
-Unknown steps are typically indicated by red line in the UI.
+![Unknown State](img/unknown-state.png)
+
+Unknown steps are indicated by red line in the UI.
 
 ## Control Runtime States
 
 The Control Plane UI provides powerful controls for managing the runtime state of your Fast Data pipeline steps, enabling sophisticated operational strategies for data processing.
 
 Each data flows inside the pipeline provides **Pause** and **Play** buttons that allow you to stop and start data consumption from the data stream.
+
+![Button](img/button.png)
 
 - **Pause**: Stops the consumer from processing new messages while maintaining stream position
 - **Resume**: Restarts data consumption from the previously maintained position
@@ -132,12 +150,16 @@ The Control Plane UI provides several features to help you efficiently navigate 
 
 ### Search elements on the canvas
 
-The search feature enables you to quickly locate specific elements within your pipeline.  
+The search feature enables you to quickly locate specific elements within your pipeline.
+
+![Search List](img/search-list.png)
 
 Simply type on the searchbar the name of an artifact or Fast Data workload and select it. The interface will instantly focus on and highlight the selected element, automatically opening the contextual drawer to display all relevant information about it.
 
 ### Highlight on Hover
 
 Typically, when you hover over elements listed in the detail panels or drawers, the corresponding involved pipeline elements are instantly highlighted inside the canvas.
+
+![Highlight Detail](img/highlight-detail.png)
 
 This highlighting feature significantly improves navigation efficiency, especially in complex pipelines with many interconnected components.
