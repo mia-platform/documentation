@@ -163,12 +163,12 @@ Output message may optionally be compliant with [Fast Data message format](/prod
 
 :::
 
-### Processing Function
+## Processing Function
 
 In this section are described all the details regarding the user-defined processing
 function and its most common use cases.
 
-#### Function Signature and Data Type 🫆
+### Function Signature and Data Type
 
 Below are described the function signature, defined by _typescript_ type `ProcessFn`,
 alongside the data types involved in its arguments.
@@ -272,7 +272,7 @@ export default function identity({ key, payload }, caches) {
 It is important to notice that the function may output **zero or more** events based
 on some user-defined business logic, allowing for a great flexibility
 
-#### Mapping 🤖
+### Mapping
 
 The main goal of the processor function is to transform an input event in one
 or more output events. As a result, output events may have a different shape
@@ -298,7 +298,7 @@ function mapFields(payload) {
 }
 ```
 
-#### Filtering 🔍
+### Filtering
 
 Processor function can also be employed to filter out events from the input
 stream and retain only the _interested_ or _valid_ ones in the output stream.
@@ -336,7 +336,7 @@ its return value is any of the following:
 
 :::
 
-#### Errors 🚨
+### Errors
 
 It is important to notice that when the processor function throws an error, or
 it rejects a promise that it has returned, the service treats it as an **unexpected
@@ -396,7 +396,7 @@ offset or the actual implementation of the processor function.
 
 :::
 
-#### Promises 🌠
+### Promises
 
 Async processing is supported by the processor function by means of
 [`Promise`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)
@@ -441,146 +441,288 @@ async function asyncTransform() {
 }
 ```
 
-#### Cache Access 🪙
+### Cache Access
 
 As described in the configuration file, the processor function can access an
 external cache to enable _stateful stream processing_. In the configuration
 file one or more caches can be defined, which are then provided to the function
 in the `caches` argument.
 
-`caches` function allows to retrieve an underlying cache object when specifying
-its identifier that was set in the configuration file.
+The `caches` function allows you to retrieve an underlying cache object by specifying
+its identifier that was set in the configuration file. Different cache types support
+different operations depending on their implementation.
 
-For example, `cache-1` can be defined as follows:
+:::warning
+
+Always verify whether the selected cache object exists. This ensures that _Stream Processor_
+service stops its execution due to an unexpected error. This measure prevents
+handling input events without the external state available.  
+In addition, this check immediately notifies of configuration typos and helps fixing
+them quickly.
+
+:::
+
+| Cache Type | Get | Set | Update | Delete | Purpose |
+|------------|:---:|:---:|:------:|:------:|---------|
+| `mongodb`  | ✔️  | ✔️  |   ✔️   |   ✔️   | Full stateful stream processing with versioning |
+| `farmdata` | ✔️  | ❌  |   ❌   |   ❌   | Read-only access to Farm Data service |
+| `http-rest`| ✔️  | ❌  |   ❌   |   ❌   | Read-only access to external REST APIs |
+
+All cache methods are **asynchronous operations**. When a cache type doesn't support
+a specific operation, calling it will return an `Unimplemented` error.
+
+#### MongoDB Cache
+
+MongoDB cache provides **full CRUD capabilities** (Create, Read, Update, Delete) with support for
+versioning and optimistic locking. This is the recommended cache type for comprehensive stateful
+stream processing requirements.
+
+**Configuration Example:**
 
 ```json
 {
-  // other properties above
   "caches": {
-    "cache-1": {
+    "customer-cache": {
       "type": "mongodb",
-      "url": "mongodb://localhost:27017/farm-data",
+      "url": "mongodb://localhost:27017/fast-data",
       "appName": "eu.miaplatform.fastdata.stream-processor",
-      "database": "farm-data",
+      "database": "fast-data",
       "collection": "stream-processor-state"
     }
   }
 }
 ```
 
-and it can be retrieved by the `caches` function and used as shown in the function below:
+**Available Operations:**
+
+- **`get(key)`**: Retrieves value and version associated to the key.
+  - Returns `undefined` when no record is found
+  
+- **`set(key, value)`**: Creates a new cache entry.
+  - Throws `AlreadyExists` error if key already exists
+  
+- **`update(key, value, version)`**: Updates existing entry with optimistic locking.
+  - Throws `NotFound` if key doesn't exist
+  - Throws `ConcurrentModification` if version doesn't match current stored version
+  
+- **`delete(key)`**: Removes key and its associated value.
+  - Returns `undefined` if key not found
+
+**Usage Example - Complete CRUD Pattern:**
 
 ```js
-export default async function cacheValue({key, payload}, caches) {
-  const testCache = caches?.("test")
+export default async function processWithState({key, payload}, caches) {
+  const cache = caches?.("customer-cache")
 
-  if (testCache) {
-    // NOTE: get method either return the result or undefined
-    const result = await testCache.get("testKey")
+  if (!cache) {
+    throw new Error("customer-cache not found")
+  }
 
-    try {
+  try {
+    // GET: Retrieve existing customer state
+    const existing = await cache.get(key)
 
-      if (!result) {
-        // NOTE: set method throws in case a value already exists
-        //       for selected key
-        await testCache.set("testKey", payload)
-      } else {
-        // NOTE: to permit concurrent modifications, the current value
-        //       version MUST be provided. On the contrary, a mismatched
-        //       version would raise a concurrent modification
-        await testCache.update("testKey", payload, result.v)
-      }
-
-      const nextValue = await testCache.get("testKey")
-      console.log(nextValue)
-
-      return [
-        { key, payload: nextValue }
-      ]
-    } catch(error) {
-      // IMPORTANT: promises MUST be caught and the outer promise MUST be
-      //            rejected to ensure proper closure of the sandbox process
-      console.log('failed to use cache', error)
-
+    if (existing) {
+      // UPDATE: Modify existing record with optimistic locking
+      // The version parameter prevents concurrent modification issues
+      await cache.update(
+        key,
+        {
+          ...existing.value,
+          lastSeen: new Date().toISOString(),
+          totalOrders: (existing.value.totalOrders || 0) + 1
+        },
+        existing.v  // Current version from previous get
+      )
+      return [{ key, payload: { status: "updated" } }]
+    } else {
+      // SET: Create new customer record
+      await cache.set(key, {
+        customerId: key,
+        createdAt: new Date().toISOString(),
+        totalOrders: 1
+      })
+      return [{ key, payload: { status: "created" } }]
+    }
+  } catch(error) {
+    if (error.cause === 'ConcurrentModification') {
+      // Handle concurrent modification - skip this message
+      // You can implement retry logic if needed
+      console.log('Concurrent modification detected, skipping message')
       return []
     }
-  } else {
-    // IMPORTANT: when cache is not found, it is recommended to signal such
-    //            unexpected situation and terminate the processing to avoid
-    //            producing invalid events
-    throw new Error("cache not found")
+    if (error.cause === 'AlreadyExists') {
+      console.log('Key already exists, using update instead')
+      return []
+    }
+    
+    // For other errors, reject to halt processing
+    throw error
   }
 }
 ```
 
-:::warning
+**Key Features:**
+- **Versioning**: Each entry includes a version number for optimistic locking
+- **Concurrent Safety**: The version parameter prevents race conditions between updates
+- **Complete CRUD**: Supports all four operations needed for stateful processing
 
-Always verify whether selected cache object exists. This ensures that _Stream Processor_
-service stops its execution due to an unexpected error. This measure is to prevent
-handling input events without the external state available.  
-In addition, this check immediately notifies of configuration typos and help fixing
-them quickly.
+#### FarmData Cache
 
-:::
+FarmData cache provides **read-only access** to data stored in the Farm Data service.
 
-##### Cache Supported Operations
+**Use Case:** When aggregated data is too large to fit in a single Kafka message, it's stored
+in Farm Data. The service sends a message with empty `after` and `before` fields, and you can
+use the Kafka key with the FarmData cache to retrieve the full content.
 
-The cache object interface exposes the following methods:
+**Configuration Example:**
 
-- `get(key)`: retrieves from the cache the value (and its version) associated
-  to selected key. Returns void when no record is found;
-- `set(key, value)`: inserts a value for selected key;  
-  Possible errors:
-  - `AlreadyExists`: it is not possible to set a key that already exists;
-- `update(key, value, version)`: modifies the existing value associated to the selected
-  key.  
-  Possible errors:
-  - `NotFound`: selected key does not exist within the cache;
-  - `ConcurrentModification`: version parameter does not match the one currently stored
-    for the selected key. Another operation may have occurred on it since last read;
-- `delete(key)`: remove from the cache selected key and its associated value;
+```json
+{
+  "caches": {
+    "farmdata-cache": {
+      "type": "farmdata",
+      "url": "http://farm-data-service:3000",
+      "head": "aggregations",
+      "http2": false
+    }
+  }
+}
+```
 
-:::note
+**Available Operations:**
 
-All cache methods are asynchronous operations.
+- **`get(key)`**: Retrieves aggregated data from Farm Data service
+  - Returns the complete aggregated object when found
+  - Returns `undefined` when no data exists for the key
 
-:::
+**Usage Example:**
 
-In the table below are reported the available cache types with their supported operations:
+```js
+export default async function retrieveLargeAggregation({key, payload}, caches) {
+  const cache = caches?.("farmdata-cache")
 
-| Cache Type | Get | Set | Update | Delete |
-|------------|:---:|:---:|:------:|:------:|
-| `mongodb`  | ✔️  | ✔️  |   ✔️   |   ✔️   |
-| `farmdata` | ✔️  | ❌  |   ❌   |   ❌   |
-| `http-rest`| ✔️  | ❌  |   ❌   |   ❌   |
+  if (!cache) {
+    throw new Error("farmdata-cache not found")
+  }
 
-It is up to each cache implementation to provide their underlying logic. When
-no logic is defined for one of the methods, calling it returns an `Unimplemented` error.
+  try {
+    // GET: Retrieve large aggregated data
+    const result = await cache.get(key)
 
-####### FarmData Cache
+    if (result) {
+      return [{ 
+        key, 
+        payload: {
+          ...payload,
+          aggregatedData: result.value
+        } 
+      }]
+    }
 
-It is meant to be used in conjunction with fast data `Farm Data` service. In case output
-messages from aggregation are too large to fit in a single Kafka message, they can be stored
-in `Farm Data` cache. `Farm Data` will send a message with empty `after` and `before` fields
-and the `Kafka` key can be used in the `farmdata` cache in the `Stream Processor` to retrieve
-the full content via HTTP REST API.
+    // No data found - skip message
+    return []
+  } catch(error) {
+    throw error
+  }
+}
+```
 
-####### HTTP-REST Cache
+#### HTTP-REST Cache
 
-Performs a generic HTTP REST call to a user-defined endpoint to retrieve data.
-The key argument for the get must be an object with the following shape for the cache GET operation:
+HTTP-REST cache provides **read-only access** to any external HTTP endpoint, enabling
+enrichment of stream events with data from external APIs.
+
+**Configuration Example:**
+
+```json
+{
+  "caches": {
+    "user-enrichment": {
+      "type": "http-rest",
+      "url": "http://user-service:3000",
+      "http2": false,
+      "get": {
+        "path": "/users/{userId}",
+        "method": "GET",
+        "headers": [
+          { "key": "Authorization", "value": "Bearer token123" }
+        ],
+        "query": [
+          { "key": "includePreferences", "value": "true" }
+        ]
+      }
+    }
+  }
+}
+```
+
+**Available Operations:**
+
+- **`get(key)`**: Performs HTTP GET request to external endpoint
+  - Returns the HTTP response body when successful
+  - Returns `undefined` when endpoint returns 404
+
+**GET Key Parameter Shape:**
+
+The key argument for GET must be an object with this structure:
 
 ```typescript
 interface HttpRestCacheGetKey {
   params?: {
-    query?: Array<{ key: string; value: string }>;
-    path?: { [key: string]: string }; // path parameters
+    query?: Array<{ key: string; value: string }>;    // Query parameters
+    path?: { [key: string]: string };                  // Path parameters
   }
-  headers?: Array<{ key: string; value: string }>;
+  headers?: Array<{ key: string; value: string }>;     // Request headers
 }
 ```
 
-#### Dead Letter Queue (DLQ) Error Handling
+**Usage Example:**
+
+```js
+export default async function enrichUserData({key, payload}, caches) {
+  const cache = caches?.("user-enrichment")
+
+  if (!cache) {
+    throw new Error("user-enrichment cache not found")
+  }
+
+  try {
+    // GET: Retrieve user data from external service
+    // Path parameter {userId} is replaced with actual value
+    const result = await cache.get({
+      params: {
+        path: { userId: payload.userId },
+        query: [
+          { key: "includeOrders", value: "true" }
+        ]
+      },
+      headers: [
+        { key: "X-Request-ID", value: key }
+      ]
+    })
+
+    if (result) {
+      return [{ 
+        key, 
+        payload: {
+          ...payload,
+          user: result.value
+        } 
+      }]
+    }
+
+    // User not found - skip enrichment
+    return []
+  } catch(error) {
+    // HTTP errors should be handled gracefully
+    console.error('Failed to enrich user data:', error)
+    return []
+  }
+}
+```
+
+### Dead Letter Queue (DLQ) Error Handling
 
 The Stream Processor provides robust error handling capabilities through Dead Letter Queue (DLQ) configuration. When processing errors occur (such as thrown exceptions, timeouts, memory exhaustion, or built-in function failures like `JSON.parse()` or `new URL()`), messages can be automatically sent to a DLQ topic instead of causing the entire processing engine to fail.
 
@@ -603,7 +745,7 @@ export default function transformEvent({ key, payload }) {
 
 In this example, when the `customer` validation fails, the original message is sent to the DLQ topic while processing continues with the next message.
 
-#### Tombstone Events Management 🪦
+### Tombstone Events Management
 
 The service is able to handle tombstone events, that is events whose content is empty
 (_empty vector of bytes_), passing them to the processing function with a payload set
@@ -667,7 +809,7 @@ export default function ({key, payload}) {
 }
 ```
 
-#### Sandbox Context
+### Sandbox Context
 
 When writing a function that will run within the sandbox, please take into account that
 only the following objects are available within its `globalThis` context:
