@@ -22,6 +22,10 @@ In the following paragraphs, you can find the guidelines to configure the Fast D
 
 Once you have successfully created the application in the Design Area, move to the Control Plane microservice detail page.
 
+:::note
+Control Plane service does not work with more replicas. Be sure to **assign 1 Static Replicas** to this microservice.
+:::
+
 #### Configuration File
 
 Fill the `config.json` file of the `piper-configuration` configMap with the correct MongoDB connection.  
