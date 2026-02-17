@@ -76,11 +76,12 @@ The payload sent to the Extension is shaped as follows:
   },
   "tenant": {
     "name": "<Company Name>",
-    "id": "<tenantId>"
+    "id": "<tenantId>",
   },
   "configurationRef": {
       "name": "<Revision or Version Name>",
       "type": "revision"|"version"
+      "changesId" "<identifier of the changes - only for enhanced workflow projects>"
   },
   "environment": {
     "id": "<envId>",
@@ -91,7 +92,7 @@ The payload sent to the Extension is shaped as follows:
     "services": {
       "serviceName": {
         "name": "serviceName",
-        ...all services configurations
+        // ...all services configurations
       }
     },
     "configMaps": {
@@ -102,10 +103,39 @@ The payload sent to the Extension is shaped as follows:
           "content": "file1 content"
         }]
       }
+    },
+    "serviceAccounts": {
+      "serviceAccount1": {
+        "name": "serviceAccount1"
+      },
+      // ...other service account definitions
+    },
+    "unsecretedVariables": {
+      "PUB_VAR_1": "<value of PUB_VAR_1 for the selected environment>",
+      // ...other public variables
     }
   }
 }
 ```
+
+Here is a quick overview of the content of the payload sent:
+
+| Field   | Description |
+|---------|-------------|
+| `project` | Information about the Project for which the deploy has been triggered |
+| `tenant` | Information about the Company |
+| `configurationRef` | Information about the configuration version/revision to be deployed. (_NOTE: From Console v14.5.1, the `configurationRef` includes only the `changesId` field, if the project uses the Enhanced Workflow)_ |
+| `environment` | Information about the Environment for which the deploy has been triggered |
+| `configuration` | A subset of the configuration of the Project, which includes services, configurations, service accounts and unsecreted variables, as set in the Console UI. This is the main field of the payload, as it contains all the information about the Project configuration that the Orchestrator Generator needs to generate the files to be deployed. |
+
+The configuration object includes:
+
+| Field | Description |
+|-------|-------------|
+| `services` | Object holding the configuration of all the [Services](/products/console/api-console/api-design/services.md) of the Project. Each key is the name of a service and its value is an object describing the service configuration, as configured and stored in the configuration project. More details in the [dedicated paragraph](#service-data-model) |
+| `configMaps` | Object holding the configuration of all the ConfigMaps of the Project. Each key is the name of a ConfigMap and its value is an object describing the ConfigMap configuration, as configured and stored in the configuration project. |
+| `serviceAccounts` | Object holding the configuration of all the [service's Service Accounts](/products/console/api-console/api-design/services.md#service-account-configuration) of the Project. Each key is the name of a Service Account and its value is an object containing the name of the Service Account. |
+| `unsecretedVariables` | - Object holding all the [public variables](/products/console/api-console/api-design/public_variables.md) of the Project, with their value only for the selected Environment _(Introduced with Console v14.5.1)_ |
 
 #### Service data model
 
@@ -129,7 +159,7 @@ The payload sent to the Extension is shaped as follows:
 | `exclusiveServiceExposure` | Boolean | Use this field to understand which containers should be exposed in the k8s Service | ✔️ |
 | `additionalContainers` | [Container[]](#container-schema) | Extra containers to be installed in the service | ✔️ |
 
-#### Env Schema
+##### Env Schema
 
 | Field   | Type     | Description   |
 |---------|----------|---------------|
@@ -139,7 +169,7 @@ The payload sent to the Extension is shaped as follows:
 | `secretName` | String | Name of the secret holding the env value |
 | `secretKey` | String | Name of the secret key (withint the Secret `secretName`) holding the value for the env |
 
-#### Resource Schema
+##### Resource Schema
 
 The `resources` field holds two properties `cpuLimits` and `memoryLimits`, each of them having the following schema:
 
@@ -148,7 +178,7 @@ The `resources` field holds two properties `cpuLimits` and `memoryLimits`, each 
 | `max`   | String   | CPU/MEM limit   | ✔️ |
 | `min`   | String   | CPU/MEM request | ✔️ |
 
-#### Probes Schema
+##### Probes Schema
 
 The `probes` field holds three properties: `readiness`, `liveness` and `startup`, each of them having the following schema:
 
@@ -162,7 +192,7 @@ The `probes` field holds three properties: `readiness`, `liveness` and `startup`
 | `successThreshold` | Number | Value for the `successThreshold` k8s configuration  | ✔️ |
 | `failureThreshold` | Number | Value for the `failureThreshold` k8s configuration  | ✔️ |
 
-#### ConfigMount Schema
+##### ConfigMount Schema
 
 Each `configMaps` item holds information about how to mount a specific ConfigMap found in the top-level `configMaps` field.
 
@@ -174,11 +204,11 @@ Mount information is the following:
 | `mountPath` | String | Path where the configuration files should be mounted | |
 | `subPaths` | String[] | List of specific files that needs to be picked from the ConfigMap and mounted | ✔️ |
 
-#### Container schema
+##### Container schema
 
 Each additional container has a similar shape of the main service, holding the following properties subset: `name`, `dockerImage`, `exclusiveServiceExposure`, `containerPorts`, `probes`, `environment`, `resources`, and `configMaps`.
 
-#### Service data model example
+##### Service data model example
 
 
 JSON request body
@@ -280,8 +310,6 @@ JSON request body
     ]
 }
 ```
-
-
 
 ## Response format
 
