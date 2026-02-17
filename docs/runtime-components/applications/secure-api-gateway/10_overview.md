@@ -40,7 +40,7 @@ To have an overview on how to use the **Secure API Gateway** application to secu
 ## Authorization Service
 
 The [authorization-service](/runtime-components/plugins/authorization-service/10_overview.md) is added by the application if it does not already exist.
-The **authorization-service** is used to manage the [authorization flow](/products/console/project-configuration/auth-flow/authorization-flow). It is created with a standard configuration, with `USERINFO_URL` pointing to the `auth0-client` service.
+The **authorization-service** is used to manage the [authorization flow](/products/console/project-configuration/auth-flow/authorization-flow.md). It is created with a standard configuration, with `USERINFO_URL` pointing to the `auth0-client` service.
 
 To have a complete overview of all the possible configurations for the **authorization-service** read the [dedicated documentation page](/runtime-components/plugins/authorization-service/20_configuration.md).
 

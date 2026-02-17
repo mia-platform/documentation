@@ -98,7 +98,7 @@ Here an example:
 
 :::caution
 
-The Form Service doesn't provide any authentication or authorization system nor user management systems. Further information can be found [here](/products/console/project-configuration/auth-flow/authorization-flow).
+The Form Service doesn't provide any authentication or authorization system nor user management systems. Further information can be found [here](/products/console/project-configuration/auth-flow/authorization-flow.md).
 
 :::
 
