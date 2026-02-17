@@ -438,7 +438,12 @@
           ]
         },
         {
-          "label": "Auth Flow",
+          "id": "products/console/project-configuration/auth-flow/authorization-flow",
+          "type": "doc",
+          "label": "Authorization Flow"
+        },
+        {
+          "label": "Auth Flow BYO Provider",
           "type": "category",
           "collapsed": true,
           "link": {
@@ -447,7 +452,11 @@
           },
           "items": [
             {
-              "id": "products/console/project-configuration/auth-flow/authorization-flow",
+              "id": "products/console/project-configuration/auth-flow/configuration",
+              "type": "doc"
+            },
+            {
+              "id": "products/console/project-configuration/auth-flow/frontend-application",
               "type": "doc"
             }
           ]

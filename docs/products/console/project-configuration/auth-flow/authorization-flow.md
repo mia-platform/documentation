@@ -4,11 +4,6 @@ title: Authorization Flow
 sidebar_label: Authorization Flow
 ---
 
-:::caution
-This documentation page refers to a legacy methodology to deal with authentication and authorization mechanisms.  
-We strongly recommmend to look at the [**New Auth Flow** documentation page](/products/console/project-configuration/auth-flow/auth-flow.mdx)
-:::
-
 Security is a matter of great importance for all companies. In order to protect your digital assets it is important to have a secure infrastructure.
 Mia-Platform can help you to set up your infrastructure by providing you strong and reliable **authentication** and **authorization** mechanisms.  
 In this page, you can find out how Mia-Platform authorization flow works.
