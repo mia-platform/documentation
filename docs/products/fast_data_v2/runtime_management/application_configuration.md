@@ -194,8 +194,14 @@ For each of the Fast Data workloads (Mongezium, Stream Processor, Farm Data, and
 }
 ```
 
+Moreover, it is necessary to add the `SERVICE_NAME` environment variable with the following parameters:
+
+- **Value Type**: `From Downward API`
+- **Field Path**: `metadata.labels['KEY']`
+- **Label Key**: `app.kubernetes.io/name`
+
 :::note
-Without this configuration, the Fast Data workloads will operate independently and will not be visible or controllable through the Control Plane interface.
+Without this configuration, the Fast Data workloads will operate independently and will not be controllable through the Control Plane interface.
 :::
 
 ### Additional Configuration Parameters
@@ -205,7 +211,7 @@ Optionally, it is possible to add other parameters to the "control plane" config
 - **`onCreate`**: Initial state when the workload for the first time is deployed and connects to the control plane. Available values are `"pause"` or `"resume"`. Set to `"pause"` to ensure the workload waits for explicit Control Plane commands from UI before start data consumption from data streams.
 
 :::note
-If no `onCreate` behavior is defined in the microservice ConfigMap, the **default runtime state** is **Running**. This design choice safeguards real-time data flows by preventing service interruptions when adding Control Plane connectivity to established Fast Data workloads.
+If no `onCreate` behavior is defined in the microservice ConfigMap, the **default runtime state** is **Running**, so the **resume** state. This design choice safeguards real-time data flows by preventing service interruptions when adding Control Plane connectivity to established Fast Data workloads.
 
 `onCreate` is applied solely if the Fast Data workload is the first time that is deployed. Otherwise, the parameter will be not considered by Control Plane, as it reads the last saved runtime state.
 :::
