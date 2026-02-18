@@ -90,6 +90,55 @@ During the deployment process, the files will be automatically applied to the ac
 
 Without these permissions, the Control Plane service cannot discover Fast Data workloads (Mongezium, Stream Processor, Farm Data, Kango) in your namespace and the Control Plane Frontend will not display your pipeline.
 
+:::caution
+When deploying the `control-plane-role.yaml` and `control-plane-role-binding.yaml` manifests, the Service Account or user performing the deployment (the "deployer") **must have sufficient permissions to manage RBAC resources within the target namespace**.
+:::
+
+If the deployer lacks these permissions, the pipeline will fail with an error similar to:
+
+> `User "..." cannot patch resource "roles" in API group "rbac.authorization.k8s.io" in the namespace "..."`
+
+This typically happens because, in many Kubernetes distributions (such as Azure AKS), the ability to modify security roles is restricted to prevent unauthorized privilege escalation.
+
+**Corrective Action**
+
+Before deploying these manifests, ensure that the deployer Service Account (e.g., `console-deployer`) has a **Role** or **ClusterRole** bound to it that allows the following actions in the target namespace:
+
+* **Resources**: `roles`, `rolebindings`
+* **API Group**: `rbac.authorization.k8s.io`
+* **Verbs**: `get`, `list`, `watch`, `create`, `update`, `patch`
+
+#### **Example: Granting RBAC management to the deployer**
+
+```yaml
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: rbac-manager-role
+  namespace: {YOUR_NAMESPACE}
+rules:
+  - apiGroups: ["rbac.authorization.k8s.io"]
+    resources: ["roles", "rolebindings"]
+    verbs: ["get", "list", "watch", "create", "update", "patch", "delete"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: rbac-manager-binding
+  namespace: {YOUR_NAMESPACE}
+subjects:
+  - kind: ServiceAccount
+    name: console-deployer # The name of your CI/CD service account
+    namespace: mia-platform
+roleRef:
+  kind: Role
+  name: rbac-manager-role
+  apiGroup: rbac.authorization.k8s.io
+
+```
+
+In some managed environments like **Azure AKS**, ensure that your Azure identity also has the "Azure Kubernetes Service Cluster Admin" or "Azure Kubernetes Service RBAC Admin" role if you are using Azure RBAC integration.
+
 #### In-Memory Storage
 
 You can opt for in-memory storage for your pipeline runtime states instead of persisting them.  
@@ -113,8 +162,6 @@ The Control Plane Frontend is already pre-configured and ready to be deployed. N
 
 The Envoy API Gateway serves as the entry point for the Fast Data Control Plane application, providing essential routing and security capabilities.
 
-The Envoy API Gateway microservice is pre-configured and ready to be deployed. The routing configuration is automatically generated based on the endpoint definitions, and no manual intervention is required.
-
 #### Exposed Endpoints
 
 The application pre-configures two endpoints that are automatically routed by Envoy:
@@ -122,6 +169,16 @@ The application pre-configures two endpoints that are automatically routed by En
 - **`/api`** - Routes requests to the Control Plane service
 
 - **`/`** - Routes requests to the Control Plane Frontend service  
+
+#### Required Advanced Configuration
+
+Since the application uses the **WebSocket protocol** for bidirectional communication, you must add the following configuration to the **patches.yaml** file within the Advanced Configurations section of the Design Area:
+
+```yaml
+- listener_name: frontend
+  'filter_chains.0.filters.0.typed_config.upgrade_configs':
+    upgrade_type: "websocket"
+```
 
 ## Workloads Configuration
 
@@ -165,7 +222,7 @@ If no `onCreate` behavior is defined in the microservice ConfigMap, the **defaul
 
 ## Application Deployment
 
-Once you have concluded all the above mentioned configuration steps, you can easily deploy your Project configuration!
+Once you have concluded all the above mentioned configuration steps, it's time to **deploy your Project**!
 
 Verify the success of your deploy by:
 

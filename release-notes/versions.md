@@ -9,8 +9,19 @@ import Changelog from '@site/src/components/Changelog';
 
 <Changelog>
 
+## [v14.5.1](/release-notes/v14.5.1.mdx)
+*February 19th, 2026*
+
+This release enhances the merge capabilities in the Console Design Area by introducing **support for merging configurations from versions**, complementing the existing merge from revisions feature.  
+Additionally, the **Orchestrator Generator** payload has been enriched with configuration change identifiers and public variables.  
+For **Fast Data Control Plane v2**, services have been updated with UI rendering improvements.
+
+[Read the release notes](/release-notes/v14.5.1.mdx)
+
+---
+
 ## [v14.5.0](/release-notes/v14.5.0.mdx)
-*February 05th, 2026*
+*February 19th, 2026*
 
 This release introduces the **Fast Data Control Plane v2**, the runtime management solution for Fast Data v2, that allows to visualize and control Fast Data v2 pipelines at runtime.  
 Additionally, a new **interface for merging configurations** is now available in Beta, improving the DevX in the Console Design Area.  
