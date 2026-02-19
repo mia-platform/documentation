@@ -8,7 +8,7 @@ In order to contribute you can submitting bug reports or suggest some correction
 ## Code of Conduct
 
 This project adheres to the [Contributor Covenant Code of Conduct](CODE_OF_CONDUCT.md), please read it and follow it
-before contributing. If you find someone that is not respecting it please report its behaviour.
+before contributing. If you find someone that is not respecting it please report its behavior.
 
 ## How Can I Contribute
 
