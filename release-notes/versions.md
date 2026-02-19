@@ -14,7 +14,7 @@ import Changelog from '@site/src/components/Changelog';
 
 This release enhances the merge capabilities in the Console Design Area by introducing **support for merging configurations from versions**, complementing the existing merge from revisions feature.  
 Additionally, the **Orchestrator Generator** payload has been enriched with configuration change identifiers and public variables.  
-For **Fast Data Control Plane v2**, services have been updated with UI rendering improvements.
+For **Fast Data**, there are some available version updates for both Fast Data Control Plane v2 services and Fast Data Engine service.
 
 [Read the release notes](/release-notes/v14.5.1.mdx)
 

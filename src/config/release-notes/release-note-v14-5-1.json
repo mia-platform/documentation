@@ -39,8 +39,32 @@
           "title": "Fast Data Control Plane v2 Application",
           "description": [
             "The new versions of Fast Data Control Plane v2 services are available: the `v0.1.1-mongodb` (and `v0.1.1`) of the _Control Plane_ service are available, the `v0.1.2` of the _Control Plane Frontend_ service is available.",
-            "For the _Ingest_ execution step implemented by [Mongezium CDC plugin](/docs/14.5.0/products/fast_data_v2/mongezium_cdc/overview), now source tables are rendered in Control Plane UI.",
+            "For the _Ingest_ execution step implemented by [Mongezium CDC plugin](/docs/14.5.0/products/fast_data_v2/mongezium_cdc/overview), now source assets are rendered in Control Plane UI.",
             "For more information about service latest versions, check out the [compatibility matrix](/docs/14.5.1/products/fast_data_v2/runtime_management/compatibility_matrix#service-latest-versions)."
+          ]
+        },
+                {
+          "title": "Stream Processor v0.6.1",
+          "description": [
+            "The new version `v0.6.1` of the _Stream Processor_ is available!",
+            "This version introduces some fixes about service default startup behaviour when using Fast Data Control Plane v2.",
+            "Refer to the [JSON Schema](https://cdn.mia-platform.eu/runtime/platform/data-fabric/stream-processor/v0.6.1/stream-processor.schema.json) for configuration details and check the service [changelog](/docs/14.5.1/products/fast_data_v2/stream_processor/changelog) for more information."
+          ]
+        },
+        {
+          "title": "Farm Data v0.6.1",
+          "description": [
+            "The new version `v0.6.1` of the _Farm Data_ is available!",
+            "This version introduces some fixes about service default startup behaviour when using Fast Data Control Plane v2.",
+            "Refer to the [JSON Schema](https://cdn.mia-platform.eu/runtime/platform/data-fabric/farm-data/v0.6.1/farm-data.schema.json) for configuration details and check the service [changelog](/docs/14.5.1/products/fast_data_v2/farm_data/changelog) for more information."
+          ]
+        },
+        {
+          "title": "Kango v0.6.1",
+          "description": [
+            "The new version `v0.6.1` of the _Kango_ service is available!",
+            "This version introduces some fixes about service default startup behaviour when using Fast Data Control Plane v2.",
+            "Refer to the [JSON Schema](https://cdn.mia-platform.eu/runtime/platform/data-fabric/kango/v0.6.1/kango.schema.json) for configuration details and check the service [changelog](/docs/14.5.1/products/fast_data_v2/kango/changelog) for more information."
           ]
         }
       ],
