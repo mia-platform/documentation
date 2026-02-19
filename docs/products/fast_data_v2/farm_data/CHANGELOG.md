@@ -13,7 +13,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
-- Fixed control plane startup behaviour to resume
+- Fixed control plane startup behavior to resume
 - Explicit error on missing SERVICE_NAME missing var
 
 ## [0.6.0] - 2026-02-02

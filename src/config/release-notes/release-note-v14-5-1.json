@@ -47,7 +47,7 @@
           "title": "Stream Processor v0.6.1",
           "description": [
             "The new version `v0.6.1` of the _Stream Processor_ is available!",
-            "This version introduces some fixes about service default startup behaviour when using Fast Data Control Plane v2.",
+            "This version introduces some fixes about service default startup behavior when using Fast Data Control Plane v2.",
             "Refer to the [JSON Schema](https://cdn.mia-platform.eu/runtime/platform/data-fabric/stream-processor/v0.6.1/stream-processor.schema.json) for configuration details and check the service [changelog](/docs/14.5.1/products/fast_data_v2/stream_processor/changelog) for more information."
           ]
         },
@@ -55,7 +55,7 @@
           "title": "Farm Data v0.6.1",
           "description": [
             "The new version `v0.6.1` of the _Farm Data_ is available!",
-            "This version introduces some fixes about service default startup behaviour when using Fast Data Control Plane v2.",
+            "This version introduces some fixes about service default startup behavior when using Fast Data Control Plane v2.",
             "Refer to the [JSON Schema](https://cdn.mia-platform.eu/runtime/platform/data-fabric/farm-data/v0.6.1/farm-data.schema.json) for configuration details and check the service [changelog](/docs/14.5.1/products/fast_data_v2/farm_data/changelog) for more information."
           ]
         },
@@ -63,7 +63,7 @@
           "title": "Kango v0.6.1",
           "description": [
             "The new version `v0.6.1` of the _Kango_ service is available!",
-            "This version introduces some fixes about service default startup behaviour when using Fast Data Control Plane v2.",
+            "This version introduces some fixes about service default startup behavior when using Fast Data Control Plane v2.",
             "Refer to the [JSON Schema](https://cdn.mia-platform.eu/runtime/platform/data-fabric/kango/v0.6.1/kango.schema.json) for configuration details and check the service [changelog](/docs/14.5.1/products/fast_data_v2/kango/changelog) for more information."
           ]
         }
