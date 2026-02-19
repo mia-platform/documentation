@@ -296,6 +296,14 @@ The BFF stores tokens in Redis and controls their lifecycle:
 - **`refreshTokenExpirationPayloadField`** — optional key in the token response containing the RT expiration (not mandated by OAuth 2.0 spec)
 - **`sessionJitterSecs`** — subtracts seconds from token expiry to avoid using tokens that expire mid-flight (default: `7`)
 
+Redis client prefixes keys with a namespace from `connections.<name>.namespace`. The service supports
+multireplicas.
+
+When multiple sessions are needed for different OAuth 2.x clients (different Cliend IDs), the
+same redis instance can be used with the same namespace (defaults to `authtool_bff`).
+
+Otherwise namespace can be used to separate keys on the same Redis instance.
+
 #### Subsequent Requests
 
 On every request carrying the session cookie:
