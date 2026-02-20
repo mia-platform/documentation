@@ -1,0 +1,113 @@
+.ganttContainer {
+    --gantt-passed-bg: #e0e0e0;
+    --gantt-passed-text: #616161;
+    --gantt-current-bg: #1a73e8;
+    --gantt-current-text: #ffffff;
+    --gantt-next-bg: #d1e3ff;
+    --gantt-next-text: #174ea6;
+    overflow-x: auto;
+    padding: 1rem 0;
+    border: 1px solid var(--ifm-color-emphasis-200);
+    border-radius: 8px;
+    box-sizing: border-box;
+}
+
+html[data-theme='dark'] .ganttContainer {
+    --gantt-passed-bg: #636363;
+    --gantt-passed-text: #e5e5e5;
+    --gantt-current-bg: #1a73e8;
+    --gantt-current-text: #ffffff;
+    --gantt-next-bg: #d1e3ff;
+    --gantt-next-text: #174ea6;
+}
+
+.ganttTable {
+    border-collapse: collapse;
+    width: 100%;
+    min-width: 800px;
+    table-layout: fixed;
+    border-style: hidden;
+}
+
+.ganttTable th,
+.ganttTable td {
+    border: 1px solid var(--ifm-color-emphasis-200);
+    padding: 0.5rem;
+    text-align: center;
+    font-size: 0.8rem;
+    white-space: nowrap;
+}
+
+.ganttTable thead tr:first-child th:first-child,
+.ganttTable tbody tr td:first-child {
+    border-left: none;
+}
+.ganttTable tbody tr:last-child td {
+    border-bottom: none;
+}
+.ganttTable th:last-child, .ganttTable td:last-child {
+    border-right: none;
+}
+
+.firstColHeader {
+    width: 100px;
+    border: none !important;
+    background-color: transparent;
+}
+
+.taskLabel {
+    width: 100px;
+    font-weight: bold;
+    text-align: left;
+}
+
+.quarterHeader {
+    font-weight: bold;
+}
+
+.monthHeader {
+    font-weight: normal;
+    color: var(--ifm-color-emphasis-600);
+}
+
+.barCell {
+    padding: 0 !important;
+    border-left: none;
+    border-top: none;
+    vertical-align: middle;
+}
+
+.barContainer {
+    display: grid;
+    grid-template-columns: repeat(var(--total-months), 1fr);
+    padding: 8px 0;
+    height: 100%;
+}
+
+.bar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 30px;
+    border-radius: 4px;
+    font-weight: bold;
+    font-size: 0.8rem;
+    overflow: hidden;
+    white-space: nowrap;
+    margin: 0 2px;
+}
+
+.passed {
+    background-color: var(--gantt-passed-bg);
+    color: var(--gantt-passed-text);
+}
+
+.current {
+    background-color: var(--gantt-current-bg);
+    color: var(--gantt-current-text);
+}
+
+.next {
+    background-color: var(--gantt-next-bg);
+    color: var(--gantt-next-text);
+}

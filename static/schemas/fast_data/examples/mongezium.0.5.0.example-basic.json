@@ -1,0 +1,38 @@
+{
+  "collections": [
+    {
+      "topic": "users-changes",
+      "namespace": "mydb.users",
+      "snapshot": "initial",
+      "tombstone": false
+    }
+  ],
+  "persistence": {
+    "connectionName": "mongodb-main",
+    "database": "mydb",
+    "appName": "mongezium-service"
+  },
+  "stream": {
+    "consumer": {
+      "connectionName": "kafka-cluster"
+    },
+    "producer": {
+      "connectionName": "kafka-cluster"
+    }
+  },
+  "connections": {
+    "mongodb-main": {
+      "type": "mongodb",
+      "config": {
+        "url": "mongodb://localhost:27017/mydb",
+        "appName": "mongezium-app"
+      }
+    },
+    "kafka-cluster": {
+      "type": "kafka",
+      "config": {
+        "bootstrap.servers": "localhost:9092"
+      }
+    }
+  }
+}

@@ -1,0 +1,126 @@
+[
+  {
+    "title": "Console",
+    "icon": "console",
+    "defaultOpen": false,
+    "type": "versions",
+    "items": {
+      "newFeatures": [],
+      "improvements": [
+        {
+          "title": "Download Microservices Environment Variables",
+          "description": [
+            "You can now download as `.env` file the Environment Variables of your Microservices directly on the related section within the detail of a Microservice!"
+          ]
+        },
+        {
+          "title": "See Project Template's description when creating a Project",
+          "description": [
+            "From now on, when creating a Project, you can read the description of the Project Template you are selecting."
+          ]
+        },
+        {
+          "title": "See Project Template used in a Project",
+          "description": [
+            "Starting from now, newly created Projects of traditional type Application will show to the user the name of the Project Template from which the Project has been created. This information will be visible in the Settings of the Project, inside the General tab."
+          ]
+        },
+        {
+          "title": "Import Flow Configuration in Flow Manager Configurator",
+          "description": [
+            "You can now import a Flow Manager configuration directly from the configurator, either by uploading a file or pasting a JSON snippet. Once imported, the flow will be immediately rendered in the canvas.",
+            "Uploading a new service configuration will overwrite the existing one in the canvas."
+          ]
+        }
+      ],
+      "bugFixes": []
+    }
+  },
+  {
+    "title": "Fast Data",
+    "icon": "fast-data",
+    "defaultOpen": false,
+    "type": "versions",
+    "items": {
+      "newFeatures": [],
+      "improvements": [
+        {
+          "title": "Single View Trigger Generator",
+          "description": [
+            "The new version `v3.4.1` of the _Single View Trigger Generator_ is available!",
+            "For more information check out the service [changelog](/docs/runtime-components/plugins/single-view-trigger-generator/changelog)"
+          ]
+        }
+      ],
+      "bugFixes": [
+        "The service now correctly handles message processing from topics not managed by the control plane, maintaining a resume state and avoiding malfunctioning. For more information check out the service [changelog](/docs/runtime-components/plugins/single-view-trigger-generator/changelog)"
+      ]
+    }
+  },
+  {
+    "title": "Data Catalog",
+    "icon": "data-catalog",
+    "defaultOpen": false,
+    "type": "versions",
+    "items": {
+      "newFeatures": [
+        {
+          "title": "MongoDB Connection support in Data Catalog",
+          "description": [
+            "[Support for MongoDB](/docs/products/data_catalog/frontend/data_catalog_connections#mongodb) as a new connection provider has been introduced in Data Catalog. Users can now define a connection string to connect directly to a MongoDB instance. When collections include a MongoDB JSON Schema validation, the agent is able to automatically detect field structures and types.",
+            "Retrieval of databases and collections can be managed through multiple configuration modes.",
+            "Check the full list of available options in the [official documentation](/docs/products/data_catalog/frontend/data_catalog_connections#mongodb-databases-settings) to configure the behavior according to your needs."
+          ]
+        }
+      ],
+      "improvements": [],
+      "bugFixes": []
+    }
+  },
+  {
+    "title": "Microfrontend Composer",
+    "icon": "microfrontend-composer",
+    "defaultOpen": false,
+    "type": "versions",
+    "items": {
+      "newFeatures": [],
+      "improvements": [
+        {
+          "title": "Back-kit: Form Validation Support for Custom Footer Actions in `bk-dynamic-form-modal`",
+          "description": [
+            "The new version `v1.5.17` of the back-kit library is available!",
+            "Added possibility to validate the form content when performing a custom footer action in `bk-dynamic-form-modal` component.",
+            "Refer to back-kit [changelog](/docs/products/microfrontend-composer/back-kit/changelog) for finer-grained details of new versions."
+          ]
+        }
+      ],
+      "bugFixes": []
+    }
+  },
+  {
+    "title": "Runtime Components",
+    "icon": "runtime-components",
+    "defaultOpen": false,
+    "type": "versions",
+    "items": {
+      "newFeatures": [],
+      "improvements": [
+        {
+          "title": "Swagger Aggregator",
+          "description": [
+            "The new version `3.9.4` of the Swagger Aggregator is available!",
+            "This version fixes sidebar scrolling and filter selection issues in API Portal."
+          ]
+        },
+        {
+          "title": "Teleconsultation Service Backend",
+          "description": [
+            "The new version `2.1.0` of the Teleconsultation Service Backend is available!",
+            "This version adds support for [Kaleyra transcription](https://developers.kaleyra.io/reference/video-recording), which allows you to obtain a transcription of the teleconsultation session."
+          ]
+        }
+      ],
+      "bugFixes": []
+    }
+  }
+]

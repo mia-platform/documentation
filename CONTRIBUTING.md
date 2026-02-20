@@ -3,12 +3,12 @@
 First off, thank you for considering contributing to this project.
 
 Please follow these guidelines for helping us to better address your issue, assessing changes, and helping you finalize your pull requests.
-In order to contribute you can submitting bug reports or suggest some correction or content improvements and it's also possible to open a new pull request. 
+In order to contribute you can submitting bug reports or suggest some correction or content improvements and it's also possible to open a new pull request.
 
 ## Code of Conduct
 
 This project adheres to the [Contributor Covenant Code of Conduct](CODE_OF_CONDUCT.md), please read it and follow it
-before contributing. If you find someone that is not respecting it please report its behaviour.
+before contributing. If you find someone that is not respecting it please report its behavior.
 
 ## How Can I Contribute
 
@@ -37,20 +37,20 @@ To contribute to the Mia-Platform docs:
 
 3. Create a branch named according to these rules: `activity/task-topic`
     - **activity** can be:
-      - `edit` if you are changing one or more pages.  
-      - `new` if you are working on a new page or section related to features already in production.  
-      - `project` if you are writing the documentation of a project before or during the development.  
-      - `remove` if you are deleting information.  
+        - `edit` if you are changing one or more pages.
+        - `new` if you are working on a new page or section related to features already in production.
+        - `project` if you are writing the documentation of a project before or during the development.
+        - `remove` if you are deleting information.
 
     - **task (optional)**: the ID of the task you are working on, if existing.
 
     - **topic**: a short description of what you are documenting.
 
-    Example: `new/MD-333-authentication-section`
+   Example: `new/MD-333-authentication-section`
 
-    Additionally, branches named `release-note/vX.Y.Z` are dedicated to the documentation of the `Mia-Platform` incoming updates.
+   Additionally, branches named `release-note/vX.Y.Z` are dedicated to the documentation of the `Mia-Platform` incoming updates.
 
-    > :warning: **It's strictly important to follow branch name conventions**
+   > :warning: **It's strictly important to follow branch name conventions**
 
 4. Share your knowledge following the [style guidelines](./styleguide.md)!
 
@@ -64,26 +64,46 @@ To contribute to the Mia-Platform docs:
 
 ### Internal Links
 
-Linking a resource to another one inside the documentation is done using the following rules:
+Documentation folders are: `docs/`, `/release-notes` and `info`.
+
+Linking a resource to another one inside the same documentation is done using the following rules:
 
 - Each link must be relative to the /docs/ of the project (including subfolders).
-  - e.g. if you want to link to the page `/docs/getting_started/faq.md` you have to write `[FAQ](/getting_started/faq.md)`.
+    - e.g. if you want to link to the page `/docs/getting_started/faq.md` you have to write `[FAQ](/getting_started/faq.md)`.
 - The extension it's mandatory and must be `.md` or `.mdx`.
 - The link can include an anchor to a specific section of the page.
-  - e.g. if you want to link to the section `#how-to-contribute` of the page `/docs/getting_started/faq.md` you have to write `[How to contribute](/docs/getting_started/faq.md#how-to-contribute)`.
-  - e.g. if you want to link an anchor inside the same page you have to write `[How to contribute](#how-to-contribute)`.
-- Linking internal resources using https://docs.mia-platform.eu/ **is NOT allowed**.  
+    - e.g. if you want to link to the section `#how-to-contribute` of the page `/docs/getting_started/faq.md` you have to write `[How to contribute](/docs/getting_started/faq.md#how-to-contribute)`.
+    - e.g. if you want to link an anchor inside the same page you have to write `[How to contribute](#how-to-contribute)`.
+- Linking internal resources using https://docs.mia-platform.eu/ **is NOT allowed**.
+
+
+Linking a resource to another in another documentation, for example from `/release-notes` to `/docs` (or a versioned documentation), is done using the following rules:
+
+- Each link must be relative to the /docs/ or the /versioned_docs/version-x.x.x of the project (including subfolders).
+    - e.g. if you want to link to the page `/docs/getting_started/faq` you have to write `[FAQ](/docs/getting_started/faq)`.
+- If the link is relative to a versioned documentation, instead of writing only `/docs/...`, the version has to be included in the link `/docs/x.x.x/...`.
+  - e.g. if you want to link a page in documentation v13.7.5, you have to write `/docs/13.7.5/...`
+- Links must contain the **id** of the markdown file without the file extension.
+- The link can include an anchor to a specific section of the page.
+    - e.g. if you want to link to the section `#how-to-contribute` of the page `/docs/getting_started/faq` you have to write `[How to contribute](/docs/getting_started/faq#how-to-contribute)`.
 
 An automatic check is performed on each push to verify that the links are correct.
-The check is performed to each file in the /docs/ folder excluding the folder managed by the **doc aggregator**:
+The check is performed to each file in the /docs/ folder.
 
-- docs/runtime_suite
-- docs/runtime_suite_examples
-- docs/runtime_suite_templates
-- docs/runtime_suite_libraries
-- docs/runtime_suite_tools
-- docs/business_suite
+### Deleting a page
 
+If, for any reason, you intend to delete a page from the documentation, you are required to create a redirect url, since links to the deleted resource may be also outside the doc and it's preferable to avoid showing 404 errors to users.
+
+Add an entry to the file [301redirects.json](./301redirects.json) with the following format:
+
+```json
+"/docs/path/to/page/you/deleted": {
+  "destination": "/docs/path/to/an/existing/page",
+  "addedOn": "yyyy-mm-dd"
+}
+```
+
+Depending on the situation, the choice of the destination URL can be the page that replaced the one you deleted, a similar page, the home of the section where the deleted page was or the home of the documentation site.
 
 #### Content checks
 
@@ -96,65 +116,95 @@ The repo provides a series of content test that must be passed:
 ## Repository structure
 
 - `src`
-   Contains the custom code.
-  - `src/components`
-     Contains the React custom components
-  - `src/pages`
-     Contains off-documentations pages, like the homepage. **These pages aren't versioned.**
-  - `src/theme`
-     Contains Docusaurus components customized.
+  Contains the custom code.
+    - `src/components`
+      Contains the React custom components
+    - `src/pages`
+      Contains off-documentations pages, like the homepage. **These pages aren't versioned.**
+    - `src/theme`
+      Contains Docusaurus components customized.
 - `docs/`
-   Contains markdown documentation page for current version.
+  Contains markdown documentation page for current version.
+- `release-notes/` Contains the release notes of all versions. Pages are not intendend to be versioned.
+- `info/` Contains the pages under `/info` url. Pages are not intendend to be versioned.
 - `versioned_docs/`
-   Contains versioned documentation pages.
-  - `versioned_docs/version-5.x.x`
-     Contains the files related to v5
+  Contains versioned documentation pages.
+    - `versioned_docs/version-5.x.x`
+      Contains the files related to v5
 - `versioned_sidebars/`
-   Contains versioned sidebars config.
+  Contains versioned sidebars config.
+- `versions.json` contains the list of documentations versions.
+- `versionsAtchived.json` contains the list of archived documentations (i.e., documentations of old Console versions) mapped to the corresponding external URL.
+- `versionsMap.json` contains a map qualifying the documentation versions. It is usually automatically generated by versions management scripts.
 
-## Create a new Docusaurus version
+## Documentation releases management
 
-When you want to create a new version, you can tag the **previous** the following command:
+At any give moment, the site shows the documentation of:
 
-```bash
-yarn run docusaurus docs:version <x.x.x>
+- the latest production-ready Console version (**Current**),
+- the Console version available in preview for SaaS users, if available (**Next**),
+- the latest patch of the LTS Console versions (**LTS**),
+- *only in development mode*, the Console version currently under development (**Canary**).
+
+The Canary documentation is available at `<base-url>/docs/next/...`, the Current documentation is available at `<base-url>/docs/...` while all the other versions are available at `<base-url>/docs/x.x.x/...`.
+
+The `docs` folder contains **only** the current documentation corresponding to the development environment. Other documentations are available in `versioned_docs` folder.
+
+### Release notes
+
+Release notes are inside `release-notes` folder and are excluded from the documentation versioning. First folder children are the current major releases release notes related files while older major releases related files are inside the corresponding major folder, like `v12` or `v13`. 
+
+To create a new release note, run the related script with `yarn release-note <version>`.
+
+The script:
+1. creates a new file with the name of the new version, i.e. `v14.5.8`, in the `release-notes/` folder. This file contains the complete release notes for the version.
+2.  creates a new file in `src/config/release-notes`. This file creates an accordion-summary for the release note page, see [accordion component](#accordion-component) for more information.
+   
+Then, manually add the sidebar element corresponding to the new release note in `sidebarsReleaseNotes.js` file.
+
+If the new release note corresponds to the next version, all links must use the `/docs/next/...` path.
+
+### Manage documentation versions
+
+The repository comes with a CLI to ease versions management that you can run with:
+
+```sh
+yarn versions
 ```
 
-Each tagged version has a dedicated folder:
+>[!WARNING]
+> If you delete a version, related links in other documentations will be broken. Replace them with the new working links and add redirects in `301redirects.json` file, if needed.
 
-- `versioned_docs/version-<number version>`
+> [!WARNING]
+> Each time you promote a version to Current, remember to **tag the repository** to [trigger](./.github/workflows/generate-embeddings.yml) Mia-Platform Assistant embeddings generaion. Use the documentation version as tag version.
 
-**The current  version must not be tagged**, however you have to do insert the new version in the `docusaurus.config.js`. The property to edit is `presets."@docusaurus/preset-classic".versions`:
+### Create a new documentation major
 
-Eg.
+Creating a new documentation must be done with a lot of attention.
 
-```json
-  presets: [
-    [
-      "@docusaurus/preset-classic",
-      {
-        docs: {
-          sidebarPath: require.resolve("./sidebars.js"),
-          lastVersion: 'current',
-          versions: {
-            current: {
-              label: '<Current version' (Current)',
-              path: '',
-            },
-            '8.x.x': {
-              label: '8.9.x',
-              path: '8.x',
-            },
-          },
-        },
-        ...
-```
+Steps for the documentation only:
+1. Delete all the documentations and keep only the latest version of the old major.
+2. Delete all the sidebar of the deleted documentations.
+3. Check all links and eventually add redirects.
 
-Check out the [docusaurus official doc](https://v2.docusaurus.io/docs/versioning/) for more information.
+Steps for the release notes:
+1. create a new folder in `release-notes` with the name of the current major and the soon-to-be old major (e.g. `v13`).
+2. move all vx.x.x release note files in the new folder.
+3. move `versions.md` file and create a new one with the same name.
+4. move the `release-notes/img` folder in the new folder and create a new `release-notes/img` folder.
+5. update all release notes links inside the new folder files in order to work with the only documentation version for that major.
+6. fix the urls in `sidebarsReleaseNotes.js` file and create a new category for the new major.
+7. in `release-notes`, create `mia-platform-v<version-major>.mdx` file.
+
+Other steps not to forget:
+1. update links in the homepage related to `view roadmap` and `view release note` to point to the new major links.
+2. update homepage banner
+3. update version policy page to include the new release support period
 
 ## Documentations pages
 
-> :warning: If you want to edit o create documentation for **marketplace plugins you have to write documentation directly in the plugin repository**.  
+>[!WARNING]
+> If you want to edit o create documentation for **marketplace plugins you have to write documentation directly in the plugin repository**.  
 Check out the following [guide](https://makeitapp.atlassian.net/wiki/spaces/MIAP/pages/2373877834/Docs+Aggregator)
 
 Each .md file have to include the following preamble:
@@ -169,7 +219,7 @@ sidebar_label: <Title displayed in the sidebar>
 
 The complete ID of the page is:
 
- `<path>+id`
+`<path>+id`
 
 You can write the pages using:
 
@@ -279,14 +329,11 @@ The links defined in the `a` properties link the main item menu to a single **si
 ```
 
 - To add an item linked to  page  you have to add an object with `"type": "doc"` and the property `"id"` valued with the final id of the page.
-
 - To create a sub-element that contains other elements you have to add an object with `"type": "category"` and the property `"label"` valued with the label of the item.
 
 #### Repository deploy rules
 
-All changes pushed to the branch `main` trigger a pipeline that will deploy the docs site on [https://next.docs.mia-platform.eu/](https://next.docs.mia-platform.eu/). So you can see the changes before carrying over to the main site.
-
-To carry over the changes on the main site [https://docs.mia-platform.eu/](https://docs.mia-platform.eu/), you have to tag a new version here on GitHub.
+All changes pushed to the branch `main` trigger a pipeline that will deploy the docs site on [https://docs.mia-platform.eu/](https://docs.mia-platform.eu/).
 
 ## Fork
 
@@ -295,3 +342,361 @@ All contribution which could improve the existent code base are welcome!
 
 To keep a fork up to date, you can follow this [GitHub guide](https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/syncing-a-fork).
 For all the information about forks, [see this link](https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/working-with-forks).
+
+## Accordion component
+
+To create or update an accordion section, you will always follow these three steps:
+
+1. **✍️ Write the Content**: You will create a special text file (called a JSON file) where you'll enter all the titles, descriptions, and other information.
+2. **🖼️ Upload Images**: If your section needs images, you will upload them to a specific folder.
+3. **📍 Add to the Page**: You will insert a short snippet of code into your `.mdx` page to tell the system to display the content you've prepared.
+
+---
+
+### 1. Where to Put Your Files
+
+Before you begin, it's important to know where to save the files you'll create.
+
+* **Content Files (.json)**
+  * Save them here: `/src/config/`
+  * *Example: `/src/config/release_notes_september_2025.json`*
+
+* **Image Files (.png, .jpg, etc.)**
+  * Save them here: `/static/img/accordions/`
+  * *Example: `/static/img/accordions/new_dashboard.png`*
+
+---
+
+### 2. Writing the Content (The JSON File)
+
+The content of each accordion is defined in a `.json` file. You can think of this file as a form to fill out. There are two types of "forms" you can use, depending on what you want to display.
+
+#### #### Type 1: Release Notes
+
+Use this format to announce what's new in a software release. The content will be automatically grouped into "New Features," "Improvements," and "Bug Fixes."
+
+**➡️ Copy and paste this template into a new file (e.g., `v3-1-0.json`) and edit it:**
+
+```json
+[
+  {
+    "title": "Version 3.1.0 - New Dashboard",
+    "icon": "console",
+    "defaultOpen": true,
+    "type": "versions",
+    "items": {
+      "newFeatures": [
+        {
+          "title": "Interactive Analytics Dashboard",
+          "description": [
+            "We have released a brand new dashboard that allows for real-time data analysis.",
+            "To learn more, read our [complete guide](https://example.com)."
+          ],
+          "images": [
+            "/img/accordions/new_dashboard.png"
+          ]
+        }
+      ],
+      "improvements": [
+        {
+          "title": "50% faster loading speeds",
+          "description": [
+            "The time it takes to access the platform has been drastically reduced."
+          ]
+        }
+      ],
+      "bugFixes": [
+        "Fixed a menu display issue on Firefox.",
+        "Corrected a rare bug that prevented saving."
+      ]
+    }
+  }
+]
+```
+
+**Field Descriptions:**
+
+| Key             | Description                                                                                          |
+| :-------------- | :--------------------------------------------------------------------------------------------------- |
+| `title`         | The main title of the section (e.g., "Version 3.1.0").                                               |
+| `icon`          | The name of the icon to display. You can find the full list at the end of this guide.                |
+| `defaultOpen`   | Write `true` if you want the section to be open on page load, otherwise `false`.                     |
+| `type`          | Always leave this as `"versions"` for this type of content.                                          |
+| `newFeatures`   | Enter your new features here. You can add as many as you need.                                       |
+| `improvements`  | Enter your improvements here.                                                                        |
+| `bugFixes`      | Enter your bug fixes here (as simple lines of text).                                                 |
+
+---
+
+#### #### Type 2: Product Roadmap
+
+Use this format to show upcoming features. Each feature will appear as a separate card.
+
+**➡️ Copy and paste this template into a new file (e.g., `roadmap_2026.json`) and edit it:**
+
+```json
+[
+  {
+    "title": "2026 Roadmap: Artificial Intelligence",
+    "icon": "fast-data",
+    "defaultOpen": false,
+    "type": "roadmap",
+    "items": {
+      "newFeatures": [
+        {
+          "title": "AI Writing Assistant",
+          "quarter": "Q1 2026",
+          "description": [
+            "An intelligent assistant will help you write better content by suggesting phrases and correcting errors."
+          ],
+          "tags": ["AI", "Beta", "Productivity"]
+        },
+        {
+          "title": "Smart Search",
+          "quarter": "Q2 2026",
+          "description": [
+            "You will be able to search for documents using natural language, as if you were asking a person a question."
+          ],
+          "tags": ["AI", "Search"]
+        }
+      ],
+      "improvements": [],
+      "bugFixes": []
+    }
+  }
+]
+```
+
+**Field Descriptions:**
+
+| Key             | Description                                                                                          |
+| :-------------- | :--------------------------------------------------------------------------------------------------- |
+| `title`, `icon`, `defaultOpen` | These work the same as in the previous template.                                       |
+| `type`          | Always leave this as `"roadmap"` for this type of content.                                           |
+| `items`         | Inside `items`, you can add cards to `newFeatures`, `improvements`, or `bugFixes`.                   |
+| `title`         | The title of the individual card/feature.                                                            |
+| `quarter`       | (Optional) A label to indicate the time frame (e.g., "Q1 2026").                                     |
+| `description`   | The description of the feature.                                                                      |
+| `tags`          | (Optional) Colored labels to categorize the feature.                                                 |
+
+---
+
+### ### 3. Adding the Accordion to the Page
+
+Once your `.json` file is ready and saved in `/src/config/`, go to the `.mdx` page where you want the accordion to appear.
+
+1.  **At the top of the page**, add a line to "import" your content file.
+2.  **In the exact spot where you want the accordion**, insert the `<Accordion />` tag, telling it which file to use.
+
+**Complete example of a page `my-roadmap.mdx`:**
+
+```mdx
+---
+id: roadmap
+title: Our Roadmap
+sidebar_label: Roadmap
+---
+
+import Accordion from '@site/src/components/Accordion';
+import roadmap2026 from '@site/src/config/roadmap_2026.json';
+
+# What the future holds
+
+Here is a look at the incredible features we are developing for you.
+
+<Accordion data={roadmap2026} />
+
+```
+
+### Useful References
+
+* **Creating a Link**: In any `description` or `bugFixes` field, you can create a link using the syntax `[Link Text](https://website.com), for internal link use /docs/path/to/the/file/file_id (please note, start with /docs and end with the file's id!`.
+* **Making Text Bold**: In any  `description` or `bugFixes` field, you can make text bold using the syntax **Your Text**.
+* **Highlighting with Italic**: In any  `description` or `bugFixes` field, you can italicize text using the syntax _Your Text_.
+* **Formatting as Code**: In any  `description` or `bugFixes` field, you can format text as inline code using the syntax `Your Text`.
+* **New Paragraphs**: To create a new paragraph in a `description`, simply add a new line of text in quotes. Example: `"description": ["First paragraph.", "Second paragraph."]`
+* **Available Icons**: You can use any of the following names in the `"icon"` field:
+  * `console`
+  * `fast-data`
+  * `data-catalog`
+  * `microfrontend-composer`
+  * `runtime-components`
+  * `software-catalog`
+
+## Gantt component
+
+To create or update a chart, the process is very simple:
+
+1.  **✍️ Write the Content**: You will enter all dates and tasks into a configuration file (JSON).
+2.  **📍 Add to the Page**: You will insert a short snippet of code into your `.mdx` page to display the chart or table.
+
+---
+
+### ### 1. Where to Put Your Content File
+
+The configuration file that contains all your chart data must be saved in a specific location.
+
+* **Content Files (.json)**
+  * Save them here: `/src/config/`
+  * *Example: `/src/config/version_roadmap.json`*
+
+---
+
+### ### 2. Writing the Content (The JSON File)
+
+The JSON file is the "brain" of your chart. It is divided into two main sections: `timeline` (the time axis) and `tasks` (the bars on the chart).
+
+#### #### The `timeline`
+
+This section defines the entire time scale that will be visible in the chart. You must specify every quarter you want to display.
+
+* `year`: The year.
+* `quarter`: The name of the quarter (e.g., "Q4").
+* `months`: The abbreviated names of the months in that quarter.
+
+```json
+{
+  "timeline": [
+    {
+      "year": 2024,
+      "quarter": "Q4",
+      "months": ["Oct", "Nov", "Dec"]
+    },
+    {
+      "year": 2025,
+      "quarter": "Q1",
+      "months": ["Jan", "Feb", "Mar"]
+    },
+    {
+      "year": 2025,
+      "quarter": "Q2",
+      "months": ["Apr", "May", "Jun"]
+    }
+  ]
+}
+
+```
+
+> **Important**: Make sure the `timeline` covers the entire period of your tasks. If a task has a date that falls outside the timeline, it will not be displayed correctly.
+
+#### #### The `tasks`
+
+This section defines the bars that will appear on the chart. Each object represents a single task or version.
+
+* `name`: The name that will appear on the bar (e.g., "v13.1.x").
+* `start`: The start date, in **YYYY-MM-DD** format.
+* `end`: The end date, in **YYYY-MM-DD** format.
+
+```json
+{
+  "tasks": [
+    {"name": "v13.1.x", "start": "2024-10-24", "end": "2025-01-16"},
+    {"name": "v13.3.x", "start": "2025-01-16", "end": "2025-04-17"}
+  ]
+}
+```
+
+> **Warning**: The date format `YYYY-MM-DD` (e.g., `2025-04-17`) is **mandatory** and must be followed exactly.
+
+#### Complete Example to Copy
+
+Here is a full template you can copy, save into a new file in `/src/config/`, and modify with your own data.
+
+```json
+{
+  "timeline": [
+    {"year": 2024, "quarter": "Q4", "months": ["Oct", "Nov", "Dec"]},
+    {"year": 2025, "quarter": "Q1", "months": ["Jan", "Feb", "Mar"]},
+    {"year": 2025, "quarter": "Q2", "months": ["Apr", "May", "Jun"]},
+    {"year": 2025, "quarter": "Q3", "months": ["Jul", "Aug", "Sep"]},
+    {"year": 2025, "quarter": "Q4", "months": ["Oct", "Nov", "Dec"]}
+  ],
+  "tasks": [
+    {"name": "v13.1.x", "start": "2024-10-24", "end": "2025-01-16"},
+    {"name": "v13.3.x", "start": "2025-01-16", "end": "2025-04-17"},
+    {"name": "v13.7.x", "start": "2025-04-17", "end": "2025-07-17"},
+    {"name": "v14.0.x", "start": "2025-07-17", "end": "2025-10-23"}
+  ]
+}
+```
+
+### ### 3. Adding the Gantt to the Page
+
+Once your JSON file is created, you can display it on your `.mdx` page. The component is flexible and can display the same data in two different ways: as a **chart** or as a **table**.
+
+#### #### Option 1: Display the Gantt Chart (Default)
+
+This is the main view with colored bars. The color changes automatically: past tasks, the current one, and future tasks will all have different colors.
+
+To use it, import your configuration file and add the component tag.
+
+```mdx
+import GanttChart from '@site/src/components/GanttChart';
+import ganttData from '@site/src/config/version_roadmap.json';
+
+## Version Roadmap
+
+<GanttChart config={ganttData} />
+```
+
+#### #### Option 2: Display a Table
+
+If you prefer a simpler, text-based view, you can show the same data in a sorted table. The dates will be automatically formatted for better readability.
+
+To do this, add the `renderAs="table"` option to the component.
+
+```mdx
+import GanttChart from '@site/src/components/GanttChart';
+import ganttData from '@site/src/config/version_roadmap.json';
+
+## Version Table
+
+<GanttChart config={ganttData} renderAs="table" />
+```
+
+## Changelog component
+
+The `Changelog` component creates a styled timeline from standard Markdown. It's a "wrapper" component—you write your content normally and simply wrap it with the `<Changelog />` tags to apply the special formatting.
+
+The component automatically handles the timeline, icons, date placement, and adds each release to the page's table of contents.
+
+---
+
+### Complete Example
+
+Here is a full example of a `release-notes.mdx` page. You can copy this entire block and modify the content inside the `<Changelog>` tags.
+
+The structure for each entry is a Level 2 Heading (`##`) for the title, followed by the date in italics (`*...*`), and then any content you need. Use a horizontal rule (`---`) to separate entries.
+
+```mdx
+---
+id: versions
+title: Mia-Platform release notes
+sidebar_label: Mia-Platform release notes
+---
+
+import Changelog from '@site/src/components/Changelog';
+
+# Version History
+
+Stay up to date on all the new features and improvements to the platform.
+
+<Changelog>
+
+  ## [v14.2.1](/docs/release-notes/v14.2.1)
+  *September 18, 2025*
+
+  This version introduces stability improvements and fixes several important bugs.
+  - Fixed a rendering issue in the admin panel.
+  - Improved image loading speed by 20%.
+
+  ---
+
+   ## [v14.2.0](/docs/release-notes/v14.2.0)
+  *September 4, 2025*
+
+  Introducing a new analytics dashboard with real-time interactive charts.
+  ![New Dashboard](/img/accordions/new_dashboard.png)
+
+</Changelog>
+```

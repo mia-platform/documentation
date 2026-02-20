@@ -1,0 +1,149 @@
+.accordionContainer {
+    border-radius: 8px;
+    background-color: #ffffff;
+    margin-bottom: 5px;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+    transition: all 0.2s ease;
+}
+
+html[data-theme='dark'] .accordionContainer {
+    background-color: #242526;
+}
+
+.accordionHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 0.8rem 1.25rem;
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid #e0e0e0;
+    cursor: pointer;
+    text-align: left;
+    gap: 1rem;
+}
+
+html[data-theme='dark'] .accordionHeader {
+    border-bottom-color: #303030;
+}
+
+.accordionHeader:hover {
+    background-color: rgba(0,0,0,0.03);
+}
+
+html[data-theme='dark'] .accordionHeader:hover {
+    background-color: rgba(255,255,255,0.05);
+}
+
+.accordionHeaderClosed {
+    border-bottom: none;
+}
+
+.leftSection {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    flex-grow: 1;
+    min-width: 0;
+}
+
+.toggleIcon {
+    color: #606770;
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+html[data-theme='dark'] .toggleIcon {
+    color: #a8abb3;
+}
+
+.mainIcon {
+    display: flex;
+    align-items: center;
+    color: #636363;
+    flex-shrink: 0;
+    width: 32px;
+    height: 32px;
+}
+
+html[data-theme='dark'] .mainIcon {
+    color: #636363;
+}
+
+.accordionTitle {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #1c1e21;
+    margin: 0;
+    padding: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+html[data-theme='dark'] .accordionTitle {
+    color: #ffffff;
+}
+
+.badges {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-shrink: 0;
+}
+
+.badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem; /* Aumentato lo spazio tra icona e testo */
+    padding: 5px 12px; /* Aumentato il padding per un badge più grande */
+    border-radius: 9999px;
+    font-size: 0.875rem; /* Aumentata la dimensione del font */
+    font-weight: 500;
+    white-space: nowrap;
+}
+
+.badge svg {
+    width: 18px; /* Aumentata la dimensione dell'icona */
+    height: 18px; /* Aumentata la dimensione dell'icona */
+}
+
+.newFeatureBadge {
+    background-color: #f7efff;
+    color: #7133CD;
+}
+html[data-theme='dark'] .newFeatureBadge {
+    background-color: rgba(113, 51, 205, 0.2);
+    color: #c09afc;
+}
+
+.improvementBadge {
+    background-color: #ebfff9;
+    color: #217679;
+}
+html[data-theme='dark'] .improvementBadge {
+    background-color: rgba(33, 118, 121, 0.2);
+    color: #73f2e7;
+}
+
+.bugFixBadge {
+    background-color: #fff2f2;
+    color: #E50020;
+}
+html[data-theme='dark'] .bugFixBadge {
+    background-color: rgba(229, 0, 32, 0.2);
+    color: #ff9191;
+}
+
+.accordionContent {
+    padding: 1.25rem;
+    color: #1c1e21;
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+html[data-theme='dark'] .accordionContent {
+    color: #dcecec;
+}

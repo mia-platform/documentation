@@ -1,0 +1,38 @@
+[
+  {
+    "name": "email",
+    "type": "string",
+    "required": true,
+    "nullable": false
+  },
+  {
+    "name": "authUserId",
+    "type": "string",
+    "required": false,
+    "nullable": false
+  },
+  {
+    "name": "firstName",
+    "type": "string",
+    "required": true,
+    "nullable": false
+  },
+  {
+    "name": "lastName",
+    "type": "string",
+    "required": true,
+    "nullable": false
+  },
+  {
+    "name": "mobilePhone",
+    "type": "string",
+    "required": true,
+    "nullable": false
+  },
+  {
+    "name": "fiscalCode",
+    "type": "string",
+    "required": true,
+    "nullable": false
+  }
+]

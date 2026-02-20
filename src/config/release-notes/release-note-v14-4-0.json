@@ -1,0 +1,100 @@
+[
+  {
+    "title": "Console",
+    "icon": "console",
+    "defaultOpen": false,
+    "type": "versions",
+    "items": {
+      "newFeatures": [
+        {
+          "title": "More OpenAI models available in Mia-Assistant",
+          "description": [
+            "This release adds the availability of the selection of more OpenAI models from Mia-Assistant chat, allowing you to choose the model that best fits your workflow."
+          ]
+        }
+      ],
+      "improvements": [],
+      "bugFixes": [
+        "When using the [Orchestrator Generator](/docs/products/console/company-configuration/providers/extensions/orchestrator-generator/overview), the sent payload now correctly includes also emptyDirs and serviceAccounts information belonging to each microservice.",
+        "We fixed an issue that prevented more than 10 extensions from being displayed in the Extensions Manager section of the Company Overview."
+      ]
+    }
+  },
+  {
+    "title": "Fast Data",
+    "icon": "fast-data",
+    "defaultOpen": false,
+    "type": "versions",
+    "items": {
+      "newFeatures": [
+        {
+        "title": "Kango",
+        "description": [
+          "The new version `v0.5.2` of the _Kango_ is available!",
+          "The support for `connection` key in [configuration file](/docs/products/fast_data_v2/kango/configuration#configuration-file) has been added.",
+          "For more information check out the service [changelog](/docs/products/fast_data_v2/kango/changelog)."
+          ]
+        },
+        {
+        "title": "Mongezium",
+        "description": [
+          "The new version `v0.4.3` of the _Mongezium_ is available!",
+          "The support for `connection` key in [configuration file](/docs/products/fast_data_v2/mongezium_cdc/configuration#configuration-file) has been added.",
+          "For more information check out the service [changelog](/docs/products/fast_data_v2/mongezium_cdc/changelog)."
+          ]
+        },
+        {
+        "title": "Stream Processor",
+        "description": [
+          "The new version `v0.5.4` of the _Stream Processor_ is available!",
+          "It has been added the support of a DLQ, useful to isolate unprocessable messages and prevent degradation or blockage of the main flow, ensuring system resilience and continuity in data processing.",
+          "For more information check out the service [changelog](/docs/products/fast_data_v2/stream_processor/changelog)."
+          ]
+        }
+      ],
+      "improvements": [],
+      "bugFixes": []
+    }
+  },
+  {
+    "title": "Runtime Components",
+    "icon": "runtime-components",
+    "defaultOpen": false,
+    "type": "versions",
+    "items": {
+      "newFeatures": [],
+      "improvements": [
+        {
+        "title": "Authorization Service",
+        "description": [
+          "The new version `v3.0.0` of the _Authorization Service_ is available!",
+          "**BREAKING CHANGE!** Starting from version 3.0.0, route matching has been made stricter. Non-defined routes will no longer match existing route configurations with prefix names, but only sub-routes (but only if their configuration end with `/`).",
+          "For more information check out the service [configuration](/docs/runtime-components/plugins/authorization-service/configuration)."
+          ]
+        }
+      ],
+      "bugFixes": []
+    }
+  },
+  {
+    "title": "Microfrontend Composer",
+    "icon": "microfrontend-composer",
+    "defaultOpen": false,
+    "type": "versions",
+    "items": {
+      "newFeatures": [],
+      "improvements": [
+        {
+          "title": "Back-kit",
+          "description": [
+            "The new version `v1.5.22` of the back-kit library is available!",
+            "Refer to back-kit [changelog](/docs/products/microfrontend-composer/back-kit/changelog) for finer-grained details of new versions."
+          ]
+        }
+      ],
+      "bugFixes": [
+        "Fixed editor component formatting on text paste"
+      ]
+    }
+  }
+]

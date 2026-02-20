@@ -1,0 +1,98 @@
+.itemContainer {
+    display: flex;
+    gap: 1rem;
+    padding: 1.5rem 0;
+    border-bottom: 1px solid var(--ifm-color-emphasis-200);
+    align-items: center;
+}
+
+.itemContainer:last-child {
+    border-bottom: none;
+    padding-bottom: 0.25rem;
+}
+
+.itemContainer:first-child {
+    padding-top: 0.25rem;
+}
+
+.iconWrapper {
+    flex-shrink: 0;
+    color: #8E8E8E;
+}
+
+html[data-theme='dark'] .iconWrapper {
+    color: var(--ifm-font-color-secondary);
+}
+
+.iconWrapper svg {
+    width: 24px;
+    height: 24px;
+}
+
+.contentWrapper {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.title {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--ifm-font-color-base);
+    margin: 0;
+}
+
+.quarterBadge {
+    background-color: #EBF2FF;
+    color: #3578E5;
+    border-radius: 6px;
+    padding: 3px 8px;
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+html[data-theme='dark'] .quarterBadge {
+    background-color: rgba(53, 120, 229, 0.2);
+    color: #8ab4f8;
+}
+
+.body {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+.description {
+    color: var(--ifm-font-color-secondary);
+    font-size: 1rem;
+    line-height: 1.6;
+    margin: 0;
+}
+
+.tagsContainer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.tag {
+    background-color: #F2F2F2;
+    border-radius: 9999px;
+    padding: 3px 10px;
+    font-size: 0.75rem;
+    color: #606770;
+    border: none;
+}
+
+html[data-theme='dark'] .tag {
+    background-color: #464646;
+    color: var(--ifm-font-color-secondary);
+}

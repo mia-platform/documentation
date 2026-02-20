@@ -1,53 +1,86 @@
 {
-  "name": "mia-platform-doc",
-  "version": "0.0.0",
+  "name": "mia-platform-docs",
+  "version": "14.3.1",
   "private": true,
+  "packageManager": "yarn@4.10.2",
   "license": "SEE LICENSE IN LICENSE",
   "scripts": {
     "docusaurus": "docusaurus",
     "start": "docusaurus start",
-    "prebuild": "npm run build-redirects",
-    "build": "USE_SIMPLE_CSS_MINIFIER=true docusaurus build",
+    "build": "yarn build-redirects && USE_SIMPLE_CSS_MINIFIER=true docusaurus build",
     "swizzle": "docusaurus swizzle",
     "deploy": "docusaurus deploy",
+    "clear": "docusaurus clear",
     "serve": "docusaurus serve",
     "lint": "eslint --ext js .",
     "spellcheck": "npx cspell './docs/**'",
-    "release-note": "node ./new-release-note.js",
-    "check-content": "npm run validate-links && node ./check-content.js",
+    "release-note": "node ./scripts/release-notes/new-release-note.js",
+    "check-content": "node ./scripts/validate-links.js && node ./scripts/check-content.js",
     "validate-links": "node ./scripts/validate-links.js",
     "build-redirects": "node ./scripts/build-permanent-redirects.js",
-    "check-redirects": "node ./scripts/check-permanent-redirects.js"
+    "check-redirects": "node ./scripts/check-permanent-redirects.js",
+    "build-subtitle": "node ./scripts/parse-subtitle.js",
+    "generate-last-edited": "node scripts/last-pages-edited.js",
+    "mv": "node ./scripts/mv.js",
+    "versions": "tsx ./scripts/versions-mgt/index.ts"
   },
   "dependencies": {
-    "@docusaurus/core": "2.4.0",
-    "@docusaurus/plugin-client-redirects": "2.4.0",
-    "@docusaurus/preset-classic": "2.4.0",
-    "@staticdeploy/cli": "^0.15.5",
-    "clsx": "^1.2.1",
-    "cspell": "^6.31.1",
+    "@docusaurus/core": "^3.9.2",
+    "@docusaurus/faster": "^3.9.2",
+    "@docusaurus/plugin-client-redirects": "^3.9.2",
+    "@docusaurus/preset-classic": "^3.9.2",
+    "@docusaurus/theme-mermaid": "^3.9.2",
+    "@mdx-js/react": "^3.0.0",
+    "@mermaid-js/layout-elk": "^0.2.0",
+    "@mia-platform/console-types": "^0.39.4",
+    "clsx": "^2.0.0",
+    "docusaurus-json-schema-plugin": "^1.15.0",
     "klaw": "^4.1.0",
-    "medium-zoom": "^1.0.8",
-    "mermaid": "^10.0.0",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2"
+    "medium-zoom": "^1.1.0",
+    "prism-react-renderer": "^2.3.0",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4",
+    "react-youtube": "^10.1.0",
+    "semver": "^7.7.4",
+    "tsx": "^4.21.0",
+    "typescript-eslint": "^8.56.0"
+  },
+  "devDependencies": {
+    "@babel/eslint-parser": "^7.28.6",
+    "@docusaurus/module-type-aliases": "^3.9.2",
+    "@docusaurus/types": "3.9.2",
+    "@ianvs/prettier-plugin-sort-imports": "4.7.1",
+    "@inquirer/core": "^11.1.4",
+    "@inquirer/prompts": "^8.2.1",
+    "@types/semver": "^7",
+    "eslint": "^9.39.2",
+    "eslint-plugin-react": "^7.37.5",
+    "fs-extra": "^11.3.3",
+    "glob": "^13.0.3",
+    "gray-matter": "^4.0.3",
+    "prettier": "3.8.1",
+    "prompts": "^2.4.2",
+    "typescript": "^5.9.3"
+  },
+  "overrides": {
+    "marked": "15.0.12"
+  },
+  "resolutions": {
+    "marked": "15.0.12"
   },
   "browserslist": {
     "production": [
-      ">0.2%",
+      ">0.5%",
       "not dead",
       "not op_mini all"
     ],
     "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
+      "last 3 chrome version",
+      "last 3 firefox version",
+      "last 5 safari version"
     ]
   },
-  "devDependencies": {
-    "@babel/eslint-parser": "^7.21.3",
-    "eslint": "^8.38.0",
-    "eslint-plugin-react": "7.32.2",
-    "prop-types": "^15.8.1"
+  "engines": {
+    "node": ">=24"
   }
 }

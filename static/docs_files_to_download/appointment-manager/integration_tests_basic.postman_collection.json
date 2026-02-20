@@ -1,0 +1,583 @@
+{
+	"info": {
+		"_postman_id": "5ed47c8b-5b48-474b-abea-b8e8e074427d",
+		"name": "AM - Integration Test",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "View calendar",
+			"item": [
+				{
+					"name": "Create daily availability",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Check response status code\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Check response body\", function () {",
+									"    const payload = pm.response.json()",
+									"    pm.expect(payload._id).to.be.a('string')",
+									"    pm.variables.set('availabilityId', payload._id)",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Cookie",
+								"value": "sid={{sid}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"startDate\": \"2022-10-20T09:00:00.000Z\",\n    \"endDate\": \"2022-10-20T13:00:00.000Z\",\n    \"slotDuration\": 30,\n    \"simultaneousSlotsNumber\": 1,\n    \"each\": \"day\",\n    \"untilDate\": \"2022-10-27T00:00:00.000Z\",\n    \"resourceId\": \"luca.rossi\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/availabilities/",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"availabilities",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get daily availability",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Check response status code\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Check response body\", function () {",
+									"    const payload = pm.response.json()",
+									"    pm.expect(payload).to.be.an('array')",
+									"    pm.expect(payload.length).equals(1)",
+									"    const availability = payload[0]",
+									"    pm.expect(availability._id).equals(pm.variables.get('availabilityId'))",
+									"    pm.expect(availability.startDate).equals('2022-10-20T09:00:00.000Z')",
+									"    pm.expect(availability.endDate).equals('2022-10-20T13:00:00.000Z')",
+									"    pm.expect(availability.slotDuration).equals(30)",
+									"    pm.expect(availability.simultaneousSlotsNumber).equals(1)",
+									"    pm.expect(availability.each).equals('day')",
+									"    pm.expect(availability.untilDate).equals('2022-10-27T00:00:00.000Z')",
+									"    pm.expect(availability.resourceId).equals('luca.rossi')",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Cookie",
+								"value": "sid={{sid}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/availabilities/?_id={{availabilityId}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"availabilities",
+								""
+							],
+							"query": [
+								{
+									"key": "_id",
+									"value": "{{availabilityId}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create exception",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Check response status code\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Check response body\", function () {",
+									"    const payload = pm.response.json()",
+									"    pm.expect(payload._id).to.be.a('string')",
+									"    pm.variables.set('exceptionId', payload._id)",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Cookie",
+								"value": "sid={{sid}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"startDate\": \"2022-10-18T00:00:00.000Z\",\n    \"endDate\": \"2022-10-25T00:00:00.000Z\",\n    \"reason\": \"Permesso legge 104\",\n    \"resourceId\": \"luca.rossi\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/exceptions/",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"exceptions",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get calendar events",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Check response status code\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Check response body\", function () {",
+									"    const payload = pm.response.json()",
+									"    pm.expect(payload).to.be.an('array')",
+									"    pm.expect(payload.length).to.be.at.least(8)",
+									"    const availabilityOccurrences = payload.filter(event => event.eventType === 'Availability' && event._id === pm.variables.get('availabilityId'))",
+									"    pm.expect(availabilityOccurrences.length).to.equals(7)",
+									"    const exceptions = payload.filter(event => event.eventType === 'Exception')",
+									"    pm.expect(exceptions.length).to.equals(1)",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Cookie",
+								"value": "sid={{sid}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/calendar/?startDate=2022-10-01T00:00:00Z&endDate=2022-11-01T00:00:00Z",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"calendar",
+								""
+							],
+							"query": [
+								{
+									"key": "startDate",
+									"value": "2022-10-01T00:00:00Z"
+								},
+								{
+									"key": "endDate",
+									"value": "2022-11-01T00:00:00Z"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete exception",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Check response status code\", function () {",
+									"    pm.response.to.have.status(204);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Cookie",
+								"value": "sid={{sid}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/exceptions/{{exceptionId}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"exceptions",
+								"{{exceptionId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete daily availability",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Check response status code\", function () {",
+									"    pm.response.to.have.status(204);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Cookie",
+								"value": "sid={{sid}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/availabilities/{{availabilityId}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"availabilities",
+								"{{availabilityId}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Book appointment",
+			"item": [
+				{
+					"name": "Create daily availability",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Check response status code\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Check response body\", function () {",
+									"    const payload = pm.response.json()",
+									"    pm.expect(payload._id).to.be.a('string')",
+									"    pm.variables.set('availabilityId', payload._id)",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Cookie",
+								"value": "sid={{sid}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"startDate\": \"2022-10-20T09:00:00.000Z\",\n    \"endDate\": \"2022-10-20T13:00:00.000Z\",\n    \"slotDuration\": 30,\n    \"simultaneousSlotsNumber\": 1,\n    \"each\": \"day\",\n    \"untilDate\": \"2022-10-27T00:00:00.000Z\",\n    \"resourceId\": \"luca.rossi\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/availabilities/",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"availabilities",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create appointment",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Check response status code\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Check response body\", function () {",
+									"    const payload = pm.response.json()",
+									"    pm.expect(payload._id).to.be.a('string')",
+									"    pm.variables.set('appointmentId', payload._id)",
+									"    console.log(`Created appointment with id '${payload._id}'`)",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Cookie",
+								"value": "sid={{sid}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"Visita oculistica\",\n    \"availabilityId\": \"{{availabilityId}}\",\n    \"startDate\": \"2022-10-21T10:00:00.000Z\",\n    \"endDate\": \"2022-10-21T10:30:00.000Z\",\n    \"ownerId\": \"luca.rossi\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/appointments/",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"appointments",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete appointment",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Check response status code\", function () {",
+									"    pm.response.to.have.status(204);",
+									"    console.log(`Deleted appointment with id '${pm.variables.get('appointmentId')}'`)",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Cookie",
+								"value": "sid={{sid}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/appointments/{{appointmentId}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"appointments",
+								"{{appointmentId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete daily availability",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Check response status code\", function () {",
+									"    pm.response.to.have.status(204);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Cookie",
+								"value": "sid={{sid}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/availabilities/{{availabilityId}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"availabilities",
+								"{{availabilityId}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Get OpenAPI documentation",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Check response status code\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Check response body\", function () {",
+							"    const payload = pm.response.json()",
+							"    pm.expect(payload.info.title).to.equals('appointment-manager')",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Cookie",
+						"value": "sid={{sid}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{baseUrl}}/documentation/json",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"documentation",
+						"json"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					"const cookieJar = pm.cookies.jar();",
+					"const url = pm.environment.get('baseUrl')",
+					"const sid = pm.environment.get('sid')",
+					"cookieJar.set(url, 'sid', sid);",
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "https://mia-care-platform-development.preprod.mia-care.io/appointment-manager"
+		}
+	]
+}

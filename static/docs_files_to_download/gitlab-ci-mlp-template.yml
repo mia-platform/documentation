@@ -1,0 +1,10 @@
+script:
+  - export RELEASE_DATE="$(date -I'seconds' -u)"
+  - mkdir "${DESTINATION_PATH}"
+  - test -f "${VARIABLES_FILE}" && set -a && source "${VARIABLES_FILE}"
+  - test -f "${GENERATE_FILE}" && mlp generate -c "${GENERATE_FILE}" -e "${ENVIRONMENT_PREFIX}" -e "${ENVIRONMENT_VARIABLES_PREFIX}" -o "${OVERLAY_PATH}"
+  - mlp hydrate "${BASE_PATH}" "${OVERLAY_PATH}"
+  - mlp interpolate -e "${ENVIRONMENT_PREFIX}" -e "${ENVIRONMENT_VARIABLES_PREFIX}" -f "${BASE_PATH}" -o "${BASE_PATH}"
+  - mlp interpolate -e "${ENVIRONMENT_PREFIX}" -e "${ENVIRONMENT_VARIABLES_PREFIX}" -f "${OVERLAY_PATH}" -o "${OVERLAY_PATH}"
+  - mlp kustomize "${OVERLAY_PATH}" -o "${DESTINATION_PATH}/kustomize-output.yaml"
+  - mlp deploy --ensure-namespace=false --server "${KUBE_URL}" --certificate-authority ${KUBE_CA_PEM} --token "${KUBE_TOKEN}" --deploy-type "${DEPLOY_TYPE}" --force-deploy-when-no-semver=${FORCE_DEPLOY_WHEN_NO_SEMVER} -f "${DESTINATION_PATH}/kustomize-output.yaml" -n "${KUBE_NAMESPACE}"

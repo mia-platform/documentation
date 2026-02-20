@@ -1,0 +1,70 @@
+---
+id: changelog
+title: CHANGELOG
+sidebar_label: CHANGELOG
+---
+
+
+
+All notable changes to this project will be documented in this file.
+
+The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
+and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
+
+## 2.0.2 2024-11-26
+
+- Fixed language selection based on browser language
+
+## 2.0.1 2024-10-29
+
+- Fixed restart call button copy and style
+- Fixed CSP configuration
+
+## 2.0.0 2024-10-15
+
+- Upgrade dependencies and CI/CD pipeline
+
+## 1.5.1 2024-03-13
+
+- Added spanish locale
+
+## 1.5.0 2024-02-13
+
+- Added language from navigator to iframe src
+
+## 1.4.0 2023-10-03
+
+:::caution
+
+This version requires a backend at version 1.5.0 or later.  
+
+:::
+
+- Delete uploaded files when call ends
+
+## 1.3.0
+
+### Added
+
+ - Added button to reenter the teleconsultation and removed feedback after the call ended
+
+### Fixed
+
+- Removed "Interaction to autoplay the content on the page" modal on teleconsultation start
+
+## 1.2.0
+
+### Added
+
+- Added waiting message if accessLinkURL is null
+- Added polling if accessLinkURL is null
+
+## 1.1.0
+
+## 1.0.0
+
+## 0.1.0
+
+### Added
+
+- implementing the Bandyer's WEB SDK and its relative React components to provide a teleconsultation (if authorized).

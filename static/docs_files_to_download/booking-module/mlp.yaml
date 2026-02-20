@@ -1,0 +1,26 @@
+secrets:
+  - name: "nexus-gcloud"
+    when: "always"
+    docker:
+      username: "{{NEXUS_USER}}"
+      password: "{{NEXUS_TOKEN}}"
+      email: "operations@mia-platform.eu"
+      server: "{{NEXUS_URL}}"
+  - name: "mongodb"
+    when: "always"
+    data:
+    - from: "literal"
+      key: "url"
+      value: "{{MONGODB_URL}}"
+  - name: "teleconsultation"
+    when: "always"
+    data:
+    - from: "literal"
+      key: "bandyer-api-secret-key"
+      value: "{{BANDYER_API_SECRET_KEY}}"
+    - from: "literal"
+      key: "bandyer-base-url"
+      value: "{{BANDYER_BASE_URL}}"
+    - from: "literal"
+      key: "bandyer-app-id"
+      value: "{{BANDYER_APP_ID}}"

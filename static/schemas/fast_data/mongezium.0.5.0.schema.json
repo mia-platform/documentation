@@ -1,0 +1,305 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "MongeziumConfiguration",
+  "type": "object",
+  "properties": {
+    "collections": {
+      "description": "Describe which collection should be monitored for changes",
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/CollectionConfiguration"
+      }
+    },
+    "persistence": {
+      "description": "Describe how to connect to the persistence layer, that is a MongoDB cluster",
+      "allOf": [
+        {
+          "$ref": "#/definitions/PersistenceConfiguration"
+        }
+      ]
+    },
+    "stream": {
+      "description": "Describe how to connect to the stream layer, that is a Kafka cluster",
+      "allOf": [
+        {
+          "$ref": "#/definitions/StreamConfiguration"
+        }
+      ]
+    },
+    "connections": {
+      "description": "Includes the connection configurations to be used by stream and persistence layers.",
+      "type": "object",
+      "additionalProperties": {
+        "$ref": "#/definitions/ConnectionConfig"
+      }
+    }
+  },
+  "required": [
+    "collections",
+    "persistence",
+    "stream",
+    "connections"
+  ],
+  "definitions": {
+    "CollectionConfiguration": {
+      "description": "Contains the properties that describe which MongoDB collection should be monitored\nand how its changes should be processed.",
+      "type": "object",
+      "properties": {
+        "topic": {
+          "description": "Name of the Kafka topic onto which change events related to this collection will be produced",
+          "type": "string"
+        },
+        "namespace": {
+          "description": "MongoDB namespace representing a collection within a database. It is expected in the form `<database-name>.<collection-name>`.",
+          "type": "string"
+        },
+        "snapshot": {
+          "description": "Describe how the service should address the _snapshot_ operation, that is the whole collection content\nis loaded onto the Kafka topic before producing events related to changes occurring to the collection records.\n\n_Snapshot_ operations are usually launched the first time the service starts monitoring a collection,\nwhen the business requires, such as when a new clean state is needed onto the Kafka topic.\n\nBy default, _snapshot_ operation is carried only when no message has\never been written to the selected topic for this collection.",
+          "default": "initial",
+          "allOf": [
+            {
+              "$ref": "#/definitions/SnapshotMode"
+            }
+          ]
+        },
+        "tombstone": {
+          "description": "Specifies whether for each DELETE event also a _Tombstone_ event is generated.\nA _Tombstone_ event is a Kafka message with a non-null key and a null payload. This\ntype of event enables deleting old messages not needed anymore when using the Kafka\n[log compaction](https://docs.confluent.io/kafka/design/log_compaction.html#compaction-enables-deletes) policy.",
+          "type": "boolean",
+          "default": false
+        }
+      },
+      "required": [
+        "topic",
+        "namespace"
+      ]
+    },
+    "SnapshotMode": {
+      "description": "Describe when the snapshot operation should be carried out.",
+      "oneOf": [
+        {
+          "description": "Execute snapshot operation when no message\nhas ever been produced to the topic or when no Change Stream resume token is found",
+          "type": "string",
+          "const": "when_needed"
+        },
+        {
+          "description": "Execute snapshot operation only when no message\nhas ever been produced to the topic",
+          "type": "string",
+          "const": "initial"
+        }
+      ]
+    },
+    "PersistenceConfiguration": {
+      "description": "Configuration of the persistence layer, that is MongoDB connection string.",
+      "type": "object",
+      "properties": {
+        "database": {
+          "description": "MongoDB database where events will be written to. To be included if not specified in the url.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "connectionName": {
+          "description": "Reference to the MongoDB configuration stored inside the Connection (`MongodbConnectionConfig`)\n\nThis field is required from version 0.5.0 onwards.",
+          "type": "string"
+        },
+        "appName": {
+          "description": "Client application name, which is used to identify the application in MongoDB logs.",
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "connectionName"
+      ]
+    },
+    "StreamConfiguration": {
+      "description": "Configuration of the stream layer, that is Kafka clients.",
+      "type": "object",
+      "properties": {
+        "consumer": {
+          "description": "Configurations related to the Kafka Consumer employed to retrieve\nthe latest state produced by the service alongside previous change events.\n\nIt must include a `connectionName` property which includes the Kafka connection to be used and authentication details.\nThe connection MUST be the same of the corresponding property in the `producer` configuration.",
+          "allOf": [
+            {
+              "$ref": "#/definitions/KafkaConfiguration"
+            }
+          ]
+        },
+        "producer": {
+          "description": "Configurations related to the Kafka Producer for sending to Kafka topics\nchange events occurring on the persistence layer.\n\nIt must include a `connectionName` property which includes the Kafka connection to be used and authentication details.\nThe connection MUST be the same of the corresponding property in the consumer` configuration.",
+          "allOf": [
+            {
+              "$ref": "#/definitions/KafkaConfiguration"
+            }
+          ]
+        }
+      },
+      "required": [
+        "consumer",
+        "producer"
+      ]
+    },
+    "KafkaConfiguration": {
+      "description": "librdkakfa client configuration, as specified by library documentation: https://docs.confluent.io/platform/current/clients/librdkafka/html/md_CONFIGURATION.html - please include only configuration required as a producer, since instance and authentication configurations must be handled via connectionName property.",
+      "type": "object",
+      "properties": {
+        "connectionName": {
+          "description": "Reference to the Kafka configuration stored inside the Connection (`KafkaConnectionConfig`)\n\nThis field is required from version 0.5.0 onwards.",
+          "type": "string"
+        }
+      },
+      "required": [
+        "connectionName"
+      ],
+      "additional_properties": {
+        "$ref": "#/definitions/Secret"
+      }
+    },
+    "ConnectionConfig": {
+      "description": "Describes the possible type of connections that can be defined in the configuration file",
+      "oneOf": [
+        {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "string",
+              "const": "kafka"
+            },
+            "config": {
+              "$ref": "#/definitions/KafkaConnectionConfig"
+            }
+          },
+          "required": [
+            "type",
+            "config"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "string",
+              "const": "mongodb"
+            },
+            "config": {
+              "$ref": "#/definitions/MongodbConnectionConfig"
+            }
+          },
+          "required": [
+            "type",
+            "config"
+          ]
+        }
+      ]
+    },
+    "KafkaConnectionConfig": {
+      "type": "object",
+      "additionalProperties": {
+        "$ref": "#/definitions/Secret"
+      }
+    },
+    "Secret": {
+      "examples": [
+        "my-secret",
+        {
+          "type": "env",
+          "key": "CUSTOM_ENV_VAR"
+        },
+        {
+          "type": "env",
+          "key": "CUSTOM_ENV_VAR",
+          "encoding": "base64"
+        },
+        {
+          "type": "file",
+          "path": "/path/to/file"
+        }
+      ],
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "type": {
+              "const": "env"
+            },
+            "key": {
+              "type": "string"
+            },
+            "encoding": {
+              "description": "Define which type of encoding the library supports when it needs to read the actual secret value.",
+              "type": "string",
+              "enum": [
+                "base64"
+              ]
+            }
+          },
+          "required": [
+            "type",
+            "key"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "type": {
+              "const": "file"
+            },
+            "key": {
+              "type": "string"
+            },
+            "path": {
+              "type": "string"
+            },
+            "encoding": {
+              "description": "Define which type of encoding the library supports when it needs to read the actual secret value.",
+              "type": "string",
+              "enum": [
+                "base64"
+              ]
+            }
+          },
+          "required": [
+            "type",
+            "path"
+          ]
+        }
+      ]
+    },
+    "MongodbConnectionConfig": {
+      "type": "object",
+      "properties": {
+        "url": {
+          "description": "MongoDB connection string",
+          "allOf": [
+            {
+              "$ref": "#/definitions/Secret"
+            }
+          ]
+        },
+        "database": {
+          "description": "MongoDB database where events will be written to. To be included if not specified in the url.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "appName": {
+          "description": "The application name employed by MongoDB driver when performing queries.\nThis is useful for debugging purposes, such as recognizing which application\nis launching a query towards the database.",
+          "type": [
+            "string",
+            "null"
+          ],
+          "default": null
+        }
+      },
+      "required": [
+        "url"
+      ]
+    }
+  }
+}

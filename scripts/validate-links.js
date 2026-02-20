@@ -4,15 +4,7 @@ const path = require('path');
 const docsFolder = path.resolve(__dirname, '../');
 
 const excludePath = (path) => {
-    const pathToExclude = [
-        'docs/runtime_suite',
-        'docs/runtime_suite_examples',
-        'docs/runtime_suite_templates',
-        'docs/runtime_suite_libraries',
-        'docs/runtime_suite_tools',
-        'docs/business_suite',
-        'docs/cli'
-    ];
+    const pathToExclude = [];
 
     if (pathToExclude.some(s => path.toLowerCase().includes(s))) return true;
     return false;
@@ -34,6 +26,7 @@ const toCheck = {
     start: [
         'mailto',
         '#',
+        '?',
     ],
     end: [
         '.png',
@@ -41,7 +34,8 @@ const toCheck = {
         '.gif',
         '.svg',
         '.sh',
-        '.xml'
+        '.xml',
+        '.yml'
     ],
     special: [
         'http',
@@ -57,18 +51,21 @@ const linkToCheck = (link) => {
 }
 
 const checkLink = (link) => {
-    const [path] = link.split('#');
+    const [pathWithQs] = link.split('#');
+    const [path] = pathWithQs.split('?')
     const pathToCheck = `${docsFolder}/docs${path}`;
     let errors = [];
 
     if(path.toLowerCase().startsWith('http') || path.toLowerCase().startsWith('https')) {
         if (path.toLowerCase().includes('docs.mia-platform.eu')) errors.push("httpLinkToInternalDocs");
-    } else {
-        if(!path.toLowerCase().includes('.md') && !path.toLowerCase().includes('.mdx')) errors.push("missingExtension");
-        if(path.startsWith('.')) errors.push("relativePath");
-        if(!path.startsWith('/')) errors.push("missingStartingSlash");
-        if(path.toLowerCase().startsWith('/docs') || path.toLowerCase().startsWith('docs')) errors.push("linkStartWithDocs");
-        if(!fs.existsSync(pathToCheck) || !fs.lstatSync(pathToCheck).isFile()) errors.push("fileNotFound");
+    } else if(!path.includes('/release-notes/') && !path.includes('/info')) {
+        if(path.toLowerCase() !== "/" && !path.toLowerCase().startsWith('/#')) {
+            if (!path.toLowerCase().includes('.md') && !path.toLowerCase().includes('.mdx')) errors.push("missingExtension");
+            if (path.startsWith('.')) errors.push("relativePath");
+            if (!path.startsWith('/')) errors.push("missingStartingSlash");
+            if (path.toLowerCase().startsWith('/docs') || path.toLowerCase().startsWith('docs')) errors.push("linkStartWithDocs");
+            if (!fs.existsSync(pathToCheck) || !fs.lstatSync(pathToCheck).isFile()) errors.push("fileNotFound");
+        }
     }
     return errors.length > 0 ? errors : null;
 }
@@ -78,7 +75,9 @@ const linksWithErrors = readFiles(docsFolder+'/docs/')
     .filter(f => f.endsWith('.md') || f.endsWith('.mdx'))
     .reduce((pages, pageLink) => {
         const content = fs.readFileSync(pageLink, 'utf8');
-        const links = content.match(/!?\[([^\]]*)\]\(([^)]+)\)/gm);
+        // Remove codeblocks from content before checking for links
+        const contentWithoutCodeblocks = content.replace(/^```[\s\S]*?^```/gm, '');
+        const links = contentWithoutCodeblocks.match(/!?\[([^\]]*)\]\(([^)]+)\)/gm);
         const errors = links ? links
             .map(l => l.match(/\[.*\]\((.*)\)/)[1])
             .filter(linkToCheck)
@@ -94,3 +93,5 @@ const linksWithErrors = readFiles(docsFolder+'/docs/')
 if(Object.keys(linksWithErrors).length > 0) {
     throw new Error(`Found ${Object.keys(linksWithErrors).length} page with wrong links: ${JSON.stringify(linksWithErrors, null, 2)}`);
 }
+
+process.exit(0);

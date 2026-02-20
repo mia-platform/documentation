@@ -1,0 +1,139 @@
+{
+  "$schema": "https://docs.mia-platform.eu/schemas/fast_data/farm-data.0.5.3.schema.json",
+  "id": "toy_model",
+  "connections": {
+    "local": {
+      "type": "kafka",
+      "config": {
+        "bootstrap.servers": {
+          "type": "file",
+          "path": "/run/secrets/kafka/bootstrap.servers"
+        },
+        "auto.offset.reset": "earliest",
+        "queued.max.messages.kbytes": "8192",
+        "queued.min.messages": "500"
+      }
+    }
+  },
+  "consumers": {
+    "type": "kafka",
+    "config": {
+      "users": {
+        "topic": "fd.toy-model.users.raw",
+        "connectionName": "local",
+        "group.id": "fd.toy-model.sv_users"
+      },
+      "posts": {
+        "topic": "fd.toy-model.posts.raw",
+        "connectionName": "local",
+        "group.id": "fd.toy-model.sv_users"
+      },
+      "comments": {
+        "topic": "fd.toy-model.comments.raw",
+        "connectionName": "local",
+        "group.id": "fd.toy-model.sv_users"
+      }
+    }
+  },
+  "producer": {
+    "type": "kafka",
+    "config": {
+      "topic": "fd.toy-model.sv_users.aggregated",
+      "connectionName": "local"
+    }
+  },
+  "processor": {
+    "persistence": {
+      "type": "mongo",
+      "config": {
+        "url": {
+          "type": "file",
+          "path": "/run/secrets/mongodb/url"
+        }
+      }
+    },
+    "internalUpdates": {
+      "type": "kafka",
+      "config": {
+        "topic": "fd.toy-model.sv_users.internal-updates",
+        "connectionName": "local",
+        "consumer": {
+          "group.id": "fd.toy-model.sv_users",
+          "client.id": "fd.toy-model.internal-updates",
+          "queued.max.messages.kbytes": "96",
+          "queued.min.messages": "160",
+          "fetch.message.max.bytes": "40320"
+        }
+      }
+    },
+    "graph": {
+      "nodes": [
+        {
+          "id": "users",
+          "edges": {
+            "in": [],
+            "out": [
+              "users->posts"
+            ]
+          }
+        },
+        {
+          "id": "posts",
+          "edges": {
+            "in": [
+              "users->posts"
+            ],
+            "out": [
+              "posts->comments"
+            ]
+          }
+        },
+        {
+          "id": "comments",
+          "edges": {
+            "in": [
+              "posts->comments"
+            ],
+            "out": []
+          }
+        }
+      ],
+      "edges": [
+        {
+          "id": "users->posts",
+          "filter": {
+            "$eq": [
+              {
+                "foreign": [
+                  "userId"
+                ]
+              },
+              {
+                "local": [
+                  "id"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "id": "posts->comments",
+          "filter": {
+            "$eq": [
+              {
+                "foreign": [
+                  "postId"
+                ]
+              },
+              {
+                "local": [
+                  "id"
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,15 @@
+[
+  {
+    "title": "Console",
+    "icon": "console",
+    "defaultOpen": true,
+    "type": "versions",
+    "items": {
+      "newFeatures": [],
+      "improvements": [],
+      "bugFixes": [
+        "Resolved an issue in the Company’s Provider section that prevented establishing a connection to Azure DevOps when the `Git Provider` capability and `Client Credentials` authentication method settings were selected." 
+      ]
+    }
+  }
+]

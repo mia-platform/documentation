@@ -1,0 +1,9 @@
+{
+  "MD013": false,
+  "MD033": {
+    "allowed_elements": ["nobr", "sup", "a", "p", "details", "summary", "tabs", "tabitem"]
+  },
+  "MD004": {
+    "style": "dash"
+  }
+}

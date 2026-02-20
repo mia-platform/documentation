@@ -1,0 +1,36 @@
+fast-data:
+  - changed-files:
+    - any-glob-to-any-file:
+      - docs/fast_data/**
+
+microfrontend-composer:
+  - changed-files:
+    - any-glob-to-any-file:
+      - docs/microfrontend-composer/**
+
+cli:
+  - changed-files:
+    - any-glob-to-any-file:
+      - docs/cli/**
+
+marketplace:
+  - changed-files:
+    - any-glob-to-any-file:
+      - docs/runtime_suite/**
+  - head-branch:
+    - doc-aggregator/*
+
+crud-service:
+  - changed-files:
+    - any-glob-to-any-file:
+      - docs/runtime_suite/crud-service/**
+
+data-catalog:
+  - changed-files:
+      - any-glob-to-any-file:
+          - docs/data-catalog/**
+
+release-note:
+  - changed-files:
+    - any-glob-to-any-file:
+      - docs/release-notes/**

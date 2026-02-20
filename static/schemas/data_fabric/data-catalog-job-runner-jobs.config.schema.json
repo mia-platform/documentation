@@ -1,0 +1,136 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Fast Data Job Sync Configuration",
+    "type": "object",
+    "required": [
+        "controlPlane"
+    ],
+    "examples": [
+        {
+            "controlPlane": {
+                "type": "mongodb",
+                "configuration": {
+                    "url": "mongodb://<server>:27017/<default-database>?replicaSet=local",
+                    "database": "<data-fabric-database-name>"
+                }
+            }
+        }
+    ],
+    "properties": {
+        "controlPlane": {
+            "$ref": "#/definitions/ControlPlanePersistence"
+        }
+    },
+    "additionalProperties": false,
+    "definitions": {
+        "ControlPlanePersistence": {
+            "type": "object",
+            "required": [
+                "persistence"
+            ],
+            "properties": {
+                "persistence": {
+                    "$ref": "#/definitions/Persistence"
+                }
+            }
+        },
+        "MongodbPersistence": {
+            "type": "object",
+            "required": [
+                "url"
+            ],
+            "properties": {
+                "database": {
+                    "description": "Optional database name. It selects which database to be employed for storing data (it overrides the one provided in the connection string when it is set)",
+                    "default": null,
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "url": {
+                    "description": "MongoDB connection string",
+                    "allOf": [
+                        {
+                            "$ref": "#/definitions/secret"
+                        }
+                    ]
+                }
+            }
+        },
+        "Persistence": {
+            "oneOf": [
+                {
+                    "type": "object",
+                    "required": [
+                        "configuration",
+                        "type"
+                    ],
+                    "properties": {
+                        "configuration": {
+                            "$ref": "#/definitions/MongodbPersistence"
+                        },
+                        "type": {
+                            "type": "string",
+                            "enum": [
+                                "mongodb"
+                            ]
+                        }
+                    }
+                }
+            ]
+        },
+        "secret": {
+            "oneOf": [
+                {
+                    "type": "string"
+                },
+                {
+                    "type": "object",
+                    "required": [
+                        "key",
+                        "type"
+                    ],
+                    "properties": {
+                        "encoding": {
+                            "type": "string",
+                            "enum": [
+                                "base64"
+                            ]
+                        },
+                        "key": {
+                            "type": "string"
+                        },
+                        "type": {
+                            "const": "env"
+                        }
+                    }
+                },
+                {
+                    "type": "object",
+                    "required": [
+                        "path",
+                        "type"
+                    ],
+                    "properties": {
+                        "encoding": {
+                            "type": "string",
+                            "enum": [
+                                "base64"
+                            ]
+                        },
+                        "key": {
+                            "type": "string"
+                        },
+                        "path": {
+                            "type": "string"
+                        },
+                        "type": {
+                            "const": "file"
+                        }
+                    }
+                }
+            ]
+        }
+    }
+}

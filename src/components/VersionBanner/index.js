@@ -31,7 +31,7 @@ BannerContent.propTypes = {
   title: PropTypes.string,
 }
 
-function VersionBanner({title,subTitle,link,majorVersion}) {
+function VersionBanner({title, subTitle, link, majorVersion}) {
   // Props version allows to read/set a new local storage key when a new version is release
   const dismissKey = STORAGE_VERSION_BANNER_DISMISS_KEY.replace('{{majorVersion}}', majorVersion)
   const dismissVersionBannerKeyValue = ExecutionEnvironment.canUseDOM ? !!localStorage.getItem(dismissKey) : false

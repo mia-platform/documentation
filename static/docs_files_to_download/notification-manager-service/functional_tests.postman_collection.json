@@ -1,0 +1,1090 @@
+{
+	"info": {
+		"_postman_id": "14443ea3-21b0-4d41-8baa-e777f45491fb",
+		"name": "Notification Manager - Functional Tests",
+		"description": "NB:\n\nRun the collection of tests sequentially setting a delay of at least 60s to be sure of not triggering the security blocking features of the **sms-service**.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "26367572"
+	},
+	"item": [
+		{
+			"name": "AM - Appointment Manager events",
+			"item": [
+				{
+					"name": "AM/AppointmentCreated/v1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Check response status code\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Check response body\", function () {",
+									"    const payload = pm.response.json()",
+									"    const {notifications} = payload",
+									"    ",
+									"    pm.expect(payload._id).to.be.a('string')",
+									"    pm.expect(notifications.length).to.equal(3)",
+									"",
+									"    const doctor1 = notifications.find(notification => notification.recipient === 'auth0|dr.mario.rossi')",
+									"    const doctor2 = notifications.find(notification => notification.recipient === 'auth0|dr.lucia.verdi')",
+									"    const patient1 = notifications.find(notification => notification.recipient === 'auth0|giovanni.bianchi')",
+									"",
+									"    pm.expect(doctor1.messages.length).to.equal(2)",
+									"    pm.expect(doctor2.messages.length).to.equal(2)",
+									"    pm.expect(patient1.messages.length).to.equal(2)",
+									"    ",
+									"    pm.expect(doctor1.messages[0].status).to.equal('SUCCESS')",
+									"    pm.expect(doctor1.messages[0].channel).to.equal('email')",
+									"    pm.expect(doctor1.messages[1].status).to.equal('SUCCESS')",
+									"    pm.expect(doctor1.messages[1].channel).to.equal('sms')",
+									"",
+									"    pm.expect(doctor2.messages[0].status).to.equal('SUCCESS')",
+									"    pm.expect(doctor2.messages[0].channel).to.equal('email')",
+									"    pm.expect(doctor2.messages[1].status).to.equal('SUCCESS')",
+									"    pm.expect(doctor2.messages[1].channel).to.equal('sms')",
+									"",
+									"    pm.expect(patient1.messages[0].status).to.equal('SUCCESS')",
+									"    pm.expect(patient1.messages[0].channel).to.equal('email')",
+									"    pm.expect(patient1.messages[1].status).to.equal('SUCCESS')",
+									"    pm.expect(patient1.messages[1].channel).to.equal('sms')",
+									"    ",
+									"    pm.expect(doctor1.reminders.length).to.equal(1)",
+									"    pm.expect(doctor2.reminders.length).to.equal(1)",
+									"    pm.expect(patient1.reminders.length).to.equal(1)",
+									"",
+									"    pm.expect(doctor1.reminders[0].status).to.equal('ACTIVE')",
+									"    pm.expect(doctor2.reminders[0].status).to.equal('ACTIVE')",
+									"    pm.expect(patient1.reminders[0].status).to.equal('ACTIVE')",
+									"",
+									"    pm.expect(doctor1.failures).to.be.empty",
+									"    pm.expect(doctor2.failures).to.be.empty",
+									"    pm.expect(patient1.failures).to.be.empty",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Cookie",
+								"value": "sid={{sid}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"AM/AppointmentCreated/v1\",\n    \"key\": \"appointment_001\",\n    \"metadata\": {\n        \"userFields\": [\n            \"resourceId\",\n            \"participantIds\"\n        ]\n    },\n    \"payload\": {\n        \"startDate\": \"2023-09-04T09:00:00Z\",\n        \"endDate\": \"2023-09-04T09:00:00Z\",\n        \"resourceId\": \"auth0|dr.mario.rossi\",\n        \"participantIds\": [\n            \"auth0|dr.lucia.verdi\",\n            \"auth0|giovanni.bianchi\"\n        ]\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrlNotificationManagerPreprodEnv}}/notification-events/",
+							"host": [
+								"{{baseUrlNotificationManagerPreprodEnv}}"
+							],
+							"path": [
+								"notification-events",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "AM/AppointmentReminder/v1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Check response status code\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Check response body\", function () {",
+									"    const payload = pm.response.json()",
+									"    const {notifications} = payload",
+									"    ",
+									"    pm.expect(payload._id).to.be.a('string')",
+									"    pm.expect(notifications.length).to.equal(1)",
+									"",
+									"    const patient1 = notifications.find(notification => notification.recipient === 'auth0|giovanni.bianchi')",
+									"",
+									"    pm.expect(patient1.messages.length).to.equal(2)",
+									"",
+									"    pm.expect(patient1.messages[0].status).to.equal('SUCCESS')",
+									"    pm.expect(patient1.messages[0].channel).to.equal('email')",
+									"    pm.expect(patient1.messages[1].status).to.equal('SUCCESS')",
+									"    pm.expect(patient1.messages[1].channel).to.equal('sms')",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Cookie",
+								"value": "sid={{sid}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"AM/AppointmentReminder/v1\",\n    \"metadata\": {\n        \"reminder\": {\n            \"schedule\": \"PT5M\",\n            \"expirationDate\": \"2023-09-01T16:20:00Z\",\n            \"recipients\": [\n                \"auth0|giovanni.bianchi\"\n            ]\n        }\n    },\n    \"payload\": {\n        \"startDate\": \"2023-09-01T10:30:00Z\",\n        \"endDate\": \"2023-09-01T11:00:00Z\",\n        \"resourceId\": \"auth0|dr.mario.rossi\",\n        \"participantIds\": [\n            \"auth0|dr.lucia.verdi\",\n            \"auth0|giovanni.bianchi\"\n        ]\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrlNotificationManagerPreprodEnv}}/notification-events/",
+							"host": [
+								"{{baseUrlNotificationManagerPreprodEnv}}"
+							],
+							"path": [
+								"notification-events",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "AM/AppointmentDeleted/v1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Check response status code\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Check response body\", function () {",
+									"    const payload = pm.response.json()",
+									"    const {notifications} = payload",
+									"    ",
+									"    pm.expect(payload._id).to.be.a('string')",
+									"    pm.expect(notifications.length).to.equal(3)",
+									"",
+									"    const doctor1 = notifications.find(notification => notification.recipient === 'auth0|dr.mario.rossi')",
+									"    const doctor2 = notifications.find(notification => notification.recipient === 'auth0|dr.lucia.verdi')",
+									"    const patient1 = notifications.find(notification => notification.recipient === 'auth0|giovanni.bianchi')",
+									"",
+									"    pm.expect(doctor1.messages.length).to.equal(2)",
+									"    pm.expect(doctor2.messages.length).to.equal(2)",
+									"    pm.expect(patient1.messages.length).to.equal(2)",
+									"    ",
+									"    pm.expect(doctor1.messages[0].status).to.equal('SUCCESS')",
+									"    pm.expect(doctor1.messages[0].channel).to.equal('email')",
+									"    pm.expect(doctor1.messages[1].status).to.equal('SUCCESS')",
+									"    pm.expect(doctor1.messages[1].channel).to.equal('sms')",
+									"",
+									"    pm.expect(doctor2.messages[0].status).to.equal('SUCCESS')",
+									"    pm.expect(doctor2.messages[0].channel).to.equal('email')",
+									"    pm.expect(doctor2.messages[1].status).to.equal('SUCCESS')",
+									"    pm.expect(doctor2.messages[1].channel).to.equal('sms')",
+									"",
+									"    pm.expect(patient1.messages[0].status).to.equal('SUCCESS')",
+									"    pm.expect(patient1.messages[0].channel).to.equal('email')",
+									"    pm.expect(patient1.messages[1].status).to.equal('SUCCESS')",
+									"    pm.expect(patient1.messages[1].channel).to.equal('sms')",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Cookie",
+								"value": "sid={{sid}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"AM/AppointmentDeleted/v1\",\n    \"metadata\": {\n        \"userFields\": [\n            \"resourceId\",\n            \"participantIds\"\n        ]\n    },\n    \"payload\": {\n        \"startDate\": \"2023-09-01T09:30:00Z\",\n        \"endDate\": \"2023-09-01T10:30:00Z\",\n        \"resourceId\": \"auth0|dr.mario.rossi\",\n        \"participantIds\": [\n            \"auth0|dr.lucia.verdi\",\n            \"auth0|giovanni.bianchi\"\n        ]\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrlNotificationManagerPreprodEnv}}/notification-events/",
+							"host": [
+								"{{baseUrlNotificationManagerPreprodEnv}}"
+							],
+							"path": [
+								"notification-events",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "AM/AppointmentUpdated/v1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Check response status code\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Check response body\", function () {",
+									"    const payload = pm.response.json()",
+									"    const {notifications} = payload",
+									"    ",
+									"    pm.expect(payload._id).to.be.a('string')",
+									"    pm.expect(notifications.length).to.equal(4)",
+									"",
+									"    const doctor1 = notifications.find(notification => notification.recipient === 'auth0|dr.mario.rossi')",
+									"    const doctor2 = notifications.find(notification => notification.recipient === 'auth0|dr.lucia.verdi')",
+									"    const patientRemoved = notifications.find(notification => notification.recipient === 'auth0|giovanni.bianchi')",
+									"    const patientAdded = notifications.find(notification => notification.recipient === 'auth0|giulia.neri')",
+									"",
+									"    pm.expect(doctor1.event.name).to.equal('AM/AppointmentUpdated/v1')",
+									"    pm.expect(patientRemoved.event.name).to.equal('AM/AppointmentDeleted/v1')",
+									"    pm.expect(doctor2.event.name).to.equal('AM/AppointmentUpdated/v1')",
+									"    pm.expect(patientAdded.event.name).to.equal('AM/AppointmentCreated/v1')",
+									"",
+									"    pm.expect(doctor1.messages.length).to.equal(2)",
+									"    pm.expect(patientRemoved.messages.length).to.equal(2)",
+									"    pm.expect(doctor2.messages.length).to.equal(2)",
+									"    pm.expect(patientAdded.messages.length).to.equal(2)",
+									"    ",
+									"    pm.expect(doctor1.messages[0].status).to.equal('SUCCESS')",
+									"    pm.expect(doctor1.messages[0].channel).to.equal('email')",
+									"    pm.expect(doctor1.messages[0].templateName).to.equal('doctors-appointment-updated-template')",
+									"    pm.expect(doctor1.messages[1].status).to.equal('SUCCESS')",
+									"    pm.expect(doctor1.messages[1].channel).to.equal('sms')",
+									"    pm.expect(doctor1.messages[1].templateName).to.equal('doctors-appointment-updated-template')",
+									"",
+									"    pm.expect(patientRemoved.messages[0].status).to.equal('SUCCESS')",
+									"    pm.expect(patientRemoved.messages[0].channel).to.equal('email')",
+									"    pm.expect(patientRemoved.messages[0].templateName).to.equal('patients-appointment-deleted-template')",
+									"    pm.expect(patientRemoved.messages[1].status).to.equal('SUCCESS')",
+									"    pm.expect(patientRemoved.messages[1].channel).to.equal('sms')",
+									"    pm.expect(patientRemoved.messages[1].templateName).to.equal('patients-appointment-deleted-template')",
+									"",
+									"    pm.expect(doctor2.messages[0].status).to.equal('SUCCESS')",
+									"    pm.expect(doctor2.messages[0].channel).to.equal('email')",
+									"    pm.expect(doctor2.messages[0].templateName).to.equal('doctors-appointment-updated-template')",
+									"    pm.expect(doctor2.messages[1].status).to.equal('SUCCESS')",
+									"    pm.expect(doctor2.messages[1].channel).to.equal('sms')",
+									"    pm.expect(doctor2.messages[1].templateName).to.equal('doctors-appointment-updated-template')",
+									"",
+									"    pm.expect(patientAdded.messages[0].status).to.equal('SUCCESS')",
+									"    pm.expect(patientAdded.messages[0].channel).to.equal('email')",
+									"    pm.expect(patientAdded.messages[0].templateName).to.equal('patients-appointment-created-template')",
+									"    pm.expect(patientAdded.messages[1].status).to.equal('SUCCESS')",
+									"    pm.expect(patientAdded.messages[1].channel).to.equal('sms')",
+									"    pm.expect(patientAdded.messages[1].templateName).to.equal('patients-appointment-created-template')",
+									"    ",
+									"    pm.expect(doctor1.reminders.length).to.equal(1)",
+									"    pm.expect(patientRemoved).not.to.haveOwnProperty('reminders')",
+									"    pm.expect(doctor2.reminders.length).to.equal(1)",
+									"    pm.expect(patientAdded.reminders.length).to.equal(1)",
+									"",
+									"    pm.expect(doctor1.reminders[0].status).to.equal('ACTIVE')",
+									"    pm.expect(doctor2.reminders[0].status).to.equal('ACTIVE')",
+									"    pm.expect(patientAdded.reminders[0].status).to.equal('ACTIVE')",
+									"",
+									"    pm.expect(doctor1.failures).to.be.empty",
+									"    pm.expect(patientRemoved).not.to.haveOwnProperty('failures')",
+									"    pm.expect(doctor2.failures).to.be.empty",
+									"    pm.expect(patientAdded.failures).to.be.empty",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Cookie",
+								"value": "sid={{sid}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"AM/AppointmentUpdated/v1\",\n    \"metadata\": {\n        \"userFields\": [\n            \"resourceId\",\n            \"participantIds\"\n        ]\n    },\n    \"payload\": {\n        \"originalAppointment\": {\n            \"startDate\": \"2023-09-01T10:30:00Z\",\n            \"endDate\": \"2023-09-01T11:00:00Z\",\n            \"resourceId\": \"auth0|dr.mario.rossi\",\n            \"participantIds\": [\n                \"auth0|dr.lucia.verdi\",\n                \"auth0|giovanni.bianchi\"\n            ]\n        },\n        \"currentAppointment\": {\n            \"startDate\": \"2023-09-01T10:50:00Z\",\n            \"endDate\": \"2023-09-01T12:30:00Z\",\n            \"resourceId\": \"auth0|dr.mario.rossi\",\n            \"participantIds\": [\n                \"auth0|dr.lucia.verdi\",\n                \"auth0|giulia.neri\"\n            ]\n        }\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrlNotificationManagerPreprodEnv}}/notification-events/",
+							"host": [
+								"{{baseUrlNotificationManagerPreprodEnv}}"
+							],
+							"path": [
+								"notification-events",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "NB:\n\nRun the collection of tests sequentially setting a delay of at least 60s to be sure of not triggering the security blocking features of the **sms-service**."
+		},
+		{
+			"name": "TMM - Therapy & Monitoring Manager events",
+			"item": [
+				{
+					"name": "TMM/TherapyCreated/v1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Check response status code\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Check response body\", function () {",
+									"    const payload = pm.response.json()",
+									"    const {notifications} = payload",
+									"    ",
+									"    pm.expect(payload._id).to.be.a('string')",
+									"    pm.expect(notifications.length).to.equal(2)",
+									"",
+									"    const doctor1 = notifications.find(notification => notification.recipient === 'auth0|dr.mario.rossi')",
+									"    const patient1 = notifications.find(notification => notification.recipient === 'auth0|giovanni.bianchi')",
+									"",
+									"    pm.expect(doctor1.messages.length).to.equal(2)",
+									"    pm.expect(patient1.messages.length).to.equal(2)",
+									"    ",
+									"    pm.expect(doctor1.messages[0].status).to.equal('SUCCESS')",
+									"    pm.expect(doctor1.messages[0].channel).to.equal('email')",
+									"    pm.expect(doctor1.messages[1].status).to.equal('SUCCESS')",
+									"    pm.expect(doctor1.messages[1].channel).to.equal('sms')",
+									"",
+									"    pm.expect(patient1.messages[0].status).to.equal('SUCCESS')",
+									"    pm.expect(patient1.messages[0].channel).to.equal('email')",
+									"    pm.expect(patient1.messages[1].status).to.equal('SUCCESS')",
+									"    pm.expect(patient1.messages[1].channel).to.equal('sms')",
+									"    ",
+									"    pm.expect(doctor1.reminders.length).to.equal(1)",
+									"    pm.expect(patient1.reminders.length).to.equal(1)",
+									"",
+									"    pm.expect(doctor1.reminders[0].status).to.equal('ACTIVE')",
+									"    pm.expect(doctor1.reminders[0].expirationDate).to.equal('2023-09-04T23:50:00.000Z')",
+									"    pm.expect(patient1.reminders[0].status).to.equal('ACTIVE')",
+									"    pm.expect(patient1.reminders[0].expirationDate).to.equal('2023-09-04T23:55:00.000Z')",
+									"",
+									"    pm.expect(doctor1.failures).to.be.empty",
+									"    pm.expect(patient1.failures).to.be.empty",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Cookie",
+								"value": "sid={{sid}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": \"f303f2e9-f37b-4565-91e4-new-1\",\n    \"key\": \"high-blood-pressure-therapy-new-1\",\n    \"name\": \"TMM/TherapyCreated/v1\",\n    \"metadata\": {\n        \"includeUsers\": [],\n        \"excludeUsers\": []\n    },\n    \"payload\": {\n        \"planName\": \"Drug therapy\",\n        \"prototypeId\": \"medication\",\n        \"startDate\": \"2023-09-04T00:00:00Z\",\n        \"endDate\": \"2023-09-06T00:00:00Z\",\n        \"each\": [\n            \"day\"\n        ],\n        \"hours\": [\n            \"12:30\"\n        ],\n        \"doctorId\": \"auth0|dr.mario.rossi\",\n        \"patientId\": \"auth0|giovanni.bianchi\",\n        \"adherenceStatus\": \"enabled\",\n        \"adherenceToleranceTime\": 1,\n        \"adherenceMinimumPercentage\": 90,\n        \"complianceStatus\": \"enabled\",\n        \"complianceMinimumPercentage\": 90\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrlNotificationManagerPreprodEnv}}/notification-events/",
+							"host": [
+								"{{baseUrlNotificationManagerPreprodEnv}}"
+							],
+							"path": [
+								"notification-events",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "TMM/TherapyReminder/v1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Check response status code\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Check response body\", function () {",
+									"    const payload = pm.response.json()",
+									"    const {notifications} = payload",
+									"    ",
+									"    pm.expect(payload._id).to.be.a('string')",
+									"    pm.expect(notifications.length).to.equal(1)",
+									"",
+									"    const patient1 = notifications.find(notification => notification.recipient === 'auth0|giovanni.bianchi')",
+									"",
+									"    pm.expect(patient1.messages.length).to.equal(2)",
+									"",
+									"    pm.expect(patient1.messages[0].status).to.equal('SUCCESS')",
+									"    pm.expect(patient1.messages[0].channel).to.equal('email')",
+									"    pm.expect(patient1.messages[1].status).to.equal('SUCCESS')",
+									"    pm.expect(patient1.messages[1].channel).to.equal('sms')",
+									"",
+									"    pm.expect(patient1.reminders.length).to.equal(1)",
+									"    ",
+									"    pm.expect(patient1.reminders[0].status).to.equal('ACTIVE')",
+									"    pm.expect(patient.reminders[0].expirationDate).to.equal('2023-09-04T23:55:00.000Z')",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Cookie",
+								"value": "sid={{sid}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": \"06efe38d-0e46-4863-9bb4-4c11ff63c912\",\n    \"key\": \"blood-pressure-therapy-12345\",\n    \"metadata\": {\n        \"reminder\": {\n            \"schedule\": \"PT5M\",\n            \"expirationDate\": \"2023-09-04T14:15:00Z\",\n            \"recipients\": [\n                \"auth0|giovanni.bianchi\"\n            ]\n        }\n    },\n    \"name\": \"TMM/TherapyReminder/v1\",\n    \"payload\": {\n        \"planName\": \"High blood pressure therapy\",\n        \"prototypeId\": \"bloodPressure\",\n        \"notes\": \"Takes the blood pills\",\n        \"startDate\": \"2023-09-01T00:00:00Z\",\n        \"endDate\": \"2023-09-15T00:00:00Z\",\n        \"each\": [\n            \"day\"\n        ],\n        \"hours\": [\n            \"15:30\"\n        ],\n        \"doctorId\": \"auth0|dr.mario.rossi\",\n        \"patientId\": \"auth0|giovanni.bianchi\",\n        \"adherenceStatus\": \"enabled\",\n        \"adherenceToleranceFrequency\": 1,\n        \"adherenceMinimumPercentage\": 90,\n        \"complianceStatus\": \"enabled\",\n        \"complianceMinimumPercentage\": 90\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrlNotificationManagerPreprodEnv}}/notification-events/",
+							"host": [
+								"{{baseUrlNotificationManagerPreprodEnv}}"
+							],
+							"path": [
+								"notification-events",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "TMM/TherapyDeleted/v1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Check response status code\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Check response body\", function () {",
+									"    const payload = pm.response.json()",
+									"    const {notifications} = payload",
+									"    ",
+									"    pm.expect(payload._id).to.be.a('string')",
+									"    pm.expect(notifications.length).to.equal(2)",
+									"",
+									"    const patient1 = notifications.find(notification => notification.recipient === 'auth0|giovanni.bianchi')",
+									"    const patient2 = notifications.find(notification => notification.recipient === 'auth0|giulia.neri')",
+									"",
+									"    pm.expect(patient1.messages.length).to.equal(2)",
+									"    pm.expect(patient2.messages.length).to.equal(2)",
+									"",
+									"    pm.expect(patient1.messages[0].status).to.equal('SUCCESS')",
+									"    pm.expect(patient1.messages[0].channel).to.equal('email')",
+									"    pm.expect(patient1.messages[1].status).to.equal('SUCCESS')",
+									"    pm.expect(patient1.messages[1].channel).to.equal('sms')",
+									"",
+									"    pm.expect(patient2.messages[0].status).to.equal('SUCCESS')",
+									"    pm.expect(patient2.messages[0].channel).to.equal('email')",
+									"    pm.expect(patient2.messages[1].status).to.equal('SUCCESS')",
+									"    pm.expect(patient2.messages[1].channel).to.equal('sms')",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Cookie",
+								"value": "sid={{sid}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": \"da03558a-f283-4d9b-b1c7-50282716802c\",\n    \"key\": \"high-blood-pressure-therapy-12345\",\n    \"name\": \"TMM/TherapyDeleted/v1\",\n    \"metadata\": {\n        \"excludeUsers\": [\n            \"auth0|dr.mario.rossi\"\n        ],\n        \"includeUsers\": [\n            \"auth0|giulia.neri\"\n        ]\n    },\n    \"payload\": {\n        \"planName\": \"Drug therapy\",\n        \"prototypeId\": \"medication\",\n        \"startDate\": \"2023-09-01T00:00:00Z\",\n        \"endDate\": \"2023-09-15T00:00:00Z\",\n        \"each\": [\n            \"day\"\n        ],\n        \"hours\": [\n            \"10:00\"\n        ],\n        \"doctorId\": \"auth0|dr.mario.rossi\",\n        \"patientId\": \"auth0|giovanni.bianchi\",\n        \"adherenceStatus\": \"enabled\",\n        \"adherenceToleranceTime\": 1,\n        \"adherenceMinimumPercentage\": 90,\n        \"complianceStatus\": \"enabled\",\n        \"complianceMinimumPercentage\": 90\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrlNotificationManagerPreprodEnv}}/notification-events/",
+							"host": [
+								"{{baseUrlNotificationManagerPreprodEnv}}"
+							],
+							"path": [
+								"notification-events",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "TMM/TherapyUpdated/v1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Check response status code\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Check response body\", function () {",
+									"    const payload = pm.response.json()",
+									"    const {notifications} = payload",
+									"    ",
+									"    pm.expect(payload._id).to.be.a('string')",
+									"    pm.expect(notifications.length).to.equal(3)",
+									"",
+									"    const doctorRemoved = notifications.find(notification => notification.recipient === 'auth0|dr.mario.rossi')",
+									"    const doctorAdded = notifications.find(notification => notification.recipient === 'auth0|dr.lucia.verdi')",
+									"    const patient1 = notifications.find(notification => notification.recipient === 'auth0|giovanni.bianchi')",
+									"",
+									"    pm.expect(doctorRemoved.event.name).to.equal('TMM/TherapyDeleted/v1')",
+									"    pm.expect(patient1.event.name).to.equal('TMM/TherapyUpdated/v1')",
+									"    pm.expect(doctorAdded.event.name).to.equal('TMM/TherapyCreated/v1')",
+									"",
+									"    pm.expect(doctorRemoved.messages.length).to.equal(2)",
+									"    pm.expect(patient1.messages.length).to.equal(2)",
+									"    pm.expect(doctorAdded.messages.length).to.equal(2)",
+									"    ",
+									"    pm.expect(doctorRemoved.messages[0].status).to.equal('SUCCESS')",
+									"    pm.expect(doctorRemoved.messages[0].channel).to.equal('email')",
+									"    pm.expect(doctorRemoved.messages[0].templateName).to.equal('doctors-therapy-deleted-template')",
+									"    pm.expect(doctorRemoved.messages[1].status).to.equal('SUCCESS')",
+									"    pm.expect(doctorRemoved.messages[1].channel).to.equal('sms')",
+									"    pm.expect(doctorRemoved.messages[1].templateName).to.equal('doctors-therapy-deleted-template')",
+									"",
+									"    pm.expect(patient1.messages[0].status).to.equal('SUCCESS')",
+									"    pm.expect(patient1.messages[0].channel).to.equal('email')",
+									"    pm.expect(patient1.messages[0].templateName).to.equal('patients-therapy-updated-template')",
+									"    pm.expect(patient1.messages[1].status).to.equal('SUCCESS')",
+									"    pm.expect(patient1.messages[1].channel).to.equal('sms')",
+									"    pm.expect(patient1.messages[1].templateName).to.equal('patients-therapy-updated-template')",
+									"",
+									"    pm.expect(doctorAdded.messages[0].status).to.equal('SUCCESS')",
+									"    pm.expect(doctorAdded.messages[0].channel).to.equal('email')",
+									"    pm.expect(doctorAdded.messages[0].templateName).to.equal('doctors-therapy-created-template')",
+									"    pm.expect(doctorAdded.messages[1].status).to.equal('SUCCESS')",
+									"    pm.expect(doctorAdded.messages[1].channel).to.equal('sms')",
+									"    pm.expect(doctorAdded.messages[1].templateName).to.equal('doctors-therapy-created-template')",
+									"    ",
+									"    pm.expect(doctorRemoved).not.to.haveOwnProperty('reminders')",
+									"    pm.expect(patient1.reminders.length).to.equal(1)",
+									"    pm.expect(doctorAdded.reminders.length).to.equal(1)",
+									"",
+									"    pm.expect(patient1.reminders[0].status).to.equal('ACTIVE')",
+									"    pm.expect(doctorAdded.reminders[0].status).to.equal('ACTIVE')",
+									"",
+									"    pm.expect(doctorRemoved).not.to.haveOwnProperty('failures')",
+									"    pm.expect(patient1.failures).to.be.empty",
+									"    pm.expect(doctorAdded.failures).to.be.empty",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Cookie",
+								"value": "sid={{sid}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"TMM/TherapyUpdated/v1\",\n    \"metadata\": {\n        \"excludeUsers\": [],\n        \"includeUsers\": []\n    },\n    \"payload\": {\n        \"originalTherapy\": {\n            \"planName\": \"Blood pressure therapy\",\n            \"prototypeId\": \"bloodPressure\",\n            \"notes\": \"Takes the blood pressure pills\",\n            \"startDate\": \"2023-09-04T00:00:00Z\",\n            \"endDate\": \"2023-09-15T00:00:00Z\",\n            \"each\": [\n                \"day\"\n            ],\n            \"times\": 2,\n            \"doctorId\": \"auth0|dr.mario.rossi\",\n            \"patientId\": \"auth0|giovanni.bianchi\",\n            \"adherenceStatus\": \"enabled\",\n            \"adherenceToleranceFrequency\": 1,\n            \"adherenceMinimumPercentage\": 90,\n            \"complianceStatus\": \"enabled\",\n            \"complianceMinimumPercentage\": 90\n        },\n        \"currentTherapy\": {\n            \"planName\": \"Blood pressure therapy\",\n            \"prototypeId\": \"bloodPressure\",\n            \"notes\": \"Takes the blood pressure pills\",\n            \"startDate\": \"2023-09-05T00:00:00Z\",\n            \"endDate\": \"2023-09-20T00:00:00Z\",\n            \"each\": [\n                \"day\"\n            ],\n            \"doctorId\": \"auth0|dr.lucia.verdi\",\n            \"patientId\": \"auth0|giovanni.bianchi\",\n            \"adherenceStatus\": \"enabled\",\n            \"adherenceToleranceFrequency\": 1,\n            \"adherenceMinimumPercentage\": 90,\n            \"complianceStatus\": \"enabled\",\n            \"complianceMinimumPercentage\": 90\n        }\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrlNotificationManagerPreprodEnv}}/notification-events/",
+							"host": [
+								"{{baseUrlNotificationManagerPreprodEnv}}"
+							],
+							"path": [
+								"notification-events",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "TMM/MonitoringCreated/v1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Check response status code\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Check response body\", function () {",
+									"    const payload = pm.response.json()",
+									"    const {notifications} = payload",
+									"    ",
+									"    pm.expect(payload._id).to.be.a('string')",
+									"    pm.expect(notifications.length).to.equal(2)",
+									"",
+									"    const doctor1 = notifications.find(notification => notification.recipient === 'auth0|dr.mario.rossi')",
+									"    const patient1 = notifications.find(notification => notification.recipient === 'auth0|giovanni.bianchi')",
+									"",
+									"    pm.expect(doctor1.messages.length).to.equal(2)",
+									"    pm.expect(patient1.messages.length).to.equal(2)",
+									"    ",
+									"    pm.expect(doctor1.messages[0].status).to.equal('SUCCESS')",
+									"    pm.expect(doctor1.messages[0].channel).to.equal('email')",
+									"    pm.expect(doctor1.messages[1].status).to.equal('SUCCESS')",
+									"    pm.expect(doctor1.messages[1].channel).to.equal('sms')",
+									"",
+									"    pm.expect(patient1.messages[0].status).to.equal('SUCCESS')",
+									"    pm.expect(patient1.messages[0].channel).to.equal('email')",
+									"    pm.expect(patient1.messages[1].status).to.equal('SUCCESS')",
+									"    pm.expect(patient1.messages[1].channel).to.equal('sms')",
+									"    ",
+									"    pm.expect(doctor1.reminders.length).to.equal(1)",
+									"    pm.expect(patient1.reminders.length).to.equal(1)",
+									"",
+									"    pm.expect(doctor1.reminders[0].status).to.equal('ACTIVE')",
+									"    pm.expect(doctor1.reminders[0].expirationDate).to.equal('2023-09-04T23:50:00.000Z')",
+									"    pm.expect(patient1.reminders[0].status).to.equal('ACTIVE')",
+									"    pm.expect(patient1.reminders[0].expirationDate).to.equal('2023-09-04T23:55:00.000Z')",
+									"",
+									"    pm.expect(doctor1.failures).to.be.empty",
+									"    pm.expect(patient1.failures).to.be.empty",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Cookie",
+								"value": "sid={{sid}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": \"06efe38d-0e46-4863-9bb4-4c11ff63c912\",\n    \"key\": \"blood-pressure-monitoring-12345\",\n    \"name\": \"TMM/MonitoringCreated/v1\",\n    \"metadata\": {\n        \"excludeUsers\": [],\n        \"includeUsers\": []\n    },\n    \"payload\": {\n        \"planName\": \"Blood pressure monitoring\",\n        \"prototypeId\": \"bloodPressure\",\n        \"notes\": \"Takes the blood\",\n        \"startDate\": \"2023-09-04T00:00:00Z\",\n        \"endDate\": \"2023-09-15T00:00:00Z\",\n        \"each\": [\n            \"day\"\n        ],\n        \"times\": 2,\n        \"doctorId\": \"auth0|dr.mario.rossi\",\n        \"patientId\": \"auth0|giovanni.bianchi\",\n        \"adherenceStatus\": \"enabled\",\n        \"adherenceToleranceFrequency\": 1,\n        \"adherenceMinimumPercentage\": 90,\n        \"complianceStatus\": \"enabled\",\n        \"complianceMinimumPercentage\": 90,\n        \"thresholds\": [\n            {\n                \"propertyName\": \"minimumBloodPressure\",\n                \"thresholdOperator\": \"gt\",\n                \"thresholdValue\": 60\n            },\n            {\n                \"propertyName\": \"maximumBloodPressure\",\n                \"thresholdOperator\": \"gt\",\n                \"thresholdValue\": 120\n            }\n        ]\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrlNotificationManagerPreprodEnv}}/notification-events/",
+							"host": [
+								"{{baseUrlNotificationManagerPreprodEnv}}"
+							],
+							"path": [
+								"notification-events",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "TMM/MonitoringReminder/v1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Check response status code\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Check response body\", function () {",
+									"    const payload = pm.response.json()",
+									"    const {notifications} = payload",
+									"    ",
+									"    pm.expect(payload._id).to.be.a('string')",
+									"    pm.expect(notifications.length).to.equal(1)",
+									"",
+									"    const patient1 = notifications.find(notification => notification.recipient === 'auth0|giovanni.bianchi')",
+									"",
+									"    pm.expect(patient1.messages.length).to.equal(2)",
+									"",
+									"    pm.expect(patient1.messages[0].status).to.equal('SUCCESS')",
+									"    pm.expect(patient1.messages[0].channel).to.equal('email')",
+									"    pm.expect(patient1.messages[1].status).to.equal('SUCCESS')",
+									"    pm.expect(patient1.messages[1].channel).to.equal('sms')",
+									"",
+									"    pm.expect(patient1.reminders.length).to.equal(1)",
+									"    ",
+									"    pm.expect(patient1.reminders[0].status).to.equal('ACTIVE')",
+									"    pm.expect(patient1.reminders[0].expirationDate).to.equal('2023-09-04T23:55:00.000Z')",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Cookie",
+								"value": "sid={{sid}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"id\": \"06efe38d-0e46-4863-9bb4-4c11ff63c912\",\n  \"key\": \"blood-pressure-monitoring-12345\",\n  \"name\": \"TMM/MonitoringReminder/v1\",\n  \"metadata\": {\n    \"reminder\": {\n      \"schedule\": \"PT5M\",\n      \"expirationDate\": \"2023-09-04T23:55:00Z\",\n      \"recipients\": [\"auth0|giovanni.bianchi\"]\n    }\n  },\n  \"payload\": {\n    \"planName\": \"Blood pressure monitoring\",\n    \"prototypeId\": \"bloodPressure\",\n    \"notes\": \"Takes the blood\",\n    \"startDate\": \"2023-09-01T00:00:00Z\",\n    \"endDate\": \"2023-09-15T00:00:00Z\",\n    \"each\": [\"day\"],\n    \"times\": 2,\n    \"doctorId\": \"auth0|dr.mario.rossi\",\n    \"patientId\": \"auth0|giovanni.bianchi\",\n    \"adherenceStatus\": \"enabled\",\n    \"adherenceToleranceFrequency\": 1,\n    \"adherenceMinimumPercentage\": 90,\n    \"complianceStatus\": \"enabled\",\n    \"complianceMinimumPercentage\": 90,\n    \"thresholds\": [\n      {\n        \"propertyName\": \"minimumBloodPressure\",\n        \"thresholdOperator\": \"gt\",\n        \"thresholdValue\": 60\n      },\n      {\n        \"propertyName\": \"maximumBloodPressure\",\n        \"thresholdOperator\": \"gt\",\n        \"thresholdValue\": 120\n      }\n    ]\n  }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrlNotificationManagerPreprodEnv}}/notification-events/",
+							"host": [
+								"{{baseUrlNotificationManagerPreprodEnv}}"
+							],
+							"path": [
+								"notification-events",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "TMM/MonitoringDeleted/v1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Check response status code\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Check response body\", function () {",
+									"    const payload = pm.response.json()",
+									"    const {notifications} = payload",
+									"    ",
+									"    pm.expect(payload._id).to.be.a('string')",
+									"    pm.expect(notifications.length).to.equal(2)",
+									"",
+									"    const patient1 = notifications.find(notification => notification.recipient === 'auth0|giovanni.bianchi')",
+									"    const patient2 = notifications.find(notification => notification.recipient === 'auth0|giulia.neri')",
+									"",
+									"    pm.expect(patient1.messages.length).to.equal(2)",
+									"    pm.expect(patient2.messages.length).to.equal(2)",
+									"",
+									"    pm.expect(patient1.messages[0].status).to.equal('SUCCESS')",
+									"    pm.expect(patient1.messages[0].channel).to.equal('email')",
+									"    pm.expect(patient1.messages[1].status).to.equal('SUCCESS')",
+									"    pm.expect(patient1.messages[1].channel).to.equal('sms')",
+									"",
+									"    pm.expect(patient2.messages[0].status).to.equal('SUCCESS')",
+									"    pm.expect(patient2.messages[0].channel).to.equal('email')",
+									"    pm.expect(patient2.messages[1].status).to.equal('SUCCESS')",
+									"    pm.expect(patient2.messages[1].channel).to.equal('sms')",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Cookie",
+								"value": "sid={{sid}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": \"da03558a-f283-4d9b-b1c7-50282716802c\",\n    \"key\": \"blood-pressure-monitoring-12345\",\n    \"name\": \"TMM/MonitoringDeleted/v1\",\n    \"metadata\": {\n        \"excludeUsers\": [\n            \"auth0|dr.mario.rossi\"\n        ],\n        \"includeUsers\": [\n            \"auth0|giulia.neri\"\n        ]\n    },\n    \"payload\": {\n        \"planName\": \"Blood pressure monitoring\",\n        \"prototypeId\": \"bloodPressure\",\n        \"notes\": \"Takes the blood\",\n        \"startDate\": \"2023-09-01T00:00:00Z\",\n        \"endDate\": \"2023-09-15T00:00:00Z\",\n        \"each\": [\n            \"day\"\n        ],\n        \"times\": 2,\n        \"doctorId\": \"auth0|dr.mario.rossi\",\n        \"patientId\": \"auth0|giovanni.bianchi\",\n        \"adherenceStatus\": \"enabled\",\n        \"adherenceToleranceFrequency\": 1,\n        \"adherenceMinimumPercentage\": 90,\n        \"complianceStatus\": \"enabled\",\n        \"complianceMinimumPercentage\": 90,\n        \"thresholds\": [\n            {\n                \"propertyName\": \"minimumBloodPressure\",\n                \"thresholdOperator\": \"gt\",\n                \"thresholdValue\": 60\n            },\n            {\n                \"propertyName\": \"maximumBloodPressure\",\n                \"thresholdOperator\": \"gt\",\n                \"thresholdValue\": 120\n            }\n        ]\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrlNotificationManagerPreprodEnv}}/notification-events/",
+							"host": [
+								"{{baseUrlNotificationManagerPreprodEnv}}"
+							],
+							"path": [
+								"notification-events",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "TMM/MonitoringUpdated/v1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Check response status code\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Check response body\", function () {",
+									"    const payload = pm.response.json()",
+									"    const {notifications} = payload",
+									"    ",
+									"    pm.expect(payload._id).to.be.a('string')",
+									"    pm.expect(notifications.length).to.equal(3)",
+									"",
+									"    const doctorRemoved = notifications.find(notification => notification.recipient === 'auth0|dr.mario.rossi')",
+									"    const doctorAdded = notifications.find(notification => notification.recipient === 'auth0|dr.lucia.verdi')",
+									"    const patient1 = notifications.find(notification => notification.recipient === 'auth0|giovanni.bianchi')",
+									"",
+									"    pm.expect(doctorRemoved.event.name).to.equal('TMM/MonitoringDeleted/v1')",
+									"    pm.expect(patient1.event.name).to.equal('TMM/MonitoringUpdated/v1')",
+									"    pm.expect(doctorAdded.event.name).to.equal('TMM/MonitoringCreated/v1')",
+									"",
+									"    pm.expect(doctorRemoved.messages.length).to.equal(2)",
+									"    pm.expect(patient1.messages.length).to.equal(2)",
+									"    pm.expect(doctorAdded.messages.length).to.equal(2)",
+									"    ",
+									"    pm.expect(doctorRemoved.messages[0].status).to.equal('SUCCESS')",
+									"    pm.expect(doctorRemoved.messages[0].channel).to.equal('email')",
+									"    pm.expect(doctorRemoved.messages[0].templateName).to.equal('doctors-monitoring-deleted-template')",
+									"    pm.expect(doctorRemoved.messages[1].status).to.equal('SUCCESS')",
+									"    pm.expect(doctorRemoved.messages[1].channel).to.equal('sms')",
+									"    pm.expect(doctorRemoved.messages[1].templateName).to.equal('doctors-monitoring-deleted-template')",
+									"",
+									"    pm.expect(patient1.messages[0].status).to.equal('SUCCESS')",
+									"    pm.expect(patient1.messages[0].channel).to.equal('email')",
+									"    pm.expect(patient1.messages[0].templateName).to.equal('patients-monitoring-updated-template')",
+									"    pm.expect(patient1.messages[1].status).to.equal('SUCCESS')",
+									"    pm.expect(patient1.messages[1].channel).to.equal('sms')",
+									"    pm.expect(patient1.messages[1].templateName).to.equal('patients-monitoring-updated-template')",
+									"",
+									"    pm.expect(doctorAdded.messages[0].status).to.equal('SUCCESS')",
+									"    pm.expect(doctorAdded.messages[0].channel).to.equal('email')",
+									"    pm.expect(doctorAdded.messages[0].templateName).to.equal('doctors-monitoring-created-template')",
+									"    pm.expect(doctorAdded.messages[1].status).to.equal('SUCCESS')",
+									"    pm.expect(doctorAdded.messages[1].channel).to.equal('sms')",
+									"    pm.expect(doctorAdded.messages[1].templateName).to.equal('doctors-monitoring-created-template')",
+									"    ",
+									"    pm.expect(doctorRemoved).not.to.haveOwnProperty('reminders')",
+									"    pm.expect(patient1.reminders.length).to.equal(1)",
+									"    pm.expect(doctorAdded.reminders.length).to.equal(1)",
+									"",
+									"    pm.expect(patient1.reminders[0].status).to.equal('ACTIVE')",
+									"    pm.expect(doctorAdded.reminders[0].status).to.equal('ACTIVE')",
+									"",
+									"    pm.expect(doctorRemoved).not.to.haveOwnProperty('failures')",
+									"    pm.expect(patient1.failures).to.be.empty",
+									"    pm.expect(doctorAdded.failures).to.be.empty",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Cookie",
+								"value": "sid={{sid}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"TMM/MonitoringUpdated/v1\",\n    \"metadata\": {\n        \"excludeUsers\": [\n        ],\n        \"includeUsers\": []\n    },\n    \"payload\": {\n        \"originalMonitoring\": {\n            \"planName\": \"Blood pressure monitoring\",\n            \"prototypeId\": \"bloodPressure\",\n            \"notes\": \"Takes the blood\",\n            \"startDate\": \"2023-09-01T00:00:00Z\",\n            \"endDate\": \"2023-09-15T00:00:00Z\",\n            \"each\": [\n                \"day\"\n            ],\n            \"times\": 2,\n            \"doctorId\": \"auth0|dr.mario.rossi\",\n            \"patientId\": \"auth0|giovanni.bianchi\",\n            \"adherenceStatus\": \"enabled\",\n            \"adherenceToleranceFrequency\": 1,\n            \"adherenceMinimumPercentage\": 90,\n            \"complianceStatus\": \"enabled\",\n            \"complianceMinimumPercentage\": 90,\n            \"thresholds\": [\n                {\n                    \"propertyName\": \"minimumBloodPressure\",\n                    \"thresholdOperator\": \"gt\",\n                    \"thresholdValue\": 60\n                },\n                {\n                    \"propertyName\": \"maximumBloodPressure\",\n                    \"thresholdOperator\": \"gt\",\n                    \"thresholdValue\": 120\n                }\n            ]\n        },\n        \"currentMonitoring\": {\n            \"planName\": \"Blood pressure monitoring\",\n            \"prototypeId\": \"bloodPressure\",\n            \"notes\": \"Takes the blood\",\n            \"startDate\": \"2023-09-01T00:00:00Z\",\n            \"endDate\": \"2023-09-20T00:00:00Z\",\n            \"each\": [\n                \"day\"\n            ],\n            \"times\": 2,\n            \"doctorId\": \"auth0|dr.lucia.verdi\",\n            \"patientId\": \"auth0|giovanni.bianchi\",\n            \"adherenceStatus\": \"enabled\",\n            \"adherenceToleranceFrequency\": 1,\n            \"adherenceMinimumPercentage\": 90,\n            \"complianceStatus\": \"enabled\",\n            \"complianceMinimumPercentage\": 90,\n            \"thresholds\": [\n                {\n                    \"propertyName\": \"minimumBloodPressure\",\n                    \"thresholdOperator\": \"gt\",\n                    \"thresholdValue\": 60\n                },\n                {\n                    \"propertyName\": \"maximumBloodPressure\",\n                    \"thresholdOperator\": \"gt\",\n                    \"thresholdValue\": 120\n                }\n            ]\n        }\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrlNotificationManagerPreprodEnv}}/notification-events/",
+							"host": [
+								"{{baseUrlNotificationManagerPreprodEnv}}"
+							],
+							"path": [
+								"notification-events",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "TMM/ThresholdExcedeed/v1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Check response status code\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Check response body\", function () {",
+									"    const payload = pm.response.json()",
+									"    const {notifications} = payload",
+									"    ",
+									"    pm.expect(payload._id).to.be.a('string')",
+									"    pm.expect(notifications.length).to.equal(2)",
+									"",
+									"    const doctor1 = notifications.find(notification => notification.recipient === 'auth0|dr.mario.rossi')",
+									"    const patient1 = notifications.find(notification => notification.recipient === 'auth0|giovanni.bianchi')",
+									"    const includedUser = notifications.find(notification => notification.recipient === 'auth0|giulia.neri')",
+									"",
+									"    pm.expect(patient1).to.be.undefined",
+									"",
+									"    pm.expect(doctor1.event.name).to.equal('TMM/ThresholdExceeded/v1')",
+									"    pm.expect(includedUser.event.name).to.equal('TMM/ThresholdExceeded/v1')",
+									"",
+									"    pm.expect(doctor1.messages.length).to.equal(2)",
+									"    pm.expect(includedUser.messages.length).to.equal(2)",
+									"    ",
+									"    pm.expect(doctor1.messages[0].status).to.equal('SUCCESS')",
+									"    pm.expect(doctor1.messages[0].channel).to.equal('email')",
+									"    pm.expect(doctor1.messages[0].templateName).to.equal('doctors-threshold-excedeed-template')",
+									"    pm.expect(doctor1.messages[1].status).to.equal('SUCCESS')",
+									"    pm.expect(doctor1.messages[1].channel).to.equal('sms')",
+									"    pm.expect(doctor1.messages[1].templateName).to.equal('doctors-threshold-excedeed-template')",
+									"",
+									"    pm.expect(includedUser.messages[0].status).to.equal('SUCCESS')",
+									"    pm.expect(includedUser.messages[0].channel).to.equal('email')",
+									"    pm.expect(includedUser.messages[0].templateName).to.equal('patients-threshold-excedeed-template')",
+									"    pm.expect(includedUser.messages[1].status).to.equal('SUCCESS')",
+									"    pm.expect(includedUser.messages[1].channel).to.equal('sms')",
+									"    pm.expect(includedUser.messages[1].templateName).to.equal('patients-threshold-excedeed-template')",
+									"    ",
+									"    pm.expect(doctor1).not.to.haveOwnProperty('failures')",
+									"    pm.expect(includedUser).not.to.haveOwnProperty('failures')",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Cookie",
+								"value": "sid={{sid}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": \"f303f2e9-f37b-4565-91e4-628e36872df5\",\n    \"key\": \"blood-pressure-monitoring-12345\",\n    \"name\": \"TMM/ThresholdExceeded/v1\",\n    \"metadata\": {\n        \"excludeUsers\": [],\n        \"includeUsers\": [\"auth0|giulia.neri\"]\n    },\n    \"payload\": {\n        \"plan\": {\n            \"planName\": \"Blood pressure monitoring\",\n            \"prototypeId\": \"bloodPressure\",\n            \"notes\": \"Takes the blood\",\n            \"startDate\": \"2023-09-01T00:00:00Z\",\n            \"endDate\": \"2023-09-15T00:00:00Z\",\n            \"each\": [\n                \"day\"\n            ],\n            \"times\": 2,\n            \"doctorId\": \"auth0|dr.mario.rossi\",\n            \"patientId\": \"auth0|giovanni.bianchi\",\n            \"adherenceStatus\": \"enabled\",\n            \"adherenceToleranceFrequency\": 1,\n            \"adherenceMinimumPercentage\": 90,\n            \"complianceStatus\": \"enabled\",\n            \"complianceMinimumPercentage\": 90,\n            \"thresholds\": [\n                {\n                    \"propertyName\": \"minimumBloodPressure\",\n                    \"thresholdOperator\": \"lt\",\n                    \"thresholdValue\": 80\n                },\n                {\n                    \"propertyName\": \"maximumBloodPressure\",\n                    \"thresholdOperator\": \"gt\",\n                    \"thresholdValue\": 120\n                }\n            ]\n        },\n        \"detection\": {\n            \"planType\": \"monitoring\",\n            \"planId\": \"blood-pressure-monitoring-12345\",\n            \"isCompliant\": true,\n            \"value\": {\n                \"minimumBloodPressure\": 80,\n                \"maximumBloodPressure\": 130\n            },\n            \"observedAt\": \"2022-06-01T10:00:00.000Z\",\n            \"doctorId\": \"auth0|doctorId\",\n            \"patientId\": \"auth0|patientId\"\n        },\n        \"validations\": [\n            {\n                \"threshold\": {\n                    \"propertyName\": \"minimumBloodPressure\",\n                    \"thresholdOperator\": \"lt\",\n                    \"thresholdValue\": 80\n                },\n                \"value\": 80,\n                \"status\": \"OK\"\n            },\n            {\n                \"threshold\": {\n                    \"propertyName\": \"maximumBloodPressure\",\n                    \"thresholdOperator\": \"gt\",\n                    \"thresholdValue\": 120\n                },\n                \"value\": 130,\n                \"status\": \"KO\",\n                \"error\": \"maximumBloodPressure_gt_120\",\n                \"message\": \"minimumBloodPressure' is greater than 120\"\n            }\n        ]\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrlNotificationManagerPreprodEnv}}/notification-events/",
+							"host": [
+								"{{baseUrlNotificationManagerPreprodEnv}}"
+							],
+							"path": [
+								"notification-events",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "NB:\n\nRun the collection of tests sequentially setting a delay of at least 60s to be sure of not triggering the security blocking features of the **sms-service**."
+		}
+	]
+}

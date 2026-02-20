@@ -1,0 +1,4 @@
+User-agent: *
+Disallow: /docs/12.x/
+Disallow: /docs/13.x/
+Sitemap: https://docs.mia-platform.eu/sitemap.xml

@@ -13,6 +13,6 @@
         <hudson.views.LastDurationColumn/>
         <hudson.views.BuildButtonColumn/>
     </columns>
-    <includeRegex>{{PROJECT_NAME}}</includeRegex>
+    <includeRegex>%project.projectId%</includeRegex>
     <recurse>false</recurse>
 </hudson.model.ListView>

@@ -55,7 +55,7 @@ function Feature(props) {
   const {icon, title, description,toUrl}=props
 
   return (
-    <div className={clsx("col col--4", styles.feature)}>
+    <div className={clsx("col col--6", styles.feature)}>
       {
         toUrl ? (<a className={styles.featureLink} href={toUrl}>{getContent(icon, title, description,links)}</a>) : (getContent(icon, title, description,links))
       }

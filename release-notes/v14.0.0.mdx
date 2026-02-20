@@ -1,0 +1,59 @@
+---
+id: v14.0.0
+title: Version 14.0.0 Release Notes
+image: "img/release-note-link-preview.png"
+---
+
+import Accordion from '@site/src/components/Accordion/index.js';
+import dataAccordion from '@site/src/config/release-notes/release-note-v14-0-0.json';
+
+_May 22nd, 2025_
+
+## Projects for Infrastructure Provisioning
+
+We've introduced Infrastructure Projects, a new Project type for greater control over infrastructure provisioning in Console. Designed for Operations teams, these new type of Projects let you manage infrastructure resources directly, aligning with Infrastructure as Code. You can now easily visualize, manage, and efficiently execute provisioning actions.
+Just create an Infrastructure Project and start provisioning infrastructure to your Developers!
+
+![Infrastructure Projects](./img/infrastructure-project-selection.png)
+
+For more information, go to the [documentation](/docs/products/console/project-configuration/infrastructure-project) and visit [Mia-Platform Console v14 Overview](/release-notes/mia-platform-v14.mdx#projects-for-infrastructure-provisioning).
+
+## Iframe extensions support login with Console SSO
+
+We've enhanced iframe extensions with unified and secure authentication using Console SSO. Your extensions can now recognize user permissions and manage authentication seamlessly, ensuring only authorized users can access them and improving overall security.
+
+![Extensions SSO](img/extensions-sso.png)
+
+For more information, go to the [documentation](/docs/products/console/console-extensibility/extension-sso) and visit [Mia-Platform Console v14 Overview](/release-notes/mia-platform-v14.mdx#iframe-extensions-support-login-with-console-sso).
+
+## Composer extensions can fetch data from Console APIs
+
+Extensions created with the Microfrontend Composer can now retrieve data from the Console via API.
+This makes these Extensions seamlessly integrated with the Console, enabling better customization and fully leveraging the power of the Microfrontend Composer.
+You can already take advantage of this new capability with the new Infrastructure Projects, where these Extensions can be used to display Runtime data of the infrastructure you have deployed.
+
+## Enhancing Software Catalog and Release Management
+
+With v14, the **Software Catalog** gets a powerful upgrade. We’ve refined how items are managed and introduced clearer, standardized schemas — fully documented and easily accessible for all through our [official documentation](/docs/products/software-catalog/overview).
+
+To boost transparency, manifests for public items in the Mia-Platform catalog are now available [here](https://github.com/mia-platform-marketplace/public-catalog).
+Additionally, each item's manifest can be downloaded directly from its detail page within the Software Catalog.
+
+We’ve also redesigned the release life cycle, adding new stages: `Coming soon`, `Draft`, `Published`, `Maintenance`, `Deprecated`, `Archived`, and `Deleted`. This new structure makes it easier to track and manage catalog items across their entire lifecycle.
+
+![SC new release stages](img/software-catalog-release-stages.png)
+
+## Marketplace API Deprecation
+
+As of v14, the Marketplace APIs with the `/api/backend/marketplace` prefix are now deprecated.
+We recommend updating any existing integrations to align with the [latest APIs](/docs/products/software-catalog/items-management/api) to ensure long-term compatibility and support.
+
+Additionally, it is no longer possible to manage the Marketplace items from the Console CMS, and the `marketplace_CMS` group has been removed.
+
+## Other New Features, Improvements and Bug Fixes
+
+<Accordion data={dataAccordion} />
+
+## How to update your Console
+
+For self-hosted installations, please head to the [self hosted upgrade guide](/docs/infrastructure/self-hosted/installation-chart/how-to-upgrade) or contact your Mia-Platform referent and upgrade to _Console Helm Chart_ `v14.2.1-0`.

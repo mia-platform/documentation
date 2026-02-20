@@ -10,7 +10,7 @@ module.exports = {
         type: 'object',
         required: ['path'],
         properties: {
-          path: { type: 'string' },
+          path: {type: 'string'},
           verb: {
             type: 'string',
             enum: verbsEnum,
@@ -26,9 +26,9 @@ module.exports = {
           items: {
             type: 'object',
             properties: {
-              path: { type: 'string' },
-              tags: { type: 'array', items: { type: 'string' } },
-              verbsToTransform: { type: 'array', items: { type: 'string', enum: verbsEnum } },
+              path: {type: 'string'},
+              tags: {type: 'array', items: {type: 'string'}},
+              verbsToTransform: {type: 'array', items: {type: 'string', enum: verbsEnum}},
             },
             additionalProperties: false,
           },
@@ -44,31 +44,31 @@ module.exports = {
       type: 'object',
       required: ['type', 'url', 'prefix'],
       properties: {
-        type: { enum: ['url'] },
-        url: { type: 'string' },
-        prefix: { $ref: '#/definitions/prefixDefinition' },
-        excludePaths: { $ref: '#/definitions/filterPathDefinition' },
-        includePaths: { $ref: '#/definitions/filterPathDefinition' },
-        transformPaths: { $ref: '#/definitions/transformPaths' },
+        type: {enum: ['url']},
+        url: {type: 'string'},
+        prefix: {$ref: '#/definitions/prefixDefinition'},
+        excludePaths: {$ref: '#/definitions/filterPathDefinition'},
+        includePaths: {$ref: '#/definitions/filterPathDefinition'},
+        transformPaths: {$ref: '#/definitions/transformPaths'},
       },
     },
     file: {
       type: 'object',
       required: ['type', 'path', 'prefix'],
       properties: {
-        type: { enum: ['file'] },
-        path: { type: 'string' },
-        prefix: { $ref: '#/definitions/prefixDefinition' },
-        excludePaths: { $ref: '#/definitions/filterPathDefinition' },
-        includePaths: { $ref: '#/definitions/filterPathDefinition' },
-        transformPaths: { $ref: '#/definitions/transformPaths' },
+        type: {enum: ['file']},
+        path: {type: 'string'},
+        prefix: {$ref: '#/definitions/prefixDefinition'},
+        excludePaths: {$ref: '#/definitions/filterPathDefinition'},
+        includePaths: {$ref: '#/definitions/filterPathDefinition'},
+        transformPaths: {$ref: '#/definitions/transformPaths'},
       },
     },
     baseSwagger: {
       type: 'object',
       required: ['swagger'],
       properties: {
-        swagger: { type: 'string' },
+        swagger: {type: 'string'},
       },
       additionalProperties: true,
     },
@@ -79,8 +79,8 @@ module.exports = {
           type: 'object',
           required: ['name', 'expression'],
           properties: {
-            name: { type: 'string' },
-            expression: { type: 'string' },
+            name: {type: 'string'},
+            expression: {type: 'string'},
           },
         },
       },
@@ -98,15 +98,15 @@ module.exports = {
       required: ['title', 'description', 'version', 'services', 'baseSwagger'],
       additionalProperties: false,
       properties: {
-        title: { type: 'string' },
-        description: { type: 'string' },
-        version: { type: 'string' },
+        title: {type: 'string'},
+        description: {type: 'string'},
+        version: {type: 'string'},
         services: {
           type: 'array',
           items: {
             oneOf: [
-              { $ref: '#/definitions/url' },
-              { $ref: '#/definitions/file' },
+              {$ref: '#/definitions/url'},
+              {$ref: '#/definitions/file'},
             ],
           },
         },
@@ -129,16 +129,16 @@ module.exports = {
       required: ['title', 'descriptionMarkdownFilePath', 'version', 'services', 'baseSwagger'],
       additionalProperties: false,
       properties: {
-        title: { type: 'string' },
-        description: { type: 'string' },
-        descriptionMarkdownFilePath: { type: 'string' },
-        version: { type: 'string' },
+        title: {type: 'string'},
+        description: {type: 'string'},
+        descriptionMarkdownFilePath: {type: 'string'},
+        version: {type: 'string'},
         services: {
           type: 'array',
           items: {
             oneOf: [
-              { $ref: '#/definitions/url' },
-              { $ref: '#/definitions/file' },
+              {$ref: '#/definitions/url'},
+              {$ref: '#/definitions/file'},
             ],
           },
         },

@@ -1,0 +1,106 @@
+{
+  "hero": {
+    "backgroundImageUrl": "/img/homepage/mia-platform-banner-top.png",
+    "description": "Learn how Mia-Platform can help you to develop your business",
+    "logoUrl": "img/homepage/mia-platform-logo.png",
+    "subtitle": "Welcome on Mia-Platform Docs!",
+    "title": ""
+  },
+  "announcement": {
+    "buttons": [
+      {
+        "label": "View roadmap",
+        "link": "/release-notes/roadmap",
+        "primary": true,
+        "target": "_self"
+      },
+      {
+        "label": "View release note",
+        "link": "/release-notes/v14-overview",
+        "primary": true,
+        "target": "_self"
+      }
+    ],
+    "description": "Ready to unleash the invisible?",
+    "title": "Mia Platform v14 is now available!"
+  },
+  "featureGrid": [
+    {
+      "description": "Discover how to govern and industrialize your entire cloud-native development and operations lifecycle.",
+      "icon": "mia-platform-console",
+      "link": "/docs/development_suite/overview-dev-suite",
+      "target": "_self",
+      "title": "Mia-Platform Console"
+    },
+    {
+      "description": "Discover how to easily find, understand, and effectively govern all of your company's data assets.",
+      "icon": "data-catalog",
+      "link": "/docs/data_catalog/overview_data_catalog",
+      "target": "_self",
+      "title": "Data Catalog"
+    },
+    {
+      "description": "Find out how to make real-time, data-driven decisions with always-on, constantly updated data.",
+      "icon": "real-time-data-integration",
+      "link": "/docs/fast_data/what_is_fast_data",
+      "target": "_self",
+      "title": "Mia-Platform Fast Data"
+    },
+    {
+      "description": "Learn how to visually build and orchestrate microfrontends for modern, scalable web applications.",
+      "icon": "mfe-composer",
+      "link": "/docs/microfrontend-composer/what-is",
+      "target": "_self",
+      "title": "Microfrontend Composer"
+    },
+    {
+      "description": "Explore how to manage and reuse software components, APIs, and microservices via a self-service catalog.",
+      "icon": "software-catalog",
+      "link": "/docs/software-catalog/overview",
+      "target": "_self",
+      "title": "Software Catalog"
+    },
+    {
+      "description": "Find out how to efficiently orchestrate, monitor, and manage your runtime environments with ready-to-use components.",
+      "icon": "runtime-environment",
+      "link": "/docs/marketplace/overview_marketplace",
+      "target": "_self",
+      "title": "Runtime Components"
+    }
+  ],
+  "beginnersSection": {
+
+    "description": "New to Mia-Platform ecosystem?",
+    "imageUrl": "/img/homepage/beginners.png",
+    "link": {
+      "url": "/docs/getting-started/tutorials/",
+      "target": "_self"
+    },
+    "subtitle": "Discover how and where to start.",
+    "title": "Mia-Platform for beginners!"
+  },
+  "communitySection": [
+    {
+      "icon": "/img/homepage/github.svg",
+      "link": "https://github.com/mia-platform/community/discussions",
+      "target": "_blank",
+      "title": "Join our GitHub Community"
+    },
+    {
+      "icon": "/img/homepage/expert.svg",
+      "link": "https://events.mia-platform.eu/mia-platform-expert-community",
+      "target": "_blank",
+      "title": "Join our Expert Program"
+    }
+  ],
+  "footer": {
+    "backgroundImageUrl": "/img/homepage/mia-platform-banner-bottom.png",
+    "socials": [
+      {"imageUrl": "/img/homepage/website-button.svg", "link": "https://mia-platform.eu/", "name": "Website"},
+      {"imageUrl": "/img/homepage/github-button.svg", "link": "https://github.com/mia-platform/", "name": "GitHub"},
+      {"imageUrl": "/img/homepage/linkedin-button.svg", "link": "https://www.linkedin.com/company/mia-platform/", "name": "LinkedIn"},
+      {"imageUrl": "/img/homepage/instagram-button.svg", "link": "https://www.instagram.com/miaplatform/", "name": "Instagram"}
+    ],
+    "title": "Let's keep in touch!"
+  }
+}

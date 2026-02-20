@@ -1,0 +1,100 @@
+{
+    "type": "object",
+    "title": "Control Plane Client JSON Schema Configuration",
+    "examples": [
+        {
+            "settings": {
+                "host": "http://control-plane-operator"
+            }
+        }
+    ],
+    "definitions": {
+        "connection": {
+            "type": "object",
+            "properties": {
+                "type": {
+                    "type": "string",
+                    "const": "grpc"
+                }
+            },
+            "required": [
+                "type"
+            ],
+            "additionalProperties": false
+        },
+        "forceResume": {
+            "anyOf": [
+                {
+                    "type": "object",
+                    "properties": {
+                        "timeout.ms": {
+                            "type": "number",
+                            "default": 15000
+                        }
+                    },
+                    "additionalProperties": false
+                },
+                {
+                    "type": "boolean"
+                }
+            ]
+        },
+        "settings": {
+            "type": "object",
+            "properties": {
+                "channel": {
+                    "type": "object",
+                    "properties": {
+                        "forceResume": {
+                            "title": "Force Resume",
+                            "description": "Field to resume pipeline state if connection is unsuccessful. Can either be boolean or a field `timeout.ms` of type number defining the number of milliseconds to wait after resuming. If set to true, defaults to 15 seconds.",
+                            "$ref": "#/definitions/forceResume"
+                        },
+                        "heartbeat.ms": {
+                            "title": "Feedback Channel Heartbeat",
+                            "type": "number",
+                            "default": 2500,
+                            "description": "Number of milliseconds between each heartbeat message. Defaults to 2.5 seconds if not specified."
+                        }
+                    },
+                    "additionalProperties": false
+                },
+                "grpc": {
+                    "type": "object",
+                    "title": "gRPC Control Plane Operator Configuration",
+                    "properties": {
+                        "host": {
+                            "type": "string",
+                            "default": "0.0.0.0"
+                        },
+                        "port": {
+                            "type": "number",
+                            "default": 50051
+                        }
+                    },
+                    "additionalProperties": false
+                }
+            },
+            "additionalProperties": false
+        }
+    },
+    "properties": {
+        "feedback": {
+            "title": "Feedback Channel Settings",
+            "$ref": "#/definitions/connection",
+            "description": "This section contains the configuration of the feedback channel that will send heartbeat messages to the Control Plane."
+        },
+        "state": {
+            "title": "State Channel Settings",
+            "$ref": "#/definitions/connection",
+            "description": "This section contains the configuration of the state channel that will received commands from Control Plane."
+        },
+        "settings": {
+            "$ref": "#/definitions/settings",
+            "title": "Workload Settings",
+            "description": "Additional settings to provide for configuration."
+        }
+    },
+    "additionalProperties": false,
+    "$schema": "http://json-schema.org/draft-07/schema#"
+}

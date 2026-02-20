@@ -1,0 +1,71 @@
+[
+  {
+    "title": "Fast Data",
+    "icon": "fast-data",
+    "defaultOpen": true,
+    "type": "versions",
+    "items": {
+      "newFeatures": [],
+      "improvements": [
+        {
+          "title": "Stream Processor v0.5.6",
+          "description": [
+            "The new version `v0.5.6` of the _Stream Processor_ is available!",
+            "This version includes enhanced CI for v branches and improved error handling that removes hard fail on console.log buffer exceeded.",
+            "For more information check out the service [changelog](/docs/products/fast_data_v2/stream_processor/changelog)."
+          ]
+        },
+        {
+          "title": "Farm Data v0.5.5",
+          "description": [
+            "The new version `v0.5.5` of the _Farm Data_ is available!",
+            "This version includes new MongoDB configuration capabilities with implementation of mongodb config from connections and new MongodbConnectionConfig support.",
+            "For more information check out the service [changelog](/docs/products/fast_data_v2/farm_data/changelog)."
+          ]
+        }
+      ],
+      "bugFixes": []
+    }
+  },
+  {
+    "title": "Microfrontend Composer",
+    "icon": "microfrontend-composer",
+    "defaultOpen": false,
+    "type": "versions",
+    "items": {
+      "newFeatures": [],
+      "improvements": [
+        {
+          "title": "Back-Lit Library",
+          "description": [
+            "The new version `v1.5.25` of the back-kit library is available!",
+            "Refer to back-kit [changelog](/docs/products/microfrontend-composer/back-kit/changelog) for finer-grained details of new versions."
+          ]
+        }
+      ],
+      "bugFixes": [
+        "Fixed `formOptions.isPartialFormat` management and output in filters, export and bk-form-wizard"
+      ]
+    }
+  },
+  {
+    "title": "Runtime Components",
+    "icon": "runtime-components",
+    "defaultOpen": false,
+    "type": "versions",
+    "items": {
+      "newFeatures": [],
+      "improvements": [
+        {
+        "title": "Envoy API Gateway",
+        "description": [
+          "The new version `v1.36.2` of the _Envoy API Gateway_ plugin is available!",
+          "This is a stable version currently supported by Envoy.",
+          "For more information check out the service [documentation](/docs/runtime-components/plugins/envoy-api-gateway/overview)."
+          ]
+        }
+      ],
+      "bugFixes": []
+    }
+  }
+]

@@ -1,34 +1,27 @@
-name: Build documentation
+name: Build and deploy documentation
 on:
   push:
     branches:
       - "main"
-    tags:
-      - '*'
   pull_request:
     branches:
       - "main"
+
 jobs:
   install:
     name: Install and verify contents
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v6
       - name: Setup Node
-        uses: actions/setup-node@v3
+        id: node
+        uses: actions/setup-node@v6
         with:
-          node-version: 18
-          cache: 'yarn'
-      - name: Cache Node Modules
-        id: cache-node-modules
-        uses: actions/cache@v3
-        with:
-          path: node_modules
-          key: node-modules-${{ hashFiles('package-lock.json') }}
-      - name: Install
-        if: steps.cache.outputs.cache-hit != 'true'
-        run: yarn
+          node-version-file: '.nvmrc'
+          cache: yarn
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
       - name: Check lint
         run: yarn lint
       - name: Check spell
@@ -36,31 +29,37 @@ jobs:
       - name: Check content
         run: yarn check-content
       - name: Verify build
+        env:
+          NODE_OPTIONS: "--max_old_space_size=8192"
         run: yarn build
-        if: ${{ !startsWith(github.ref, 'refs/tags/') && github.ref != format('refs/heads/{0}', github.event.repository.default_branch) }}
+        if: github.event_name == 'pull_request'
 
   build:
     needs: install
     name: Build docker image
-    if: ${{ startsWith(github.ref, 'refs/tags/') || github.ref == format('refs/heads/{0}', github.event.repository.default_branch) }}
+    if: github.event_name != 'pull_request'
     runs-on: ubuntu-latest
+    concurrency:
+      group: docs-${{ github.ref }}
+      cancel-in-progress: false
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
-      - name: Cache Node Modules
-        id: cache-node-modules
-        uses: actions/cache@v3
+        uses: actions/checkout@v6
+      - name: Setup Node
+        id: node
+        uses: actions/setup-node@v6
         with:
-          path: node_modules
-          key: node-modules-${{ hashFiles('package-lock.json') }}
+          node-version-file: '.nvmrc'
+          cache: yarn
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
       - name: Build site
         env:
-          NODE_ENV: "production"
-          INLINE_RUNTIME_CHUNK: "false"
+          NODE_OPTIONS: "--max_old_space_size=8192"
         run: yarn build
       - name: Configure docker metadata
         id: meta
-        uses: docker/metadata-action@v4
+        uses: docker/metadata-action@v5
         with:
           images: |
             ghcr.io/mia-platform/documentation
@@ -73,22 +72,22 @@ jobs:
             org.opencontainers.image.documentation=https://mia-platform.eu
             org.opencontainers.image.vendor=Mia-Platform
       - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v2
+        uses: docker/setup-buildx-action@v3
       - name: Docker Login to ghcr.io
-        uses: docker/login-action@v2
+        uses: docker/login-action@v3
         with:
           registry: ghcr.io
           username: ${{ github.repository_owner }}
           password: ${{ secrets.GITHUB_TOKEN }}
       - name: Prepare build cache
-        uses: actions/cache@v3
+        uses: actions/cache@v5
         with:
           path: /tmp/.buildx-cache
-          key: ${{ runner.os }}-buildx-${{ github.sha }}
+          key: ${{ runner.os }}-buildx-${{ github.sha }}-${{ hashFiles('nginx/permanent.redirects') }}
           restore-keys: |
             ${{ runner.os }}-buildx-
       - name: Build and push
-        uses: docker/build-push-action@v4
+        uses: docker/build-push-action@v6
         with:
           context: .
           push: true
@@ -101,12 +100,11 @@ jobs:
             VERSION=${{ fromJSON(steps.meta.outputs.json).labels['org.opencontainers.image.version'] }}
 
   deploy:
-    name: Deploy documentation preview
+    name: Deploy documentation trigger
     needs: build
     runs-on: ubuntu-latest
-    if: github.ref == format('refs/heads/{0}', github.event.repository.default_branch)
     steps:
-      - uses: eic/trigger-gitlab-ci@v2
+      - uses: eic/trigger-gitlab-ci@v3
         with:
           url: https://git.tools.mia-platform.eu
           project_id: ${{ vars.MIA_PLATFORM_DOCUMENTATION_GITLAB_PROJECT_ID }}

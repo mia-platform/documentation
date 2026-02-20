@@ -1,0 +1,88 @@
+[
+  { "name": "_id", "type": "string", "required": true, "nullable": false, "description": "_id" },
+  {
+    "name": "creatorId",
+    "type": "string",
+    "required": true,
+    "nullable": false,
+    "description": "creatorId"
+  },
+  {
+    "name": "createdAt",
+    "type": "Date",
+    "required": true,
+    "nullable": false,
+    "description": "createdAt"
+  },
+  {
+    "name": "updaterId",
+    "type": "string",
+    "required": true,
+    "nullable": false,
+    "description": "updaterId"
+  },
+  {
+    "name": "updatedAt",
+    "type": "Date",
+    "required": true,
+    "nullable": false,
+    "description": "updatedAt"
+  },
+  {
+    "name": "__STATE__",
+    "type": "string",
+    "required": true,
+    "nullable": false,
+    "description": "__STATE__"
+  },
+  { "name": "date", "type": "Date", "required": false, "nullable": false, "sensitivityValue": 0 },
+  {
+    "name": "status",
+    "type": "string",
+    "required": false,
+    "nullable": false,
+    "sensitivityValue": 0
+  },
+  {
+    "name": "channel",
+    "type": "string",
+    "required": false,
+    "nullable": false,
+    "sensitivityValue": 0
+  },
+  {
+    "name": "templateName",
+    "type": "string",
+    "required": false,
+    "nullable": false,
+    "sensitivityValue": 0
+  },
+  {
+    "name": "message",
+    "type": "RawObject",
+    "required": false,
+    "nullable": false,
+    "sensitivityValue": 0
+  },
+  {
+    "name": "event",
+    "type": "string",
+    "required": false,
+    "nullable": false,
+    "sensitivityValue": 0
+  },
+  {
+    "name": "notificationId",
+    "type": "string",
+    "required": false,
+    "nullable": false,
+    "sensitivityValue": 0
+  },
+  {
+    "name": "recipient",
+    "type": "string",
+    "required": false,
+    "nullable": false,
+    "sensitivityValue": 0
+  }
+]

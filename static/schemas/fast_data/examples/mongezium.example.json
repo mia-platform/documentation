@@ -1,0 +1,50 @@
+{
+  "$schema": "https://docs.mia-platform.eu/schemas/fast_data/mongezium.0.4.3.schema.json",
+  "connections": {
+    "mongo-connection": {
+      "type": "mongo",
+      "url": {
+        "type": "file",
+        "path": "/run/secrets/mongodb/url"
+      }
+    },
+    "kafka-connection": {
+      "type": "kafka",
+      "bootstrap.servers": {
+        "type": "file",
+        "path": "/run/secrets/kafka/bootstrap.servers"
+      }
+    }
+  },
+  "persistence": {
+    "connectionName": "mongo-connection"
+  },
+  "collections": [
+    {
+      "topic": "fd.topic-1",
+      "snapshot": "when_needed",
+      "namespace": "fd.collection-1"
+    },
+    {
+      "topic": "fd.topic-2",
+      "snapshot": "initial",
+      "namespace": "fd.collection-2"
+    },
+    {
+      "topic": "fd.topic-3",
+      "snapshot": "when_needed",
+      "namespace": "fd.collection-3"
+    }
+  ],
+  "stream": {
+    "consumer": {
+      "connectionName": "kafka-connection",
+      "group.id": "fd.mongezium"
+    },
+    "producer": {
+      "connectionName": "kafka-connection",
+      "message.timeout.ms": "5000",
+      "compression.type": "snappy"
+    }
+  }
+}

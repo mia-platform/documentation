@@ -1,18 +1,29 @@
-const createRedirects = require("./createRedirects");
+const createEditUrl = require("./scripts/createEditUrl");
+const createRedirects = require("./scripts/createRedirects");
+const archivedVersions = require('./versionsArchived.json');
+const versionsMap = require('./versionsMap.json')
 
+/** @type {import('@docusaurus/types').Config} */
 const config = {
   title: "Mia-Platform Documentation",
   tagline: "Learn how Mia-Platform can help you to develop your business",
+  favicon: "img/favicon.ico",
   url: "https://docs.mia-platform.eu",
   baseUrl: "/",
-  onBrokenLinks: "throw",
-  onBrokenMarkdownLinks: 'throw',
-  favicon: "img/favicon.ico",
-  organizationName: "Mia-Platform", // Usually your GitHub org/user name.
-  projectName: "Mia-Platform", // Usually your repo name.
+  organizationName: "Mia-Platform",
+  projectName: "Mia-Platform",
+  onBrokenAnchors: 'ignore',
+  themes: ["docusaurus-json-schema-plugin", "@docusaurus/theme-mermaid"],
+  markdown: {
+    mermaid: true,
+    hooks: {
+      onBrokenMarkdownLinks: "throw",
+      onBrokenMarkdownImages: "throw"
+    }
+  },
   themeConfig: {
     prism: {
-      additionalLanguages: ['rego','java', 'csharp'],
+      additionalLanguages: ['rego', 'java', 'csharp', 'kotlin', 'nginx', 'docker', 'ini'],
     },
     image: "img/documentation-link-preview.png",
     algolia: {
@@ -29,63 +40,116 @@ const config = {
     navbar: {
       hideOnScroll: false,
       title: "Mia-Platform Docs",
-      logo: {
-        alt: "Mia_Platform logo",
-        src: "img/logo.png"
-      },
+      logo: { alt: "Mia_Platform logo", src: "img/logo.png" },
       items: [
         {
           type: 'doc',
-          docId: "overview/mia_platform_overview",
+          docId: "getting-started/mia-platform-overview",
           label: "Getting Started",
           position: "left",
-          activeBaseRegex: "(docs|docs/\\d.x)/(getting_started/monitoring-dashboard|getting_started/performance-test|getting_started|overview|guidelines|tutorial)"
+          activeBaseRegex: "(docs|docs/\\d.x)/getting-started"
         },
         {
           label: "Products",
           position: "left",
-          activeBaseRegex: "(docs|docs/\\d.x)/(development_suite|marketplace|libraries|tools|runtime_suite|business_suite|fast_data|dev_portal)",
+          activeBaseRegex: "(docs|docs/\\d.x)/products",
           type: "dropdown",
           items: [
             {
               type: 'doc',
-              docId: "development_suite/overview-dev-suite",
+              docId: "products/console/overview-dev-suite",
               label: "Console",
-              activeBaseRegex: "(docs|docs/\\d.x)/development_suite"
+              activeBaseRegex: "(docs|docs/\\d.x)/products/console"
             },
             {
               type: 'doc',
-              docId: "fast_data/what_is_fast_data",
-              label: "Fast Data",
-              activeBaseRegex: "(docs|docs/\\d.x)/fast_data"
+              docId: "products/fast_data/what_is_fast_data",
+              label: "Fast Data v1",
+              activeBaseRegex: "(docs|docs/\\d.x)/products/fast_data"
             },
             {
               type: 'doc',
-              docId: "business_suite/backoffice/overview",
-              label: "Backoffice",
-              activeBaseRegex: "(docs|docs/\\d.x)/business_suite"
+              docId: "products/fast_data_v2/overview",
+              label: "Fast Data v2",
+              activeBaseRegex: "(docs|docs/\\d.x)/products/fast_data_v2"
             },
             {
               type: 'doc',
-              docId: "marketplace/overview_marketplace",
-              label: "Marketplace",
-              activeBaseRegex: "(docs|docs/\\d.x)/(marketplace|runtime_suite/|development_suite/api-console/api-design/custom_microservice_get_started|tools|runtime_suite_tools|libraries)"
+              docId: "products/data_catalog/overview_data_catalog",
+              label: "Data Catalog",
+              activeBaseRegex: "(docs|docs/\\d.x)/products/data_catalog"
+            },
+            {
+              type: 'doc',
+              docId: "products/microfrontend-composer/what-is",
+              label: "Microfrontend Composer",
+              activeBaseRegex: "(docs|docs/\\d.x)/products/microfrontend-composer"
+            },
+            {
+              type: 'doc',
+              docId: "products/software-catalog/overview",
+              label: "Software Catalog",
+              activeBaseRegex: "(docs|docs/\\d.x)/products/software-catalog"
+            },
+            {
+              type: 'doc',
+              docId: "runtime-components/overview_marketplace",
+              label: "Runtime components",
+              activeBaseRegex: "(docs|docs/\\d.x)/runtime-components"
+            }
+          ]
+        },
+        {
+          label: "Solutions",
+          position: "left",
+          activeBaseRegex: "(docs|docs/\\d.x)/solutions",
+          type: "dropdown",
+          items: [
+            {
+              type: 'doc',
+              docId: "solutions/application-development/application-development-overview",
+              label: "Application Development",
+              activeBaseRegex: "(docs|docs/\\d.x)/solutions/application-development"
+            },
+            {
+              type: 'doc',
+              docId: "solutions/platform-engineering/platform-engineering-overview",
+              label: "Platform Engineering",
+              activeBaseRegex: "(docs|docs/\\d.x)/solutions/platform-engineering"
+            },
+            {
+              type: 'doc',
+              docId: "solutions/ai-agent-lifecycle/ai-agent-lifecycle-overview",
+              label: "AI Agent Lifecycle",
+              activeBaseRegex: "(docs|docs/\\d.x)/solutions/ai-agent-lifecycle"
+            },
+            {
+              type: 'doc',
+              docId: "solutions/cloud-operations/cloud-operations-overview",
+              label: "Cloud Operations",
+              activeBaseRegex: "(docs|docs/\\d.x)/solutions/cloud-operations"
+            },
+            {
+              type: 'doc',
+              docId: "solutions/data-integration/data-integration-overview",
+              label: "Data Integration",
+              activeBaseRegex: "(docs|docs/\\d.x)/solutions/data-integration"
             }
           ]
         },
         {
           label: "Infrastructure",
           position: "left",
-          activeBaseRegex: "(docs|docs/\\d.x)/(development_suite|marketplace|libraries|tools|runtime_suite|business_suite|fast_data|dev_portal)",
+          activeBaseRegex: "(docs|docs/\\d.x)/(development_suite|marketplace|libraries|tools|runtime_suite|business_suite|fast_data|dev_portal|infrastructure/infrastructure_overview)",
           type: "doc",
-          docId: "paas/overview"
+          docId: "infrastructure/infrastructure_overview"
         },
         {
-          type: 'doc',
-          docId: "release-notes/versions",
           label: "Release Notes",
           position: "left",
-          activeBaseRegex: "(docs|docs/\\d.x)/(release-notes|info/(version_policy|bug_policy|support-policy))"
+          type: "doc",
+          docId: "versions",
+          docsPluginId: "release-notes-doc",
         },
         {
           href: "https://makeitapp.atlassian.net/servicedesk/customer/portal/21",
@@ -98,169 +162,167 @@ const config = {
           label: "Community"
         },
         {
-          type: "docsVersionDropdown",
-          position: "right",
-          dropdownItemsBefore: [],
-          dropdownItemsAfter: []
+          type: 'custom-CustomVersionsDropdown',
+          position: 'right',
+          dropdownItemsAfter: [
+            {
+              type: 'html',
+              value: '<hr style="margin: 4px 0;">',
+            },
+            {
+              type: 'html',
+              value: '<b style="margin-left: 8px; font-size: 14px;">Archived versions</b>',
+            },
+            ...Object.entries(archivedVersions).map(([versionName, versionUrl]) => ({ label: versionName, href: versionUrl })),
+          ]
         }
       ],
     },
     footer: {
       style: "dark",
-      links: [
-        {
-          title: "Mia-Platform",
-          items: [
-            {
-              label: "How to install",
-              to: "/docs/info/how_to_install",
-            },
-            {
-              label: "Bug Policy",
-              to: "/docs/info/bug_policy",
-            },
-            {
-              label: "Supported browser",
-              to: "/docs/info/supported_browser",
-            },
-            {
-              label: "Open Source Software",
-              to: "/docs/info/oss",
-            },
-            {
-              label: "Subprocessor",
-              to: "/docs/info/subprocessor",
-            },
-            {
-              label: "Service Level Agreement",
-              to: "/docs/info/mia_service_level_agreement",
-            },
-            {
-              label: "Audit Process",
-              to: "/docs/info/audit_process",
-            },
-          ],
+      links: [{
+        title: "Mia-Platform",
+        items: [
+          {
+            label: "How to install",
+            to: "/info/how_to_install",
+          },
+          {
+            label: "Bug Policy",
+            to: "/release-notes/info/bug_policy",
+          },
+          {
+            label: "Supported browsers",
+            to: "/info/supported_browser",
+          },
+          {
+            label: "Open Source Software",
+            to: "/info/oss",
+          },
+          {
+            label: "Subprocessor",
+            to: "/info/subprocessor",
+          },
+          {
+            label: "Service Level Agreement",
+            to: "/docs/info/mia_service_level_agreement",
+          },
+          {
+            label: "Audit Process",
+            to: "/info/audit_process",
+          },
+        ],
+      },
+      {
+        title: "Company",
+        items: [{
+          label: "Website",
+          href: "https://mia-platform.eu",
         },
         {
-          title: "Company",
-          items: [
-            {
-              label: "Site",
-              href: "https://www.mia-platform.eu/en/",
-            },
-            {
-              label: "About",
-              href: "https://www.mia-platform.eu/en/company/about",
-            },
-            {
-              label: "Mission",
-              href: "https://www.mia-platform.eu/en/company/mission",
-            },
-            {
-              label: "Blog",
-              href: "https://blog.mia-platform.eu/en",
-            },
-            {
-              label: "Privacy Policy",
-              href:
-                "https://www.mia-platform.eu/img/Privacy_Policy_Website_EN.pdf",
-            },
-          ],
+          label: "About",
+          href: "https://mia-platform.eu/company/about-us/",
         },
         {
-          title: "Core Platform",
-          items: [
-            {
-              label: "Console",
-              href: "https://www.mia-platform.eu/en/products/devops-console",
-            },
-            {
-              label: "Microservice Ecosystem",
-              href:
-                "https://www.mia-platform.eu/en/products/microservices-ecosystem",
-            },
-            {
-              label: "Fast Data",
-              href: "https://www.mia-platform.eu/en/products/fast-data",
-            },
-            {
-              label: "Headless CMS",
-              href:
-                "https://www.mia-platform.eu/en/products/api-management-and-headless-cms",
-            },
-            {
-              label: "Release Notes",
-              to: "/docs/release-notes/versions",
-            },
-          ],
+          label: "Mission & Vision",
+          href: "https://mia-platform.eu/mission-vision/",
         },
         {
-          title: "Developer Resources",
-          items: [
-            {
-              label: "Status Page",
-              href: "https://status.console.cloud.mia-platform.eu"
-            },
-            {
-              label: "Guidelines",
-              to: "/docs/guidelines/git_vademecum",
-            },
-            {
-              label: "Library",
-              href: "https://resources.mia-platform.eu/en/library",
-            },
-            {
-              label: "GitHub",
-              href: "https://github.com/mia-platform",
-            },
-            {
-              label: "GitHub Marketplace",
-              href: "https://github.com/mia-platform-marketplace",
-            },
-          ],
+          label: "Blog",
+          href: "https://mia-platform.eu/blog/",
         },
         {
-          title: "Education & Support",
-          items: [
-            {
-              label: 'Support',
-              href: 'https://makeitapp.atlassian.net/servicedesk/customer/portal/21'
-            },
-            {
-              label: 'FAQ',
-              to: '/docs/getting_started/faqs'
-            },
-            {
-              label: "Getting Started",
-              to: "/docs/overview/mia_platform_overview",
-            },
-          ],
+          label: "Events",
+          href: "https://mia-platform.eu/resources/events/",
         },
+        {
+          label: "Privacy Policy",
+          href: "https://mia-platform.eu/img/Privacy_Policy_Website_EN.pdf",
+        },
+        ],
+      },
+      {
+        title: "Core Platform",
+        items: [{
+          label: "Mia-Platform Console",
+          href: "https://mia-platform.eu/platform/console/",
+        },
+        {
+          label: "Mia-Platform Marketplace",
+          href: "https://mia-platform.eu/platform/mia-platform-marketplace/",
+        },
+        {
+          label: "Mia-Platform Fast Data",
+          href: "https://mia-platform.eu/platform/fast-data/",
+        },
+        {
+          label: "Release Notes",
+          to: "/release-notes/versions",
+        },
+        ],
+      },
+      {
+        title: "Developer Resources",
+        items: [{
+          label: "Status Page",
+          href: "https://status.console.cloud.mia-platform.eu"
+        },
+        {
+          label: "Library",
+          href: "https://mia-platform.eu/library/",
+        },
+        {
+          label: "GitHub",
+          href: "https://github.com/mia-platform",
+        },
+        {
+          label: "GitHub Marketplace",
+          href: "https://github.com/mia-platform-marketplace",
+        },
+        ],
+      },
+      {
+        title: "Education & Support",
+        items: [{
+          label: 'Support',
+          href: 'https://makeitapp.atlassian.net/servicedesk/customer/portal/21'
+        },
+        {
+          label: "Community",
+          to: "https://github.com/mia-platform/community/discussions",
+        },
+        {
+          label: 'FAQ',
+          to: '/docs/getting-started/faqs'
+        },
+        {
+          label: "Getting Started",
+          to: "/docs/getting-started/mia-platform-overview",
+        },
+        ],
+      },
       ],
       copyright: `Copyright © ${new Date().getFullYear()} Mia srl. All rights reserved. Built with Docusaurus.`,
     }
   },
+  future: {
+    v4: true,
+    experimental_faster: true,
+  },
+  i18n: {
+    defaultLocale: 'en',
+    locales: ['en'],
+  },
   presets: [
     [
-      "@docusaurus/preset-classic",
+      '@docusaurus/preset-classic',
       {
         docs: {
-          sidebarPath: require.resolve("./sidebars.js"),
-          lastVersion: "current",
-          versions: {
-            current: {
-              label: "10.x (Current)",
-              path: "",
-            },
-            "9.x.x": {
-              label: "9.5.x",
-              path: "9.x",
-            },
-            "8.x.x": {
-              label: "8.9.x",
-              path: "8.x",
-            },
-          },
+          sidebarPath: './sidebars.js',
+          editUrl: createEditUrl,
+          includeCurrentVersion: process.env.NODE_ENV !== "production",
+          lastVersion: versionsMap.current,
+          versions: process.env.NODE_ENV !== "production" ? { current: { label: "Canary" } } : {},
           async sidebarItemsGenerator({
             isCategoryIndex: defaultCategoryIndexMatcher,
             defaultSidebarItemsGenerator,
@@ -269,8 +331,10 @@ const config = {
             return defaultSidebarItemsGenerator({
               ...args,
               isCategoryIndex(params) {
-                const {fileName} = params
-                return defaultCategoryIndexMatcher(params) || ['overview', '10_overview'].includes(fileName.toLowerCase())
+                const {
+                  fileName
+                } = params
+                return defaultCategoryIndexMatcher(params) || ['overview', '10_overview', '10-overview'].includes(fileName.toLowerCase())
               },
             });
           },
@@ -281,11 +345,30 @@ const config = {
         sitemap: {
           changefreq: "weekly",
           priority: 0.5,
+          ignorePatterns: ['/docs/12.x/**', '/docs/13.x/**'],
+          filename: 'sitemap.xml',
         }
-      },
+      }
     ],
   ],
   plugins: [
+    [
+      '@docusaurus/plugin-content-docs',
+      {
+        id: 'release-notes-doc',
+        path: 'release-notes',
+        routeBasePath: 'release-notes',
+        sidebarPath: './sidebarsReleaseNotes.js',
+      },
+    ],
+    [
+      '@docusaurus/plugin-content-docs',
+      {
+        id: 'info-doc',
+        path: 'info',
+        routeBasePath: 'info',
+      },
+    ],
     [
       "@docusaurus/plugin-client-redirects",
       {
@@ -303,4 +386,4 @@ const config = {
   ],
 };
 
-module.exports = config;
+export default config;

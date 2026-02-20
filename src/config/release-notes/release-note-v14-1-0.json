@@ -1,0 +1,89 @@
+[
+  {
+    "title": "Console",
+    "icon": "console",
+    "defaultOpen": false,
+    "type": "versions",
+    "items": {
+      "newFeatures": [
+        {
+          "title": "Environment Based Configuration Management as Closed Preview",
+          "description": [
+            "The Environment Based Configuration Management feature, introduced in Beta with **v14.0.0**, will now be available as **Closed Preview** only.",
+            "This will allow us to focus on gathering feedback and improving the final user experience before a wider rollout. As a result, automatic migration of Enhanced projects is temporarily disabled, and existing migrated projects will be reverted.",
+            "In the meantime, if you are interested in trying out this beta feature, you can reach out to your Mia-Platform referent."
+          ]
+        }
+      ],
+      "improvements": [
+        {
+          "title": "Azure DevOps now supported for Infrastructure Projects",
+          "description": [
+            "Infrastructure Projects now support Azure DevOps as a Git provider.",
+            "This addition allows you to manage your infrastructure configurations directly through Azure DevOps repositories, extending the flexibility of your Git provider integrations.",
+            "To discover more, visit the related [documentation page](/docs/products/console/project-configuration/infrastructure-project)."
+          ]
+        },
+        {
+          "title": "Improved customization of Marketplace items",
+          "description": [
+            "From now on, for on-premise installations, it is possible to define a set of regex rules to apply during [MarketplaceSync job](/docs/infrastructure/self-hosted/installation-chart/helm-values/marketplace) with corresponding replacement values directly in the Helm chart. This allows you to precisely rewrite image registry paths as needed.",
+            "For more details, check out the [documentation](/docs/runtime-components/overview_marketplace#edit-mia-platform-catalog-items)."
+          ]
+        }
+      ],
+      "bugFixes": []
+    }
+  },
+  {
+    "title": "Microfrontend Composer",
+    "icon": "microfrontend-composer",
+    "defaultOpen": false,
+    "type": "versions",
+    "items": {
+      "newFeatures": [],
+      "improvements": [
+        {
+          "title": "Back-Lit Library",
+          "description": [
+            "The new version `v1.5.20` of the back-kit library is available!",
+            "Refer to back-kit [changelog](/docs/products/microfrontend-composer/back-kit/changelog) for finer-grained details of new versions."
+          ]
+        }
+      ],
+      "bugFixes": [
+        "Fixed partial date format on `bk-form-wizard` component"
+      ]
+    }
+  },
+  {
+    "title": "Runtime Components",
+    "icon": "runtime-components",
+    "defaultOpen": false,
+    "type": "versions",
+    "items": {
+      "newFeatures": [],
+      "improvements": [
+        {
+          "title": "Orchestrator Generator Template 1.0.0",
+          "description": [
+            "The Orchestrator Generator template has been published in the Marketplace.",
+            "For usage instructions and setup details, refer to the [official documentation](/docs/products/console/company-configuration/providers/extensions/orchestrator-generator/overview)"
+          ]
+        },
+        {
+          "title": "Integration Connector Agent 0.4.0",
+          "description": [
+            "The Integration Connector Agent received new updates to enable:",
+            "- aggregating information from Cloud Vendors (specifically GCP, AWS and Azure)",
+            "- receiving events from GitHub webhooks",
+            "- build custom processors with Golang code, thanks to the new `rpc-plugin` processors and the [Integration Connector Agent Processor Template](https://github.com/mia-platform-marketplace/integration-connector-agent-processor)",
+            "",
+            "To learn more about all the features and how to configure it, visit the [official documentation](/docs/runtime-components/plugins/integration-connector-agent/overview)."
+          ]
+        }
+      ],
+      "bugFixes": []
+    }
+  }
+]

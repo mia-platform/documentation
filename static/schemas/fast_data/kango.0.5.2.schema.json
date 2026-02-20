@@ -1,0 +1,387 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Configuration",
+  "description": "Main Kango service configuration struct",
+  "type": "object",
+  "properties": {
+    "connections": {
+      "type": "object",
+      "additionalProperties": {
+        "$ref": "#/$defs/ConnectionConfig"
+      },
+      "default": {}
+    },
+    "consumer": {
+      "$ref": "#/$defs/ConsumerConfig"
+    },
+    "controlPlane": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/ControlPlaneConfiguration"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "persistence": {
+      "$ref": "#/$defs/PersistenceConfiguration"
+    },
+    "settings": {
+      "$ref": "#/$defs/Settings",
+      "default": {
+        "writeMode": "strict"
+      }
+    }
+  },
+  "examples": [
+    {
+      "connections": {
+        "kafka-conn": {
+          "config": {
+            "bootstrap.servers": "localhost:9092",
+            "client.id": "kango",
+            "group.id": "kango"
+          },
+          "type": "kafka"
+        },
+        "mongodb-conn": {
+          "config": {
+            "database": "test",
+            "url": "mongodb://localhost:27017/test?replicaSet=local"
+          },
+          "type": "mongo"
+        }
+      },
+      "consumer": {
+        "connectionName": "kafka-conn",
+        "topic": "test-topic-1",
+        "type": "kafka"
+      },
+      "controlPlane": {
+        "grpcAddress": "http://localhost:50052"
+      },
+      "persistence": {
+        "collection": "test-collection-1",
+        "connectionName": "mongo-conn"
+      }
+    }
+  ],
+  "required": [
+    "persistence",
+    "consumer"
+  ],
+  "$defs": {
+    "ConnectionConfig": {
+      "description": "Describes the possible type of connections that can be defined in the configuration file",
+      "oneOf": [
+        {
+          "type": "object",
+          "properties": {
+            "config": {
+              "$ref": "#/$defs/KafkaConnectionConfig"
+            },
+            "type": {
+              "type": "string",
+              "const": "kafka"
+            }
+          },
+          "required": [
+            "type",
+            "config"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "config": {
+              "$ref": "#/$defs/MongodbConnectionConfig"
+            },
+            "type": {
+              "type": "string",
+              "const": "mongodb"
+            }
+          },
+          "required": [
+            "type",
+            "config"
+          ]
+        }
+      ]
+    },
+    "ConsumerConfig": {
+      "description": "Describes the configuration of streaming layer, that is Kafka, to be adopted by the service",
+      "oneOf": [
+        {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "string",
+              "const": "kafka"
+            }
+          },
+          "$ref": "#/$defs/KafkaConsumerConfig",
+          "required": [
+            "type"
+          ]
+        }
+      ]
+    },
+    "ControlPlaneConfiguration": {
+      "description": "Describes the service configuration to enable the interoperation with Control Plane",
+      "type": "object",
+      "properties": {
+        "feedbackInterval": {
+          "description": "Interval in milliseconds that must elapse between two feedback events sent to Control Plane Operator.\nIt defaults to `3000` ms when not provided during deserialization.",
+          "type": "integer",
+          "format": "uint64",
+          "default": 3000,
+          "minimum": 0
+        },
+        "grpcAddress": {
+          "description": "Address to the gRPC server that should receive service feedback events",
+          "type": "string",
+          "examples": [
+            "http://control-plane-operator:50052"
+          ]
+        },
+        "resumeAfterMs": {
+          "description": "The number of milliseconds to wait before running the processing logic\nwhen connection with control plane operator failed\nand no desired fast data state was ever received.",
+          "type": [
+            "integer",
+            "null"
+          ],
+          "format": "uint64",
+          "default": null,
+          "minimum": 0
+        }
+      },
+      "required": [
+        "grpcAddress"
+      ]
+    },
+    "KafkaConnectionConfig": {
+      "type": "object",
+      "additionalProperties": {
+        "$ref": "#/$defs/Secret"
+      }
+    },
+    "KafkaConsumerConfig": {
+      "type": "object",
+      "properties": {
+        "commitIntervalMs": {
+          "description": "number of milliseconds between one commit and another",
+          "type": "integer",
+          "format": "uint64",
+          "default": 500,
+          "minimum": 0
+        },
+        "config": {
+          "description": "librdkafka Kafka consumer configuration properties",
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/$defs/Secret"
+          },
+          "default": {}
+        },
+        "connectionName": {
+          "description": "Reference to the Kafka configuration stored inside the Connection (`KafkaConnectionConfig`)",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "topic": {
+          "description": "name of the Kafka topic from which the consumer will read messages",
+          "type": "string"
+        }
+      },
+      "required": [
+        "topic"
+      ]
+    },
+    "MongodbConnectionConfig": {
+      "type": "object",
+      "properties": {
+        "appName": {
+          "description": "The application name employed by MongoDB driver when performing queries.\nThis is useful for debugging purposes, such as recognizing which application\nis launching a query towards the database.",
+          "type": [
+            "string",
+            "null"
+          ],
+          "default": null
+        },
+        "database": {
+          "description": "MongoDB database where events will be written to",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "url": {
+          "description": "MongoDB connection string",
+          "$ref": "#/$defs/Secret"
+        }
+      },
+      "required": [
+        "url"
+      ]
+    },
+    "PersistenceConfiguration": {
+      "description": "Describes the configuration of persistence layer, that is MongoDB, to be adopted by the service",
+      "type": "object",
+      "properties": {
+        "appName": {
+          "description": "The application name employed by MongoDB driver when performing queries.\nThis is useful for debugging purposes, such as recognizing which application\nis launching a query towards the database.",
+          "type": [
+            "string",
+            "null"
+          ],
+          "default": null
+        },
+        "collection": {
+          "description": "MongoDB collection where events will be written to",
+          "type": "string"
+        },
+        "connectionName": {
+          "description": "Reference to the MongoDB configuration stored inside the Connection (`MongodbConnectionConfig`)",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "database": {
+          "description": "MongoDB database where events will be written to",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "maxBatchSize": {
+          "description": "Number of change events that should be buffered before\noffloading them in bulk onto the persistence layer",
+          "type": "integer",
+          "format": "uint",
+          "default": 1000,
+          "minimum": 0
+        },
+        "url": {
+          "description": "MongoDB connection string",
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Secret"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "writeIntervalMs": {
+          "description": "Number of milliseconds that should elapse between two writes\non persistence layer when the maximum batch size is not reached\nwithin the interval",
+          "type": "integer",
+          "format": "uint64",
+          "default": 1000,
+          "minimum": 0
+        }
+      },
+      "required": [
+        "collection"
+      ]
+    },
+    "Secret": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "encoding": {
+              "description": "Define which type of encoding the library supports when it needs to read the actual secret value.",
+              "type": "string",
+              "enum": [
+                "base64"
+              ]
+            },
+            "key": {
+              "type": "string"
+            },
+            "type": {
+              "const": "env"
+            }
+          },
+          "required": [
+            "type",
+            "key"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "encoding": {
+              "description": "Define which type of encoding the library supports when it needs to read the actual secret value.",
+              "type": "string",
+              "enum": [
+                "base64"
+              ]
+            },
+            "key": {
+              "type": "string"
+            },
+            "path": {
+              "type": "string"
+            },
+            "type": {
+              "const": "file"
+            }
+          },
+          "required": [
+            "type",
+            "path"
+          ]
+        }
+      ],
+      "examples": [
+        "my-secret",
+        {
+          "key": "CUSTOM_ENV_VAR",
+          "type": "env"
+        },
+        {
+          "encoding": "base64",
+          "key": "CUSTOM_ENV_VAR",
+          "type": "env"
+        },
+        {
+          "path": "/path/to/file",
+          "type": "file"
+        }
+      ]
+    },
+    "Settings": {
+      "description": "Behavior settings",
+      "type": "object",
+      "properties": {
+        "writeMode": {
+          "$ref": "#/$defs/WriteMode"
+        }
+      },
+      "required": [
+        "writeMode"
+      ]
+    },
+    "WriteMode": {
+      "oneOf": [
+        {
+          "description": "_Insert_ and _update_ operations ensure that fields not found in the `after` payload are\nremoved from the potentially existing document on the persistence layer.\n\n_Inserts_ are executed as replace or insert operations, while _updates_ remove\nthe fields at first level that are not present in the `after` payload,\nbut are found in the `before` payload (use `\"$unset\"` clause).",
+          "type": "string",
+          "const": "strict"
+        },
+        {
+          "description": "_Insert_ operations are treated as upserts, while _Update_ ones do not add the `\"$unset\"` clause.\nThus fields not mentioned in the after payload will be left untouched.",
+          "type": "string",
+          "const": "partial"
+        }
+      ]
+    }
+  }
+}
