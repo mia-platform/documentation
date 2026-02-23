@@ -55,6 +55,10 @@ are now properly converted into their expected date.
 
 ## [1.3.2] - 2024-10-18
 
+### Added
+
+- Added support to MongoDB v8
+
 ### Fix
 
 - introduce support for TLS/SSL connection for storage component

@@ -48,6 +48,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - Added image signing and sbom generation in pipeline
+- Added support to MongoDB v8
 
 ## [6.7.1] 2024-05-02
 
