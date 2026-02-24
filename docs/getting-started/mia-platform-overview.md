@@ -6,7 +6,8 @@ sidebar_label: Mia-Platform Overview
 
 ## Mia-Platform Overview: Accelerating Your Digital Future
 
-In an ever-evolving digital landscape, speed of innovation, operational efficiency and the ability to leverage the true potential of data are fundamental for competitiveness. **Mia-Platform is the world's first AI-native Developer Platform Foundation**, a suite of products for building and managing your custom digital platform, designed to eliminate complexities and accelerate your journey towards digital excellence.
+In an ever-evolving digital landscape, speed of innovation, operational efficiency and the ability to leverage the true potential of data are fundamental for competitiveness.  
+**Mia-Platform is the world's first AI-native Developer Platform Foundation**, a suite of products for building and managing your custom digital platform, designed to eliminate complexities and accelerate your journey towards digital excellence.
 
 Mia-Platform consolidates all necessary tools into a single ecosystem, offering **guardrails** through the complex landscape of cloud-native technologies. By uniting platform engineering, data, and artificial intelligence in a single, composable ecosystem, Mia-Platform enables organizations to accelerate AI-enabled development while maintaining full governance and control. Our goal is simple: to provide a product **for better development**.
 
@@ -40,7 +41,9 @@ Mia-Platform consolidates all necessary tools into a single ecosystem, offering 
 
 * **Establish unique data semantics** across your entire organization, adding metadata to give a single, consistent meaning to data across different systems, automatically discovering the meaning and dependencies of all available data.
 
-* **Leverage a Data Fabric solution** to govern the entire data lifecycle, from collection to exposure, providing a unified data control plane that enables data ingestion from any source.
+* **Leverage a Data Fabric solution** to govern the entire data lifecycle, from discovery to exposure, providing a unified data control plane that enables data ingestion from any source.
+
+* **Aggregate data in real-time from different sources** and make it available in near real-time, improving the availability and accessibility of crucial business information.
 
 * **Create AI-ready data products** that deliver data in real time to channels and AI without overloading legacy systems of record, providing consistent, unambiguous data to AI models while reducing connection complexity and costs.
 
@@ -48,9 +51,8 @@ Mia-Platform consolidates all necessary tools into a single ecosystem, offering 
 
 * **Connect your cloud-native platform** with existing systems, decoupling and offloading legacy systems and serving real-time data 24/7 to power strategic decisions and AI-native applications.
 
-* **Aggregate data from different sources** and make it available in near real-time, improving the availability and accessibility of crucial business information.
 
-**The result:** Aggregated data available in real-time with unique semantics, a unified business view, AI-ready data products, and the ability to power strategic decisions and AI-native applications with always up-to-date, consistent information.
+**The result:** Real-time aggregated data in a unified business view, AI-ready data products, and the capability to power strategic decisions and AI-native applications with consistently up-to-date information.
 
 ### 3. Application Composability: Accelerate Innovation Through Reuse
 
