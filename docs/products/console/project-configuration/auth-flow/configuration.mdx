@@ -4,7 +4,7 @@ title: Configuration
 sidebar_label: Configuration
 ---
 
-import Schema from "@site/static/schemas/platform/auth/authtool/authtool-bff/0.2.1/authtool_bff.schema.json"
+import Schema from "@site/static/schemas/platform/auth/authtool/authtool-bff/0.2.2/authtool_bff.schema.json"
 import Example from "@site/static/schemas/platform/auth/authtool/authtool-bff/examples/example1.json"
 import SchemaViewer from "@site/src/components/SchemaViewer"
 
@@ -185,7 +185,7 @@ The BFF is implemented by a service called `authtool_bff`, available as an OCI i
 or as a **Mia Marketplace** plugin.
 
 The full configuration schema is available on
-[Mia CDN](https://cdn.mia-platform.eu/runtime/platform/auth/authtool/authtool-bff/0.2.1/authtool_bff.schema.json)
+[Mia CDN](https://cdn.mia-platform.eu/runtime/platform/auth/authtool/authtool-bff/0.2.2/authtool_bff.schema.json)
 and rendered below:
 
 <SchemaViewer schema={Schema} example={Example} />
@@ -277,7 +277,88 @@ Two keys protect session integrity and token storage:
 
 #### Token Storage and Expiration
 
-The BFF stores tokens in Redis and controls their lifecycle:
+The BFF stores tokens in Redis and controls their lifecycle.
+Three distinct time boundaries govern how long a user stays authenticated; each maps to a BFF or Authorization Server (AS) setting:
+
+| # | Time boundary | Where it is set | BFF configuration field | Typical value |
+|---|---|---|---|---|
+| 1 | **Access Token (AT) expiration** | AS client settings | — *(no BFF config needed)* | 5 – 15 min |
+| 2 | **Refresh Token (RT) idle / max time** (SSO idle timeout) | AS client settings | `refreshTokenExpirationSecs` or `refreshTokenExpirationPayloadField` | hours to days |
+| 3 | **Cookie max time** (SSO session max) | BFF + AS client settings | `mode.expirationSecs` | hours to days |
+
+:::caution
+These values **must be aligned** with the corresponding settings on the Authorization Server client registration.
+A mismatch (e.g. a cookie that outlives the RT) will cause silent session failures.
+:::
+
+##### 1. Access Token Expiration
+
+The AT lifetime is controlled entirely by the Authorization Server.
+The BFF honours whatever `exp` claim the AS puts in the token — no additional configuration is required.
+The only related BFF setting is `sessionJitterSecs` (default: `7`), which subtracts a few seconds from the AT expiry so that the BFF refreshes the token before it expires mid-flight.
+
+##### 2. Refresh Token Expiration
+
+The RT determines how long the BFF can silently renew access tokens on behalf of the user.
+This corresponds to the **SSO idle timeout** (or SSO idle max) on the AS.
+
+The BFF needs to know the RT lifetime so that it can set the correct TTL on the Redis entry.
+There are two options:
+
+- **The token response includes the RT expiration** — some providers return a field in the token response with the RT expiration (this is *not* mandated by the OAuth 2.0 spec).
+  Set `refreshTokenExpirationPayloadField` to the name of that field and the BFF will read the value automatically:
+
+  ```json
+  {
+    "session": {
+      "refreshTokenExpirationPayloadField": "refresh_token_expires_in"
+    }
+  }
+  ```
+
+- **Set it manually** — when the AS does not include the RT expiration in the response, you must configure it by hand.
+  Set `refreshTokenExpirationSecs` to match the RT lifetime configured on the AS (default: 7 days / `604800`):
+
+  ```json
+  {
+    "session": {
+      "refreshTokenExpirationSecs": 604800
+    }
+  }
+  ```
+
+If both fields are set, the value from the token response (`refreshTokenExpirationPayloadField`) takes precedence.
+
+##### 3. Cookie (Session) Expiration
+
+The cookie `expirationSecs` field inside `mode` controls how long the browser keeps the session cookie.
+It is good practice to align this value with the **SSO session max** configured on the AS so that the cookie and the server-side session expire at the same time.
+
+```json
+{
+  "session": {
+    "mode": {
+      "type": "bff",
+      "expirationSecs": 86400
+    }
+  }
+}
+```
+
+##### Refresh Token Rotation
+
+When `refreshTokenRotation` is set to `true`, each token refresh issues a new RT and invalidates the previous one.
+This must match the AS client configuration — enable it only if the AS is configured for RT rotation.
+
+The `authtool_bff` service protects refresh-token operations with an internal lock to prevent race conditions (e.g. two concurrent requests attempting to refresh the same token simultaneously).
+This lock is **process-local**, which is sufficient for multi-replica deployments **as long as rotation is disabled** (`refreshTokenRotation: false`), because re-using the same RT is idempotent.
+
+:::warning
+When **refresh token rotation is enabled**, the service **must run as a single replica**.
+With rotation, each RT can only be used once — if two replicas attempt to refresh concurrently, one will receive a `400` error from the Authorization Server (the RT has already been consumed and invalidated), causing the BFF to destroy the session and force the user to re-authenticate.
+:::
+
+##### Full Example
 
 ```json
 {
@@ -291,18 +372,17 @@ The BFF stores tokens in Redis and controls their lifecycle:
 ```
 
 - **`authorizationFlowCache`** — points to a Redis connection either by reference (`connectionName`) or inline Redis config, where tokens and authorization state are persisted
-- **`refreshTokenExpirationSecs`** — TTL for stored refresh tokens (default: 7 days / `604800`)
-- **`refreshTokenRotation`** — when `true`, each refresh issues a new RT and invalidates the old one (default: `false`)
+- **`refreshTokenExpirationSecs`** — TTL for stored refresh tokens (default: 7 days / `604800`); should match the AS RT lifetime
+- **`refreshTokenRotation`** — when `true`, each refresh issues a new RT and invalidates the old one (default: `false`); must match the AS client setting
 - **`refreshTokenExpirationPayloadField`** — optional key in the token response containing the RT expiration (not mandated by OAuth 2.0 spec)
 - **`sessionJitterSecs`** — subtracts seconds from token expiry to avoid using tokens that expire mid-flight (default: `7`)
 
-Redis client prefixes keys with a namespace from `connections.<name>.namespace`. The service supports
-multireplicas.
+Redis client prefixes keys with a namespace from `connections.<name>.namespace`.
 
-When multiple sessions are needed for different OAuth 2.x clients (different Cliend IDs), the
-same redis instance can be used with the same namespace (defaults to `authtool_bff`).
+When multiple sessions are needed for different OAuth 2.x clients (different Client IDs), the
+same Redis instance can be used with the same namespace (defaults to `authtool_bff`).
 
-Otherwise namespace can be used to separate keys on the same Redis instance.
+Otherwise, the namespace can be used to separate keys on the same Redis instance.
 
 #### Subsequent Requests
 
