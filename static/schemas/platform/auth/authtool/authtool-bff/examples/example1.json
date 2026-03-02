@@ -1,0 +1,43 @@
+{
+  "$schema": "https://cdn.mia-platform.eu/runtime/platform/auth/authtool/authtool-bff/0.2.1/authtool_bff.schema.json",
+  "connections": {
+    "authorization-cache": {
+      "type": "redis",
+      "config": {
+        "host": "authorization-cache"
+      }
+    }
+  },
+  "client": {
+    "issuer": "https://keycloak.mia-demo-re5gu6.gcp.mia-platform.eu/realms/platform-demo",
+    "issuerMetadataSegment": "/realms/platform-demo/.well-known/openid-configuration",
+    "clientId": "catalog-website",
+    "redirect_uri": "https://{{PROJECT_HOST}}/bff/oauth/callback",
+    "scope": "openid email profile catalog-mcp",
+    "credentials": {
+      "privateKey": {
+        "type": "file",
+        "path": "/run/secrets/authtool-bff-keys/key.pem"
+      }
+    },
+    "preferredTokenEndpointAuthMethod": "private_key_jwt",
+    "postLogoutRedirectUri": "https://catalog.mia-demo-re5gu6.gcp.mia-platform.eu/bff/oidc/logout/callback"
+  },
+  "session": {
+    "signingKey": {
+      "type": "file",
+      "path": "/run/secrets/authtool-bff-keys/cookie-secret.key"
+    },
+    "authorizationFlowCache": {
+      "connectionName": "authorization-cache"
+    },
+    "encryptionKey": {
+      "type": "file",
+      "path": "/run/secrets/authtool-bff-keys/redis-token-enc.key"
+    },
+    "refreshTokenExpirationPayloadField": "refresh_expires_in"
+  },
+  "server": {
+    "apiPrefix": "/bff"
+  }
+}

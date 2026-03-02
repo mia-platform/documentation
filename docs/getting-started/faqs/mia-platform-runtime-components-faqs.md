@@ -23,7 +23,7 @@ Decorators are microservices that intercept requests to add custom logic before 
 
 #### What is the Authorization Service?
 The Authorization Service is a central component that works with the API Gateway to secure your endpoints. When a request for a protected endpoint arrives, the API Gateway asks the Authorization Service to verify the user's credentials (e.g., session cookie, API key) and evaluate their permissions against the endpoint's security policy.
-[Discover more](/products/console/project-configuration/authorization-flow.md)
+[Discover more](/products/console/project-configuration/auth-flow/authorization-flow.md)
 
 #### What is the API Portal?
 The API Portal is a runtime component that automatically generates interactive API documentation for your project. It consumes the OpenAPI 3.0 specifications exposed by your services (including the [CRUD Service](/runtime-components/plugins/crud-service/10_overview_and_usage.md)) and presents them in a user-friendly web interface. It's a key tool for improving the **developer experience (DevEx)** and acts as a **developer portal** for your APIs.
@@ -81,7 +81,7 @@ The PDF Service is a utility plugin that can generate PDF documents from HTML te
 ### Authentication & Security
 
 #### What is the Auth0 Client?
-The Auth0 Client is a plugin that integrates with the Auth0 identity platform. It's used by the [Authorization Service](/products/console/project-configuration/authorization-flow.md) to handle user authentication. It can validate tokens, fetch user profiles, and manage user sessions, acting as a bridge between your platform and Auth0.
+The Auth0 Client is a plugin that integrates with the Auth0 identity platform. It's used by the [Authorization Service](/products/console/project-configuration/auth-flow/authorization-flow.md) to handle user authentication. It can validate tokens, fetch user profiles, and manage user sessions, acting as a bridge between your platform and Auth0.
 [Discover more](/runtime-components/plugins/auth0-client/10_overview.md)
 
 #### Are there clients for other identity providers?

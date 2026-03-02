@@ -1,0 +1,751 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Configuration",
+  "type": "object",
+  "properties": {
+    "client": {
+      "$ref": "#/definitions/AuthorizationClientSettings"
+    },
+    "connections": {
+      "type": "object",
+      "additionalProperties": {
+        "$ref": "#/definitions/Connection"
+      }
+    },
+    "server": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/RestServerSettings"
+        }
+      ],
+      "default": {
+        "apiPrefix": "/",
+        "ip": "0.0.0.0",
+        "port": 3000
+      }
+    },
+    "session": {
+      "$ref": "#/definitions/SessionSettings"
+    }
+  },
+  "required": [
+    "client",
+    "session"
+  ],
+  "definitions": {
+    "Algorithm": {
+      "description": "The algorithms supported for signing/verifying JWTs",
+      "oneOf": [
+        {
+          "description": "HMAC using SHA-256",
+          "type": "string",
+          "const": "HS256"
+        },
+        {
+          "description": "HMAC using SHA-384",
+          "type": "string",
+          "const": "HS384"
+        },
+        {
+          "description": "HMAC using SHA-512",
+          "type": "string",
+          "const": "HS512"
+        },
+        {
+          "description": "ECDSA using SHA-256",
+          "type": "string",
+          "const": "ES256"
+        },
+        {
+          "description": "ECDSA using SHA-384",
+          "type": "string",
+          "const": "ES384"
+        },
+        {
+          "description": "ECDSA using SHA-512",
+          "type": "string",
+          "const": "ES512"
+        },
+        {
+          "description": "RSASSA-PKCS1-v1_5 using SHA-256",
+          "type": "string",
+          "const": "RS256"
+        },
+        {
+          "description": "RSASSA-PKCS1-v1_5 using SHA-384",
+          "type": "string",
+          "const": "RS384"
+        },
+        {
+          "description": "RSASSA-PKCS1-v1_5 using SHA-512",
+          "type": "string",
+          "const": "RS512"
+        },
+        {
+          "description": "RSASSA-PSS using SHA-256",
+          "type": "string",
+          "const": "PS256"
+        },
+        {
+          "description": "RSASSA-PSS using SHA-384",
+          "type": "string",
+          "const": "PS384"
+        },
+        {
+          "description": "RSASSA-PSS using SHA-512",
+          "type": "string",
+          "const": "PS512"
+        },
+        {
+          "description": "Edwards-curve Digital Signature Algorithm (EdDSA)",
+          "type": "string",
+          "const": "EdDSA"
+        }
+      ]
+    },
+    "ApiPrefix": {
+      "title": "string",
+      "type": "string",
+      "pattern": "^/(?:[a-zA-Z0-9._~-]+|\\{[a-zA-Z0-9._~-]+\\})(?:/(?:[a-zA-Z0-9._~-]+|\\{[a-zA-Z0-9._~-]+\\}))*$"
+    },
+    "AuthorizationClientSettings": {
+      "type": "object",
+      "properties": {
+        "clientId": {
+          "description": "The client identifier issued to the client during the registration process",
+          "allOf": [
+            {
+              "$ref": "#/definitions/Secret"
+            }
+          ]
+        },
+        "credentials": {
+          "description": "Client credentials used for token retrieval,\nthey can be absent for public clients if\nthe client application is registered as such\nand the IdP supports it.",
+          "allOf": [
+            {
+              "$ref": "#/definitions/Credentials"
+            }
+          ]
+        },
+        "extra": {
+          "description": "Extra parameters to add to the authorization request.\nThese parameters will be added to the authorization URL query string.\n\nFor instance `auth0` requires the `audience` parameter to be set\nto obtain a decrypted access token.",
+          "type": [
+            "object",
+            "null"
+          ],
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "idTokenValidationIssuer": {
+          "description": "ID Token issuer validation strategy.\nIf not set, the default behavior is to validate\nagainst the `issuer` value.\n\nThis is useful for identity providers which\nissue ID Tokens with a different issuer\nthan the one defined in the metadata document.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "issuer": {
+          "description": "The issuer URL of the authorization server",
+          "type": "string",
+          "format": "uri"
+        },
+        "issuerMetadataSegment": {
+          "description": "The metadata segment to append to the issuer URL\nto retrieve the OpenID Connect metadata or OAuth Server Metadata.\n\nDefaults to `/.well-known/openid-configuration`",
+          "allOf": [
+            {
+              "$ref": "#/definitions/ApiPrefix"
+            }
+          ],
+          "default": "/.well-known/openid-configuration"
+        },
+        "postLogoutRedirectUri": {
+          "description": "URI to which the RP is requesting that the End-User's User Agent\nbe redirected after a logout has been performed.\nThis URI SHOULD use the https scheme and MAY contain port,\npath, and query parameter components;\nhowever, it MAY use the http scheme, provided that the Client Type is confidential,\nas defined in Section 2.1 of OAuth 2.0 [RFC6749], and provided the OP allows the use of http RP URIs.\n\nThe value MUST have been previously registered with the OP,\neither using the post_logout_redirect_uris Registration parameter or via another mechanism.",
+          "anyOf": [
+            {
+              "$ref": "#/definitions/UrlAsciiChecked"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "preferredTokenEndpointAuthMethod": {
+          "description": "Preferred token endpoint authentication method.\nIf not set, the default method defined by the\nauthorization server will be used.\n\nThis is useful for `okta` identity providers\nwhich require `client_secret_post` method but still\nclaim to support `client_secret_basic` as default.",
+          "anyOf": [
+            {
+              "$ref": "#/definitions/TokenAuthMethod"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "preferredTokenEndpointSigningAlgorithm": {
+          "description": "Preferred signing algorithm for token endpoint.\nIt is meaningful only when the token auth\nmethod is [`TokenAuthMethod::PrivateKeyJWT`].\nIf not set, the credentials private key algorithm and\nthe authorization server metadata establish the default to be used.",
+          "anyOf": [
+            {
+              "$ref": "#/definitions/Algorithm"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "redirect_uri": {
+          "description": "The redirection URI registered by the client application",
+          "allOf": [
+            {
+              "$ref": "#/definitions/UrlAsciiChecked"
+            }
+          ]
+        },
+        "scope": {
+          "description": "The set of scopes requested by the client application",
+          "allOf": [
+            {
+              "$ref": "#/definitions/Scope"
+            }
+          ],
+          "default": ""
+        }
+      },
+      "required": [
+        "issuer",
+        "clientId",
+        "redirect_uri",
+        "credentials"
+      ]
+    },
+    "Connection": {
+      "oneOf": [
+        {
+          "type": "object",
+          "properties": {
+            "config": {
+              "$ref": "#/definitions/RedisConfig"
+            },
+            "type": {
+              "type": "string",
+              "const": "redis"
+            }
+          },
+          "required": [
+            "type",
+            "config"
+          ]
+        }
+      ]
+    },
+    "ConnectionOrRef": {
+      "anyOf": [
+        {
+          "type": "object",
+          "properties": {
+            "connectionName": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "connectionName"
+          ]
+        },
+        {
+          "$ref": "#/definitions/RedisConfig"
+        }
+      ]
+    },
+    "CookieHardeningRule": {
+      "description": "Cookie hardening rules for the session ID cookie.",
+      "oneOf": [
+        {
+          "description": "Prefix the cookie name with \"__Host-\" to enforce\n[cookie hardening rules](https://datatracker.ietf.org/doc/html/draft-ietf-httpbis-rfc6265bis)\nwhich entail:\n- served over HTTPS\n- Secure\n- no Domain attribute\n- Path=/",
+          "type": "string",
+          "const": "host"
+        },
+        {
+          "description": "Prefix the cookie name with \"__Secure-\" to enforce\n[cookie hardening rules](https://datatracker.ietf.org/doc/html/draft-ietf-httpbis-rfc6265bis)\nwhich entail:\n- served over HTTPS\n- Secure",
+          "type": "string",
+          "const": "secure"
+        },
+        {
+          "description": "No prefix",
+          "type": "string",
+          "const": "none"
+        }
+      ]
+    },
+    "CookieMode": {
+      "description": "Sets the behavior of the callback endpoint.\n\nThis modes are regulated by\n[browser-based applications security considerations](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-browser-based-apps),\nand [Best Current Practice for Securing Browser-Based Applications](https://www.rfc-editor.org/rfc/rfc9207).\n\nWhen attaching cookies to requests, consider that all modes by default\napplies the following security measures:\n\nThe following cookie security guidelines are relevant for this particular BFF architecture:\n\n- The BFF MUST enable the Secure flag for its cookies\n- The BFF MUST enable the HttpOnly flag for its cookies\n- The BFF SHOULD enable the SameSite=Strict flag for its cookies\n- The BFF SHOULD set its cookie path to /\n- The BFF SHOULD NOT set the Domain attribute for cookies\n- The BFF SHOULD start the name of its cookies with the __Host prefix ([I-D.ietf-httpbis-rfc6265bis])",
+      "oneOf": [
+        {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "string",
+              "const": "bff"
+            }
+          },
+          "allOf": [
+            {
+              "$ref": "#/definitions/CookieSettings"
+            }
+          ],
+          "required": [
+            "type"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "string",
+              "const": "tokenMediation"
+            }
+          },
+          "allOf": [
+            {
+              "$ref": "#/definitions/CookieSettings"
+            }
+          ],
+          "required": [
+            "type"
+          ]
+        }
+      ]
+    },
+    "CookieSameSite": {
+      "description": "`SameSite` attribute applied to the session cookie.",
+      "oneOf": [
+        {
+          "description": "SameSite=Strict",
+          "type": "string",
+          "const": "strict"
+        },
+        {
+          "description": "SameSite=Lax",
+          "type": "string",
+          "const": "lax"
+        },
+        {
+          "description": "SameSite=None and will force cookie to set attribute `Secure`",
+          "type": "string",
+          "const": "none"
+        }
+      ]
+    },
+    "CookieSettings": {
+      "description": "Settings for the session cookie.",
+      "type": "object",
+      "properties": {
+        "domain": {
+          "description": "`Domain` attribute applied to the session cookie. It is overridden\nby setting cookie hardening to `Host`",
+          "type": [
+            "string",
+            "null"
+          ],
+          "default": null
+        },
+        "expirationSecs": {
+          "description": "Sets the expiration time for cookies in seconds",
+          "type": [
+            "integer",
+            "null"
+          ],
+          "format": "int64"
+        },
+        "http_only": {
+          "description": "`HttpOnly` attribute applied to the session cookie.\nThis is not available in the release build.",
+          "type": "boolean",
+          "default": true
+        },
+        "partitioned": {
+          "description": "`Partitioned` attribute applied to the session cookie.",
+          "type": "boolean",
+          "default": false
+        },
+        "path": {
+          "description": "`Path` attribute applied to the session cookie. It is overridden\nby setting cookie hardening to `Host`",
+          "type": [
+            "string",
+            "null"
+          ],
+          "default": null
+        },
+        "sameSite": {
+          "description": "`SameSite` attribute applied to the session cookie.",
+          "allOf": [
+            {
+              "$ref": "#/definitions/CookieSameSite"
+            }
+          ]
+        },
+        "secure": {
+          "description": "`Secure` attribute applied to the session cookie.\nThis property is not used when session hardening is enabled",
+          "type": "boolean",
+          "default": true
+        },
+        "sessionIdHardening": {
+          "description": "Session hardening prefix",
+          "allOf": [
+            {
+              "$ref": "#/definitions/CookieHardeningRule"
+            }
+          ]
+        }
+      }
+    },
+    "Credentials": {
+      "type": "object",
+      "properties": {
+        "kid": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "oneOf": [
+        {
+          "type": "object",
+          "properties": {
+            "secret": {
+              "$ref": "#/definitions/Secret"
+            }
+          },
+          "required": [
+            "secret"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "privateKey": {
+              "$ref": "#/definitions/Secret"
+            }
+          },
+          "required": [
+            "privateKey"
+          ]
+        }
+      ]
+    },
+    "ProtocolVersion": {
+      "description": "Enum representing the communication protocol with the server.\n\nThis enum represents the types of data that the server can send to the client,\nand the capabilities that the client can use.",
+      "oneOf": [
+        {
+          "description": "<https://github.com/redis/redis-specifications/blob/master/protocol/RESP2.md>",
+          "type": "string",
+          "const": "RESP2"
+        },
+        {
+          "description": "<https://github.com/redis/redis-specifications/blob/master/protocol/RESP3.md>",
+          "type": "string",
+          "const": "RESP3"
+        }
+      ]
+    },
+    "RedisConfig": {
+      "type": "object",
+      "properties": {
+        "connection": {
+          "description": "Connection settings",
+          "allOf": [
+            {
+              "$ref": "#/definitions/RedisConnectionInfo"
+            }
+          ]
+        },
+        "host": {
+          "description": "Hostname",
+          "type": "string"
+        },
+        "namespace": {
+          "description": "Base namespace prefix for this client",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "port": {
+          "description": "Port",
+          "type": "integer",
+          "format": "uint16",
+          "default": 6379,
+          "maximum": 65535,
+          "minimum": 0
+        },
+        "tls": {
+          "description": "TLS settings",
+          "anyOf": [
+            {
+              "$ref": "#/definitions/RedisConfigTls"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "host"
+      ]
+    },
+    "RedisConfigTls": {
+      "type": "object"
+    },
+    "RedisConnectionInfo": {
+      "description": "Redis specific/connection independent information used to establish a connection to redis.",
+      "type": "object",
+      "properties": {
+        "db": {
+          "description": "The database number to use.  This is usually `0`.",
+          "type": "integer",
+          "format": "int64",
+          "default": 0
+        },
+        "password": {
+          "description": "Optionally a password that should be used for connection.",
+          "anyOf": [
+            {
+              "$ref": "#/definitions/Secret"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "protocol": {
+          "description": "Version of the protocol to use.",
+          "allOf": [
+            {
+              "$ref": "#/definitions/ProtocolVersion"
+            }
+          ]
+        },
+        "username": {
+          "description": "Optionally a username that should be used for connection.",
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "protocol"
+      ]
+    },
+    "RestServerSettings": {
+      "type": "object",
+      "properties": {
+        "apiPrefix": {
+          "allOf": [
+            {
+              "$ref": "#/definitions/ApiPrefix"
+            }
+          ],
+          "default": "/"
+        },
+        "ip": {
+          "description": "Server bind IP",
+          "type": "string",
+          "format": "ipv4",
+          "default": "0.0.0.0"
+        },
+        "port": {
+          "description": "gRPC Server port",
+          "type": "integer",
+          "format": "uint16",
+          "default": 3000,
+          "maximum": 65535,
+          "minimum": 0
+        }
+      }
+    },
+    "Scope": {
+      "description": "a space separated list of scopes: allowed characters are ASCII 0x21 / 0x23-0x5B / 0x5D-0x7E",
+      "type": "string"
+    },
+    "Secret": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "encoding": {
+              "description": "Define which type of encoding the library supports when it needs to read the actual secret value.",
+              "type": "string",
+              "enum": [
+                "base64"
+              ]
+            },
+            "key": {
+              "type": "string"
+            },
+            "type": {
+              "const": "env"
+            }
+          },
+          "required": [
+            "type",
+            "key"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "encoding": {
+              "description": "Define which type of encoding the library supports when it needs to read the actual secret value.",
+              "type": "string",
+              "enum": [
+                "base64"
+              ]
+            },
+            "key": {
+              "type": "string"
+            },
+            "path": {
+              "type": "string"
+            },
+            "type": {
+              "const": "file"
+            }
+          },
+          "required": [
+            "type",
+            "path"
+          ]
+        }
+      ],
+      "examples": [
+        "my-secret",
+        {
+          "key": "CUSTOM_ENV_VAR",
+          "type": "env"
+        },
+        {
+          "encoding": "base64",
+          "key": "CUSTOM_ENV_VAR",
+          "type": "env"
+        },
+        {
+          "path": "/path/to/file",
+          "type": "file"
+        }
+      ]
+    },
+    "SessionSettings": {
+      "type": "object",
+      "properties": {
+        "authorizationFlowCache": {
+          "description": "Cache layer for authorization requests",
+          "allOf": [
+            {
+              "$ref": "#/definitions/ConnectionOrRef"
+            }
+          ]
+        },
+        "disableLogoutOnGet": {
+          "description": "Allow disabling the logout on GET.\nThis is useful on SameSite=Lax cookies to\nprevent a CSRF request on logout.",
+          "type": "boolean",
+          "default": false
+        },
+        "encryptAccessToken": {
+          "description": "Should encrypt access_token at rest (default: true).\nIf the token has an expiration, maybe a short one,\nto make the token retrieval faster, encryption can be\ndeactivated. Be careful with this option.",
+          "type": "boolean",
+          "default": true
+        },
+        "encryptionKey": {
+          "description": "Encryption key for refresh tokens and access tokens at rest.",
+          "allOf": [
+            {
+              "$ref": "#/definitions/Secret"
+            }
+          ]
+        },
+        "errorRedirects": {
+          "description": "Optional URL to redirect users in case of errors",
+          "anyOf": [
+            {
+              "$ref": "#/definitions/UrlAsciiChecked"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "mode": {
+          "description": "Sets the behavior of the callback endpoint.",
+          "allOf": [
+            {
+              "$ref": "#/definitions/CookieMode"
+            }
+          ]
+        },
+        "refreshTokenExpirationPayloadField": {
+          "description": "Access Token response key containing expiration\nof the refresh token. This key is not mandated\nby OAuth 2.0 spec.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "refreshTokenExpirationSecs": {
+          "description": "Sets the expiration time for refresh tokens in seconds\n(default: 7 days). This value cannot be inferred from\naccess token response, so it must be set here.",
+          "type": "integer",
+          "format": "int64",
+          "default": 604800
+        },
+        "refreshTokenRotation": {
+          "description": "Enable refresh token rotation (default: false).\n\nThe IdP must support it and the client application\nmust be registered to use it. If enabled, every time\na refresh token is used to obtain new tokens, a new\nrefresh token is also issued and the previous one\nis invalidated.",
+          "type": "boolean",
+          "default": false
+        },
+        "sessionJitterSecs": {
+          "description": "Adds a jitter in seconds to the session expiration time\nto avoid tokens that expire during transit\n(default: 7 seconds).",
+          "type": "integer",
+          "format": "int64",
+          "default": 7
+        },
+        "signingKey": {
+          "description": "Key to sign cookies",
+          "allOf": [
+            {
+              "$ref": "#/definitions/Secret"
+            }
+          ]
+        },
+        "userClaims": {
+          "description": "Id token claims to be included in the user info stored in the session.",
+          "type": "array",
+          "default": [
+            "email"
+          ],
+          "items": {
+            "type": "string"
+          },
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "signingKey",
+        "authorizationFlowCache",
+        "encryptionKey"
+      ]
+    },
+    "TokenAuthMethod": {
+      "type": "string",
+      "enum": [
+        "client_secret_basic",
+        "client_secret_post",
+        "client_secret_jwt",
+        "private_key_jwt",
+        "none"
+      ]
+    },
+    "UrlAsciiChecked": {
+      "type": "string",
+      "format": "uri"
+    }
+  }
+}
