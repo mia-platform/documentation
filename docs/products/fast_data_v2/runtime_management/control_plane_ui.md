@@ -7,9 +7,11 @@ sidebar_label: Control Plane UI
 The Fast Data Control Plane UI provides a comprehensive visual interface for managing and monitoring your Fast Data v2 pipelines.  
 This web-based interface allows you to visualize the entire data pipeline architecture, monitor real-time performance, and control runtime states of your Fast Data Engine workloads with just a few clicks.
 
-Fast Data Control Plane shows various artifacts that represent different aspects of the overall architecture of Fast Data pipelines.
+## Artifacts
 
-## Data Streams
+Fast Data Control Plane shows various nodes that represent different aspects of the overall architecture of Fast Data pipelines.
+
+### Data Streams
 
 Data Streams represent the channels through which data flows between different execution steps in your pipeline. In the Fast Data v2 architecture, these are Kafka topics that typically carry [Fast Data compliant messages](/products/fast_data_v2/concepts.mdx#fast-data-message-format) between workloads.
 
@@ -17,26 +19,40 @@ Data Streams represent the channels through which data flows between different e
 
 Each Data Stream lists its associated consumers, detailing essential metadata such as consumer names, runtime states, and the consumer groups that define each Fast Data workload.
 
+### Persisted Assets
+
+Persisted Assets represent data that is persisted at a certain step of the pipeline. These can be often either sink tables or final data products (Single Views) that result from your Fast Data pipeline operations.
+
+![Table Detail](img/table-detail.png)
+
+Each Persisted Asset displays useful metadata and other information about the service persistor name.
+
+### Source Tables
+
+The Control Plane Canvas allows users to identify the source tables for the data pipeline. These tables are ingested to capture real-time change events for the output data streams. 
+
+![Source Tables Detail](img/source-tables-detail.png)
+
+The Source Tables element also displays key details, such as the provider type of the System of Records (SoR) where the tables are hosted.
+
 ## Execution Steps
 
 Execution Steps are the core processing components of your Fast Data pipeline, implemented by the four specialized workloads of the Fast Data Engine v2. Each step appears as a circular node in the pipeline diagram and represents a specific data processing operation.
 
+Each execution step offers, if supported, functionalities to **pause and resume the consumption of data streams** along Fast Data pipelines with just on click.
+
 ### Ingest
 
-The **Ingest** step is implemented by [Mongezium](/products/fast_data_v2/mongezium_cdc/10_Overview.md), that acts as Change Data Capture (CDC) from MongoDB collections to Kafka streams.  
+The **Ingest** step acts as Change Data Capture (CDC) from source tables to Kafka streams.  
 
-:::note
-If input data streams originate from a custom CDC plugin or a CDC deployed in a different Kubernetes namespace, the Ingest execution step will not be rendered in Control Plane canvas. Consequently, visibility is limited to input streams consumed by Fast Data workloads within the current namespace.
-:::
+Among Fast Data Engine v2, an ingestor component is represented by [Mongezium](/products/fast_data_v2/mongezium_cdc/10_Overview.md), that is a CDC from MongoDB to Kafka, that monitors MongoDB change streams in real-time and converts database operations (insert, update, delete) into Fast Data compliant messages that flow to downstream processing steps.
 
-The Ingest step monitors MongoDB change streams in real-time and converts database operations (insert, update, delete) into Fast Data compliant messages that flow to downstream processing steps.
+![Ingest Detail](img/ingest-detail.png)
 
 When you click on an Ingest step, the detail panel shows two tabs:
 
 - **Output Topics**: Lists all Kafka topics where change events are published. Each topic corresponds to a MongoDB collection being monitored for changes.
 - **Details**: Provides useful metadata like the type of the execution step, the version of the microservice that implements the steps and the number of replicas.
-
-![Ingest Detail](img/ingest-detail.png)
 
 ### Process
 
@@ -44,11 +60,10 @@ The **Process** step is implemented by [Stream Processor](/products/fast_data_v2
 
 ![Process Detail](img/process-detail.png)
 
-The Process step detail panel contains three tabs:
+The Process step detail panel contains two tabs:
 
-- **Consumers**: Shows the input stream that the Stream Processor is consuming from, including consumer group information and current lag metrics.
-- **Function**: Displays the custom JavaScript transformation logic being executed on the data stream. This tab shows the actual processing code that filters, transforms, maps, or validates incoming messages.
-- **Details**: Provides essential metadata, including the execution step type, the microservice version, and the number of replicas, alongside configuration details such as caching settings and other key parameters.
+- **Actions**: Shows the input stream that the Stream Processor is consuming from, including consumer group information and current lag metrics. For the consumed data stream, it is possible to **pause and resume** the data consumption with the dedicated button.
+- **Details**: Provides essential metadata, including the execution step type, the processing code that applies custom transformation logics on input data, the microservice version, and the number of replicas, alongside configuration details such as caching settings and other key service parameters.
 
 ### Aggregate
 
@@ -56,11 +71,10 @@ The **Aggregate** step is implemented by [Farm Data](/products/fast_data_v2/farm
 
 ![Aggregate Detail](img/aggregate-detail.png)
 
-The Aggregate step offers three tabs in its detail panel:
+The Aggregate step detail panel contains two tabs:
 
-- **Consumers**: Lists all input data streams being consumed for aggregation, along with consumer lag and runtime state for each stream.
-- **Aggregation**: Provides access to the aggregation graph canvas (see detailed explanation in the next paragraph).
-- **Details**: Provides essential metadata, including the execution step type, the microservice version, and the number of replicas, alongside configuration details such as caching settings, internal updates topic settings and other key parameters.
+- **Actions**: Shows the input streams that the Farm Data is consuming from, including consumer group information and current lag metrics. For each consumed data stream, it is possible to **pause and resume** the data consumption with the dedicated button.
+- **Details**: Provides essential metadata, including the execution step type, the microservice version, and the number of replicas, alongside configuration details such as caching settings, internal updates topic settings and other key parameters. Moreover, it is possible to access the aggregation graph canvas (see detailed explanation in the next paragraph).
 
 #### Aggregation Graph Canvas
 
@@ -79,9 +93,9 @@ The **Persist** step is implemented by [Kango](/products/fast_data_v2/kango/10_O
 
 ![Persist Detail](img/persist-detail.png)
 
-The Persist step detail panel includes two tabs:
+The Persist step detail panel contains two tabs:
 
-- **Consumers**: Shows the input stream that Kango is consuming for persistence, including consumer group details and consumer lag metrics.
+- **Actions**: Shows the input stream that the Stream Processor is consuming from, including consumer group information and current lag metrics. For the consumed data stream, it is possible to **pause and resume** the data consumption with the dedicated button.
 - **Details**: Provides useful metadata like the type of the execution step, the version of the microservice that implements the steps, the number of replicas and other information including connection name and the target MongoDB collection.
 
 ## Runtime States
@@ -114,7 +128,7 @@ This commonly occurs when the consumer group has been unsubscribed from that top
 
 ![Unsubscribed State](img/unsubscribed-state.png)
 
-In this state, the consumer cannot process any data and it is no more possible to interact with Play/Pause button and to know about consumer lag info.
+In this state, the consumer cannot process any data and it is no more possible to interact with resume/Pause button and to know about consumer lag info.
 
 Unsubscribed steps are typically indicated by orange line in the UI.
 
@@ -132,14 +146,14 @@ Unknown steps are indicated by red line in the UI.
 
 The Control Plane UI provides powerful controls for managing the runtime state of your Fast Data pipeline steps, enabling sophisticated operational strategies for data processing.
 
-Each data flows inside the pipeline provides **Pause** and **Play** buttons that allow you to stop and start data consumption from the data stream.
+The pipeline provides **Pause Data Consumption** and **Resume Data Consumption** buttons along the pipeline flows which allow you to pause and resume data consumption from the data stream.
 
 ![Button](img/button.png)
 
-- **Pause**: Stops the consumer from processing new messages while maintaining stream position
-- **Resume**: Restarts data consumption from the previously maintained position
+- **Pause Data Consumption**: Stops the consumer from processing new messages while maintaining stream position
+- **Resume Data Consumption**: Restarts data consumption from the previously maintained position
 
-Pause and Play buttons are available whenever you click on a pipeline step that supports runtime state control for specific data flows.  
+Pause and Resume buttons are available whenever you click on a pipeline step that supports runtime state control for specific data flows.  
 Additionally, for the Aggregate execution step, these same controls are also available directly within the Aggregation Graph Canvas, providing enhanced utility for managing Initial Load and Full Refresh scenarios, allowing for more efficient and optimized runtime control in these and other operational scenarios.
 
 For more detailed operational strategies and best practices on using these runtime controls effectively, visit the [Best Practices documentation](/products/fast_data_v2/runtime_management/best_practices.md).
@@ -152,9 +166,13 @@ The Control Plane UI provides several features to help you efficiently navigate 
 
 The search feature enables you to quickly locate specific elements within your pipeline.
 
-![Search List](img/search-list.png)
+![Search List](img/search-list-by-type.png)
 
 Simply type on the searchbar the name of an artifact or Fast Data workload and select it. The interface will instantly focus on and highlight the selected element, automatically opening the contextual drawer to display all relevant information about it.
+
+To refine the search scope even more, it is also possible to narrow the context of displayed choices by selecting one asset type on the searchbar.
+
+![Search Types](img/search-types.png)
 
 ### Highlight on Hover
 
