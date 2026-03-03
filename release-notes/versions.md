@@ -9,8 +9,17 @@ import Changelog from '@site/src/components/Changelog';
 
 <Changelog>
 
+## [v14.5.2](/release-notes/v14.5.2.mdx)
+*March 05th, 2026*
+
+This release enhances the **Orchestrator Generator** with improved warning display in the deployment console, and enriches **Console Webhooks** with user information for better action tracking. For **Fast Data**, updated versions of both the Control Plane v2 Application and Stream Processor v0.6.2 are now available.
+
+[Read the release notes](/release-notes/v14.5.2.mdx)
+
+---
+
 ## [v14.5.1](/release-notes/v14.5.1.mdx)
-*February 19th, 2026*
+*March 05th, 2026*
 
 This release enhances the merge capabilities in the Console Design Area by introducing **support for merging configurations from versions**, complementing the existing merge from revisions feature.  
 Additionally, the **Orchestrator Generator** payload has been enriched with configuration change identifiers and public variables.  
