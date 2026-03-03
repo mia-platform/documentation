@@ -170,7 +170,7 @@ The search feature enables you to quickly locate specific elements within your p
 
 Simply type on the searchbar the name of an artifact or Fast Data workload and select it. The interface will instantly focus on and highlight the selected element, automatically opening the contextual drawer to display all relevant information about it.
 
-To refine the search scope even more, it is also possible to narrow the context of diplayed choices by selecting one asset type on the searchbar.
+To refine the search scope even more, it is also possible to narrow the context of displayed choices by selecting one asset type on the searchbar.
 
 ![Search Types](img/search-types.png)
 
