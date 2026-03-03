@@ -4,6 +4,12 @@ title: CHANGELOG
 sidebar_label: CHANGELOG
 ---
 
+## [1.5.27] - 2026-03-03
+
+### Fixed
+
+- [COMP-965](https://makeitapp.atlassian.net/browse/COMP-965) Fix editor not shown in bk-form-wizard
+
 ## [1.5.26] - 2026-01-28
 
 ## Added

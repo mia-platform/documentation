@@ -50,5 +50,18 @@
       ],
       "bugFixes": []
     }
+  },
+  {
+    "title": "Microfrontend Composer",
+    "icon": "microfrontend-composer",
+    "defaultOpen": false,
+    "type": "versions",
+    "items": {
+      "newFeatures": [],
+      "improvements": [],
+      "bugFixes": [
+        "Fixed editor visualization in bk-form-wizard"
+      ]
+    }
   }
 ]
