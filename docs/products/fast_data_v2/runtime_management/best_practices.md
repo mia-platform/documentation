@@ -32,7 +32,7 @@ Once the environment is ready, you can initiate message loading into the ingesti
 
 #### 3. Iterative Pipeline Activation
 
-After the initial data load, you can trigger consumption for the first stage of the pipeline using the **Play** button.
+After the initial data load, you can trigger consumption for the first stage of the pipeline using the **Resume** button.
 
 * **Transformation Stage**: Typically, this first step involves executing transformation logic to ensure incoming data is compliant with Fast Data formats (e.g., casting, mapping, and data quality enhancements).
 * **Downstream Flow**: Once processed, these messages are produced into the output streams, ready for the subsequent stages of the pipeline.

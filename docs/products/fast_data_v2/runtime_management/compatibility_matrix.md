@@ -22,26 +22,26 @@ Please ensure that your services respect the following matrix.
 
 | [Control Plane Frontend](/products/fast_data_v2/runtime_management/application_configuration.md) | [Control Plane](/products/fast_data_v2/runtime_management/application_configuration.md) | [Mongezium](/products/fast_data_v2/mongezium_cdc/10_Overview.md) | [Stream Processor](/products/fast_data_v2/stream_processor/10_Overview.md) | [Farm Data](/products/fast_data_v2/farm_data/10_Overview.md) | [Kango](/products/fast_data_v2/kango/10_Overview.md) |
 |:----------------------:|:-------------------:|:----------------------------------------------------------:|:---------------------------------------------------------------------:|:------------------------------------------------------:|:----------------------------------------------:|
-|         0.1.2          |        0.1.1-mongodb        |                          \>=0.5.0                          |                                \>=0.6.0                                |                        \>=0.6.0                        |                    \>=0.6.0                    |
+|         0.1.3          |        0.1.1-mongodb        |                          \>=0.5.0                          |                                \>=0.6.0                                |                        \>=0.6.0                        |                    \>=0.6.0                    |
 
 ## Service Latest Versions
 
 | Service                                                                                       | Version |
 |-----------------------------------------------------------------------------------------------|---------|
-| [Control Plane Frontend](/products/fast_data_v2/runtime_management/application_configuration.md)        | 0.1.2   |
+| [Control Plane Frontend](/products/fast_data_v2/runtime_management/application_configuration.md)        | 0.1.3   |
 | [Control Plane](/products/fast_data_v2/runtime_management/application_configuration.md)  | 0.1.1-mongodb   |
 | [Mongezium](/products/fast_data_v2/mongezium_cdc/10_Overview.md)                                   | 0.5.0   |
-| [Stream Processor](/products/fast_data_v2/stream_processor/10_Overview.md)                         | 0.6.0   |
-| [Farm Data](/products/fast_data_v2/farm_data/10_Overview.md)                                       | 0.6.0   |
-| [Kango](/products/fast_data_v2/kango/10_Overview.md)                                               | 0.6.0   |
+| [Stream Processor](/products/fast_data_v2/stream_processor/10_Overview.md)                         | 0.6.2   |
+| [Farm Data](/products/fast_data_v2/farm_data/10_Overview.md)                                       | 0.6.1   |
+| [Kango](/products/fast_data_v2/kango/10_Overview.md)                                               | 0.6.1   |
 
 ## Internal Compatibility
 
 | Service                    | Control Plane Frontend | Control Plane | Mongezium | Stream Processor | Farm Data | Kango |
 |---------------------------:|:----------------------:|:-------------------:|:---------:|:----------------:|:---------:|:-----:|
-| Control Plane Frontend - 0.1.2 |         _N/A_          |        0.1.1-mongodb        |   0.5.0   |      0.6.0       |   0.6.0   | 0.6.0 |
-| Control Plane - 0.1.1-mongodb    |         0.1.2          |        _N/A_        |   0.5.0   |      0.6.0       |   0.6.0   | 0.6.0 |
-| Mongezium - 0.5.0               |         0.1.2          |        0.1.1-mongodb       |   _N/A_   |      0.6.0       |   0.6.0   | 0.6.0 |
-| Stream Processor - 0.6.0        |         0.1.2         |        0.1.1-mongodb       |   0.5.0   |      _N/A_       |   0.6.0   | 0.6.0 |
-| Farm Data - 0.6.0               |         0.1.2          |        0.1.1-mongodb        |   0.5.0   |      0.6.0       |   _N/A_   | 0.6.0 |
-| Kango - 0.6.0                   |         0.1.2          |        0.1.1-mongodb        |   0.5.0   |      0.6.0       |   0.6.0   | _N/A_ |
+| Control Plane Frontend - 0.1.3 |         _N/A_          |        0.1.1-mongodb        |   0.5.0   |      0.6.2       |   0.6.1   | 0.6.1 |
+| Control Plane - 0.1.1-mongodb    |         0.1.3          |        _N/A_        |   0.5.0   |      0.6.2       |   0.6.1   | 0.6.1 |
+| Mongezium - 0.5.0               |         0.1.3         |        0.1.1-mongodb       |   _N/A_   |      0.6.2       |   0.6.1   | 0.6.1 |
+| Stream Processor - 0.6.2        |         0.1.3         |        0.1.1-mongodb       |   0.5.0   |      _N/A_       |   0.6.1   | 0.6.1 |
+| Farm Data - 0.6.1               |         0.1.3          |        0.1.1-mongodb        |   0.5.0   |      0.6.2       |   _N/A_   | 0.6.1 |
+| Kango - 0.6.1                   |         0.1.3          |        0.1.1-mongodb        |   0.5.0   |      0.6.2       |   0.6.1   | _N/A_ |
