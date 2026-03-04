@@ -10,7 +10,7 @@
         {
           "title": "Orchestrator Generator - Display Warnings on Deployment Console section",
           "description": [
-            "When using the [Orchestrator Generator](/docs/14.5.2/products/console/company-configuration/providers/extensions/orchestrator-generator/overview) in your Enhanced Workflow Project, in case of returned warnings, they are displayed in the Deploy Area and, more specifically, in the Deploy modal, in the Compare changes section and in the Review Configuration section."
+            "When using the [Orchestrator Generator](/docs/14.5.2/products/console/company-configuration/providers/extensions/orchestrator-generator/overview) in your Enhanced Workflow Project, the Orchestrator Generator can now return non-blocking warnings alongside the generated files. In case of returned [warnings](/docs/14.5.2/products/console/company-configuration/providers/extensions/orchestrator-generator/overview#warning-handling), they are displayed in the Deploy Area and, more specifically, in the Deploy modal, in the Compare changes section and in the Review Configuration section."
           ]
         },
         {
@@ -54,7 +54,7 @@
   {
     "title": "Microfrontend Composer",
     "icon": "microfrontend-composer",
-    "defaultOpen": false,
+    "defaultOpen": true,
     "type": "versions",
     "items": {
       "newFeatures": [],

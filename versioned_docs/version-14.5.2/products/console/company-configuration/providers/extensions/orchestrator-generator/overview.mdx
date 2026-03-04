@@ -315,14 +315,32 @@ JSON request body
 
 The response, coming from the Extension and received by the Console, must be an object holding a *key/value* pair for each file that needs to be saved to the configuration repository. The key will be threated as the file name while the value as the file content. The **file content must be a string**.
 
+Optionally, the response can include a `__warnings` key **at the same level as the file entries** to surface warning messages to the user directly from the Deploy Area. The Console will extract this reserved key from the response object and handle it separately — it will not be treated as a file. The value of `__warnings` can be either a single string or an array of strings.
+
 ### Example
 
 ```json
 {
     "values.yaml": "the content of the values file...",
-    "my-service.deployment.yml": "the content of the deployment file for my-service..."
+    "my-service.deployment.yml": "the content of the deployment file for my-service...",
+    "__warnings": "Some warning message to display to the user"
 }
 ```
+
+Or with multiple warnings:
+
+```json
+{
+    "values.yaml": "the content of the values file...",
+    "my-service.deployment.yml": "the content of the deployment file for my-service...",
+    "__warnings": [
+        "First warning message",
+        "Second warning message"
+    ]
+}
+```
+
+#### Error handling
 
 If something goes wrong and an error must be produced by the Orchestrator Generator, you can send a `500` status code and a payload that looks like this
 
@@ -343,6 +361,29 @@ The user will receive your message in the failed deploy feedback modal
   <div style={{display: 'flex', width: '500px'}}>
 
 ![failed deploy custom message in modal](./img/failed-deploy-custom-message.png)
+
+  </div>
+</div>
+
+:::
+
+#### Warning handling
+
+If the Orchestrator Generator response includes the `__warnings` key, the Console will extract it and display the warning messages to the user in the Deploy Area. Warnings do not block the deploy process, but are surfaced to provide useful feedback about the generated configuration.
+
+Warnings are displayed in the following sections of the Deploy Area:
+- the **Deploy modal**, after the deploy is triggered;
+- the **Compare changes** section;
+- the **Review Configuration** section.
+
+:::tip
+Use the `__warnings` field to inform the user of non-blocking issues or relevant notices about the generated configuration, such as deprecations or sub-optimal settings.
+
+
+<div style={{display: 'flex', justifyContent: 'center'}}>
+  <div style={{display: 'flex', width: '500px'}}>
+
+![warnings in deploy modal](./img/deploy-modal-warnings.png)
 
   </div>
 </div>

@@ -12,7 +12,9 @@ import Changelog from '@site/src/components/Changelog';
 ## [v14.5.2](/release-notes/v14.5.2.mdx)
 *March 05th, 2026*
 
-This release enhances the **Orchestrator Generator** with improved warning display in the deployment console, and enriches **Console Webhooks** with user information for better action tracking. For **Fast Data**, updated versions of both the Control Plane v2 Application and Stream Processor v0.6.2 are now available.
+This release adds **Orchestrator Generator** features improvements and enriches **Console Webhooks** payloads with user information.  
+For **Fast Data**, Control Plane v2 Application `v0.1.3` and Stream Processor `v0.6.2` are now available.  
+**Microfrontend Composer** includes a bug fix for `bk-form-wizard`.
 
 [Read the release notes](/release-notes/v14.5.2.mdx)
 
