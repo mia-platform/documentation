@@ -18,6 +18,7 @@ All the events triggered by the Console share some common properties:
 | `eventName`      | `string` | The name of the event, usually in the form of `subject_action` |
 | `eventTimestamp` | `number` | The timestamp of the event emission                            |
 | `payload`        | `object` | Contains the event-specific payload                            |
+| `user`           | `object` | Contains information about the user who triggered the event. The information includes user.id, user.name, and user.email |
 
 ## Event types
 
@@ -44,6 +45,11 @@ This event will be triggered when a Project is created successfully.
 {
   "eventName": "project_created",
   "eventTimestamp": 123456,
+  "user": {
+    "id": "my-user-id",
+    "name": "Foo",
+    "email": "email@email.com"
+  },
   "payload": {
     "tenantId": "my-company-id",
     "projectId": "0000000000000001",
@@ -69,6 +75,14 @@ This event will be triggered when a Project is created successfully.
     "eventTimestamp": {
       "type": "number"
     },
+    "user": {
+      "type": "object",
+      "properties": {
+        "id": {"type": "string"},
+        "name": {"type": "string"},
+        "email": {"type": "string"}
+      }
+    },
     "payload": {
       "additionalProperties": false,
       "properties": {
@@ -91,7 +105,7 @@ This event will be triggered when a Project is created successfully.
       "type": "object"
     }
   },
-  "required": ["eventName", "eventTimestamp", "payload"],
+  "required": ["eventName", "eventTimestamp", "user", "payload"],
   "type": "object"
 }
 ```
@@ -418,6 +432,11 @@ hence there is no guarantee that the service will be found in the Project config
 {
   "eventName": "service_created",
   "eventTimestamp": 123456,
+  "user": {
+    "id": "my-user-id",
+    "name": "Foo",
+    "email": "email@email.com"
+  },
   "payload": {
     "tenantId": "my-company-id",
     "projectId": "0000000000000001",
@@ -434,11 +453,19 @@ hence there is no guarantee that the service will be found in the Project config
 ```json
 {
   "type": "object",
-  "required": ["eventName", "eventTimestamp", "payload"],
+  "required": ["eventName", "eventTimestamp", "user", "payload"],
   "additionalProperties": false,
   "properties": {
     "eventName": {"const": "service_created", "type": "string"},
     "eventTimestamp": {"type": "number"},
+    "user": {
+      "type": "object",
+      "properties": {
+        "id": {"type": "string"},
+        "name": {"type": "string"},
+        "email": {"type": "string"}
+      }
+    },
     "payload": {
       "type": "object",
       "additionalProperties": false,
@@ -486,6 +513,11 @@ This event will be triggered when the Project configuration is [successfully sav
 {
   "eventName": "tag_created",
   "eventTimestamp": 123456,
+  "user": {
+    "id": "my-user-id",
+    "name": "Foo",
+    "email": "email@email.com"
+  },
   "payload": {
     "tenantId": "my-company-id",
     "projectId": "0000000000000001",
@@ -506,11 +538,19 @@ This event will be triggered when the Project configuration is [successfully sav
 ```json
 {
   "type": "object",
-  "required": ["eventName", "eventTimestamp", "payload"],
+  "required": ["eventName", "eventTimestamp", "user", "payload"],
   "additionalProperties": false,
   "properties": {
     "eventName": {"const": "configuration_saved", "type": "string"},
     "eventTimestamp": {"type": "number"},
+    "user": {
+      "type": "object",
+      "properties": {
+        "id": {"type": "string"},
+        "name": {"type": "string"},
+        "email": {"type": "string"}
+      }
+    },
     "payload": {
       "type": "object",
       "properties": {
@@ -568,6 +608,11 @@ In an Enhanced Workflow project, this event will be triggered when a version is 
 {
   "eventName": "tag_created",
   "eventTimestamp": 123456,
+  "user": {
+    "id": "my-user-id",
+    "name": "Foo",
+    "email": "email@email.com"
+  },
   "payload": {
     "tenantId": "my-company-id",
     "projectId": "0000000000000001",
@@ -595,11 +640,19 @@ In an Enhanced Workflow project, this event will be triggered when a version is 
 ```json
 {
   "type": "object",
-  "required": ["eventName", "eventTimestamp", "payload"],
+  "required": ["eventName", "eventTimestamp", "user", "payload"],
   "additionalProperties": false,
   "properties": {
     "eventName": {"const": "tag_created", "type": "string"},
     "eventTimestamp": {"type": "number"},
+    "user": {
+      "type": "object",
+      "properties": {
+        "id": {"type": "string"},
+        "name": {"type": "string"},
+        "email": {"type": "string"}
+      }
+    },
     "payload": {
       "type": "object",
       "additionalProperties": false,
@@ -812,6 +865,11 @@ In Enhanced Workflow projects, each version is represented by a tag. Therefore, 
 {
   "eventName": "tag_deleted",
   "eventTimestamp": 123456,
+  "user": {
+    "id": "my-user-id",
+    "name": "Foo",
+    "email": "email@email.com"
+  },
   "payload": {
     "tenantId": "my-company-id",
     "projectId": "0000000000000001",
@@ -836,11 +894,19 @@ In Enhanced Workflow projects, each version is represented by a tag. Therefore, 
 ```json
 {
   "type": "object",
-  "required": ["eventName", "eventTimestamp", "payload"],
+  "required": ["eventName", "eventTimestamp", "user", "payload"],
   "additionalProperties": false,
   "properties": {
     "eventName": {"const": "tag_deleted", "type": "string"},
     "eventTimestamp": {"type": "number"},
+    "user": {
+      "type": "object",
+      "properties": {
+        "id": {"type": "string"},
+        "name": {"type": "string"},
+        "email": {"type": "string"}
+      }
+    },
     "payload": {
       "type": "object",
       "additionalProperties": false,
@@ -1053,6 +1119,11 @@ This event does not guarantee that the user in question already had access to th
 {
   "eventName": "user_added",
   "eventTimestamp": 123456,
+  "user": {
+    "id": "my-user-id",
+    "name": "Foo",
+    "email": "email@email.com"
+  },
   "payload": {
     "userId": "my-user-id",
     "email": "my-user-email@mia-platform.eu",
@@ -1080,6 +1151,14 @@ This event does not guarantee that the user in question already had access to th
     },
     "eventTimestamp": {
       "type": "number"
+    },
+    "user": {
+      "type": "object",
+      "properties": {
+        "id": {"type": "string"},
+        "name": {"type": "string"},
+        "email": {"type": "string"}
+      }
     },
     "payload": {
       "additionalProperties": false,
@@ -1124,7 +1203,7 @@ This event does not guarantee that the user in question already had access to th
       "type": "object"
     }
   },
-  "required": ["eventName", "eventTimestamp", "payload", "resource"],
+  "required": ["eventName", "eventTimestamp", "user", "payload", "resource"],
   "type": "object"
 }
 ```
@@ -1160,6 +1239,11 @@ This event does not guarantee that the user in question already has an higher-pr
 {
   "eventName": "company_user_edited",
   "eventTimestamp": 123456,
+  "user": {
+    "id": "my-user-id",
+    "name": "Foo",
+    "email": "email@email.com"
+  },
   "payload": {
     "companyId": "my-company-id",
     "userId": "my-user-id",
@@ -1188,6 +1272,14 @@ This event does not guarantee that the user in question already has an higher-pr
     },
     "eventTimestamp": {
       "type": "number"
+    },
+    "user": {
+      "type": "object",
+      "properties": {
+        "id": {"type": "string"},
+        "name": {"type": "string"},
+        "email": {"type": "string"}
+      }
     },
     "payload": {
       "additionalProperties": false,
@@ -1232,7 +1324,7 @@ This event does not guarantee that the user in question already has an higher-pr
       "type": "object"
     }
   },
-  "required": ["eventName", "eventTimestamp", "payload"],
+  "required": ["eventName", "eventTimestamp", "user", "payload"],
   "type": "object"
 }
 ```
@@ -1269,6 +1361,11 @@ This event does not guarantee that the user in question already had access to th
 {
   "eventName": "company_user_removed",
   "eventTimestamp": 123456,
+  "user": {
+    "id": "my-user-id",
+    "name": "Foo",
+    "email": "email@email.com"
+  },
   "payload": {
     "companyId": "my-company-id",
     "userId": "my-user-id",
@@ -1296,6 +1393,14 @@ This event does not guarantee that the user in question already had access to th
     },
     "eventTimestamp": {
       "type": "number"
+    },
+    "user": {
+      "type": "object",
+      "properties": {
+        "id": {"type": "string"},
+        "name": {"type": "string"},
+        "email": {"type": "string"}
+      }
     },
     "payload": {
       "additionalProperties": false,
@@ -1340,7 +1445,7 @@ This event does not guarantee that the user in question already had access to th
       "type": "object"
     }
   },
-  "required": ["eventName", "eventTimestamp", "payload"],
+  "required": ["eventName", "eventTimestamp", "user", "payload"],
   "type": "object"
 }
 ```
