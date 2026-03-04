@@ -1,0 +1,284 @@
+---
+id: frontend-application
+title: Frontend Application
+sidebar_label: Frontend Application
+---
+
+:::info
+This authorization flow is in **preview** and requires the **Advanced** or **Customization** section of the Console Project configuration.
+:::
+
+The JavaScript client library `@mia-platform-internal/authtool-client-js` is the frontend
+counterpart of the `authtool_bff`. It abstracts the session lifecycle, token management, and
+login/logout redirects so that your application only needs to react to authentication state changes.
+
+The library ships two entry points:
+
+| Entry point | Import path | Description |
+|---|---|---|
+| Core | `@mia-platform-internal/authtool-client-js` | Framework-agnostic client (vanilla JS, Svelte, Vue, etc.) |
+| React | `@mia-platform-internal/authtool-client-js/react` | React Context, hooks, and helper components |
+
+Both ESM and CommonJS builds are provided.
+
+## Installation
+
+```shell
+npm install @mia-platform-internal/authtool-client-js
+# or
+yarn add @mia-platform-internal/authtool-client-js
+```
+
+React bindings require `react` and `react-dom` as peer dependencies (v18 or v19).
+
+## Core Usage (Framework-Agnostic)
+
+The library exposes an `init` function that creates a `UserManager` — the single object
+your application interacts with.
+
+```typescript
+import { init, isUnauthorized } from '@mia-platform-internal/authtool-client-js'
+
+const manager = init({
+  // base URL where authtool-bff is reachable (default: '/')
+  baseUrl: '/bff/',
+
+  // 'bff' → cookie-only session
+  // 'tokenExchange' → cookie session + short-lived AT returned to JS
+  mode: 'bff',
+
+  // whether to call `start()` immediately (default: true)
+  // NOTE: currently requires an explicit `start()` call in vanilla JS;
+  // the React hook `useAuthtoolContext()` calls `start()` automatically
+  autostart: true,
+
+  // max random jitter subtracted from token expiry before scheduling a refresh (default: 7000 ms)
+  maxJitterMs: 7000,
+})
+```
+
+### `UserManager` API
+
+| Property / Method | Type | Description |
+|---|---|---|
+| `baseUrl` | `string` | Normalized BFF base URL. |
+| `client.loginUrl(redirectUri?)` | `URL` | Builds the login URL. Optionally accepts a `redirect_uri` so the BFF redirects back after login. |
+| `client.logoutUrl(redirectUri?)` | `URL` | Builds the logout URL. |
+| `current$` | `Observable<User \| Error>` | Emits the current user (or an error) whenever the session state changes. |
+| `accessToken$` | `Observable<AccessTokenContext \| Error>` | *(token-exchange mode only)* Emits the latest access token context. |
+| `authorizedFetch` | `typeof fetch` | A `fetch` wrapper that automatically attaches the `Authorization: Bearer <AT>` header when a valid access token is available. |
+| `fetchSession()` | `void` | Manually triggers a session check against the BFF `/session` endpoint. |
+| `fetchAccessToken()` | `void` | Manually requests a new access token from the BFF `/token` endpoint and schedules the next refresh. |
+| `start()` | `void` | Starts the manager: fetches the session and, in `tokenExchange` mode, begins the token refresh loop. In React, `useAuthtoolContext()` calls this automatically. In vanilla JS, you must call `start()` explicitly. |
+
+### Subscribing to State
+
+`current$` and `accessToken$` are lightweight observables. Subscribe to be notified
+whenever the session or access token changes:
+
+```typescript
+const subscription = manager.current$.subscribe((value) => {
+  if (isUnauthorized(value)) {
+    // redirect to login
+    window.location.href = manager.client.loginUrl(window.location.href).href
+    return
+  }
+
+  // value is of type User
+  console.log('User info:', value.userinfo)
+  console.log('Session valid until:', value.valid_until)
+})
+
+// later, to tear down:
+subscription.unsubscribe()
+```
+
+### Making Authorized API Calls
+
+In `tokenExchange` mode, the manager keeps a valid access token in memory and
+exposes `authorizedFetch` — a drop-in replacement for `window.fetch`:
+
+```typescript
+const manager = init({ baseUrl: '/bff/', mode: 'tokenExchange' })
+
+// later, once the session is established:
+const response = await manager.authorizedFetch('/api/data')
+const data = await response.json()
+```
+
+`authorizedFetch` automatically adds the `Authorization` header with the
+current bearer token. Token refresh is handled transparently in the background.
+
+### Token Refresh Lifecycle
+
+When `mode` is set to `tokenExchange`:
+
+1. On `start()`, the manager calls the BFF `POST /token` endpoint.
+2. The BFF returns an `AccessToken` containing `access_token` and `expires_in`.
+3. The manager schedules the next refresh at `expires_in * 1000 - randomJitter` milliseconds (with a minimum delay of 1 second).
+4. If the refresh fails with a `401`, the manager stops and emits an `UnauthorizedError`
+   on `accessToken$`.
+
+## React Integration
+
+The React entry point wraps the core `UserManager` with React Context and hooks.
+
+### Setup
+
+Create the manager once and pass it to `AuthtoolProvider` at the top of your component tree:
+
+```tsx
+import { init } from '@mia-platform-internal/authtool-client-js'
+import { AuthtoolProvider } from '@mia-platform-internal/authtool-client-js/react'
+
+const manager = init({ baseUrl: '/bff/', mode: 'tokenExchange' })
+
+function Root() {
+  return (
+    <AuthtoolProvider value={manager}>
+      <App />
+    </AuthtoolProvider>
+  )
+}
+```
+
+### `useAuthtoolContext` Hook
+
+Inside the provider tree, call `useAuthtoolContext()` to access authentication state
+reactively. The hook subscribes to `current$` and `accessToken$` and triggers
+re-renders when their values change.
+
+```tsx
+import {
+  useAuthtoolContext,
+  isUnauthorized
+} from '@mia-platform-internal/authtool-client-js/react'
+
+function Dashboard() {
+  const { user, accessToken, fetch, loginUrl, logoutUrl } = useAuthtoolContext()
+
+  if (user === undefined) {
+    return <p>Loading…</p>
+  }
+
+  if (isUnauthorized(user)) {
+    return <p>Not authenticated</p>
+  }
+
+  return (
+    <div>
+      <h1>Welcome, {String(user.userinfo.name)}</h1>
+      <button onClick={() => { window.location.href = logoutUrl().href }}>
+        Logout
+      </button>
+    </div>
+  )
+}
+```
+
+The object returned by `useAuthtoolContext()` contains:
+
+| Field | Type | Description |
+|---|---|---|
+| `user` | `User \| Error \| undefined` | Current session state. `undefined` while loading. |
+| `accessToken` | `AccessTokenContext \| Error \| undefined` | Current access token *(token-exchange mode)*. |
+| `fetch` | `typeof fetch` | `authorizedFetch` — fetch with auto-attached bearer token. |
+| `baseUrl` | `string` | BFF base URL. |
+| `loginUrl(redirectUri?)` | `(redirectUri?: string) => URL` | Builds the login URL. |
+| `logoutUrl(redirectUri?)` | `(redirectUri?: string) => URL` | Builds the logout URL. |
+
+### `RedirectToLogin` Component
+
+A convenience component that automatically redirects unauthenticated users to the login page:
+
+```tsx
+import { RedirectToLogin } from '@mia-platform-internal/authtool-client-js/react'
+
+function App() {
+  return (
+    <>
+      <RedirectToLogin />
+      {/* rest of your application */}
+    </>
+  )
+}
+```
+
+When the session check returns a `401`, `RedirectToLogin` navigates the browser to the
+BFF login endpoint, passing the current URL as `redirect_uri` so the user returns to the
+same page after authentication.
+
+## Error Handling
+
+The library exposes two typed error classes:
+
+- **`UnauthorizedError`** — the BFF returned `401`; the session is invalid or expired.
+- **`UnhandledError`** — any other non-OK response from the BFF.
+
+Both carry the original `Response` object for inspection. Use the `isUnauthorized` helper
+to discriminate:
+
+```typescript
+import { isUnauthorized } from '@mia-platform-internal/authtool-client-js'
+
+manager.current$.subscribe((value) => {
+  if (isUnauthorized(value)) {
+    // handle 401 — e.g., redirect to login
+  } else if ('error' in value) {
+    // handle other errors
+    console.error(value.error)
+  } else {
+    // value is User
+  }
+})
+```
+
+## Putting It All Together
+
+A minimal end-to-end React application:
+
+```tsx
+import React from 'react'
+import { createRoot } from 'react-dom/client'
+
+import { init } from '@mia-platform-internal/authtool-client-js'
+import {
+  AuthtoolProvider,
+  useAuthtoolContext,
+  RedirectToLogin,
+  isUnauthorized
+} from '@mia-platform-internal/authtool-client-js/react'
+
+const manager = init({ baseUrl: '/bff/', mode: 'tokenExchange' })
+
+function App() {
+  const { user, fetch } = useAuthtoolContext()
+
+  if (user === undefined) {
+    return <p>Loading…</p>
+  }
+
+  return (
+    <>
+      <RedirectToLogin />
+      {!isUnauthorized(user) && (
+        <div>
+          <h1>Welcome, {String(user.userinfo.email)}</h1>
+          <button onClick={async () => {
+            const res = await fetch('/api/data')
+            console.log(await res.json())
+          }}>
+            Fetch data
+          </button>
+        </div>
+      )}
+    </>
+  )
+}
+
+createRoot(document.getElementById('root')!).render(
+  <AuthtoolProvider value={manager}>
+    <App />
+  </AuthtoolProvider>
+)
+```
