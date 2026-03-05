@@ -1,0 +1,67 @@
+[
+  {
+    "title": "Console",
+    "icon": "console",
+    "defaultOpen": true,
+    "type": "versions",
+    "items": {
+      "newFeatures": [],
+      "improvements": [
+        {
+          "title": "Orchestrator Generator - Display Warnings on Deployment Console section",
+          "description": [
+            "When using the [Orchestrator Generator](/docs/14.5.2/products/console/company-configuration/providers/extensions/orchestrator-generator/overview) in your Enhanced Workflow Project, the Orchestrator Generator can now return non-blocking warnings alongside the generated files. In case of returned [warnings](/docs/14.5.2/products/console/company-configuration/providers/extensions/orchestrator-generator/overview#warning-handling), they are displayed in the Deploy Area and, more specifically, in the Deploy modal, in the Compare changes section and in the Review Configuration section."
+          ]
+        },
+        {
+          "title": "Add user information in the event payload of Console Webhooks",
+          "description": [
+            "The user Id, Name, and Email are now included in the event payload every Console Webhooks. With this event payload enhancement, it is now possible to better track and identify the user who performed a specific action.",
+            "For more information about the new event payload structures, check out the [Console Webhooks documentation](/docs/14.5.2/products/console/company-configuration/events)."
+          ]
+        }
+      ],
+      "bugFixes": []
+    }
+  },
+  {
+    "title": "Fast Data",
+    "icon": "fast-data",
+    "defaultOpen": true,
+    "type": "versions",
+    "items": {
+      "newFeatures": [],
+      "improvements": [
+        {
+          "title": "Fast Data Control Plane v2 Application",
+          "description": [
+            "The `v0.1.3` of the _Control Plane Frontend_ service is available.",
+            "This version brings significant improvements in the data pipelines artifact details, introducing both single persisted table and source tables artifact elements which are now displayed in the canvas UI.",
+            "For more information about service latest versions, check out the [compatibility matrix](/docs/14.5.2/products/fast_data_v2/runtime_management/compatibility_matrix#service-latest-versions)."
+          ]
+        },
+        {
+          "title": "Stream Processor v0.6.2",
+          "description": [
+            "The new version `v0.6.2` of the _Stream Processor_ is available!",
+            "Refer to the [JSON Schema](https://cdn.mia-platform.eu/runtime/platform/data-fabric/stream-processor/v0.6.2/stream-processor.schema.json) for configuration details and check the service [changelog](/docs/14.5.2/products/fast_data_v2/stream_processor/changelog) for more information."
+          ]
+        }
+      ],
+      "bugFixes": []
+    }
+  },
+  {
+    "title": "Microfrontend Composer",
+    "icon": "microfrontend-composer",
+    "defaultOpen": true,
+    "type": "versions",
+    "items": {
+      "newFeatures": [],
+      "improvements": [],
+      "bugFixes": [
+        "Fixed editor visualization in bk-form-wizard"
+      ]
+    }
+  }
+]
