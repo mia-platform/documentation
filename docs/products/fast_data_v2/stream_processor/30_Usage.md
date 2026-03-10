@@ -904,3 +904,39 @@ Partition indices that fall outside the topic's partition range are **silently i
 | `"lowerHalf"` | Partitions `0 … ⌈N/2⌉ − 1` | Lower half, rounded up. At least one partition is always selected. |
 | `"upperHalf"` | Partitions `⌊N/2⌋ … N − 1` | Upper half, rounded down. At least one partition is always selected. |
 | `[p0, p1, …]` | Explicit list of indices | Only the listed partitions are targeted. Must contain at least one entry. |
+
+### Configuration Examples
+
+**Using a selection mode:**
+
+```json
+{
+  "producer": {
+    "type": "kafka",
+    "topic": "<OUTPUT_TOPIC>",
+    "connectionName": "kafka",
+    "config": {
+      "client.id": "<CLIENT_ID>",
+      "compression.type": "snappy"
+    },
+    "partitionerSettings": "lowerHalf"
+  }
+}
+```
+
+**Using an explicit partition list:**
+
+```json
+{
+  "producer": {
+    "type": "kafka",
+    "topic": "<OUTPUT_TOPIC>",
+    "connectionName": "kafka",
+    "config": {
+      "client.id": "<CLIENT_ID>",
+      "compression.type": "snappy"
+    },
+    "partitionerSettings": [0, 1, 2]
+  }
+}
+```
