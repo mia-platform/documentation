@@ -3709,15 +3709,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@mermaid-js/layout-elk@npm:^0.2.0":
-  version: 0.2.0
-  resolution: "@mermaid-js/layout-elk@npm:0.2.0"
+"@mermaid-js/layout-elk@npm:^0.2.1":
+  version: 0.2.1
+  resolution: "@mermaid-js/layout-elk@npm:0.2.1"
   dependencies:
     d3: "npm:^7.9.0"
     elkjs: "npm:^0.9.3"
   peerDependencies:
     mermaid: ^11.0.2
-  checksum: 10/bfad703cdcce811364f2ec7fbac742911b44645e8e81b7d3dff980a90c443d381d36ec07fdcf991337022c7f4b3fe79f8a3453ff66bf1223a1b458858f21c635
+  checksum: 10/731c7de74800039c0358043e3538892618e4de091260955ae5d1b8047143bc550894b41621a88d6d11191c62e43690a149a3133c9b826bc87977d3a8f3e05df1
   languageName: node
   linkType: hard
 
@@ -11739,7 +11739,7 @@ __metadata:
     "@inquirer/core": "npm:^11.1.5"
     "@inquirer/prompts": "npm:^8.3.0"
     "@mdx-js/react": "npm:^3.0.0"
-    "@mermaid-js/layout-elk": "npm:^0.2.0"
+    "@mermaid-js/layout-elk": "npm:^0.2.1"
     "@mia-platform/console-types": "npm:^0.39.4"
     "@types/semver": "npm:^7"
     clsx: "npm:^2.0.0"
