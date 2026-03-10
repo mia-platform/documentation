@@ -214,12 +214,10 @@ Properties that support `Secret` interface are:
 For more details, please refer to [secrets resolution](/products/fast_data_v2/secrets_resolution.md)
 in config maps documentation page and [`secret_rs`](https://docs.rs/secret_rs/latest/secret_rs/index.html) library documentation.
 
-### Control Plane Support
+### Control Plane Support (Optional)
 
-The service implements the interface for connecting towards a Control-Plane Operator.  
-However, complete [Runtime Management](/products/fast_data/runtime_management/overview.mdx)
-support, that is with Control Plane UI and a central Control Plane instance
-will be added in the future.
+The `controlPlane` field is optional and configures integration with the Control Plane.
+For more details on how to configure it, please refer to the [Workloads Configuration](/products/fast_data_v2/runtime_management/application_configuration.md#workloads-configuration) section of the Runtime Management documentation.
 
 ### Recommended Kafka Configuration
 
