@@ -465,7 +465,7 @@ them quickly.
 | Cache Type | Get | Set | Update | Delete | Purpose |
 |------------|:---:|:---:|:------:|:------:|---------|
 | `mongodb`  | ✔️  | ✔️  |   ✔️   |   ✔️   | Full stateful stream processing with versioning |
-| `farmdata` | ✔️  | ❌  |   ❌   |   ❌   | Read-only access to Farm Data service |
+| `farm-data` | ✔️  | ❌  |   ❌   |   ❌   | Read-only access to Farm Data service |
 | `http-rest`| ✔️  | ❌  |   ❌   |   ❌   | Read-only access to external REST APIs |
 
 All cache methods are **asynchronous operations**. When a cache type doesn't support
@@ -481,10 +481,18 @@ stream processing requirements.
 
 ```json
 {
+  "connections": {
+    "mongo": {
+      "type": "mongodb",
+      "config": {
+        "url": "mongodb://localhost:27017/fast-data"
+      }
+    }
+  },
   "caches": {
     "customer-cache": {
       "type": "mongodb",
-      "url": "mongodb://localhost:27017/fast-data",
+      "connectionName": "mongo",
       "appName": "eu.miaplatform.fastdata.stream-processor",
       "database": "fast-data",
       "collection": "stream-processor-state"
@@ -581,7 +589,7 @@ use the Kafka key with the FarmData cache to retrieve the full content.
 {
   "caches": {
     "farmdata-cache": {
-      "type": "farmdata",
+      "type": "farm-data",
       "url": "http://farm-data-service:3000",
       "head": "aggregations",
       "http2": false
@@ -833,7 +841,7 @@ based on their content or type, the recommended pattern is to deploy **multiple 
 instances**, each subscribing to the same source topic with distinct consumer groups.
 
 Each Stream Processor filters and processes only the messages relevant to its specific Single View,
-discarding all others using the filtering capabilities described in the [Filtering section](#filtering-).
+discarding all others using the filtering capabilities described in the [Filtering section](#filtering).
 
 ```mermaid
 graph LR

@@ -183,7 +183,7 @@ use case cannot be supported.
 Each cache can be:
 
 - **MongoDB Cache** (`type: "mongodb"`): Persistent cache backed by MongoDB
-  - `url`: MongoDB connection string (supports secrets)
+  - `connectionName`: reference to a MongoDB connection defined in the `connections` field
   - `collection`: collection name for cache storage
   - `database`: database name (optional)
   - `appName`: application name for MongoDB connection (optional - useful to track
@@ -191,7 +191,7 @@ Each cache can be:
 - **In-Memory Cache** (`type: "in-memory"`): Simple in-memory key-value storage.
   Use only when sharing the stream state across different service
   instances is not necessary. However, when it is possible use a sharable stream state.
-- **Farm Data Cache** (`type: "farmdata"`): Cache backed by Farm Data Service.
+- **Farm Data Cache** (`type: "farm-data"`): Cache backed by Farm Data Service.
     - `url`: Farm Data Service endpoint URL
     - `head`: Head collection for aggregation
     - `http2`: set http2_prior_knowledge to true when connecting to an http2 enabled endpoint (default: false) 
