@@ -871,3 +871,36 @@ When implementing the event routing pattern, consider the following recommendati
   group ID so that all instances receive every message from the source topic;
 - **Efficient Filtering**: Place filtering logic at the beginning of your processing
   function to minimize unnecessary computation on irrelevant events
+
+## Custom Partitioner
+
+The _Stream Processor_ producer supports a **custom partition selection strategy** via the `partitionerSettings` field in the producer configuration.
+This allows fine-grained control over which partitions of the output topic receive messages, which is particularly useful in scenarios where multiple service replicas need to target non-overlapping sets of partitions to avoid duplicated processing or to enforce ordering guarantees.
+
+For the full list of accepted values and the corresponding JSON schema, refer to the [`partitionerSettings` field description](/products/fast_data_v2/stream_processor/20_Configuration.mdx#producer-configuration) in the Configuration page.
+
+### Partition Selection Algorithm
+
+When `partitionerSettings` is set to any value other than `"all"`, the producer replaces the default librdkafka partitioner with a **CRC32-based** algorithm that operates exclusively on the _usable_ partitions determined by the selected mode:
+
+- **Non-empty key** → `CRC32(key) % number_of_usable_partitions`: the same key is always routed to the same partition, preserving ordering by key within the selected partition set;
+- **Empty or null key** → a partition is chosen at random among the usable ones.
+
+This matches the behavior of the `consistent_random` strategy in librdkafka, restricted to the configured subset of partitions.
+
+:::warning
+
+When using `"lowerHalf"`, `"upperHalf"`, or an explicit partition list, ensure that all referenced partitions actually exist in the target topic.  
+Partition indices that fall outside the topic's partition range are **silently ignored** at runtime. If the resulting usable set is empty, the message will not be delivered.
+
+:::
+
+### Available Modes
+
+| Value | Usable partitions | Notes |
+|-------|-------------------|-------|
+| `"all"` _(default)_ | All topic partitions | No custom partitioner is applied; uses the librdkafka default (or the `partitioner` config option if set). |
+| `"one"` | Partition `0` only | Always targets the first partition regardless of key. |
+| `"lowerHalf"` | Partitions `0 … ⌈N/2⌉ − 1` | Lower half, rounded up. At least one partition is always selected. |
+| `"upperHalf"` | Partitions `⌊N/2⌋ … N − 1` | Upper half, rounded down. At least one partition is always selected. |
+| `[p0, p1, …]` | Explicit list of indices | Only the listed partitions are targeted. Must contain at least one entry. |
