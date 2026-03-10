@@ -4,8 +4,8 @@ title: Configuration
 sidebar_label: Configuration
 ---
 
-import SPSchema from "@site/static/schemas/fast_data/stream-processor.0.6.0.schema.json"
-import SPConfigSchema from "@site/static/schemas/fast_data/examples/stream-processor.0.6.0.example-basic.json"
+import SPSchema from "@site/static/schemas/fast_data/stream-processor.0.7.0.schema.json"
+import SPConfigSchema from "@site/static/schemas/fast_data/examples/stream-processor.0.7.0.example-basic.json"
 import SchemaViewer from "@site/src/components/SchemaViewer"
 
 In order to configure the service, a set of environment variables are adopted for
@@ -54,8 +54,6 @@ Here it is shown the layout the configuration folder should have:
         └── index.js    # --> user-defined processing function
 ```
 
-### Service Settings file
-
 The main configuration file describes the connection details with the stream
 platform, which customizations should be applied to the consumer and producer,
 whether one or more cache connections should be instantiated and how the sandbox
@@ -68,7 +66,7 @@ exampled in details.
 
 :::note
 
-The raw JSON schema can also be found <a target="_blank" href="/schemas/fast_data/stream-processor.0.5.2.schema.json">here</a>.
+The raw JSON schema can also be found <a target="_blank" href="/schemas/fast_data/stream-processor.0.7.0.schema.json">here</a>.
 
 In addition, Kafka configurations and cache persistence properties
 support [**secret resolution**](/products/fast_data_v2/secrets_resolution.md).
@@ -84,7 +82,7 @@ The configuration requires these main fields:
 - **`producer`**: defines how the service produces messages to the output destination  
 - **`processor`**: defines the processing engine and its settings
 
-### Connections Configuration
+### Connections
 
 The `connections` field is a map where each key is a connection name and its value is
 a `ConnectionConfig`.
@@ -93,7 +91,7 @@ schema.
 The connection name has to be referenced in both `consumer` and `producer` configurations
 using the `connectionName` field.  
 
-### Consumer Configuration
+### Consumer
 
 The `consumer` field configures the input stream source. Currently supports:
 
@@ -123,7 +121,7 @@ The `consumer` field configures the input stream source. Currently supports:
 }
 ```
 
-### Producer Configuration
+### Producer
 
 The `producer` field configures the output stream destination. Currently supports:
 
@@ -155,7 +153,7 @@ The `producer` field configures the output stream destination. Currently support
 
     For usage examples and details on the partition selection algorithm, refer to the [Custom Partitioner](/products/fast_data_v2/stream_processor/30_Usage.md#custom-partitioner) section in the Usage page.
 
-### Processor Configuration
+### Processor
 
 The `processor` field configures the processing engine. Currently supports:
 
@@ -176,7 +174,7 @@ The `processor` field configures the processing engine. Currently supports:
     in the for of a [kafka producer](#producer-configuration) configuration object, which
     defines how to connect to the DLQ topic.
 
-#### Caches Configuration (Optional)
+#### Caches (Optional)
 
 The `caches` field is an optional object that defines named caches for use within
 processing functions. In case no cache is defined, the _Stateful Stream Processing_
@@ -209,7 +207,7 @@ Each cache can be:
 For more details on how to interact with the caches, please read the
 [dedicated section](/products/fast_data_v2/stream_processor/30_Usage.md#cache-access-) in the Usage page.
 
-### Control Plane Configuration (Optional)
+### Control Plane Support (Optional)
 
 The `controlPlane` field is optional and configures integration with the Control Plane Operator:
 
