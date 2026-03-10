@@ -84,7 +84,7 @@ The configuration requires these main fields:
 - **`producer`**: defines how the service produces messages to the output destination  
 - **`processor`**: defines the processing engine and its settings
 
-### Connections (Optional)
+### Connections Configuration
 
 The `connections` field is a map where each key is a connection name and its value is
 a `ConnectionConfig`.
@@ -93,7 +93,7 @@ schema.
 The connection name has to be referenced in both `consumer` and `producer` configurations
 using the `connectionName` field.  
 
-#### Consumer Configuration
+### Consumer Configuration
 
 The `consumer` field configures the input stream source. Currently supports:
 
@@ -123,7 +123,7 @@ The `consumer` field configures the input stream source. Currently supports:
 }
 ```
 
-#### Producer Configuration
+### Producer Configuration
 
 The `producer` field configures the output stream destination. Currently supports:
 
@@ -153,48 +153,9 @@ The `producer` field configures the output stream destination. Currently support
     Partitions not present in the topic are silently ignored at runtime.  
     This is equivalent to applying `consistent_random` using CRC32 hasher on the specified subset of partitions.
 
-    :::info Partition selection algorithm
+    For usage examples and details on the partition selection algorithm, refer to the [Custom Partitioner](/products/fast_data_v2/stream_processor/30_Usage.md#custom-partitioner) section in the Usage page.
 
-    When `partitionerSettings` is set to any value other than `"all"`, the producer uses a **CRC32-based** algorithm to determine the target partition:
-
-    - **Non-empty key**: selects the partition using `CRC32(key) % len(usable_partitions)`, matching the behavior of `consistent_random` in librdkafka.
-    - **Empty or null key**: selects a partition at random among the usable ones.
-
-    :::
-
-**Example — using a selection mode:**
-```json
-{
-  "producer": {
-    "type": "kafka",
-    "topic": "<OUTPUT_TOPIC>",
-    "connectionName": "kafka",
-    "config": {
-      "client.id": "<CLIENT_ID>",
-      "compression.type": "snappy"
-    },
-    "partitionerSettings": "lowerHalf"
-  }
-}
-```
-
-**Example — using an explicit partition list:**
-```json
-{
-  "producer": {
-    "type": "kafka",
-    "topic": "<OUTPUT_TOPIC>",
-    "connectionName": "kafka",
-    "config": {
-      "client.id": "<CLIENT_ID>",
-      "compression.type": "snappy"
-    },
-    "partitionerSettings": [0, 1, 2]
-  }
-}
-```
-
-#### Processor Configuration
+### Processor Configuration
 
 The `processor` field configures the processing engine. Currently supports:
 
@@ -248,7 +209,7 @@ Each cache can be:
 For more details on how to interact with the caches, please read the
 [dedicated section](/products/fast_data_v2/stream_processor/30_Usage.md#cache-access-) in the Usage page.
 
-#### Control Plane Configuration (Optional)
+### Control Plane Configuration (Optional)
 
 The `controlPlane` field is optional and configures integration with the Control Plane Operator:
 
@@ -256,7 +217,7 @@ The `controlPlane` field is optional and configures integration with the Control
 - `feedbackInterval`: interval between feedback events in milliseconds (default: `3000ms`)
 - `resumeAfterMs`: delay before processing when control plane connection fails (optional)
 
-#### Secret Management
+### Secret Management
 
 The schema supports flexible secret management through the `Secret` type, which can be:
 
@@ -281,12 +242,6 @@ in the `index.js` file.
 
 For more details on how the user-defined processor function can be written
 and it how works, please read the [Usage](/products/fast_data_v2/stream_processor/30_Usage.md) page.
-
-## Control Plane Support
-
-The service implements the interface for connecting towards a Control-Plane Operator.  
-However, complete [Runtime Management](/products/fast_data/runtime_management/overview.mdx) support, that is with Control Plane UI
-and a central Control Plane instance will be added in the future.
 
 ## Recommended Kafka Configuration
 
