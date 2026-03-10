@@ -133,8 +133,36 @@ The `producer` field configures the output stream destination. Currently support
   - `connectionName`: reference to a connection defined in the `connections` field
   - `config`: additional [`librdkafka`](https://docs.confluent.io/platform/current/clients/librdkafka/html/md_CONFIGURATION.html)
     producer configuration properties (client ID, compression settings, etc.)
+  - `partitionerSettings` _(optional)_: controls which partitions the producer may select when sending messages.
+    When not specified, all available partitions are used (equivalent to `"all"`).
 
-**Example:**
+    This field accepts either a **selection mode** (string) or an **explicit list of partition indices** (array of integers):
+
+    **Selection modes:**
+
+    | Value | Description |
+    |-------|-------------|
+    | `"all"` _(default)_ | All available partitions. Reverts to the topic default settings and, if configured, allows the use of a custom `partitioner` librdkafka option. |
+    | `"one"` | Always targets partition `0`. |
+    | `"lowerHalf"` | Lower half of available partitions, count rounded up (at least 1). Equivalent to `consistent_random` using CRC32 hasher on the lower half. |
+    | `"upperHalf"` | Upper half of available partitions, count rounded down (at least 1). Equivalent to `consistent_random` using CRC32 hasher on the upper half. |
+
+    **Explicit partition list:**
+
+    An array of one or more partition indices (e.g. `[0, 1, 2]`) that the producer may target.  
+    Partitions not present in the topic are silently ignored at runtime.  
+    This is equivalent to applying `consistent_random` using CRC32 hasher on the specified subset of partitions.
+
+    :::info Partition selection algorithm
+
+    When `partitionerSettings` is set to any value other than `"all"`, the producer uses a **CRC32-based** algorithm to determine the target partition:
+
+    - **Non-empty key**: selects the partition using `CRC32(key) % len(usable_partitions)`, matching the behavior of `consistent_random` in librdkafka.
+    - **Empty or null key**: selects a partition at random among the usable ones.
+
+    :::
+
+**Example — using a selection mode:**
 ```json
 {
   "producer": {
@@ -144,7 +172,24 @@ The `producer` field configures the output stream destination. Currently support
     "config": {
       "client.id": "<CLIENT_ID>",
       "compression.type": "snappy"
-    }
+    },
+    "partitionerSettings": "lowerHalf"
+  }
+}
+```
+
+**Example — using an explicit partition list:**
+```json
+{
+  "producer": {
+    "type": "kafka",
+    "topic": "<OUTPUT_TOPIC>",
+    "connectionName": "kafka",
+    "config": {
+      "client.id": "<CLIENT_ID>",
+      "compression.type": "snappy"
+    },
+    "partitionerSettings": [0, 1, 2]
   }
 }
 ```
