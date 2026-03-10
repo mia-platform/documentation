@@ -55,7 +55,7 @@
     "@types/semver": "^7",
     "eslint": "^9.39.2",
     "eslint-plugin-react": "^7.37.5",
-    "fs-extra": "^11.3.3",
+    "fs-extra": "^11.3.4",
     "glob": "^13.0.6",
     "gray-matter": "^4.0.3",
     "prettier": "3.8.1",
