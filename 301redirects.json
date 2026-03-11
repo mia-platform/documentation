@@ -5478,5 +5478,9 @@
   "/docs/products/fast_data/fast_data_engine_v2/(.*)": {
     "destination": "/docs/products/fast_data_v2/$1",
     "addedOn": "2026-01-07"
+  },
+  "/docs/microfrontend-composer/(.*)": {
+    "destination": "/docs/products/microfrontend-composer/$1",
+    "addedOn": "2026-03-11"
   }
 }
