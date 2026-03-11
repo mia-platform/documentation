@@ -4,8 +4,8 @@ title: Configuration
 sidebar_label: Configuration
 ---
 
-import SPSchema from "@site/static/schemas/fast_data/stream-processor.0.6.0.schema.json"
-import SPConfigSchema from "@site/static/schemas/fast_data/examples/stream-processor.0.6.0.example-basic.json"
+import SPSchema from "@site/static/schemas/fast_data/stream-processor.0.7.0.schema.json"
+import SPConfigSchema from "@site/static/schemas/fast_data/examples/stream-processor.0.7.0.example-basic.json"
 import SchemaViewer from "@site/src/components/SchemaViewer"
 
 In order to configure the service, a set of environment variables are adopted for
@@ -54,8 +54,6 @@ Here it is shown the layout the configuration folder should have:
         └── index.js    # --> user-defined processing function
 ```
 
-### Service Settings file
-
 The main configuration file describes the connection details with the stream
 platform, which customizations should be applied to the consumer and producer,
 whether one or more cache connections should be instantiated and how the sandbox
@@ -68,7 +66,7 @@ exampled in details.
 
 :::note
 
-The raw JSON schema can also be found <a target="_blank" href="/schemas/fast_data/stream-processor.0.5.2.schema.json">here</a>.
+The raw JSON schema can also be found <a target="_blank" href="/schemas/fast_data/stream-processor.0.7.0.schema.json">here</a>.
 
 In addition, Kafka configurations and cache persistence properties
 support [**secret resolution**](/products/fast_data_v2/secrets_resolution.md).
@@ -84,7 +82,7 @@ The configuration requires these main fields:
 - **`producer`**: defines how the service produces messages to the output destination  
 - **`processor`**: defines the processing engine and its settings
 
-### Connections (Optional)
+### Connections
 
 The `connections` field is a map where each key is a connection name and its value is
 a `ConnectionConfig`.
@@ -93,7 +91,7 @@ schema.
 The connection name has to be referenced in both `consumer` and `producer` configurations
 using the `connectionName` field.  
 
-#### Consumer Configuration
+### Consumer
 
 The `consumer` field configures the input stream source. Currently supports:
 
@@ -123,7 +121,7 @@ The `consumer` field configures the input stream source. Currently supports:
 }
 ```
 
-#### Producer Configuration
+### Producer
 
 The `producer` field configures the output stream destination. Currently supports:
 
@@ -133,23 +131,29 @@ The `producer` field configures the output stream destination. Currently support
   - `connectionName`: reference to a connection defined in the `connections` field
   - `config`: additional [`librdkafka`](https://docs.confluent.io/platform/current/clients/librdkafka/html/md_CONFIGURATION.html)
     producer configuration properties (client ID, compression settings, etc.)
+  - `partitionerSettings` _(optional)_: controls which partitions the producer may select when sending messages.
+    When not specified, all available partitions are used (equivalent to `"all"`).
 
-**Example:**
-```json
-{
-  "producer": {
-    "type": "kafka",
-    "topic": "<OUTPUT_TOPIC>",
-    "connectionName": "kafka",
-    "config": {
-      "client.id": "<CLIENT_ID>",
-      "compression.type": "snappy"
-    }
-  }
-}
-```
+    This field accepts either a **selection mode** (string) or an **explicit list of partition indices** (array of integers):
 
-#### Processor Configuration
+    **Selection modes:**
+
+    | Value | Description |
+    |-------|-------------|
+    | `"all"` _(default)_ | All available partitions. Reverts to the topic default settings and, if configured, allows the use of a custom `partitioner` librdkafka option. |
+    | `"one"` | Always targets partition `0`. |
+    | `"lowerHalf"` | Lower half of available partitions, count rounded up (at least 1). Equivalent to `consistent_random` using CRC32 hasher on the lower half. |
+    | `"upperHalf"` | Upper half of available partitions, count rounded down (at least 1). Equivalent to `consistent_random` using CRC32 hasher on the upper half. |
+
+    **Explicit partition list:**
+
+    An array of one or more partition indices (e.g. `[0, 1, 2]`) that the producer may target.  
+    Partitions not present in the topic are silently ignored at runtime.  
+    This is equivalent to applying `consistent_random` using CRC32 hasher on the specified subset of partitions.
+
+    For usage examples and details on the partition selection algorithm, refer to the [Custom Partitioner](/products/fast_data_v2/stream_processor/30_Usage.md#custom-partitioner) section in the Usage page.
+
+### Processor
 
 The `processor` field configures the processing engine. Currently supports:
 
@@ -170,7 +174,7 @@ The `processor` field configures the processing engine. Currently supports:
     in the for of a [kafka producer](#producer-configuration) configuration object, which
     defines how to connect to the DLQ topic.
 
-#### Caches Configuration (Optional)
+#### Caches (Optional)
 
 The `caches` field is an optional object that defines named caches for use within
 processing functions. In case no cache is defined, the _Stateful Stream Processing_
@@ -179,7 +183,7 @@ use case cannot be supported.
 Each cache can be:
 
 - **MongoDB Cache** (`type: "mongodb"`): Persistent cache backed by MongoDB
-  - `url`: MongoDB connection string (supports secrets)
+  - `connectionName`: reference to a MongoDB connection defined in the `connections` field
   - `collection`: collection name for cache storage
   - `database`: database name (optional)
   - `appName`: application name for MongoDB connection (optional - useful to track
@@ -187,7 +191,7 @@ Each cache can be:
 - **In-Memory Cache** (`type: "in-memory"`): Simple in-memory key-value storage.
   Use only when sharing the stream state across different service
   instances is not necessary. However, when it is possible use a sharable stream state.
-- **Farm Data Cache** (`type: "farmdata"`): Cache backed by Farm Data Service.
+- **Farm Data Cache** (`type: "farm-data"`): Cache backed by Farm Data Service.
     - `url`: Farm Data Service endpoint URL
     - `head`: Head collection for aggregation
     - `http2`: set http2_prior_knowledge to true when connecting to an http2 enabled endpoint (default: false) 
@@ -203,15 +207,12 @@ Each cache can be:
 For more details on how to interact with the caches, please read the
 [dedicated section](/products/fast_data_v2/stream_processor/30_Usage.md#cache-access-) in the Usage page.
 
-#### Control Plane Configuration (Optional)
+### Control Plane Support (Optional)
 
-The `controlPlane` field is optional and configures integration with the Control Plane Operator:
+The `controlPlane` field is optional and configures integration with the Control Plane.
+For more details on how to configure it, please refer to the [Workloads Configuration](/products/fast_data_v2/runtime_management/application_configuration.md#workloads-configuration) section of the Runtime Management documentation.
 
-- `grpcAddress`: gRPC server address for service feedback events
-- `feedbackInterval`: interval between feedback events in milliseconds (default: `3000ms`)
-- `resumeAfterMs`: delay before processing when control plane connection fails (optional)
-
-#### Secret Management
+### Secret Management
 
 The schema supports flexible secret management through the `Secret` type, which can be:
 
@@ -236,12 +237,6 @@ in the `index.js` file.
 
 For more details on how the user-defined processor function can be written
 and it how works, please read the [Usage](/products/fast_data_v2/stream_processor/30_Usage.md) page.
-
-## Control Plane Support
-
-The service implements the interface for connecting towards a Control-Plane Operator.  
-However, complete [Runtime Management](/products/fast_data/runtime_management/overview.mdx) support, that is with Control Plane UI
-and a central Control Plane instance will be added in the future.
 
 ## Recommended Kafka Configuration
 
