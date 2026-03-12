@@ -13,6 +13,7 @@ import Changelog from '@site/src/components/Changelog';
 *March 05th, 2026*
 
 This release adds **Orchestrator Generator** features improvements and enriches **Console Webhooks** payloads with user information.  
+There are some bugfixes regarding some Console permission issues for Maintainer role, and a fix for the merge from another revision feature.  
 For **Fast Data**, Control Plane v2 Application `v0.1.3` and Stream Processor `v0.6.2` are now available.  
 **Microfrontend Composer** includes a bug fix for `bk-form-wizard`.
 

@@ -21,7 +21,10 @@
           ]
         }
       ],
-      "bugFixes": []
+      "bugFixes": [
+        "Resolved an issue that prevented performing the compare configuration and the review configuration actions on the Deploy Area when user is Maintainer on that specific Project environment.",
+        "We fixed a bug that prevented correctly loading the incoming configuration when starting a merge from another revision or from another version."
+      ]
     }
   },
   {
