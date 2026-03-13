@@ -35,6 +35,10 @@ The Chart version follows [semver](https://semver.org/) policy so any breaking c
 
 ## Console v14 - version upgrades
 
+### Upgrade from versions prior to v14.5.2 (or later)
+
+When upgrading to Console versions >= v14.5.2, if the Deploy Service has a custom value applied for the `MIA_K8S_SERVICE_PORT` env variable, make sure to replace this variable with the new variable whose name is `K8S_SERVICE_PORT`.
+
 ### Upgrade from v14.0.3 to v14.1.0
 
 With Console v14.1.0, the Mia-Assistant evolves and now supports multiple LLM models!  
