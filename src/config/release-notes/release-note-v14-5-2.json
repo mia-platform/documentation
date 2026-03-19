@@ -79,7 +79,7 @@
           "title": "Mail Notification Service",
           "description": [
             "The new version `3.5.1` of the Mail Notification Service is available!",
-            "TThis is a maintenance release that updates dependencies to their latest versions."
+            "This is a maintenance release that updates dependencies to their latest versions."
           ]
         }
       ]
