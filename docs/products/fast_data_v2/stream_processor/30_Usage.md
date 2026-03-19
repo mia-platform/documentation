@@ -9,7 +9,7 @@ sidebar_label: Usage
 To use the plugin, the following requirements must be met:
 
 - Kafka connection must have permission to read and write the topics declared in the configuration file;
-- Kafka topics must exist on the Kafka cluster, with the appropriate number of partitions (which constrain service replicas), retention and replication factor;
+- Kafka topics must exist on the Kafka cluster with the appropriate configuration (partitions, retention, replication factor); see [Topics](/products/fast_data_v2/kafka.md#topics) in the Kafka Reference;
 - when enabling the `cache` feature, it is necessary to provide
   a connection to a MongoDB cluster and the ad-hoc collection
   should be created with the appropriate indexes;

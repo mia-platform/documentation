@@ -67,32 +67,9 @@ a central Control Plane instance will be added in the future.
 
 ## Recommended Kafka Configuration
 
-When configuring Kafka consumer, it is advised to set appropriate values for
-constraining the consumer internal queue. In this manner:
+For a full explanation of the consumer queue tuning parameters and how to determine appropriate values, see [Consumer Queue Tuning](/products/fast_data_v2/kafka.md#consumer-queue-tuning) in the Kafka Reference.
 
-- the maximum amount of memory employed by the service can be finely tuned to avoid
-  wasting resources, since only the number of messages that can effectively be
-  processed in real-time should be pulled in memory;
-- it is ensured that consumer continuously poll the broker to avoid it exiting the
-  consumer group, since a lower number of buffered messages can trigger a new fetch to
-  replenish it;
-
-The main values to tune are:
-
-- `queued.max.messages.kbytes`: maximum number of kilobytes of queued pre-fetched
-  messages in the local consumer queue;
-- `queued.min.messages`: minimum number of messages per topic+partition _librdkafka_
-  tries to maintain in the local consumer queue;
-
-It is recommended to set `queued.min.messages` to a value greater, but close to the
-average message consumption rate. It is possible to observer:
-
-- `kafka_consumer_rx_msgs_total` &rarr; messages read
-- `ka_flushed_messages` &rarr; messages written to the persistence layer
-
-to check the average values.
-
-For _Kango_ service, when connected to a MongoDB M50 cluster instance, an example of configuration can be the following one:
+For _Kango_ connected to a MongoDB M50 cluster, the following starting values are recommended:
 
 ```json
 {
@@ -101,9 +78,9 @@ For _Kango_ service, when connected to a MongoDB M50 cluster instance, an exampl
 }
 ```
 
-Another important property that might need to be tuned is `fetch.message.max.bytes`,
-which however should be changed only in case `queued.max.messages.kbytes` is set to
-a value lower than `1024`.
+:::note
+`fetch.message.max.bytes` should only be adjusted if `queued.max.messages.kbytes` is set below `1024`.
+:::
 
 ## Kubernetes
 
