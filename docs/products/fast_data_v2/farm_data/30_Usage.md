@@ -10,11 +10,7 @@ To use the plugin, the following requirements must be met:
 
 - Kafka connection must have permission to read and write the topics declared in the configuration file;
 - Kafka topics must exist on the Kafka cluster, with the appropriate number of partitions (which constrain service replicas), retention and replication factor;
-- MongoDB collections must be defined on the MongoDB cluster with the necessary indexes;
-  to aid in the generation of them it is possible to exploit provided tools, such as
-  the `indexer` command of `the_world_outside` CLI. This command connects to the
-  configured persistence layer and, analyzing the aggregation graph, automatically
-  generate the recommended indexes for your use case. 
+- MongoDB collections must be defined on the MongoDB cluster with the necessary indexes.
 
 ## Messages Spec
 
@@ -227,42 +223,6 @@ the indexes defined:
       "dependency.posts.__pk": 1
     }
     ```
-
-### Indexer CLI
-
-To aid in the creation of `__sink` collections alongside their indexes, the
-`the_world_outside` CLI is provided. It reads a Farm Data configuration file,
-connects to the defined persistence storage and generate the needed collections
-and their indexes. When generating indexes, it accounts also for complex filters,
-so that lookup queries are correctly supported.
-
-Secrets resolution is handled automatically. The secret just need to be reachable
-from the CLI, either from an environmental variable or from a file.
-
-The CLI can be installed using the following command:
-
-```shell
-npm install -g @mia-platform-internal/the-world-outside
-```
-
-and launched as show below:
-
-```shell
-two indexer -c <path-to-config-folder>
-```
-
-In the `-c` argument it is necessary to give the path to a directory folder which
-holds the Farm Data configuration file (either named `farm-data.json` or `config.json`).
-
-:::warning
-
-In order to use `two` CLI it is necessary to own a Mia-Platform subscription and
-have access to the private repository.
-
-Furthermore, since the CLI directly connects to your MongoDB cluster, please ensure that
-you can connect to it from your machine.
-
-:::
 
 ## Aggregation Graph
 
