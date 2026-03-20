@@ -2178,6 +2178,11 @@
           "id": "products/fast_data_v2/kafka",
           "label": "Kafka",
           "type": "doc"
+        },
+        {
+          "id": "products/fast_data_v2/mongodb",
+          "label": "MongoDB",
+          "type": "doc"
         }
       ]
     },

@@ -182,12 +182,14 @@ use case cannot be supported.
 
 Each cache can be:
 
-- **MongoDB Cache** (`type: "mongodb"`): Persistent cache backed by MongoDB
+- **MongoDB Cache** (`type: "mongodb"`): Persistent cache backed by MongoDB, with full CRUD support and optimistic locking.
   - `url`: MongoDB connection string (supports secrets)
   - `collection`: collection name for cache storage
   - `database`: database name (optional)
   - `appName`: application name for MongoDB connection (optional - useful to track
     which program is carrying out queries on the database)
+
+  For details on MongoDB cache capabilities, required collection setup, and optimistic locking behavior, see [Stream Processor — Stateful Cache](/products/fast_data_v2/mongodb.md#stream-processor--stateful-cache) in the MongoDB Reference.
 - **In-Memory Cache** (`type: "in-memory"`): Simple in-memory key-value storage.
   Use only when sharing the stream state across different service
   instances is not necessary. However, when it is possible use a sharable stream state.

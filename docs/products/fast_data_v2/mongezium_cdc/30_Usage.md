@@ -35,7 +35,7 @@ will be performed.
 
 To use the application, the following requirements must be met:
 
-- MongoDB must be in replica-set.
+- MongoDB must be in replica-set; see [Mongezium — CDC Source](/products/fast_data_v2/mongodb.md#mongezium--cdc-source) in the MongoDB Reference for replica-set requirements, required privileges, and resume token behavior;
 - the connection string must have privileges to access the `oplog` and the `admin` collection. More specifically, it needs permission to enable `changeStreamPreAndPostImages` on the collection of the configured database;
 - Kafka connection must have permission to read/write the topics declared in the `collectionMappings` registry; topics must be pre-created with the appropriate configuration — see [Topics](/products/fast_data_v2/kafka.md#topics) in the Kafka Reference;
 - both collections and topics must be defined in the MongoDB cluster and the Kafka Cluster, respectively.

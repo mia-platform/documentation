@@ -10,7 +10,7 @@ To use the application, the following requirements must be met:
 
 - Kafka connection must have permission to read the topic declared in the configuration file;
 - Kafka topic must exist on the Kafka cluster with the appropriate configuration (partitions, retention, replication factor); see [Topics](/products/fast_data_v2/kafka.md#topics) in the Kafka Reference;
-- MongoDB collection must be defined on the MongoDB cluster with the necessary indexes; in particular, all the fields of the message key should belong to a unique index, which would ensure record uniqueness on the database
+- MongoDB collection must be defined on the MongoDB cluster with the necessary indexes; see [Kango — Output Sink](/products/fast_data_v2/mongodb.md#kango--output-sink) in the MongoDB Reference for index requirements and write mode details.
 
 ## Write Mode
 

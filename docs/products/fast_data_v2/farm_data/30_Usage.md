@@ -172,57 +172,9 @@ Output messages are compliant with [Fast Data message format](/products/fast_dat
 As explained in the [Configuration page](/products/fast_data_v2/farm_data/20_Configuration.mdx), Farm Data service
 processes events using a stateful model and therefore it needs to store intermediate
 results on persistent storage system.  
-Currently, Farm Data supports only MongoDB as external persistence system. 
+Currently, Farm Data supports only MongoDB as external persistence system.
 
-### MongoDB Persistence
-
-When using MongoDB as persistence storage, Farm Data service needs the details
-for connecting to a MongoDB cluster, which allows the service to create the
-needed collections and store there the intermediate aggregated documents.
-
-In fact, the service creates on the selected database a collection for each
-aggregation node (processing unit), which will store the intermediate results.  
-These collections are named following the pattern below:
-
-```text
-__sink_<aggregation_id>_<aggregation_node_name>
-```
-
-where:
-
-- `__sink` is a constant prefix to signal that the collection is used internally;
-- `<aggregation_id>` is the value of configuration field `id` that identifies the
-  specific aggregation process that is employing such collection.  
-  Please, beware that this identifier MUST be between 8 and 16 characters and it
-  should satisfy MongoDB [collection name restrictions](https://www.mongodb.com/docs/manual/reference/limits/#mongodb-limit-Restriction-on-Collection-Names);
-- `<aggregation_node_name>` is the name of a node in the aggregation graph;
-
-To support read/write operations over `__sink` collections, each of them should have
-the indexes defined:
-
-- a **unique** index supporting the internal primary key of the record
-    ```json
-    {
-      "__pk": 1
-    }
-    ```
-- an index for each `value` property of the current aggregation node, which
-  is employed for lookup operations by children nodes (in the aggregation graph).  
-  For example:
-    ```json
-    {
-      "value.userId": 1
-    }
-    ```
-- an index for each `dependency.*.__pk` property of the current aggregation node, which
-  is employed for lookup operations by current towards children nodes
-  (in the aggregation graph).  
-  For example:
-    ```json
-    {
-      "dependency.posts.__pk": 1
-    }
-    ```
+For complete details on how Farm Data uses MongoDB — including collection naming conventions, required indexes, IOPS requirements, and configuration examples — see [Farm Data — Aggregation Persistence](/products/fast_data_v2/mongodb.md#farm-data--aggregation-persistence) in the MongoDB Reference.
 
 ## Aggregation Graph
 

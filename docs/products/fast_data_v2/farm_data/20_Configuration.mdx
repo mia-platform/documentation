@@ -87,31 +87,7 @@ The `MongoConfig` requires a `url`, which is a `Secret`, and can optionally spec
 a `database`.  
 For proper functioning, sink collections need to be created.
 
-Example of connection configuration:
-
-```json
-{
-  // other properties
-  "persistence": {
-    "type": "mongo",
-    "config": {
-      "url": "mongodb://localhost:27017/farm-data",
-      "database": "/farm-data",
-      "appName": "eu.miaplatfor.farm-data.lakes"
-    }
-  },
-  // other properties
-}
-```
-
-:::warning
-
-Farm Data service heavily relies on the persistence layer to cache the current stream
-state. Consequently, it is highly recommended to configure MongoDB instance to
-actually sustain a heavy IO load, setting maximum IOPS to at least a value of 2400 IOPS (1200 read + 1200 write),
-though higher values would only benefit the service throughput.
-
-:::
+For detailed information on Farm Data's MongoDB persistence model, required indexes, IOPS requirements, and collection naming conventions, see [Farm Data — Aggregation Persistence](/products/fast_data_v2/mongodb.md#farm-data--aggregation-persistence) in the MongoDB Reference.
 
 #### Internal Updates
 
