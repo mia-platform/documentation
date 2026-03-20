@@ -62,11 +62,7 @@ is an object where each key can represent a specific Kafka consumer configuratio
   with a default of 500ms and a minimum of 0. In case the need to change this value should arise,
   we recommend to assign the same value to all the consumers.
 
-Additional properties for Kafka consumer configuration can be found in the [librdkafka](https://docs.confluent.io/platform/current/clients/librdkafka/html/md_CONFIGURATION.html) documentation.
-
-:::note
-`queued.min.messages` and `queued.max.messages.kbytes` must be tuned to balance memory usage and throughput. Different `group.id` values create independent consumer groups, each with its own fetch queue. The following properties are hardcoded and not configurable: `allow.auto.create.topics` → `"false"` and `enable.auto.commit` → `"false"`. See [Consumer Configuration](/products/fast_data_v2/kafka.md#consumer-configuration) and [Consumer Queue Tuning](/products/fast_data_v2/kafka.md#consumer-queue-tuning) in the Kafka Reference for details.
-:::
+Additional information about Kafka consumer configuration can be found in the [Kafka reference page](/products/fast_data_v2/kafka.md#consumer-configuration) or in the [librdkafka](https://docs.confluent.io/platform/current/clients/librdkafka/html/md_CONFIGURATION.html) documentation.
 
 ### Producer
 
@@ -76,11 +72,7 @@ The `producer` configuration defines how the system produces data. Currently,
 * `connectionName`: The name of the Kafka connection to use from the `connections` map.
 * `topic`: The name of the Kafka topic to which the producer will send messages.
 
-Additional properties for Kafka producer configuration can be found in the [librdkafka](https://docs.confluent.io/platform/current/clients/librdkafka/html/md_CONFIGURATION.html) documentation.
-
-:::note
-The producer uses [`snappy`](https://en.wikipedia.org/wiki/Snappy_(compression)) compression by default to reduce disk space on the Kafka broker. `allow.auto.create.topics`, `enable.idempotence`, and `acks` are hardcoded and not configurable. See [Producer Configuration](/products/fast_data_v2/kafka.md#producer-configuration) in the Kafka Reference for details.
-:::
+Additional properties for Kafka producer configuration can be found in the [Kafka reference page](/products/fast_data_v2/kafka.md#producer-configuration) or in the [librdkafka](https://docs.confluent.io/platform/current/clients/librdkafka/html/md_CONFIGURATION.html) documentation.
 
 ### Processor
 
@@ -204,10 +196,6 @@ Apply the following configuration to the `internal-updates` consumer:
   "fetch.message.max.bytes": "40320"
 }
 ```
-
-:::danger
-When a consumer instance is evicted from its consumer group, it may not have the chance to commit the work it has already carried out. Setting the proper values is fundamental for service stability and message-processing progress.
-:::
 
 :::note
 `queued.max.messages.kbytes` uses **KB** units; `fetch.message.max.bytes` uses **bytes**. Despite the apparent difference in magnitude, both values above are intentional.

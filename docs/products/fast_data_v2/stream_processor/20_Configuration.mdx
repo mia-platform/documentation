@@ -249,31 +249,6 @@ and a central Control Plane instance will be added in the future.
 
 ## Recommended Kafka Configuration
 
-When configuring Kafka consumer, it is advised to set appropriate values for
-constraining the consumer internal queue. In this manner:
-
-- the maximum amount of memory employed by the service can be finely tuned to avoid
-  wasting resources, since only the number of messages that can effectively be
-  processed in real-time should be pulled in memory;
-- it is ensured that consumer continuously poll the broker to avoid it exiting the
-  consumer group, since a lower number of buffered messages can trigger a new fetch to
-  replenish it;
-
-The main values to tune are:
-
-- `queued.max.messages.kbytes`: maximum number of kilobytes of queued pre-fetched
-  messages in the local consumer queue;
-- `queued.min.messages`: minimum number of messages per topic+partition _librdkafka_
-  tries to maintain in the local consumer queue;
-
-It is recommended to set `queued.min.messages` to a value greater, but close to the
-average message consumption rate. It is possible to observer:
-
-- `kafka_consumer_rx_msgs_total` &rarr; messages read
-- `sp_processed_messages` &rarr; total number of processed messages
-
-to check the average values.
-
 For _Stream Processor_ service, an example of configuration can be the following one:
 
 ```json
@@ -283,9 +258,7 @@ For _Stream Processor_ service, an example of configuration can be the following
 }
 ```
 
-Another important property that might need to be tuned is `fetch.message.max.bytes`,
-which however should be changed only in case `queued.max.messages.kbytes` is set to
-a value lower than `1024`.
+For additional information about Kafka consumer configuration and performance tuning, please check the [Kafka reference page](/products/fast_data_v2/kafka.md#consumer-configuration).
 
 ## Kubernetes
 
