@@ -43,7 +43,15 @@ Each topic must be configured with:
 
 ### Internal Updates Topic (Farm Data)
 
-Farm Data requires a dedicated internal updates topic in addition to its regular input and output topics. This topic is used for internal coordination within the aggregation pipeline and requires a specific consumer configuration distinct from the regular input consumers. See [Farm Data Configuration — Internal Updates](/products/fast_data_v2/farm_data/20_Configuration.mdx#internal-updates) for details, and [Consumer Queue Tuning](#consumer-queue-tuning) below for the recommended configuration values.
+Farm Data requires a dedicated internal updates topic in addition to its regular input and output topics. This topic is used for internal coordination within the aggregation pipeline and requires a specific consumer configuration distinct from the regular input consumers due to its messages' uniqueness.
+
+In fact, `internal-update` messages are very small (in the bytes range), but they trigger a larger computation that may require different milliseconds to complete.
+
+Due to the combination of these factors, using the default queue parameters or even the ones adopted for the input streams is not recommended. Indeed, the Kafka consumer tries to fetch and buffer a large amount of events, since they are small, but it takes a considered amount of time to clear them from the queue. This prevents the consumer from fetching newer messages within the constraint set by `max.poll.interval.ms` (a default interval of 5 minutes). Once that time elapses, the consumer instance is considered dead by the Kafka broker and forces it to leave the group, triggering a restart of the service since its events stream has terminated.
+
+To prevent this unwanted situation that hinders the advancement of events processing, it has been observed that modifying the consumer parameters can improve the stability of the service itself.
+
+See [Farm Data Configuration — Internal Updates](/products/fast_data_v2/farm_data/20_Configuration.mdx#internal-updates) for details, and [Consumer Queue Tuning](#consumer-queue-tuning) below for the recommended configuration values.
 
 ## Connections Configuration
 
@@ -111,15 +119,10 @@ Be aware that each additional consumer group requires its own internal fetch que
 
 ### Consumer Queue Tuning
 
-When configuring Kafka consumers, it is recommended to set appropriate values for
-constraining the consumer internal queue. In this manner:
+When configuring Kafka consumers, it is recommended to set appropriate values for constraining the consumer internal queue. In this manner:
 
-- the maximum amount of memory employed by the service can be finely tuned to avoid
-  wasting resources, since only the number of messages that can effectively be
-  processed in real-time should be pulled in memory;
-- it is ensured that consumer continuously poll the broker to avoid it exiting the
-  consumer group, since a lower number of buffered messages can trigger a new fetch to
-  replenish it.
+- the maximum amount of memory employed by the service can be finely tuned to avoid wasting resources, since only the number of messages that can effectively be processed in real-time should be pulled in memory;
+- it is ensured that consumer continuously poll the broker to avoid it exiting the consumer group, since a lower number of buffered messages can trigger a new fetch to replenish it.
 
 The following [librdkafka][librdkafka] properties control how many messages each consumer prefetches into local memory. Tuning them is important to avoid out-of-memory issues and consumer group evictions.
 
@@ -127,6 +130,8 @@ The following [librdkafka][librdkafka] properties control how many messages each
 | ---------------------------- | ------------------------------------------------------------------------------------------------------- |
 | `queued.max.messages.kbytes` | Maximum kilobytes of pre-fetched messages in the local consumer queue.                                  |
 | `queued.min.messages`        | Minimum number of messages per topic+partition that [librdkafka][librdkafka] tries to maintain locally. |
+
+Since they regulate the amount of memory consumed by the service, these values should be tuned depending on the resources (CPU and memory) that can assigned to the service and the size of the underlying database. Indeed, those external factors affect the processing throughput; therefore, retaining more messages in the consumer fetch queue than the amount the service can process may risk to waste service memory.
 
 Setting these values too high wastes memory. Setting them too low risks the consumer being evicted from its consumer group if polling does not happen frequently enough within `max.poll.interval.ms` (default: 5 minutes).
 
@@ -170,6 +175,8 @@ The following producer properties are hardcoded across all Fast Data v2 workload
 | `allow.auto.create.topics` | `"false"` | Topics must be created manually with the correct partition, retention, and replication settings. |
 | `enable.idempotence`       | `"true"`  | Prevents duplicate messages from being produced to the broker.                                   |
 | `acks`                     | `"all"`   | Requires acknowledgement from all in-sync replicas before a write is considered successful.      |
+
+The first parameter is included to enforce user responsibility over topics creation, so that the proper configurations, such as number of partitions, replication factor and retention policy are set. In addition, the latter properties ensure that no duplicated messages are produced on Kafka brokers.
 
 ### Compression
 
