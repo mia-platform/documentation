@@ -309,7 +309,7 @@ curl --request POST \
           "00081190": {
             "vr": "UR",
             "Value": [
-              "http://pacs.ris.development.zeeromed.cloud/o3-dpacs-wado/wado?requestType=WADO&studyUID=STUDY_UID&seriesUID=SERIES_UID&objectUID={objectUID}&contentType=application/dicom"
+              "http://your-pacs-service/wado?requestType=WADO&studyUID=STUDY_UID&seriesUID=SERIES_UID&objectUID={objectUID}&contentType=application/dicom"
             ]
           }
         }
@@ -465,17 +465,17 @@ Example of callback request from PACS
 curl -- request POST \
   --url https://your-dicom-service/new-exam-callback
   --data '{
-    "SourceID":"O3PROD",
-    "StudyInstanceUID":"1.3.76.13.90696.2.20130926082332.5279531.1",
-    "AccessionNumber":"62476609-1",
-    "PatientID":"46803338",
+    "SourceID":"<SOURCE_ID>",
+    "StudyInstanceUID":"<STUDY_INSTANCE_UID>",
+    "AccessionNumber":"<ACCESSION_NUMBER>",
+    "PatientID":"<PATIENT_ID>",
     "NumberOfStudyRelatedSeries":1,
     "NumberOfStudyRelatedInstances":239,
     "ModalitiesInStudy": [
       "CT"
     ],
     "AeTitles": [
-      "O3-PACS-57"
+      "<AE_TITLE>"
     ],
     "StationNames": [
       "Station ALFA",
