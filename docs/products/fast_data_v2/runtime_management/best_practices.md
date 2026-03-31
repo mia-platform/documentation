@@ -45,7 +45,7 @@ If you need instead to perform an _Initial Load_ process, you can even use the s
 
 To ensure a stable start, every Fast Data workload can be configured with a default **paused** runtime state. This is managed via the **`onCreate`** parameter within each microservice's **ConfigMap**. By initializing flows in a paused state, you ensure that no workload begins consuming data immediately after deployment, allowing for manual orchestration.
 
-For example, in the architecture shown in the previous diagram, the _Stream Processor_ service responsible for introducing the backup messages into the pipeline can be configured with the `onCreate` parameter set to **paused** to ensure that the backup messages are held in the _topic.backup_ topic.
+For example, in the architecture shown in the previous diagram, the _Stream Processor_ service responsible for introducing the backup messages into the pipeline can be configured with the `onCreate` parameter set to **pause** to ensure that the backup messages are held in the _topic.backup_ topic.
 
 #### Iterative Pipeline Activation
 
