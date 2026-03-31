@@ -1,0 +1,17 @@
+[
+  {
+    "title": "Console",
+    "icon": "console",
+    "defaultOpen": true,
+    "type": "versions",
+    "items": {
+      "newFeatures": [],
+      "improvements": [],
+      "bugFixes": [
+        "Solved a bug that prevented the 'unsaved changes' message to appear when configuring EmptyDirs inside the Design Area.",
+        "Solved a bug preventing any notification from showing when users lack permissions to create a microservice. Now users are notified they don't have the required permissions.",
+        "Solved a bug in the new interface for configurations merge tool (_available in Beta as Feature Preview in Project Settings_) where changing a choice _(Keep/Delete)_ for a configmap would incorrectly apply it to all other configMaps."
+      ]
+    }
+  }
+]
