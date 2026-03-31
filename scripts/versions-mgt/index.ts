@@ -2,9 +2,9 @@ import { ExitPromptError } from "@inquirer/core"
 import { select } from '@inquirer/prompts'
 
 import createVersion from './create-version'
-import { assertGitTreeClean } from "./lib"
 import patchLts from './patch-lts'
-import promoteVersion from './promote-version'
+import promoteCanary from './promote-canary'
+import promoteNext from './promote-version'
 
 export type SelectChoice<Value> = {
   value: Value
@@ -15,7 +15,7 @@ export type SelectChoice<Value> = {
 const main = async () => {
   // assertGitTreeClean()
 
-  const command: 'create-version' | 'promote-version' | 'patch-lts' = await select({
+  const command: 'create-version' | 'promote-next' | 'promote-canary' | 'patch-lts' = await select({
     message: 'What do you want to do?',
     choices: [
       {
@@ -23,10 +23,15 @@ const main = async () => {
         name: 'Promote Canary to Next and Next to Current',
         description: 'Promote Canary version to Next, and Next to Current.'
       },
-        {
-        value: 'promote-version',
+      {
+        value: 'promote-next',
         name: 'Just promote Next to Current',
         description: 'Promote Next version to Current, and unset Next version.'
+      },
+      {
+        value: 'promote-canary',
+        name: 'Just promote Canary to Next',
+        description: 'Promote Canary version to Next.'
       },
       {
         value: 'patch-lts',
@@ -38,7 +43,8 @@ const main = async () => {
 
   switch (command) {
     case 'create-version': await createVersion(); break;
-    case 'promote-version': await promoteVersion(); break;
+    case 'promote-next': await promoteNext(); break;
+    case 'promote-canary': await promoteCanary(); break;
     case 'patch-lts': await patchLts(); break;
   }
 }

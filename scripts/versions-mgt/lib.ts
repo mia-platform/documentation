@@ -5,11 +5,15 @@ import { diff, satisfies } from 'semver'
 
 import versionsMap from '../../versionsMap.json'
 
-export type VersionsMap = { [k in keyof typeof versionsMap]: typeof versionsMap[k] | null }
+export type VersionsMap = { 
+    "current": string,
+  "next": string | null,
+  "lts": string[] | null
+}
 
 export const isCurrentVersionLts = () => versionsMap.lts.some((range) => satisfies(versionsMap.current, range))
 
-export const isNextVersionAPatchOfCurrent = () => diff(versionsMap.current, versionsMap.next) === 'patch'
+export const isNextVersionAPatchOfCurrent = () => diff(versionsMap.current, versionsMap.next!) === 'patch'
 
 export const assertGitTreeClean = () => {
     try {

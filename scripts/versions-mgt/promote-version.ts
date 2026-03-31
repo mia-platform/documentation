@@ -8,7 +8,7 @@ import { isCurrentVersionLts, isNextVersionAPatchOfCurrent, updateReleaseNoteLin
 
 export const promoteNext = async () => {
   // Update `versionsMap.json`
-  let newVersionsMap: VersionsMap = { current: versionsMap.next, next: null, lts: versionsMap.lts }
+  let newVersionsMap: VersionsMap = { current: versionsMap.next!, next: null, lts: versionsMap.lts }
   await fs.writeFile('versionsMap.json', `${JSON.stringify(newVersionsMap, null, 2)}\n`)
 
   // If needed, delete previous Current version
@@ -37,7 +37,7 @@ export const promoteNext = async () => {
   fs.writeFile('versions.json', `${JSON.stringify(newVersions, null, 2)}\n`)
 
   // Edit links
-  await updateReleaseNoteLinks(versionsMap.next, `/docs/${versionsMap.next}`, '/docs')  
+  await updateReleaseNoteLinks(versionsMap.next!, `/docs/${versionsMap.next}`, '/docs')  
 }
 
 const main = async () => {

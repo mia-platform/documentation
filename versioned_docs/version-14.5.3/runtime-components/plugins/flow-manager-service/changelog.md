@@ -1,0 +1,211 @@
+---
+id: changelog
+title: Changelog
+sidebar_label: CHANGELOG
+---
+
+
+
+All notable changes to this project will be documented in this file.
+
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
+and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+## [2.7.0] - 2025-06-10
+
+### Added
+
+- Added mongo 8 compatibility
+- Added support for secrets interpolation in service config
+
+### Versioning
+
+- Update to Node 23
+
+### Fixed
+
+- Errors raised by deep merge hook are now correctly logged
+
+## [2.6.6] - 2024-11-27
+
+### Security
+
+- Added SBOM and docker image sign
+- Fix vulnerabilities
+
+## [2.6.5] - 2024-09-03
+
+### Added
+
+- Added possibility to specify an optional JSON schema validation for incoming events payload
+- Added a setting to control whether or not unexpected events should throw an error
+
+## [2.6.4] - 2024-05-03
+
+### Added
+
+- Mia headers and request id proxied in commands and sideEffects (in both REST and Kafka modes)
+- Logs related to command hooks
+
+## [2.6.3] - 2023-11-22
+
+## [2.6.2] - 2023-11-22
+
+## [2.6.1] - 2023-11-22
+
+### Added
+
+- Added tag `Flow Manager` to all endpoints
+
+### Changed
+
+- Hidden endpoint `/configuration` from swagger 
+- Redacted `connectionUri` in case of `mongo` persistencyManagement configuration
+
+## [2.6.0] 2023-10-20
+
+### Added
+
+- Added support for side effects fired alongside commands
+- Added hook functions to build commands and side effects custom payload
+- Added possibility to deep merge saga metadata upon events reception
+
+### Fixed
+
+- convert a Buffer to string before logging it
+- add `tini` to Dockerfile
+
+## [2.5.1] 11-10-2023
+
+### Added
+
+- log `errorStack` on `upsertSaga` function
+- Improved configuration parsing error logging
+
+### Fixed
+
+- .npmrc file added to .dockerignore
+
+## [2.5.0] 03-05-2022
+
+### Added
+
+- crud persistency management configuration used to persist saga information through CRUD service.
+
+ 12-04-2022
+
+### SECURITY FIX
+
+- removed Kafka credential exposition from configuration endpoints
+
+### Deprecated
+
+- `/configuration` endpoint has been deprecated
+
+### Added
+
+- `/machine-definition` endpoint
+
+### Fixed
+
+- unexpected producer registration when using REST communication protocol
+
+## [2.4.1] 07-04-2022
+
+### Added
+
+- Added `incoming_message_label` to the `flow_manager_saga_states_total` metrics.
+
+### Changed
+
+- Now a crash event in the consumer sets the healthiness of the pod to false.
+
+## [2.4.0] 22-03-2022
+
+### Changed
+
+- probes route now dependent on Kafka connection status in order to restart the pod if connection with Kafka drops
+
+## [2.3.1] 15-03-2022
+
+### Added
+
+- New prometheus metric `flow_manager_saga_states_total` to track the number of times sagas pass through a machine state
+
+### Updated
+
+- custom plugin lib v4.3.2
+
+## [2.3.0] 22-09-2021
+
+### Changed
+
+- [Issue 25](https://git.tools.mia-platform.eu/platform/core/flow-manager/-/issues/25): now the kafka brokers into the service configurations can be one of the following:
+  - a list of strings that represent the kafka brokers
+  - a string with the comma separated value brokers
+
+## [2.2.0] 05-05-2021
+
+### Added
+
+- Persistency Manager support to MongoDB
+
+## [2.1.3] 04-03-2021
+
+### Updated
+
+- custom-plugin-lib: v2.0.4
+
+## [2.1.2] 18-01-2020
+
+### Added
+
+- add custom kafka logger to follow mia-platform logs guidelines
+
+## [2.1.1] 20-11-2020
+
+### Fixed
+
+- removed consumerGroup requirement for kafka producer
+
+## [2.1.0] 15-10-2020
+
+### Added
+
+- defined new route to expose flow-manager state machine configuration
+
+## [2.0.2] 13-10-2020
+
+### Updated
+
+- custom-plugin-lib: v2.0.4
+
+## [2.0.1] 02-10-2020
+
+### Updated
+
+- custom-plugin-lib: v2.0.3
+
+## [2.0.0] 30-09-2020
+
+### Added
+
+- concept of Business Events
+
+### Updated
+
+**BREAKING CHANGE**
+
+- updated custom-plugin-lib dependency to 2.0.2. The update in breaking since it's bringing up lc39 v3.x with the newer logging format.
+- updated flow history format
+
+## [1.1.0] 11-09-2020
+
+### Added
+
+- support for REST trigger
+- flow history
+
+## [1.0.0] 17-07-2020
+
+- First import

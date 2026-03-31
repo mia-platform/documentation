@@ -1,8 +1,8 @@
-import { execSync } from "node:child_process"
+import { execSync } from 'node:child_process'
 import fs from 'node:fs/promises'
 
 import { confirm, select } from "@inquirer/prompts"
-import { inc, major, minor, satisfies } from "semver"
+import { inc, major, minor } from "semver"
 
 import _versionsMap from '../../versionsMap.json'
 import { isCurrentVersionLts, isNextVersionAPatchOfCurrent, updateReleaseNoteLinks, VersionsMap } from "./lib"
@@ -79,7 +79,7 @@ const main = async () => {
   // Update `versionsMap.json`
   const updatedVersionsMap = await import('../../versionsMap.json') as VersionsMap
 
-  let newVersionsMap: VersionsMap = { 
+  let newVersionsMap: VersionsMap = {
     current: updatedVersionsMap.current, 
     next: newVersion, 
     lts: newLtsRange ? [...updatedVersionsMap.lts!, newLtsRange] : updatedVersionsMap.lts
