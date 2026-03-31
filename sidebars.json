@@ -2320,7 +2320,7 @@
     {
       "label": "Best Practices",
       "type": "category",
-      "collapsed": false,
+      "collapsed": true,
       "link": {
         "id": "products/fast_data_v2/best_practices/overview",
         "type": "doc"
