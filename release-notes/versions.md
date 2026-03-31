@@ -9,6 +9,15 @@ import Changelog from '@site/src/components/Changelog';
 
 <Changelog>
 
+## [v14.5.3](/release-notes/v14.5.3.mdx)
+*March 30th, 2026*
+
+This release includes bug fixes for the **Console**, addressing issues with the merge tool, permission notifications, and configuration state handling in the Design Area.
+
+[Read the release notes](/release-notes/v14.5.3.mdx)
+
+---
+
 ## [v14.5.2](/release-notes/v14.5.2.mdx)
 *March 25th, 2026*
 
