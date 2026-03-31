@@ -62,4 +62,4 @@ Here are some useful links to start adopting Runtime Management features into yo
 - visit the [Control Plane UI documentation](/products/fast_data_v2/runtime_management/control_plane_ui.md) to learn how to interact with the Control Plane frontend interface and manage your Fast Data pipelines;
 - visit the [Application Configuration documentation](/products/fast_data_v2/runtime_management/application_configuration.md) to understand how to configure the Control Plane application and to enable the communication with the Fast Data Engine workloads;
 - visit the [Compatibility Matrix](/products/fast_data_v2/runtime_management/compatibility_matrix.md) to check whether your infrastructure and Fast Data v2 services are compatible with the Runtime Management features;
-- visit the [Best Practices documentation](/products/fast_data_v2/best_practices/overview) for recommendations on initial load strategies, monitoring approaches, and optimization techniques.
+- visit the [Best Practices documentation](/products/fast_data_v2/best_practices/overview.md) for recommendations on initial load strategies, monitoring approaches, and optimization techniques.

@@ -7,7 +7,7 @@ sidebar_label: Initial Load & Full Refresh Operations
 While you are evolving your Fast Data pipelines, you may need to perform a re-ingestion of all messages previously ingested into the system.
 For example, you need to update a filter logic to refine data subsets, restructure how aggregations are organized, optimize storage by pruning obsolete records, fix transformation bugs, or generally evolve your Single View schema.
 
-Expecially in production environment, during Initial Load / Full Refresh processes it is extremely important not to lose the **Near Real-Time (NRT)operational continuity** from what is changing on the data sources ingested by your Fast Data Pipeline.
+Especially in production environment, during Initial Load / Full Refresh processes it is extremely important not to lose the **Near Real-Time (NRT)operational continuity** from what is changing on the data sources ingested by your Fast Data Pipeline.
 
 ## Full Refresh architectural pattern
 
@@ -39,8 +39,8 @@ Some final considerations:
 ## Controlled Initialization
 
 When performing an _Initial Load_ process, you can even use the same architecture shown in the previous diagram.
-During pipeline inizialization, every Fast Data workload can be configured with a default **paused** runtime state. This is managed via the **`onCreate`** parameter within each microservice's **ConfigMap**. By initializing flows in a paused state, you ensure that no workload begins consuming data immediately after deployment, allowing for manual orchestration.
-Then, start resuming the first execution steps: the NRT layer will start consuming messages from the input topic; the backup one will start too, butt remind keeping in a paused state its final process (not useful during a pipeline inizialization).
+During pipeline initialization, every Fast Data workload can be configured with a default **paused** runtime state. This is managed via the **`onCreate`** parameter within each microservice's **ConfigMap**. By initializing flows in a paused state, you ensure that no workload begins consuming data immediately after deployment, allowing for manual orchestration.
+Then, start resuming the first execution steps: the NRT layer will start consuming messages from the input topic; the backup one will start too, butt remind keeping in a paused state its final process (not useful during a pipeline initialization).
 
 ## Iterative Pipeline Activation
 
