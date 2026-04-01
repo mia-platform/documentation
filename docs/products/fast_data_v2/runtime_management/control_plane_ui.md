@@ -156,7 +156,7 @@ The pipeline provides **Pause Data Consumption** and **Resume Data Consumption**
 Pause and Resume buttons are available whenever you click on a pipeline step that supports runtime state control for specific data flows.  
 Additionally, for the Aggregate execution step, these same controls are also available directly within the Aggregation Graph Canvas, providing enhanced utility for managing Initial Load and Full Refresh scenarios, allowing for more efficient and optimized runtime control in these and other operational scenarios.
 
-For more detailed operational strategies and best practices on using these runtime controls effectively, visit the [Best Practices documentation](/products/fast_data_v2/runtime_management/best_practices.md).
+For more detailed operational strategies and best practices on using these runtime controls effectively, visit the [Best Practices documentation](/products/fast_data_v2/best_practices/overview.md).
 
 ## Navigating UI
 

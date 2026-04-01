@@ -9,8 +9,17 @@ import Changelog from '@site/src/components/Changelog';
 
 <Changelog>
 
+## [v14.5.3](/release-notes/v14.5.3.mdx)
+*March 30th, 2026*
+
+This release includes bug fixes for the **Console**, addressing issues with the merge tool, permission notifications, and configuration state handling in the Design Area.
+
+[Read the release notes](/release-notes/v14.5.3.mdx)
+
+---
+
 ## [v14.5.2](/release-notes/v14.5.2.mdx)
-*March 05th, 2026*
+*March 25th, 2026*
 
 This release adds **Orchestrator Generator** features improvements and enriches **Console Webhooks** payloads with user information.  
 There are some bugfixes regarding some Console permission issues for Maintainer role, and a fix for the merge from another revision feature.  
