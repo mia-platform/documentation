@@ -2314,9 +2314,28 @@
         {
           "id": "products/fast_data_v2/runtime_management/compatibility_matrix",
           "type": "doc"
+        }
+      ]
+    },
+    {
+      "label": "Best Practices",
+      "type": "category",
+      "collapsed": true,
+      "link": {
+        "id": "products/fast_data_v2/best_practices/overview",
+        "type": "doc"
+      },
+      "items": [
+        {
+          "id": "products/fast_data_v2/best_practices/pipeline_development_testing",
+          "type": "doc"
         },
         {
-          "id": "products/fast_data_v2/runtime_management/best_practices",
+          "id": "products/fast_data_v2/best_practices/initial_load_full_refresh",
+          "type": "doc"
+        },
+        {
+          "id": "products/fast_data_v2/best_practices/system_optimization_reliability",
           "type": "doc"
         }
       ]
