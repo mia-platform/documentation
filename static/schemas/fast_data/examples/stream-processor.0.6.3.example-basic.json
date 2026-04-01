@@ -1,0 +1,28 @@
+{
+  "connections": {
+    "kafka-main": {
+      "type": "kafka",
+      "config": {
+        "bootstrap.servers": "localhost:9092"
+      }
+    }
+  },
+  "consumer": {
+    "type": "kafka",
+    "connectionName": "kafka-main",
+    "topic": "input-topic",
+    "config": {
+      "group.id": "stream-processor-consumer-group",
+      "auto.offset.reset": "earliest"
+    }
+  },
+  "producer": {
+    "type": "kafka",
+    "connectionName": "kafka-main",
+    "topic": "output-topic",
+    "partitionerSettings": "all"
+  },
+  "processor": {
+    "type": "javascript"
+  }
+}
