@@ -22,7 +22,7 @@ Please ensure that your services respect the following matrix.
 
 | [Control Plane Frontend](/products/fast_data_v2/runtime_management/application_configuration.md) | [Control Plane](/products/fast_data_v2/runtime_management/application_configuration.md) | [Mongezium](/products/fast_data_v2/mongezium_cdc/10_Overview.md) | [Stream Processor](/products/fast_data_v2/stream_processor/10_Overview.md) | [Farm Data](/products/fast_data_v2/farm_data/10_Overview.md) | [Kango](/products/fast_data_v2/kango/10_Overview.md) |
 |:----------------------:|:-------------------:|:----------------------------------------------------------:|:---------------------------------------------------------------------:|:------------------------------------------------------:|:----------------------------------------------:|
-|         0.2.0          |        0.2.0-mongodb        |                          \>=0.5.0                          |                                \>=0.6.0                                |                        \>=0.6.0                        |                    \>=0.6.0                    |
+|         0.2.0          |        0.2.0-mongodb        |                          \>=0.5.0                          |                                \>=0.6.3                                |                        \>=0.6.2                        |                    \>=0.6.2                    |
 |         0.1.3          |        0.1.1-mongodb        |                          \>=0.5.0                          |                                \>=0.6.0                                |                        \>=0.6.0                        |                    \>=0.6.0                    |
 
 ## Service Latest Versions
