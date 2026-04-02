@@ -10,11 +10,18 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [0.6.3] - 2026-03-10
+## [0.6.3] - 2026-03-31
 
 ### Added
 
-- Added custom partitioner support for Kafka producer
+- Updated `pipeline-workload` dependency
+- Custom partitioner now also supports `lowerHalf` and `upperHalf` values
+- Support configurable custom partitioner for producer
+
+### Fixed
+
+- Solved build error in tests after updating `pipeline-workload`
+- Updated `zlib` to fix a known vulnerability
 
 ## [0.6.2] - 2026-02-27
 

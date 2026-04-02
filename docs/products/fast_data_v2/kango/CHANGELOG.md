@@ -9,6 +9,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.6.2] - 2026-03-31
+
+### Fixed
+
+- Installed `curl-dev` to fix pipeline errors during operations with `rdkafka` lib
+- Installed `libcurl4-openssl-dev` during CI steps
+- Fixed build error in tests after updating `pipeline_workload`
+
 ## [0.6.1] - 2026-02-19
 
 ### Fixed

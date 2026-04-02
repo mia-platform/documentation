@@ -1,19 +1,31 @@
 ---
-id: v14.5.3
-title: Version 14.5.3 Release Notes
+id: v14.6.0
+title: Version 14.6.0 Release Notes
 image: "img/release-note-link-preview.png"
 ---
 
 import Accordion from '@site/src/components/Accordion/index.js';
-import dataAccordion from '@site/src/config/release-notes/release-note-v14-5-3.json';
+import dataAccordion from '@site/src/config/release-notes/release-note-v14-6-0.json';
 
-_April 02nd, 2026_
+_April Xth, 2026_
+
+## Data Catalog - Column Lineage
+
+The **Data Catalog** now supports **Column Lineage**, enabling users to inspect and trace upstream and downstream column relationships for a more granular, end-to-end view of their data.
+
+While the existing Table-level and System-of-Record-level lineage give a structural picture of how data flows across tables and systems, Column Lineage goes deeper: for each Job connecting two tables, users can now inspect and document exactly **which columns feed into which**, and **what kind of transformation** ties them together.
+
+![Column Lineage View](img/column-lineage-view.png)
+
+Discover all the details in the [Column Lineage documentation](/docs/next/products/data_catalog/frontend/data_lineage#column-lineage).
+
+## Other New Features, Improvements and Bug Fixes
 
 <Accordion data={dataAccordion} />
 
 ## How to update your Console
 
-For self-hosted installations, please head to the [self hosted upgrade guide](/docs/infrastructure/self-hosted/installation-chart/how-to-upgrade) or contact your Mia-Platform referent and upgrade to _Console Helm Chart_ `v15.0.11`.
+For self-hosted installations, please head to the [self hosted upgrade guide](/docs/infrastructure/self-hosted/installation-chart/how-to-upgrade) or contact your Mia-Platform referent and upgrade to _Console Helm Chart_ `vX.X.X`.
 
 ### Bill of materials
 
