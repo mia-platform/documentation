@@ -67,6 +67,15 @@ _Fast Data Jobs Sync_ is a procedure that generates [Open Lineage Jobs](https://
 This jobs can be linked to existing [Mia Platform CRUD connections](/products/data_catalog/frontend/data_catalog_connections.mdx#mia-platform)  where the proper namespace details have been defined,
 so that they can be accessible from the [Data Lineage section](/products/data_catalog/frontend/data_lineage.mdx).
 
+:::info
+Starting from Job Runner **v0.3.0**, Fast Data automatic jobs are processed to expose on the Data Lineage UI not only the source code automatically retrieved from the pipeline configurations, but also the **column lineage information** retrieved from the imported source code parsing, compliant with the [OpenLineage `ColumnLineageDatasetFacet`](https://openlineage.io/docs/spec/facets/dataset-facets/column_lineage_facet) standard.  
+For more details on how to navigate and interpret this information, refer to the [Column Lineage section](/products/data_catalog/frontend/data_lineage.mdx#column-lineage).
+:::
+
+:::caution
+If you have an instance of Data Catalog Application that is already running with a version of Job Runner **prior to v0.3.0**, in order to have the column lineage information available on the Data Lineage UI, you need to trigger the _Fast Data Jobs Sync_ procedure for the existing pipelines. This operation will update the existing jobs with the new column lineage information.
+:::
+
 #### Trigger Job
 
 To launch the _Fast Data Jobs Sync_ procedure you have to manually invoke the gRPC method.

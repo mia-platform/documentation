@@ -60,7 +60,7 @@ When navigating the lineage canvas, real and virtual assets are related each oth
   </div>
 </div>
 
-**Real Jobs** (displayed with a grey arrow in the image above) represent transformations or dependencies automatically inferred from runtime pipeline configurations. They are read-only within the lineage canvas, ensuring that the relationships accurately reflect the underlying physical processes. 
+**Real Jobs** (displayed with a grey arrow in the image above) represent transformations or dependencies automatically inferred from runtime pipeline configurations. They are **read-only** within the lineage canvas, ensuring that the relationships accurately reflect the underlying physical processes. 
 
 For each Real Job, users can inspect a detailed view that includes the job producer, a description and a snippet of code, if retrieved, showcasing the logic of the transformation. This transparency allows users to understand exactly how data flows between tables and ensures that relationships are grounded in real-world configurations.  
 
@@ -165,7 +165,10 @@ As already reported, a virtual job can be automatically created during the creat
 
 ![Managing Virtual Jobs](./../img/managing-virtual-jobs.png)
 
-Once created, user can define a description for the new created job.
+Once created, user can:
+- rename the job name
+- provide a description for the new created job
+- enrich it with column-level lineage (see next paragraphs to know more about Column Lineage feature)
 
 :::info
 Please remind that jobs management feature is **available only for virtual Jobs**.
@@ -178,6 +181,97 @@ User can also delete a virtual job. The `Delete Job` button is present inside th
 :::info
 If a relationship between tables is defined solely by one Virtual Job, the deletion of that Virtual Job implies the automatic removal of the related table from the canvas, but it remains present among the Data Catalog assets.
 :::
+
+## Column Lineage
+
+The **Column Lineage** feature provides a granular, field-level view of how individual columns relate to each other across tables, offering detailed insight into the transformations applied within each Job.
+
+### Upstream and Downstream Column Lineage
+
+When accessing the lineage detail page of the Base Table, a **Column lineage** button appears directly on that table within the lineage canvas.
+
+![Column Lineage Button](./../img/column-lineage-button.png)
+
+Clicking it opens the **Columns lineage**, centered on the selected table as the base asset.
+This detail page organizes column relationships into two tabs:
+
+- **Upstream**: lists all column-level relationships from tables that feed data **into** the base table.
+- **Downstream**: lists all column-level relationships flowing **out of** the base table toward other tables.
+
+![Column Lineage View](./../img/column-lineage-view.png)
+
+Each row in the list displays:
+- the **Source** column, with its full namespace from the Storage Layer down to its containing table
+- the **Target** column, with the same namespace notation
+- the **Type** of transformation applied (e.g. `IDENTITY`, `CONDITIONAL`, `AGGREGATION`, `FILTER`, `GROUP_BY`, `JOIN`, `SORT`, `TRANSFORMATION`)
+- the **Job** name, rendered as a link to navigate directly to the job detail
+- an optional collapsible **Description**, providing additional context about the relationship.
+
+:::info
+The transformation **Type** values defined for each column relationship are compliant with the [OpenLineage](https://openlineage.io/) standard. Specifically, they follow the `transformationType` field of the [`ColumnLineageDatasetFacet`](https://openlineage.io/docs/spec/facets/dataset-facets/column_lineage_facet) specification, ensuring interoperability with other tools and pipelines that adopt the OpenLineage standard.
+:::
+
+A **search bar** at the top-right of the modal allows filtering the visible rows by free text. The match is performed against column names, job names, and description content. When a match is found within a description, the corresponding row is automatically expanded and the matching portion of text is highlighted.
+
+![Column Lineage Search](./../img/column-lineage-search.png)
+
+The Upstream and Downstream visualization is **read-only**. In order to edit a specific relation / job, click on the reported job name and the link allows you to access the detail editing section of that specific job to modify the enriched lineage information.
+
+:::note
+As previously reported, **real-jobs** are **read-only**, so it is not possible to modify their automatically inferred lineage information.
+:::
+
+### Editing Column Lineage for Virtual Jobs
+
+For **Virtual Jobs**, users with enough permissions can define column-level relationships by clicking **Edit columns lineage** from the job detail panel. 
+
+![Column Lineage Edit Button](./../img/column-lineage-edit-button.png)
+
+This opens a modal where it is possible to:
+
+- **Add** new column relationships via the `+ Add relation` button, specifying the Source column, Target column, and transformation Type for each entry.
+- **Modify** existing relationships by changing selected values.
+- **Remove** existing relationships using the delete icon on each row.
+
+![Column Lineage Edit View](./../img/column-lineage-edit-view.png)
+
+When defining the **Source** and **Target** columns for each relationship, the editing experience adapts based on the nature of the connected tables:
+
+- If the table (source or target) is a **real asset**, the column field is presented as a **dropdown** listing the columns actually retrieved for that table in the Data Catalog. Only existing columns can be selected.
+- If the table (source or target) is a **virtual asset**, the column field is a **free text input**, since virtual assets have no columns defined in the Data Catalog and users are free to specify any column name.
+
+Once the relationships are defined, click **Set relations** button to save the changes for the Virtual Job.
+
+:::info
+Column lineage editing is **only available for Virtual Jobs**. Relationships belonging to Real Jobs are always displayed in read-only mode.
+:::
+
+#### Importing and Exporting Column Lineage via CSV
+
+Column lineage relations for a Virtual Job can be managed in bulk through CSV import and export.
+
+![Column Lineage Import](./../img/column-lineage-import.png)
+
+##### Import from CSV
+
+The **Import from CSV** action allows populating all column relationships for a given Virtual Job at once by uploading a `.csv` file. The file must respect the following structure:
+
+- Row 1 must contain the header with exactly these column names: `Source`, `Target`, `Type`, `Description`
+- Each subsequent row represents one relationship, where:
+  - `Source` is the name of the source column
+  - `Target` is the name of the target column
+  - `Type` is the transformation type (must be one of the `transformationType` fields of the [`ColumnLineageDatasetFacet`](https://openlineage.io/docs/spec/facets/dataset-facets/column_lineage_facet) specification)
+  - `Description` is an optional free-text field to include more details about the relationship
+
+If the uploaded file does not comply with this structure, an error is shown in the UI explaining why the file is not valid.
+
+An additional validation is applied on column names: if a row references a column that **does not exist** in the Data Catalog for a **real asset** (whether it is the source or the target table), the import fails with a descriptive error message. Column names are only free-form for **virtual assets**, consistently with the behavior of the manual editing flow.
+
+When **relations are already present**, a confirmation message warns the user that the entire existing content will be **overwritten** by the content of the imported file before the operation is confirmed.
+
+##### Export to CSV
+
+The **Export to CSV** action generates a `.csv` file containing all the column relationships currently defined for the specific Virtual Job, using the same structure described above (`Source`, `Target`, `Type`, `Description`). This makes it straightforward to back up, share, or edit the lineage information externally and re-import it later.
 
 ## System-of-Record-Level Lineage
 
@@ -201,6 +295,10 @@ In case tables belonging to the same SoR are related each other, inside the SoR-
 ![SoR Lineage Internal Jobs](./../img/sor-lineage-internal-jobs.png)
 
 While no modifications can be made at this level, the SoR Lineage provides critical insights into how data moves across systems, helping users identify areas for optimization or further investigation.
+
+### Column Lineage at SoR Level
+
+Column lineage information is also accessible when navigating the lineage at the **System of Record level**. In this context, the column-level details for each job — both Real and Virtual — are displayed in **read-only** mode, using the same visual style as the table-level canvas.
 
 ## Key Scenarios and Examples
 
