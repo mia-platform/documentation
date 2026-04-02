@@ -20,7 +20,9 @@
           "title": "Fast Data Control Plane v2 Application",
           "description": [
             "The new versions of Fast Data Control Plane v2 services are available: `v0.2.0-mongodb` (and `v0.2.0`) of the _Control Plane_ service, and `v0.2.0` of the _Control Plane Frontend_ service.",
-            "The backend renames the ingestion stage to `cdc`. Pipeline specs can now carry Stream Processor producer configuration, feedbacks from multiple replicas of the same service are merged, and better desired states validation have been implemented.",
+            "- Pipeline specs can now carry Stream Processor producer configuration",
+            "- Feedbacks from multiple replicas of the same service are merged",
+            "- Desired states management has been improved supporting the case in which consumer group for a workload changes",
             "On the frontend side, a badge now shows the consumer group working status. Partition Settings are surfaced in the Process execution step drawer, and a warning icon highlights missing partition info.",
             "For more information about service latest versions, check out the [compatibility matrix](/docs/14.6.0/products/fast_data_v2/runtime_management/compatibility_matrix#service-latest-versions)."
           ]
