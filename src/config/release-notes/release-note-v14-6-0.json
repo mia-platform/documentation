@@ -20,10 +20,12 @@
           "title": "Fast Data Control Plane v2 Application",
           "description": [
             "The new versions of Fast Data Control Plane v2 services are available: `v0.2.0-mongodb` (and `v0.2.0`) of the _Control Plane_ service, and `v0.2.0` of the _Control Plane Frontend_ service.",
-            "- Pipeline specs can now carry Stream Processor producer configuration",
-            "- Feedbacks from multiple replicas of the same service are merged",
-            "- Desired states management has been improved supporting the case in which consumer group for a workload changes",
-            "On the frontend side, a badge now shows the consumer group working status. Partition Settings are surfaced in the Process execution step drawer, and a warning icon highlights missing partition info.",
+            "By upgrading to these versions, Fast Data users can benefit from the following improvements:",
+            "- Consumer lag is now easily accessible in the UI, with execution steps that start acquiring lag visually highlighted in the Control Plane canvas",
+            "- In case of multiple replicas for a workload, the reported lag is now calculated as the sum of all replicas lag feedback, providing a more accurate representation of the overall lag status",
+            "- A warning icon now highlights when partition info is missing from workload feedback.",
+            "- It has been fixed a bug that caused the impossibility to send control actions to a workload in case its consumer groupId was changed",
+            "- Stream Processor partition settings are now displayed among the details of a Process step",
             "For more information about service latest versions, check out the [compatibility matrix](/docs/14.6.0/products/fast_data_v2/runtime_management/compatibility_matrix#service-latest-versions)."
           ]
         },
