@@ -9,8 +9,18 @@ import Changelog from '@site/src/components/Changelog';
 
 <Changelog>
 
+## [v14.6.0](/release-notes/v14.6.0.mdx)
+*April 03rd, 2026*
+
+This release introduces **Column Lineage** in the Data Catalog, to inspect and trace both upstream and downstream column lineage to reach a more granular e2e data lineage picture.  
+For **Fast Data**, Stream Processor `v0.6.3` adds configurable custom partitioner support, Control Plane v2 reaches `v0.2.0` with several UI improvements, and Farm Data and Kango are updated to `v0.6.2`.
+
+[Read the release notes](/release-notes/v14.6.0.mdx)
+
+---
+
 ## [v14.5.3](/release-notes/v14.5.3.mdx)
-*March 30th, 2026*
+*April 03rd, 2026*
 
 This release includes bug fixes for the **Console**, addressing issues with the merge tool, permission notifications, and configuration state handling in the Design Area.
 

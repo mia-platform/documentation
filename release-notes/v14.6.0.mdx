@@ -1,19 +1,49 @@
 ---
-id: v14.5.3
-title: Version 14.5.3 Release Notes
+id: v14.6.0
+title: Version 14.6.0 Release Notes
 image: "img/release-note-link-preview.png"
 ---
 
 import Accordion from '@site/src/components/Accordion/index.js';
-import dataAccordion from '@site/src/config/release-notes/release-note-v14-5-3.json';
+import dataAccordion from '@site/src/config/release-notes/release-note-v14-6-0.json';
 
 _April 03rd, 2026_
+
+:::info
+
+Mia-Platform Console v14.6.0 is **now in Preview** and will be generally available on April 16th.
+
+Console SaaS users can try out v14.6.0 latest improvements in Preview! Open a Service Request to ask for the creation of a sandbox Company in case you do not have access to any Company.
+
+For self-hosted installations, please read the [following guidelines](#how-to-update-your-console).
+:::
+
+## Data Catalog - Column Lineage
+
+The **Data Catalog** now supports **Column Lineage**, enabling users to inspect and trace upstream and downstream column relationships for a more granular, end-to-end view of their data.
+
+While the existing Table-level and System-of-Record-level lineage give a structural picture of how data flows across tables and systems, Column Lineage goes deeper: for each Job connecting two tables, users can now inspect and document exactly **which columns feed into which**, and **what kind of transformation** ties them together.
+
+![Column Lineage View](img/column-lineage-view.png)
+
+Discover all the details in the [Column Lineage documentation](/docs/14.6.0/products/data_catalog/frontend/data_lineage#column-lineage).
+
+:::note
+To leverage the Column Lineage capabilities, make sure to have upgraded the following services:
+- **Open Lineage v0.5.0**
+- **Data Catalog Frontend v0.5.0**
+- **Job Runner v0.3.0**
+
+Refer to the [Data Catalog compatibility matrix](/docs/14.6.0/products/data_catalog/data_catalog_compatibility_matrix#service-latest-versions) section below for more details about latest services versions.
+:::
+
+## Other New Features, Improvements and Bug Fixes
 
 <Accordion data={dataAccordion} />
 
 ## How to update your Console
 
-For self-hosted installations, please head to the [self hosted upgrade guide](/docs/infrastructure/self-hosted/installation-chart/how-to-upgrade) or contact your Mia-Platform referent and upgrade to _Console Helm Chart_ `v15.0.11-hotfix.0`.
+For self-hosted installations, please head to the [self hosted upgrade guide](/docs/infrastructure/self-hosted/installation-chart/how-to-upgrade) or contact your Mia-Platform referent and upgrade to _Console Helm Chart_ `v15.0.12-beta.0`.
 
 ### Bill of materials
 
@@ -46,7 +76,7 @@ For self-hosted installations, please head to the [self hosted upgrade guide](/d
 | nexus.mia-platform.eu/console/scripts/configuration-history-cleaner     |  0.4.1   |
 | nexus.mia-platform.eu/console/scripts/marketplace-sync                  | 10.10.1  |
 | nexus.mia-platform.eu/console/scripts/mia-assistant-embeddings-importer |  latest  |
-| nexus.mia-platform.eu/console/scripts/software-catalog-sync             |  0.7.20  |
+| nexus.mia-platform.eu/console/scripts/software-catalog-sync             |  0.7.21  |
 | nexus.mia-platform.eu/console/scripts/version-upgrader                  |  11.1.5  |
 | nexus.mia-platform.eu/console/tenant-overview                           |  4.1.0   |
 | nexus.mia-platform.eu/core/authentication-service                       |  3.13.1  |
