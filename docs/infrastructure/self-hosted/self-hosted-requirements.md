@@ -75,7 +75,7 @@ Blanks cell in the following table are for tools that do not require a specific 
          <td></td>
       </tr>
       <tr>
-         <td rowspan="4"><strong>Git Provider</strong></td>
+         <td rowspan="5"><strong>Git Provider</strong></td>
          <td><img src="/img/gitlab.png" width="15" height="15"/> GitLab</td>
          <td>&gt;= 14.x<br/>&lt;= 18.x , SaaS</td>
          <td>4 cores</td>
@@ -100,6 +100,12 @@ Blanks cell in the following table are for tools that do not require a specific 
          <td>3 GB</td>
       </tr>
       <tr>
+         <td><img src="/img/bitbucket-server.ico" width="15" height="15"/> Bitbucket Cloud</td>
+         <td>SaaS</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
          <td rowspan="3"><strong>Secret Manager</strong></td>
          <td><img src="/img/gitlab.png" width="15" height="15"/> GitLab</td>
          <td>&gt;= 14.x<br/>&lt;= 18.x , SaaS</td>
@@ -119,7 +125,7 @@ Blanks cell in the following table are for tools that do not require a specific 
          <td></td>
       </tr>
       <tr>
-         <td rowspan="4"><strong>CI/CD Tool</strong></td>
+         <td rowspan="5"><strong>CI/CD Tool</strong></td>
          <td><img src="/img/gitlab.png" width="15" height="15"/> GitLab CI Runners</td>
          <td>&gt;= 14.x<br/>&lt;= 18.x , SaaS</td>
          <td>1 core</td>
@@ -140,6 +146,12 @@ Blanks cell in the following table are for tools that do not require a specific 
       <tr>
          <td><img src="/img/jenkins.png" width="15" height="15"/> Jenkins</td>
          <td>2.x</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <td><img src="/img/bitbucket-server.ico" width="15" height="15"/> Bitbucket Pipelines</td>
+         <td>SaaS</td>
          <td></td>
          <td></td>
       </tr>

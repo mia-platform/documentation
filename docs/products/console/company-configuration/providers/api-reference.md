@@ -182,12 +182,12 @@ As discussed [here](/products/console/company-configuration/providers/configure-
 different types of providers support different types of credentials.
 The following table shows the credential types supported by each provider, referring to the data model shown above:
 
-| Credentials Type   | Providers                                                             |
-| ------------------ |:---------------------------------------------------------------------:|
-| token              | gitlab, github, bitbucket, azure-devops, vault, jenkins               |
-| m2m                | vault                                                                 |
-| client_credentials | jenkins, azure-devops                                                 |
-| github-app         | github                                                                |
+| Credentials Type   | Providers                                                                          |
+| ------------------ |:----------------------------------------------------------------------------------:|
+| token              | gitlab, github, bitbucket, bitbucket-cloud, azure-devops, vault, jenkins           |
+| m2m                | vault                                                                              |
+| client_credentials | jenkins, azure-devops                                                              |
+| github-app         | github                                                                             |
 
 :::
 
@@ -262,21 +262,42 @@ Type Github App:
 ```
 
   </TabItem>
-  <TabItem value="bitbucket-server" label="BitBucket Server">
+  <TabItem value="bitbucket-server" label="Bitbucket Server">
 
 ```json
 {
   "id": "bitbucket-id",
-  "label": "My BitBucket Server Label",
+  "label": "My Bitbucket Server Label",
   "type": "bitbucket",
   "urls": {
     "apiBase": "https://bitbucket-test.com",
-    "base": "https://gitlab-test.com"
+    "base": "https://bitbucket-test.com"
   },
   "credentials": {
     "type": "token",
     "content": {
       "accessToken": "my-super-super-super-secret-token"
+    }
+  }
+}
+```
+
+  </TabItem>
+  <TabItem value="bitbucket-cloud" label="Bitbucket Cloud">
+
+```json
+{
+  "id": "bitbucket-cloud-id",
+  "label": "My Bitbucket Cloud Label",
+  "type": "bitbucket-cloud",
+  "urls": {
+    "apiBase": "https://api.bitbucket.org/2.0",
+    "base": "https://bitbucket.org"
+  },
+  "credentials": {
+    "type": "token",
+    "content": {
+      "accessToken": "my-bitbucket-cloud-app-password"
     }
   }
 }

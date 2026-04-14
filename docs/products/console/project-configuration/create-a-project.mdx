@@ -112,12 +112,23 @@ The Project creation process is divided into three phases:
 
     </TabItem>
 
-    <TabItem value="bitbucket" label="Bitbucket">
+    <TabItem value="bitbucket" label="Bitbucket Server">
 
       It corresponds to the **path where your Bitbucket Project is reachable** with the repository name appended: the pattern is _projects/project-code/repository-name_.
 
       For example, if your Project is reachable at the URL **`https://bitbucket.mia-platform.eu/projects/Test`**, <br/>
       and the repository is called `my-repository`, then the path must be **`projects/Test/my-repository`**.
+
+    </TabItem>
+
+    <TabItem value="bitbucket-cloud" label="Bitbucket Cloud">
+
+      It corresponds to the **workspace name** followed by the repository name: the pattern is _workspace-name/repository-name_.
+
+      In Bitbucket Cloud, repositories are organized under **workspaces** (similar to GitHub organizations). The workspace name is the unique identifier of your team or personal Bitbucket Cloud account and can be found in the URL of your repositories: `https://bitbucket.org/<workspace-name>/`.
+
+      For example, if your workspace is reachable at the URL **`https://bitbucket.org/mia-platform`**, <br/>
+      and the repository is called `my-project`, then the path must be **`mia-platform/my-project`**.
 
     </TabItem>
 
