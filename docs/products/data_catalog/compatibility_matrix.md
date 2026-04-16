@@ -30,7 +30,7 @@ Please ensure that versions shown in the matrix are respected in your deployed e
 | [Open Lineage](/products/data_catalog/data_catalog_open_lineage.mdx)  | 0.5.0   |
 | [Job Runner](/products/data_catalog/data_catalog_job_runner.mdx)      | 0.3.0   |
 | [Data Catalog Frontend](/products/data_catalog/frontend/overview.mdx) | 0.5.1   |
-| [Fabric Admin](/products/data_catalog/database_setup.mdx)             | 0.5.3   |
+| [Fabric Admin](/products/data_catalog/database_setup.mdx)             | 0.5.6   |
 
 ## Previous Releases
 
@@ -47,7 +47,7 @@ Data Catalog components.
 | [Open Lineage](/products/data_catalog/data_catalog_open_lineage.mdx)  | 0.5.0   |
 | [Job Runner](/products/data_catalog/data_catalog_job_runner.mdx)      | 0.3.0   |
 | [Data Catalog Frontend](/products/data_catalog/frontend/overview.mdx) | 0.5.0   |
-| [Fabric Admin](/products/data_catalog/database_setup.mdx)             | 0.5.3   |
+| [Fabric Admin](/products/data_catalog/database_setup.mdx)             | 0.5.6   |
 
 #### 2025-11-27 | v14.4.0
 
