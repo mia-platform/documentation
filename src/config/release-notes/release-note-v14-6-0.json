@@ -11,6 +11,7 @@
           "description": [
             "The new version `v0.6.3` of the _Stream Processor_ is available!",
             "This version introduces configurable [Custom Partitioner](/docs/products/fast_data_v2/stream_processor/usage#custom-partitioner) support for the Kafka producer, including the new `lowerHalf` and `upperHalf` partition selection values.",
+            "This feature enables the implementation of efficient architectural patterns and best practices to optimize [Initial Load and Full Refresh](/docs/products/fast_data_v2/best_practices/initial_load_full_refresh) processes while ensuring Near Real Time operational continuity.",
             "Check the service [changelog](/docs/products/fast_data_v2/stream_processor/changelog) for the full list of changes."
           ]
         }
