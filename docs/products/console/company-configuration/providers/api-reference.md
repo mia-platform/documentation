@@ -184,7 +184,7 @@ The following table shows the credential types supported by each provider, refer
 
 | Credentials Type   | Providers                                                                          |
 | ------------------ |:----------------------------------------------------------------------------------:|
-| token              | gitlab, github, bitbucket, bitbucket-cloud, azure-devops, vault, jenkins           |
+| token              | gitlab, github, bitbucket-datacenter, bitbucket-cloud, azure-devops, vault, jenkins|
 | m2m                | vault                                                                              |
 | client_credentials | jenkins, azure-devops                                                              |
 | github-app         | github                                                                             |
@@ -262,12 +262,12 @@ Type Github App:
 ```
 
   </TabItem>
-  <TabItem value="bitbucket-server" label="Bitbucket Server">
+  <TabItem value="bitbucket-datacenter" label="Bitbucket DataCenter">
 
 ```json
 {
   "id": "bitbucket-id",
-  "label": "My Bitbucket Server Label",
+  "label": "My Bitbucket DataceCenter Label",
   "type": "bitbucket",
   "urls": {
     "apiBase": "https://bitbucket-test.com",
@@ -297,7 +297,7 @@ Type Github App:
   "credentials": {
     "type": "token",
     "content": {
-      "accessToken": "my-bitbucket-cloud-app-password"
+      "accessToken": "my-bitbucket-cloud-token"
     }
   }
 }

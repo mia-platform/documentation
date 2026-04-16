@@ -63,7 +63,7 @@ Blanks cell in the following table are for tools that do not require a specific 
          <td></td>
       </tr>
       <tr>
-         <td><img src="/img/bitbucket-server.ico" width="15" height="15"/> Bitbucket Server</td>
+         <td><img src="/img/bitbucket-server.ico" width="15" height="15"/> Bitbucket DataCenter</td>
          <td>8.x</td>
          <td>2 cores</td>
          <td>3 GB</td>
@@ -94,7 +94,7 @@ Blanks cell in the following table are for tools that do not require a specific 
          <td></td>
       </tr>
       <tr>
-         <td><img src="/img/bitbucket-server.ico" width="15" height="15"/> Bitbucket Server</td>
+         <td><img src="/img/bitbucket-server.ico" width="15" height="15"/> Bitbucket DataCenter</td>
          <td>8.x</td>
          <td>2 cores</td>
          <td>3 GB</td>
