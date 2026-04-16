@@ -105,12 +105,21 @@ The Projects default configurations fields are:
 
     </TabItem>
 
-    <TabItem value="bitbucket" label="Bitbucket">
+    <TabItem value="bitbucket-datacenter" label="Bitbucket DataCenter">
 
       It corresponds to the **path where your Bitbucket Project is reachable**: the pattern is _projects/project-code_.
 
       For example, if your Project is reachable at the URL **`https://bitbucket.mia-platform.eu/projects/Test`**, <br/>
       then the `basePath` must be **`projects/Test`**.
+
+    </TabItem>
+
+    <TabItem value="bitbucket-cloud" label="Bitbucket Cloud">
+
+      It corresponds to the **workspace name** in Bitbucket Cloud.
+
+      For example, if your workspace is reachable at the URL **`https://bitbucket.org/mia-platform`**, <br/>
+      then the `basePath` must be **`mia-platform`**.
 
     </TabItem>
 
@@ -165,7 +174,7 @@ The Projects default configurations fields are:
     ```
 
   </TabItem>
-  <TabItem value="bitbucket" label="Bitbucket">
+  <TabItem value="bitbucket-datacenter" label="Bitbucket DataCenter">
 
     ```json
     {
@@ -173,6 +182,18 @@ The Projects default configurations fields are:
       "type": "bitbucket",
       "visibility": "internal",
       "basePath": "projects/Test"
+    }
+    ```
+
+  </TabItem>
+  <TabItem value="bitbucket-cloud" label="Bitbucket Cloud">
+
+    ```json
+    {
+      "providerId": "my-bitbucket-cloud",
+      "type": "bitbucket-cloud",
+      "visibility": "private",
+      "basePath": "my-workspace"
     }
     ```
 
@@ -258,6 +279,15 @@ The Projects default configurations fields are:
     "options": {
       "view": { "name": "my-view" }
     }
+  }
+  ```
+  </TabItem>
+  <TabItem value="bitbucket-cloud" label="Bitbucket Cloud">
+
+  ```json
+  {
+    "providerId": "my-bitbucket-cloud",
+    "type": "bitbucket-pipelines"
   }
   ```
   </TabItem>

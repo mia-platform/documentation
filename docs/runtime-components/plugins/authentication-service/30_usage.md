@@ -330,7 +330,7 @@ This behavior works only with the OIDC compliant providers. Please refer to your
 
 The following providers have no support for this feature:
 
-- Bitbucket Server
+- Bitbucket DataCenter
 - Github
 - Gitlab
 

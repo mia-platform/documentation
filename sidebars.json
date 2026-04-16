@@ -765,6 +765,10 @@
             {
               "id": "products/console/deploy/pipeline-based/configure-azure-pipelines",
               "type": "doc"
+            },
+            {
+              "id": "products/console/deploy/pipeline-based/configure-bitbucket-pipelines",
+              "type": "doc"
             }
           ]
         },
