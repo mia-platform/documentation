@@ -7,16 +7,31 @@ image: "img/release-note-link-preview.png"
 import Accordion from '@site/src/components/Accordion/index.js';
 import dataAccordion from '@site/src/config/release-notes/release-note-v14-7-0.json';
 
-_April 2026_
+_April 16th, 2026_
 
 :::info
 
-Mia-Platform Console v14.7.0 is **now in Preview** and will be generally available soon.
+Mia-Platform Console v14.7.0 is **now in Preview** and will be generally available on April 29th.
 
 Console SaaS users can try out v14.7.0 latest improvements in Preview! Open a Service Request to ask for the creation of a sandbox Company in case you do not have access to any Company.
 
 For self-hosted installations, please read the [following guidelines](#how-to-update-your-console).
 :::
+
+## Bitbucket Cloud support in Console
+
+Console now supports **Bitbucket Cloud** as both a **Git Provider** and a **CI/CD Tool**, enabling teams that rely on Bitbucket to fully integrate their project workflows, from repository provisioning to pipeline execution.
+
+![Bitbucket Cloud support](img/bitbucket-cloud-support.png)
+
+Configuring Bitbucket Cloud as a Git Provider allows users to set up Console Projects whose Git repositories reside in a Bitbucket workspace.  
+For CI/CD, Console will trigger Bitbucket pipeline executions on the target repository at deploy time, following the same flow already available for other supported providers.
+
+:::info
+Bitbucket Cloud is supported exclusively for **Enhanced Workflow Projects**.
+:::
+
+Discover how to configure Bitbucket Cloud as a Git Provider and set up Bitbucket Pipelines in the [Configure a Provider](/docs/next/products/console/company-configuration/providers/management) and Configure Bitbucket Pipelines documentation pages.
 
 ## Other New Features, Improvements and Bug Fixes
 
@@ -24,7 +39,7 @@ For self-hosted installations, please read the [following guidelines](#how-to-up
 
 ## How to update your Console
 
-For self-hosted installations, please head to the [self hosted upgrade guide](/docs/infrastructure/self-hosted/installation-chart/how-to-upgrade) or contact your Mia-Platform referent and upgrade to _Console Helm Chart_ `v15.0.x`.
+For self-hosted installations, please head to the [self hosted upgrade guide](/docs/next/infrastructure/self-hosted/installation-chart/how-to-upgrade) or contact your Mia-Platform referent and upgrade to _Console Helm Chart_ `v15.0.13-beta.0`.
 
 ### Bill of materials
 

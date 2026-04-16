@@ -1,1 +1,15 @@
-[]
+[
+  {
+    "title": "Data Catalog",
+    "icon": "data-catalog",
+    "defaultOpen": false,
+    "type": "versions",
+    "items": {
+      "newFeatures": [],
+      "improvements": [],
+      "bugFixes": [
+        "The new version `v0.5.1` of _Data Catalog Frontend_ is available for Data Catalog Application, including minor bug fixes related to lineage navigation. Refer to the [Data Catalog compatibility matrix](/docs/next/products/data_catalog/data_catalog_compatibility_matrix#service-latest-versions) section below for more details about latest services versions."
+      ]
+    }
+  }
+]
