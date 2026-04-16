@@ -88,7 +88,7 @@ Navigate to **Administration** > **Providers** and click **Add Provider connecti
 
 ![Providers page with a call to action to add a new provider.](./img/tutorial-configure-new-company/configure-provider-1.png)
 
-In the first step, **Provider Services**, you will select the external tool you wish to integrate. The Console supports a variety of services, including popular Git providers like GitLab and GitHub, CI/CD tools such as Jenkins and secret managers like Vault.
+In the first step, **Provider Services**, you will select the external tool you wish to integrate. The Console supports a variety of services, including popular Git providers like GitLab, GitHub, and Bitbucket Cloud, CI/CD tools such as Jenkins, Bitbucket Pipelines, and secret managers like Vault.
 
 :::info
 For the purpose of this tutorial, we will configure a single GitLab instance to handle all three core capabilities: **Git Provider**, **CI/CD Tool** and **Secret Manager**. It is important to note that the platform is designed to be flexible. You can configure multiple, distinct providers and assign them to different capabilities, allowing you to adopt a "best-of-breed" approach (for example, using GitHub for source control, GitLab for CI/CD pipelines and Vault for secret management).
