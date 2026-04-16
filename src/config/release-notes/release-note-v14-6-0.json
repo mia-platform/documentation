@@ -10,8 +10,8 @@
           "title": "Stream Processor v0.6.3",
           "description": [
             "The new version `v0.6.3` of the _Stream Processor_ is available!",
-            "This version introduces configurable [Custom Partitioner](/docs/14.6.0/products/fast_data_v2/stream_processor/usage#custom-partitioner) support for the Kafka producer, including the new `lowerHalf` and `upperHalf` partition selection values.",
-            "Check the service [changelog](/docs/14.6.0/products/fast_data_v2/stream_processor/changelog) for the full list of changes."
+            "This version introduces configurable [Custom Partitioner](/docs/products/fast_data_v2/stream_processor/usage#custom-partitioner) support for the Kafka producer, including the new `lowerHalf` and `upperHalf` partition selection values.",
+            "Check the service [changelog](/docs/products/fast_data_v2/stream_processor/changelog) for the full list of changes."
           ]
         }
       ],
@@ -26,21 +26,21 @@
             "- A warning icon now highlights when partition info is missing from workload feedback.",
             "- It has been fixed a bug that caused the impossibility to send control actions to a workload in case its consumer groupId was changed",
             "- Stream Processor partition settings are now displayed among the details of a Process step",
-            "For more information about service latest versions, check out the [compatibility matrix](/docs/14.6.0/products/fast_data_v2/runtime_management/compatibility_matrix#service-latest-versions)."
+            "For more information about service latest versions, check out the [compatibility matrix](/docs/products/fast_data_v2/runtime_management/compatibility_matrix#service-latest-versions)."
           ]
         },
         {
           "title": "Farm Data v0.6.2",
           "description": [
             "The new version `v0.6.2` of _Farm Data_ is available with dependency updates.",
-            "Check the service [changelog](/docs/14.6.0/products/fast_data_v2/farm_data/changelog) for the full list of changes."
+            "Check the service [changelog](/docs/products/fast_data_v2/farm_data/changelog) for the full list of changes."
           ]
         },
         {
           "title": "Kango v0.6.2",
           "description": [
             "The new version `v0.6.2` of _Kango_ is available with build and CI pipeline fixes.",
-            "Check the service [changelog](/docs/14.6.0/products/fast_data_v2/kango/changelog) for the full list of changes."
+            "Check the service [changelog](/docs/products/fast_data_v2/kango/changelog) for the full list of changes."
           ]
         }
       ],

@@ -9,8 +9,18 @@ import Changelog from '@site/src/components/Changelog';
 
 <Changelog>
 
+## [v14.7.0](/release-notes/v14.7.0.mdx)
+*April 16th, 2026*
+
+This release introduces **Bitbucket Cloud** support in the Console, both as a **Git Provider** and a **CI/CD Tool**, enabling teams to integrate their Bitbucket-based workflows directly into Console Projects.  
+For the **Data Catalog**, a new version `v0.5.1` of the _Data Catalog Frontend_ is available with minor bug fixes related to lineage navigation.
+
+[Read the release notes](/release-notes/v14.7.0.mdx)
+
+---
+
 ## [v14.6.0](/release-notes/v14.6.0.mdx)
-*April 03rd, 2026*
+*April 16th, 2026*
 
 This release introduces **Column Lineage** in the Data Catalog, to inspect and trace both upstream and downstream column lineage to reach a more granular e2e data lineage picture.  
 For **Fast Data**, Stream Processor `v0.6.3` adds configurable custom partitioner support, Control Plane v2 reaches `v0.2.0` with several UI improvements, and Farm Data and Kango are updated to `v0.6.2`.

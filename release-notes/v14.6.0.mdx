@@ -7,16 +7,7 @@ image: "img/release-note-link-preview.png"
 import Accordion from '@site/src/components/Accordion/index.js';
 import dataAccordion from '@site/src/config/release-notes/release-note-v14-6-0.json';
 
-_April 03rd, 2026_
-
-:::info
-
-Mia-Platform Console v14.6.0 is **now in Preview** and will be generally available on April 16th.
-
-Console SaaS users can try out v14.6.0 latest improvements in Preview! Open a Service Request to ask for the creation of a sandbox Company in case you do not have access to any Company.
-
-For self-hosted installations, please read the [following guidelines](#how-to-update-your-console).
-:::
+_April 16th, 2026_
 
 ## Data Catalog - Column Lineage
 
@@ -26,15 +17,19 @@ While the existing Table-level and System-of-Record-level lineage give a structu
 
 ![Column Lineage View](img/column-lineage-view.png)
 
-Discover all the details in the [Column Lineage documentation](/docs/14.6.0/products/data_catalog/frontend/data_lineage#column-lineage).
+Discover all the details in the [Column Lineage documentation](/docs/products/data_catalog/frontend/data_lineage#column-lineage).
 
 :::note
 To leverage the Column Lineage capabilities, make sure to have upgraded the following services:
 - **Open Lineage v0.5.0**
 - **Data Catalog Frontend v0.5.0**
 - **Job Runner v0.3.0**
+- **Fabric BFF v0.4.0**
+- **Fabric Admin cronjob v0.5.6**
 
-Refer to the [Data Catalog compatibility matrix](/docs/14.6.0/products/data_catalog/data_catalog_compatibility_matrix#service-latest-versions) section below for more details about latest services versions.
+When updating from previous versions, run the [Fabric Admin cronjob](/docs/products/data_catalog/dc_database_setup). Then, for visualizing column lineage information of Fast Data automatic jobs, run the fast-data-job-sync (more info [here](/docs/products/data_catalog/data_catalog_job_runner#fast-data-jobs-sync)).
+
+Refer to the [Data Catalog compatibility matrix](/docs/products/data_catalog/data_catalog_compatibility_matrix#service-latest-versions) section below for more details about latest services versions.
 :::
 
 ## Other New Features, Improvements and Bug Fixes
@@ -43,7 +38,7 @@ Refer to the [Data Catalog compatibility matrix](/docs/14.6.0/products/data_cata
 
 ## How to update your Console
 
-For self-hosted installations, please head to the [self hosted upgrade guide](/docs/infrastructure/self-hosted/installation-chart/how-to-upgrade) or contact your Mia-Platform referent and upgrade to _Console Helm Chart_ `v15.0.12-beta.0`.
+For self-hosted installations, please head to the [self hosted upgrade guide](/docs/infrastructure/self-hosted/installation-chart/how-to-upgrade) or contact your Mia-Platform referent and upgrade to _Console Helm Chart_ `v15.0.12`.
 
 ### Bill of materials
 
