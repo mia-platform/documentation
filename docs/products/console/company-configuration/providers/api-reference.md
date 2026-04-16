@@ -267,7 +267,7 @@ Type Github App:
 ```json
 {
   "id": "bitbucket-id",
-  "label": "My Bitbucket DataceCenter Label",
+  "label": "My Bitbucket DataCenter Label",
   "type": "bitbucket",
   "urls": {
     "apiBase": "https://bitbucket-test.com",
