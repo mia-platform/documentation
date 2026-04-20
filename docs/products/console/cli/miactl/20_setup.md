@@ -32,13 +32,13 @@ If you have [Golang] installed with a version >= 1.13 in your system and you hav
 install `miactl` like this:
 
 ```sh
-go install github.com/mia-platform/miactl/cmd/miactl@v0.22.0
+go install github.com/mia-platform/miactl/cmd/miactl@v0.23.0
 ```
 
 Or like this if the `install` command is not available
 
 ```sh
-go get -u github.com/mia-platform/miactl/cmd/miactl@0.17.0
+go get -u github.com/mia-platform/miactl/cmd/miactl@v0.23.0
 ```
 
 #### Binary Download
@@ -47,11 +47,11 @@ You can install `miactl` with the use of `curl` or `wget` and downloading the la
 choosing the correct platform and operating system:
 
 ```sh
-curl -fsSL --proto '=https' --tlsv1.2 https://github.com/mia-platform/miactl/releases/download/v0.22.0/miactl-linux-amd64 -o /tmp/miactl
+curl -fsSL --proto '=https' --tlsv1.2 https://github.com/mia-platform/miactl/releases/download/v0.23.0/miactl-linux-amd64 -o /tmp/miactl
 ```
 
 ```sh
-wget -q --https-only --secure-protocol=TLSv1_2 https://github.com/mia-platform/miactl/releases/download/v0.22.0/miactl-linux-amd64 -O /tmp/miactl
+wget -q --https-only --secure-protocol=TLSv1_2 https://github.com/mia-platform/miactl/releases/download/v0.23.0/miactl-linux-amd64 -O /tmp/miactl
 ```
 
 After you have downloaded the file you can validate it against the checksum you can find at this [url] running the
@@ -79,36 +79,33 @@ sudo mv /tmp/miactl /usr/local/bin
 If you want to run the cli in its environment or you want to test the cli you can use the Docker image:
 
 ```sh
-docker run ghcr.io/mia-platform/miactl:v0.22.0 miactl
+docker run ghcr.io/mia-platform/miactl:v0.23.0 miactl
 ```
 
 ### Windows
 
-`miactl` is not directly compatible with Windows, even if you have Go installed:
-compilation on this OS is not possible due to current technical restrictions.
+`miactl` is now supported on Windows with browser-based login. You can install and use `miactl` directly on Windows without needing additional tools.
 
-However, it is still possible to use `miactl` with Windows Subsystem for Linux (WSL), as explained here below.
+#### Direct Installation on Windows
 
-#### Installation of WSL
+You can use any of the following methods:
+
+- **Binary Download**: Follow the [Binary Download](#binary-download) instructions to download the Windows executable
+- **Docker**: Use the [Docker](#docker) method if you have Docker installed on Windows
+- **Homebrew** (if using Homebrew on Windows): Follow the [Homebrew](#homebrew) instructions
+
+#### Using Windows Subsystem for Linux (WSL)
+
+Alternatively, you can still use `miactl` with Windows Subsystem for Linux (WSL) following the same installation methods as for Linux.
 
 If you don't have WSL on your system, follow the [official guide] to get it.
 
 Once WSL is installed, to open a Linux bash terminal, press Start+R, enter `bash` in the text box and press OK.
 
-#### Install `miactl`
-
 You can now install miactl with any of the methods explained above for Linux,
 we suggest the [binary installation](#binary-download) since it's the most straightforward.
 
-#### Setup a service account
-
-Due to some technical restriction, it is not possible to login with a browser when using WSL.
-For this reason, we need to [setup a service account](/products/console/identity-and-access-management/manage-service-accounts.md#service-account-authentication).
-
-Once you have created it, you need to use the [`miactl context auth` command](/products/console/cli/miactl/30_commands.md#auth) to setup
-authentication.
-
-You are now ready to use `miactl`.
+> *Note*: If you prefer not to use browser-based login, you can alternatively [setup a service account](/products/console/identity-and-access-management/manage-service-accounts.md#adding-a-service-account) and use the [`miactl context auth` command](/products/console/cli/miactl/30_commands.md#auth) to setup authentication.
 
 ## Shell Autocompletion
 
@@ -178,8 +175,7 @@ only via APIs.
 
 [Homebrew]: https://brew.sh "The Missing Package Manager for macOS (or Linux)"
 [Golang]: https://go.dev "Build simple, secure, scalable systems with Go"
-[url]: https://github.com/mia-platform/miactl/releases/download/v0.22.0/checksums.txt "miactl checksums"
+[url]: https://github.com/mia-platform/miactl/releases/download/v0.23.0/checksums.txt "miactl checksums"
 [`bash-completion`]: https://github.com/scop/bash-completion "Programmable completion functions for bash"
-[`oh-my-zsh`]: https://ohmyz.sh "Oh My Zsh is a delightful, open source, community-driven
-  framework for managing your Zsh configuration"
+[`oh-my-zsh`]: https://ohmyz.sh "Oh My Zsh is a delightful, open source, community-driven framework for managing your Zsh configuration"
 [official guide]: https://learn.microsoft.com/en-us/windows/wsl/install "How to install Linux on Windows with WSL"
