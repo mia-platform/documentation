@@ -13,12 +13,11 @@ The `miactl` CLI functionalities can be summarized within its main subcommands:
 
 - `company`: view and manage the Companies that you can access
 - `context`: manage your `miactl` contexts
-- `deploy`: deploy resources to a Project
-- `project`: view and manage the Projects of a specific Company
+- `deploy`: deploy resources to a Project (including latest successful deployment info)
+- `project`: view and manage the Projects of a specific Company (including versioning)
 - `serviceaccount`: create new service accounts for your Company
 - `runtime`: view and manage resources that are deployed on the runtime associated with the Project
-- `marketplace`: view and manage the Marketplace resources that are available for your Company (deprecated from Mia-Platform Console v14.0.0).
-- `catalog`: view and manage the Marketplace resources that are available for your Company. It replaces the `marketplace` command. Available from Mia-Platform Console v14.0.0.
+- `catalog`: view and manage Catalog resources that are available for your Company. Available from Mia-Platform Console v14.0.0.
 - `itd`: view and manage Item Type Definitions. Available from Mia-Platform Console v14.1.0.
 
 ## Guides
