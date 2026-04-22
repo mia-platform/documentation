@@ -10,6 +10,17 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.7.0] - 2026-04-20
+
+### BREAKING
+
+- Enforce cache keys to be solely strings
+- Sandbox cache deserialization: array now takes precedence over object to avoid false positive
+
+### Changed
+
+- Update Alpine to fix vulnerability on `musl-utils` 1.2.5-r21
+
 ## [0.6.3] - 2026-03-31
 
 ### Added
