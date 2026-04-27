@@ -113,6 +113,13 @@ The payload sent to the Extension is shaped as follows:
     "unsecretedVariables": {
       "PUB_VAR_1": "<value of PUB_VAR_1 for the selected environment>",
       // ...other public variables
+    },
+    "charts": {
+      "/chart-name/Chart.yaml": {
+        "content": "<file content>",
+        "pathSegments": ["chart-name", "Chart.yaml"]
+      }
+      // ...other chart files
     }
   }
 }
@@ -136,6 +143,7 @@ The configuration object includes:
 | `configMaps` | Object holding the configuration of all the ConfigMaps of the Project. Each key is the name of a ConfigMap and its value is an object describing the ConfigMap configuration, as configured and stored in the configuration project. |
 | `serviceAccounts` | Object holding the configuration of all the [service's Service Accounts](/products/console/api-console/api-design/services.md#service-account-configuration) of the Project. Each key is the name of a Service Account and its value is an object containing the name of the Service Account. |
 | `unsecretedVariables` | - Object holding all the [public variables](/products/console/api-console/api-design/public_variables.md) of the Project, with their value only for the selected Environment _(Introduced with Console v14.5.1)_ |
+| `charts` | Object holding the [Helm chart configurations](/products/console/api-console/api-design/charts.md) of the Project. Each key is the absolute file path within the chart tree (e.g. `/chart-name/Chart.yaml`) and each value is an object with a `content` string (the file content) and a `pathSegments` array (the path split into its components). Only present for projects using the Enhanced Workflow that have chart configurations defined. |
 
 #### Service data model
 

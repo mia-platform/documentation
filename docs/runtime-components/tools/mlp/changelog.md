@@ -9,6 +9,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [v2.7.0] - 2026-04-27
+
+### Added
+
+- Support for Kustomize-based deploy of Helm chart configurations defined in Mia-Platform Console projects. Chart files are committed under `environments/<ENV>/charts/` and referenced via a `kustomization.yaml` using the `helmCharts` directive.
+
 ## [v2.6.0] - 2026-01-30
 
 ###  Changed

@@ -576,6 +576,10 @@
           "type": "doc"
         },
         {
+          "id": "products/console/api-console/api-design/charts",
+          "type": "doc"
+        },
+        {
           "id": "products/console/design-your-projects/sidecars",
           "type": "doc"
         },
