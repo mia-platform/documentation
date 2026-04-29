@@ -23,13 +23,15 @@ Inside the Charts section you can:
 
 When you create a new chart from scratch, the Console automatically scaffolds the required structure for you: a `Chart.yaml`, a `values.yaml`, and a `templates/` folder are created as a starting point. You can then add your template files inside `templates/` and other needed files and folders.
 
-When configuring chart files, you can leverage the **Monaco Editor** with full **Helm language support**. This means you get:
-
-- **Syntax highlighting** for Helm template files, YAML files, and all other chart resources
-- **Linting** to catch errors and misconfigurations before saving
-- **Suggestions and autocompletion** — particularly powerful in `values.yaml` files, where the editor uses the chart's values schema to provide contextual hints, autocomplete field names, validate types, and warn about invalid overrides
-
-This makes working on complex chart configurations significantly faster and safer, especially when overriding values from dependencies.
+When configuring chart files, you can leverage the **Monaco Editor** with built-in **Helm language support**. This means you get:
+ 
+ - **Syntax highlighting** for Helm template files, standard YAML files, and Helm text files (like `NOTES.txt`).
+ - **Linting and validation** to catch errors and misconfigurations before saving. The editor always checks `Chart.yaml` rules, and if you include an optional `values.schema.json` file, it will also validate your `values.yaml` to warn you about missing fields or invalid overrides.
+ - **Smart autocompletion and hover tooltips**:
+   - **Autocompletion:** In **`values.yaml`**, if a schema is present, the editor provides contextual hints and autocomplete for field names. In **Helm templates**, it actively reads your `values.yaml` file to autocomplete `.Values.*` paths as you type.
+   - **Live Hover Tooltips:** When you hover over any `.Values.*` variable in a template, the editor instantly displays its current value from `values.yaml`, along with its description, type, and default value (if defined in your values schema).
+ 
+ This makes working on complex chart configurations significantly faster and safer, especially when overriding values from dependencies.
 
 Any modification made inside the Charts section is tracked by the standard **Unsaved Local Changes** indicator visible throughout the Design area.  
 Once saved, each save creates a new snapshot visible in the **Revision History**, where you can diff even chart files between any two snapshots.  
