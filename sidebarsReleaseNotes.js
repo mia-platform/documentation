@@ -1,6 +1,7 @@
 /** @type {import('@docusaurus/plugin-content-docs').SidebarsConfig} */
 export default {
   releaseNotes: [
+    {"id": "v15.0.0", "type": "doc", "label": "v15.0.0 - Preview"},
     {
       "label": "v14",
       "type": "category",

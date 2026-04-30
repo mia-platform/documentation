@@ -19,12 +19,14 @@ const main = async () => {
 
     const nextPatch = inc(prevVersion, 'patch')!
     const nextMinor = inc(prevVersion, 'minor')!
+    const nextMajor = inc(prevVersion, 'major')!
 
-    const [_newVersion, _newVersionType] = await select<[string, 'minor' | 'patch']>({
+    const [_newVersion, _newVersionType] = await select<[string, 'mayor' | 'minor' | 'patch']>({
       message: 'What kind of version do you want to create?',
       choices: [
         { value: [nextPatch, 'patch'], name: `Patch (${nextPatch})` },
         { value: [nextMinor, 'minor'], name: `Minor (${nextMinor})` },
+        { value: [nextMajor, 'mayor'], name: `Major (${nextMajor})` },
       ]
     })
 
