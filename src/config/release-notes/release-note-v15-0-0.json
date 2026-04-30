@@ -36,6 +36,8 @@
       "newFeatures": [],
       "improvements": [],
       "bugFixes": [
+        "Fixed an issue where the Redeploy action from Deploy History was incorrectly sending the most recent configuration payload instead of the one associated with the selected historical deployment.",
+        "Fixed an issue where the Deploy section could display information related to an environment different from the one shown in the Environment dropdown. This occurred when navigating between projects: the previously selected environment in Project A was retained and used for deploy operations in Project B, even though the dropdown showed a different environment. The Deploy section now always reflects the environment currently selected in the dropdown.",
         "Fixed an issue where clicking on an extension added at the Runtime Area level incorrectly redirected users to the Pods section instead of opening the extension.",
         "Fixed an issue where Azure DevOps pipeline statuses were incorrectly reported as `succeeded` while the pipeline was still running.",
         "Fixed an issue where navigating to any Runtime Area section other than Pods caused the area selector to incorrectly switch to the Overview area. The selector now correctly remains on Runtime regardless of which Runtime section is selected.",

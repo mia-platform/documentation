@@ -10,7 +10,7 @@ import Changelog from '@site/src/components/Changelog';
 <Changelog>
 
 ## [v14.7.0](/release-notes/v14.7.0.mdx)
-*April 16th, 2026*
+*April 29th, 2026*
 
 This release introduces **Bitbucket Cloud** support in the Console, both as a **Git Provider** and a **CI/CD Tool**, enabling teams to integrate their Bitbucket-based workflows directly into Console Projects.  
 For the **Data Catalog**, a new version `v0.5.1` of the _Data Catalog Frontend_ is available with minor bug fixes related to lineage navigation.
