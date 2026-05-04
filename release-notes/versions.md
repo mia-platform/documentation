@@ -29,6 +29,15 @@ For **Fast Data**, Stream Processor `v0.6.3` adds configurable custom partitione
 
 ---
 
+## [v14.5.4](/release-notes/v14.5.4.mdx)
+*May 04th, 2026*
+
+This release includes bug fixes for the **Console**, backporting fixes related to Deploy History redeploy, environment selection in the Deploy section, and Azure DevOps pipeline status reporting.
+
+[Read the release notes](/release-notes/v14.5.4.mdx)
+
+---
+
 ## [v14.5.3](/release-notes/v14.5.3.mdx)
 *April 03rd, 2026*
 

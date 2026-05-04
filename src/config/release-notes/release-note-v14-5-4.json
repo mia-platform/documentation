@@ -1,0 +1,17 @@
+[
+  {
+    "title": "Console",
+    "icon": "console",
+    "defaultOpen": true,
+    "type": "versions",
+    "items": {
+      "newFeatures": [],
+      "improvements": [],
+      "bugFixes": [
+        "Fixed an issue where the Redeploy action from Deploy History was incorrectly sending the most recent configuration payload instead of the one associated with the selected historical deployment.",
+        "Fixed an issue where the Deploy section could display information related to an environment different from the one shown in the Environment dropdown. The Deploy section now always reflects the environment currently selected in the dropdown.",
+        "Fixed an issue where Azure DevOps pipeline statuses were incorrectly reported as `succeeded` while the pipeline was still running."
+      ]
+    }
+  }
+]
