@@ -7956,19 +7956,19 @@ __metadata:
   languageName: node
   linkType: hard
 
-"docusaurus-json-schema-plugin@npm:^1.15.0":
-  version: 1.15.0
-  resolution: "docusaurus-json-schema-plugin@npm:1.15.0"
+"docusaurus-json-schema-plugin@npm:^1.15.1":
+  version: 1.15.1
+  resolution: "docusaurus-json-schema-plugin@npm:1.15.1"
   dependencies:
     "@stoplight/json-ref-resolver": "npm:^3.1.5"
     monaco-editor: "npm:^0.52.2"
     monaco-editor-webpack-plugin: "npm:^7.1.0"
     react-monaco-editor: "npm:^0.59.0"
   peerDependencies:
-    "@docusaurus/core": ^3.7.0
-    "@docusaurus/theme-classic": ^3.7.0
+    "@docusaurus/core": ^3.10.1
+    "@docusaurus/theme-classic": ^3.10.1
     react: ">=18 < 20"
-  checksum: 10/825de69e6023d1b4906d888a984f3c716a76ae88fbc0acc5ceed48409ebfe2af0733fa33650eac2c81fd67e40fa6a8c7fcfa472ae088870c811514d44dd4e364
+  checksum: 10/e42a964bb1ae28c0a11827bcb87ad6683e739b4e4ef33956e4dd2c562f20d6ebd4d1bfcc513dcfa0a222e64cda008fead1bf594e4322e5621ab0ffecef8de4c3
   languageName: node
   linkType: hard
 
@@ -11789,7 +11789,7 @@ __metadata:
     "@mia-platform/console-types": "npm:^0.41.0"
     "@types/semver": "npm:^7"
     clsx: "npm:^2.0.0"
-    docusaurus-json-schema-plugin: "npm:^1.15.0"
+    docusaurus-json-schema-plugin: "npm:^1.15.1"
     eslint: "npm:^9.39.2"
     eslint-plugin-react: "npm:^7.37.5"
     fs-extra: "npm:^11.3.4"
