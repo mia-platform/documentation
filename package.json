@@ -25,11 +25,11 @@
     "versions": "tsx ./scripts/versions-mgt/index.ts"
   },
   "dependencies": {
-    "@docusaurus/core": "^3.9.2",
-    "@docusaurus/faster": "^3.9.2",
-    "@docusaurus/plugin-client-redirects": "^3.9.2",
-    "@docusaurus/preset-classic": "^3.9.2",
-    "@docusaurus/theme-mermaid": "^3.9.2",
+    "@docusaurus/core": "^3.10.1",
+    "@docusaurus/faster": "^3.10.1",
+    "@docusaurus/plugin-client-redirects": "^3.10.1",
+    "@docusaurus/preset-classic": "^3.10.1",
+    "@docusaurus/theme-mermaid": "^3.10.1",
     "@mdx-js/react": "^3.0.0",
     "@mermaid-js/layout-elk": "^0.2.1",
     "@mia-platform/console-types": "^0.41.0",
@@ -47,8 +47,8 @@
   },
   "devDependencies": {
     "@babel/eslint-parser": "^7.28.6",
-    "@docusaurus/module-type-aliases": "^3.9.2",
-    "@docusaurus/types": "3.9.2",
+    "@docusaurus/module-type-aliases": "^3.10.1",
+    "@docusaurus/types": "3.10.1",
     "@ianvs/prettier-plugin-sort-imports": "4.7.1",
     "@inquirer/core": "^11.1.9",
     "@inquirer/prompts": "^8.3.2",
