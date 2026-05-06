@@ -257,6 +257,10 @@ Column lineage relations for a Virtual Job can be managed in bulk through CSV im
 The **Import from CSV** action allows populating all column relationships for a given Virtual Job at once by uploading a `.csv` file. The file must respect the following structure:
 
 - Row 1 must contain the header with exactly these column names: `Source`, `Target`, `Type`, `Description`
+
+:::info
+Both `,` and `;` are supported as CSV file delimiters.
+:::
 - Each subsequent row represents one relationship, where:
   - `Source` is the name of the source column
   - `Target` is the name of the target column

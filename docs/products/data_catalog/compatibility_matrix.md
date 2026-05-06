@@ -22,6 +22,23 @@ Please ensure that versions shown in the matrix are respected in your deployed e
 
 ## Service Latest Versions
 
+#### 2026-05-06 | v15.0.0
+
+| Service                                                               | Version |
+| --------------------------------------------------------------------- | ------- |
+| [Fabric BFF](/products/data_catalog/data_catalog_fabric_bff.mdx)      | 0.4.0   |
+| [Open Lineage](/products/data_catalog/data_catalog_open_lineage.mdx)  | 0.5.0   |
+| [Job Runner](/products/data_catalog/data_catalog_job_runner.mdx)      | 0.3.0   |
+| [Data Catalog Frontend](/products/data_catalog/frontend/overview.mdx) | 0.5.2   |
+| [Fabric Admin](/products/data_catalog/database_setup.mdx)             | 0.5.6   |
+
+## Previous Releases
+
+In the tables below are grouped together the recommended service versions that
+should be deployed together at each Console release. This ensures that
+features introduced in a specific release are properly supported by all
+Data Catalog components.
+
 #### 2026-04-16 | v14.7.0
 
 | Service                                                               | Version |
@@ -31,13 +48,6 @@ Please ensure that versions shown in the matrix are respected in your deployed e
 | [Job Runner](/products/data_catalog/data_catalog_job_runner.mdx)      | 0.3.0   |
 | [Data Catalog Frontend](/products/data_catalog/frontend/overview.mdx) | 0.5.1   |
 | [Fabric Admin](/products/data_catalog/database_setup.mdx)             | 0.5.6   |
-
-## Previous Releases
-
-In the tables below are grouped together the recommended service versions that
-should be deployed together at each Console release. This ensures that
-features introduced in a specific release are properly supported by all
-Data Catalog components.
 
 #### 2026-04-02 | v14.6.0
 
