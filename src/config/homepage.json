@@ -21,23 +21,44 @@
         "target": "_self"
       }
     ],
-    "description": "Ready to unleash the invisible?",
-    "title": "Mia Platform v14 is now available!"
+    "description": "Ready to Master the Vibe?",
+    "title": "Mia Platform v15 is now available!"
   },
   "featureGrid": [
+    {
+      "description": "Explore how to manage and reuse software components, APIs, and microservices via a self-service catalog.",
+      "icon": "software-catalog",
+      "link": "/docs/products/context-catalog/overview",
+      "target": "_self",
+      "title": "Context Catalog"
+    },
+    {
+      "description": "Discover how to easily find, understand, and effectively govern all of your company's data assets.",
+      "icon": "data-catalog",
+      "link": "/docs/products/data_catalog/overview",
+      "target": "_self",
+      "title": "Data Catalog"
+    },
+    {
+      "description": "Mia-Flow.",
+      "icon": "data-catalog",
+      "link": "/docs/products/mia-flow/overview",
+      "target": "_self",
+      "title": "Mia-Flow"
+    },
+    {
+      "description": "AI-Foundry",
+      "icon": "runtime-environment",
+      "link": "/docs/products/ai-foundry/overview",
+      "target": "_self",
+      "title": "AI Foundry"
+    },
     {
       "description": "Discover how to govern and industrialize your entire cloud-native development and operations lifecycle.",
       "icon": "mia-platform-console",
       "link": "/docs/development_suite/overview-dev-suite",
       "target": "_self",
       "title": "Mia-Platform Console"
-    },
-    {
-      "description": "Discover how to easily find, understand, and effectively govern all of your company's data assets.",
-      "icon": "data-catalog",
-      "link": "/docs/data_catalog/overview_data_catalog",
-      "target": "_self",
-      "title": "Data Catalog"
     },
     {
       "description": "Find out how to make real-time, data-driven decisions with always-on, constantly updated data.",
@@ -54,18 +75,11 @@
       "title": "Microfrontend Composer"
     },
     {
-      "description": "Explore how to manage and reuse software components, APIs, and microservices via a self-service catalog.",
+      "description": "Marketplace",
       "icon": "software-catalog",
-      "link": "/docs/products/console/software-catalog/overview",
+      "link": "/docs/runtime-components/overview_marketplace",
       "target": "_self",
-      "title": "Software Catalog"
-    },
-    {
-      "description": "Find out how to efficiently orchestrate, monitor, and manage your runtime environments with ready-to-use components.",
-      "icon": "runtime-environment",
-      "link": "/docs/marketplace/overview_marketplace",
-      "target": "_self",
-      "title": "Runtime Components"
+      "title": "Runtime Components Marketplace"
     }
   ],
   "beginnersSection": {
