@@ -136,19 +136,19 @@
       "title": "API Portal Overview"
     },
     {
-      "url": "/infrastructure/self-hosted/installation-chart/overview",
+      "url": "/requirements/self-hosted/installation-chart/overview",
       "title": "Installation Chart Overview"
     },
     {
-      "url": "/infrastructure/self-hosted/installation-chart/how-to-upgrade",
+      "url": "/requirements/self-hosted/installation-chart/how-to-upgrade",
       "title": "How to Upgrade your self-hosed Console"
     },
     {
-      "url": "/infrastructure/self-hosted/installation-chart/general-settings",
+      "url": "/requirements/self-hosted/installation-chart/general-settings",
       "title": "Installation Chart General Settings"
     },
     {
-      "url": "/infrastructure/self-hosted/installation-chart/installation-chart-example",
+      "url": "/requirements/self-hosted/installation-chart/installation-chart-example",
       "title": "Installation Chart Example"
     }
   ]

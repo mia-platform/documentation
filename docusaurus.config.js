@@ -43,6 +43,104 @@ const config = {
       logo: { alt: "Mia_Platform logo", src: "img/logo.png" },
       items: [
         {
+          type: 'doc',
+          docId: "getting-started/mia-platform-overview",
+          label: "Getting Started",
+          position: "left",
+          activeBaseRegex: "(docs|docs/\\d.x)/getting-started"
+        },
+        {
+          label: "Products",
+          position: "left",
+          activeBaseRegex: "(docs|docs/\\d.x)/products",
+          type: "dropdown",
+          items: [
+            {
+              type: 'doc',
+              docId: "products/overview",
+              label: "Overview",
+              activeBaseRegex: "(docs|docs/\\d.x)/products/overview"
+            },
+            {
+              type: 'doc',
+              docId: "products/context-catalog/overview",
+              label: "Context Catalog",
+              activeBaseRegex: "(docs|docs/\\d.x)/products/context-catalog"
+            },
+            {
+              type: 'html',
+              value: '<div style="margin: 8px 12px 4px; font-weight: 600; font-size: 12px; text-transform: uppercase; opacity: 0.6;">AI</div>',
+            },
+            {
+              type: 'doc',
+              docId: "products/mia-flow/overview",
+              label: "Mia Flow",
+              activeBaseRegex: "(docs|docs/\\d.x)/products/mia-flow"
+            },
+            {
+              type: 'doc',
+              docId: "products/ai-foundry/overview",
+              label: "AI Foundry",
+              activeBaseRegex: "(docs|docs/\\d.x)/products/ai-foundry"
+            },
+            {
+              type: 'html',
+              value: '<div style="margin: 8px 12px 4px; font-weight: 600; font-size: 12px; text-transform: uppercase; opacity: 0.6;">Data</div>',
+            },
+            {
+              type: 'doc',
+              docId: "products/data_catalog/overview_data_catalog",
+              label: "Data Catalog",
+              activeBaseRegex: "(docs|docs/\\d.x)/products/data_catalog"
+            },
+            {
+              type: 'doc',
+              docId: "products/fast_data/what_is_fast_data",
+              label: "Fast Data v1",
+              activeBaseRegex: "(docs|docs/\\d.x)/products/fast_data"
+            },
+            {
+              type: 'doc',
+              docId: "products/fast_data_v2/overview",
+              label: "Fast Data v2",
+              activeBaseRegex: "(docs|docs/\\d.x)/products/fast_data_v2"
+            },
+            {
+              type: 'html',
+              value: '<div style="margin: 8px 12px 4px; font-weight: 600; font-size: 12px; text-transform: uppercase; opacity: 0.6;">Platform Engineering</div>',
+            },
+            {
+              type: 'doc',
+              docId: "products/console/overview-dev-suite",
+              label: "Console",
+              activeBaseRegex: "(docs|docs/\\d.x)/products/console"
+            },
+            {
+              type: 'html',
+              value: '<div style="margin: 8px 12px 4px; font-weight: 600; font-size: 12px; text-transform: uppercase; opacity: 0.6;">App Composability</div>',
+            },
+            {
+              type: 'doc',
+              docId: "products/microfrontend-composer/what-is",
+              label: "Microfrontend Composer",
+              activeBaseRegex: "(docs|docs/\\d.x)/products/microfrontend-composer"
+            },
+            {
+              type: 'doc',
+              docId: "runtime-components/overview_marketplace",
+              label: "Runtime components",
+              activeBaseRegex: "(docs|docs/\\d.x)/runtime-components"
+            }
+          ]
+        },
+        {
+          label: "Requirements",
+          position: "left",
+          activeBaseRegex: "(docs|docs/\\d.x)/(development_suite|marketplace|libraries|tools|runtime_suite|business_suite|fast_data|dev_portal|infrastructure/infrastructure_overview)",
+          type: "doc",
+          docId: "requirements/infrastructure_overview"
+        },
+        {
           label: "Release Notes",
           position: "left",
           type: "doc",
@@ -51,13 +149,8 @@ const config = {
         },
         {
           href: "https://makeitapp.atlassian.net/servicedesk/customer/portal/21",
-          position: "left",
+          position: "right",
           label: "Support"
-        },
-        {
-          href: "https://github.com/mia-platform/community/discussions",
-          position: "left",
-          label: "Community"
         },
         {
           type: 'custom-CustomVersionsDropdown',

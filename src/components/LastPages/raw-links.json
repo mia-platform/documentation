@@ -260,151 +260,151 @@
     "title": "Microfrontend Composer Video"
   },
   {
-    "url": "/infrastructure/byoi/byoi-overview",
+    "url": "/requirements/byoi/byoi-overview",
     "title": "Mia-Platform Bring Your Own Infrastructure"
   },
   {
-    "url": "/infrastructure/infrastructure_overview",
+    "url": "/requirements/infrastructure_overview",
     "title": " Mia-Platform Infrastructure overview"
   },
   {
-    "url": "/infrastructure/paas/business-continuity",
+    "url": "/requirements/paas/business-continuity",
     "title": " Business Continuity and Disaster Recovery"
   },
   {
-    "url": "/infrastructure/paas/maintenance",
+    "url": "/requirements/paas/maintenance",
     "title": "Mia-Platform PaaS Maintenance"
   },
   {
-    "url": "/infrastructure/paas/overview",
+    "url": "/requirements/paas/overview",
     "title": "Mia-Platform PaaS"
   },
   {
-    "url": "/infrastructure/paas/secret-scanning",
+    "url": "/requirements/paas/secret-scanning",
     "title": "Secret Scanning"
   },
   {
-    "url": "/infrastructure/paas/security-measures",
+    "url": "/requirements/paas/security-measures",
     "title": "Security Measures"
   },
   {
-    "url": "/infrastructure/paas/tools/cert-manager",
+    "url": "/requirements/paas/tools/cert-manager",
     "title": " Cert-Manager"
   },
   {
-    "url": "/infrastructure/paas/tools/docker-registry",
+    "url": "/requirements/paas/tools/docker-registry",
     "title": " Docker Registry"
   },
   {
-    "url": "/infrastructure/paas/tools/grafana",
+    "url": "/requirements/paas/tools/grafana",
     "title": " Grafana"
   },
   {
-    "url": "/infrastructure/paas/tools/kube-green",
+    "url": "/requirements/paas/tools/kube-green",
     "title": " Kube-Green"
   },
   {
-    "url": "/infrastructure/paas/tools/message-broker",
+    "url": "/requirements/paas/tools/message-broker",
     "title": " Message Broker"
   },
   {
-    "url": "/infrastructure/paas/tools/mtls",
+    "url": "/requirements/paas/tools/mtls",
     "title": " mTLS"
   },
   {
-    "url": "/infrastructure/paas/tools/runtime",
+    "url": "/requirements/paas/tools/runtime",
     "title": " Runtime"
   },
   {
-    "url": "/infrastructure/paas/tools/telepresence",
+    "url": "/requirements/paas/tools/telepresence",
     "title": "Telepresence"
   },
   {
-    "url": "/infrastructure/paas/tools/traefik",
+    "url": "/requirements/paas/tools/traefik",
     "title": " Traefik"
   },
   {
-    "url": "/infrastructure/self-hosted/feature-toggle",
+    "url": "/requirements/self-hosted/feature-toggle",
     "title": "Feature Toggle"
   },
   {
-    "url": "/infrastructure/self-hosted/installation-chart/overview",
+    "url": "/requirements/self-hosted/installation-chart/overview",
     "title": "Overview"
   },
   {
-    "url": "/infrastructure/self-hosted/installation-chart/how-to-upgrade",
+    "url": "/requirements/self-hosted/installation-chart/how-to-upgrade",
     "title": "How to Upgrade"
   },
   {
-    "url": "/infrastructure/self-hosted/installation-chart/general-settings",
+    "url": "/requirements/self-hosted/installation-chart/general-settings",
     "title": "General Settings"
   },
   {
-    "url": "/infrastructure/self-hosted/installation-chart/service-specific-configurations",
+    "url": "/requirements/self-hosted/installation-chart/service-specific-configurations",
     "title": "Service Specific Configuration"
   },
   {
-    "url": "/infrastructure/self-hosted/installation-chart/authentication-provider",
+    "url": "/requirements/self-hosted/installation-chart/authentication-provider",
     "title": "Authentication Provider"
   },
   {
-    "url": "/infrastructure/self-hosted/installation-chart/mongodb-configurations-and-encryption",
+    "url": "/requirements/self-hosted/installation-chart/mongodb-configurations-and-encryption",
     "title": "MongoDB Configurations and Encryption"
   },
   {
-    "url": "/infrastructure/self-hosted/installation-chart/marketplace",
+    "url": "/requirements/self-hosted/installation-chart/marketplace",
     "title": "Marketplace"
   },
   {
-    "url": "/infrastructure/self-hosted/installation-chart/file-storage",
+    "url": "/requirements/self-hosted/installation-chart/file-storage",
     "title": "File Storage Management"
   },
   {
-    "url": "/infrastructure/self-hosted/installation-chart/email-setup",
+    "url": "/requirements/self-hosted/installation-chart/email-setup",
     "title": "Email Setup"
   },
   {
-    "url": "/infrastructure/self-hosted/installation-chart/license-management",
+    "url": "/requirements/self-hosted/installation-chart/license-management",
     "title": "License management and tracking"
   },
   {
-    "url": "/infrastructure/self-hosted/installation-chart/first-user-and-company-creation",
+    "url": "/requirements/self-hosted/installation-chart/first-user-and-company-creation",
     "title": "Finalize Console installation and create the first entities"
   },
   {
-    "url": "/infrastructure/self-hosted/installation-chart/installation-chart-example",
+    "url": "/requirements/self-hosted/installation-chart/installation-chart-example",
     "title": "Installation Chart Example"
   },
   {
-    "url": "/infrastructure/self-hosted/pipeline-configuration",
+    "url": "/requirements/self-hosted/pipeline-configuration",
     "title": "How to setup a Pipeline "
   },
   {
-    "url": "/infrastructure/self-hosted/private-clusters",
+    "url": "/requirements/self-hosted/private-clusters",
     "title": " Private clusters"
   },
   {
-    "url": "/infrastructure/self-hosted/ranges-and-quotas",
+    "url": "/requirements/self-hosted/ranges-and-quotas",
     "title": "Configure Limit Ranges and Resource Quotas"
   },
   {
-    "url": "/infrastructure/self-hosted/self-hosted-requirements",
+    "url": "/requirements/self-hosted/self-hosted-requirements",
     "title": "Self-Hosted installation requirements"
   },
   {
-    "url": "/infrastructure/self-hosted/self-hosted-runtime-requirements",
+    "url": "/requirements/self-hosted/self-hosted-runtime-requirements",
     "title": "Self-Hosted runtime installation requirements"
   },
   {
-    "url": "/infrastructure/self-hosted/synchronize-users",
+    "url": "/requirements/self-hosted/synchronize-users",
     "title": "Synchronize users with an Identity Provider"
   },
   {
-    "url": "/infrastructure/self-hosted/third-party-integrations/deployment-tools",
+    "url": "/requirements/self-hosted/third-party-integrations/deployment-tools",
     "title": " Deployment tools"
   },
   {
-    "url": "/infrastructure/self-hosted/troubleshooting",
+    "url": "/requirements/self-hosted/troubleshooting",
     "title": "Troubleshooting"
   },
   {

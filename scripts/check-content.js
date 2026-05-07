@@ -20,7 +20,7 @@ const filesToExcludeFromSidebarCheck = [
   "runtime_suite_tools/*",
   "microfrontend-composer/back-kit/*",
   "microfrontend-composer/composer/*",
-  "infrastructure/self-hosted/installation-chart/*",
+  "requirements/self-hosted/installation-chart/*",
   "getting-started/videos/*",
   "getting-started/videos/subtitle/*",
   "console/videos/*",
@@ -33,9 +33,9 @@ const filesToExcludeFromSidebarCheck = [
   "fast_data/runtime_management/snippets/*",
   "fast_data/snippets/*",
   "development_suite/api-console/api-design/videos/subtitle/*",
-  "software-catalog/basic-concepts/*",
-  "software-catalog/snippets/*",
-  "software-catalog/tutorials/*",
+  "console/software-catalog/basic-concepts/*",
+  "console/software-catalog/snippets/*",
+  "console/software-catalog/tutorials/*",
 ]
 
 const checkIdRegexp = new RegExp('^---(\\n.*)+id:\\s+([-\\w. ]+)(.*\\n)+---$', 'm')

@@ -1860,11 +1860,11 @@
     "addedOn": "2025-05-15"
   },
   "/docs/software-catalog/manage-items/software-catalog-ui/ui": {
-    "destination": "/docs/products/software-catalog/items-management/ui",
+    "destination": "/docs/products/console/software-catalog/items-management/ui",
     "addedOn": "2025-05-21"
   },
   "/docs/software-catalog/manage-items/overview-manage-items": {
-    "destination": "/docs/products/software-catalog/items-management/overview",
+    "destination": "/docs/products/console/software-catalog/items-management/overview",
     "addedOn": "2025-05-21"
   },
   "/docs/software-catalog/manage-items/software-catalog-ui/create/overview-software-catalog-create": {
@@ -1880,7 +1880,7 @@
     "addedOn": "2025-05-21"
   },
   "/docs/software-catalog/manage-items/mia-ctl/overview-miactl": {
-    "destination": "/docs/products/software-catalog/items-management/miactl",
+    "destination": "/docs/products/console/software-catalog/items-management/miactl",
     "addedOn": "2025-05-21"
   },
   "/docs/software-catalog/manage-items/mia-ctl/create/overview-mia-ctl-create": {
@@ -1920,11 +1920,11 @@
     "addedOn": "2025-05-21"
   },
   "/docs/software-catalog/catalog-and-marketplace/overview-catalog-and-marketplace": {
-    "destination": "/docs/products/software-catalog/basic-concepts/items-visibility",
+    "destination": "/docs/products/console/software-catalog/basic-concepts/items-visibility",
     "addedOn": "2025-05-21"
   },
   "/docs/software-catalog/tutorials/software-catalog": {
-    "destination": "/docs/products/software-catalog/tutorials/software-catalog",
+    "destination": "/docs/products/console/software-catalog/tutorials/software-catalog",
     "addedOn": "2025-09-11"
   },
   "/docs/libraries/overview_service_libraries": {
@@ -3404,87 +3404,87 @@
     "addedOn": "2025-09-11"
   },
   "/docs/software-catalog/overview": {
-    "destination": "/docs/products/software-catalog/overview",
+    "destination": "/docs/products/console/software-catalog/overview",
     "addedOn": "2025-09-11"
   },
   "/docs/software-catalog/tutorials/service-template-integrated-with-jenkins": {
-    "destination": "/docs/products/software-catalog/tutorials/service-template-integrated-with-jenkins",
+    "destination": "/docs/products/console/software-catalog/tutorials/service-template-integrated-with-jenkins",
     "addedOn": "2025-09-11"
   },
   "/docs/software-catalog/items-manifest/template": {
-    "destination": "/docs/products/software-catalog/items-manifest/template",
+    "destination": "/docs/products/console/software-catalog/items-manifest/template",
     "addedOn": "2025-09-11"
   },
   "/docs/software-catalog/items-manifest/sidecar": {
-    "destination": "/docs/products/software-catalog/items-manifest/sidecar",
+    "destination": "/docs/products/console/software-catalog/items-manifest/sidecar",
     "addedOn": "2025-09-11"
   },
   "/docs/software-catalog/items-manifest/proxy": {
-    "destination": "/docs/products/software-catalog/items-manifest/proxy",
+    "destination": "/docs/products/console/software-catalog/items-manifest/proxy",
     "addedOn": "2025-09-11"
   },
   "/docs/software-catalog/items-manifest/plugin": {
-    "destination": "/docs/products/software-catalog/items-manifest/plugin",
+    "destination": "/docs/products/console/software-catalog/items-manifest/plugin",
     "addedOn": "2025-09-11"
   },
   "/docs/software-catalog/items-manifest/overview": {
-    "destination": "/docs/products/software-catalog/items-manifest/overview",
+    "destination": "/docs/products/console/software-catalog/items-manifest/overview",
     "addedOn": "2025-09-11"
   },
   "/docs/software-catalog/items-manifest/infrastructure-resource": {
-    "destination": "/docs/products/software-catalog/items-manifest/infrastructure-resource",
+    "destination": "/docs/products/console/software-catalog/items-manifest/infrastructure-resource",
     "addedOn": "2025-09-11"
   },
   "/docs/software-catalog/items-manifest/infrastructure-component-runtime": {
-    "destination": "/docs/products/software-catalog/items-manifest/infrastructure-component-runtime",
+    "destination": "/docs/products/console/software-catalog/items-manifest/infrastructure-component-runtime",
     "addedOn": "2025-09-11"
   },
   "/docs/software-catalog/items-manifest/extension": {
-    "destination": "/docs/products/software-catalog/items-manifest/extension",
+    "destination": "/docs/products/console/software-catalog/items-manifest/extension",
     "addedOn": "2025-09-11"
   },
   "/docs/software-catalog/items-manifest/example": {
-    "destination": "/docs/products/software-catalog/items-manifest/example",
+    "destination": "/docs/products/console/software-catalog/items-manifest/example",
     "addedOn": "2025-09-11"
   },
   "/docs/software-catalog/items-manifest/application": {
-    "destination": "/docs/products/software-catalog/items-manifest/application",
+    "destination": "/docs/products/console/software-catalog/items-manifest/application",
     "addedOn": "2025-09-11"
   },
   "/docs/software-catalog/items-management/ui": {
-    "destination": "/docs/products/software-catalog/items-management/ui",
+    "destination": "/docs/products/console/software-catalog/items-management/ui",
     "addedOn": "2025-09-11"
   },
   "/docs/software-catalog/items-management/overview": {
-    "destination": "/docs/products/software-catalog/items-management/overview",
+    "destination": "/docs/products/console/software-catalog/items-management/overview",
     "addedOn": "2025-09-11"
   },
   "/docs/software-catalog/items-management/miactl": {
-    "destination": "/docs/products/software-catalog/items-management/miactl",
+    "destination": "/docs/products/console/software-catalog/items-management/miactl",
     "addedOn": "2025-09-11"
   },
   "/docs/software-catalog/items-management/api": {
-    "destination": "/docs/products/software-catalog/items-management/api",
+    "destination": "/docs/products/console/software-catalog/items-management/api",
     "addedOn": "2025-09-11"
   },
   "/docs/software-catalog/basic-concepts/items-visibility": {
-    "destination": "/docs/products/software-catalog/basic-concepts/items-visibility",
+    "destination": "/docs/products/console/software-catalog/basic-concepts/items-visibility",
     "addedOn": "2025-09-11"
   },
   "/docs/software-catalog/basic-concepts/items-lifecycle": {
-    "destination": "/docs/products/software-catalog/basic-concepts/items-lifecycle",
+    "destination": "/docs/products/console/software-catalog/basic-concepts/items-lifecycle",
     "addedOn": "2025-09-11"
   },
   "/docs/software-catalog/basic-concepts/items-versioning": {
-    "destination": "/docs/products/software-catalog/basic-concepts/items-versioning",
+    "destination": "/docs/products/console/software-catalog/basic-concepts/items-versioning",
     "addedOn": "2025-09-11"
   },
   "/docs/software-catalog/basic-concepts/items-types": {
-    "destination": "/docs/products/software-catalog/basic-concepts/items-types",
+    "destination": "/docs/products/console/software-catalog/basic-concepts/items-types",
     "addedOn": "2025-09-11"
   },
   "/docs/software-catalog/basic-concepts/items-data-structure": {
-    "destination": "/docs/products/software-catalog/basic-concepts/items-data-structure",
+    "destination": "/docs/products/console/software-catalog/basic-concepts/items-data-structure",
     "addedOn": "2025-09-11"
   },
   "/docs/mcp/mcp-server/prompt_gallery": {
@@ -5482,5 +5482,21 @@
   "/docs/microfrontend-composer/(.*)": {
     "destination": "/docs/products/microfrontend-composer/$1",
     "addedOn": "2026-03-11"
+  },
+  "/docs/infrastructure/(.*)": {
+    "destination": "/docs/requirements/$1",
+    "addedOn": "2026-05-07"
+  },
+  "/docs/solutions/(.*)": {
+    "destination": "https://docs.mia-platform.eu/",
+    "addedOn": "2026-05-07"
+  },
+  "/docs/getting-started/use-cases/(.*)": {
+    "destination": "/docs/getting-started",
+    "addedOn": "2026-05-07"
+  },
+  "/docs/products/software-catalog/(.*)": {
+    "destination": "/docs/products/console/software-catalog/$1",
+    "addedOn": "2026-05-07"
   }
 }

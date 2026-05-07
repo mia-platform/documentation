@@ -56,7 +56,7 @@
     {
       "description": "Explore how to manage and reuse software components, APIs, and microservices via a self-service catalog.",
       "icon": "software-catalog",
-      "link": "/docs/software-catalog/overview",
+      "link": "/docs/products/console/software-catalog/overview",
       "target": "_self",
       "title": "Software Catalog"
     },
