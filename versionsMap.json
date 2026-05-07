@@ -1,8 +1,4 @@
 {
-  "current": "14.7.0",
-  "next": "15.0.0",
-  "lts": [
-    "14.4.x",
-    "14.5.x"
-  ]
+  "current": "current",
+  "next": null
 }

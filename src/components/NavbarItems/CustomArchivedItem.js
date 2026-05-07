@@ -104,7 +104,7 @@ export default function CustomVersionsDropdown({
       const isCanary = process.env.NODE_ENV !== "production" && index === 0
 
       if (isCanary) {
-        itemLabel = <CanaryTag label={'14.x.x'} />
+        itemLabel = <CanaryTag label={'15.x.x'} />
       } else if (versionsMap.current === version.name) {
         itemLabel = <ProdTag label={label} />
       } else if (versionsMap.next === version.name) {
