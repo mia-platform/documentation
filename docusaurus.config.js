@@ -306,8 +306,14 @@ const config = {
     }
   },
   future: {
-    v4: true,
-    experimental_faster: true,
+    v4: {
+      removeLegacyPostBuildHeadAttribute: true,
+      useCssCascadeLayers: false,
+      siteStorageNamespacing: false,
+      fasterByDefault: false,
+      mdx1CompatDisabledByDefault: false,
+    },
+    faster: true,
   },
   i18n: {
     defaultLocale: 'en',
