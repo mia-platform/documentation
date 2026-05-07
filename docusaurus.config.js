@@ -306,7 +306,13 @@ const config = {
     }
   },
   future: {
-    v4: true,
+    v4: {
+      removeLegacyPostBuildHeadAttribute: true,
+      useCssCascadeLayers: false,
+      siteStorageNamespacing: false,
+      fasterByDefault: false,
+      mdx1CompatDisabledByDefault: false,
+    },
     faster: true,
   },
   i18n: {
