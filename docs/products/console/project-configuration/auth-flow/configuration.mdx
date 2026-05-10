@@ -4,7 +4,7 @@ title: Configuration
 sidebar_label: Configuration
 ---
 
-import Schema from "@site/static/schemas/platform/auth/authtool/authtool-bff/0.2.2/authtool_bff.schema.json"
+import Schema from "@site/static/schemas/platform/auth/authtool/authtool-bff/latest/authtool_bff.schema.json"
 import Example from "@site/static/schemas/platform/auth/authtool/authtool-bff/examples/example1.json"
 import SchemaViewer from "@site/src/components/SchemaViewer"
 
@@ -448,6 +448,266 @@ The `authtool_bff` acts as an OAuth 2.0 confidential client that manages the Aut
 - The session lifecycle (creation, refresh, expiration, logout) is managed transparently using OIDC endpoints.
 - All sensitive operations (token exchange, refresh, logout) happen server-side.
 
+### Multi-Client Configuration
+
+A single BFF instance can serve multiple OAuth 2.0 clients. This is useful when multiple
+frontend applications share the same Authorization Server but require separate client registrations
+with different redirect URIs, scopes, or credentials.
+
+#### Single Client (default)
+
+When only one client is needed, configure it directly as an object under `$.client`:
+
+```json
+{
+  "client": {
+    "issuer": "https://idp.example.com",
+    "clientId": "my-app",
+    "redirect_uri": "https://app.example.com/oauth/callback",
+    "scope": "openid profile email",
+    "credentials": { "..." : "..." },
+    "postLogoutRedirectUri": "https://app.example.com/oidc/logout/callback"
+  }
+}
+```
+
+#### Multiple Clients
+
+Configure multiple clients as an array under `$.client.clients`. Exactly one client
+must be marked as `"default": true`:
+
+```json
+{
+  "client": {
+    "issuer": "https://idp.example.com",
+    "clients": [
+      {
+        "default": true,
+        "clientId": "main-app",
+        "redirect_uri": "https://app.example.com/oauth/callback",
+        "scope": "openid profile email",
+        "credentials": { "..." : "..." },
+        "postLogoutRedirectUri": "https://app.example.com/oidc/logout/callback"
+      },
+      {
+        "clientId": "admin-app",
+        "redirect_uri": "https://admin.example.com/oauth/callback",
+        "scope": "openid profile email",
+        "credentials": { "..." : "..." },
+        "postLogoutRedirectUri": "https://admin.example.com/oidc/logout/callback"
+      }
+    ]
+  }
+}
+```
+
+All clients share the same `issuer` and the same session cookie. Token storage is
+keyed by `(session_id, client_id)`, so each client maintains independent tokens.
+
+The target client is selected via the `?client_id=<id>` query parameter on
+`/login`, `/logout`, `/session`, and `/token` endpoints. When the parameter is omitted
+the default client is used.
+
+:::tip
+All clients must be registered on the **same Authorization Server** (same `issuer`).
+If you need to integrate with different identity providers, deploy separate BFF instances.
+:::
+
+#### Envoy Routing for Multi-Client
+
+The BFF selects the target client based on the `?client_id=<id>` query parameter.
+Since the frontend library is client-ID agnostic, the parameter must be injected at
+the API gateway level before requests reach the BFF.
+
+There are several techniques to achieve this in Envoy, depending on how your
+frontend applications are separated.
+
+##### Option 1: Virtual hosts (domain-based separation)
+
+When each frontend application is served on a different domain (e.g.,
+`app.example.com` and `admin.example.com`), you can use Envoy
+[virtual hosts](https://www.envoyproxy.io/docs/envoy/latest/api-v3/config/route/v3/route_components.proto#config-route-v3-virtualhost)
+to match on the `:authority` (Host) header and inject the correct `client_id`
+per domain.
+
+Each virtual host has its own set of routes and per-route Lua configuration:
+
+```yaml
+# route configuration
+virtual_hosts:
+  # default frontend — no client_id injection needed
+  - name: main-app
+    domains: ["app.example.com"]
+    routes:
+      - match:
+          prefix: /bff
+        route:
+          cluster: "authtool-bff"
+          timeout: "0s"
+        typed_per_filter_config:
+          envoy.filters.http.lua:
+            "@type": type.googleapis.com/envoy.extensions.filters.http.lua.v3.LuaPerRoute
+            disabled: true
+
+  # admin frontend — inject client_id=admin-app
+  - name: admin-app
+    domains: ["admin.example.com"]
+    routes:
+      - match:
+          prefix: /bff
+        route:
+          cluster: "authtool-bff"
+          timeout: "0s"
+        typed_per_filter_config:
+          envoy.filters.http.lua:
+            "@type": type.googleapis.com/envoy.extensions.filters.http.lua.v3.LuaPerRoute
+            source_code:
+              inline_string: |
+                package.path = '/etc/lua/lib/?.lua;' .. package.path
+                local inject = require('client-id-inject')
+                inject.inject(request_handle, "admin-app")
+```
+
+When the BFF sits behind a load balancer or reverse proxy, the proxy must
+forward the original `Host` header (or set `x-forwarded-host`). Envoy
+matches virtual hosts on the `:authority` pseudo-header, which is the `Host`
+header in HTTP/1.1.
+
+##### Option 2: Listener-based separation
+
+If each frontend application is exposed on a different port or network
+interface, use separate Envoy listeners. Each listener can carry its own
+`on-request-scripts.yaml` entry that injects the right `client_id`:
+
+```yaml
+# on-request-scripts.yaml — admin frontend on a separate listener
+- listener_name: admin
+  body: |-
+    package.path = '/etc/lua/lib/?.lua;' .. package.path
+
+    local inject = require('client-id-inject')
+    inject.inject(request_handle, "admin-app")
+
+    local token_exchange = require('token-exchange')
+    local config = {
+      token_service_cluster = "authtool-bff",
+      token_service_endpoint = "/bff/token",
+      session_cookie_name = "__Host-session_id",
+    }
+    token_exchange.on_request(request_handle, config)
+```
+
+##### Option 3: Path-prefix discrimination
+
+If all frontends share the same domain and listener, you can
+differentiate by path prefix. For example, serve the admin app under
+`/admin/` and rewrite BFF paths accordingly:
+
+```yaml
+# endpoints.yaml — admin app routes to BFF with client_id
+- listener_name: frontend
+  match:
+    prefix: /admin/bff/
+  route:
+    regex_rewrite:
+      pattern:
+        regex: "^/admin/bff/(.*)"
+      substitution: "/bff/\\1"
+    cluster: "authtool-bff"
+    timeout: "0s"
+  typed_per_filter_config:
+    envoy.filters.http.lua:
+      "@type": type.googleapis.com/envoy.extensions.filters.http.lua.v3.LuaPerRoute
+      source_code:
+        inline_string: |
+          package.path = '/etc/lua/lib/?.lua;' .. package.path
+          local inject = require('client-id-inject')
+          inject.inject(request_handle, "admin-app")
+```
+
+##### Lua helper
+
+All options above use the same `client-id-inject.lua` helper, which can be
+mounted alongside the token-exchange filter in `/etc/lua/lib`:
+
+```lua
+-- /etc/lua/lib/client-id-inject.lua
+
+local M = {}
+
+--- Appends `client_id=<value>` to the current request query string.
+--- If the request already contains a `client_id` parameter it is left unchanged.
+function M.inject(request_handle, client_id)
+  local path = request_handle:headers():get(":path")
+  if not path then return end
+
+  -- skip if client_id is already present
+  if path:find("[?&]client_id=") then return end
+
+  local sep = path:find("?") and "&" or "?"
+  request_handle:headers():replace(":path", path .. sep .. "client_id=" .. client_id)
+end
+
+return M
+```
+
+##### Which endpoints need `client_id`
+
+The endpoints that require `client_id` injection are:
+
+| Endpoint | Purpose |
+|---|---|
+| `/login` | Initiates the authorization code flow for the correct client |
+| `/logout` | Removes the correct client's tokens and redirects to AS |
+| `/session` | Checks whether a session exists for the correct client |
+| `/token` | Exchanges the session cookie for the correct client's access token |
+
+Endpoints that do **not** need `client_id` (they work across all clients):
+
+| Endpoint | Purpose |
+|---|---|
+| `/oauth/callback` | The BFF resolves the client from the stored authorization state |
+| `/oidc/logout/callback` | Post-logout redirect, no client selection needed |
+| `/oidc/logout/backchannel` | Validates against all configured client IDs |
+| `/.well-known/jwks.json` | Shared public keys |
+
+:::tip
+The default client does not need `client_id` injection — when the parameter is absent
+the BFF falls back to the client marked `"default": true`. You only need the inject
+script for non-default frontends.
+:::
+
+### Back-Channel Logout
+
+The BFF supports [OpenID Connect Back-Channel Logout 1.0](https://openid.net/specs/openid-connect-backchannel-1_0.html),
+allowing the Authorization Server to terminate sessions server-to-server.
+
+To enable back-channel logout, register the BFF's backchannel logout URL on the
+Authorization Server client configuration:
+
+| AS Setting | Value |
+|---|---|
+| Backchannel Logout URL | `https://<bff-host>/bff/oidc/logout/backchannel` |
+| Backchannel Logout Session Required | `true` (recommended) |
+
+When using `private_key_jwt` authentication, the AS needs access to the BFF's
+public keys. Configure the JWKS URL on the AS client:
+
+| AS Setting | Value |
+|---|---|
+| JWKS URL | `https://<bff-host>/bff/.well-known/jwks.json` |
+
+When a logout token is received, the BFF validates the JWT against all configured
+client IDs, resolves the browser session from the `sid` (or `sub`) claim, and
+atomically deletes all stored tokens for that session — including tokens for all
+clients in a multi-client setup.
+
+:::caution
+The `/oidc/logout/backchannel` endpoint must be reachable by the Authorization Server.
+In environments where the BFF is behind a firewall, ensure the AS can reach this
+endpoint via the internal network.
+:::
+
 ### Redis Integration
 
 The BFF uses Redis as a centralized cache for session data, access tokens, and refresh tokens. The `authorizationFlowCache` field in the session configuration references a Redis connection, either by name or inline.
@@ -713,6 +973,67 @@ Add the following entries to `endpoints.yaml`:
     path: /bff/oauth/callback
   route:
     prefix_rewrite: /bff/oauth/callback
+    cluster: "authtool-bff"
+    timeout: "0s"
+  typed_per_filter_config:
+    envoy.filters.http.lua:
+      "@type": type.googleapis.com/envoy.extensions.filters.http.lua.v3.LuaPerRoute
+      disabled: true
+    # activate when jwt_authn covers the whole listener
+    # envoy.filters.http.jwt_authn:
+    #   "@type": type.googleapis.com/envoy.extensions.filters.http.jwt_authn.v3.PerRouteConfig
+    #   disabled: true
+    # activate when ext_authz is active
+    # envoy.filters.http.ext_authz:
+    #   "@type": "type.googleapis.com/envoy.extensions.filters.http.ext_authz.v3.ExtAuthzPerRoute"
+    #   disabled: true
+
+### oidc/logout/backchannel
+- listener_name: frontend
+  match:
+    prefix: /bff/oidc/logout/backchannel/
+  route:
+    prefix_rewrite: /bff/oidc/logout/backchannel/
+    cluster: "authtool-bff"
+    timeout: "0s"
+  typed_per_filter_config:
+    envoy.filters.http.lua:
+      "@type": type.googleapis.com/envoy.extensions.filters.http.lua.v3.LuaPerRoute
+      disabled: true
+    # activate when jwt_authn covers the whole listener
+    # envoy.filters.http.jwt_authn:
+    #   "@type": type.googleapis.com/envoy.extensions.filters.http.jwt_authn.v3.PerRouteConfig
+    #   disabled: true
+    # activate when ext_authz is active
+    # envoy.filters.http.ext_authz:
+    #   "@type": "type.googleapis.com/envoy.extensions.filters.http.ext_authz.v3.ExtAuthzPerRoute"
+    #   disabled: true
+- listener_name: frontend
+  match:
+    path: /bff/oidc/logout/backchannel
+  route:
+    prefix_rewrite: /bff/oidc/logout/backchannel
+    cluster: "authtool-bff"
+    timeout: "0s"
+  typed_per_filter_config:
+    envoy.filters.http.lua:
+      "@type": type.googleapis.com/envoy.extensions.filters.http.lua.v3.LuaPerRoute
+      disabled: true
+    # activate when jwt_authn covers the whole listener
+    # envoy.filters.http.jwt_authn:
+    #   "@type": type.googleapis.com/envoy.extensions.filters.http.jwt_authn.v3.PerRouteConfig
+    #   disabled: true
+    # activate when ext_authz is active
+    # envoy.filters.http.ext_authz:
+    #   "@type": "type.googleapis.com/envoy.extensions.filters.http.ext_authz.v3.ExtAuthzPerRoute"
+    #   disabled: true
+
+### .well-known/jwks.json
+- listener_name: frontend
+  match:
+    path: /bff/.well-known/jwks.json
+  route:
+    prefix_rewrite: /bff/.well-known/jwks.json
     cluster: "authtool-bff"
     timeout: "0s"
   typed_per_filter_config:
