@@ -7,7 +7,8 @@
     {"year": 2026, "quarter": "Q3", "months": ["Jul", "Ago", "Sep"]},
     {"year": 2026, "quarter": "Q4", "months": ["Oct", "Nov", "Dec"]},
     {"year": 2027, "quarter": "Q1", "months": ["Jan", "Feb", "Mar"]},
-    {"year": 2027, "quarter": "Q2", "months": ["Apr", "May", "Jun"]}
+    {"year": 2027, "quarter": "Q2", "months": ["Apr", "May", "Jun"]},
+    {"year": 2027, "quarter": "Q3", "months": ["Jul", "Aug", "Sep"]}
   ],
   "tasks": [
     {"name": "v14.0.x", "start": "2025-07-17", "end": "2025-10-23"},
