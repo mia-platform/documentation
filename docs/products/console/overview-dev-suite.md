@@ -27,6 +27,21 @@ Mia-Platform Console manages the entire software lifecycle seamlessly and unify 
 * **Self-service Approach**: Build and manage an Internal Developer Platform (IDP) that empowers development teams by providing the necessary tools and resources in a self-service mode. This enables them to develop efficiently and autonomously without dependency on other departments. For example, teams can create test environments independently, build microservices with standardized and pre-configured CI/CD pipelines, and access all necessary information, such as logging and monitoring, without having to request it from other teams or departments.
 * **Lower cognitive load**: By abstracting underlying complexities, the tool simplifies tasks for developers, minimizing cognitive load and reducing the need for frequent context switching. It consolidates all necessary project information, from configuration to monitoring, into a single interface. This allows developers to focus more on creative problem-solving and efficient coding, ultimately enhancing productivity and innovation within development projects.
 
+## Environment as a Service
+
+At the core of Mia-Platform Console lies the concept of **Environment as a Service (EaaS)**: the ability to provide development teams with fully provisioned, ready-to-use environments — on demand and in a self-service mode — without requiring manual setup, ticketing flows, or dependencies on infrastructure teams.
+
+Each environment exposes everything a team needs to build, run, and operate a digital product — compute resources, CI/CD pipelines, runtime configurations, observability, security policies, and connected services — abstracted behind a unified interface and governed by centrally defined rules.
+
+This approach delivers several key benefits:
+
+* **Self-service provisioning**: Developers can spin up new environments (development, testing, staging, production) in minutes, accelerating the inner and outer development loop.
+* **Standardization by design**: Every environment is created from golden paths and templates that embed organizational best practices, security baselines, and compliance requirements — ensuring consistency across teams and projects.
+* **Multi-cluster and multi-cloud ready**: Environments can be deployed across hybrid and multi-cloud architectures, decoupling product teams from the underlying infrastructure complexity.
+* **Centralized governance**: Platform teams retain full control over policies, quotas, and access — while still empowering product teams with autonomy.
+
+By treating environments as a product, Mia-Platform Console reduces cognitive load, shortens time-to-market, and enables organizations to scale their engineering practice without losing governance or control.
+
 ## Ease the digital platform development
 
 Mia-Platform Console serves the whole team (Developer, Operations and Platform Engineering) involved in software development because it brings several advantages to the development of an Internal Developer Platform.

@@ -1730,8 +1730,27 @@
   ],
   "gettingStarted": [
     {
-      "id": "getting-started/mia-platform-overview",
-      "type": "doc"
+      "type": "category",
+      "collapsed": true,
+      "label": "Mia-Platform Overview",
+      "link": {
+        "type": "doc",
+        "id": "getting-started/mia-platform-overview"
+      },
+      "items": [
+        {
+          "id": "getting-started/mia-platform-overview/mia-platform-for-data",
+          "type": "doc"
+        },
+        {
+          "id": "getting-started/mia-platform-overview/mia-platform-for-infrastructure",
+          "type": "doc"
+        },
+        {
+          "id": "getting-started/mia-platform-overview/mia-platform-for-application-composability",
+          "type": "doc"
+        }
+      ]
     },
     {
       "type": "doc",
