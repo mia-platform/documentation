@@ -35,7 +35,7 @@ Create and configure agents by selecting an LLM model, writing system instructio
 
 ### Playbook Builder
 
-The **Playbook Builder** is a visual flow editor (built on [React Flow](https://reactflow.dev/)) for designing multi-step agentic workflows. Each node in the graph represents a resource (agent, prompt, or spec), and edges define the execution order and data flow between nodes. Playbooks can also be authored as raw JSON for full control.
+The **Playbook Builder** is a visual flow editor for designing multi-step agentic workflows. Each node in the graph represents a resource (agent, prompt, or spec), and edges define the execution order and data flow between nodes. Playbooks can also be authored as raw JSON for full control.
 
 ### Model and Prompt Management
 
@@ -57,3 +57,16 @@ AI Foundry is a single-page application that communicates with two backend servi
 - **Agent Development Kit (ADK)** — executes agents and streams their output back to the AI Playground using SSE.
 
 All resources use the API version `new-ai.mia-platform.eu/v1alpha1` and are managed through a consistent REST interface on the Catalog Engine.
+
+## Where to go next
+
+New to AI Foundry? Start with the Basic Concepts section:
+
+- [Agent](./basic-concepts/10_agent.md) — the autonomous AI actor at the heart of the platform.
+- [Model](./basic-concepts/20_model.md) — LLM configurations that back agents.
+- [Prompt](./basic-concepts/30_prompt.md) — reusable text templates for agents and workflows.
+- [Tool](./basic-concepts/40_tool.md) — executable functions agents can call.
+- [Skill](./basic-concepts/50_skill.md) — reusable, higher-level AI capabilities.
+- [Playbook](./basic-concepts/60_playbook.md) — multi-step agentic workflows.
+- [MCP Server](./basic-concepts/70_mcp-server.md) — Model Context Protocol server integrations.
+- [Spec](./basic-concepts/80_spec.md) — structured reference documents for agents and playbooks.
