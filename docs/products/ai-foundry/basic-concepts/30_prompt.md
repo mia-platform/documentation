@@ -6,7 +6,7 @@ sidebar_label: Prompt
 
 # Prompt
 
-A **Prompt** is a catalog resource that stores a reusable piece of text — typically a system message, a user instruction template, or a few-shot example set — that agents and [Playbooks](./60_playbook.md) can reference by name.
+A **Prompt** is a catalog resource that stores a reusable piece of text (typically a system message, a user instruction template, or a few-shot example set) that agents and [Playbooks](./60_playbook.md) can reference by name.
 
 Centralizing prompt text in the catalog keeps it version-controlled, searchable, and decoupled from the agents that consume it. When a prompt needs to change you update it in one place and every referencing resource benefits automatically.
 

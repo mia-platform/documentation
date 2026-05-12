@@ -6,7 +6,7 @@ sidebar_label: Spec
 
 # Spec
 
-A **Spec** is a catalog resource that stores a structured or free-form specification document. Specs are the way to inject rich, reference-grade knowledge into a [Playbook](./60_playbook.md) — think API specifications, data schemas, architecture decision records, domain dictionaries, or any other document that an agent needs to consult at runtime.
+A **Spec** is a catalog resource that stores a structured or free-form specification document. Specs are the way to inject rich, reference-grade knowledge into a [Playbook](./60_playbook.md): think API specifications, data schemas, architecture decision records, domain dictionaries, or any other document that an agent needs to consult at runtime.
 
 Where a [Prompt](./30_prompt.md) carries short, focused instruction text, a Spec is designed for larger, more authoritative reference material.
 
@@ -93,7 +93,7 @@ The `spec` has no required fields. All three content fields are optional, but at
 | ------------- | ----------- | --------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `content`     | 1 (highest) | Primary content field. Recommended for most documents.                                                                                              |
 | `definition`  | 2           | Alternative content field. Useful when `content` is semantically reserved for something else.                                                       |
-| `description` | 3 (lowest)  | Fallback. Generally avoid using the spec-level `description` for primary content — prefer the `metadata.description` for the catalog entry summary. |
+| `description` | 3 (lowest)  | Fallback. Generally avoid using the spec-level `description` for primary content; prefer the `metadata.description` for the catalog entry summary. |
 
 Additional arbitrary fields are allowed in `spec`, making it easy to store structured data (e.g. the full body of a YAML or JSON document) in any field name that suits the use case.
 

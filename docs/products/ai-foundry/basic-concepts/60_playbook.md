@@ -14,8 +14,8 @@ Playbooks move the AI platform from single-agent interactions toward **agentic p
 
 The core of a playbook is `spec.flow`, which contains two collections:
 
-- **Nodes** — the steps in the workflow. Each node has a type and, for agent nodes, a reference to an Agent resource.
-- **Edges** — directed connections between nodes that define execution order.
+- **Nodes**: the steps in the workflow. Each node has a type and, for agent nodes, a reference to an Agent resource.
+- **Edges**: directed connections between nodes that define execution order.
 
 ### Node types
 
@@ -114,9 +114,9 @@ spec:
 
 The **Playbook Builder** in the AI Foundry UI provides a drag-and-drop canvas for designing and editing `spec.flow` without writing JSON:
 
-1. **Overview step** — set name, title, and description.
-2. **Agentic Flow step** — add nodes from a palette, draw edges between them, and configure node properties.
-3. **Resources step** — attach playbook-level prompts, skills, and specs using multi-select pickers.
+1. **Overview step**: set name, title, and description.
+2. **Agentic Flow step**: add nodes from a palette, draw edges between them, and configure node properties.
+3. **Resources step**: attach playbook-level prompts, skills, and specs using multi-select pickers.
 
 Switching to **JSON mode** replaces the visual builder with a full-spec JSON editor, which is useful for bulk edits or for copying playbooks across environments.
 

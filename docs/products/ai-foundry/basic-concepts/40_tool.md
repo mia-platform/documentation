@@ -50,7 +50,7 @@ metadata:
 
 ### `spec`
 
-The `spec` of a Tool resource is empty. All runtime behavior is managed outside the catalog — typically in the backend service or MCP server that implements the tool. The catalog record exists purely for registration, discovery, and governance.
+The `spec` of a Tool resource is empty. All runtime behavior is managed outside the catalog, typically in the backend service or MCP server that implements the tool. The catalog record exists purely for registration, discovery, and governance.
 
 ## Writing good tool descriptions
 
@@ -61,7 +61,7 @@ The `description` in `metadata` is surfaced to the LLM when the agent decides wh
 - **Describe the output format**: "Output: up to five article snippets with titles and URLs."
 - **Note limitations**: "Only covers articles published after 2023-01-01."
 
-Avoid vague names or descriptions — the LLM uses them to reason about when a tool is appropriate.
+Avoid vague names or descriptions: the LLM uses them to reason about when a tool is appropriate.
 
 ## Attaching tools to agents
 

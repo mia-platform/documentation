@@ -6,7 +6,7 @@ sidebar_label: Agent
 
 # Agent
 
-An **Agent** is the central execution unit in AI Foundry. It combines a large language model (LLM) with a set of instructions, tools, and skills to produce a reusable, autonomous AI actor that can carry out a specific task — answering questions, calling external APIs, running code, or coordinating with other agents inside a [Playbook](./60_playbook.md).
+An **Agent** is the central execution unit in AI Foundry. It combines a large language model (LLM) with a set of instructions, tools, and skills to produce a reusable, autonomous AI actor that can carry out a specific task, such as answering questions, calling external APIs, running code, or coordinating with other agents inside a [Playbook](./60_playbook.md).
 
 In AI Foundry every agent is a catalog resource: it is versioned, queryable, and can be attached to other resources by name.
 
@@ -14,7 +14,7 @@ In AI Foundry every agent is a catalog resource: it is versioned, queryable, and
 
 At runtime the AI Foundry backend forwards a conversation to the agent's configured LLM. Along with the conversation it sends:
 
-1. The agent's **system instruction** — a Markdown document that shapes the LLM's persona and constraints.
+1. The agent's **system instruction**: a Markdown document that shapes the LLM's persona and constraints.
 2. The schemas of the **tools** the agent is allowed to call.
 3. Any **skills** the agent has been assigned, which it can invoke as sub-routines.
 

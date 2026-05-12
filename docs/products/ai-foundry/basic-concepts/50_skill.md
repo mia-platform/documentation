@@ -6,7 +6,7 @@ sidebar_label: Skill
 
 # Skill
 
-A **Skill** is a catalog resource that encapsulates a reusable, higher-level AI capability. Where a [Tool](./40_tool.md) wraps a single atomic operation (call this API, run this query), a skill captures a multi-step capability along with the knowledge, templates, scripts, and assets needed to exercise it — for example "summarise a document", "classify intent", or "draft a reply in brand voice".
+A **Skill** is a catalog resource that encapsulates a reusable, higher-level AI capability. Where a [Tool](./40_tool.md) wraps a single atomic operation (call this API, run this query), a skill captures a multi-step capability along with the knowledge, templates, scripts, and assets needed to exercise it, for example "summarise a document", "classify intent", or "draft a reply in brand voice".
 
 Skills are referenced by [Agents](./10_agent.md) and [Playbooks](./60_playbook.md). They act as a reusable building block that can be shared across multiple agents without duplicating the underlying logic.
 
@@ -14,7 +14,7 @@ Skills are referenced by [Agents](./10_agent.md) and [Playbooks](./60_playbook.m
 
 A skill bundles four optional content sections alongside its metadata:
 
-- **`manifest`**: the primary Markdown documentation of the skill — what it does, how to invoke it, what inputs and outputs to expect.
+- **`manifest`**: the primary Markdown documentation of the skill, covering what it does, how to invoke it, and what inputs and outputs to expect.
 - **`refs`**: named reference materials the skill draws on (e.g. style guides, domain glossaries, external links).
 - **`assets`**: named templates or structured content the skill produces or consumes (e.g. a response template, a classification taxonomy).
 - **`scripts`**: named code snippets or pseudocode that implement part of the skill logic.
@@ -98,14 +98,14 @@ spec:
 Skills can be **locked** on a per-session basis in the [AI Playground](../overview.md#ai-playground), preventing an agent from invoking them during that session. This is useful when testing agent behaviour without a specific capability or when a skill's side effects are undesirable in a test context.
 
 :::note
-Locking a skill in the Playground does not modify the Skill resource or the Agent manifest — it only affects the live session.
+Locking a skill in the Playground does not modify the Skill resource or the Agent manifest; it only affects the live session.
 :::
 
 ## Skills vs. Tools
 
 | Aspect                    | Skill                                                       | Tool                                        |
 | ------------------------- | ----------------------------------------------------------- | ------------------------------------------- |
-| Abstraction level         | High — captures a multi-step, knowledge-rich capability     | Low — wraps a single external operation     |
+| Abstraction level         | High: captures a multi-step, knowledge-rich capability      | Low: wraps a single external operation      |
 | Implementation location   | Documented in the catalog (`manifest`, `scripts`, `assets`) | External service or MCP server              |
 | Content stored in catalog | Yes (manifest, refs, assets, scripts)                       | No (`spec` is empty)                        |
 | Typical use               | Writing, reasoning, classification patterns                 | API calls, database queries, code execution |

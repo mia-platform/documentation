@@ -14,7 +14,7 @@ The **Model Context Protocol** is an open standard (developed by Anthropic) that
 
 Key concepts in MCP:
 
-- **Tools**: callable functions with defined input/output schemas — equivalent to function-calling definitions.
+- **Tools**: callable functions with defined input/output schemas, equivalent to function-calling definitions.
 - **Resources**: structured data sources the LLM can read (files, database records, API responses).
 - **Prompts**: server-managed prompt templates the client can request by name.
 
@@ -80,7 +80,7 @@ spec:
 
 ### `spec`
 
-The `spec` is deliberately flexible — AI Foundry does not enforce a rigid schema on it. The fields below are the most common ones:
+The `spec` is deliberately flexible: AI Foundry does not enforce a rigid schema on it. The fields below are the most common ones:
 
 | Field     | Description                                                                                                                                              |
 | --------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
