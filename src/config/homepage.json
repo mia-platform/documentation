@@ -35,7 +35,7 @@
     {
       "description": "Discover how to easily find, understand, and effectively govern all of your company's data assets.",
       "icon": "data-catalog",
-      "link": "/docs/products/data_catalog/overview",
+      "link": "/docs/products/data_catalog/overview_data_catalog",
       "target": "_self",
       "title": "Data Catalog"
     },
@@ -56,14 +56,14 @@
     {
       "description": "Automate your cloud-native development lifecycle with self-service Environment as a Service capabilities.",
       "icon": "mia-platform-console",
-      "link": "/docs/development_suite/overview-dev-suite",
+      "link": "/docs/products/console/overview-dev-suite",
       "target": "_self",
       "title": "Console"
     },
     {
       "description": "Configure and manage real-time Fast Data pipelines to power always-on, data-driven decisions across your business.",
       "icon": "real-time-data-integration",
-      "link": "/docs/fast_data/what_is_fast_data",
+      "link": "/docs/products/fast_data_v2/overview",
       "target": "_self",
       "title": "Fast Data"
     }
