@@ -33,23 +33,45 @@ Alongside them, this release also introduces column-level data lineage that unlo
 ### Context Catalog
 
 We are thrilled to welcome a brand-new component to the Mia-Platform family: **Context Catalog**!
-This new component lets teams centralize, govern, and share the operational context that powers their applications, agents, and integrations. By curating contextual assets in a single catalog, and making them discoverable across the organization, Context Catalog helps teams turn scattered knowledge into a reusable, governed foundation for AI and platform workflows.
 
-Discover all the details in the [Context Catalog documentation](/docs/products/context_catalog/overview).
+Context Catalog is the single place where teams record, classify, and connect any entity that exists in their organization — software components, infrastructure resources, datasets, AI assets, business processes — and make them discoverable across the platform. A Kubernetes-inspired data model based on Item Types and typed relationships turns scattered, undocumented context into a structured, queryable foundation that both humans and automations can reason about.
+
+Context Catalog ships with:
+
+- A **REST API** and a **web Backoffice** to browse, create, and curate items, navigate the relationship graph, and inspect history.
+- A built-in **compliance layer** — evaluation criteria, scorecards, and campaigns — to express and enforce organizational standards (security baselines, production-readiness, ownership, …) and drive time-bounded compliance programs with notifications.
+- A growing set of **connectors**, powered by the open-source [`ibdm`](https://github.com/mia-platform/ibdm) binary, that keep the catalog in sync with GitHub, GitLab, Bitbucket, Azure, Azure DevOps, Google Cloud, the Mia-Platform Console, Sonatype Nexus, and Sysdig Secure.
+- An **MCP server** that exposes the catalog to AI agents through the [Model Context Protocol](https://modelcontextprotocol.io/), making organizational context available to AI workflows out of the box.
+
+By curating a single source of truth for organizational context, Context Catalog helps teams turn scattered knowledge into a reusable, governed foundation for AI and platform workflows.
+
+Discover all the details in the [Context Catalog documentation](/docs/products/context-catalog/overview).
 
 ### Flow
 
 Say hello to **Flow**, the newest component joining Mia-Platform!
-Flow brings visual workflow orchestration to Mia-Platform, allowing teams to design, execute, and monitor end-to-end processes that span services, data pipelines, and human-in-the-loop steps. With Flow, business and technical stakeholders can collaborate on the same canvas, accelerating the delivery of automations that connect the dots between systems.
+
+Flow brings visual workflow orchestration to the platform: a single canvas where teams design, execute, and monitor end-to-end processes that span microservices, data pipelines, and human-in-the-loop steps. Business and technical stakeholders collaborate on the same flow, while the runtime takes care of execution, retries, and observability.
+
+Flow is the natural place to wire automations that connect different parts of your platform — for example triggering a deployment when a compliance campaign closes, handing off a manual review step to a human, fanning out a process across multiple services, or chaining an AI agent into a larger business workflow.
 
 Discover all the details in the [Flow documentation](/docs/products/flow/overview).
 
 ### AI Foundry
 
 We are excited to introduce **AI Foundry**, a new component joining the Mia-Platform ecosystem!
-AI Foundry is the new home for building, deploying, and governing AI-powered experiences on Mia-Platform. It provides a unified environment to manage models, prompts, agents, and evaluations, making it easier to ship reliable AI features while keeping security, observability, and cost firmly under control.
 
-Discover all the details in the [AI Foundry documentation](/docs/products/ai_foundry/overview).
+AI Foundry is the new home for building, deploying, and governing AI-powered experiences on Mia-Platform. It provides a unified, web-based environment where teams can:
+
+- Configure **Agents** backed by the LLM **Models** of their choice and equipped with curated **Tools** and **Skills**.
+- Compose multi-step agentic workflows visually with the **Playbook Builder**, or author them as JSON for full control.
+- Manage **Prompts** as first-class, versioned catalog assets that agents and playbooks can reference.
+- Register external **MCP Servers** to dynamically expand the tool surface available to agents.
+- Test everything in real time in the **AI Playground**, with streamed responses, inline tool calls, and exportable conversations.
+
+By treating every AI asset as a governed catalog resource, AI Foundry makes it easier to ship reliable AI features while keeping security, observability, and cost firmly under control.
+
+Discover all the details in the [AI Foundry documentation](/docs/products/ai-foundry/overview).
 
 ### Data Catalog Column Lineage
 
