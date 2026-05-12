@@ -1,9 +1,9 @@
 ---
 id: overview
-title: Mia Flow Overview
+title: Flow Overview
 sidebar_label: Overview
 ---
 
-# Mia Flow Overview
+# Flow Overview
 
 TODO: content coming soon

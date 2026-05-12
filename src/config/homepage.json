@@ -26,7 +26,7 @@
   },
   "featureGrid": [
     {
-      "description": "Explore how to manage and reuse software components, APIs, and microservices via a self-service catalog.",
+      "description": "Connect, configure, and serve context to AI agents and applications through a governed catalog of enterprise knowledge.",
       "icon": "software-catalog",
       "link": "/docs/products/context-catalog/overview",
       "target": "_self",
@@ -40,28 +40,28 @@
       "title": "Data Catalog"
     },
     {
-      "description": "Learn how to design and orchestrate AI-driven workflows that automate business processes across your applications and services.",
+      "description": "Accelerate prototyping with AI-driven workflows for your enterprise applications and services.",
       "icon": "data-catalog",
-      "link": "/docs/products/mia-flow/overview",
+      "link": "/docs/products/flow/overview",
       "target": "_self",
-      "title": "Mia-Flow"
+      "title": "Flow"
     },
     {
-      "description": "Discover how to build, deploy, and govern generative AI applications and agents on a secure, enterprise-ready foundation.",
+      "description": "Design, manage, and govern AI playbooks to bring generative AI applications and agents to production on a secure, enterprise-ready foundation.",
       "icon": "runtime-environment",
       "link": "/docs/products/ai-foundry/overview",
       "target": "_self",
       "title": "AI Foundry"
     },
     {
-      "description": "Industrialize your cloud-native development lifecycle with self-service Environment as a Service capabilities.",
+      "description": "Automate your cloud-native development lifecycle with self-service Environment as a Service capabilities.",
       "icon": "mia-platform-console",
       "link": "/docs/development_suite/overview-dev-suite",
       "target": "_self",
       "title": "Console"
     },
     {
-      "description": "Find out how to make real-time, data-driven decisions with always-on, constantly updated data.",
+      "description": "Configure and manage real-time Fast Data pipelines to power always-on, data-driven decisions across your business.",
       "icon": "real-time-data-integration",
       "link": "/docs/fast_data/what_is_fast_data",
       "target": "_self",

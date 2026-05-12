@@ -69,9 +69,9 @@ const config = {
             },
             {
               type: 'doc',
-              docId: "products/mia-flow/overview",
-              label: "Mia Flow",
-              activeBaseRegex: "(docs|docs/\\d.x)/products/mia-flow"
+              docId: "products/flow/overview",
+              label: "Flow",
+              activeBaseRegex: "(docs|docs/\\d.x)/products/flow"
             },
             {
               type: 'doc',
