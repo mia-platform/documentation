@@ -4,4 +4,88 @@ title: Welcome to Mia-Platform v15
 image: "img/release-note-link-preview.png"
 ---
 
-> TODO...
+export const BetaTag = () => (
+  <span
+    style={{
+      display: 'flex',
+      alignItems: 'center',
+      width: 'fit-content',
+      padding: '0 18px',
+      color: '#531dab',
+      background: '#f9f0ff',
+      borderRadius: '12px',
+      marginBottom: '20px',
+      marginTop: '-10px',
+    }}
+  >
+    { 'BETA' }
+  </span>
+);
+
+## Mia-Platform v15
+
+**Ready to Master the Vibe?**
+
+This release is all about giving you the context and the tools to truly master the vibe of modern, AI-driven software development: a unified place to capture and govern context for AI, smarter ways to orchestrate end-to-end workflows, and a dedicated home for building reliable AI experiences on top of your platform.
+This year's headline news is the arrival of three brand-new components of Mia-Platform: **Context Catalog**, **Flow**, and **AI Foundry**, which expand the platform into context management, workflow orchestration, and AI-powered development.
+Alongside them, this release also introduces column-level data lineage that unlocks end-to-end data traceability, native Bitbucket Cloud support for teams using Atlassian's ecosystem, and the new Fast Data Control Plane v2 for governing real-time data pipelines at scale.
+
+### Context Catalog
+
+We are thrilled to welcome a brand-new component to the Mia-Platform family: **Context Catalog**!
+This new component lets teams centralize, govern, and share the operational context that powers their applications, agents, and integrations. By curating contextual assets in a single catalog, and making them discoverable across the organization, Context Catalog helps teams turn scattered knowledge into a reusable, governed foundation for AI and platform workflows.
+
+Discover all the details in the [Context Catalog documentation](/docs/products/context_catalog/overview).
+
+### Flow
+
+Say hello to **Flow**, the newest component joining Mia-Platform!
+Flow brings visual workflow orchestration to Mia-Platform, allowing teams to design, execute, and monitor end-to-end processes that span services, data pipelines, and human-in-the-loop steps. With Flow, business and technical stakeholders can collaborate on the same canvas, accelerating the delivery of automations that connect the dots between systems.
+
+Discover all the details in the [Flow documentation](/docs/products/flow/overview).
+
+### AI Foundry
+
+We are excited to introduce **AI Foundry**, a new component joining the Mia-Platform ecosystem!
+AI Foundry is the new home for building, deploying, and governing AI-powered experiences on Mia-Platform. It provides a unified environment to manage models, prompts, agents, and evaluations, making it easier to ship reliable AI features while keeping security, observability, and cost firmly under control.
+
+Discover all the details in the [AI Foundry documentation](/docs/products/ai_foundry/overview).
+
+### Data Catalog Column Lineage
+
+The **Data Catalog** now supports **Column Lineage**, enabling users to inspect and trace upstream and downstream column relationships for a more granular, end-to-end view of their data.
+
+While Table-level and System-of-Record-level lineage give a structural picture of how data flows across tables and systems, Column Lineage goes deeper: for each Job connecting two tables, users can now document exactly **which columns feed into which**, and **what kind of transformation** ties them together.
+
+![Column Lineage View](img/column-lineage-view.png)
+
+Discover all the details in the [Column Lineage documentation](/docs/products/data_catalog/frontend/data_lineage#column-lineage).
+
+### Fast Data Control Plane v2
+
+The **Fast Data Control Plane v2** is the new runtime management solution for Fast Data v2 pipelines.
+
+It provides a general overview of all Fast Data v2 pipelines running in your environment, allowing you to monitor and govern the execution steps of your data pipelines in real time, building on the performance and modularity introduced by the Fast Data v2 workloads suite.
+
+![Control Plane Fast Data Pipeline](img/fast-data-pipeline.png)
+
+Discover all the capabilities and benefits of Fast Data Control Plane v2 in the [official documentation](/docs/products/fast_data_v2/runtime_management/overview).
+
+### Bitbucket Cloud Support in Console
+
+Console now supports **Bitbucket Cloud** as both a **Git Provider** and a **CI/CD Tool**, enabling teams that rely on Bitbucket to fully integrate their project workflows, from repository provisioning to pipeline execution.
+
+![Bitbucket Cloud support](img/bitbucket-cloud-support.png)
+
+Configuring Bitbucket Cloud as a Git Provider allows users to set up Console Projects whose Git repositories reside in a Bitbucket workspace. For CI/CD, Console will trigger Bitbucket pipeline executions on the target repository at deploy time, following the same flow already available for other supported providers.
+
+Discover how to configure Bitbucket Cloud as a Git Provider and set up Bitbucket Pipelines in the [Configure a Provider](/docs/products/console/company-configuration/providers/management) and [Configure Bitbucket Pipelines](/docs/products/console/deploy/pipeline-based/configure-bitbucket-pipelines) documentation pages.
+
+### New Interface for Configuration Merge
+
+A **new interface for merging configurations** has been introduced in the Console Design Area.
+The new interface aims at improving DevX in comparing and merging configurations when working on branched revisions, providing a clearer, more intuitive diff view.
+
+![New interface for merging revisions](img/new-interface-for-merging-revisions.png)
+
+To try it, go to the **Feature Preview** section inside your **Project settings** and activate it.
