@@ -50,7 +50,30 @@ A **manifest** is the JSON or YAML representation of an object. The Catalog API 
 
 ## Relationship
 
-A **relationship** is a typed, directed link between a *source* item and a *target* item. The catalog provides built-in kinds (`RelationshipType`, `RelationshipConstraint`, and `Relationship`) to model, govern, and record connections between items.
+A **relationship** is a typed, directed link between a *source* item and a *target* item. The catalog provides built-in kinds (`RelationshipType`, `RelationshipConstraint`, and `Relationship`) to model, govern, and record connections between items. See [Relationships](./60_relationships.md).
+
+## Tags, labels, annotations, custom fields
+
+Four different mechanisms to attach additional information to an item, each with a different audience and contract:
+
+- **Tags**: free-form strings for human categorization (`metadata.tags`).
+- **Labels**: structured key/value pairs used for filtering and identity (`metadata.labels`).
+- **Annotations**: arbitrary key/value pairs reserved to automated systems (`metadata.annotations`).
+- **Custom fields**: typed extensions stored in the top-level `customFields` map of an item, governed by separate `CustomField` definitions that declare a JSON Schema and the item types they apply to.
+
+See [Items](./10_items.md#tags-labels-annotations-and-custom-fields) for the full comparison.
+
+## Owner and follower
+
+An **owner** is a User or Team responsible for an item, modeled as a built-in `ownership` relationship. A **follower** is any User who wants to receive compliance notifications about an item, modeled as a built-in `follow` relationship. Both relationships are surfaced in the UI and queried like any other relationship. See [Items](./10_items.md#ownership-and-followers).
+
+## View
+
+A **View** is a saved, named query that scopes the catalog to a subset of items. Views are themselves catalog items: they can be referenced by [Scorecards](./40_scorecards.md) and [Campaigns](./50_campaigns.md) to declare their scope, and they appear in the [Catalog Backoffice](../catalog-backoffice.md#views) sidebar as bookmarks.
+
+## Selectable field
+
+A `spec` field declared on an [Item Type Definition](./20_item-types.md#selectable-fields) as queryable. The catalog provisions an index on selectable fields so that `field=` and `rawq` filters can target them.
 
 ## Organization
 

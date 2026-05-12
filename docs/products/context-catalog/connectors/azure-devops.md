@@ -4,49 +4,49 @@ title: Azure DevOps Connector
 sidebar_label: Azure DevOps
 ---
 
-# Azure DevOps Connector
+# Microsoft Azure DevOps Connector
 
-The **Azure DevOps connector** ingests entities from an Azure DevOps organization into the Context Catalog, exposing projects, repositories, pipelines, and releases as first-class catalog items.
+The Microsoft Azure DevOps connector ingests entities from an Azure DevOps organization into the Context Catalog. It runs through the [`ibdm`](./10_overview.md) binary in one of two modes:
 
-## What it ingests
+- **Sync** — pull-based: queries the Azure DevOps REST APIs and exits.
+- **Run** — push-based: exposes a webhook endpoint that receives Azure DevOps service-hook events.
 
-Typical ingested entities include:
+## Commands
 
-- **Organizations and projects**: the hierarchical structure of your Azure DevOps account.
-- **Repositories (Azure Repos)**: name, default branch, visibility, owning project.
-- **Pipelines (YAML and classic)**: pipeline definitions and recent runs.
-- **Environments and releases**: declared environments and deployment history.
-- **Service connections** (when authorized): useful to map dependencies on external systems.
+```sh
+ibdm sync azure-devops --mapping-file <path to mapping file or folder>
+ibdm run  azure-devops --mapping-file <path to mapping file or folder>
+```
 
-Each entity becomes a catalog [item](../basic-concepts/10_items.md) of an [item type](../basic-concepts/20_item-types.md) registered by the connector. Custom ITDs can extend the model with additional Azure DevOps fields.
+## Configuration
+
+| Variable | Required | Description |
+| :------- | :------- | :---------- |
+| `AZURE_DEVOPS_ORGANIZATION_URL` | Sync | URL of the Azure DevOps organization. |
+| `AZURE_DEVOPS_PERSONAL_TOKEN` | Sync | Personal Access Token of a user in the organization (read scopes on the resources to ingest). |
+| `AZURE_DEVOPS_WEBHOOK_PATH` | Optional | Path of the webhook handler. Defaults to `/azure-devops/webhook`. |
+| `AZURE_DEVOPS_WEBHOOK_USER` | Optional | Optional username for HTTP Basic Auth on the webhook endpoint. |
+| `AZURE_DEVOPS_WEBHOOK_PASSWORD` | Optional | Optional password for HTTP Basic Auth on the webhook endpoint. |
+
+When `AZURE_DEVOPS_WEBHOOK_USER` is set, `AZURE_DEVOPS_WEBHOOK_PASSWORD` becomes required, and the same values must be configured on the Azure DevOps side when registering the webhook.
 
 ## Authentication
 
-The connector authenticates via:
+Requests against the Azure DevOps REST API are authenticated with the Personal Access Token in `AZURE_DEVOPS_PERSONAL_TOKEN`. The token needs read permissions on the resources you intend to access.
 
-- a **Personal Access Token (PAT)** with the scopes required for the entities to ingest, or
-- an **Azure AD application** configured to access the Azure DevOps APIs.
+## Supported data types
 
-Credentials are stored as secrets at the company level.
+| Type | Sync | Webhook |
+| :--- | :--- | :------ |
+| `repository` | ✅ | ✅ |
+| `team` | ✅ | — |
 
-## How synchronization works
+Subscribed webhook events:
 
-- **Initial sync.** Walks the configured organization and creates a catalog item for every entity discovered.
-- **Incremental sync.** Reconciles the catalog with Azure DevOps on a schedule, applying creations, updates, and deletions.
-- **Event-driven updates.** When configured with service hooks, the connector reacts to Azure DevOps events (e.g. pipeline completed, release deployed) and refreshes affected items in near real time.
-
-## Relationships
-
-Out of the box the connector creates relationships such as:
-
-- *Repository → Project* (containment),
-- *Pipeline → Repository* (uses),
-- *Release → Environment* (targets).
-
-Custom relationship types can be defined to model your organization's specific connections.
+- [`git.repo.created`](https://learn.microsoft.com/en-us/azure/devops/service-hooks/events?view=azure-devops#repository-created) → `repository` upsert
+- [`git.repo.renamed`](https://learn.microsoft.com/en-us/azure/devops/service-hooks/events?view=azure-devops#repository-renamed) → `repository` upsert
+- [`git.repo.deleted`](https://learn.microsoft.com/en-us/azure/devops/service-hooks/events?view=azure-devops#repository-deleted) → `repository` delete
 
 ## See also
 
-- [Items](../basic-concepts/10_items.md)
-- [Item Types](../basic-concepts/20_item-types.md)
-- [API Interactions](../api-interactions.md)
+- [Connectors Overview](./10_overview.md)

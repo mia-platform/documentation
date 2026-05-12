@@ -10,9 +10,24 @@ A **Scorecard** is a set of rules evaluated on a scope of catalog items, used to
 
 ## Concepts
 
-- **Scope.** The set of catalog items the scorecard applies to (typically defined by a query, for instance "all services in the `production` environment").
-- **Rules.** The list of rules whose results contribute to the scorecard. Each rule is evaluated independently per item.
-- **Score.** The aggregate result of evaluating every rule against every item in scope. The shape of the score (percentage, level, weighted total, …) depends on the scorecard configuration.
+- **Scope.** The set of catalog items the scorecard applies to. The scope is either a reference to a [View](../catalog-backoffice.md#views) or a raw query over the catalog (see [Query Language](./70_query-language.md)).
+- **Levels.** A scorecard is organized into named, ordered levels (for example *Bronze → Silver → Gold*). Each level groups a subset of the scorecard's rules.
+- **Rules.** The list of rules whose results contribute to the scorecard. Each rule belongs to exactly one level and is evaluated independently per item.
+- **Achieved level.** The result of a scorecard evaluation for a single item is the *highest* level whose rules are *all* satisfied by that item. An item that does not satisfy every rule of the lowest level has no achieved level (it is reported as "without level").
+
+## Score and progress
+
+When a scorecard is evaluated, every item in scope gets:
+
+- a per-rule pass/fail result,
+- an **achieved level** computed from those results.
+
+From the per-item achieved level the catalog derives two aggregate indicators that are surfaced on the scorecard and on the [Catalog Backoffice](../catalog-backoffice.md):
+
+- **Median level.** The median achieved level across all items in scope. It summarizes "where most of the fleet sits" without being skewed by a handful of outliers.
+- **Progress.** The percentage of items in scope that have achieved at least the *lowest* level of the scorecard (i.e. items that have a level at all). Progress is the simplest reading of "how many things in scope are compliant *enough* to be on the ladder".
+
+The Backoffice also surfaces the count of items *without level* — those that fail at least one rule of the lowest level — which is the natural starting point for remediation work.
 
 ## Where scorecards live
 
@@ -25,12 +40,12 @@ Scorecards are catalog items governed by an Item Type Definition under the `comp
 
 ## How a scorecard is evaluated
 
-A scorecard refresh is, internally, a fan-out of [rule evaluations](./30_evaluation-criteria.md). The Compliance Manager:
+A scorecard refresh is, internally, a fan-out of [rule evaluations](./30_evaluation-criteria.md):
 
-1. Resolves the scorecard's scope into a concrete list of items.
-2. For each rule in the scorecard, triggers a rule evaluation against that list (the same flow described in [Evaluation Criteria](./30_evaluation-criteria.md)).
-3. Aggregates the per-rule, per-item results into the scorecard's overall score.
-4. Persists the score on the scorecard item.
+1. The scorecard's scope is resolved into a concrete list of items.
+2. For each rule in the scorecard, a rule evaluation is triggered against that list (the same flow described in [Evaluation Criteria](./30_evaluation-criteria.md)).
+3. Per-rule, per-item results are aggregated into the achieved level for each item, the median level, and the progress percentage.
+4. The aggregate score is persisted on the scorecard item.
 
 Because every individual evaluation produces a `Rule-run` item, scorecards retain a full audit trail: you can drill from an aggregated score down to the rule, the items that failed it, and the moment the evaluation happened.
 

@@ -68,7 +68,7 @@ spec:
                   type: string
               required:
                 - name
-  # Always equal to "Organization"
+  # Currently only "Organization" is supported (see note below).
   scope: Organization
   names:
     # Plural name to use for REST API `/api/{group}/{version}/items/{plural}/*`.
@@ -76,6 +76,10 @@ spec:
     # Kind is normally the CamelCased singular type. Your resource manifests use this.
     kind: DockerImage
 ```
+
+:::note
+Today the only valid value for `spec.scope` is `Organization`: all items of a given kind live inside a single organization namespace. A `Project` scope, which would further narrow ownership of an item to a specific project, is planned but not yet available.
+:::
 
 Posting this ITD creates a new organization-scoped REST endpoint at:
 
@@ -135,6 +139,44 @@ properties:
 :::caution
 The validation schema of an ITD version cannot be modified after creation. This guarantees the stability of the interface so clients can safely cache ITD versions and always interpret the `spec` of custom resources. To change the schema, create a new version of the ITD.
 :::
+
+## Selectable fields
+
+By default, items can be filtered only on their `metadata` fields (`metadata.name`, `metadata.title`, `metadata.tags`, `metadata.labels.*`). To filter on a field inside `spec`, that field must be declared as **selectable** on the ITD version.
+
+Selectable fields are the catalog's contract for queryability: when you mark a field as selectable, the catalog provisions an index on it so that `field=` and `rawq` queries (see [Query Language](./70_query-language.md)) can filter on it efficiently. Marking a field selectable is the only way to make a `spec` field appear in API and Backoffice filters.
+
+Selectable fields are declared at the ITD-version level alongside the schema. They must point to fields that hold a primitive value or a homogeneous array of primitives.
+
+```yaml
+apiVersion: mia-platform.eu/v1alpha1
+kind: ItemTypeDefinition
+metadata:
+  name: dockerimages.stable.example.com
+spec:
+  group: stable.example.com
+  versions:
+    - name: v1
+      served: true
+      storage: true
+      schema:
+        openAPIV31Schema: { ... }
+      selectableFields:
+        - jsonPath: .spec.registry
+        - jsonPath: .spec.tag
+  scope: Organization
+  names:
+    plural: dockerimages
+    kind: DockerImage
+```
+
+With the example above, clients can call:
+
+```http
+GET /stable.example.com/v1/items/dockerimages?field=spec.registry=nexus.mia-platform.eu
+```
+
+Without the corresponding `selectableFields` entry, the same query is rejected.
 
 ## Naming conventions
 

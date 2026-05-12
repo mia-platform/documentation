@@ -4,48 +4,62 @@ title: Mia-Platform Console Connector
 sidebar_label: Mia-Platform Console
 ---
 
-# Console Connector
+# Mia-Platform Console Connector
 
-The **Mia-Platform Console connector** ingests entities from the Mia-Platform Console into the Context Catalog. It is the natural bridge between the platform engineering workspace where users design and operate projects and the catalog where everything that exists in the organization is recorded and governed.
+The Mia-Platform Console connector ingests data from a Mia-Platform Console instance into the Context Catalog. It runs through the [`ibdm`](./10_overview.md) binary in one of two modes:
 
-## What it ingests
+- **Sync** — pull-based: queries the Console APIs and exits.
+- **Run** — push-based: exposes a webhook endpoint that receives events from the Console.
 
-Typical ingested entities include:
+## Commands
 
-- **Companies**: the top-level Console tenants.
-- **Projects**: the projects defined inside each company, with their metadata (name, environments, repositories).
-- **Environments**: the runtime environments declared per project.
-- **Microservices, endpoints, CRUDs, public variables**: the design-time configuration that lives in the project model.
-- **Deployments**: the history of deployments triggered from the Console.
+```sh
+ibdm sync console --mapping-file <path to mapping file or folder>
+ibdm run  console --mapping-file <path to mapping file or folder>
+```
 
-Each entity becomes a catalog [item](../basic-concepts/10_items.md) of an [item type](../basic-concepts/20_item-types.md) registered by the connector under the `console.mia-platform.eu` group. Custom ITDs can extend the model to capture additional Console fields.
+## Configuration
 
-## Authentication
+### Webhook server (run mode)
 
-The connector authenticates against the Console API via:
+| Variable | Description |
+| :------- | :---------- |
+| `HTTP_HOST` | Host the server binds to. |
+| `HTTP_PORT` | Port the server binds to. |
+| `CONSOLE_WEBHOOK_PATH` | Path where webhooks are received. Defaults to `/console/webhook`. |
+| `CONSOLE_WEBHOOK_SECRET` | Shared secret used to validate the `X-Mia-Signature` header on inbound webhooks. |
 
-- a **service account** registered on the Console, with the scopes required to read the targeted companies and projects.
+### Console API (sync mode)
 
-Credentials are stored as secrets at the company level and consumed by the connector at runtime.
+| Variable | Description |
+| :------- | :---------- |
+| `CONSOLE_ENDPOINT` | Base URL of the Console (required). |
 
-## How synchronization works
+#### Authentication: Client Credentials
 
-- **Initial sync.** On first run, the connector walks the configured companies and projects and creates a catalog item for every entity it finds.
-- **Incremental sync.** Subsequent runs reconcile the catalog with the Console: new entities are created, changed entities are updated, and entities removed from the Console are removed from (or marked stale in) the catalog.
-- **Event-driven updates.** When the connector subscribes to Console events, configuration and deployment changes are reflected in the catalog in near real time.
+| Variable | Description |
+| :------- | :---------- |
+| `CONSOLE_CLIENT_ID` | Client ID issued by the Console. |
+| `CONSOLE_CLIENT_SECRET` | Client Secret issued by the Console. |
+| `CONSOLE_AUTH_ENDPOINT` | Optional override of the token endpoint. Defaults to `<CONSOLE_ENDPOINT>/oauth/token`. |
 
-## Relationships
+#### Authentication: Service Account (JWT)
 
-Ingested items participate in the catalog's [relationship](../basic-concepts/99_glossary.md#relationship) graph. Out of the box, the connector creates relationships such as:
+| Variable | Description |
+| :------- | :---------- |
+| `CONSOLE_JWT_SERVICE_ACCOUNT` | Set to `true` to enable JWT mode. |
+| `CONSOLE_PRIVATE_KEY` | Private key of the service account. |
+| `CONSOLE_PRIVATE_KEY_ID` | Identifier of the private key. |
 
-- *Project → Company* (containment),
-- *Microservice → Project* (containment),
-- *Deployment → Environment* (targets).
+## Supported data types
 
-Custom relationship types can be defined to model your organization's specific connections.
+| Type | Sync | Webhook |
+| :--- | :--- | :------ |
+| `project` | ✅ | ✅ |
+| `configuration` | ✅ | ✅ |
+
+`project` carries Console project metadata. `configuration` carries the configuration payload of a project, fetched for each revision.
 
 ## See also
 
-- [Items](../basic-concepts/10_items.md)
-- [Item Types](../basic-concepts/20_item-types.md)
-- [API Interactions](../api-interactions.md)
+- [Connectors Overview](./10_overview.md)

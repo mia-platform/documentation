@@ -2040,6 +2040,10 @@
       "type": "doc"
     },
     {
+      "id": "products/context-catalog/getting-started",
+      "type": "doc"
+    },
+    {
       "type": "category",
       "collapsed": true,
       "label": "Basic concepts",

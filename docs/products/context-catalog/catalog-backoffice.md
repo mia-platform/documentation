@@ -443,4 +443,4 @@ Clicking a team navigates to its catalog item detail page, where you can see the
 
 - See [API Interactions](./api-interactions.md) for the underlying API the backoffice consumes.
 - See [Items](./basic-concepts/10_items.md) and [Item Types](./basic-concepts/20_item-types.md) to understand what you are looking at in the UI.
-- See [Connectors](./connectors/github.md) to learn how external systems feed data into the catalog.
+- See [Connectors](./connectors/10_overview.md) to learn how external systems feed data into the catalog.

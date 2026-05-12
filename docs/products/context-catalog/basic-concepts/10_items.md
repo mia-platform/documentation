@@ -68,6 +68,18 @@ A server-assigned, universally unique identifier (UUID, RFC 4122) for the object
 
 An RFC 3339 string with the date and time the object was created. Server-generated, immutable.
 
+### `title`
+
+A free-form, human-readable display name for the object. Unlike `name`, the title is not used as an identifier and can be changed at any time. Both filtering (`field=metadata.title=...`) and sorting (`sort=metadata.title`) honor this field.
+
+### `description`
+
+A free-form, human-readable description of the object. Useful to surface context for browsers of the [Catalog Backoffice](../catalog-backoffice.md).
+
+### `tags`
+
+A flat list of short strings used to categorize the item. Tags are the lightest form of classification the catalog offers and are intended to be set and consumed by humans directly through the UI. The Catalog API exposes them as a filterable and selectable field (`field=metadata.tags=...`).
+
 ### `labels`
 
 Key/value pairs identical in spirit to [Kubernetes labels](https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/). They are used for classifying and filtering objects.
@@ -81,6 +93,100 @@ Key/value pairs identical in spirit to [Kubernetes labels](https://kubernetes.io
 ### `annotations`
 
 Key/value pairs for arbitrary, non-identifying metadata, identical in use to [Kubernetes annotations](https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/). The key constraints match those of labels; values can be of any length but must be strings.
+
+Annotations are intended to be written and read by automated systems that need to attach side information to an item without altering its `spec` (for example, a connector recording the upstream entity ID, or a tool stamping a last-seen timestamp).
+
+### `links`
+
+A list of URL references attached to the object (e.g. dashboards, documentation pages, runbooks). Each link is a `{ url, title }` pair. Links are surfaced in the Catalog Backoffice and have no effect on the catalog logic itself.
+
+## Tags, labels, annotations and custom fields
+
+The catalog offers four different ways to attach additional information to an item. They are not interchangeable and serve different audiences:
+
+| Mechanism | Lives in | Schema | Intended audience | Typical use |
+| :-------- | :------- | :----- | :---------------- | :---------- |
+| **Tags** | `metadata.tags` (array of strings) | None | Humans | Quick, free-form categorization from the UI. |
+| **Labels** | `metadata.labels` (string→string map) | Format constraints on keys/values | Both humans and automation | Identifying classification used to query and filter items in bulk (e.g. `env=production`). |
+| **Annotations** | `metadata.annotations` (string→string map) | Format constraints on keys; any string value | Automation | Side information stored by external systems on existing items, with no effect on identity. |
+| **Custom fields** | `customFields` (top-level map on the item) | Typed JSON Schema, declared once by a `CustomField` entity and shared across multiple item types | Both humans and automation | Typed, validated extensions that live alongside the item without changing its ITD's `spec` schema. |
+
+In short: pick **tags** for casual categorization, **labels** for structured identity, **annotations** for "stuff a system put here", and **custom fields** when you want a typed, validated extension that the ITD's `spec` schema does not describe.
+
+### Custom fields in detail
+
+Custom fields are stored on the item as a **top-level `customFields` map** (a sibling of `spec`, not nested inside it):
+
+```yaml
+apiVersion: stable.example.com/v1
+kind: DockerImage
+metadata:
+  name: mia-api-gateway-100
+spec:
+  imageName: api-gateway
+  registry: nexus.mia-platform.eu
+  tag: 1.0.0
+customFields:
+  sensitivity: confidential
+  runtime/java-version: "21"
+resourceVersion: 1
+```
+
+Each key in `customFields` corresponds to the `spec.key` of a separate `CustomField` catalog entity (kind `CustomField`, family `custom-fields`, group `mia-platform.eu/v1alpha1`). The `CustomField` declares:
+
+- **`spec.key`** — the unique key used in items' `customFields` map. May be plain (e.g. `sensitivity`) or prefixed (e.g. `runtime/java-version`).
+- **`spec.schema`** — a JSON Schema (Draft 2020-12) that validates the value of the field on items.
+- **`spec.applicableTo`** *(optional)* — the list of item-type URNs this field applies to. If omitted, the field applies to **all** item types; an empty array means it applies to **none**.
+
+Example `CustomField` declaration:
+
+```yaml
+apiVersion: mia-platform.eu/v1alpha1
+kind: CustomField
+metadata:
+  name: sensitivity
+spec:
+  key: sensitivity
+  schema:
+    type: string
+    enum: ["public", "internal", "confidential", "secret"]
+  applicableTo:
+    - urn:mia-platform-catalog:example.com:v1alpha1:Database
+    - urn:mia-platform-catalog:example.com:v1alpha1:Service
+```
+
+Unlike an ITD's `spec` schema — which is fixed at the ITD-version level — a `CustomField` can be introduced or deprecated independently and reused across many item types. This makes custom fields the right tool when you want to attach an attribute (e.g. data sensitivity, runtime version, business owner) consistently across several otherwise unrelated kinds.
+
+#### Patching custom fields
+
+The `customFields` map has a dedicated endpoint that uses [JSON Merge Patch (RFC 7396)](https://www.rfc-editor.org/rfc/rfc7396) semantics:
+
+```http
+PATCH /{group}/{version}/items/{family}/{name}/custom-fields
+Content-Type: application/merge-patch+json
+
+{
+  "sensitivity": "confidential",
+  "runtime/java-version": null
+}
+```
+
+- A non-null value **inserts or replaces** the entry for that key.
+- A `null` value **removes** the entry from the map.
+- Keys not mentioned in the body are left unchanged.
+
+Every non-null key in the body must match an existing `CustomField` whose `spec.applicableTo` includes the item's type (or is omitted), and each value is validated against that `CustomField`'s `spec.schema`. Unknown or non-applicable keys return `400 Bad Request`.
+
+:::note
+Because the lifecycle of `CustomField` entities is independent from the items that use them, clients should not assume that a given key in `customFields` still corresponds to a live `CustomField` definition: a definition may be deleted while items still carry values for it. Handle missing definitions defensively.
+:::
+
+## Ownership and followers
+
+Two relationships are central to the way the catalog associates people with items:
+
+- **Owner.** Every item can have an *owner*, which is either a User or a Team. Ownership is modeled as a built-in relationship of type `ownership.mia-platform.eu` between the item and the User/Team. The Backoffice exposes ownership as a first-class field on the item form, but on the wire it is just a Relationship object — see [Relationships](./60_relationships.md).
+- **Follower.** Any user can additionally *follow* an item to be notified about compliance events that involve it. Following is modeled as a built-in relationship of type `follow.mia-platform.eu` between the User and the item. Owners are implicitly considered followers.
 
 ## Primary key and Item URN
 
@@ -119,4 +225,4 @@ Items live inside an **organization**, which is a hard isolation boundary with i
 
 ## Relationships
 
-Items can be connected to one another through **relationships**: typed, directed links between a *source* and a *target* item. The catalog provides three built-in kinds (`RelationshipType`, `RelationshipConstraint`, and `Relationship`) that together model, govern, and record connections.
+Items can be connected to one another through **relationships**: typed, directed links between a *source* and a *target* item. The catalog provides three built-in kinds (`RelationshipType`, `RelationshipConstraint`, and `Relationship`) that together model, govern, and record connections. See [Relationships](./60_relationships.md) for the full model, the built-in relationship types, and examples.

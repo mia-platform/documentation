@@ -14,43 +14,28 @@ This page describes how rules are modeled, how they are evaluated, and how the r
 
 - **Rule.** A deterministic condition evaluated against a catalog item.
 - **Rule-run.** The record of a single evaluation of a rule against a context of items at a given moment.
-- **Policy Engine.** A stateless service that takes a rule body and a set of items, evaluates the condition for each item, and returns the per-item results.
-- **Compliance Manager.** The orchestrator that owns the lifecycle of rule evaluations: it creates rule-runs, calls the policy engine, polls for results, and updates the catalog.
+- **Policy Engine.** The stateless service that takes a rule body and a set of items, evaluates the condition for each item, and returns the per-item results.
+
+## Rule body
+
+The body of a rule — the condition that gets evaluated against each item — can be authored in three equivalent forms:
+
+- **Visual builder**: a UI-driven editor that lets users compose conditions by picking a field, an operator (equals, not equals, matches, exists, …) and a value, then combining clauses with AND/OR. Best for non-technical users.
+- **JSON AST**: the raw JSON representation that the visual builder produces under the hood. It is the canonical persistence format and is suited to programmatic authoring.
+- **CEL**: a [Common Expression Language](https://cel.dev) expression for users who prefer a code-like authoring experience and need expressivity that goes beyond the visual builder.
+
+The three formats are interchangeable: a rule authored visually can be inspected as JSON AST or transpiled to CEL, and vice versa.
 
 ## Evaluation flow
 
 Every rule evaluation follows the same four-step flow, regardless of whether the trigger is a manual request, a scheduled scan, or an item-change event from a [Campaign](./50_campaigns.md).
 
-1. The Compliance Manager receives a rule evaluation request and creates a **Run** item in the catalog with status `pending`.
-2. It calls the Policy Engine, passing the rule body and the set of target items.
-3. The Compliance Manager polls the Policy Engine until the evaluation is `completed`.
-4. Once complete, it updates the `Run` item with the final status (`success` or `failed`) and the per-item results.
+1. A rule evaluation request is received and a **Run** item is created in the catalog with status `pending`.
+2. The Policy Engine is called with the rule body and the set of target items.
+3. The Policy Engine is polled until the evaluation is `completed`.
+4. Once complete, the `Run` item is updated with the final status (`success` or `failed`) and the per-item results.
 
-In parallel, the **frontend polls the `Run` item** on the Catalog Engine until the status transitions out of `pending`, then renders the results.
-
-```text
-catalog-frontend          compliance-manager         policy-engine        catalog-engine
-      │                          │                         │                    │
-      │  POST /evaluate-rule     │                         │                    │
-      │─────────────────────────►│                         │                    │
-      │                          │  1. Create Run (pending)│                    │
-      │                          │────────────────────────────────────────────► │
-      │                          │  2. POST evaluate(rule, items)               │
-      │                          │────────────────────────►│                    │
-      │                          │                         │                    │
-      │◄─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─  │  (returns immediately)  │                    │
-      │                          │                         │                    │
-      │  GET /run/{id} (polling) │  3. GET status (polling)│                    │
-      │─────────────────────────►│────────────────────────►│                    │
-      │◄─ status: pending ───────│◄─ status: in_progress ──│                    │
-      │                          │           …             │                    │
-      │  GET /run/{id} (polling) │  GET status             │                    │
-      │─────────────────────────►│────────────────────────►│                    │
-      │                          │◄─ status: completed ────│                    │
-      │                          │  4. Update Run (success/failed + results)    │
-      │                          │────────────────────────────────────────────► │
-      │◄─ status: success/failed─│                         │                    │
-```
+In parallel, the **Catalog Backoffice polls the `Run` item** until the status transitions out of `pending`, then renders the results.
 
 ## Where rules live
 

@@ -10,12 +10,18 @@ The Catalog API lets you query and manipulate items in the Context Catalog. It i
 
 To support evolution and extension, the Catalog implements API groups and multiple API versions. This information is encoded both in the REST path (`/{GROUP}/{VERSION}/*`, e.g. `/mia-platform.eu/v1/*`) and in the `apiVersion` field of serialized objects.
 
+## Authentication
+
+:::note
+This section is a placeholder. The authentication and authorization model of the Catalog API will be documented here, covering: how clients obtain credentials, how requests are authenticated, and how authorization is scoped (per organization, per item type, per operation).
+:::
+
 ## MCP server
 
 In addition to the REST API, the Context Catalog exposes an **MCP (Model Context Protocol) server**, allowing AI agents and MCP-compatible clients to interact with the catalog through a standardized protocol. This enables natural-language exploration of catalog items, programmatic discovery of resources, and integration into agentic workflows without writing custom API clients.
 
 :::note
-TODO: details about the MCP server (endpoint, available tools, authentication) coming soon.
+This section is a placeholder. The exact endpoint, the set of tools exposed by the MCP server, and the authentication model will be documented here.
 :::
 
 ## Terminology
@@ -139,7 +145,7 @@ Selectable fields must hold primitive values or homogeneous arrays of primitives
 
 ### `rawq`
 
-For complex queries (e.g., disjunctions), `rawq` accepts a full query expressed in the Catalog query language, sent as a URL-safe base64-encoded JSON object.
+For complex queries (disjunctions, regex, relationship navigation), `rawq` accepts a full query expressed in the Catalog [Query Language](./basic-concepts/70_query-language.md), sent as a URL-safe base64-encoded JSON object. The decoded payload must not exceed roughly 4 KiB. See the dedicated page for the grammar and examples.
 
 ## Sorting
 

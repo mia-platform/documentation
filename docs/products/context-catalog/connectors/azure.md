@@ -4,49 +4,40 @@ title: Azure Connector
 sidebar_label: Azure
 ---
 
-# Azure Connector
+# Microsoft Azure Connector
 
-The **Azure connector** ingests cloud resources from a Microsoft Azure tenant into the Context Catalog, so that the cloud footprint of your platform becomes part of the same inventory you use for software components and compliance.
+The Microsoft Azure connector ingests cloud resources from an Azure subscription into the Context Catalog. It runs through the [`ibdm`](./10_overview.md) binary in one of two modes:
 
-## What it ingests
+- **Sync** — pull-based: enumerates resources via the [Azure Resource Graph](https://learn.microsoft.com/en-us/azure/governance/resource-graph/) APIs and exits.
+- **Run** — push-based: subscribes to Azure subscription events through Azure EventHub and reacts in near real time.
 
-Typical ingested entities include:
+## Commands
 
-- **Subscriptions and resource groups**: the organizational containers used to group cloud resources.
-- **Compute resources**: virtual machines, AKS clusters, App Service instances, function apps.
-- **Networking resources**: virtual networks, subnets, load balancers, public IPs.
-- **Storage and data resources**: storage accounts, managed databases (SQL, Cosmos DB), key vaults.
-- **Tags and policies**: Azure tags and the policy assignments that govern them.
+```sh
+ibdm sync azure --mapping-file <path to mapping file or folder>
+ibdm run  azure --mapping-file <path to mapping file or folder>
+```
 
-Each resource becomes a catalog [item](../basic-concepts/10_items.md) of an [item type](../basic-concepts/20_item-types.md) registered by the connector. Custom ITDs can extend the model with additional Azure properties.
+## Configuration
+
+| Variable | Required | Description |
+| :------- | :------- | :---------- |
+| `AZURE_SUBSCRIPTION_ID` | Always | Azure subscription id used for all REST API calls. |
+| `AZURE_EVENT_HUB_CONNECTION_STRING` | Run mode | Connection string of the EventHub that relays subscription events. |
+| `AZURE_EVENT_HUB_NAMESPACE` | Run mode (alt.) | Fully qualified name of the EventHub namespace. Not needed if `AZURE_EVENT_HUB_CONNECTION_STRING` is set. |
+| `AZURE_EVENT_HUB_NAME` | Run mode (alt.) | EventHub name. Not needed if `AZURE_EVENT_HUB_CONNECTION_STRING` is set. |
+| `AZURE_EVENT_HUB_CONSUMER_GROUP` | Optional | Consumer group name. Defaults to `$Default`. |
+| `AZURE_STORAGE_BLOB_CONNECTION_STRING` | Run mode | Connection string of an Azure Storage Account whose blob container is used as EventHub checkpoint storage. |
+| `AZURE_STORAGE_BLOB_ACCOUNT_NAME` | Run mode (alt.) | Storage account name. Not needed if `AZURE_STORAGE_BLOB_CONNECTION_STRING` is set. |
+| `AZURE_STORAGE_BLOB_CONTAINER_NAME` | Run mode (alt.) | Blob container name inside the Storage Account. |
+
+Using the `*_CONNECTION_STRING` variables is the preferred approach: it lets you grant the source the least privileges needed to access the REST APIs.
 
 ## Authentication
 
-The connector authenticates via:
-
-- a **Service Principal** (recommended) with read access scoped to the subscriptions you want to ingest, or
-- a **Managed Identity** when running inside Azure-hosted infrastructure.
-
-Credentials are stored as secrets at the company level.
-
-## How synchronization works
-
-- **Initial sync.** Enumerates the configured subscriptions through the Azure Resource Manager API and creates a catalog item for every resource discovered.
-- **Incremental sync.** Reconciles the catalog with Azure on a schedule, applying creations, updates, and deletions.
-- **Event-driven updates.** When configured with Azure Event Grid or activity-log-based subscriptions, the connector reacts to resource lifecycle events and refreshes affected items in near real time.
-
-## Relationships
-
-Out of the box the connector creates relationships such as:
-
-- *Resource → Resource group* (containment),
-- *Resource group → Subscription* (containment),
-- *Compute resource → Virtual network* (network attachment).
-
-Custom relationship types can be defined to model your organization's specific connections.
+The source uses the [`DefaultAzureCredential` chain](https://learn.microsoft.com/en-gb/azure/developer/go/sdk/authentication/credential-chains#defaultazurecredential-overview), so you can pick the login method that best fits your deployment (managed identity, service principal via environment variables, Azure CLI, …). The principal must have read permissions on the resources you intend to import. When `*_CONNECTION_STRING` is not used, the same chain authenticates against EventHub and the Storage Account.
 
 ## See also
 
-- [Items](../basic-concepts/10_items.md)
-- [Item Types](../basic-concepts/20_item-types.md)
-- [API Interactions](../api-interactions.md)
+- [Connectors Overview](./10_overview.md)
+- [Google Cloud Connector](./google-cloud.md) — sibling source for GCP.

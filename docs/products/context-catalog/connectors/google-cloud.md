@@ -6,47 +6,32 @@ sidebar_label: Google Cloud
 
 # Google Cloud Connector
 
-The **Google Cloud connector** ingests resources from a Google Cloud organization into the Context Catalog, exposing your GCP footprint as catalog items that can be browsed, queried, and governed alongside the rest of your platform.
+The Google Cloud connector ingests cloud resources from a Google Cloud Platform organization, folder, or project into the Context Catalog. It runs through the [`ibdm`](./10_overview.md) binary in one of two modes:
 
-## What it ingests
+- **Sync** — pull-based: enumerates resources via the [Cloud Asset](https://cloud.google.com/asset-inventory/docs/overview) REST APIs and exits.
+- **Run** — push-based: subscribes to a Pub/Sub topic that receives events from a [Cloud Asset Feed](https://cloud.google.com/asset-inventory/docs/monitoring-asset-changes).
 
-Typical ingested entities include:
+## Commands
 
-- **Organizations, folders, and projects**: the GCP resource hierarchy.
-- **Compute resources**: Compute Engine instances, GKE clusters, Cloud Run services, App Engine apps.
-- **Networking resources**: VPC networks, subnets, firewall rules, load balancers.
-- **Storage and data resources**: Cloud Storage buckets, BigQuery datasets, Cloud SQL and Spanner instances, Pub/Sub topics.
-- **IAM bindings** (when authorized): useful for ownership and access rules.
+```sh
+ibdm sync gcp --mapping-file <path to mapping file or folder>
+ibdm run  gcp --mapping-file <path to mapping file or folder>
+```
 
-Each resource becomes a catalog [item](../basic-concepts/10_items.md) of an [item type](../basic-concepts/20_item-types.md) registered by the connector. Custom ITDs can extend the model with additional GCP properties.
+## Configuration
+
+| Variable | Required | Description |
+| :------- | :------- | :---------- |
+| `GOOGLE_CLOUD_SYNC_PARENT` | Sync | Name of the organization, folder, or project containing the resources to sync. Must be one of `organizations/{org-number}`, `folders/{folder-number}`, `projects/{project-id}`, or `projects/{project-number}`. |
+| `GOOGLE_CLOUD_PUBSUB_PROJECT` | Run | Project hosting the Pub/Sub subscription. |
+| `GOOGLE_CLOUD_PUBSUB_SUBSCRIPTION` | Run | Name of the Pub/Sub subscription the source consumes events from. |
+| `GOOGLE_APPLICATION_CREDENTIALS` | Optional | Path to a service-account key file, used by Application Default Credentials. |
 
 ## Authentication
 
-The connector authenticates via:
-
-- a **Service Account** (recommended) with read access scoped to the projects you want to ingest, or
-- **Workload Identity** when running inside GCP-hosted infrastructure.
-
-Credentials are stored as secrets at the company level.
-
-## How synchronization works
-
-- **Initial sync.** Walks the configured organization/folder/project tree through the Cloud Asset Inventory and resource-specific APIs, creating a catalog item for every resource discovered.
-- **Incremental sync.** Reconciles the catalog with GCP on a schedule, applying creations, updates, and deletions.
-- **Event-driven updates.** When configured with a Cloud Asset Inventory feed (Pub/Sub), the connector reacts to resource lifecycle events and refreshes affected items in near real time.
-
-## Relationships
-
-Out of the box the connector creates relationships such as:
-
-- *Resource → Project* (containment),
-- *Project → Folder* (containment),
-- *Compute resource → VPC network* (network attachment).
-
-Custom relationship types can be defined to model your organization's specific connections.
+The source authenticates through [Application Default Credentials (ADC)](https://docs.cloud.google.com/docs/authentication/application-default-credentials). You can supply credentials in any of the standard ADC ways, including pointing `GOOGLE_APPLICATION_CREDENTIALS` at a service-account key file. The principal must have read access to the resources you intend to ingest.
 
 ## See also
 
-- [Items](../basic-concepts/10_items.md)
-- [Item Types](../basic-concepts/20_item-types.md)
-- [API Interactions](../api-interactions.md)
+- [Connectors Overview](./10_overview.md)
+- [Azure Connector](./azure.md) — sibling cloud source.

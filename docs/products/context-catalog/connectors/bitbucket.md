@@ -6,47 +6,53 @@ sidebar_label: Bitbucket
 
 # Bitbucket Connector
 
-The **Bitbucket connector** ingests entities from Bitbucket (Cloud or Data Center) into the Context Catalog, making workspaces, repositories, pipelines, and deployments part of your platform's unified inventory.
+The Bitbucket connector ingests data from [Bitbucket Cloud](https://bitbucket.org/) into the Context Catalog. It runs through the [`ibdm`](./10_overview.md) binary in one of two modes:
 
-## What it ingests
+- **Sync** — pull-based: queries the Bitbucket REST API and exits.
+- **Run** — push-based: exposes a webhook endpoint that receives Bitbucket events.
 
-Typical ingested entities include:
+## Commands
 
-- **Workspaces and projects**: the organizational hierarchy of your Bitbucket account.
-- **Repositories**: name, default branch, visibility, owning project.
-- **Pipelines and pipeline runs**: Bitbucket Pipelines configuration and recent execution outcomes.
-- **Deployments and environments**: declared environments and the latest deployment for each.
+```sh
+ibdm sync bitbucket --mapping-file <path to mapping file or folder>
+ibdm run  bitbucket --mapping-file <path to mapping file or folder>
+```
 
-Each entity becomes a catalog [item](../basic-concepts/10_items.md) of an [item type](../basic-concepts/20_item-types.md) registered by the connector. Custom ITDs can extend the model with additional Bitbucket fields.
+## Configuration
+
+| Variable | Required | Default | Description |
+| :------- | :------- | :------ | :---------- |
+| `BITBUCKET_ACCESS_TOKEN` | One auth mode | — | Bitbucket access token for Bearer auth (workspace, project, or repository scope). |
+| `BITBUCKET_API_USERNAME` | One auth mode | — | Username for HTTP Basic Authentication. |
+| `BITBUCKET_API_TOKEN` | One auth mode | — | App password / access token for Basic Auth. |
+| `BITBUCKET_URL` | No | `https://api.bitbucket.org` | Base URL of the Bitbucket API. |
+| `BITBUCKET_HTTP_TIMEOUT` | No | `30s` | Timeout for HTTP requests (Go duration). |
+| `BITBUCKET_WORKSPACE` | No | _(empty)_ | Restrict sync to a single workspace slug. When empty, `ibdm` enumerates all accessible workspaces. |
+| `BITBUCKET_WEBHOOK_SECRET` | Run | _(empty)_ | HMAC secret for webhook signature validation. |
+| `BITBUCKET_WEBHOOK_PATH` | No | `/bitbucket/webhook` | HTTP path for inbound webhook events. |
 
 ## Authentication
 
-The connector authenticates via:
+Bitbucket supports two **mutually exclusive** authentication modes. Setting both is a configuration error.
 
-- an **App password** (Bitbucket Cloud), or
-- a **personal/repository access token** (Bitbucket Data Center), or
-- an **OAuth client** registered on the workspace.
+- **Bearer Token** — set `BITBUCKET_ACCESS_TOKEN`. Sent as `Authorization: Bearer <token>`.
+- **Basic Auth** — set both `BITBUCKET_API_USERNAME` and `BITBUCKET_API_TOKEN`. Sent as HTTP Basic Authentication.
 
-For Bitbucket Data Center the connector also needs the base URL of the instance. Credentials are stored as secrets at the company level.
+## Supported data types
 
-## How synchronization works
+| Type | Sync | Webhook |
+| :--- | :--- | :------ |
+| `repository` | ✅ | ✅ |
+| `pipeline` | ✅ | — |
 
-- **Initial sync.** Walks the configured workspace and creates a catalog item for every entity discovered.
-- **Incremental sync.** Reconciles the catalog with Bitbucket on a schedule, applying creations, updates, and deletions.
-- **Event-driven updates.** With workspace or repository webhooks configured, the connector reacts to Bitbucket events (e.g. pipeline finished, deployment created) and refreshes affected items in near real time.
+Subscribed webhook events:
 
-## Relationships
-
-Out of the box the connector creates relationships such as:
-
-- *Repository → Project* (containment),
-- *Pipeline → Repository* (containment),
-- *Deployment → Environment* (targets).
-
-Custom relationship types can be defined to model your organization's specific connections.
+| Event key | Produces |
+| :-------- | :------- |
+| `repo:push` | `repository` upsert |
+| `repo:updated` | `repository` upsert |
+| `pullrequest:fulfilled` | `repository` upsert |
 
 ## See also
 
-- [Items](../basic-concepts/10_items.md)
-- [Item Types](../basic-concepts/20_item-types.md)
-- [API Interactions](../api-interactions.md)
+- [Connectors Overview](./10_overview.md)

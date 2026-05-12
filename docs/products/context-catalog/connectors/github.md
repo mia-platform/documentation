@@ -6,46 +6,78 @@ sidebar_label: GitHub
 
 # GitHub Connector
 
-The **GitHub connector** ingests entities from a GitHub organization into the Context Catalog so that repositories, environments, and related artifacts can be browsed, queried, and governed alongside the rest of your platform.
+The GitHub connector ingests data from a GitHub organization into the Context Catalog. It runs through the [`ibdm`](./10_overview.md) binary in one of two modes:
 
-## What it ingests
+- **Sync** — pull-based: queries the [GitHub REST API](https://docs.github.com/en/rest) and exits.
+- **Run** — push-based: exposes a webhook endpoint that receives GitHub organization events.
 
-The connector materializes GitHub objects as catalog items. Typical ingested entities include:
+GitHub Enterprise Server is supported by overriding `GITHUB_URL`.
 
-- **Repositories**: name, default branch, topics, visibility, owner.
-- **Workflows and runs**: CI/CD pipeline configuration and recent execution outcomes.
-- **Environments and deployments**: declared environments and the latest deployment for each.
-- **Teams and members** (when authorized): organizational structure useful for ownership and access rules.
+## Commands
 
-Each ingested entity is represented as a catalog [item](../basic-concepts/10_items.md) of an [item type](../basic-concepts/20_item-types.md) registered by the connector. Custom ITDs can extend the model to capture additional GitHub fields specific to your organization.
+```sh
+ibdm sync github --mapping-file <path to mapping file or folder>
+ibdm run  github --mapping-file <path to mapping file or folder>
+```
+
+## Configuration
+
+| Variable | Required | Default | Description |
+| :------- | :------- | :------ | :---------- |
+| `GITHUB_TOKEN` | Yes | _(empty)_ | GitHub personal access token (classic) or fine-grained token with the required scopes. |
+| `GITHUB_ORG` | Yes | _(empty)_ | GitHub organization to synchronize. |
+| `GITHUB_URL` | No | `https://api.github.com` | Base URL of the GitHub API. Override for GitHub Enterprise Server (e.g. `https://github.example.com/api/v3`). |
+| `GITHUB_HTTP_TIMEOUT` | No | `30s` | HTTP request timeout (Go duration). |
+| `GITHUB_PAGE_SIZE` | No | `100` | Items per API page (1–100). |
+| `GITHUB_WEBHOOK_SECRET` | Run | _(empty)_ | HMAC secret for webhook signature verification. |
+| `GITHUB_WEBHOOK_PATH` | No | `/webhook/github` | HTTP path for inbound webhook events. |
 
 ## Authentication
 
-The connector authenticates against GitHub via:
+- **Personal Access Token (classic):** required scopes `repo` and `read:org`.
+- **Fine-grained Personal Access Token:** required permissions at organization level — *Repository → Metadata: Read-only*, *Organization → Members: Read-only*.
 
-- a **GitHub App** installed on the target organization (recommended: fine-grained permissions, organizational scope), or
-- a **personal access token** with the scopes required by the entities you want to ingest.
+## Supported data types
 
-Credentials are stored as secrets at the company level and consumed by the connector at runtime.
+| Type | Sync | Webhook |
+| :--- | :--- | :------ |
+| `repository` | ✅ | ✅ |
+| `workflow_run` | ✅ | ✅ |
+| `personal_access_token_request` | — | ✅ |
+| `workflow_dispatch` | — | ✅ |
 
-## How synchronization works
+### Webhook actions per type
 
-- **Initial sync.** On first run, the connector enumerates the configured organization(s) and creates a catalog item for every entity it finds.
-- **Incremental sync.** Subsequent runs reconcile the catalog with GitHub: new entities are created, changed entities are updated, and entities removed from GitHub are removed from (or marked stale in) the catalog.
-- **Event-driven updates.** When configured with a webhook, the connector reacts to GitHub events (e.g. repository created, deployment finished) and updates the catalog in near real time.
+| Type | Actions → Upsert | Actions → Delete |
+| :--- | :--------------- | :--------------- |
+| `repository` | `created`, `edited`, `renamed`, `archived`, `unarchived`, `transferred`, `publicized`, `privatized` | `deleted` |
+| `workflow_run` | `requested`, `in_progress`, `completed` | — |
+| `personal_access_token_request` | `approved`, `created` | `cancelled`, `denied` |
+| `workflow_dispatch` | _(all — no action field)_ | — |
 
-## Relationships
+### Repository languages enrichment
 
-Ingested items participate in the catalog's [relationship](../basic-concepts/99_glossary.md#relationship) graph. Out of the box, the connector creates relationships such as:
+Whenever a `repository` item is produced (sync or webhook), `ibdm` calls `GET /repos/{owner}/{repo}/languages` and adds a `repositoryLanguages` field to the mapping context — a JSON object mapping each language to its percentage share, rounded to two decimal places:
 
-- *Repository → Team* (ownership),
-- *Workflow → Repository* (containment),
-- *Deployment → Environment* (targets).
+```json
+{ "Go": 97.50, "Makefile": 2.43, "Dockerfile": 0.07 }
+```
 
-Custom relationship types can be defined to model your organization's specific connections.
+If the languages call fails, the repository item is still emitted without `repositoryLanguages`.
+
+## Setting up a GitHub webhook
+
+1. Go to your GitHub organization's **Settings → Webhooks → Add webhook**.
+2. Set **Payload URL** to your public `ibdm` URL followed by `GITHUB_WEBHOOK_PATH` (default `/webhook/github`).
+3. Set **Content type** to `application/json`.
+4. Set **Secret** to the value of `GITHUB_WEBHOOK_SECRET`.
+5. Subscribe to the events that match the data types you want:
+   - **Repositories** → `repository`
+   - **Workflow runs** → `workflow_run`
+   - **Personal access token requests** → `personal_access_token_request`
+   - **Workflow dispatches** → `workflow_dispatch`
 
 ## See also
 
-- [Items](../basic-concepts/10_items.md): the shape of the entities ingested.
-- [Item Types](../basic-concepts/20_item-types.md): how to extend the catalog with custom kinds.
-- [API Interactions](../api-interactions.md): querying and managing ingested items via API.
+- [Connectors Overview](./10_overview.md)
+- [GitLab Connector](./gitlab.md), [Bitbucket Connector](./bitbucket.md) — sibling source-code hosting connectors.
