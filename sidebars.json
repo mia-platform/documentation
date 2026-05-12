@@ -2034,12 +2034,6 @@
       ]
     }
   ],
-  "productsOverview": [
-    {
-      "id": "products/overview",
-      "type": "doc"
-    }
-  ],
   "contextCatalog": [
     {
       "id": "products/context-catalog/overview",
