@@ -4,7 +4,7 @@ title: Mia-Platform Console Connector
 sidebar_label: Mia-Platform Console
 ---
 
-# Mia-Platform Console Connector
+# Console Connector
 
 The **Mia-Platform Console connector** ingests entities from the Mia-Platform Console into the Context Catalog. It is the natural bridge between the platform engineering workspace where users design and operate projects and the catalog where everything that exists in the organization is recorded and governed.
 

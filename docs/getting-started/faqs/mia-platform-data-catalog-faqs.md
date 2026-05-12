@@ -40,7 +40,7 @@ A **Data Asset** is the fundamental entity in the Data Catalog. It represents a 
 **OpenLineage** is an open standard for lineage data collection that the Data Catalog adopts as its foundation. The catalog stores data assets using an extended version of the OpenLineage Dataset format. This choice enables future integrations with other lineage systems and tools that support this standard, fostering easier data products exchange and discovery across different systems.
 [Discover more](/products/data_catalog/data_catalog_open_lineage.mdx)
 
-#### How does the Data Catalog integrate with Mia-Platform Fast Data?
+#### How does the Data Catalog integrate with Fast Data?
 The Data Catalog is designed to work seamlessly with [Mia-Platform Fast Data](/products/fast_data/what_is_fast_data.md). In fact, it is possible to retrieve metadata about the Fast Data aggregation processes, to automatically create the lineage that involves Fast Data Projections and Single Views.
 [Discover more](/products/data_catalog/data_catalog_job_runner.mdx#fast-data-jobs-sync)
 

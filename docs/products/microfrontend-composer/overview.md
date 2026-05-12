@@ -18,7 +18,7 @@ Back-Kit provides a comprehensive library of web components. From UI elements to
 
 At the crossroads of efficiency and innovation, micro-lc operates as an open-source micro-frontend orchestrator. Its purpose? To act as a cohesive rendering engine that melds configured pages, iFrames, and parcels into a seamless user experience. Plus, it's expertly integrated within the no-code page generation interface of Mia-Platform Microfrontend Composer, but if preferred or for special cases, the "full-code" editor remains at your disposal.
 
-## In Mia-Platform Console
+## In Console
 
 Mia-Platform Console offers an intuitive design, accommodating both technical experts and non-technical users. It streamlines the configuration process, ensuring Microfrontend Composer development remains an uncomplicated affair. Beyond its no-code charms, for the tech-savvy, raw configurations can be manually adjusted, all viewable in real-time previews.
 

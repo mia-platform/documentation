@@ -133,7 +133,7 @@ Once the API key secret is set up, the _Microfrontend Composer_ section of the M
 2. edit the resource as a JSON file
 3. add a key `headers` with the required custom header (see the image below)
 
-### Configure **Mia-Platform Console** to support preflight requests
+### Configure **Console** to support preflight requests
 
 The following actions need to be addressed:
 

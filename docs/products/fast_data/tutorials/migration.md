@@ -4,7 +4,7 @@ title: Mia-Platform Fast Data Migration
 sidebar_label: Mia-Platform Fast Data Migration
 ---
 
-# Mia-Platform Fast Data migration
+# Fast Data migration
 
 A Fast Data system is typically composed of three different resources:
 * A Kubernetes Cluster in which all the services are running

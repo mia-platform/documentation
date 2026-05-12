@@ -1347,7 +1347,7 @@ In particular, Projection Storer:
 obtain a working user-defined function. More details on custom cast functions implementation can be found in the [cast function](/products/fast_data/configuration/projection_storer.md#cast-functions-and-additional-cast-functions) section
 :::
 
-#### Replace existing Real-Time Updater service in Mia-Platform Console 
+#### Replace existing Real-Time Updater service in Console 
 
 Below are reported all the steps necessary to set-up a Projection Storer that could replace the corresponding Real-Time Updater.
 

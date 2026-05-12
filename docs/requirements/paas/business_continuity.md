@@ -18,7 +18,7 @@ By definition, Business Continuity should involve two distinct areas: [Business 
 
 **Business Continuity Planning** involves all planning activities aiming to ensure organizations overcome any interruptions and disasters as quickly as possible.
 
-### Mia-Platform Console infrastructure overview  
+### Console infrastructure overview  
 
 Since Mia-Platform Console has a stateless microservice architecture, every microservice of the platform should be:
 

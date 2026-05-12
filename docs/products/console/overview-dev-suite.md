@@ -19,7 +19,7 @@ Modern companies achieve this through an Internal Developer Platform (IDP). **Mi
 
 ![Mia-Platform Console Overview](img/Mia-Platform-infographic-overview.png)
 
-## Why Mia-Platform Console
+## Why Console
 
 Mia-Platform Console manages the entire software lifecycle seamlessly and unify your IT department under one integrated open platform. Simplify cloud-native development while maintaining complete governance and control over your processes.
 
@@ -59,7 +59,7 @@ The use of Mia-Platform Console does not bind in any way to a specific technolog
 
 Leverage the **[Marketplace](/runtime-components/overview_marketplace.md)** to accelerate development. Thanks to this self-service catalog you can find a set of curated, standardized, and reusable software components to easily integrate in your Internal Developer Portal (IDP). 
 
-## Hierarchical Organization of Mia-Platform Console
+## Hierarchical Organization of Console
 
 The Mia-Platform Console is structured hierarchically to facilitate efficient navigation for users. This section offers a concise guide to understanding its architecture, starting from the highest level down to the most detailed.
 

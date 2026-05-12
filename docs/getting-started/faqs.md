@@ -4,9 +4,9 @@ title: Mia-Platform FAQs
 sidebar_label: Mia-Platform FAQs
 ---
 
-### Mia-Platform Console
+### Console
 
-#### What is Mia-Platform Console?
+#### What is Console?
 Mia-Platform Console is a Platform Builder used to create and manage a custom Internal Developer Platform (IDP). It is a centralized developer portal designed to industrialize and govern the entire cloud-native software development lifecycle, from infrastructure connection and API design to deployment and monitoring.
 
 #### What are the main benefits of using the Console?
@@ -16,9 +16,9 @@ For a more detailed list of questions and answers about this product, see the [d
 
 ***
 
-### Mia-Platform Fast Data
+### Fast Data
 
-#### What is Mia-Platform Fast Data?
+#### What is Fast Data?
 Mia-Platform Fast Data is a solution for building a **Digital Integration Hub (DIH)**. It collects data from various sources, known as **Systems of Record (SoR)**, standardizes them into collections called **Projections**, and then aggregates them in near real-time into read-optimized data models called **Single Views**.
 
 #### Why would an organization use Fast Data?

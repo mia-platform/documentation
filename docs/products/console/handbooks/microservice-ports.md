@@ -13,7 +13,7 @@ Before diving in, it's essential to grasp the distinction between the "microserv
 - **Microservice Port**: This is the port on which your microservice is set up to accept connections. It's the "internal" port the service listens on.
 - **Exposed Port**: This is the "external" port through which other services or clients connect to communicate with your microservice. This port is often mapped to the microservice's internal port via configurations.
 
-## Managing Ports with Mia-Platform Console
+## Managing Ports with Console
 
 Mia-Platform Console provides capabilities to manage and modify the ports on which your microservice is exposed.
 
@@ -43,7 +43,7 @@ Using the configurations in Mia-Platform Console:
 
 Once done, other microservices in the cluster can contact our service via port 80 using the appropriate hostname. This mapping ensures that while keeping external conventions, we can have custom and secure internal configurations for our services.
 
-## Default Configuration with Mia-Platform Console
+## Default Configuration with Console
 
 By default, the Mia-Platform Console operates on port 3000.  
 This means that microservices using this port internally won't require the configuration steps mentioned earlier. If your service is set to run on port 3000 internally and you intend for it to be accessed externally on this same port, there’s no additional mapping required.  

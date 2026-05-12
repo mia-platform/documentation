@@ -47,7 +47,7 @@ Deleting a `Canary` resource will cause the kubernetes resources deletion too.
 
 ### Blue/Green strategy
 
-#### Lifecycle through the Mia-Platform Console
+#### Lifecycle through the Console
 
 Creating, on the Mia-Platform Console, a service called `my-hello-world`, the console will automatically generate:
 * a k8s Deployment manifest for `my-hello-world`;
@@ -176,7 +176,7 @@ An Argo rollouts `Rollout` CRD is very similar to a kubernetes `Deployment` to:
 
 ### Blue/Green strategy
 
-#### Lifecycle through the Mia-Platform Console
+#### Lifecycle through the Console
 
 As previously reported, argo-rollouts has two use approaches:
 * using standard kubernetes resources;

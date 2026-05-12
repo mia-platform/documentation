@@ -6,7 +6,7 @@ sidebar_label: Fast Data FAQs
 
 ### Core Concepts
 
-#### What is Mia-Platform Fast Data?
+#### What is Fast Data?
 Mia-Platform Fast Data is a solution designed to build a **Digital Integration Hub**. It allows you to collect data from various sources, known as **Systems of Record (SoR)**, and aggregate it in near real-time. The core idea is to create read-optimized, pre-aggregated data models called **Single Views** that serve your applications with low latency. This approach helps to offload legacy systems and ensures that data is always available and consistent, forming a key part of a modern **service oriented architecture**.
 [Discover more](/products/fast_data/what_is_fast_data.md)
 
