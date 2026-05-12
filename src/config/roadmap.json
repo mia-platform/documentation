@@ -1,61 +1,26 @@
 [
   {
-    "title": "Mia-Platform Console",
+    "title": "Console",
     "icon": "console",
     "defaultOpen": false,
     "type": "roadmap",
     "items": {
       "newFeatures": [
         {
-          "title": "Company/Profile management optimization",
+          "title": "Helm Charts management improvement",
           "description": [],
           "tags": ["Governance"]
         },
         {
-          "title": "Extended FinOps integration",
+          "title": "New Authentication based on Keycloak",
           "description": [],
           "tags": ["Governance"]
-        },
-        {
-          "title": "Customizable Home Page",
-          "description": [],
-          "tags": ["Governance"]
-        },
-        {
-          "title": "Customizable metrics dashboards",
-          "description": [],
-          "tags": ["Governance"]
-        },
-        {
-          "title": "Enhanced CLI",
-          "description": [],
-          "tags": ["DevX"]
-        },
-        {
-          "title": "Enhanced Pair with AI",
-          "description": [],
-          "tags": ["DevX"]
-        },
-        {
-          "title": "Improved Secret Managers integrations",
-          "description": [],
-          "tags": ["DevX"]
-        },
-        {
-          "title": "Console public API reference documentation",
-          "description": [],
-          "tags": ["Extensibility"]
-        },
-        {
-          "title": "Extended support for Infrastructure Management",
-          "description": [],
-          "tags": ["Extensibility"]
         }
       ]
     }
   },
   {
-    "title": "Mia-Platform Data Fabric",
+    "title": "Fast Data",
     "icon": "fast-data",
     "defaultOpen": false,
     "type": "roadmap",
@@ -85,6 +50,54 @@
     }
   },
   {
+    "title": "Context Catalog",
+    "icon": "software-catalog",
+    "defaultOpen": false,
+    "type": "roadmap",
+    "items": {
+      "newFeatures": [
+         {
+          "title": "Items Versioning",
+          "description": [],
+          "tags": ["Context Catalog"]
+        },
+        {
+          "title": "Items Lifecycle",
+          "description": [],
+          "tags": ["Context Catalog"]
+        },
+        {
+          "title": "Application management",
+          "description": [],
+          "tags": ["Context Catalog"]
+        },
+        {
+          "title": "New Connectors",
+          "description": ["AWS", "Kubernetes", "Jenkins"],
+          "tags": ["Context Catalog"]
+        }
+      ]
+    }
+  },
+  {
+    "title": "Flow",
+    "icon": "flow",
+    "defaultOpen": false,
+    "type": "roadmap",
+    "items": {
+      "newFeatures": []
+    }
+  },
+  {
+    "title": "AI Foundry",
+    "icon": "ai-foundry",
+    "defaultOpen": false,
+    "type": "roadmap",
+    "items": {
+      "newFeatures": []
+    }
+  },
+  {
     "title": "Data Catalog",
     "icon": "data-catalog",
     "defaultOpen": false,
@@ -105,46 +118,6 @@
           "title": "Improved management of schema validation and indexes for MongoDB assets",
           "description": [],
           "tags": ["Database Management"]
-        }
-      ]
-    }
-  },
-  {
-    "title": "Software Catalog",
-    "icon": "software-catalog",
-    "defaultOpen": false,
-    "type": "roadmap",
-    "items": {
-      "newFeatures": [
-        {
-          "title": "Improved Governance",
-          "description": [],
-          "tags": []
-        },
-        {
-          "title": "Enhanced PBC (Application) Lifecycle",
-          "description": [],
-          "tags": []
-        },
-        {
-          "title": "Modular PBCs",
-          "description": [],
-          "tags": []
-        },
-        {
-          "title": "Catalog Items Enrichment",
-          "description": [],
-          "tags": []
-        },
-        {
-          "title": "Catalog integration with third-party tools",
-          "description": [],
-          "tags": []
-        },
-        {
-          "title": "AI-driven Catalog Items discovery",
-          "description": [],
-          "tags": []
         }
       ]
     }
