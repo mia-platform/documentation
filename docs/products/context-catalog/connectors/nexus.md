@@ -53,8 +53,8 @@ The listener only processes events whose `X-Nexus-Webhook-Id` is `rm:repository:
 
 | Action | Operation | Behavior |
 | :----- | :-------- | :------- |
-| `CREATED` | Upsert | Fetches full component details from the REST API and emits a `dockerimage` per asset. Failures are logged and skipped. |
-| `UPDATED` | Upsert | Same as `CREATED`. |
+| `CREATED` | Upsert | Fetches full component details from the REST API and emits one `dockerimage` per component with all assets embedded. Failures are logged and skipped. |
+| `UPDATED` | Upsert | Same as `CREATED`: fetches full component details and emits one `dockerimage` per component with all assets embedded. |
 | `DELETED` | Delete | Emits a `dockerimage` delete using `host`, `name`, and `version` from the webhook payload (no API call). |
 
 The event time recorded on each emitted item is taken from the webhook payload's `timestamp` field (RFC 3339). Events with a missing or unparsable timestamp are skipped.
