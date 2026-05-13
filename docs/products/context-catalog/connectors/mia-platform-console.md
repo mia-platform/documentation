@@ -43,22 +43,15 @@ ibdm run  console --mapping-file <path to mapping file or folder>
 | `CONSOLE_CLIENT_SECRET` | Client Secret issued by the Console. |
 | `CONSOLE_AUTH_ENDPOINT` | Optional override of the token endpoint. Defaults to `<CONSOLE_ENDPOINT>/oauth/token`. |
 
-#### Authentication: Service Account (JWT)
-
-| Variable | Description |
-| :------- | :---------- |
-| `CONSOLE_JWT_SERVICE_ACCOUNT` | Set to `true` to enable JWT mode. |
-| `CONSOLE_PRIVATE_KEY` | Private key of the service account. |
-| `CONSOLE_PRIVATE_KEY_ID` | Identifier of the private key. |
-
 ## Supported data types
 
 | Type | Sync | Webhook |
 | :--- | :--- | :------ |
 | `project` | ✅ | ✅ |
-| `configuration` | ✅ | ✅ |
+| `revision` | ✅ | ✅ |
+| `service` | ✅ | ✅ |
 
-`project` carries Console project metadata. `configuration` carries the configuration payload of a project, fetched for each revision.
+`project` carries Console project metadata. `revision` represents a named revision of a project. `service` represents a single microservice within a project's default-branch revision — only services of type `custom` and not marked as `advanced` are emitted.
 
 ## See also
 
