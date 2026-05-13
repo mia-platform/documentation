@@ -17,17 +17,17 @@ For every source, `ibdm` exposes two complementary modes:
 | Mode | Command | Behavior |
 | :--- | :------ | :------- |
 | **Sync** (pull) | `ibdm sync <source> --mapping-file <path>` | Performs a one-off enumeration via the source's REST APIs and exits. Run it manually or on a schedule. |
-| **Run** (push) | `ibdm run <source> --mapping-file <path>` | Starts a long-running HTTP server that listens for inbound webhooks from the source and updates the Catalog in near real time. |
+| **Run** (push) | `ibdm run <source> --mapping-file <path>` | Starts a long-running process that reacts to events pushed by the source (inbound webhooks, message-queue subscriptions, or similar mechanisms) and updates the Catalog in near real time. |
 
 Not every source supports every mode — see the per-source pages below for details.
 
-There is no built-in "incremental sync" loop: incremental behavior is achieved by combining periodic `sync` runs with webhook-driven `run` mode.
+There is no built-in "incremental sync" loop: incremental behavior is achieved by combining periodic `sync` runs with event-driven `run` mode.
 
 ## Mappings
 
 `ibdm` does not hard-code the shape of the data it produces. Every source emits raw upstream payloads, which are then transformed into Catalog items through **mapping files** passed via `--mapping-file`. A mapping file is a YAML document with [Go templates](https://pkg.go.dev/text/template) that produce:
 
-- an **`identifier`** template that resolves to the item's `metadata.name` (validated against the RFC 1035 DNS-subdomain rules used by the Catalog);
+- an **`identifier`** template that resolves to the item's `metadata.name` — must be 1–253 characters, using only lowercase alphanumeric characters, `-`, and `.`, starting and ending with an alphanumeric character;
 - a **`metadata`** block with the allowed metadata fields (`annotations`, `creationTimestamp`, `description`, `labels`, `links`, `name`, `tags`, `title`, `uid`);
 - a **`spec`** block with the typed payload of the item;
 - optional **`extra`** templates that produce additional items per mapping — typically `Relationship` objects to wire the ingested entity to others.
@@ -64,7 +64,7 @@ Running `ibdm` with `--local-output` redirects results to stdout instead of push
 | [GitHub](./github.md) | `sync`, `run` (webhooks) | Repositories, workflow runs, access-token requests, workflow dispatches |
 | [GitLab](./gitlab.md) | `sync`, `run` (webhooks) | Projects, pipelines, access tokens |
 | [Google Cloud](./google-cloud.md) | `sync` (Cloud Asset API), `run` (PubSub) | Cloud resources |
-| [Mia-Platform Console](./mia-platform-console.md) | `sync`, `run` (webhooks) | Projects, project configurations |
+| [Mia-Platform Console](./mia-platform-console.md) | `sync`, `run` (webhooks) | Projects, revisions, services |
 | [Sonatype Nexus](./nexus.md) | `sync`, `run` (webhooks) | Docker images |
 | [Sysdig Secure](./sysdig.md) | `sync` (SysQL), `run` (webhooks) | Vulnerabilities |
 
@@ -83,7 +83,7 @@ docker run --rm \
   -e MIA_CATALOG_CLIENT_ID=... \
   -e MIA_CATALOG_CLIENT_SECRET=... \
   -e GITHUB_TOKEN=... \
-  -e GITHUB_ORG=mia-platform \
+  -e GITHUB_ORG=my-org \
   -v "$PWD/mappings:/mappings:ro" \
   ghcr.io/mia-platform/ibdm:latest \
   ibdm sync github --mapping-file /mappings
