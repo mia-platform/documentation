@@ -42,7 +42,7 @@ Creating an ITD provisions a brand-new REST endpoint at `/{group}/{version}/item
 
 ## 3. Create your first item
 
-From **Items → Create item**, pick the type you just defined, fill in metadata (title, name, description, tags, owner) and the `spec`. The wizard validates the `spec` against the ITD schema as you type.
+From **Items → Create item**, pick the type you just defined, fill in the [metadata](./basic-concepts/10_items.md#metadata) — [`title`](./basic-concepts/10_items.md#title), [`name`](./basic-concepts/10_items.md#name), [`description`](./basic-concepts/10_items.md#description), [`tags`](./basic-concepts/10_items.md#tags), [owner](./basic-concepts/10_items.md#ownership-and-followers) — and the [`spec`](./basic-concepts/10_items.md#required-fields) (the type-specific payload validated against the ITD's [schema](./basic-concepts/20_item-types.md#the-validation-schema)). The wizard validates the `spec` against the ITD schema as you type.
 
 You can do the same thing via API by `POST`ing to the resource path; see [API Interactions](./api-interactions.md).
 
@@ -61,13 +61,13 @@ To go further, bundle multiple rules into a [Scorecard](./basic-concepts/40_scor
 
 ## 6. Plug in external data with connectors
 
-Most catalogs are not populated by hand: they are kept in sync with the systems where the entities already live (source-code hosting, the Mia-Platform Console, cloud providers, artifact registries, security tools). The Context Catalog ingests data from those systems through a dedicated binary called **`ibdm`** — see the [Connectors Overview](./connectors/10_overview.md) for the full picture.
+Most catalogs are not populated by hand: they are kept in sync with the systems where the entities already live (source-code hosting, the Mia-Platform Console, cloud providers, artifact registries, security tools). The Context Catalog ingests data from dedicated connectors — see the [Connectors Overview](./connectors/10_overview.md) for the full picture.
 
-In short, `ibdm`:
+In short, Mia-Platform connectors:
 
-- is deployed alongside your platform and runs in **sync** mode (pull from the upstream REST APIs) or **run** mode (listen for webhooks);
-- transforms upstream payloads into Catalog items through user-provided **mapping files** (YAML with Go templates);
-- writes into the Catalog using a Client ID / Secret pair provisioned in the Backoffice.
+- are deployed alongside your platform and runs in **sync** mode (pull from the upstream REST APIs) or **run** mode (listen for webhooks);
+- transform upstream payloads into Catalog items through user-provided **mapping files** (YAML with Go templates);
+- write into the Catalog using a Client ID / Secret pair 
 
 The high-level setup is:
 
