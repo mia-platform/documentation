@@ -115,7 +115,7 @@ Partially updates the resource. The optional `resourceVersion` query parameter e
 
 ## Filtering
 
-In a `list` operation, results can be filtered by object fields. Every kind supports filtering on `metadata.name`, `metadata.title`, `metadata.tags`, `metadata.labels.*`, and any field declared as *selectable* in its Item Type Definition.
+In a `list` operation, results can be filtered by object fields. Every kind supports filtering on `metadata.name`, `metadata.title`, `metadata.tags`, `metadata.labels.*`, `metadata.urn`, and any field declared as *selectable* in its Item Type Definition.
 
 Three query parameters drive filtering, all chained in **AND**:
 

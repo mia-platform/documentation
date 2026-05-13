@@ -54,7 +54,7 @@ Open the detail page of an item, jump to the **Relationships** tab, and link it 
 
 Once you have a few items, you can express compliance rules over them.
 
-1. Go to **Governance → Evaluation Criteria → Create evaluation criteria** and write a rule (e.g. *"every DockerImage must have a tag"*). The rule body can be authored visually, as JSON AST, or in CEL — see [Evaluation Criteria](./basic-concepts/30_evaluation-criteria.md).
+1. Go to **Governance → Evaluation Criteria → Create evaluation criteria** and write a rule (e.g. *"every DockerImage must have a tag"*). The rule body can be authored visually, as JSON, or in CEL — see [Evaluation Criteria](./basic-concepts/30_evaluation-criteria.md).
 2. On the rule detail page, click **Evaluate** to trigger an ad-hoc run against your items. The run appears in the **Runs** tab and is polled to completion.
 
 To go further, bundle multiple rules into a [Scorecard](./basic-concepts/40_scorecards.md) to express a multi-level compliance posture, or into a [Campaign](./basic-concepts/50_campaigns.md) to drive a time-bounded compliance program with notifications.

@@ -77,7 +77,7 @@ A `spec` field declared on an [Item Type Definition](./20_item-types.md#selectab
 
 ## Organization
 
-An **organization** is a hard isolation boundary in the catalog: each organization has its own database namespace, and resources of the same type must be unique within it. The special `system` organization is consumable by anyone and is used to provision official Mia-Platform ITDs.
+An **organization** is a hard isolation boundary in the catalog: each organization has its own database namespace, and resources of the same type must be unique within it.
 
 ## URN (Item URN)
 

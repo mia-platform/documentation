@@ -78,7 +78,7 @@ A free-form, human-readable description of the object. Useful to surface context
 
 ### `tags`
 
-A flat list of short strings used to categorize the item. Tags are the lightest form of classification the catalog offers and are intended to be set and consumed by humans directly through the UI. The Catalog API exposes them as a filterable and selectable field (`field=metadata.tags=...`).
+A flat list of short strings used to categorize the item. Tags are the lightest form of classification the catalog offers and are intended to be set and consumed by humans directly through the UI. The Catalog API exposes them as a filterable field (`field=metadata.tags=...`).
 
 ### `labels`
 
@@ -115,7 +115,7 @@ In short: pick **tags** for casual categorization, **labels** for structured ide
 
 ### Custom fields in detail
 
-Custom fields are stored on the item as a **top-level `customFields` map** (a sibling of `spec`, not nested inside it):
+Custom fields are stored on the item as a **top-level `customFields` map**:
 
 ```yaml
 apiVersion: stable.example.com/v1
@@ -221,7 +221,7 @@ When a field of one item points to another item, use the URN format and a key en
 
 ## Organizations
 
-Items live inside an **organization**, which is a hard isolation boundary with its own database namespace. Resources of the same type must be unique within an organization. The only exception is the special `system` organization, which is consumable by everyone and used to provision official Mia-Platform ITDs to all organizations.
+Items live inside an **organization**, which is a hard isolation boundary with its own database namespace. Resources of the same type must be unique within an organization.
 
 ## Relationships
 

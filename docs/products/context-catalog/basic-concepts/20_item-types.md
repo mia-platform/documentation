@@ -142,7 +142,7 @@ The validation schema of an ITD version cannot be modified after creation. This 
 
 ## Selectable fields
 
-By default, items can be filtered only on their `metadata` fields (`metadata.name`, `metadata.title`, `metadata.tags`, `metadata.labels.*`). To filter on a field inside `spec`, that field must be declared as **selectable** on the ITD version.
+By default, items can be filtered only on their `metadata` fields (`metadata.name`, `metadata.title`, `metadata.tags`, `metadata.labels.*`, `metadata.urn`). To filter on a field inside `spec`, that field must be declared as **selectable** on the ITD version.
 
 Selectable fields are the catalog's contract for queryability: when you mark a field as selectable, the catalog provisions an index on it so that `field=` and `rawq` queries (see [Query Language](./70_query-language.md)) can filter on it efficiently. Marking a field selectable is the only way to make a `spec` field appear in API and Backoffice filters.
 
@@ -162,8 +162,8 @@ spec:
       schema:
         openAPIV31Schema: { ... }
       selectableFields:
-        - jsonPath: .spec.registry
-        - jsonPath: .spec.tag
+        - jsonPath: spec.registry
+        - jsonPath: spec.tag
   scope: Organization
   names:
     plural: dockerimages

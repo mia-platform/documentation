@@ -14,7 +14,7 @@ The **Context Catalog** is Mia-Platform's system to record, classify, and connec
 - **Item Types.** Each item has a *type*. Items of the same type share a schema and form a *family*. Mia-Platform ships a set of default types and you can extend the catalog with your own through *Item Type Definitions* (ITDs).
 - **Objects and manifests.** Both items and ITDs are stored as *objects* with a predictable shape (`apiVersion`, `kind`, `metadata`, `spec`). Their JSON/YAML representation is called a *manifest*.
 - **Relationships.** Items can be connected through *typed, directed relationships*, modeled with the built-in `RelationshipType`, `RelationshipConstraint`, and `Relationship` kinds. Relationships form a graph that powers traversal, impact analysis, and discovery.
-- **Organizations.** The catalog is scoped by *organizations*: each organization is an isolated namespace whose items are visible only within it (with the exception of the special `system` organization that ships shared, official ITDs).
+- **Organizations.** The catalog is scoped by *organizations*: each organization is an isolated namespace whose resources are visible only within it.
 
 ## What you can do with it
 
