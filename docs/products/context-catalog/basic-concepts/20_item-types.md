@@ -174,25 +174,6 @@ GET /stable.example.com/v1/items/dockerimages?field=spec.registry=nexus.mia-plat
 
 Without the corresponding `selectableFields` entry, the same query is rejected.
 
-## Naming conventions
-
-When choosing names for objects and fields:
-
-- The term **kind** is reserved for top-level API types. Use **type** for sub-categories within objects.
-- Group names are typically in domain-name form. We recommend a subdomain your group or organization owns (e.g. `widget.my-company.com`). The `mia-platform.eu` group is reserved.
-- Field names should be PascalCase or camelCase; aside from the initial letter, the two should match.
-- Names should be declarative, not imperative (`SomethingDoer`, `DoneBy`, `DoneAt`).
-- Avoid abbreviations except for very common ones (`id`, `args`, `stdin`). Acronym casing matches the surrounding context (e.g. `httpGet`, constants `TCP`/`UDP`).
-- Field referencing another resource of kind `Foo` by name → `fooName`. Field referencing it by object reference → `fooRef`.
-- Time fields → `somethingTime`. Avoid `*Timestamp` suffixes for new fields.
-- Durations use the `fooSeconds` convention. Prefer `fooPeriodSeconds` for periodic intervals, `fooTimeoutSeconds` for inactivity deadlines, `fooDeadlineSeconds` for activity completion deadlines.
-- Boolean fields named `fooable` (not `isFooable`). Think twice before using booleans: many ideas evolve into a small set of mutually exclusive options.
-- Do not use unsigned integers (inconsistent across languages). Validate non-negativity instead.
-- Numbers exceeding 53 bits in magnitude or precision should be serialized as strings.
-- Avoid floating-point values entirely in `spec`: they cannot be reliably round-tripped.
-- Enumerations are CamelCase strings (no numeric enums); acronyms keep all letters uppercase (e.g. `ClientIP`, `TCPDelay`).
-- When selecting fields, use standard JavaScript syntax (e.g. `metadata.name`).
-
 ### Error messages
 
 - Be precise.
