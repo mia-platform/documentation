@@ -46,7 +46,7 @@ Re-defining a core kind under a different API version is technically possible bu
 
 ## Metadata
 
-The `metadata` field has a fixed schema (independent of the item's kind) and declares a set of reserved fields. The most relevant ones are described below.
+The `metadata` field has a fixed schema (independent of the item's kind) and declares a set of reserved fields. They are described below.
 
 ### `name`
 
@@ -64,9 +64,17 @@ Examples: `api-gateway`, `dockerimages.catalog.example.com`.
 
 A server-assigned, universally unique identifier (UUID, RFC 4122) for the object. It is generated on successful creation and never changes. Every object created in the catalog has a distinct UID, which is used to distinguish between historical occurrences of similar entities.
 
+### `urn`
+
+A server-derived stable reference for the object, in the form `urn:mia-platform-catalog:<group>:<version>:<kind>:<name>`. Clients use it to reference an item unambiguously across the catalog (for example in relationships and in `CustomField.spec.applicableTo`). See [Primary key and Item URN](#primary-key-and-item-urn) for details.
+
 ### `creationTimestamp`
 
 An RFC 3339 string with the date and time the object was created. Server-generated, immutable.
+
+### `updateTimestamp`
+
+An RFC 3339 string with the date and time the object was last modified. Server-generated and refreshed on every successful update or patch.
 
 ### `title`
 
