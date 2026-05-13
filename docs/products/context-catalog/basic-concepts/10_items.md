@@ -191,7 +191,7 @@ Because the lifecycle of `CustomField` entities is independent from the items th
 
 ## Ownership and followers
 
-Two relationships are central to the way the catalog associates people with items:
+Two relationships are central to the way the catalog associates people with items. Both Users and Teams are themselves first-class items in the catalog (built-in kinds under the `mia-platform.eu` group), so the relationships below are just ordinary Relationship objects between items, there is no special "principal" concept.
 
 - **Owner.** Every item can have an *owner*, which is either a User or a Team. Ownership is modeled as a built-in relationship of type `ownership.mia-platform.eu` between the item and the User/Team. The Backoffice exposes ownership as a first-class field on the item form, but on the wire it is just a Relationship object — see [Relationships](./60_relationships.md).
 - **Follower.** Any user can additionally *follow* an item to be notified about compliance events that involve it. Following is modeled as a built-in relationship of type `follow.mia-platform.eu` between the User and the item. Owners are implicitly considered followers.
