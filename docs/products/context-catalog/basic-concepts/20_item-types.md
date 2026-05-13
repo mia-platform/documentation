@@ -77,10 +77,6 @@ spec:
     kind: DockerImage
 ```
 
-:::note
-Today the only valid value for `spec.scope` is `Organization`: all items of a given kind live inside a single organization namespace. A `Project` scope, which would further narrow ownership of an item to a specific project, is planned but not yet available.
-:::
-
 Posting this ITD creates a new organization-scoped REST endpoint at:
 
 ```text

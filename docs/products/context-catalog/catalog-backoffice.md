@@ -292,7 +292,7 @@ The item types list shows all registered ITDs. From the list you can:
 
 Click **Create item type** to open a two-step wizard:
 
-1. **Specifications** — define the API group, kind name, plural name, scope (Organization or Project), and the OpenAPI v3.1 JSON schema for the first version, plus optional selectable fields.
+1. **Specifications** — define the API group, kind name, plural name, and the OpenAPI v3.1 JSON schema for the first version, plus optional selectable fields.
 2. **Metadata** — add a description, labels, annotations, and links.
 
 #### View an item type
