@@ -18,9 +18,9 @@ To get started you need:
 
 ## 1. Explore what is already there
 
-When you open the Backoffice you land on the **Items** section. Even on a fresh organization, the catalog already ships a set of built-in Item Type Definitions (ITDs) — for example `RelationshipType`, `RelationshipConstraint`, and the built-in *User* and *Team* kinds.
+When you open the Backoffice you land on the **Homepage**: a dashboard that gives you an at-a-glance overview of your catalog. From here you can see counters for total items, item types, connectors and items added in the current month, plus quick-action buttons (*View catalog*, *View item types*, *Create new item*, *Create scorecard*, *Create campaign*) and panels listing your **Scorecards**, **Campaigns**, **Recently added items**, and **Recently updated items**.
 
-Spend a few minutes browsing:
+From the left sidebar, you can browse the following:
 
 - **Items** → filter by kind to see what already exists.
 - **Configuration → Item Types** to see which kinds are registered in your organization.
