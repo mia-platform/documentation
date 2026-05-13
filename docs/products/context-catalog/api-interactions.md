@@ -119,12 +119,6 @@ The body must contain the full object to create. The server validates types, pre
 
 Upserts the resource: omitted fields are interpreted as a request to clear them; PUT does not accept partial updates. The body must include the `resourceVersion` for optimistic concurrency control.
 
-### Patch
-
-`PATCH /{GROUP}/{VERSION}/items/{RESOURCE_NAME_PLURAL}/{NAME}`
-
-Partially updates the resource. The optional `resourceVersion` query parameter enforces concurrency control.
-
 ### Delete
 
 `DELETE /{GROUP}/{VERSION}/items/{RESOURCE_NAME_PLURAL}/{NAME}`: returns `204 NoContent` on success. The optional `resourceVersion` query parameter enforces concurrency control.
