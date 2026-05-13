@@ -133,7 +133,7 @@ properties:
 ```
 
 :::caution
-The validation schema of an ITD version cannot be modified after creation. This guarantees the stability of the interface so clients can safely cache ITD versions and always interpret the `spec` of custom resources. To change the schema, create a new version of the ITD.
+The validation schema of an ITD version should be modified after creation. This guarantees the stability of the interface so clients can safely cache ITD versions and always interpret the `spec` of custom resources. We advice to change the schema creating a new version of the ITD or a brand new ITD.
 :::
 
 ## Selectable fields
