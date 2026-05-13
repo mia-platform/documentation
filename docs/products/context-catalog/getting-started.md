@@ -61,7 +61,7 @@ To go further, bundle multiple rules into a [Scorecard](./basic-concepts/40_scor
 
 ## 6. Plug in external data with connectors
 
-Most catalogs are not populated by hand: they are kept in sync with the systems where the entities already live (source-code hosting, the Mia-Platform Console, cloud providers, artifact registries, security tools). The Context Catalog ingests data from dedicated connectors — see the [Connectors Overview](./connectors/10_overview.md) for the full picture.
+Most catalogs are not populated by hand: they are kept in sync with the systems where the entities already live (source-code hosting, the Mia-Platform Console, cloud providers, artifact registries, security tools). The Context Catalog ingests data from dedicated connectors — see the [Connectors Overview](./connectors/10_overview.md) for the full picture. Our connector implementation is called `ibdm`.
 
 In short, Mia-Platform connectors:
 
@@ -71,7 +71,7 @@ In short, Mia-Platform connectors:
 
 The high-level setup is:
 
-1. **Register the connector in the Backoffice.** Open **Configuration → Connectors → Add connector** to create a *Connector* item and obtain a Client ID / Secret pair (see [Connectors section](./catalog-backoffice.md#connectors) of the Backoffice reference).
+1. **Register the connector in the Backoffice.** Open **Configuration → Connectors → Add connector** to create a *Connector* item and manually specify a Client ID / Secret pair (see [Connectors section](./catalog-backoffice.md#connectors) of the Backoffice reference).
 2. **Configure `ibdm`.** Set `MIA_CATALOG_ENDPOINT`, `MIA_CATALOG_CLIENT_ID`, `MIA_CATALOG_CLIENT_SECRET` for the destination, plus the source-specific variables documented on each connector page.
 3. **Pick a mapping file.** Reference mappings are provided in the [`ibdm` repository examples](https://github.com/mia-platform/ibdm/tree/main/docs/examples); you can use them as-is or customize them.
 4. **Launch `ibdm`.** Either `ibdm sync <source>` for a one-off pull, or `ibdm run <source>` to expose a webhook listener.
