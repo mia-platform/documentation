@@ -30,7 +30,7 @@ ibdm run  github --mapping-file <path to mapping file or folder>
 | `GITHUB_HTTP_TIMEOUT` | No | `30s` | HTTP request timeout (Go duration). |
 | `GITHUB_PAGE_SIZE` | No | `100` | Items per API page (1–100). |
 | `GITHUB_WEBHOOK_SECRET` | Run | _(empty)_ | HMAC secret for webhook signature verification. |
-| `GITHUB_WEBHOOK_PATH` | No | `/webhook/github` | HTTP path for inbound webhook events. |
+| `GITHUB_WEBHOOK_PATH` | No | `/github/webhook` | HTTP path for inbound webhook events. |
 
 ## Authentication
 
@@ -68,7 +68,7 @@ If the languages call fails, the repository item is still emitted without `repos
 ## Setting up a GitHub webhook
 
 1. Go to your GitHub organization's **Settings → Webhooks → Add webhook**.
-2. Set **Payload URL** to your public `ibdm` URL followed by `GITHUB_WEBHOOK_PATH` (default `/webhook/github`).
+2. Set **Payload URL** to your public `ibdm` URL followed by `GITHUB_WEBHOOK_PATH` (default `/github/webhook`).
 3. Set **Content type** to `application/json`.
 4. Set **Secret** to the value of `GITHUB_WEBHOOK_SECRET`.
 5. Subscribe to the events that match the data types you want:
