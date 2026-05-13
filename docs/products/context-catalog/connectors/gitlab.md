@@ -48,7 +48,15 @@ The source sends `GITLAB_TOKEN` as the `PRIVATE-TOKEN` header on every request. 
 - **project access tokens**, when `accesstoken` is also in the mapping;
 - **project pipelines**, when `pipeline` is also in the mapping.
 
-When `accesstoken` is in the mapping, `ibdm` additionally iterates over all accessible *groups* and fetches their group-level access tokens.
+When `accesstoken` is in the mapping, `ibdm` additionally iterates over all accessible _groups_ and fetches their group-level access tokens.
+
+Each `project` item includes a `project_languages` field containing the language usage breakdown for that project, enriched via `GET /api/v4/projects/{id}/languages`. The value is a JSON object mapping each language name to its percentage share:
+
+```json
+{ "Go": 97.50, "Makefile": 2.43, "Dockerfile": 0.07 }
+```
+
+If the languages call fails, the project item is still emitted with an empty `project_languages` object.
 
 ### Webhook mode
 
@@ -56,6 +64,8 @@ When `accesstoken` is in the mapping, `ibdm` additionally iterates over all acce
 | :---- | :---- |
 | **Pipeline Hook** | `project` + `pipeline` (only the data types present in the mapping) |
 | **Push Hook** | `project` |
+
+Both webhook event types also populate `project_languages` on `project` items, using the same enrichment call as sync mode.
 
 ## Example mappings
 
