@@ -38,9 +38,8 @@ There is no automatic re-evaluation when `startDate` or `endDate` is reached, no
 
 Campaigns interact with a small number of catalog item types:
 
-- **Rules**: deterministic conditions evaluated against a context of items; a campaign's rules are either copied from a scorecard or defined directly on the campaign.
-- **Rule-runs**: evaluations of a rule against a context of items at a given moment.
-- **Campaigns**: the time-bounded grouping described in this page.
+- **[Rules](./30_evaluation-criteria.md)**: deterministic conditions evaluated against a context of items; a campaign's rules are either copied from a [Scorecard](./40_scorecards.md) or defined directly on the campaign.
+- **[Rule-runs](./30_evaluation-criteria.md#outcome)**: evaluations of a rule against a context of items at a given moment.
 - **Scorecards**: see [Scorecards](./40_scorecards.md) for the related, complementary concept.
 
 ## See also
