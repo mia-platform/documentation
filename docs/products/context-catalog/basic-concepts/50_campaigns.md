@@ -6,22 +6,22 @@ sidebar_label: Campaigns
 
 # Campaigns
 
-A **Campaign** groups one or more goals (in the form of [Rules](./30_evaluation-criteria.md)) that must be satisfied by a set of catalog items within a defined time window. Campaigns turn a snapshot evaluation into a time-bounded compliance program with a clear deadline.
+A **Campaign** groups one or more [Rules](./30_evaluation-criteria.md) that must be satisfied by a set of catalog items within a defined time window. Campaigns turn a snapshot evaluation into a time-bounded compliance program with a clear deadline.
 
 A campaign declares:
 
 - `startDate`: when the campaign period begins.
-- `endDate`: the deadline by which all goals should be satisfied.
-- `goals[]`: one or more evaluation criteria applied to the target item set.
+- `endDate`: the deadline by which all rules should be satisfied.
+- `goals[]`: one or more [Rules](./30_evaluation-criteria.md), either **copied from a [Scorecard](./40_scorecards.md)** when the campaign is built from one (once a target level is selected, the matching rules are duplicated onto the campaign) or **written directly on the campaign** when it is built from scratch. Once on the campaign, the rules are independent of the source scorecard: later changes to the scorecard do not propagate.
 - a target set of items defined as a [view](../catalog-backoffice.md#views) reference or a raw query (see [Query Language](./70_query-language.md)).
 
 The dates define the campaign's time window for reporting and audit purposes; they do not currently drive automatic evaluations (see [Evaluation](#evaluation) below).
 
 ## Relationship with Scorecards
 
-In practice, a campaign is most often **built from a [Scorecard](./40_scorecards.md)**: you pick an existing scorecard and either select a target level (every rule from that level downward becomes a goal of the campaign) or cherry-pick individual rules from it. The campaign is then linked to the scorecard it originated from, and the link is preserved for audit and navigation.
+In practice, a campaign is most often **built from a [Scorecard](./40_scorecards.md)**: you pick an existing scorecard and select a target level — the rules from that level downward are copied onto the campaign. The campaign keeps a link to the scorecard it originated from for audit and navigation, but the copied rules evolve independently from that point on.
 
-It is also possible to create a campaign **from scratch** by defining goals directly, without referencing a scorecard.
+It is also possible to create a campaign **from scratch** by defining rules directly, without referencing a scorecard.
 
 The mental model:
 
@@ -30,7 +30,7 @@ The mental model:
 
 ## Evaluation
 
-A campaign is evaluated **on demand**: an operator triggers a run from the [Catalog Backoffice](../catalog-backoffice.md#evaluate-a-campaign), and every configured goal is evaluated against the target item set (the same flow used by a standalone rule run, see [Evaluation Criteria](./30_evaluation-criteria.md)). Results are stored on the `Campaign` item and exposed both via the [Catalog API](../api-interactions.md) and in the Backoffice.
+A campaign is evaluated **on demand**: an operator triggers a run from the [Catalog Backoffice](../catalog-backoffice.md#evaluate-a-campaign), and every configured rule is evaluated against the target item set (the same flow used by a standalone rule run, see [Evaluation Criteria](./30_evaluation-criteria.md)). Results are stored on the `Campaign` item and exposed both via the [Catalog API](../api-interactions.md) and in the Backoffice.
 
 There is no automatic re-evaluation when `startDate` or `endDate` is reached, nor when an item in scope changes: each refresh is initiated manually.
 
@@ -38,7 +38,7 @@ There is no automatic re-evaluation when `startDate` or `endDate` is reached, no
 
 Campaigns interact with a small number of catalog item types:
 
-- **Rules**: deterministic conditions evaluated against a context of items, used to express the goals of a campaign.
+- **Rules**: deterministic conditions evaluated against a context of items; a campaign's rules are either copied from a scorecard or defined directly on the campaign.
 - **Rule-runs**: evaluations of a rule against a context of items at a given moment.
 - **Campaigns**: the time-bounded grouping described in this page.
 - **Scorecards**: see [Scorecards](./40_scorecards.md) for the related, complementary concept.
