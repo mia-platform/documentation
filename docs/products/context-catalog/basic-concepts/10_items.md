@@ -234,3 +234,9 @@ Items live inside an **organization**, which is a hard isolation boundary with i
 ## Relationships
 
 Items can be connected to one another through **relationships**: typed, directed links between a *source* and a *target* item. The catalog provides three built-in kinds (`RelationshipType`, `RelationshipConstraint`, and `Relationship`) that together model, govern, and record connections. See [Relationships](./60_relationships.md) for the full model, the built-in relationship types, and examples.
+
+## See also
+
+- [Item Types](./20_item-types.md): the schemas that an item's `spec` must respect.
+- [Relationships](./60_relationships.md): how items reference one another, including ownership and follow.
+- [Catalog Backoffice](../catalog-backoffice.md): where items are browsed, edited, and tagged in the UI.

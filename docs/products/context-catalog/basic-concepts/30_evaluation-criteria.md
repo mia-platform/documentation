@@ -63,3 +63,9 @@ Each rule-run produces:
 - enough context (timestamps, the evaluated rule version, the targeted items) to reconstruct what was evaluated and when.
 
 These results are persisted on the `Run` item and exposed both via the [Catalog API](../api-interactions.md) and through the [Catalog Backoffice](../catalog-backoffice.md).
+
+## See also
+
+- [Scorecards](./40_scorecards.md): how individual rules roll up into a levelled compliance model.
+- [Campaigns](./50_campaigns.md): how rules are used as goals in time-bounded compliance programs.
+- [Catalog Backoffice](../catalog-backoffice.md): where rules are authored, triggered, and inspected in the UI.

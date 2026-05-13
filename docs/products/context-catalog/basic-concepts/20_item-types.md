@@ -184,3 +184,9 @@ Without the corresponding `selectableFields` entry, the same query is rejected.
 - Quote literal strings with single quotes; reference field names with backticks.
 - Use words for inequalities ("must be less than 256"), not symbols.
 - Use inclusive ranges when possible.
+
+## See also
+
+- [Items](./10_items.md): the objects whose shape an ITD constrains.
+- [Query Language](./70_query-language.md): how `selectableFields` enables filtering and sorting on `spec`.
+- [API Interactions](../api-interactions.md): the REST endpoints an ITD exposes once registered.
