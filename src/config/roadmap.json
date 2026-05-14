@@ -7,13 +7,18 @@
     "items": {
       "newFeatures": [
         {
-          "title": "Helm Charts management improvement",
-          "description": [],
+          "title": "Bridging Design expressiveness with Helm Charts",
+          "description": ["Configure your project resources using the intuitive interfaces within the Design Area sections (e.g. Microservices, Resources, Applications, ...) and get a read-only Helm chart view that automatically reflects your configuration."],
+          "tags": ["Governance"]
+        },
+        {
+          "title": "Set the Commit & Deployment strategy for the Project",
+          "description": ["Set your Commit & Deploy Strategy in the Project Settings by choosing the type of Git Repo Project Configuration structure and whether to manage namespace deployments with Kustomize (Flat Manifests) or with Helm (Encapsulated Charts)."],
           "tags": ["Governance"]
         },
         {
           "title": "New Authentication based on Keycloak",
-          "description": [],
+          "description": ["Redesign of the Console authentication layer based on Keycloak, enabling SSO, fine-grained role and permission management, and improved user lifecycle control."],
           "tags": ["Governance"]
         }
       ]
@@ -27,23 +32,28 @@
     "items": {
       "newFeatures": [
         {
-          "title": "New AI-Native Data Pipeline configurator",
-          "description": [],
+          "title": "Cross Namespace Management",
+          "description": ["To avoid proliferation of control planes and provide centralized management of the Fast Data Runtime, the Control Plane will support access and control over all namespaces where Fast Data pipelines are deployed. Provisioning will be done via a dedicated Helm chart."],
           "tags": ["Fast Data"]
         },
         {
-          "title": "Runtime aggregation performance improvements for Fast Data",
-          "description": [],
+          "title": "Guided Operations & Troubleshooting Interface on Control Plane",
+          "description": ["A Control Plane interface to perform ordered and guided operations on Stream Processors to fix issues (e.g. cache cleanup/reset)."],
+          "tags": ["Fast Data"]
+        },
+        {
+          "title": "New AI-Native Data Pipeline configurator",
+          "description": ["A visual, AI-assisted interface for configuring and managing end-to-end Fast Data pipelines, reducing manual effort and accelerating pipeline setup."],
           "tags": ["Fast Data"]
         },
         {
           "title": "Data processing functions generation & testing with AI support",
-          "description": [],
+          "description": ["AI-powered generation of data processing functions with built-in testing capabilities, allowing validation of each pipeline step using fixed input data and expected output review."],
           "tags": ["Fast Data"]
         },
         {
-          "title": "MongoDB-Kafka Connector",
-          "description": [],
+          "title": "Fast Data MCP Agent",
+          "description": ["An AI agent leveraging the Model Context Protocol to interact with Fast Data pipelines, enabling natural language-driven configuration and monitoring."],
           "tags": ["Fast Data"]
         }
       ]
@@ -100,6 +110,16 @@
           "title": "Improved management of schema validation and indexes for MongoDB assets",
           "description": [],
           "tags": ["Database Management"]
+        },
+        {
+          "title": "Business Glossary",
+          "description": ["A business glossary contains the definitions of commonly used business terms in an organization, serving as the single authoritative source for concepts and definitions. Users with enough permissions can define categories and terms to create the organization business catalog, enrich data assets with glossary terms, and search assets based on specific glossary terms."],
+          "tags": ["Data Catalog"]
+        },
+        {
+          "title": "Integration of Data Catalog in Context Catalog",
+          "description": ["Seamless integration between Data Catalog and Context Catalog, enabling users to discover and govern data assets directly within the unified Context Catalog experience."],
+          "tags": ["Data Catalog"]
         }
       ]
     }
