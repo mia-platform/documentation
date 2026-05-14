@@ -4,177 +4,130 @@ title: Mia-Platform Overview
 sidebar_label: Mia-Platform Overview
 ---
 
-## Mia-Platform Overview: Accelerating Your Digital Future
+# Mia-Platform Overview
 
-In an ever-evolving digital landscape, speed of innovation, operational efficiency and the ability to leverage the true potential of data are fundamental for competitiveness.  
-**Mia-Platform is the world's first AI-native Developer Platform Foundation**, a suite of products for building and managing your custom digital platform, designed to eliminate complexities and accelerate your journey towards digital excellence.
+## Ship Production-Ready Software Grounded In Your Enterprise Context
 
-Mia-Platform consolidates all necessary tools into a single ecosystem, offering **guardrails** through the complex landscape of cloud-native technologies. By uniting platform engineering, data, and artificial intelligence in a single, composable ecosystem, Mia-Platform enables organizations to accelerate AI-enabled development while maintaining full governance and control. Our goal is simple: to provide a product **for better development**.
+Large enterprises are integrating AI as a structural component of their architecture to automate operations, accelerate delivery cycles, and achieve sustainable scalability. Yet, **Enterprise AI** does not fail due to a lack of intelligence or creativity, but due to the absence of context and robust governance.
 
-![Mia-Platform](img/mia-platform-product-structure-img.png)
+While modern AI models are highly capable, deploying them within an enterprise architecture introduces severe operational friction. Without **comprehensive governance** and a **clear mapping of the organization’s assets**, AI deployments inevitably produce unreliable, disconnected outputs. This fragments operational control, reiterates technical debt, blocks validation pipelines, and compromises compliance, ultimately hampering scaling and standardization.
 
-### 1. Platform Engineering: Industrialize Software Delivery with Governance
+**Mia-Platform** is the **AI-Native Developer Platform** engineered to eliminate this friction and enable **fully governed AI adoption**. By seamlessly orchestrating data, infrastructure, operations and services, Mia-Platform transitions AI from an isolated utility into an active engine of co-creation. This entire system is anchored in a comprehensive digital twin of your enterprise, the **Context Catalog**, which provides the foundational knowledge for governed AI execution.
 
-**The challenge:** Managing complex cloud-native infrastructures while ensuring a fluid Developer Experience (DevX) and balancing speed with control are arduous tasks that often heavily burden Platform Engineering and DevOps teams, slowing down the entire IT structure.
+### The Core Pillars: Context Catalog and AI Foundry
 
-**The Mia-Platform solution:** By enabling the construction of your **Internal Developer Platform (IDP)**, complete with Portal, Environment-as-a-Service (Platform Orchestrator), Mia-Platform allows you to industrialize software development and deployment while embedding governance and control by design. Through a Platform Engineering approach, Mia-Platform enables you to:
+The entire Mia-Platform ecosystem is built upon two foundational pillars that work symbiotically to turn fragmented, shadow AI into a secure, value-generating asset: the [**Context Catalog**](/products/context-catalog/overview.md) and the [**AI Foundry**](/products/ai-foundry/overview.md).
 
-* **Reduce cognitive load** on cloud-native complexity, providing an abstract and intuitive environment where developers can focus on building rather than managing infrastructure.
+Together, they address both context overload and governance limitations. This allows you to accelerate your development lifecycle while maintaining predefined enterprise guardrails and strict boundaries of risk.
 
-* **Define and manage environment variables** at different levels, with full control over user permissions and visibility, ensuring security and consistency across all deployments.
+#### The Context Catalog: Your Actionable Digital Twin
 
-* **Manage all configurations** of your microservices, abstracting their complexity thanks to powerful **low-code and no-code functionalities** that accelerate delivery without sacrificing control.
+The [**Context Catalog**](/products/context-catalog/overview.md) is a living, enriched metadata map of your entire IT ecosystem. Rather than acting as a static registry, the Catalog dynamically links software components, data products, infrastructure resources, APIs, policies, and AI agents, mapping their interrelations to enable semantic navigation.
 
-* **Automate the deployment** of your microservices on **multi-cloud providers** and on-premise environments with a few clicks, monitoring their resource usage in real-time to optimize performance and costs.
+![Context Catalog](./img/context-catalog.png)
 
-* **Expose all APIs** through an API Gateway of your choice, in a simple and secure way, ensuring controlled and governed access while maintaining architectural coherence.
+Key features include:
 
-* **Embed security and compliance** into the platform fabric through automated policies and controls that enforce best practices system-wide, ensuring you stay compliant without sacrificing speed.
+* **Filtered Intelligence:** The Catalog feeds AI models with precise, governed context based on [item types](/products/context-catalog/basic-concepts/20_item-types.md) and [relationship maps](/products/context-catalog/basic-concepts/60_relationships.md). This drastically reduces token consumption, latency, and hallucination risks.  
+* **Governance by Design:** The Catalog integrates access controls and deterministic rules directly into the foundational data model, eliminating the need for post-deployment patches. Then, you can manually add non-deterministic compliance directives and policies, ensuring that all generated code adheres to your desired standards.   
+* **Orchestration-Ready Blueprint:** The Catalog enforces structural guardrails, golden paths, and organizational standards to guarantee that every deployed asset is optimized for Day 2 operations.
 
-**The result:** Greater visibility, traceability and monitoring of the entire DevOps cycle. Your Platform Engineering teams can establish standards, ensure governance and make infrastructure transparent, allowing developers to focus on value creation while maintaining full control over quality, security, and compliance.
+#### The AI Foundry & AI Playbooks: Intent-Driven Governance
 
-### 2. Data Fabric: Unlock the True Power of Your Data with Unique Semantics
+To bridge the AI trust gap, enterprises must move beyond non-deterministic, black-box executions. The [**AI Foundry**](/products/ai-foundry/overview.md) is the necessary governance layer acting as a strict intermediary between user requests and AI actions. It ensures AI agents deliver predictable, **reproducible outcomes** that align perfectly with comprehensive enterprise standards and compliance.
 
-**The challenge:** Integrating data from disparate sources, ensuring quality, consistency, providing unique semantics and real-time availability are common obstacles that prevent organizations from gaining a unified view and fully leveraging the value of their information assets. Legacy systems and siloed data environments limit AI's potential and hinder contextual understanding.
+This framework operates through [**AI Playbooks**](/products/ai-foundry/basic-concepts/60_playbook.md): pre-configured, reproducible templates that package specific [agent](/products/ai-foundry/basic-concepts/10_agent.md) instructions, specialized [skills](/products/ai-foundry/basic-concepts/50_skill.md), memory configurations, compliance policies, and curated AI [tools](/products/ai-foundry/basic-concepts/40_tool.md) tailored to the technology stack and to a given objective.
 
-**The Mia-Platform solution:** Mia-Platform allows you to leverage a **Data Fabric** approach, a cutting-edge solution that provides a holistic approach to data management with Fast Data and a Data Catalog. This unique architecture enables you to:
+![AI Playbooks](./img/ai-playbooks.png)
 
-* **Establish unique data semantics** across your entire organization, adding metadata to give a single, consistent meaning to data across different systems, automatically discovering the meaning and dependencies of all available data.
+* When a user submits a natural language request, the **AI Foundry interprets the intent and routes it to a specific Playbook**, which triggers a multi-step execution converting unpredictable agentic flows into auditable processes.  
+* Every generated task is cross-checked against enterprise constraints and the Context Catalog before execution, ensuring **compliance and adherence to the architectural reality of the organization**.  
+* Identical goals always trigger **standardized automation workflows**, eliminating redundancy and architectural drift, ensuring predictable outcomes even for complex operational goals.
 
-* **Leverage a Data Fabric solution** to govern the entire data lifecycle, from discovery to exposure, providing a unified data control plane that enables data ingestion from any source.
+### Basic Components: The Standard Foundation
 
-* **Aggregate data in real-time from different sources** and make it available in near real-time, improving the availability and accessibility of crucial business information.
+Every Mia-Platform configuration includes a **suite of basic components** designed to ensure a consistent developer experience and a unified interface for AI, maintaining **standardization** across the whole ecosystem.
 
-* **Create AI-ready data products** that deliver data in real time to channels and AI without overloading legacy systems of record, providing consistent, unambiguous data to AI models while reducing connection complexity and costs.
+* [**Catalog Administration**](/products/context-catalog/catalog-administration.md)**:** The central nervous system for governing your software, data, and logic in one unified dashboard.  
+* [**AI Foundry**](/products/ai-foundry/overview.md)**:** The mechanism that automatically enforces policies, access hierarchies and approved templates for governed AI workflows.  
+* [**Catalog MCP Server**](/products/context-catalog/api-interactions.md#mcp-server)**:** The native interface that uses the Model Context Protocol (MCP) to allow any AI agent or assistant to discover and interact with assets. It also connects the catalog to broader external tools and data lakes.  
+* [**Flow**](/products/flow/overview.md)**:** An [AI-powered IDE](/products/flow/basic-concepts/40_agentic-ai.md) that uses platform context to help teams build and deploy faster without leaving the enterprise boundaries.
 
-* **Project data from your legacy systems** and create **Single Views**, unified views of a data subset with a specific purpose, to reduce access latency and increase data availability.
+### Modular Configurations for Your Teams
 
-* **Connect your cloud-native platform** with existing systems, decoupling and offloading legacy systems and serving real-time data 24/7 to power strategic decisions and AI-native applications.
+The Context Catalog and AI Foundry provide the foundational framework. On top of them, Mia-Platform offers specialized **modular setups** designed to optimize software delivery for your engineering, infrastructure, and data departments.
 
+#### 1\. Development (Software Engineering Teams)
 
-**The result:** Real-time aggregated data in a unified business view, AI-ready data products, and the capability to power strategic decisions and AI-native applications with consistently up-to-date information.
+To counter the budget waste of "Shadow AI" and help teams move fluidly from business ideas to production in a single governed workflow, this configuration accelerates delivery with API-integrated assets that are pre-validated and ready for production use.
 
-### 3. Application Composability: Accelerate Innovation Through Reuse
+Main components are:
 
-**The challenge:** Building scalable, reusable and performant cloud-native applications from scratch is often a slow and fragmented process, with teams duplicating efforts, lacking standardization, and struggling to maintain consistency across the organization. The pressure to deliver faster while maintaining quality creates bottlenecks and technical debt, now amplified by the necessity to create AI-powered apps and AI agents. 
+* [**Predefined Item Types for Services**](/products/context-catalog/basic-concepts/20_item-types.md)**:** Readily available item types that grant developers a standardized, governed foundation for cataloging new software.  
+* [**Connectors for Applications**](/products/context-catalog/connectors/10_overview.md)**:** Ready-made integrations that seamlessly pull your existing apps into the catalog, improving their discoverability and governance.  
+* [**Marketplace**](/runtime-components/overview_marketplace.md)**:** An internal showcase where engineers can search, find, and reuse any approved building block to speed up the setup.
 
-**The Mia-Platform solution:** Mia-Platform transforms application development into a **composable and self-service experience**, enabling teams to build once and scale everywhere. With Mia-Platform, you can:
+#### 2\. Infrastructure (Ops & Platform Teams)
 
-* **Adopt composable business practices** through reusable components, packaged capabilities, and standardized templates that transform standardization into empowerment, allowing teams to accelerate delivery without reinventing the wheel.
+Transforming invisible infrastructure into a governed, scalable ecosystem is crucial for modernizing legacy systems and reducing technical debt. This configuration gives teams and AI a reliable view of all infrastructure (cloud, legacy, and on-prem), enforces compliance with automated Scorecards, and uses targeted Campaigns to route remediation workflows.
 
-* **Create modular and reusable services** with a few clicks, starting from predefined templates or importing them from an artifact registry, ensuring standardization and quality from day one.
+Main components are:
 
-* **Design and orchestrate Microfrontends** (such as backoffices or complex user interfaces) in a few clicks, using low-code functionalities to read and write data in real-time, composing custom pages with web components.
+* [**Item Types Infra/DevOps**](/products/context-catalog/basic-concepts/20_item-types.md)**:** A specialized library bringing complex infrastructure assets under unified catalog governance.  
+* **Cloud & DevOps Connectors:** Automated integrations with major providers (e.g. [Azure](/products/context-catalog/connectors/azure.md), [Google Cloud](/products/context-catalog/connectors/google-cloud.md), [GitHub](/products/context-catalog/connectors/github.md), [GitLab](/products/context-catalog/connectors/gitlab.md)) that actively pull resources into the platform, ensuring live tracking alongside application assets.  
+* **Engineering Intelligence:** A governance section within the Catalog, related to [Scorecards](/products/context-catalog/basic-concepts/40_scorecards.md) and [Campaigns](/products/context-catalog/basic-concepts/50_campaigns.md). They aggregate data into the catalog to offer leadership clear visibility into platform adoption, delivery metrics, and custom insights. See the Scorecards tutorial to get started.
 
-* **Leverage seamless tools orchestration** where development tools, workloads, and pipelines integrate fluidly, allowing AI agents to act across the entire software lifecycle and enabling human-assisted coding experiences that boost speed, creativity, and control.
+#### 3\. Data (Data Teams)
 
-* **Manage the entire end-to-end lifecycle** of cloud-native applications with full autonomy and security, from design to configuration, all the way to deployment, ensuring consistency and governance.
+Organizations have massive datasets but they are often siloed, ungoverned, and invisible. Essentially, they are not AI-ready. This configuration ensures this huge amount of data becomes contextually governed without disturbing existing systems of record.
 
-**The result:** Increased productivity through reuse and composition, reduced time-to-market, elimination of duplicated efforts, and the freedom to innovate with agility while building applications that respond rapidly to business needs with consistent quality and governance.
+Main components are:
 
-### 4. Catalog: Centralize, Discover and Govern Your Software Ecosystem
+* [**Data Catalog**](/products/data_catalog/overview.mdx)**:** A unified registry of tables, pipelines and models enriched with related metadata, ownership and classification to enable data discoverability and foster trust.  
+* [**Data Lineage**](/products/data_catalog/frontend/data_lineage.mdx)**:** A visual map of data, from origin to consumption, enabling swift root-cause analysis and dependency tracking.  
+* **Data Glossary**: A shared business dictionary directly linked to the [Data Catalog](/products/data_catalog/frontend/overview.mdx) to ensure organizational alignment.  
+* **DPO Frontend & [Excel Plugin](/products/data_catalog/excel_add_in/overview.mdx):** Dedicated auditing interfaces for Data Protection Officers, allowing bulk metadata export and management natively.  
+* **MCP Extensions for Data**: Model Context Protocol connectors that expose Data Catalog, Lineage and Glossary to AI agents and tools, respecting your governance boundaries and organizational context.
 
-**The Challenge:** Organizations struggle with scattered software assets, lack of visibility into what components exist, difficulty in discovering reusable assets, and challenges in maintaining consistency and governance across the software ecosystem. Without a centralized source of truth, teams waste time rebuilding existing solutions and struggle to maintain architectural coherence.
+### Operational Add-ons: Platform Orchestrators
 
-**The Mia-Platform Solution:** Mia-Platform provides a **Software Catalog** that serves as a centralized solution for tracking, discovering and managing all software within your organization's ecosystem. The catalog enables you to:
+To bridge the gap between governance and runtime, Mia-Platform integrates **powerful orchestrators** that make your architecture actionable at scale, and allow for the personalization of specific vertical requirements.
 
-* **Access a unified IT context** where all systems, APIs, services, data and metadata are seamlessly gathered, giving humans and AI full awareness of the architecture, enabling informed decision-making and reducing duplication.
+These components power the platform behind the scenes: they act as the **operational layer** that transforms theoretical models into concrete executions, governing app exposure, provisioning, and real-time data flows:
 
-* **Leverage an ever-expanding catalog** of ready-to-use plugins, templates and applications (the Runtime Components), drastically accelerating the development of your products while ensuring consistency and quality.
+* [**Console**](/products/console/overview-dev-suite.md)**:** It provides Environment as a Service (EaaS) through a self-service layer that abstracts infrastructure complexity, enabling on-demand provisioning across cloud and on-premise setups.  
+* [**Fast Data**](/products/fast_data_v2/overview.md)**:** A real-time data pipeline engine for high-velocity data flows, ensuring the low-latency context required by event-driven architectures, live analytics, and modern AI workloads.
 
-* **Maintain both public and private catalogs**: access a public catalog of ready-to-use components and build a private catalog for internal, reusable assets tailored to your organization's specific needs and standards.
+#### Specialized Extensions
 
-* **Enable discoverability and reuse** across your organization, allowing teams to quickly find and leverage existing components, reducing time-to-market and ensuring architectural alignment.
+* [**P4SAMD**](/runtime-components/applications/quality-assistant/10_overview.md#quality-assistant-for-healthcare-industry-p4samd)**:** An AI-powered solution built to govern the entire lifecycle of Software as a Medical Device (SaMD), fully compliant with IEC 62304 and GAMP5 standards.  
+* [**Microfrontend Composer**](/products/microfrontend-composer/overview.md)**:** A composition layer to visually build modular backoffice interfaces from independent frontend components.
 
-* **Govern your software ecosystem** with clear visibility into dependencies, ownership, metadata, and usage patterns, making it easier to maintain, evolve and scale your digital platform.
+### Consumption Modes: Headless or Unified Experience
 
-* **Empower non-technical roles** with AI-powered exploration capabilities to understand catalog metadata using natural language, simplifying compliance, audits and strategic planning.
+Mia-Platform is designed to fit your existing workflows, offering two complementary ways to interact with the ecosystem based on your technical requirements:
 
-**The Result:** A single source of truth for all software assets, accelerated development through reuse, reduced duplication of effort, improved architectural coherence, and the foundation for effective governance and AI-enabled development workflows.
+* **Headless & API-First**: The [Context Catalog](/products/context-catalog/api-interactions.md) and AI Foundry expose their capabilities via modern protocols ([**MCP, API, CLI and A2A**) to inject your enterprise context into external tools like IDEs, CI/CD pipelines, and custom AI assistants.  
+* **Mia-Platform Apps**: It offers a guided, visual experience through dedicated interfaces (like [Catalog Administration](/products/context-catalog/catalog-administration.md), [Flow](/products/flow/overview.md), and the [EaaS portal](/products/console/overview-dev-suite.md#environment-as-a-service)) that optimize workflows for all organizational roles. These apps are modular and tailored to specific use cases, so the components included depend on the selected package or operational model.
 
-### 5. AI Agentic Layer: Architect, Orchestrate and Govern Intelligent Systems
-
-**The Challenge:** The promise of Generative AI is vast, but the path to production is fraught with complexity. Organizations struggle to bridge the chasm between powerful Large Language Models (LLMs) and their proprietary data, orchestrate intelligent agents, establish human-AI collaboration workflows, and govern the entire lifecycle securely in production environments. Without proper governance, AI-generated outputs may lack reliability, security, and compliance alignment.
-
-**The Mia-Platform Solution:** Mia-Platform provides a comprehensive **AI Agentic Layer** to build, orchestrate and govern end-to-end AI-native systems as a core function of the platform. Through an integrated flow that connects humans, AI agents, and systems, Mia-Platform enables you to:
-
-* **Establish human and AI in a single work stream**, creating a unified flow where humans and AI operate seamlessly together. Intent and oversight come from people, while speed, synthesis and automation come from AI. Developers become augmented builders, with AI handling repetitive tasks, scaffolding, test generation and pattern checking, allowing humans to focus on design, clarity and problem shaping.
-
-* **Build context-aware AI development**: Create applications and AI agents on top of your private, proprietary data sources, delivering answers that are not only accurate but deeply contextualized with your organization's unique knowledge.
-
-* **Forge a foundation of AI-ready data** by leveraging the Data Fabric to prepare and serve a continuous stream of high-quality, fresh and reliable data, ensuring your AI models operate with information that is secure and compliant by design.
-
-* **Orchestrate intelligent agent & multi-agent systems** that move beyond single-shot prompts. Design, coordinate and monitor complex workflows where multiple AI agents collaborate to execute distributed tasks and solve multifaceted business problems.
-
-* **Ensure built-in security and compliance** where rules, protections, and automated controls are embedded from the beginning, so AI and software operate safely and follow regulations automatically, with compliance rules centralized and applied in real time.
-
-* **Achieve digital sovereignty with self-hosted LLMs**, retaining absolute control over your data and intellectual property by deploying and managing LLMs within your own private infrastructure.
-
-**The Result:** Transform AI from a theoretical asset into a tangible engine for business value. Ship intelligent, secure and seamlessly integrated applications at speed, with trustworthy AI-driven engineering that harmonizes productivity and trust, enabling high-paced innovation while maintaining governance, compliance and long-term business agility.
+![Product Overview](./img/product-overview.png)
 
 ### Why Mia-Platform?
 
-Mia-Platform supports you in creating, maintaining and evolving your digital platform tailored to your business. As the world's first AI-native Developer Platform Foundation, our platform is the catalyst for:
+Most enterprises must cope with a complex, widespread issue: trying to channel the power of AI tools within enterprise tracks to enhance reliability, ensure compliance, and minimize redundancy. 
 
-* **Platform Engineering:** Industrializing software development and reducing cognitive load by building your Internal Developer Platform, with embedded governance, security and compliance that accelerates delivery without sacrificing control.
+Mia-Platform resolves this issue with an **actionable context layer** that guarantees governance by design, and promotes standardization. The [Context Catalog](/products/context-catalog/overview.md) is the single source of truth that maps all organization’s assets and guarantees AI outputs are grounded in reality. The [AI Foundry](/products/ai-foundry/overview.md) anchors AI workflows to predefined intents for specific goals, circumscribing their scope and fostering reusability.
 
-* **Data Fabric:** Leveraging Fast Data and a Catalog to ensure real-time data ingestion, unique data semantics across systems, and AI-ready data products that empower strategic decisions and AI-native applications.
+This symbiosis ensures a **sustainable use of AI systems**, which produce reproducible results because they are secure and validated against enterprise standards.
 
-* **Application Composability:** Accelerating the deployment of new features and products through reusable components, packaged capabilities and standardized templates, promoting self-service and composition of existing assets. This helps you **reduce time-to-market** and ensure clear governance.
+Moreover, Mia-Platform is also fully usable through **user-friendly, ad-hoc interfaces** depending on your technical expertise. This facilitates the democratization of development for every platform role, ensuring a seamless flow and integration between the design phase and the engineering one.
 
-* **Centralized Software Catalog:** Providing a unified IT context where all systems, APIs, services, data and metadata are discoverable, enabling humans and AI to have full awareness of the architecture and accelerating development through reuse.
-
-* **AI Agentic Layer:** Architecting, orchestrating and governing end-to-end intelligent systems where humans and AI work in a single stream, transforming AI from a theoretical asset into a tangible engine for business value with built-in security and compliance.
-
-### Mia-Platform Ecosystem
-
-Mia-Platform provides you with a suite of products that support platform governance, enable composable business and facilitate coexistence with legacy systems.
-
-* [**Mia-Platform for Platform Engineering**](/products/console/overview-dev-suite.md): 
-    The heart of the suite, Mia-Platform IDP, combined with an Orchestrator and [Software Catalog](/products/console/software-catalog/overview.md) capabilities, industrializes and governs cloud-native development and operations, facilitating platform engineering and application development to optimize DevX and accelerate product teams' delivery.
-
-* **Mia-Platform for Data Fabric**
-    * [**Mia-Platform Fast Data**](/products/fast_data/what_is_fast_data.md): Adopt a **Digital Integration Hub** architecture to unlock the full potential of real-time data. It provides a unified data control plane, enabling data ingestion from any source, data synchronization and the creation of data products and APIs for rapid, secure data access.
-    * [**Mia-Platform Data Catalog**](/products/data_catalog/frontend/overview.mdx): It enables you to discover, document, govern and enrich all your data assets by automatically mapping data sources, adding metadata, and providing a single, consistent meaning to data across different systems. Combined with **lineage capabilities**, it empowers both technical and non-technical roles to understand data dependencies and usage patterns, simplifying governance. 
-
-* **Mia-Platform for Application Composability**: Accelerate delivery by designing new services leveraging an enhanced [Software Catalog](/products/console/software-catalog/overview.md) to discover, reuse, compose, and orchestrate technologies (including AI Agents) to drive business agility and resiliency.
-
-* [**Software Catalog**](/products/console/software-catalog/overview.md): A centralized solution that serves as the **foundation across the entire product suite**, enabling you to track and manage all software within your organization's ecosystem. It provides both a public catalog of ready-to-use components and a private catalog that acts as a digital twin of your company's ecosystem, ensuring consistency and accelerating development through discoverability and reuse.
-
-**Additional Components:**
-These components contribute to the realization of specific tasks within your products and are available through Mia-Platform Runtime Components:
-
-* **API Management**: With [**API Gateway**](/runtime-components/plugins/api-gateway/10_overview.md) and [**API Portal**](/runtime-components/plugins/api-portal/10_overview.md) you can simplify API management, routing requests, applying security policies, and offering a self-service interface for documentation and testing.
-
-* [**Mia-Platform Microfrontend Composer**](/products/microfrontend-composer/what-is.md): Create custom CMSs, or generic User Interfaces, with the ability to compose custom pages, putting whatever web component coming from the back-kit library or from a custom component library.
-
-* [**Mia-Platform External Developer Portal**](/runtime-components/plugins/api-portal/10_overview.md): A complete access point to your company's APIs for your partners and providers, containing live and testable API documentation and allowing standardization in usage methods.
-
-* [**Mia-Platform Flow Manager**](/runtime-components/plugins/flow-manager-service/10_overview.md): A saga orchestrator, capable of managing flows structured using the architectural pattern named Saga Pattern, particularly the Command/Orchestration approach.
-
-* [**RAG Template**](/runtime-components/templates/ai-rag-template/10_overview_and_usage.md): Build and run your own conversational RAG application using LangChain and FastAPI to connect with your data.
-
-* [**AI-Powered SDLC Tool**](/runtime-components/applications/quality-assistant/10_overview.md#ai-powered-sdlc-tool): Enhance quality and accelerate development with AI-powered requirement evaluation, test coverage estimation and compliance checks for industry standards (e.g., IEC 62304, AI Act).
-
-* [**AI-Compliance for Data Catalog**](/runtime-components/applications/data-catalog-ai-compliance/10_overview.md#getting-started): Empower non-technical roles with an AI Assistant to explore and understand Data Catalog metadata using natural language, simplifying compliance and audits.
-
-* [**Infrastructure Resources**](/products/console/design-your-projects/custom-resources/custom-resources.md): Extend the Console's capabilities by defining any custom infrastructure object—from Kubernetes CRDs to Lambda functions—as configuration-as-code elements.
-
-* [**Other Runtime Components**](/runtime-components/overview_marketplace.md): Accelerate the creation of new applications through reuse and composition of components.
-
-This is just a selection of our available tools, to discover the full range of capabilities, explore our [Runtime Components](/runtime-components/overview_marketplace.md) section for more Add-ons, Templates, and Plugins.
-
-In addition to the components above, you can also find Mia-Platform's **open-source projects**:
-
-* [**Rönd**](https://github.com/rond-authz/rond): A lightweight container that distributes security policy enforcement throughout your application.
-
-* [**kube-green**](https://github.com/kube-green/kube-green): The Kubernetes operator to reduce the CO2 footprint of your clusters.
-
-* [**micro-lc**](https://github.com/micro-lc): The micro-frontend orchestrator for building flexible, multi-tenant frontend applications.
-
-* [**MongoDB CRUD Service**](https://github.com/mia-platform/crud-service): A CRUD Service specifically designed for interacting with MongoDB collections.
+Ultimately, Mia-Platform delivers tangible benefits: faster time-to-market, higher productivity, full compliance, better transparency, and lower technical risk.
 
 ### How to get Mia-Platform?
 
-Mia-Platform is available for purchase in three different ways: SaaS, PaaS and On-Premises.
-For further details on the distribution model, please refer to [this page](/requirements/overview.md).
+To meet diverse security, compliance, and operational requirements, Mia-Platform offers [three flexible distribution models](/requirements/overview.md):
+
+* **Platform as a Service (PaaS)**: A fully managed, turn-key environment. Mia-Platform handles the infrastructure, updates, and maintenance, allowing your teams to focus exclusively on software delivery. See [PaaS requirements](/requirements/paas/overview.md).
+* **Bring Your Own Infrastructure (SaaS)**: A hybrid approach where Mia-Platform is provided as a managed service, but the runtime infrastructure remains under your organization’s direct control and management. See [BYOI requirements](/requirements/byoi/overview.md).
+* **Self-Hosted (On-Premise)**: The platform is installed and managed entirely within your own infrastructure. See [Self-Hosted requirements](/requirements/self-hosted/self-hosted-requirements.md).
