@@ -14,7 +14,6 @@ This page describes how rules are modeled, how they are evaluated, and how the r
 
 - **Rule.** A deterministic condition evaluated against a catalog item.
 - **Rule-run.** The record of a single evaluation of a rule against a context of items at a given moment.
-- **Policy Engine.** The stateless service that takes a rule body and a set of items, evaluates the condition for each item, and returns the per-item results.
 
 ## Rule body
 
@@ -31,11 +30,9 @@ The three formats are interchangeable: a rule authored visually can be inspected
 Every rule evaluation follows the same four-step flow, regardless of whether the trigger is a manual request, a scheduled scan, or an item-change event from a [Campaign](./50_campaigns.md).
 
 1. A rule evaluation request is received and a **Run** item is created in the catalog with status `pending`.
-2. The Policy Engine is called with the rule body and the set of target items.
-3. The Policy Engine is polled until the evaluation is `completed`.
-4. Once complete, the `Run` item is updated with the final status (`success` or `failed`) and the per-item results.
-
-In parallel, the **Catalog Backoffice polls the `Run` item** until the status transitions out of `pending`, then renders the results.
+2. The system evaluates the rule body on the set of target items.
+3. Once complete, the `Run` item is updated with the final status (`success` or `failed`) and the per-item results.
+4. The **Catalog Backoffice** renders the status and the results of the run.
 
 ## Where rules live
 

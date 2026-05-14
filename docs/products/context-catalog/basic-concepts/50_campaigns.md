@@ -12,8 +12,8 @@ A campaign declares:
 
 - `startDate`: when the campaign period begins.
 - `endDate`: the deadline by which all rules should be satisfied.
-- `goals[]`: one or more [Rules](./30_evaluation-criteria.md), either **copied from a [Scorecard](./40_scorecards.md)** when the campaign is built from one (once a target level is selected, the matching rules are duplicated onto the campaign) or **written directly on the campaign** when it is built from scratch. Once on the campaign, the rules are independent of the source scorecard: later changes to the scorecard do not propagate.
-- a target set of items defined as a [view](../catalog-backoffice.md#views) reference or a raw query (see [Query Language](./70_query-language.md)).
+- `rules[]`: one or more [Rules](./30_evaluation-criteria.md), either **copied from a [Scorecard](./40_scorecards.md)** when the campaign is built from one (once a target level is selected, the matching rules are duplicated onto the campaign) or **written directly on the campaign** when it is built from scratch. Once on the campaign, the rules are independent of the source scorecard: later changes to the scorecard do not propagate.
+- `scope`: a target set of items defined as a [view](../catalog-backoffice.md#views) reference or a raw query (see [Query Language](./70_query-language.md)).
 
 The dates define the campaign's time window for reporting and audit purposes; they do not currently drive automatic evaluations (see [Evaluation](#evaluation) below).
 
