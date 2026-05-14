@@ -10,19 +10,15 @@ The Catalog API lets you query and manipulate items in the Context Catalog. It i
 
 To support evolution and extension, the Catalog implements API groups and multiple API versions. This information is encoded both in the REST path (`/{GROUP}/{VERSION}/*`, e.g. `/mia-platform.eu/v1/*`) and in the `apiVersion` field of serialized objects.
 
-## Authentication
-
-:::note
-This section is a placeholder. The authentication and authorization model of the Catalog API will be documented here, covering: how clients obtain credentials, how requests are authenticated, and how authorization is scoped (per organization, per item type, per operation).
+:::tip
+You can view and interact with the API of your Catalog with the Mia-Platform API Portal. The API Portal for your Catalog installation is exposed under `<your-catalog-host>/documentations/api-portal/`.
 :::
 
 ## MCP server
 
 In addition to the REST API, the Context Catalog exposes an **MCP (Model Context Protocol) server**, allowing AI agents and MCP-compatible clients to interact with the catalog through a standardized protocol. This enables natural-language exploration of catalog items, programmatic discovery of resources, and integration into agentic workflows without writing custom API clients.
 
-:::note
-This section is a placeholder. The exact endpoint, the set of tools exposed by the MCP server, and the authentication model will be documented here.
-:::
+The codebase of the Catalog MCP is [publicly available on GitHub](https://github.com/mia-platform/catalog-mcp-server). The MCP for your Catalog installation is exposed under `<your-catalog-host>/mcp`.
 
 ## Terminology
 
