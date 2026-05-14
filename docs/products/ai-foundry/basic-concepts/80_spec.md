@@ -4,6 +4,12 @@ title: Spec
 sidebar_label: Spec
 ---
 
+:::caution Beta
+
+AI Foundry is in **beta**. We are actively shaping the product, so things may change as we iterate. Your feedback is welcome.
+
+:::
+
 # Spec
 
 A **Spec** is a catalog resource that stores a structured or free-form specification document. Specs are the way to inject rich, reference-grade knowledge into a [Playbook](./60_playbook.md): think API specifications, data schemas, architecture decision records, domain dictionaries, or any other document that an agent needs to consult at runtime.

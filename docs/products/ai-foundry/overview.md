@@ -4,6 +4,12 @@ title: AI Foundry Overview
 sidebar_label: Overview
 ---
 
+:::caution Beta
+
+AI Foundry is in **beta**. We are actively shaping the product, so things may change as we iterate. Your feedback is welcome.
+
+:::
+
 # AI Foundry Overview
 
 **AI Foundry** is a web-based management and orchestration platform for building, managing, and running AI-powered workflows. It provides a unified interface to compose and test complex agentic applications without writing code directly, targeting enterprises that need to govern AI assets across teams.

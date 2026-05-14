@@ -4,6 +4,12 @@ title: Agent
 sidebar_label: Agent
 ---
 
+:::caution Beta
+
+AI Foundry is in **beta**. We are actively shaping the product, so things may change as we iterate. Your feedback is welcome.
+
+:::
+
 # Agent
 
 An **Agent** is the central execution unit in AI Foundry. It combines a large language model (LLM) with a set of instructions, tools, and skills to produce a reusable, autonomous AI actor that can carry out a specific task, such as answering questions, calling external APIs, running code, or coordinating with other agents inside a [Playbook](./60_playbook.md).

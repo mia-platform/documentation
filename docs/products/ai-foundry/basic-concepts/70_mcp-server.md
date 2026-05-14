@@ -4,6 +4,12 @@ title: MCP Server
 sidebar_label: MCP Server
 ---
 
+:::caution Beta
+
+AI Foundry is in **beta**. We are actively shaping the product, so things may change as we iterate. Your feedback is welcome.
+
+:::
+
 # MCP Server
 
 An **MCP Server** is a catalog resource that registers an external [Model Context Protocol (MCP)](https://modelcontextprotocol.io/) server with AI Foundry. Once registered, the tools and resources exposed by the server are automatically surfaced in the tool browser and can be attached to [Agents](./10_agent.md) like any other [Tool](./40_tool.md).

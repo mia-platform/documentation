@@ -4,6 +4,12 @@ title: Playbook
 sidebar_label: Playbook
 ---
 
+:::caution Beta
+
+AI Foundry is in **beta**. We are actively shaping the product, so things may change as we iterate. Your feedback is welcome.
+
+:::
+
 # Playbook
 
 A **Playbook** is a catalog resource that describes a multi-step agentic workflow. It composes agents, prompts, skills, and specs into a directed graph where each node performs a discrete task and edges define the flow of control and data between them.

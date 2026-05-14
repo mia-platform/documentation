@@ -4,6 +4,12 @@ title: Tool
 sidebar_label: Tool
 ---
 
+:::caution Beta
+
+AI Foundry is in **beta**. We are actively shaping the product, so things may change as we iterate. Your feedback is welcome.
+
+:::
+
 # Tool
 
 A **Tool** is a catalog resource that describes a discrete, executable capability that an [Agent](./10_agent.md) can invoke during a conversation. Tools are how agents extend their abilities beyond pure language generation: they can call REST APIs, query databases, run code, search knowledge bases, or interact with any external system.

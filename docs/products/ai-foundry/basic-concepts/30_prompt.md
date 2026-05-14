@@ -4,6 +4,12 @@ title: Prompt
 sidebar_label: Prompt
 ---
 
+:::caution Beta
+
+AI Foundry is in **beta**. We are actively shaping the product, so things may change as we iterate. Your feedback is welcome.
+
+:::
+
 # Prompt
 
 A **Prompt** is a catalog resource that stores a reusable piece of text (typically a system message, a user instruction template, or a few-shot example set) that agents and [Playbooks](./60_playbook.md) can reference by name.
