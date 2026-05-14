@@ -2044,6 +2044,10 @@
       "type": "doc"
     },
     {
+      "id": "products/context-catalog/architecture",
+      "type": "doc"
+    },
+    {
       "type": "category",
       "collapsed": true,
       "label": "Basic concepts",
