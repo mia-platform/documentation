@@ -10,7 +10,7 @@ A **Scorecard** is a set of rules evaluated on a scope of catalog items, used to
 
 ## Concepts
 
-- **Scope.** The set of catalog items the scorecard applies to. The scope is either a reference to a [View](../catalog-backoffice.md#views) or a raw query over the catalog (see [Query Language](./70_query-language.md)).
+- **Scope.** The set of catalog items the scorecard applies to. The scope is either a reference to a [View](../catalog-administration.md#views) or a raw query over the catalog (see [Query Language](./70_query-language.md)).
 - **Levels.** A scorecard is organized into named, ordered levels (for example *Bronze → Silver → Gold*). Each level groups a subset of the scorecard's rules.
 - **Rules.** The list of rules whose results contribute to the scorecard. Each rule belongs to exactly one level and is evaluated independently per item.
 - **Achieved level.** The result of a scorecard evaluation for a single item is the *highest* level whose rules are *all* satisfied by that item. An item that does not satisfy every rule of the lowest level has no achieved level (it is reported as "without level").
@@ -22,12 +22,12 @@ When a scorecard is evaluated, every item in scope gets:
 - a per-rule pass/fail result,
 - an **achieved level** computed from those results.
 
-From the per-item achieved level the catalog derives two aggregate indicators that are surfaced on the scorecard and on the [Catalog Backoffice](../catalog-backoffice.md):
+From the per-item achieved level the catalog derives two aggregate indicators that are surfaced on the scorecard and on the [Catalog Administration](../catalog-administration.md):
 
 - **Median level.** The median achieved level across all items in scope. It summarizes "where most of the fleet sits" without being skewed by a handful of outliers.
 - **Progress.** The percentage of items in scope that have achieved at least the *lowest* level of the scorecard (i.e. items that have a level at all). Progress is the simplest reading of "how many things in scope are compliant *enough* to be on the ladder".
 
-The Backoffice also surfaces the count of items *without level* — those that fail at least one rule of the lowest level — which is the natural starting point for remediation work.
+The Catalog Administration also surfaces the count of items *without level* — those that fail at least one rule of the lowest level — which is the natural starting point for remediation work.
 
 ## Where scorecards live
 
@@ -66,4 +66,4 @@ In practice, the two are complementary: a campaign can use a scorecard's rule se
 
 - [Evaluation Criteria](./30_evaluation-criteria.md): the rule model and evaluation flow scorecards build on.
 - [Campaigns](./50_campaigns.md): time-bounded compliance programs.
-- [Catalog Backoffice](../catalog-backoffice.md): where scorecard scores are visualized.
+- [Catalog Administration](../catalog-administration.md): where scorecard scores are visualized.

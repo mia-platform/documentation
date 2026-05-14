@@ -23,7 +23,7 @@ The **Context Catalog** is Mia-Platform's system to record, classify, and connec
 - Query and filter items via a [REST API](./api-interactions.md) using labels, fields, or a Catalog-specific query language.
 - Ingest data automatically from external systems through dedicated [connectors](./connectors/10_overview.md).
 - Govern compliance by attaching rules, scorecards, and campaigns to your items (see [Campaigns](./basic-concepts/50_campaigns.md), [Evaluation Criteria](./basic-concepts/30_evaluation-criteria.md), [Scorecards](./basic-concepts/40_scorecards.md)).
-- Browse and curate everything from the [Catalog Backoffice](./catalog-backoffice.md).
+- Browse and curate everything from the [Catalog Administration](./catalog-administration.md).
 
 ## Where to go next
 

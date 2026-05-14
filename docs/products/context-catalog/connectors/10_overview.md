@@ -36,14 +36,14 @@ Each source page lists the **data types** it exposes inside the mapping context 
 
 ## Wiring `ibdm` to the Catalog
 
-`ibdm` writes into the Catalog over HTTP, using a client-credentials pair provisioned in the Backoffice.
+`ibdm` writes into the Catalog over HTTP, using a client-credentials pair provisioned in the Catalog Administration.
 
-1. **Register the connector in the Backoffice.** Open **Configuration → Connectors → Add connector**. You will be asked for a `Name`, an optional `Title` and `Description`, a `Client ID`, and a `Provider` / `Category` for UI filtering (see the [Connectors section](../catalog-backoffice.md#connectors) of the Backoffice reference). The Backoffice creates a *Connector* item in the catalog and surfaces a credentials pair you will use to authenticate `ibdm`.
+1. **Register the connector in the Catalog Administration.** Open **Configuration → Connectors → Add connector**. You will be asked for a `Name`, an optional `Title` and `Description`, a `Client ID`, and a `Provider` / `Category` for UI filtering (see the [Connectors section](../catalog-administration.md#connectors) of the Catalog Administration reference). The Catalog Administration creates a *Connector* item in the catalog and surfaces a credentials pair you will use to authenticate `ibdm`.
 2. **Configure the destination on `ibdm`.** Set the following environment variables before launching `ibdm`:
 
    | Variable | Description |
    | :------- | :---------- |
-   | `MIA_CATALOG_ENDPOINT` | The Catalog ingestion endpoint, surfaced in the Backoffice connector form. |
+   | `MIA_CATALOG_ENDPOINT` | The Catalog ingestion endpoint, surfaced in the Catalog Administration connector form. |
    | `MIA_CATALOG_CLIENT_ID` | Client ID provisioned for this connector. |
    | `MIA_CATALOG_CLIENT_SECRET` | Client Secret provisioned for this connector. |
    | `MIA_CATALOG_AUTH_ENDPOINT` *(optional)* | Override of the OAuth token endpoint. Defaults to `<host of MIA_CATALOG_ENDPOINT>/oauth/token`. |
@@ -101,4 +101,4 @@ See the [`ibdm` installation guide](https://github.com/mia-platform/ibdm/blob/ma
 
 - [Items](../basic-concepts/10_items.md) — the shape of the entities produced by `ibdm`.
 - [Item Types](../basic-concepts/20_item-types.md) — how to register custom kinds the connector can populate.
-- [Catalog Backoffice → Connectors](../catalog-backoffice.md#connectors) — how to create and inspect a connector record from the UI.
+- [Catalog Administration → Connectors](../catalog-administration.md#connectors) — how to create and inspect a connector record from the UI.

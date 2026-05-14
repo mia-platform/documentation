@@ -1,12 +1,12 @@
 ---
-id: catalog-backoffice
-title: Catalog Backoffice
-sidebar_label: Catalog Backoffice
+id: catalog-administration
+title: Catalog Administration
+sidebar_label: Catalog Administration
 ---
 
-# Catalog Backoffice
+# Catalog Administration
 
-The **Catalog Backoffice** is the web interface that lets operators and platform users browse the Context Catalog, inspect the entities it tracks, and oversee compliance activities. It is the human-facing complement to the [Catalog API](./api-interactions.md).
+The **Catalog Administration** is the web interface that lets operators and platform users browse the Context Catalog, inspect the entities it tracks, and oversee compliance activities. It is the human-facing complement to the [Catalog API](./api-interactions.md).
 
 ## What you can do
 
@@ -17,7 +17,7 @@ The **Catalog Backoffice** is the web interface that lets operators and platform
 
 ## Architecture
 
-The backoffice is the entry point of a small set of cooperating services:
+The Catalog Administration is the entry point of a small set of cooperating services:
 
 | Component           | Role                                                                                                          |
 | :------------------ | :------------------------------------------------------------------------------------------------------------ |
@@ -27,11 +27,11 @@ The backoffice is the entry point of a small set of cooperating services:
 
 ## Organizations
 
-The Catalog Backoffice allows users to select the organization they want to explore in the Catalog Backoffice.
+The Catalog Administration allows users to select the organization they want to explore in the Catalog Administration.
 
 ## Items
 
-The backoffice offers a full set of operations on items across two main surfaces: the **item list** and the **item detail** page.
+The Catalog Administration offers a full set of operations on items across two main surfaces: the **item list** and the **item detail** page.
 
 ### Browse items
 
@@ -441,6 +441,6 @@ Clicking a team navigates to its catalog item detail page, where you can see the
 
 ## Where to go next
 
-- See [API Interactions](./api-interactions.md) for the underlying API the backoffice consumes.
+- See [API Interactions](./api-interactions.md) for the underlying API the Catalog Administration consumes.
 - See [Items](./basic-concepts/10_items.md) and [Item Types](./basic-concepts/20_item-types.md) to understand what you are looking at in the UI.
 - See [Connectors](./connectors/10_overview.md) to learn how external systems feed data into the catalog.

@@ -32,7 +32,7 @@ Every rule evaluation follows the same four-step flow, regardless of whether the
 1. A rule evaluation request is received and a **Run** item is created in the catalog with status `pending`.
 2. The system evaluates the rule body on the set of target items.
 3. Once complete, the `Run` item is updated with the final status (`success` or `failed`) and the per-item results.
-4. The **Catalog Backoffice** renders the status and the results of the run.
+4. The **Catalog Administration** renders the status and the results of the run.
 
 ## Where rules live
 
@@ -47,7 +47,7 @@ Treating rules as catalog items means they are versioned, queryable, and referen
 
 A rule evaluation can be triggered by:
 
-- **An explicit request**: typically initiated from the [Catalog Backoffice](../catalog-backoffice.md) by an operator.
+- **An explicit request**: typically initiated from the [Catalog Administration](../catalog-administration.md) by an operator.
 - **A campaign milestone**: at `startDate`, at `endDate`, or in incremental re-evaluations driven by item-change events. See [Campaigns](./50_campaigns.md).
 - **A scorecard refresh**: when a [Scorecard](./40_scorecards.md) recomputes its score over its scope.
 
@@ -59,10 +59,10 @@ Each rule-run produces:
 - a per-item result indicating whether each item satisfies the rule,
 - enough context (timestamps, the evaluated rule version, the targeted items) to reconstruct what was evaluated and when.
 
-These results are persisted on the `Run` item and exposed both via the [Catalog API](../api-interactions.md) and through the [Catalog Backoffice](../catalog-backoffice.md).
+These results are persisted on the `Run` item and exposed both via the [Catalog API](../api-interactions.md) and through the [Catalog Administration](../catalog-administration.md).
 
 ## See also
 
 - [Scorecards](./40_scorecards.md): how individual rules roll up into a levelled compliance model.
 - [Campaigns](./50_campaigns.md): how rules are used as goals in time-bounded compliance programs.
-- [Catalog Backoffice](../catalog-backoffice.md): where rules are authored, triggered, and inspected in the UI.
+- [Catalog Administration](../catalog-administration.md): where rules are authored, triggered, and inspected in the UI.

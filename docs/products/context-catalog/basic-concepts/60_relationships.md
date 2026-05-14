@@ -75,7 +75,7 @@ Required fields:
 Omitting `sourceType` or `targetType` leaves the corresponding side unconstrained.
 
 :::note
-Constraints are **permissive, not restrictive**: the catalog does not reject a `Relationship` whose source/target kinds do not match any registered constraint. Constraints are intended to (a) document intent for humans and tooling, and (b) drive graph traversal heuristics in the Backoffice. They are not a validation gate.
+Constraints are **permissive, not restrictive**: the catalog does not reject a `Relationship` whose source/target kinds do not match any registered constraint. Constraints are intended to (a) document intent for humans and tooling, and (b) drive graph traversal heuristics in the Catalog Administration. They are not a validation gate.
 :::
 
 ## Relationship
@@ -107,7 +107,7 @@ When a `Relationship` is created or updated, the catalog validates only the **UR
 
 Once relationships exist, you can navigate them through:
 
-- the **Relationships** tab of any item in the [Catalog Backoffice](../catalog-backoffice.md), as a table or as a visual graph;
+- the **Relationships** tab of any item in the [Catalog Administration](../catalog-administration.md), as a table or as a visual graph;
 - the `related` operator of the Catalog [Query Language](./70_query-language.md), to express queries such as *"all services owned by team X"* or *"all items affected by vulnerability Y"*.
 
 ## See also

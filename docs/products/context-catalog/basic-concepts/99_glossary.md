@@ -69,7 +69,7 @@ An **owner** is a User or Team responsible for an item, modeled as a built-in `o
 
 ## View
 
-A **View** is a saved, named query that scopes the catalog to a subset of items. Views are themselves catalog items: they can be referenced by [Scorecards](./40_scorecards.md) and [Campaigns](./50_campaigns.md) to declare their scope, and they appear in the [Catalog Backoffice](../catalog-backoffice.md#views) sidebar as bookmarks.
+A **View** is a saved, named query that scopes the catalog to a subset of items. Views are themselves catalog items: they can be referenced by [Scorecards](./40_scorecards.md) and [Campaigns](./50_campaigns.md) to declare their scope, and they appear in the [Catalog Administration](../catalog-administration.md#views) sidebar as bookmarks.
 
 ## Selectable field
 

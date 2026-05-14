@@ -6,14 +6,14 @@ sidebar_label: Query Language
 
 # Query Language
 
-The Catalog exposes a query language to express filters that go beyond the simple `label=` and `field=` query parameters of the [REST API](../api-interactions.md). Queries are written as JSON, sent to the API through the `rawq` query parameter (URL-safe base64 encoded), and used internally by [Views](../catalog-backoffice.md#views), [Scorecards](./40_scorecards.md), and [Campaigns](./50_campaigns.md) to declare their scope.
+The Catalog exposes a query language to express filters that go beyond the simple `label=` and `field=` query parameters of the [REST API](../api-interactions.md). Queries are written as JSON, sent to the API through the `rawq` query parameter (URL-safe base64 encoded), and used internally by [Views](../catalog-administration.md#views), [Scorecards](./40_scorecards.md), and [Campaigns](./50_campaigns.md) to declare their scope.
 
 This page describes the grammar of the query language and gives concrete examples.
 
 ## Where it is used
 
 - **`rawq` API parameter** on any `list` endpoint, for ad-hoc queries.
-- **Scope** of a [View](../catalog-backoffice.md#views).
+- **Scope** of a [View](../catalog-administration.md#views).
 - **Scope** of a [Scorecard](./40_scorecards.md) or a [Campaign](./50_campaigns.md).
 
 The same JSON shape is accepted everywhere; the only thing that differs is how it is transported (encoded as a query string for `rawq`, or stored verbatim on the catalog object for scopes).

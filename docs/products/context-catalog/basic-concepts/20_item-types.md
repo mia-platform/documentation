@@ -140,7 +140,7 @@ The validation schema of an ITD version should be modified after creation. This 
 
 By default, items can be filtered only on their `metadata` fields (`metadata.name`, `metadata.title`, `metadata.tags`, `metadata.labels.*`, `metadata.urn`). To filter on a field inside `spec`, that field must be declared as **selectable** on the ITD version.
 
-Selectable fields are the catalog's contract for queryability: when you mark a field as selectable, the catalog provisions an index on it so that `field=` and `rawq` queries (see [Query Language](./70_query-language.md)) can filter on it efficiently. Marking a field selectable is the only way to make a `spec` field appear in API and Backoffice filters.
+Selectable fields are the catalog's contract for queryability: when you mark a field as selectable, the catalog provisions an index on it so that `field=` and `rawq` queries (see [Query Language](./70_query-language.md)) can filter on it efficiently. Marking a field selectable is the only way to make a `spec` field appear in API and Catalog Administration filters.
 
 Selectable fields are declared at the ITD-version level alongside the schema. They must point to fields that hold a primitive value or a homogeneous array of primitives.
 

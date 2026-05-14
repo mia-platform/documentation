@@ -80,24 +80,6 @@
     }
   },
   {
-    "title": "Flow",
-    "icon": "flow",
-    "defaultOpen": false,
-    "type": "roadmap",
-    "items": {
-      "newFeatures": []
-    }
-  },
-  {
-    "title": "AI Foundry",
-    "icon": "ai-foundry",
-    "defaultOpen": false,
-    "type": "roadmap",
-    "items": {
-      "newFeatures": []
-    }
-  },
-  {
     "title": "Data Catalog",
     "icon": "data-catalog",
     "defaultOpen": false,

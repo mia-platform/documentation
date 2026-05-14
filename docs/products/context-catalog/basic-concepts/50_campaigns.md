@@ -13,7 +13,7 @@ A campaign declares:
 - `startDate`: when the campaign period begins.
 - `endDate`: the deadline by which all rules should be satisfied.
 - `rules[]`: one or more [Rules](./30_evaluation-criteria.md), either **copied from a [Scorecard](./40_scorecards.md)** when the campaign is built from one (once a target level is selected, the matching rules are duplicated onto the campaign) or **written directly on the campaign** when it is built from scratch. Once on the campaign, the rules are independent of the source scorecard: later changes to the scorecard do not propagate.
-- `scope`: a target set of items defined as a [view](../catalog-backoffice.md#views) reference or a raw query (see [Query Language](./70_query-language.md)).
+- `scope`: a target set of items defined as a [view](../catalog-administration.md#views) reference or a raw query (see [Query Language](./70_query-language.md)).
 
 The dates define the campaign's time window for reporting and audit purposes; they do not currently drive automatic evaluations (see [Evaluation](#evaluation) below).
 
@@ -30,7 +30,7 @@ The mental model:
 
 ## Evaluation
 
-A campaign is evaluated **on demand**: an operator triggers a run from the [Catalog Backoffice](../catalog-backoffice.md#evaluate-a-campaign), and every configured rule is evaluated against the target item set (the same flow used by a standalone rule run, see [Evaluation Criteria](./30_evaluation-criteria.md)). Results are stored on the `Campaign` item and exposed both via the [Catalog API](../api-interactions.md) and in the Backoffice.
+A campaign is evaluated **on demand**: an operator triggers a run from the [Catalog Administration](../catalog-administration.md#evaluate-a-campaign), and every configured rule is evaluated against the target item set (the same flow used by a standalone rule run, see [Evaluation Criteria](./30_evaluation-criteria.md)). Results are stored on the `Campaign` item and exposed both via the [Catalog API](../api-interactions.md) and in the Catalog Administration.
 
 There is no automatic re-evaluation when `startDate` or `endDate` is reached, nor when an item in scope changes: each refresh is initiated manually.
 
@@ -46,4 +46,4 @@ Campaigns interact with a small number of catalog item types:
 
 - [Evaluation Criteria](./30_evaluation-criteria.md): how individual rules are evaluated.
 - [Scorecards](./40_scorecards.md): how to express and roll up overall compliance posture.
-- [Catalog Backoffice](../catalog-backoffice.md): where to monitor campaign progress in the UI.
+- [Catalog Administration](../catalog-administration.md): where to monitor campaign progress in the UI.

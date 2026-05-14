@@ -6,19 +6,19 @@ sidebar_label: Getting Started
 
 # Getting Started with the Context Catalog
 
-This page walks you through the very first interactions with the Context Catalog, from opening the Backoffice to your first item, first relationship and first compliance check. It assumes the catalog is already provisioned for your organization; if it is not, contact your platform administrator.
+This page walks you through the very first interactions with the Context Catalog, from opening the Catalog Administration to your first item, first relationship and first compliance check. It assumes the catalog is already provisioned for your organization; if it is not, contact your platform administrator.
 
 ## Prerequisites
 
 To get started you need:
 
-- access to the [Catalog Backoffice](./catalog-backoffice.md) — the web UI is the easiest entry point;
+- access to the [Catalog Administration](./catalog-administration.md) — the web UI is the easiest entry point;
 - an **organization** in which to operate (the catalog isolates everything per organization, see [Items](./basic-concepts/10_items.md#organizations));
 - optionally, credentials for the [Catalog API](./api-interactions.md) if you plan to script ingestion or queries.
 
 ## 1. Explore what is already there
 
-When you open the Backoffice you land on the **Homepage**: a dashboard that gives you an at-a-glance overview of your catalog. From here you can see counters for total items, item types, connectors and items added in the current month, plus quick-action buttons (*View catalog*, *View item types*, *Create new item*, *Create scorecard*, *Create campaign*) and panels listing your **Scorecards**, **Campaigns**, **Recently added items**, and **Recently updated items**.
+When you open the Catalog Administration you land on the **Homepage**: a dashboard that gives you an at-a-glance overview of your catalog. From here you can see counters for total items, item types, connectors and items added in the current month, plus quick-action buttons (*View catalog*, *View item types*, *Create new item*, *Create scorecard*, *Create campaign*) and panels listing your **Scorecards**, **Campaigns**, **Recently added items**, and **Recently updated items**.
 
 From the left sidebar, you can browse the following:
 
@@ -31,7 +31,7 @@ From the left sidebar, you can browse the following:
 
 Most useful catalogs start by introducing a few **custom item types** specific to your domain. For example, you may want to track *Docker images* with their registry and tag.
 
-From the Backoffice, go to **Configuration → Item Types → Create item type** and fill in:
+From the Catalog Administration, go to **Configuration → Item Types → Create item type** and fill in:
 
 - **API group** — a DNS-like name your team owns, e.g. `stable.example.com`.
 - **Kind** and **plural** — e.g. `DockerImage` and `dockerimages`.
@@ -71,11 +71,11 @@ In short, Mia-Platform connectors:
 
 The high-level setup is:
 
-1. **Register the connector in the Backoffice.** Open **Configuration → Connectors → Add connector** to create a *Connector* item and manually specify a Client ID / Secret pair (see [Connectors section](./catalog-backoffice.md#connectors) of the Backoffice reference).
+1. **Register the connector in the Catalog Administration.** Open **Configuration → Connectors → Add connector** to create a *Connector* item and manually specify a Client ID / Secret pair (see [Connectors section](./catalog-administration.md#connectors) of the Catalog Administration reference).
 2. **Configure `ibdm`.** Set `MIA_CATALOG_ENDPOINT`, `MIA_CATALOG_CLIENT_ID`, `MIA_CATALOG_CLIENT_SECRET` for the destination, plus the source-specific variables documented on each connector page.
 3. **Pick a mapping file.** Reference mappings are provided in the [`ibdm` repository examples](https://github.com/mia-platform/ibdm/tree/main/docs/examples); you can use them as-is or customize them.
 4. **Launch `ibdm`.** Either `ibdm sync <source>` for a one-off pull, or `ibdm run <source>` to expose a webhook listener.
-5. **Inspect what came in.** Open the connector's detail page in the Backoffice and switch to the **Connector items** tab to browse the items it has synchronized.
+5. **Inspect what came in.** Open the connector's detail page in the Catalog Administration and switch to the **Connector items** tab to browse the items it has synchronized.
 6. **Wire compliance on top.** Point your [Evaluation Criteria](./basic-concepts/30_evaluation-criteria.md), [Scorecards](./basic-concepts/40_scorecards.md), and [Campaigns](./basic-concepts/50_campaigns.md) at the ingested items just like at hand-created items.
 
 The available sources and the upstream system each one targets are listed in the [Connectors Overview](./connectors/10_overview.md).
@@ -87,4 +87,4 @@ The available sources and the upstream system each one targets are listed in the
 - [Query Language](./basic-concepts/70_query-language.md) — how to search and scope.
 - [Connectors](./connectors/10_overview.md) — feed the catalog from external systems through `ibdm`.
 - [API Interactions](./api-interactions.md) — when you graduate from clicks to scripts.
-- [Catalog Backoffice](./catalog-backoffice.md) — the UI reference.
+- [Catalog Administration](./catalog-administration.md) — the UI reference.
