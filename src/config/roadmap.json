@@ -7,18 +7,18 @@
     "items": {
       "newFeatures": [
         {
+          "title": "New Authentication based on Keycloak",
+          "description": ["Redesign of the Console authentication layer based on Keycloak, enabling SSO, fine-grained role and permission management, and improved user lifecycle control."],
+          "tags": ["Governance"]
+        },
+        {
           "title": "Bridging Design expressiveness with Helm Charts",
           "description": ["Configure your project resources using the intuitive interfaces within the Design Area sections (e.g. Microservices, Resources, Applications, ...) and get a read-only Helm chart view that automatically reflects your configuration."],
           "tags": ["Governance"]
         },
         {
-          "title": "Set the Commit & Deployment strategy for the Project",
+          "title": "Set the Commit & Deployment strategy via Helm for Console Projects",
           "description": ["Set your Commit & Deploy Strategy in the Project Settings by choosing the type of Git Repo Project Configuration structure and whether to manage namespace deployments with Kustomize (Flat Manifests) or with Helm (Encapsulated Charts)."],
-          "tags": ["Governance"]
-        },
-        {
-          "title": "New Authentication based on Keycloak",
-          "description": ["Redesign of the Console authentication layer based on Keycloak, enabling SSO, fine-grained role and permission management, and improved user lifecycle control."],
           "tags": ["Governance"]
         }
       ]
@@ -32,13 +32,13 @@
     "items": {
       "newFeatures": [
         {
-          "title": "Cross Namespace Management",
-          "description": ["To avoid proliferation of control planes and provide centralized management of the Fast Data Runtime, the Control Plane will support access and control over all namespaces where Fast Data pipelines are deployed. Provisioning will be done via a dedicated Helm chart."],
+          "title": "Fast Data Control Plane v2 - Cross Namespace Management",
+          "description": ["To provide centralized management of the Fast Data v2 Runtime, the Control Plane will support access and control over all namespaces where Fast Data pipelines are deployed. Provisioning will be done via a dedicated Helm chart."],
           "tags": ["Fast Data"]
         },
         {
-          "title": "Guided Operations & Troubleshooting Interface on Control Plane",
-          "description": ["A Control Plane interface to perform ordered and guided operations on Stream Processors to fix issues (e.g. cache cleanup/reset)."],
+          "title": "Guided Operations & Troubleshooting Interface on Control Plane v2",
+          "description": ["A Control Plane interface to perform ordered and guided operations."],
           "tags": ["Fast Data"]
         },
         {
@@ -96,21 +96,6 @@
     "type": "roadmap",
     "items": {
       "newFeatures": [
-        {
-          "title": "Export Data Catalog assets at scale",
-          "description": [],
-          "tags": []
-        },
-        {
-          "title": "Excel integration for bulk metadata enrichment and sync with the Catalog",
-          "description": [],
-          "tags": []
-        },
-        {
-          "title": "Improved management of schema validation and indexes for MongoDB assets",
-          "description": [],
-          "tags": ["Database Management"]
-        },
         {
           "title": "Business Glossary",
           "description": ["A business glossary contains the definitions of commonly used business terms in an organization, serving as the single authoritative source for concepts and definitions. Users with enough permissions can define categories and terms to create the organization business catalog, enrich data assets with glossary terms, and search assets based on specific glossary terms."],
