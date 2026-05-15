@@ -33,7 +33,7 @@ ibdm run  console --mapping-file <path to mapping file or folder>
 
 | Variable | Description |
 | :------- | :---------- |
-| `CONSOLE_ENDPOINT` | Base URL of the Console (required). |
+| `CONSOLE_ENDPOINT` | Base API URL of the Console (required). Must include the API path prefix, e.g. `https://console.example.com/api`. |
 
 #### Authentication: Client Credentials
 
@@ -41,7 +41,7 @@ ibdm run  console --mapping-file <path to mapping file or folder>
 | :------- | :---------- |
 | `CONSOLE_CLIENT_ID` | Client ID issued by the Console. |
 | `CONSOLE_CLIENT_SECRET` | Client Secret issued by the Console. |
-| `CONSOLE_AUTH_ENDPOINT` | Optional override of the token endpoint. Defaults to `<CONSOLE_ENDPOINT>/oauth/token`. |
+| `CONSOLE_AUTH_ENDPOINT` | Optional override of the token endpoint. Defaults to `<CONSOLE_ENDPOINT>/m2m/oauth/token`. |
 
 ## Supported data types
 
@@ -50,8 +50,10 @@ ibdm run  console --mapping-file <path to mapping file or folder>
 | `project` | ✅ | ✅ |
 | `revision` | ✅ | ✅ |
 | `service` | ✅ | ✅ |
+| `cluster` | ✅ | — |
+| `clusterProjectRelationship` | ✅ | — |
 
-`project` carries Console project metadata. `revision` represents a named revision of a project. `service` represents a single microservice within a project's default-branch revision — only services of type `custom` and not marked as `advanced` are emitted.
+`project` carries Console project metadata. `revision` represents a named revision of a project. `service` represents a single microservice within a project's default-branch revision — only services of type `custom` and not marked as `advanced` are emitted. `cluster` represents a Kubernetes cluster registered in the Console, fetched through the tenant/cluster APIs; the `linkedProjects` field is stripped from the payload. `clusterProjectRelationship` emits one relationship entry per project listed in a cluster's `linkedProjects`, carrying both the project and the cluster data as template values.
 
 ## See also
 
