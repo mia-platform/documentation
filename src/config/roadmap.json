@@ -61,7 +61,7 @@
   },
   {
     "title": "Context Catalog",
-    "icon": "software-catalog",
+    "icon": "context-catalog",
     "defaultOpen": false,
     "type": "roadmap",
     "items": {

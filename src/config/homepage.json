@@ -27,7 +27,7 @@
   "featureGrid": [
     {
       "description": "Connect, configure, and serve context to AI agents and applications through a governed catalog of enterprise knowledge.",
-      "icon": "software-catalog",
+      "icon": "context-catalog",
       "link": "/docs/products/context-catalog/overview",
       "target": "_self",
       "title": "Context Catalog"
@@ -41,14 +41,14 @@
     },
     {
       "description": "Accelerate prototyping with AI-driven workflows for your enterprise applications and services.",
-      "icon": "data-catalog",
+      "icon": "flow",
       "link": "/docs/products/flow/overview",
       "target": "_self",
       "title": "Flow"
     },
     {
       "description": "Design, manage, and govern AI playbooks to bring generative AI applications and agents to production on a secure, enterprise-ready foundation.",
-      "icon": "runtime-environment",
+      "icon": "ai-foundry",
       "link": "/docs/products/ai-foundry/overview",
       "target": "_self",
       "title": "AI Foundry"
