@@ -16,6 +16,8 @@ A **Skill** is a catalog resource that encapsulates a reusable, higher-level AI 
 
 Skills are referenced by [Agents](./10_agent.md) and [Playbooks](./60_playbook.md). They act as a reusable building block that can be shared across multiple agents without duplicating the underlying logic.
 
+![AI Foundry Skills](../img/ai_foundry_skills.png)
+
 ## Anatomy of a skill
 
 A skill bundles four optional content sections alongside its metadata:

@@ -16,6 +16,8 @@ A **Prompt** is a catalog resource that stores a reusable piece of text (typical
 
 Centralizing prompt text in the catalog keeps it version-controlled, searchable, and decoupled from the agents that consume it. When a prompt needs to change you update it in one place and every referencing resource benefits automatically.
 
+![AI Foundry Prompts](../img/ai_foundry_prompts.png)
+
 ## Why centralize prompts?
 
 Prompt engineering is an iterative process. Raw prompt strings scattered inside agent definitions or hard-coded in application code are difficult to audit, compare, or collaborate on. Treating prompts as first-class catalog resources gives you:

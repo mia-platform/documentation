@@ -14,6 +14,8 @@ AI Foundry is in **beta**. We are actively shaping the product, so things may ch
 
 An **MCP Server** is a catalog resource that registers an external [Model Context Protocol (MCP)](https://modelcontextprotocol.io/) server with AI Foundry. Once registered, the tools and resources exposed by the server are automatically surfaced in the tool browser and can be attached to [Agents](./10_agent.md) like any other [Tool](./40_tool.md).
 
+![AI Foundry MCP Servers](../img/ai_foundry_mcpservers.png)
+
 ## What is the Model Context Protocol?
 
 The **Model Context Protocol** is an open standard (developed by Anthropic) that defines a uniform interface between LLM clients and the services that supply them with context, tools, and capabilities. An MCP server exposes a well-defined API that any compliant LLM runtime can discover and call, regardless of the underlying implementation language or transport.
@@ -28,9 +30,47 @@ By integrating with MCP, AI Foundry can consume capabilities from any MCP-compli
 
 ## Manifest
 
-MCP server connections can use two transport modes: **stdio** (the server is launched as a subprocess) and **HTTP** (the server is already running and reachable via URL).
+MCP server connections can use three transport modes: **Streamable HTTP** (recommended), **SSE** (Server-Sent Events), and **stdio** (the server runs as a subprocess).
 
-### stdio mode
+### Streamable HTTP (recommended)
+
+```yaml
+apiVersion: new-ai.mia-platform.eu/v1alpha1
+kind: McpServer
+metadata:
+  name: internal-search-mcp
+  title: Internal Search MCP
+  description: Exposes the enterprise knowledge-base search API as MCP tools.
+  tags:
+    - search
+    - internal
+spec:
+  type: streamable_http
+  url: https://search.internal.example.com/mcp
+  auth:
+    type: bearer
+    token: MY_SEARCH_API_KEY    # name of the env var holding the token
+  tool_name_prefix: search_
+  use_mcp_resources: false
+  require_confirmation: false
+```
+
+### SSE transport
+
+```yaml
+apiVersion: new-ai.mia-platform.eu/v1alpha1
+kind: McpServer
+metadata:
+  name: events-mcp
+  title: Events MCP Server
+spec:
+  type: sse
+  url: https://events.internal.example.com/mcp/sse
+  auth:
+    type: none
+```
+
+### stdio transport
 
 ```yaml
 apiVersion: new-ai.mia-platform.eu/v1alpha1
@@ -44,32 +84,9 @@ metadata:
     - local
 spec:
   type: stdio
-  command: npx
-  args:
-    - -y
-    - "@modelcontextprotocol/server-filesystem"
-    - /tmp/sandbox
-  env:
-    NODE_ENV: production
-```
-
-### HTTP mode
-
-```yaml
-apiVersion: new-ai.mia-platform.eu/v1alpha1
-kind: McpServer
-metadata:
-  name: internal-search-mcp
-  title: Internal Search MCP
-  description: Exposes the enterprise knowledge-base search API as MCP tools.
-  tags:
-    - search
-    - internal
-spec:
-  type: http
-  url: https://search.internal.example.com/mcp
-  env:
-    SEARCH_API_KEY_VAR: INTERNAL_SEARCH_KEY
+  url: npx -y @modelcontextprotocol/server-filesystem /tmp/sandbox
+  auth:
+    type: none
 ```
 
 ## Fields reference
@@ -86,18 +103,29 @@ spec:
 
 ### `spec`
 
-The `spec` is deliberately flexible: AI Foundry does not enforce a rigid schema on it. The fields below are the most common ones:
+| Field                  | Required | Description                                                                                                                                    |
+| ---------------------- | -------- | ---------------------------------------------------------------------------------------------------------------------------------------------- |
+| `type`                 | Yes      | Transport mode: `streamable_http` (recommended), `sse`, or `stdio`.                                                                           |
+| `url`                  | Yes      | For `streamable_http` and `sse`: the base URL of the running MCP server. For `stdio`: the command string used to launch the server subprocess. |
+| `auth`                 | No       | Authentication configuration object. See [Authentication](#authentication) below.                                                             |
+| `tool_name_prefix`     | No       | A string prepended to all tool names exposed by this server (regex: `^[a-zA-Z_]*$`). Useful to avoid name collisions across multiple servers. |
+| `use_mcp_resources`    | No       | When `true`, the server's MCP resources are also surfaced to agents. Defaults to `false`.                                                      |
+| `require_confirmation` | No       | When `true`, users must confirm each tool call in the AI Playground before it is executed. Defaults to `false`.                                |
 
-| Field     | Description                                                                                                                                              |
-| --------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `type`    | Transport mode: `stdio` or `http` (or any value supported by the underlying MCP client).                                                                 |
-| `command` | For stdio mode: the executable to launch (e.g. `npx`, `python`, `./mcp-server`).                                                                         |
-| `args`    | For stdio mode: an array or map of arguments passed to `command`.                                                                                        |
-| `env`     | Environment variables injected into the server process or used for authentication. **Values should be environment variable names, not literal secrets.** |
-| `url`     | For HTTP mode: the base URL of the running MCP server.                                                                                                   |
+### Authentication
+
+The `auth` object configures how AI Foundry authenticates against the MCP server. Five schemes are supported:
+
+| `auth.type` | Additional fields              | Description                                                    |
+| ----------- | ------------------------------ | -------------------------------------------------------------- |
+| `none`      | —                              | No authentication.                                             |
+| `bearer`    | `token`                        | HTTP `Authorization: Bearer <token>`. Store the token in an env var and reference its name. |
+| `basic`     | `username`, `password`         | HTTP Basic authentication.                                     |
+| `api_key`   | `token`, `header_name`         | Custom header authentication. Defaults to `X-API-Key` if `header_name` is omitted. |
+| `oauth2`    | `access_token`                 | OAuth 2 access token sent as a Bearer header.                  |
 
 :::caution
-As with [Model](./20_model.md) resources, never store secret values directly in `spec.env`. Store the name of the environment variable, and inject the actual value at runtime.
+Never store secret values (tokens, passwords) directly in the catalog. Reference the name of an environment variable that holds the actual secret value and inject it at deployment time.
 :::
 
 ## How MCP tools appear in AI Foundry

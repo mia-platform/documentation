@@ -16,6 +16,8 @@ A **Playbook** is a catalog resource that describes a multi-step agentic workflo
 
 Playbooks move the AI platform from single-agent interactions toward **agentic pipelines**: complex, stateful workflows where the output of one agent feeds the input of the next, loops repeat until a condition is met, and parallel branches execute concurrently.
 
+![AI Foundry Playbooks](../img/ai_foundry_playbooks.png)
+
 ## Flow model
 
 The core of a playbook is `spec.flow`, which contains two collections:
@@ -117,6 +119,8 @@ spec:
 | `specs`                      | No       | Playbook-level list of [Spec](./80_spec.md) resource names available to all nodes.                                              |
 
 ## The visual builder
+
+![AI Foundry Playbook Builder](../img/ai_foundry_playbook_builder.png)
 
 The **Playbook Builder** in the AI Foundry UI provides a drag-and-drop canvas for designing and editing `spec.flow` without writing JSON:
 

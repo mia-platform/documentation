@@ -14,6 +14,8 @@ AI Foundry is in **beta**. We are actively shaping the product, so things may ch
 
 A **Tool** is a catalog resource that describes a discrete, executable capability that an [Agent](./10_agent.md) can invoke during a conversation. Tools are how agents extend their abilities beyond pure language generation: they can call REST APIs, query databases, run code, search knowledge bases, or interact with any external system.
 
+![AI Foundry Tools](../img/ai_foundry_tools.png)
+
 ## Tools in LLM-based systems
 
 Modern LLMs support a mechanism commonly called **function calling** (or **tool use**). The model receives a set of tool definitions alongside the conversation. Each definition contains a name, a description, and a JSON Schema for the expected parameters. When the model decides a tool should be called it emits a structured tool-call request, which the platform executes and feeds back as a new message. The model then incorporates the result into its response.
@@ -54,9 +56,15 @@ metadata:
 | `tags`        | No       | Free-form tags for filtering.                                                                                                                                               |
 | `labels`      | No       | Key/value pairs for API-level filtering.                                                                                                                                    |
 
-### `spec`
+## `spec`
 
-The `spec` of a Tool resource is empty. All runtime behavior is managed outside the catalog, typically in the backend service or MCP server that implements the tool. The catalog record exists purely for registration, discovery, and governance.
+| Field         | Required | Description                                                                                                                   |
+| ------------- | -------- | ----------------------------------------------------------------------------------------------------------------------------- |
+| `type`        | Yes      | Tool source: `built-in` for tools implemented inside the AI Foundry backend, or `mcp-server` for tools exposed by an MCP server. |
+| `runtimeName` | Yes      | The identifier the runtime uses to invoke the tool (e.g. the function name registered in the backend). Must not contain spaces. |
+| `enabled`     | Yes      | When `false`, the tool is hidden from the agent creation picker and unavailable at runtime. Defaults to `true`.               |
+| `category`    | No       | Optional grouping label. Tools with the same `category` are shown together in the agent creation form's grouped picker.       |
+| `mcpServer`   | No       | For `mcp-server` type only. An object with a `name` field containing the name of the [MCP Server](./70_mcp-server.md) resource that exposes this tool. |
 
 ## Writing good tool descriptions
 

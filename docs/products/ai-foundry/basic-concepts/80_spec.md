@@ -28,7 +28,34 @@ Specs are appropriate when you need an agent to have access to:
 
 ## Manifest
 
-The `spec` of a Spec resource is deliberately flexible. Content can be placed in any of three fields; the runtime resolves them in order (`content` → `definition` → `description`) and uses the first non-empty value it finds.
+Spec resources can be authored in two modes: a **command-driven** mode for spec templates tied to a predefined spec command, or a **free-form** mode for arbitrary reference documents.
+
+### Command-driven spec template
+
+```yaml
+apiVersion: new-ai.mia-platform.eu/v1alpha1
+kind: Spec
+metadata:
+  name: project-specification
+  title: Project Specification
+  description: System specification template for new projects.
+  tags:
+    - spec
+    - template
+spec:
+  command: /spec.specify         # One of the predefined spec commands
+  template: |
+    ## Project Overview
+    {{project_name}}: {{project_description}}
+
+    ## Goals
+    {{goals}}
+
+    ## Constraints
+    {{constraints}}
+```
+
+### Free-form reference document
 
 ```yaml
 apiVersion: new-ai.mia-platform.eu/v1alpha1
@@ -93,7 +120,18 @@ spec:
 
 ### `spec`
 
-The `spec` has no required fields. All three content fields are optional, but at least one should be populated to make the resource useful. The runtime uses the first non-empty value in the following priority order:
+Spec resources support two authoring modes. Use `command` + `template` for predefined spec templates, or use the free-form content fields for arbitrary reference documents.
+
+#### Command-driven fields
+
+| Field      | Required | Description                                                                                                            |
+| ---------- | -------- | ---------------------------------------------------------------------------------------------------------------------- |
+| `command`  | No       | A predefined spec command (see [Spec commands](#spec-commands) below). When set, `template` should also be populated.  |
+| `template` | No       | The Markdown content of the spec template associated with `command`. Rendered with a preview/source toggle in the UI.  |
+
+#### Free-form content fields
+
+The runtime resolves free-form content in priority order (`content` → `definition` → `description`) and uses the first non-empty value it finds.
 
 | Field         | Priority    | Description                                                                                                                                         |
 | ------------- | ----------- | --------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -102,6 +140,22 @@ The `spec` has no required fields. All three content fields are optional, but at
 | `description` | 3 (lowest)  | Fallback. Generally avoid using the spec-level `description` for primary content; prefer the `metadata.description` for the catalog entry summary. |
 
 Additional arbitrary fields are allowed in `spec`, making it easy to store structured data (e.g. the full body of a YAML or JSON document) in any field name that suits the use case.
+
+## Spec commands
+
+When a Spec is used as a template, its `command` field selects a predefined spec operation. The following commands are supported:
+
+| Command              | Purpose                                                              |
+| -------------------- | -------------------------------------------------------------------- |
+| `/spec.constitution` | Define the system constitution and guiding principles.               |
+| `/spec.specify`      | Create a detailed specification for a feature or system.             |
+| `/spec.clarify`      | Clarify ambiguous requirements or resolve open questions.            |
+| `/spec.plan`         | Produce a high-level plan for implementing a feature or change.      |
+| `/spec.tasks`        | Break down a plan into concrete, actionable tasks.                   |
+| `/spec.analyze`      | Analyze an existing system, codebase, or problem space.              |
+| `/spec.checklist`    | Create a verification or review checklist.                           |
+| `/spec.implement`    | Provide a step-by-step implementation guide.                         |
+| `/spec.memory`       | Store persistent context or memory for the agent across sessions.    |
 
 ## Specs vs. Prompts
 
