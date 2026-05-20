@@ -8,6 +8,10 @@ sidebar_label: Items
 
 An **item** is the unit of information stored in the Context Catalog. It is an *object* whose schema depends on its kind, plus a fixed set of metadata that the catalog uses to identify, describe, and govern it.
 
+:::tip
+The full JSON schema describing a Catalog item is [available to download](https://cdn.mia-platform.eu/catalog/v1alpha1/mia-platform.eu.v1alpha1.Item.json).
+:::
+
 This page focuses on items themselves: their shape, the meaning of each field, and how clients should reference them. Item *types*, the schemas that an item must respect, are described in [Item Types](./20_item-types.md).
 
 ## Describing an item

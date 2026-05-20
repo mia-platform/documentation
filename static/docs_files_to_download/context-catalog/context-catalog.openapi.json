@@ -1,0 +1,3171 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "catalog-engine",
+    "description": "The backend service powering up the Mia-Platform Catalog.",
+    "contact": {
+      "name": "Mia-Platform core team"
+    },
+    "license": {
+      "name": ""
+    },
+    "version": "0.4.1"
+  },
+  "paths": {
+    "/api/catalog/items": {
+      "get": {
+        "tags": [
+          "items"
+        ],
+        "summary": "List items",
+        "description": "Returns a paginated list of items. The list can be filtered and sorted using query parameters.\n\nSupports content negotiation via the `Accept` header.\n- `application/json;as=PartialObjectMetadata`: returns a partial representation of the items without the `spec`.\n- `application/json`: returns the full items.\nMissing or wildcard `Accept` header values (i.e., `*/*` or `application/*`) will default to the full items response.\n\nThe list items API does not include the following \"core\" Catalog items:\n- Relationships\n- Relationship Types\n- Relationship Constraints\n- Custom Fields",
+        "operationId": "list_items",
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "The maximum number of items to return.",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int64",
+              "default": 50,
+              "maximum": 200,
+              "minimum": 1
+            }
+          },
+          {
+            "name": "continue",
+            "in": "query",
+            "description": "The server-generated token to retrieve more results in a paginated request.",
+            "required": false,
+            "schema": {
+              "type": [
+                "string",
+                "null"
+              ]
+            }
+          },
+          {
+            "name": "rawq",
+            "in": "query",
+            "description": "Queries made with the `rawq` are expressed as JSON objects written in a Catalog-specific query language.\nThey must be sent in the URL as [URL-safe base64](https://developer.mozilla.org/en-US/docs/Glossary/Base64#url_and_filename_safe_base64) encoded strings.\nMultiple `rawq` parameters can be specified, and they are chained in *AND* with each other and with the other filtering query parameters.\n\nFields that can be queried include:\n\n- `apiVersion`\n- `kind`\n- `metadata.name`\n- `metadata.labels`\n- `metadata.title`\n- `metadata.tags`\n- any selectable field in `spec`",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "description": "The field by which results should be sorted.\n\nThe default sorting order is ascending lexicographical order.\nIf the field name is prefixed by a `-`, then descending lexicographical order will be applied.\n\nSpecifying the query parameter multiple times means that the results will be sorted for multiple fields, with the sort order evaluated from the first-appearing query parameter to the last.\n\nSorting can be performed on:\n\n- `metadata.creationTimestamp`\n- `metadata.updateTimestamp`\n- `metadata.name`\n- `metadata.title`\n\n*Example* : -metadata.name",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "description": "Specifies the desired response format. Supported values are:\n- `application/json` (equivalent to `application/*`, `*/*`, or an absent `Accept` header) for a full object response,\n- `application/json;as=PartialObjectMetadata` for a partial response that includes only metadata.",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "application/json;as=PartialObjectMetadata",
+                "application/json",
+                "application/*",
+                "*/*"
+              ]
+            }
+          },
+          {
+            "name": "x-catalog-org",
+            "in": "header",
+            "description": "Identifier of the organization in the context of which the action should be performed.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Requested list provided.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/miaplatform.eu.v1alpha1.List_miaplatform.eu.v1alpha1.Item"
+                }
+              },
+              "application/json;as=PartialObjectMetadata": {
+                "schema": {
+                  "$ref": "#/components/schemas/miaplatform.eu.v1alpha1.List_miaplatform.eu.v1alpha1.PartialObjectMetadata"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Request is invalid.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/miaplatform.eu.v1alpha1.StatusResponse"
+                }
+              }
+            }
+          },
+          "406": {
+            "description": "Accept header value is not supported.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/miaplatform.eu.v1alpha1.StatusResponse"
+                }
+              }
+            }
+          },
+          "5XX": {
+            "description": "Server-side error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/miaplatform.eu.v1alpha1.StatusResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/catalog/items/count": {
+      "get": {
+        "tags": [
+          "items"
+        ],
+        "summary": "Count items",
+        "description": "Returns the count of items. Items can be filtered using query parameters.\n\nThe count items API does not include the following \"core\" Catalog items:\n- Relationships\n- Relationship Types\n- Relationship Constraints\n- Custom Fields",
+        "operationId": "count_items",
+        "parameters": [
+          {
+            "name": "rawq",
+            "in": "query",
+            "description": "A selector to restrict the counted items by a complex query on their labels and fields.\n\nQueries made with the `rawq` are expressed as JSON objects written in a Catalog-specific query language.\nThey must be sent in the URL as [URL-safe base64](https://developer.mozilla.org/en-US/docs/Glossary/Base64#url_and_filename_safe_base64) encoded strings.\nMultiple `rawq` parameters can be specified, and they are chained in *AND* with each other and with the other filtering query parameters.\n\nFields that can be queried include:\n\n- `apiVersion`\n- `kind`\n- `metadata.name`\n- `metadata.labels`\n- `metadata.title`\n- `metadata.tags`\n- any selectable field in `spec`",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "x-catalog-org",
+            "in": "header",
+            "description": "Identifier of the organization in the context of which the action should be performed.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Requested count provided.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "count"
+                  ],
+                  "properties": {
+                    "count": {
+                      "type": "integer",
+                      "format": "int64",
+                      "minimum": 0
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Request is invalid.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/miaplatform.eu.v1alpha1.StatusResponse"
+                }
+              }
+            }
+          },
+          "5XX": {
+            "description": "Server-side error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/miaplatform.eu.v1alpha1.StatusResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/catalog/mia-platform.eu/v1alpha1/item-type-definitions": {
+      "get": {
+        "tags": [
+          "item-type-definitions"
+        ],
+        "summary": "List Item Type Definitions",
+        "description": "Returns a paginated list of Item Type Definitions. The list can be filtered and sorted based on different criteria.\n\nSupports content negotiation via the `Accept` header.\n- `application/json;as=PartialObjectMetadata`: returns a partial representation of the Item Type Definitions without the `spec`.\n- `application/json`: returns the full Item Type Definitions.\nMissing or wildcard `Accept` header values (i.e., `*/*` or `application/*`) will default to the full Item Type Definitions response.",
+        "operationId": "list_itds",
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "The maximum number of items to return.",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int64",
+              "default": 50,
+              "maximum": 200,
+              "minimum": 1
+            }
+          },
+          {
+            "name": "continue",
+            "in": "query",
+            "description": "The server-generated token to retrieve more results in a paginated request.",
+            "required": false,
+            "schema": {
+              "type": [
+                "string",
+                "null"
+              ]
+            }
+          },
+          {
+            "name": "label",
+            "in": "query",
+            "description": "A selector to restrict the list of returned Item Type Definitions by their labels.\n\nThe `label` query parameter can contain only a single selector.\nTo add more selectors, you can specify the parameter multiple times in the same request.\nThe selectors will be chained in *AND*.\n\n*Example* : env=production",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "field",
+            "in": "query",
+            "description": "A selector to restrict the list of returned Item Type Definitions by their fields.\n\nThe `field` query parameter can contain only a single selector.\nTo add more selectors, you can specify the parameter multiple times in the same request.\nThe selectors will be chained in *AND*.\n\nFields that can be queried include:\n\n- `metadata.name`\n- `metadata.title`\n- `metadata.tags`\n- `spec.scope`\n- `spec.group`\n- `spec.names.kind`\n- `spec.names.plural`\n\n*Example* : spec.group=mia-platform.eu",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "rawq",
+            "in": "query",
+            "description": "A selector to restrict the list of returned Item Type Definitions by a complex query on their labels and fields.\n\nQueries made with the `rawq` are expressed as JSON objects written in a Catalog-specific query language.\nThey must be sent in the URL as [URL-safe base64](https://developer.mozilla.org/en-US/docs/Glossary/Base64#url_and_filename_safe_base64) encoded strings.\nMultiple `rawq` parameters can be specified, and they are chained in *AND* with each other and with the other filtering query parameters.\n\nFields that can be queried include:\n\n- `metadata.name`\n- `metadata.labels`\n- `metadata.title`\n- `metadata.tags`\n- `spec.scope`\n- `spec.group`\n- `spec.names.kind`\n- `spec.names.plural`",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "description": "The field by which results should be sorted.\n\nThe default sorting order is ascending lexicographical order. If the field name is prefixed by a `-`, than descending lexicographical order will be applied.\n\nSpecifying the query parameter multiple times means that the results will be sorted for multiple fields, with the sort order evaluated from the first-appearing query parameter to the last.\n\nSorting can be performed on:\n\n- `metadata.creationTimestamp`\n- `metadata.updateTimestamp`\n- `metadata.name`\n- `metadata.title`\n\n*Example* : -metadata.name",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "description": "Specifies the desired response format. Supported values are:\n- `application/json` (equivalent to `application/*`, `*/*`, or an absent `Accept` header) for a full object response,\n- `application/json;as=PartialObjectMetadata` for a partial response that includes only metadata.",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "application/json;as=PartialObjectMetadata",
+                "application/json",
+                "application/*",
+                "*/*"
+              ]
+            }
+          },
+          {
+            "name": "x-catalog-org",
+            "in": "header",
+            "description": "Identifier of the organization in the context of which the action should be performed.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Requested list provided.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/miaplatform.eu.v1alpha1.List_miaplatform.eu.v1alpha1.ItemTypeDefinition"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Request is invalid.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/miaplatform.eu.v1alpha1.StatusResponse"
+                }
+              }
+            }
+          },
+          "406": {
+            "description": "Accept header value is not supported.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/miaplatform.eu.v1alpha1.StatusResponse"
+                }
+              }
+            }
+          },
+          "5XX": {
+            "description": "Server-side error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/miaplatform.eu.v1alpha1.StatusResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/catalog/mia-platform.eu/v1alpha1/item-type-definitions/count": {
+      "get": {
+        "tags": [
+          "item-type-definitions"
+        ],
+        "summary": "Count Item Type Definitions",
+        "description": "Returns the count of Item Type Definitions. Item Type Definitions can be filtered using query parameters.",
+        "operationId": "count_itds",
+        "parameters": [
+          {
+            "name": "label",
+            "in": "query",
+            "description": "A selector to restrict the counted Item Type Definitions by their labels.\n\nThe `label` query parameter can contain only a single selector.\nTo add more selectors, you can specify the parameter multiple times in the same request.\nThe selectors will be chained in *AND*.\n\n*Example* : env=production",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "field",
+            "in": "query",
+            "description": "A selector to restrict the counted Item Type Definitions by their fields.\n\nThe `field` query parameter can contain only a single selector.\nTo add more selectors, you can specify the parameter multiple times in the same request.\nThe selectors will be chained in *AND*.\n\nFields that can be queried include:\n\n- `metadata.name`\n- `metadata.title`\n- `metadata.tags`\n- `spec.scope`\n- `spec.group`\n- `spec.names.kind`\n- `spec.names.plural`\n\n*Example* : spec.group=mia-platform.eu",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "rawq",
+            "in": "query",
+            "description": "A selector to restrict the counted Item Type Definitions by a complex query on their labels and fields.\n\nQueries made with the `rawq` are expressed as JSON objects written in a Catalog-specific query language.\nThey must be sent in the URL as [URL-safe base64](https://developer.mozilla.org/en-US/docs/Glossary/Base64#url_and_filename_safe_base64) encoded strings.\nMultiple `rawq` parameters can be specified, and they are chained in *AND* with each other and with the other filtering query parameters.\n\nFields that can be queried include:\n\n- `metadata.name`\n- `metadata.labels`\n- `metadata.title`\n- `metadata.tags`\n- `spec.scope`\n- `spec.group`\n- `spec.names.kind`\n- `spec.names.plural`",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "x-catalog-org",
+            "in": "header",
+            "description": "Identifier of the organization in the context of which the action should be performed.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Requested count provided.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "count"
+                  ],
+                  "properties": {
+                    "count": {
+                      "type": "integer",
+                      "format": "int64",
+                      "minimum": 0
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Request is invalid.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/miaplatform.eu.v1alpha1.StatusResponse"
+                }
+              }
+            }
+          },
+          "5XX": {
+            "description": "Server-side error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/miaplatform.eu.v1alpha1.StatusResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/catalog/mia-platform.eu/v1alpha1/item-type-definitions/{name}": {
+      "get": {
+        "tags": [
+          "item-type-definitions"
+        ],
+        "summary": "Get Item Type Definition by name",
+        "description": "Returns the requests Item Type Definition if found.\n\nSupports content negotiation via the `Accept` header.\n- `application/json;as=PartialObjectMetadata`: returns a partial representation of the Item Type Definition without the `spec`.\n- `application/json`: returns the full Item Type Definition.\nMissing or wildcard `Accept` header values (i.e., `*/*` or `application/*`) will default to the full Item Type Definition response.",
+        "operationId": "get_itd_by_name",
+        "parameters": [
+          {
+            "name": "name",
+            "in": "path",
+            "description": "The name of the resource.\n\nIt corresponds to the `metadata.name` field of the resource.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "dockerimages.stable.example.com"
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "description": "Specifies the desired response format. Supported values are:\n- `application/json` (equivalent to `application/*`, `*/*`, or an absent `Accept` header) for a full object response,\n- `application/json;as=PartialObjectMetadata` for a partial response that includes only metadata.",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "application/json;as=PartialObjectMetadata",
+                "application/json",
+                "application/*",
+                "*/*"
+              ]
+            }
+          },
+          {
+            "name": "x-catalog-org",
+            "in": "header",
+            "description": "Identifier of the organization in the context of which the action should be performed.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Requested Item Type Definition provided.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/miaplatform.eu.v1alpha1.ItemTypeDefinition"
+                }
+              },
+              "application/json;as=PartialObjectMetadata": {
+                "schema": {
+                  "$ref": "#/components/schemas/miaplatform.eu.v1alpha1.PartialObjectMetadata"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Request is invalid.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/miaplatform.eu.v1alpha1.StatusResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Requested Item Type Definition does not exist.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/miaplatform.eu.v1alpha1.StatusResponse"
+                }
+              }
+            }
+          },
+          "406": {
+            "description": "Accept header value is not supported.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/miaplatform.eu.v1alpha1.StatusResponse"
+                }
+              }
+            }
+          },
+          "5XX": {
+            "description": "Server-side error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/miaplatform.eu.v1alpha1.StatusResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "item-type-definitions"
+        ],
+        "summary": "Create or update an Item Type Definition",
+        "description": "Creates a new Item Type Definition or updates an existing one. The match is made based on the `metadata.name` field.\n\nWhen providing the body, ensure that:\n\n- the `metadata.name` field matches the `name` path parameter, and\n- the `resourceVersion` field is provided for updates and matches the current resource version of the Item Type Definition stored in the system.\n\nIf the request resolves to an update, and the body contains modifications to read-only fields (e.g., `spec.group`), those modifications will be ignored, and a `Warning` header will be added to the response.",
+        "operationId": "upsert_itd",
+        "parameters": [
+          {
+            "name": "name",
+            "in": "path",
+            "description": "The name of the resource.\n\nIt corresponds to the `metadata.name` field of the resource.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "dockerimages.stable.example.com"
+          },
+          {
+            "name": "x-catalog-org",
+            "in": "header",
+            "description": "Identifier of the organization in the context of which the action should be performed.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/miaplatform.eu.v1alpha1.ItemTypeDefinition"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Item Type Definition updated successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/miaplatform.eu.v1alpha1.ItemTypeDefinition"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Item Type Definition created successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/miaplatform.eu.v1alpha1.ItemTypeDefinition"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Request is invalid.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/miaplatform.eu.v1alpha1.StatusResponse"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict between the resource version in the body and the current resource version of the Item Type Definition in case of an update.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/miaplatform.eu.v1alpha1.StatusResponse"
+                }
+              }
+            }
+          },
+          "5XX": {
+            "description": "Server-side error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/miaplatform.eu.v1alpha1.StatusResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "item-type-definitions"
+        ],
+        "summary": "Delete Item Type Definition by name",
+        "description": "Deletes the requested Item Type Definition if found.\n\nAll items of the type defined by the Item Type Definition will also be deleted.",
+        "operationId": "delete_itd_by_name",
+        "parameters": [
+          {
+            "name": "name",
+            "in": "path",
+            "description": "The name of the resource.\n\nIt corresponds to the `metadata.name` field of the resource.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "dockerimages.stable.example.com"
+          },
+          {
+            "name": "resourceVersion",
+            "in": "query",
+            "description": "The resource version for optional concurrency control.\n\nIf provided, the Item Type Definition will be deleted only if its current resource version (`resourceVersion` root field) matches the given one.\nIf they do not match, a `409 Conflict` error will be returned.",
+            "required": false,
+            "schema": {
+              "type": [
+                "string",
+                "null"
+              ]
+            }
+          },
+          {
+            "name": "x-catalog-org",
+            "in": "header",
+            "description": "Identifier of the organization in the context of which the action should be performed.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Requested Item Type Definition deleted."
+          },
+          "400": {
+            "description": "Request is invalid.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/miaplatform.eu.v1alpha1.StatusResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Requested Item Type Definition does not exist.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/miaplatform.eu.v1alpha1.StatusResponse"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict between resource version provided in the query parameters and the current resource version of the Item Type Definition.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/miaplatform.eu.v1alpha1.StatusResponse"
+                }
+              }
+            }
+          },
+          "5XX": {
+            "description": "Server-side error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/miaplatform.eu.v1alpha1.StatusResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/catalog/organizations": {
+      "post": {
+        "tags": [
+          "organizations"
+        ],
+        "summary": "Create a new organization",
+        "description": "Creates a new organization and provisions the relative database.",
+        "operationId": "create_org",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "name"
+                ],
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "description": "The name of the new organization."
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Organization created successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "name"
+                  ],
+                  "properties": {
+                    "name": {
+                      "type": "string",
+                      "description": "The name of the created organization."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/miaplatform.eu.v1alpha1.StatusResponse"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Organization already exists.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/miaplatform.eu.v1alpha1.StatusResponse"
+                }
+              }
+            }
+          },
+          "5XX": {
+            "description": "Server-side error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/miaplatform.eu.v1alpha1.StatusResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/catalog/organizations/{name}": {
+      "delete": {
+        "tags": [
+          "organizations"
+        ],
+        "summary": "Delete organization by name",
+        "description": "Deletes an existing organization and the relative database.",
+        "operationId": "delete_org_by_name",
+        "parameters": [
+          {
+            "name": "name",
+            "in": "path",
+            "description": "The name of the organization.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Requested organization deleted."
+          },
+          "400": {
+            "description": "Request is invalid.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/miaplatform.eu.v1alpha1.StatusResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Requested organization does not exist.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/miaplatform.eu.v1alpha1.StatusResponse"
+                }
+              }
+            }
+          },
+          "5XX": {
+            "description": "Server-side error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/miaplatform.eu.v1alpha1.StatusResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/catalog/{group}/{version}/items/{family}": {
+      "get": {
+        "tags": [
+          "items"
+        ],
+        "summary": "List items of an Item Type Definition",
+        "description": "Returns a paginated list of items of the specified Item Type Definition. The list can be filtered and sorted based on different criteria.\n\nSupports content negotiation via the `Accept` header.\n- `application/json;as=PartialObjectMetadata`: returns a partial representation of the items without the `spec`.\n- `application/json`: returns the full items.\nMissing or wildcard `Accept` header values (i.e., `*/*` or `application/*`) will default to the full items response.",
+        "operationId": "list_items_by_itd",
+        "parameters": [
+          {
+            "name": "group",
+            "in": "path",
+            "description": "The API group of the item.\n\nIt corresponds to the `spec.group` field of the item's Item Type Definition.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "mia-platform.eu"
+          },
+          {
+            "name": "version",
+            "in": "path",
+            "description": "The API group version of the item.\n\nIt corresponds to the `spec.version.name` field of the item's Item Type Definition.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "v1alpha1"
+          },
+          {
+            "name": "family",
+            "in": "path",
+            "description": "The family of the item.\n\nIt corresponds to the `spec.names.plural` field of the item's Item Type Definition.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "services"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "The maximum number of items to return.",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int64",
+              "default": 50,
+              "maximum": 200,
+              "minimum": 1
+            }
+          },
+          {
+            "name": "continue",
+            "in": "query",
+            "description": "The server-generated token to retrieve more results in a paginated request.",
+            "required": false,
+            "schema": {
+              "type": [
+                "string",
+                "null"
+              ]
+            }
+          },
+          {
+            "name": "label",
+            "in": "query",
+            "description": "A selector to restrict the list of returned items by their labels.\n\nThe `label` query parameter can contain only a single selector.\nTo add more selectors, you can specify the parameter multiple times in the same request.\nThe selectors will be chained in *AND*.\n\n*Example* : env=production",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "field",
+            "in": "query",
+            "description": "A selector to restrict the list of returned items by their fields.\n\nThe `field` query parameter can contain only a single selector.\nTo add more selectors, you can specify the parameter multiple times in the same request.\nThe selectors will be chained in *AND*.\n\nFields that can be queried include:\n\n- `metadata.name`\n- `metadata.title`\n- `metadata.tags`\n- any selectable field in `spec`\n\n*Example* : metadata.title!=Foo",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "rawq",
+            "in": "query",
+            "description": "A selector to restrict the list of returned items by a complex query on their labels and fields.\n\nQueries made with the `rawq` are expressed as JSON objects written in a Catalog-specific query language.\nThey must be sent in the URL as [URL-safe base64](https://developer.mozilla.org/en-US/docs/Glossary/Base64#url_and_filename_safe_base64) encoded strings.\nMultiple `rawq` parameters can be specified, and they are chained in *AND* with each other and with the other filtering query parameters.\n\nFields that can be queried include:\n\n- `metadata.name`\n- `metadata.labels`\n- `metadata.title`\n- `metadata.tags`\n- any selectable field in `spec`",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "description": "The field by which results should be sorted.\n\nThe default sorting order is ascending lexicographical order. If the field name is prefixed by a `-`, than descending lexicographical order will be applied.\n\nSpecifying the query parameter multiple times means that the results will be sorted for multiple fields, with the sort order evaluated from the first-appearing query parameter to the last.\n\nSorting can be performed on:\n\n- `metadata.creationTimestamp`\n- `metadata.updateTimestamp`\n- `metadata.name`\n- `metadata.title`\n\n*Example* : -metadata.name",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "description": "Specifies the desired response format. Supported values are:\n- `application/json` (equivalent to `application/*`, `*/*`, or an absent `Accept` header) for a full object response,\n- `application/json;as=PartialObjectMetadata` for a partial response that includes only metadata.",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "application/json;as=PartialObjectMetadata",
+                "application/json",
+                "application/*",
+                "*/*"
+              ]
+            }
+          },
+          {
+            "name": "x-catalog-org",
+            "in": "header",
+            "description": "Identifier of the organization in the context of which the action should be performed.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Requested list provided.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/miaplatform.eu.v1alpha1.List_miaplatform.eu.v1alpha1.Item"
+                }
+              },
+              "application/json;as=PartialObjectMetadata": {
+                "schema": {
+                  "$ref": "#/components/schemas/miaplatform.eu.v1alpha1.List_miaplatform.eu.v1alpha1.PartialObjectMetadata"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Request is invalid.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/miaplatform.eu.v1alpha1.StatusResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Requested items' Item Type Definition does not exist.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/miaplatform.eu.v1alpha1.StatusResponse"
+                }
+              }
+            }
+          },
+          "406": {
+            "description": "Accept header value is not supported.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/miaplatform.eu.v1alpha1.StatusResponse"
+                }
+              }
+            }
+          },
+          "5XX": {
+            "description": "Server-side error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/miaplatform.eu.v1alpha1.StatusResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/catalog/{group}/{version}/items/{family}/{name}": {
+      "get": {
+        "tags": [
+          "items"
+        ],
+        "summary": "Get item by name",
+        "description": "Returns the requested item if found.\n\nSupports content negotiation via the `Accept` header.\n- `application/json;as=PartialObjectMetadata`: returns a partial representation of the item without the `spec`.\n- `application/json`: returns the full item.\nMissing or wildcard `Accept` header values (i.e., `*/*` or `application/*`) will default to the full item response.",
+        "operationId": "get_item_by_name",
+        "parameters": [
+          {
+            "name": "group",
+            "in": "path",
+            "description": "The API group of the item.\n\nIt corresponds to the `spec.group` field of the item's Item Type Definition.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "mia-platform.eu"
+          },
+          {
+            "name": "version",
+            "in": "path",
+            "description": "The API group version of the item.\n\nIt corresponds to the `spec.version.name` field of the item's Item Type Definition.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "v1alpha1"
+          },
+          {
+            "name": "family",
+            "in": "path",
+            "description": "The family of the item.\n\nIt corresponds to the `spec.names.plural` field of the item's Item Type Definition.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "services"
+          },
+          {
+            "name": "name",
+            "in": "path",
+            "description": "The name of the item.\n\nIt corresponds to the `metadata.name` field of the item.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "my-service"
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "description": "Specifies the desired response format. Supported values are:\n- `application/json` (equivalent to `application/*`, `*/*`, or an absent `Accept` header) for a full object response,\n- `application/json;as=PartialObjectMetadata` for a partial response that includes only metadata.",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "application/json;as=PartialObjectMetadata",
+                "application/json",
+                "application/*",
+                "*/*"
+              ]
+            }
+          },
+          {
+            "name": "x-catalog-org",
+            "in": "header",
+            "description": "Identifier of the organization in the context of which the action should be performed.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Requested item provided.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/miaplatform.eu.v1alpha1.Item"
+                }
+              },
+              "application/json;as=PartialObjectMetadata": {
+                "schema": {
+                  "$ref": "#/components/schemas/miaplatform.eu.v1alpha1.PartialObjectMetadata"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Request is invalid.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/miaplatform.eu.v1alpha1.StatusResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Requested item does not exist.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/miaplatform.eu.v1alpha1.StatusResponse"
+                }
+              }
+            }
+          },
+          "406": {
+            "description": "Accept header value is not supported.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/miaplatform.eu.v1alpha1.StatusResponse"
+                }
+              }
+            }
+          },
+          "5XX": {
+            "description": "Server-side error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/miaplatform.eu.v1alpha1.StatusResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "items"
+        ],
+        "summary": "Create or update an item",
+        "description": "Creates a new item or updates an existing one. The match is made based on the `metadata.name` field.\n\nWhen providing the body, ensure that:\n\n- the `metadata.name` field matches the `name` path parameter,\n- the `metadata.apiVersion` and `metadata.kind` fields match the expected values based on the Item Type Definition identified by the `group`, `version`, and `resource` path parameters, and\n- the `resourceVersion` field is provided for updates and matches the current resource version of the item stored in the system.\n\nThe `customFields` field cannot be set or updated through this endpoint. Any value provided in the request body for `customFields` will be ignored. To set or update `customFields`, use the dedicated endpoints for managing custom fields.",
+        "operationId": "upsert_item",
+        "parameters": [
+          {
+            "name": "group",
+            "in": "path",
+            "description": "The API group of the item.\n\nIt corresponds to the `spec.group` field of the item's Item Type Definition.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "mia-platform.eu"
+          },
+          {
+            "name": "version",
+            "in": "path",
+            "description": "The API group version of the item.\n\nIt corresponds to the `spec.version.name` field of the item's Item Type Definition.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "v1alpha1"
+          },
+          {
+            "name": "family",
+            "in": "path",
+            "description": "The family of the item.\n\nIt corresponds to the `spec.names.plural` field of the item's Item Type Definition.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "services"
+          },
+          {
+            "name": "name",
+            "in": "path",
+            "description": "The name of the item.\n\nIt corresponds to the `metadata.name` field of the item.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "my-service"
+          },
+          {
+            "name": "x-catalog-org",
+            "in": "header",
+            "description": "Identifier of the organization in the context of which the action should be performed.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/miaplatform.eu.v1alpha1.Item"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Item updated successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/miaplatform.eu.v1alpha1.Item"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Item created successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/miaplatform.eu.v1alpha1.Item"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Request is invalid.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/miaplatform.eu.v1alpha1.StatusResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Requested item's Item Type Definition not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/miaplatform.eu.v1alpha1.StatusResponse"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict between the resource version in the body and the current resource version of the item in case of an update.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/miaplatform.eu.v1alpha1.StatusResponse"
+                }
+              }
+            }
+          },
+          "5XX": {
+            "description": "Server-side error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/miaplatform.eu.v1alpha1.StatusResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "items"
+        ],
+        "summary": "Delete item by name",
+        "description": "Deletes the requested item if found.",
+        "operationId": "delete_item_by_name",
+        "parameters": [
+          {
+            "name": "group",
+            "in": "path",
+            "description": "The API group of the item.\n\nIt corresponds to the `spec.group` field of the item's Item Type Definition.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "mia-platform.eu"
+          },
+          {
+            "name": "version",
+            "in": "path",
+            "description": "The API group version of the item.\n\nIt corresponds to the `spec.version.name` field of the item's Item Type Definition.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "v1alpha1"
+          },
+          {
+            "name": "family",
+            "in": "path",
+            "description": "The family of the item.\n\nIt corresponds to the `spec.names.plural` field of the item's Item Type Definition.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "services"
+          },
+          {
+            "name": "name",
+            "in": "path",
+            "description": "The name of the item.\n\nIt corresponds to the `metadata.name` field of the item.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "my-service"
+          },
+          {
+            "name": "resourceVersion",
+            "in": "query",
+            "description": "The resource version for optional concurrency control.\n\nIf provided, the item will be deleted only if its current resource version (`resourceVersion` root field) matches the given one.\nIf they do not match, a `409 Conflict` error will be returned.",
+            "required": false,
+            "schema": {
+              "type": [
+                "string",
+                "null"
+              ]
+            }
+          },
+          {
+            "name": "x-catalog-org",
+            "in": "header",
+            "description": "Identifier of the organization in the context of which the action should be performed.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Requested item deleted."
+          },
+          "400": {
+            "description": "Request is invalid.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/miaplatform.eu.v1alpha1.StatusResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Requested item does not exist.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/miaplatform.eu.v1alpha1.StatusResponse"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict between resource version provided in the query parameters and the current resource version of the item.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/miaplatform.eu.v1alpha1.StatusResponse"
+                }
+              }
+            }
+          },
+          "5XX": {
+            "description": "Server-side error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/miaplatform.eu.v1alpha1.StatusResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/catalog/{group}/{version}/items/{family}/{name}/custom-fields": {
+      "patch": {
+        "tags": [
+          "items"
+        ],
+        "summary": "Patch an item's custom fields",
+        "description": "Patches the `customFields` map of an existing item using [JSON Merge Patch (RFC 7396)](https://www.rfc-editor.org/rfc/rfc7396) semantics, restricted to the top level of the map.\n\n- A key with a non-null value is **inserted** (if absent) or **replaced** (if already present).\n- A key with a `null` value is **removed** from the map.\n- Keys not mentioned in the request body are left unchanged.\n\nThe request **must** include the header `Content-Type: application/merge-patch+json`.\nRequests with any other Content-Type (or without one) will be rejected with `415 Unsupported Media Type`.\n\nEvery non-null key in the patch must correspond to a `CustomField` entity whose `spec.key` matches the key and that is applicable to the item's type\n(i.e., its `spec.applicableTo` is absent/null, or it explicitly lists the item type).\nUnknown keys are rejected with `400 Bad Request`.\n\nThe value for each key is validated against the JSON Schema defined in the matching `CustomField`'s `spec.schema`.\nThe first validation error encountered causes the request to be rejected with `400 Bad Request`.\n\nCustom fields are not supported for the following \"core\" Catalog items:\n- Relationships\n- Relationship Types\n- Relationship Constraints",
+        "operationId": "patch_item_custom_fields",
+        "parameters": [
+          {
+            "name": "group",
+            "in": "path",
+            "description": "The API group of the item.\n\nIt corresponds to the `spec.group` field of the item's Item Type Definition.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "mia-platform.eu"
+          },
+          {
+            "name": "version",
+            "in": "path",
+            "description": "The API group version of the item.\n\nIt corresponds to the `spec.version.name` field of the item's Item Type Definition.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "v1alpha1"
+          },
+          {
+            "name": "family",
+            "in": "path",
+            "description": "The family of the item.\n\nIt corresponds to the `spec.names.plural` field of the item's Item Type Definition.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "services"
+          },
+          {
+            "name": "name",
+            "in": "path",
+            "description": "The name of the item.\n\nIt corresponds to the `metadata.name` field of the item.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "my-service"
+          },
+          {
+            "name": "x-catalog-org",
+            "in": "header",
+            "description": "Identifier of the organization in the context of which the action should be performed.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "resourceVersion",
+            "in": "query",
+            "description": "The resource version for optional concurrency control.\n\nIf provided, the item will be patched only if its current resource version (`resourceVersion` root field) matches the given one.\nIf they do not match, a `409 Conflict` error will be returned.",
+            "required": false,
+            "schema": {
+              "type": [
+                "string",
+                "null"
+              ]
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/merge-patch+json": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": true
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Item updated successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/miaplatform.eu.v1alpha1.Item"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Request is invalid.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/miaplatform.eu.v1alpha1.StatusResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Item not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/miaplatform.eu.v1alpha1.StatusResponse"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict between the provided resource version and the current resource version of the item.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/miaplatform.eu.v1alpha1.StatusResponse"
+                }
+              }
+            }
+          },
+          "415": {
+            "description": "Content-Type is not 'application/merge-patch+json'.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/miaplatform.eu.v1alpha1.StatusResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "The operation cannot be performed on this kind of entity.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "status",
+                    "error",
+                    "message"
+                  ],
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "status": {
+                      "type": "integer",
+                      "format": "int32",
+                      "minimum": 0
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "5XX": {
+            "description": "Server-side error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/miaplatform.eu.v1alpha1.StatusResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "MergePatchBodySchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "miaplatform.eu.v1alpha1.Item": {
+        "type": "object",
+        "description": "An entity recorded on the Catalog.",
+        "required": [
+          "apiVersion",
+          "kind",
+          "metadata",
+          "spec"
+        ],
+        "properties": {
+          "apiVersion": {
+            "type": "string",
+            "description": "The versioned schema of this representation of an object.",
+            "examples": [
+              "stable.example.com/v1alpha1"
+            ],
+            "pattern": "^[a-z0-9]([a-z0-9-]*[a-z0-9])?(\\.[a-z0-9]([a-z0-9-]*[a-z0-9])*)*/v[0-9]+(alpha[0-9]+|beta[0-9]+)?$"
+          },
+          "customFields": {
+            "type": [
+              "object",
+              "null"
+            ],
+            "description": "A map of custom fields that can be used to store additional information about this object.\n\nCustom fields are registered in the system as entities of kind `CustomField` (`custom-fields.mia-platform.eu`).\nThe key of each entry in this map corresponds to the `spec.key` of a `CustomField` entity, and the value should conform to the schema defined in the `spec.schema` field of that entity. However, clients should not give for granted the existence of the `CustomField` entities nor the validity of the data in this map, and should handle it accordingly.",
+            "additionalProperties": {},
+            "propertyNames": {
+              "type": "string"
+            }
+          },
+          "kind": {
+            "type": "string",
+            "description": "The type of this object.",
+            "examples": [
+              "DockerImage"
+            ],
+            "pattern": "^[a-zA-Z][a-zA-Z0-9]*$"
+          },
+          "metadata": {
+            "$ref": "#/components/schemas/miaplatform.eu.v1alpha1.ObjectMetadata"
+          },
+          "resourceVersion": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "An opaque value that represents the internal version of this object. Clients may not set this value and must treat it as opaque. Read-only.",
+            "readOnly": true
+          },
+          "spec": {
+            "type": "object",
+            "description": "The state of this object."
+          }
+        },
+        "examples": [
+          {
+            "apiVersion": "stable.example.com/v1",
+            "kind": "DockerImage",
+            "metadata": {
+              "annotations": {
+                "mia-platform.eu/version": "14.0.0"
+              },
+              "creationTimestamp": "2025-09-17T10:30:45Z",
+              "description": "The Docker image of the Mia-Platform API Gateway",
+              "labels": {
+                "environment": "demo"
+              },
+              "links": [
+                {
+                  "title": "Documentation",
+                  "url": "https://docs.mia-platform.eu/"
+                }
+              ],
+              "name": "mia-api-gateway-100",
+              "tags": [
+                "api"
+              ],
+              "title": "Mia API Gateway",
+              "uid": "550e8400-e29b-41d4-a716-446655440000",
+              "updateTimestamp": "2025-09-17T10:30:45Z",
+              "urn": "urn:mia-platform-catalog:stable.example.com:v1:DockerImage:mia-api-gateway-100"
+            },
+            "resourceVersion": "1",
+            "spec": {
+              "imageName": "api-gateway",
+              "registry": "nexus.mia-platform.eu",
+              "tag": "1.0.0"
+            }
+          }
+        ]
+      },
+      "miaplatform.eu.v1alpha1.ItemTypeDefinition": {
+        "type": "object",
+        "description": "A resource that extends the Catalog API by defining a item type.",
+        "required": [
+          "apiVersion",
+          "kind",
+          "metadata",
+          "spec"
+        ],
+        "properties": {
+          "apiVersion": {
+            "type": "string",
+            "description": "The versioned schema of this representation of an object.",
+            "enum": [
+              "mia-platform.eu/v1alpha1"
+            ]
+          },
+          "kind": {
+            "type": "string",
+            "description": "The type of this object.",
+            "enum": [
+              "ItemTypeDefinition"
+            ]
+          },
+          "metadata": {
+            "$ref": "#/components/schemas/miaplatform.eu.v1alpha1.ObjectMetadata"
+          },
+          "resourceVersion": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "An opaque value that represents the internal version of this object. Clients may not set this value and must treat it as opaque.",
+            "readOnly": true
+          },
+          "spec": {
+            "oneOf": [
+              {
+                "type": "object",
+                "required": [
+                  "group",
+                  "names",
+                  "scope",
+                  "versions"
+                ],
+                "properties": {
+                  "group": {
+                    "type": "string",
+                    "description": "The API group of the items of the defined type. The items of the defined type will be serve under `/{group}/*`. Must match the `metadata.name` of this object in the form `<spec.names.plural>.<spec.group>`.",
+                    "examples": [
+                      "stable.example.com"
+                    ],
+                    "maxLength": 253,
+                    "pattern": "^[a-z0-9]([a-z0-9-]*[a-z0-9])?(\\.[a-z0-9]([a-z0-9-]*[a-z0-9])?)*$"
+                  },
+                  "llmDescription": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "A description of the item type for LLM-based tools. It is used to provide additional information about the item type to LLMs. It should be written in English and may contain markdown formatting."
+                  },
+                  "names": {
+                    "oneOf": [
+                      {
+                        "type": "object",
+                        "required": [
+                          "kind",
+                          "plural"
+                        ],
+                        "properties": {
+                          "displayPlural": {
+                            "type": [
+                              "string",
+                              "null"
+                            ],
+                            "description": "The display name of the family of items. It is used only for display purposes. Defaults to the `spec.names.plural` of this object.",
+                            "examples": [
+                              "Docker Images"
+                            ]
+                          },
+                          "displaySingular": {
+                            "type": [
+                              "string",
+                              "null"
+                            ],
+                            "description": "The display name of the item type. It is used only for display purposes. Defaults to the `spec.names.singular` of this object.",
+                            "examples": [
+                              "Docker image"
+                            ]
+                          },
+                          "kind": {
+                            "type": "string",
+                            "description": "The type of the item. It is normally CamelCase and singular. Items of the defined type will use this value as the `kind` attribute in API calls.",
+                            "examples": [
+                              "DockerImage"
+                            ],
+                            "readOnly": true,
+                            "pattern": "^[a-zA-Z][a-zA-Z0-9]*$"
+                          },
+                          "plural": {
+                            "type": "string",
+                            "description": "The name of the family of items to serve. The items of the defined type will be served under `/{group}/{version}/items/{plural}/*`. Must match the `metadata.name` of this object in the form `<spec.names.plural>.<spec.group>`. Must be all lowercase.",
+                            "examples": [
+                              "docker-images"
+                            ],
+                            "readOnly": true,
+                            "pattern": "^[a-z0-9]([a-z0-9-]*[a-z0-9])?$"
+                          },
+                          "singular": {
+                            "type": [
+                              "string",
+                              "null"
+                            ],
+                            "description": "The singular name of the item type. It is used only for display purposes in technical environments (e.g., a CLI). Defaults to the `spec.names.kind` of this object.",
+                            "examples": [
+                              "docker-image"
+                            ],
+                            "pattern": "^[a-z0-9]([a-z0-9-]*[a-z0-9])?$"
+                          }
+                        }
+                      }
+                    ],
+                    "description": "The family and kind names for the items of the defined type."
+                  },
+                  "scope": {
+                    "oneOf": [
+                      {
+                        "type": "string",
+                        "enum": [
+                          "Organization"
+                        ]
+                      }
+                    ],
+                    "description": "The scope of the items of the defined type. Always equal to `Organization` for now, but may be extended in the future to allow for more granular scoping."
+                  },
+                  "versions": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "required": [
+                        "name",
+                        "schema",
+                        "served"
+                      ],
+                      "properties": {
+                        "deprecated": {
+                          "type": [
+                            "boolean",
+                            "null"
+                          ],
+                          "description": "A flag stating if this version of the API is deprecated. When set to `true`, API requests to this version receive a warning header in the server response."
+                        },
+                        "deprecationWarning": {
+                          "type": [
+                            "string",
+                            "null"
+                          ],
+                          "description": "An override for the default warning returned to API clients. May only be set when `deprecated` is true. The default warning indicates this version is deprecated and recommends use of the newest served version of equal or greater stability, if one exists."
+                        },
+                        "name": {
+                          "type": "string",
+                          "description": "The version name. It must start with a `v` followed by a number (the major version), then optionally the string `alpha` or `beta` and another number (the minor version). The items of the defined type are served under this version at `/{group}/{version}/*` if `spec.versions.served` is `true`. The name must be unique across all versions.",
+                          "examples": [
+                            "v1alpha1"
+                          ],
+                          "pattern": "^v[0-9]+(alpha[0-9]+|beta[0-9]+)?$"
+                        },
+                        "schema": {
+                          "oneOf": [
+                            {
+                              "type": "object",
+                              "required": [
+                                "openAPIV31Schema"
+                              ],
+                              "properties": {
+                                "openAPIV31Schema": {
+                                  "allOf": [
+                                    {
+                                      "type": "object",
+                                      "required": [
+                                        "type",
+                                        "properties"
+                                      ],
+                                      "properties": {
+                                        "properties": {
+                                          "type": "object",
+                                          "required": [
+                                            "spec"
+                                          ],
+                                          "properties": {
+                                            "metadata": {
+                                              "type": "object",
+                                              "description": "A validation on the `metadata.name` property to apply specific restrictions.",
+                                              "required": [
+                                                "type",
+                                                "properties"
+                                              ],
+                                              "properties": {
+                                                "properties": {
+                                                  "type": "object",
+                                                  "required": [
+                                                    "name"
+                                                  ],
+                                                  "properties": {
+                                                    "name": {
+                                                      "type": "object",
+                                                      "required": [
+                                                        "type"
+                                                      ],
+                                                      "properties": {
+                                                        "type": {
+                                                          "type": "string",
+                                                          "enum": [
+                                                            "string"
+                                                          ]
+                                                        }
+                                                      },
+                                                      "additionalProperties": true
+                                                    }
+                                                  },
+                                                  "additionalProperties": false
+                                                },
+                                                "type": {
+                                                  "type": "string",
+                                                  "enum": [
+                                                    "object"
+                                                  ]
+                                                }
+                                              }
+                                            },
+                                            "spec": {
+                                              "type": "object",
+                                              "description": "A validation on the `spec` property of the items.",
+                                              "required": [
+                                                "type",
+                                                "properties"
+                                              ],
+                                              "properties": {
+                                                "properties": {
+                                                  "type": "object"
+                                                },
+                                                "type": {
+                                                  "type": "string",
+                                                  "enum": [
+                                                    "object"
+                                                  ]
+                                                }
+                                              }
+                                            }
+                                          }
+                                        },
+                                        "type": {
+                                          "type": "string",
+                                          "enum": [
+                                            "object"
+                                          ]
+                                        }
+                                      }
+                                    },
+                                    {
+                                      "type": "object",
+                                      "description": "mia-platform.eu.v1alpha1.SchemaObject.json"
+                                    }
+                                  ],
+                                  "description": "The validation schema for the items of the defined type. It must be used to validate the `spec` field of the items and may be used to validate the `metadata.name` field of the items. Based on the OpenAPI v3.1 schema object."
+                                }
+                              }
+                            }
+                          ],
+                          "description": "The list of validation methods for the items of the defined type."
+                        },
+                        "selectableFields": {
+                          "type": [
+                            "array",
+                            "null"
+                          ],
+                          "items": {
+                            "type": "object",
+                            "required": [
+                              "jsonPath"
+                            ],
+                            "properties": {
+                              "jsonPath": {
+                                "type": "string",
+                                "description": "A simple JSON path which is evaluated against each item of the defined type to produce a field selector value. Only JSON paths without the array notation are allowed. It must point to a field yielding a primitive or homogeneous array of primitives value. Types with enum values and strings with formats are allowed."
+                              }
+                            },
+                            "examples": [
+                              {
+                                "jsonPath": "spec.imageName"
+                              }
+                            ]
+                          },
+                          "description": "A list of paths to fields that may be used as field selectors."
+                        },
+                        "served": {
+                          "type": "boolean",
+                          "description": "A flag enabling/disabling this version from being served via REST APIs."
+                        }
+                      }
+                    },
+                    "description": "The list of all API versions of the items of the defined type."
+                  }
+                }
+              }
+            ],
+            "description": "The state of this object."
+          }
+        },
+        "examples": [
+          {
+            "apiVersion": "mia-platform.eu/v1alpha1",
+            "kind": "ItemTypeDefinition",
+            "metadata": {
+              "annotations": {
+                "mia-platform.eu/version": "14.0.0"
+              },
+              "creationTimestamp": "2025-09-17T10:30:45Z",
+              "description": "A single Docker image.",
+              "labels": {
+                "environment": "demo"
+              },
+              "links": [
+                {
+                  "title": "Documentation",
+                  "url": "https://docs.mia-platform.eu/"
+                }
+              ],
+              "name": "dockerimages.servicecatalog.example.com",
+              "uid": "550e8400-e29b-41d4-a716-446655440000",
+              "updateTimestamp": "2025-09-17T10:30:45Z",
+              "urn": "urn:mia-platform-catalog:mia-platform.eu:v1alpha1:ItemTypeDefinition:dockerimages.servicecatalog.example.com"
+            },
+            "resourceVersion": "1",
+            "spec": {
+              "group": "servicecatalog.example.com",
+              "names": {
+                "displayPlural": "Docker Images",
+                "kind": "DockerImage",
+                "plural": "dockerimages"
+              },
+              "scope": "Organization",
+              "versions": [
+                {
+                  "name": "v1alpha1",
+                  "schema": {
+                    "openAPIV31Schema": {
+                      "properties": {
+                        "spec": {
+                          "properties": {
+                            "imageName": {
+                              "type": "string"
+                            },
+                            "registry": {
+                              "default": "docker.io",
+                              "type": "string"
+                            },
+                            "tag": {
+                              "pattern": "(latest|[0-9]+.[0-9]+.[0-9]+(-[a-z]+[0-9]*)?|[0-9]+.[0-9]+.[0-9]+)$",
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "imageName",
+                            "tag"
+                          ],
+                          "type": "object"
+                        }
+                      },
+                      "type": "object"
+                    }
+                  },
+                  "selectableFields": [
+                    {
+                      "jsonPath": "spec.imageName"
+                    }
+                  ],
+                  "served": true
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "miaplatform.eu.v1alpha1.List_miaplatform.eu.v1alpha1.Item": {
+        "type": "object",
+        "description": "A collection of objects.",
+        "required": [
+          "apiVersion",
+          "kind",
+          "metadata",
+          "items"
+        ],
+        "properties": {
+          "apiVersion": {
+            "type": "string",
+            "description": "The versioned schema of this representation of an object.",
+            "enum": [
+              "mia-platform.eu/v1alpha1"
+            ]
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "description": "An entity recorded on the Catalog.",
+              "required": [
+                "apiVersion",
+                "kind",
+                "metadata",
+                "spec"
+              ],
+              "properties": {
+                "apiVersion": {
+                  "type": "string",
+                  "description": "The versioned schema of this representation of an object.",
+                  "examples": [
+                    "stable.example.com/v1alpha1"
+                  ],
+                  "pattern": "^[a-z0-9]([a-z0-9-]*[a-z0-9])?(\\.[a-z0-9]([a-z0-9-]*[a-z0-9])*)*/v[0-9]+(alpha[0-9]+|beta[0-9]+)?$"
+                },
+                "customFields": {
+                  "type": [
+                    "object",
+                    "null"
+                  ],
+                  "description": "A map of custom fields that can be used to store additional information about this object.\n\nCustom fields are registered in the system as entities of kind `CustomField` (`custom-fields.mia-platform.eu`).\nThe key of each entry in this map corresponds to the `spec.key` of a `CustomField` entity, and the value should conform to the schema defined in the `spec.schema` field of that entity. However, clients should not give for granted the existence of the `CustomField` entities nor the validity of the data in this map, and should handle it accordingly.",
+                  "additionalProperties": {},
+                  "propertyNames": {
+                    "type": "string"
+                  }
+                },
+                "kind": {
+                  "type": "string",
+                  "description": "The type of this object.",
+                  "examples": [
+                    "DockerImage"
+                  ],
+                  "pattern": "^[a-zA-Z][a-zA-Z0-9]*$"
+                },
+                "metadata": {
+                  "$ref": "#/components/schemas/miaplatform.eu.v1alpha1.ObjectMetadata"
+                },
+                "resourceVersion": {
+                  "type": [
+                    "string",
+                    "null"
+                  ],
+                  "description": "An opaque value that represents the internal version of this object. Clients may not set this value and must treat it as opaque. Read-only.",
+                  "readOnly": true
+                },
+                "spec": {
+                  "type": "object",
+                  "description": "The state of this object."
+                }
+              },
+              "examples": [
+                {
+                  "apiVersion": "stable.example.com/v1",
+                  "kind": "DockerImage",
+                  "metadata": {
+                    "annotations": {
+                      "mia-platform.eu/version": "14.0.0"
+                    },
+                    "creationTimestamp": "2025-09-17T10:30:45Z",
+                    "description": "The Docker image of the Mia-Platform API Gateway",
+                    "labels": {
+                      "environment": "demo"
+                    },
+                    "links": [
+                      {
+                        "title": "Documentation",
+                        "url": "https://docs.mia-platform.eu/"
+                      }
+                    ],
+                    "name": "mia-api-gateway-100",
+                    "tags": [
+                      "api"
+                    ],
+                    "title": "Mia API Gateway",
+                    "uid": "550e8400-e29b-41d4-a716-446655440000",
+                    "updateTimestamp": "2025-09-17T10:30:45Z",
+                    "urn": "urn:mia-platform-catalog:stable.example.com:v1:DockerImage:mia-api-gateway-100"
+                  },
+                  "resourceVersion": "1",
+                  "spec": {
+                    "imageName": "api-gateway",
+                    "registry": "nexus.mia-platform.eu",
+                    "tag": "1.0.0"
+                  }
+                }
+              ]
+            },
+            "description": "The list of objects."
+          },
+          "kind": {
+            "type": "string",
+            "description": "The type of this object.",
+            "enum": [
+              "List"
+            ]
+          },
+          "metadata": {
+            "type": "object",
+            "description": "The standard list metadata.",
+            "properties": {
+              "continue": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "A token used for pagination.\n\nIt is returned if the client has set a limit on the number of items, and indicates that the server has more data available.\nThe value is opaque and may be used to issue another request to the endpoint that served this list to retrieve the next set of available objects."
+              }
+            },
+            "examples": [
+              {
+                "continue": "eyJ2IjoibWV0YS5rOHMuaW8"
+              }
+            ]
+          }
+        },
+        "examples": [
+          {
+            "apiVersion": "mia-platform.eu/v1alpha1",
+            "items": [
+              {
+                "apiVersion": "stable.example.com/v1",
+                "kind": "DockerImage",
+                "metadata": {
+                  "creationTimestamp": "2025-09-17T10:30:45Z",
+                  "name": "mia-api-gateway-100",
+                  "uid": "550e8400-e29b-41d4-a716-446655440000",
+                  "updateTimestamp": "2025-09-17T10:30:45Z",
+                  "urn": "urn:mia-platform-catalog:stable.example.com:v1:DockerImage:mia-api-gateway-100"
+                },
+                "resourceVersion": "1",
+                "spec": {
+                  "imageName": "api-gateway"
+                }
+              }
+            ],
+            "kind": "List",
+            "metadata": {
+              "continue": "eyJ2IjoibWV0YS5rOHMuaW8"
+            }
+          }
+        ]
+      },
+      "miaplatform.eu.v1alpha1.List_miaplatform.eu.v1alpha1.ItemTypeDefinition": {
+        "type": "object",
+        "description": "A collection of objects.",
+        "required": [
+          "apiVersion",
+          "kind",
+          "metadata",
+          "items"
+        ],
+        "properties": {
+          "apiVersion": {
+            "type": "string",
+            "description": "The versioned schema of this representation of an object.",
+            "enum": [
+              "mia-platform.eu/v1alpha1"
+            ]
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "description": "A resource that extends the Catalog API by defining a item type.",
+              "required": [
+                "apiVersion",
+                "kind",
+                "metadata",
+                "spec"
+              ],
+              "properties": {
+                "apiVersion": {
+                  "type": "string",
+                  "description": "The versioned schema of this representation of an object.",
+                  "enum": [
+                    "mia-platform.eu/v1alpha1"
+                  ]
+                },
+                "kind": {
+                  "type": "string",
+                  "description": "The type of this object.",
+                  "enum": [
+                    "ItemTypeDefinition"
+                  ]
+                },
+                "metadata": {
+                  "$ref": "#/components/schemas/miaplatform.eu.v1alpha1.ObjectMetadata"
+                },
+                "resourceVersion": {
+                  "type": [
+                    "string",
+                    "null"
+                  ],
+                  "description": "An opaque value that represents the internal version of this object. Clients may not set this value and must treat it as opaque.",
+                  "readOnly": true
+                },
+                "spec": {
+                  "oneOf": [
+                    {
+                      "type": "object",
+                      "required": [
+                        "group",
+                        "names",
+                        "scope",
+                        "versions"
+                      ],
+                      "properties": {
+                        "group": {
+                          "type": "string",
+                          "description": "The API group of the items of the defined type. The items of the defined type will be serve under `/{group}/*`. Must match the `metadata.name` of this object in the form `<spec.names.plural>.<spec.group>`.",
+                          "examples": [
+                            "stable.example.com"
+                          ],
+                          "maxLength": 253,
+                          "pattern": "^[a-z0-9]([a-z0-9-]*[a-z0-9])?(\\.[a-z0-9]([a-z0-9-]*[a-z0-9])?)*$"
+                        },
+                        "llmDescription": {
+                          "type": [
+                            "string",
+                            "null"
+                          ],
+                          "description": "A description of the item type for LLM-based tools. It is used to provide additional information about the item type to LLMs. It should be written in English and may contain markdown formatting."
+                        },
+                        "names": {
+                          "oneOf": [
+                            {
+                              "type": "object",
+                              "required": [
+                                "kind",
+                                "plural"
+                              ],
+                              "properties": {
+                                "displayPlural": {
+                                  "type": [
+                                    "string",
+                                    "null"
+                                  ],
+                                  "description": "The display name of the family of items. It is used only for display purposes. Defaults to the `spec.names.plural` of this object.",
+                                  "examples": [
+                                    "Docker Images"
+                                  ]
+                                },
+                                "displaySingular": {
+                                  "type": [
+                                    "string",
+                                    "null"
+                                  ],
+                                  "description": "The display name of the item type. It is used only for display purposes. Defaults to the `spec.names.singular` of this object.",
+                                  "examples": [
+                                    "Docker image"
+                                  ]
+                                },
+                                "kind": {
+                                  "type": "string",
+                                  "description": "The type of the item. It is normally CamelCase and singular. Items of the defined type will use this value as the `kind` attribute in API calls.",
+                                  "examples": [
+                                    "DockerImage"
+                                  ],
+                                  "readOnly": true,
+                                  "pattern": "^[a-zA-Z][a-zA-Z0-9]*$"
+                                },
+                                "plural": {
+                                  "type": "string",
+                                  "description": "The name of the family of items to serve. The items of the defined type will be served under `/{group}/{version}/items/{plural}/*`. Must match the `metadata.name` of this object in the form `<spec.names.plural>.<spec.group>`. Must be all lowercase.",
+                                  "examples": [
+                                    "docker-images"
+                                  ],
+                                  "readOnly": true,
+                                  "pattern": "^[a-z0-9]([a-z0-9-]*[a-z0-9])?$"
+                                },
+                                "singular": {
+                                  "type": [
+                                    "string",
+                                    "null"
+                                  ],
+                                  "description": "The singular name of the item type. It is used only for display purposes in technical environments (e.g., a CLI). Defaults to the `spec.names.kind` of this object.",
+                                  "examples": [
+                                    "docker-image"
+                                  ],
+                                  "pattern": "^[a-z0-9]([a-z0-9-]*[a-z0-9])?$"
+                                }
+                              }
+                            }
+                          ],
+                          "description": "The family and kind names for the items of the defined type."
+                        },
+                        "scope": {
+                          "oneOf": [
+                            {
+                              "type": "string",
+                              "enum": [
+                                "Organization"
+                              ]
+                            }
+                          ],
+                          "description": "The scope of the items of the defined type. Always equal to `Organization` for now, but may be extended in the future to allow for more granular scoping."
+                        },
+                        "versions": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "required": [
+                              "name",
+                              "schema",
+                              "served"
+                            ],
+                            "properties": {
+                              "deprecated": {
+                                "type": [
+                                  "boolean",
+                                  "null"
+                                ],
+                                "description": "A flag stating if this version of the API is deprecated. When set to `true`, API requests to this version receive a warning header in the server response."
+                              },
+                              "deprecationWarning": {
+                                "type": [
+                                  "string",
+                                  "null"
+                                ],
+                                "description": "An override for the default warning returned to API clients. May only be set when `deprecated` is true. The default warning indicates this version is deprecated and recommends use of the newest served version of equal or greater stability, if one exists."
+                              },
+                              "name": {
+                                "type": "string",
+                                "description": "The version name. It must start with a `v` followed by a number (the major version), then optionally the string `alpha` or `beta` and another number (the minor version). The items of the defined type are served under this version at `/{group}/{version}/*` if `spec.versions.served` is `true`. The name must be unique across all versions.",
+                                "examples": [
+                                  "v1alpha1"
+                                ],
+                                "pattern": "^v[0-9]+(alpha[0-9]+|beta[0-9]+)?$"
+                              },
+                              "schema": {
+                                "oneOf": [
+                                  {
+                                    "type": "object",
+                                    "required": [
+                                      "openAPIV31Schema"
+                                    ],
+                                    "properties": {
+                                      "openAPIV31Schema": {
+                                        "allOf": [
+                                          {
+                                            "type": "object",
+                                            "required": [
+                                              "type",
+                                              "properties"
+                                            ],
+                                            "properties": {
+                                              "properties": {
+                                                "type": "object",
+                                                "required": [
+                                                  "spec"
+                                                ],
+                                                "properties": {
+                                                  "metadata": {
+                                                    "type": "object",
+                                                    "description": "A validation on the `metadata.name` property to apply specific restrictions.",
+                                                    "required": [
+                                                      "type",
+                                                      "properties"
+                                                    ],
+                                                    "properties": {
+                                                      "properties": {
+                                                        "type": "object",
+                                                        "required": [
+                                                          "name"
+                                                        ],
+                                                        "properties": {
+                                                          "name": {
+                                                            "type": "object",
+                                                            "required": [
+                                                              "type"
+                                                            ],
+                                                            "properties": {
+                                                              "type": {
+                                                                "type": "string",
+                                                                "enum": [
+                                                                  "string"
+                                                                ]
+                                                              }
+                                                            },
+                                                            "additionalProperties": true
+                                                          }
+                                                        },
+                                                        "additionalProperties": false
+                                                      },
+                                                      "type": {
+                                                        "type": "string",
+                                                        "enum": [
+                                                          "object"
+                                                        ]
+                                                      }
+                                                    }
+                                                  },
+                                                  "spec": {
+                                                    "type": "object",
+                                                    "description": "A validation on the `spec` property of the items.",
+                                                    "required": [
+                                                      "type",
+                                                      "properties"
+                                                    ],
+                                                    "properties": {
+                                                      "properties": {
+                                                        "type": "object"
+                                                      },
+                                                      "type": {
+                                                        "type": "string",
+                                                        "enum": [
+                                                          "object"
+                                                        ]
+                                                      }
+                                                    }
+                                                  }
+                                                }
+                                              },
+                                              "type": {
+                                                "type": "string",
+                                                "enum": [
+                                                  "object"
+                                                ]
+                                              }
+                                            }
+                                          },
+                                          {
+                                            "type": "object",
+                                            "description": "mia-platform.eu.v1alpha1.SchemaObject.json"
+                                          }
+                                        ],
+                                        "description": "The validation schema for the items of the defined type. It must be used to validate the `spec` field of the items and may be used to validate the `metadata.name` field of the items. Based on the OpenAPI v3.1 schema object."
+                                      }
+                                    }
+                                  }
+                                ],
+                                "description": "The list of validation methods for the items of the defined type."
+                              },
+                              "selectableFields": {
+                                "type": [
+                                  "array",
+                                  "null"
+                                ],
+                                "items": {
+                                  "type": "object",
+                                  "required": [
+                                    "jsonPath"
+                                  ],
+                                  "properties": {
+                                    "jsonPath": {
+                                      "type": "string",
+                                      "description": "A simple JSON path which is evaluated against each item of the defined type to produce a field selector value. Only JSON paths without the array notation are allowed. It must point to a field yielding a primitive or homogeneous array of primitives value. Types with enum values and strings with formats are allowed."
+                                    }
+                                  },
+                                  "examples": [
+                                    {
+                                      "jsonPath": "spec.imageName"
+                                    }
+                                  ]
+                                },
+                                "description": "A list of paths to fields that may be used as field selectors."
+                              },
+                              "served": {
+                                "type": "boolean",
+                                "description": "A flag enabling/disabling this version from being served via REST APIs."
+                              }
+                            }
+                          },
+                          "description": "The list of all API versions of the items of the defined type."
+                        }
+                      }
+                    }
+                  ],
+                  "description": "The state of this object."
+                }
+              },
+              "examples": [
+                {
+                  "apiVersion": "mia-platform.eu/v1alpha1",
+                  "kind": "ItemTypeDefinition",
+                  "metadata": {
+                    "annotations": {
+                      "mia-platform.eu/version": "14.0.0"
+                    },
+                    "creationTimestamp": "2025-09-17T10:30:45Z",
+                    "description": "A single Docker image.",
+                    "labels": {
+                      "environment": "demo"
+                    },
+                    "links": [
+                      {
+                        "title": "Documentation",
+                        "url": "https://docs.mia-platform.eu/"
+                      }
+                    ],
+                    "name": "dockerimages.servicecatalog.example.com",
+                    "uid": "550e8400-e29b-41d4-a716-446655440000",
+                    "updateTimestamp": "2025-09-17T10:30:45Z",
+                    "urn": "urn:mia-platform-catalog:mia-platform.eu:v1alpha1:ItemTypeDefinition:dockerimages.servicecatalog.example.com"
+                  },
+                  "resourceVersion": "1",
+                  "spec": {
+                    "group": "servicecatalog.example.com",
+                    "names": {
+                      "displayPlural": "Docker Images",
+                      "kind": "DockerImage",
+                      "plural": "dockerimages"
+                    },
+                    "scope": "Organization",
+                    "versions": [
+                      {
+                        "name": "v1alpha1",
+                        "schema": {
+                          "openAPIV31Schema": {
+                            "properties": {
+                              "spec": {
+                                "properties": {
+                                  "imageName": {
+                                    "type": "string"
+                                  },
+                                  "registry": {
+                                    "default": "docker.io",
+                                    "type": "string"
+                                  },
+                                  "tag": {
+                                    "pattern": "(latest|[0-9]+.[0-9]+.[0-9]+(-[a-z]+[0-9]*)?|[0-9]+.[0-9]+.[0-9]+)$",
+                                    "type": "string"
+                                  }
+                                },
+                                "required": [
+                                  "imageName",
+                                  "tag"
+                                ],
+                                "type": "object"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        },
+                        "selectableFields": [
+                          {
+                            "jsonPath": "spec.imageName"
+                          }
+                        ],
+                        "served": true
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            "description": "The list of objects."
+          },
+          "kind": {
+            "type": "string",
+            "description": "The type of this object.",
+            "enum": [
+              "List"
+            ]
+          },
+          "metadata": {
+            "type": "object",
+            "description": "The standard list metadata.",
+            "properties": {
+              "continue": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "A token used for pagination.\n\nIt is returned if the client has set a limit on the number of items, and indicates that the server has more data available.\nThe value is opaque and may be used to issue another request to the endpoint that served this list to retrieve the next set of available objects."
+              }
+            },
+            "examples": [
+              {
+                "continue": "eyJ2IjoibWV0YS5rOHMuaW8"
+              }
+            ]
+          }
+        },
+        "examples": [
+          {
+            "apiVersion": "mia-platform.eu/v1alpha1",
+            "items": [
+              {
+                "apiVersion": "stable.example.com/v1",
+                "kind": "DockerImage",
+                "metadata": {
+                  "creationTimestamp": "2025-09-17T10:30:45Z",
+                  "name": "mia-api-gateway-100",
+                  "uid": "550e8400-e29b-41d4-a716-446655440000",
+                  "updateTimestamp": "2025-09-17T10:30:45Z",
+                  "urn": "urn:mia-platform-catalog:stable.example.com:v1:DockerImage:mia-api-gateway-100"
+                },
+                "resourceVersion": "1",
+                "spec": {
+                  "imageName": "api-gateway"
+                }
+              }
+            ],
+            "kind": "List",
+            "metadata": {
+              "continue": "eyJ2IjoibWV0YS5rOHMuaW8"
+            }
+          }
+        ]
+      },
+      "miaplatform.eu.v1alpha1.List_miaplatform.eu.v1alpha1.PartialObjectMetadata": {
+        "type": "object",
+        "description": "A collection of objects.",
+        "required": [
+          "apiVersion",
+          "kind",
+          "metadata",
+          "items"
+        ],
+        "properties": {
+          "apiVersion": {
+            "type": "string",
+            "description": "The versioned schema of this representation of an object.",
+            "enum": [
+              "mia-platform.eu/v1alpha1"
+            ]
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "description": "A metadata-only representation of a Catalog object.",
+              "required": [
+                "apiVersion",
+                "kind",
+                "metadata"
+              ],
+              "properties": {
+                "apiVersion": {
+                  "type": "string",
+                  "description": "The versioned schema of this representation of an object.",
+                  "examples": [
+                    "stable.example.com/v1alpha1"
+                  ],
+                  "pattern": "^[a-z0-9]([a-z0-9-]*[a-z0-9])?(\\.[a-z0-9]([a-z0-9-]*[a-z0-9])*)*/v[0-9]+(alpha[0-9]+|beta[0-9]+)?$"
+                },
+                "kind": {
+                  "type": "string",
+                  "description": "The type of this object.",
+                  "examples": [
+                    "DockerImage"
+                  ],
+                  "pattern": "^[a-zA-Z][a-zA-Z0-9]*$"
+                },
+                "metadata": {
+                  "$ref": "#/components/schemas/miaplatform.eu.v1alpha1.ObjectMetadata"
+                },
+                "resourceVersion": {
+                  "type": [
+                    "string",
+                    "null"
+                  ],
+                  "description": "An opaque value that represents the internal version of this object. Clients may not set this value and must treat it as opaque. Read-only.",
+                  "readOnly": true
+                }
+              },
+              "examples": [
+                {
+                  "apiVersion": "stable.example.com/v1",
+                  "kind": "DockerImage",
+                  "metadata": {
+                    "annotations": {
+                      "mia-platform.eu/version": "14.0.0"
+                    },
+                    "creationTimestamp": "2025-09-17T10:30:45Z",
+                    "description": "The Docker image of the Mia-Platform API Gateway",
+                    "labels": {
+                      "environment": "demo"
+                    },
+                    "links": [
+                      {
+                        "title": "Documentation",
+                        "url": "https://docs.mia-platform.eu/"
+                      }
+                    ],
+                    "name": "mia-api-gateway-100",
+                    "tags": [
+                      "api"
+                    ],
+                    "title": "Mia API Gateway",
+                    "uid": "550e8400-e29b-41d4-a716-446655440000",
+                    "updateTimestamp": "2025-09-17T10:30:45Z",
+                    "urn": "urn:mia-platform-catalog:stable.example.com:v1:DockerImage:mia-api-gateway-100"
+                  },
+                  "resourceVersion": "1"
+                }
+              ]
+            },
+            "description": "The list of objects."
+          },
+          "kind": {
+            "type": "string",
+            "description": "The type of this object.",
+            "enum": [
+              "List"
+            ]
+          },
+          "metadata": {
+            "type": "object",
+            "description": "The standard list metadata.",
+            "properties": {
+              "continue": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "A token used for pagination.\n\nIt is returned if the client has set a limit on the number of items, and indicates that the server has more data available.\nThe value is opaque and may be used to issue another request to the endpoint that served this list to retrieve the next set of available objects."
+              }
+            },
+            "examples": [
+              {
+                "continue": "eyJ2IjoibWV0YS5rOHMuaW8"
+              }
+            ]
+          }
+        },
+        "examples": [
+          {
+            "apiVersion": "mia-platform.eu/v1alpha1",
+            "items": [
+              {
+                "apiVersion": "stable.example.com/v1",
+                "kind": "DockerImage",
+                "metadata": {
+                  "creationTimestamp": "2025-09-17T10:30:45Z",
+                  "name": "mia-api-gateway-100",
+                  "uid": "550e8400-e29b-41d4-a716-446655440000",
+                  "updateTimestamp": "2025-09-17T10:30:45Z",
+                  "urn": "urn:mia-platform-catalog:stable.example.com:v1:DockerImage:mia-api-gateway-100"
+                },
+                "resourceVersion": "1",
+                "spec": {
+                  "imageName": "api-gateway"
+                }
+              }
+            ],
+            "kind": "List",
+            "metadata": {
+              "continue": "eyJ2IjoibWV0YS5rOHMuaW8"
+            }
+          }
+        ]
+      },
+      "miaplatform.eu.v1alpha1.ObjectMetadata": {
+        "type": "object",
+        "description": "The standard object metadata.",
+        "required": [
+          "name"
+        ],
+        "properties": {
+          "annotations": {
+            "type": "object",
+            "description": "An unstructured key value map that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying this object.",
+            "additionalProperties": {
+              "type": "string"
+            },
+            "propertyNames": {
+              "type": "string",
+              "pattern": "^([a-zA-Z0-9][a-zA-Z0-9.-]{0,253}[/])?([a-zA-Z0-9][a-zA-Z0-9.-]{0,63}[a-zA-Z0-9]?)$"
+            },
+            "examples": [
+              {
+                "image-registry": "https://hub.docker.com/",
+                "mia-platform.eu/version": "14.0.0"
+              }
+            ]
+          },
+          "creationTimestamp": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "date-time",
+            "description": "The server time when this object was created. Clients may not set this value. It is represented in ISO 8601 form and is in UTC.",
+            "examples": [
+              "2025-09-17T10:30:45Z"
+            ],
+            "readOnly": true
+          },
+          "description": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "A brief description of this object."
+          },
+          "labels": {
+            "type": "object",
+            "description": "A map of string keys and values that can be used to organize and categorize (scope and select) objects.",
+            "additionalProperties": {
+              "type": "string",
+              "maxLength": 63,
+              "pattern": "^([a-zA-Z0-9]([a-zA-Z0-9._-]{0,61}[a-zA-Z0-9])?|)$"
+            },
+            "propertyNames": {
+              "type": "string",
+              "pattern": "^([a-zA-Z0-9][a-zA-Z0-9.-]{0,253}[/])?([a-zA-Z0-9][a-zA-Z0-9.-]{0,63}[a-zA-Z0-9]?)$"
+            },
+            "examples": [
+              {
+                "environment": "dev",
+                "mia-platform.eu/tenant": "my-company",
+                "track": ""
+              }
+            ]
+          },
+          "links": {
+            "type": [
+              "array",
+              "null"
+            ],
+            "items": {
+              "type": "object",
+              "required": [
+                "url"
+              ],
+              "properties": {
+                "title": {
+                  "type": [
+                    "string",
+                    "null"
+                  ],
+                  "description": "A display name for the link.",
+                  "minLength": 1
+                },
+                "url": {
+                  "type": "string",
+                  "format": "uri",
+                  "description": "The URL in standard URI format."
+                }
+              },
+              "examples": [
+                {
+                  "title": "Mia-Platform",
+                  "url": "https://mia-platform.eu/"
+                },
+                {
+                  "url": "https://example.com"
+                }
+              ]
+            },
+            "description": "A list of external hyperlinks."
+          },
+          "name": {
+            "type": "string",
+            "description": "The name of this object. It must be unique within object of the same type. It is represented in RFC 1035 DNS subdomain format.",
+            "examples": [
+              "api-gateway",
+              "dockerimages.stable.example.com"
+            ],
+            "readOnly": true,
+            "maxLength": 253,
+            "minLength": 1,
+            "pattern": "^[a-z0-9]([a-z0-9.-]*[a-z0-9])?$"
+          },
+          "tags": {
+            "type": [
+              "array",
+              "null"
+            ],
+            "items": {
+              "type": "string",
+              "examples": [
+                "ai",
+                "env-production"
+              ],
+              "maxLength": 63,
+              "minLength": 1,
+              "pattern": "^[a-z0-9:+#]+(-[a-z0-9:+#]+)*$"
+            },
+            "description": "A list of single-valued strings."
+          },
+          "title": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "A display name of this object. It is to be presented in user interfaces instead of the `metadata.name` of this object, when available.",
+            "examples": [
+              "Plugin",
+              "Custom Workload",
+              "AI Agent"
+            ],
+            "minLength": 1
+          },
+          "uid": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "uuid",
+            "description": "The unique in time and space identifier for this object. Clients may not set this value. It is represented in RFC 4122 form.",
+            "examples": [
+              "550e8400-e29b-41d4-a716-446655440000"
+            ],
+            "readOnly": true
+          },
+          "updateTimestamp": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "date-time",
+            "description": "The server time when this object was last updated. Clients may not set this value. It is represented in ISO 8601 form and is in UTC.",
+            "examples": [
+              "2025-09-17T10:30:45Z"
+            ]
+          },
+          "urn": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "The Uniform Resource Name (URN) of this object. It is represented in the format `urn:mia-platform-catalog:<group>:<version>:<kind>:<name>`. Clients may not set this value.",
+            "examples": [
+              "urn:mia-platform-catalog:stable.example.com:v1:DockerImage:my-resource"
+            ],
+            "readOnly": true,
+            "pattern": "^urn:mia-platform-catalog:([a-z0-9](?:[a-z0-9-]*[a-z0-9])?(?:.[a-z0-9](?:[a-z0-9-]*[a-z0-9])?)*):(v[0-9]+(?:alpha[0-9]+|beta[0-9]+)?):([a-zA-Z][a-zA-Z0-9]*):([a-z0-9](?:[a-z0-9.-]*[a-z0-9])?)$"
+          }
+        }
+      },
+      "miaplatform.eu.v1alpha1.PartialObjectMetadata": {
+        "type": "object",
+        "description": "A metadata-only representation of a Catalog object.",
+        "required": [
+          "apiVersion",
+          "kind",
+          "metadata"
+        ],
+        "properties": {
+          "apiVersion": {
+            "type": "string",
+            "description": "The versioned schema of this representation of an object.",
+            "examples": [
+              "stable.example.com/v1alpha1"
+            ],
+            "pattern": "^[a-z0-9]([a-z0-9-]*[a-z0-9])?(\\.[a-z0-9]([a-z0-9-]*[a-z0-9])*)*/v[0-9]+(alpha[0-9]+|beta[0-9]+)?$"
+          },
+          "kind": {
+            "type": "string",
+            "description": "The type of this object.",
+            "examples": [
+              "DockerImage"
+            ],
+            "pattern": "^[a-zA-Z][a-zA-Z0-9]*$"
+          },
+          "metadata": {
+            "$ref": "#/components/schemas/miaplatform.eu.v1alpha1.ObjectMetadata"
+          },
+          "resourceVersion": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "An opaque value that represents the internal version of this object. Clients may not set this value and must treat it as opaque. Read-only.",
+            "readOnly": true
+          }
+        },
+        "examples": [
+          {
+            "apiVersion": "stable.example.com/v1",
+            "kind": "DockerImage",
+            "metadata": {
+              "annotations": {
+                "mia-platform.eu/version": "14.0.0"
+              },
+              "creationTimestamp": "2025-09-17T10:30:45Z",
+              "description": "The Docker image of the Mia-Platform API Gateway",
+              "labels": {
+                "environment": "demo"
+              },
+              "links": [
+                {
+                  "title": "Documentation",
+                  "url": "https://docs.mia-platform.eu/"
+                }
+              ],
+              "name": "mia-api-gateway-100",
+              "tags": [
+                "api"
+              ],
+              "title": "Mia API Gateway",
+              "uid": "550e8400-e29b-41d4-a716-446655440000",
+              "updateTimestamp": "2025-09-17T10:30:45Z",
+              "urn": "urn:mia-platform-catalog:stable.example.com:v1:DockerImage:mia-api-gateway-100"
+            },
+            "resourceVersion": "1"
+          }
+        ]
+      },
+      "miaplatform.eu.v1alpha1.StatusResponse": {
+        "type": "object",
+        "required": [
+          "status",
+          "error",
+          "message"
+        ],
+        "properties": {
+          "error": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "status": {
+            "type": "integer",
+            "format": "int32",
+            "minimum": 0
+          }
+        }
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "item-type-definitions",
+      "description": "Item Type Definitions APIs"
+    },
+    {
+      "name": "items",
+      "description": "Items APIs"
+    },
+    {
+      "name": "organizations",
+      "description": "Organization provisioning APIs"
+    }
+  ]
+}

@@ -10,6 +10,10 @@ The Catalog exposes a query language to express filters that go beyond the simpl
 
 This page describes the grammar of the query language and gives concrete examples.
 
+:::tip
+The full JSON schema describing the Catalog query language is [available to download](https://cdn.mia-platform.eu/catalog/v1alpha1/mia-platform.eu.v1alpha1.CatalogQuery.json).
+:::
+
 ## Where it is used
 
 - **`rawq` API parameter** on any `list` endpoint, for ad-hoc queries.

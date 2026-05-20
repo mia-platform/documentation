@@ -12,6 +12,8 @@ To support evolution and extension, the Catalog implements API groups and multip
 
 :::tip
 You can view and interact with the API of your Catalog with the Mia-Platform API Portal. The API Portal for your Catalog installation is exposed under `<your-catalog-host>/documentations/api-portal/`.
+
+Otherwise, you can download the OpenAPI 3.1 specification in JSON format <a download target="_blank" href="/docs_files_to_download/context-catalog/context-catalog.openapi.json">here</a>.
 :::
 
 ## MCP server

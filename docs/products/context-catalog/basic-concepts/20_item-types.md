@@ -10,6 +10,10 @@ Each item in the Context Catalog has a **type**. Items of the same type are a **
 
 Mia-Platform provides a set of default ITDs that enable the catalog to function correctly out of the box. Users and external systems can extend the catalog's functionalities with custom ITDs that introduce new kinds of items.
 
+:::tip
+The full JSON schema describing a Catalog Item Type Definition is [available to download](https://cdn.mia-platform.eu/catalog/v1alpha1/mia-platform.eu.v1alpha1.ItemTypeDefinition.json).
+:::
+
 ## How a type is identified
 
 The type of an item is the combination of its `apiVersion` and `kind` root-level fields. The family of an item is used in API paths and matches the `plural` name of its ITD.
