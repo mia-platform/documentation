@@ -8,6 +8,8 @@ sidebar_label: Catalog Administration
 
 The **Catalog Administration** is the web interface that lets operators and platform users browse the Context Catalog, inspect the entities it tracks, and oversee compliance activities. It is the human-facing complement to the [Catalog API](./api-interactions.md).
 
+![Catalog Administration Home Page](img/catalog_administration_home_page.png)
+
 ## What you can do
 
 - **Browse items.** Navigate the catalog by item type, filter by labels and fields, and inspect the full manifest of any item.
@@ -35,15 +37,19 @@ The Catalog Administration offers a full set of operations on items across two m
 
 ### Browse items
 
+![Catalog Administration Items](img/catalog_administration_items.png)
+
 Items are presented in a paginated table that loads more entries as you scroll. From the list you can:
 
-- **Search** items by name or title using the search bar.
-- **Filter** items by kind, name, labels, title, and tags using the filter panel.
-- **Sort** items by name or creation date.
+- **Search** items by name using the search bar.
+- **Filter** items by type, name, labels, and tags using the filter panel.
+- **Sort** items by name.
 - **Customize columns** to show or hide the Name, Tag, Owner, and Source columns.
 - **Refresh** the list to pull the latest data.
 
 ### Create an item
+
+![Catalog Administration Items Creation Dialog](img/catalog_administration_items_create.png)
 
 Click **Create item** to open a guided three-step wizard:
 
@@ -53,14 +59,16 @@ Click **Create item** to open a guided three-step wizard:
 
 ### View an item
 
+![Catalog Administration Item Overview](img/catalog_administration_item_overview.png)
+
 Clicking an item opens its detail page, which is organized into tabs:
 
 | Tab | Content |
 | :-- | :------ |
 | **Overview** | High-level metadata (title, name, description, kind, owner, tags, linked connector) and a summary of the item's relationships. |
-| **Specifications** | The item's `spec` field, viewable in JSON or interactive tree format. You can edit the spec inline directly from this tab. |
-| **Extras** | Manage annotations, labels, and links attached to the item (add, edit, and delete each). |
 | **Relationships** | The full set of relationships to and from the item, viewable as a table or a visual graph. You can add, edit, and delete relationships from here. |
+| **Specifications** | The item's `spec` field, viewable in JSON or interactive tree format. You can edit the spec inline directly from this tab. |
+| **Metadata** | Manage annotations, labels, and links attached to the item (add, edit, and delete each). |
 | **Connector items** | *(Connector-kind items only)* Items ingested into the catalog through this connector. |
 
 ### Edit an item
@@ -69,6 +77,7 @@ From the detail page you can also:
 
 - **Edit metadata** — update the title, description, and owner (a User or Team). For Connector-kind items, you can also update the icon.
 - **Edit tags** — add or remove tags.
+- **Edit followers** — add or remove user following this item.
 - **View manifest** — inspect the full raw manifest of the item in a modal, and download it as a JSON file.
 - **Delete** — permanently remove the item from the catalog.
 
@@ -78,22 +87,26 @@ A **view** is a saved filter that scopes the catalog to a subset of items. Each 
 
 ### Create a view
 
+![Catalog Administration View Creation dialog](img/catalog_administration_view_create.png)
+
 Click **Create new view** at the bottom of the Items section in the sidebar. You will need to provide:
 
 - **Display name** — the label shown in the sidebar navigation.
-- **View ID** — a unique identifier for the view, auto-generated (slugified) from the display name and editable.
+- **View ID** — a unique identifier for the view, auto-generated from the display name and editable.
 - **Filter conditions** — one or more conditions that define which items the view includes:
-  - **Fields**: API version, Type (kind), Name, Title, Tags, or Label.
+  - **Fields**: API version, Type, Name, Title, Tags, or Label.
   - **Operators**: equals, not equals, matches, exists (for tags: contains / not contains).
   - **Combinator**: match **All conditions** (AND) or **Any condition** (OR).
 
 ### Browse a view
 
+![Catalog Administration View items list](img/catalog_administration_view_details.png)
+
 Opening a view shows items that satisfy its filter. The same browsing capabilities available on the full catalog list are also available within a view:
 
-- Search items by name or title.
-- Apply additional filters by kind, name, labels, title, and tags.
-- Sort by name or creation date.
+- Search items by name.
+- Apply additional filters by type, name, labels, title, and tags.
+- Sort by name.
 - Customize visible columns (Name, Tag, Owner, Source).
 - Refresh to pull the latest data.
 
@@ -113,6 +126,8 @@ Open the actions menu on the view page and click **Delete view**. This removes t
 
 #### Browse evaluation criteria
 
+![Catalog Administration Evaluation Criteria](img/catalog_administration_evaluationcriteria.png)
+
 The evaluation criteria list shows all rules with their condition expression and target item types. From the list you can:
 
 - **Search** by title or name.
@@ -121,6 +136,8 @@ The evaluation criteria list shows all rules with their condition expression and
 - **Customize columns** to show or hide Name, Condition, and Target item types.
 
 #### Create an evaluation criterion
+
+![Catalog Administration Evaluation Criteria Creation dialog](img/catalog_administration_evaluationcriteria_create.png)
 
 Click **Create evaluation criteria** to open the creation form. You need to provide:
 
@@ -133,6 +150,8 @@ Click **Create evaluation criteria** to open the creation form. You need to prov
 - **Target item types** (optional) — restrict rule evaluation to a specific set of item types, either including or excluding them.
 
 #### View an evaluation criterion
+
+![Catalog Administration Evaluation Criteria details](img/catalog_administration_evaluationcriteria_details.png)
 
 Clicking a rule opens its detail page, which has three sections:
 
@@ -160,6 +179,8 @@ A **scorecard** aggregates one or more Evaluation Criteria into a levelled compl
 
 #### Browse scorecards
 
+![Catalog Administration Scorecards](img/catalog_administration_scorecards.png)
+
 The scorecards page can be displayed in two modes, switchable from the toolbar:
 
 - **Grid** (default) — card view showing each scorecard's median level, items evaluated, and items without a level.
@@ -173,6 +194,8 @@ In both modes you can:
 
 #### Create a scorecard
 
+![Catalog Administration Scorecard Creation](img/catalog_administration_scorecards_create.png)
+
 Click **Create scorecard** to open the creation wizard. On the first step, choose whether to start **from scratch** or from a template. On the second step, fill in:
 
 - **Title** and **name** (auto-slugified from the title, editable).
@@ -184,6 +207,8 @@ Click **Create scorecard** to open the creation wizard. On the first step, choos
 - **Scope** (optional) — restrict which items the scorecard runs against, using a view reference or a raw query.
 
 #### View a scorecard
+
+![Catalog Administration Scorecard Details](img/catalog_administration_scorecards_view.png)
 
 Clicking a scorecard opens its detail page, organized into five sections:
 
@@ -221,6 +246,8 @@ A **campaign** is a time-boxed compliance drive: it bundles a set of goals (eval
 
 #### Browse campaigns
 
+![Catalog Administration Campaigns](img/catalog_administration_campaigns.png)
+
 The campaigns page supports two display modes, switchable from the toolbar:
 
 - **Grid** (default) — card view showing each campaign's overall progress percentage, items evaluated, and time left.
@@ -234,6 +261,8 @@ In both modes you can:
 
 #### Create a campaign
 
+![Catalog Administration Campaign Creation](img/catalog_administration_campaigns_create.png)
+
 Click **Create campaign** to open the creation wizard. On the first step, choose how to source the campaign's goals:
 
 - **From a scorecard** — pick an existing scorecard and select either a target level (all criteria from that level upward are imported) or individual evaluation criteria from the scorecard.
@@ -244,10 +273,12 @@ On the second step, fill in:
 - **Title** and **name** (auto-slugified from the title, editable).
 - **Description** and **tags** (optional).
 - **Start date** and **end date** — the campaign's time window.
+- **Items** (optional) — restrict which items the campaign evaluates, using a view reference or a raw query.
 - **Goals** — the evaluation criteria imported from the scorecard or built from scratch.
-- **Scope** (optional) — restrict which items the campaign evaluates, using a view reference or a raw query.
 
 #### View a campaign
+
+![Catalog Administration Campaign Details](img/catalog_administration_campaign_view.png)
 
 Clicking a campaign opens its detail page, organized into three sections:
 
@@ -281,6 +312,8 @@ From the actions menu, click **Delete campaign** to permanently remove it.
 
 #### Browse item types
 
+![Catalog Administration Item Type Definitions](img/catalog_administration_itds.png)
+
 The item types list shows all registered ITDs. From the list you can:
 
 - **Search** by name or title.
@@ -290,12 +323,16 @@ The item types list shows all registered ITDs. From the list you can:
 
 #### Create an item type
 
+![Catalog Administration Item Type Definition Creation](img/catalog_administration_itds_create.png)
+
 Click **Create item type** to open a two-step wizard:
 
 1. **Specifications** — define the API group, kind name, plural name, and the OpenAPI v3.1 JSON schema for the first version, plus optional selectable fields.
 2. **Metadata** — add a description, labels, annotations, and links.
 
 #### View an item type
+
+![Catalog Administration Item Type Definition Details](img/catalog_administration_itds_view.png)
 
 Clicking an ITD opens its detail page, organized into four tabs:
 
@@ -310,7 +347,7 @@ Clicking an ITD opens its detail page, organized into four tabs:
 
 From the detail page you can:
 
-- **Edit metadata** — update the description.
+- **Edit metadata** — add or remove annotations, labels, and links.
 - **Edit tags** — add or remove tags.
 - **Edit names** — update kind, plural, and display plural (non-system ITDs only).
 - **Manage versions** — create a new version or edit an existing one's schema, selectable fields, served status, and deprecation settings.
@@ -328,26 +365,33 @@ From the actions menu on the detail page, click **Delete** (disabled for system 
 
 #### Browse relationship types
 
+![Catalog Administration Relationship Types](img/catalog_administration_relationshiptypes.png)
+
 The relationship types list shows all registered types. From the list you can:
 
 - **Search** by name or title.
 - **Filter** by name, labels, and tags.
-- **Sort** by name, description, or creation date.
+- **Sort** by name, or creation date.
 - **Customize columns** to show or hide Name, Tag, Description, and Creation date.
 - **Refresh** the list.
 
 #### Create a relationship type
 
+![Catalog Administration Relationship Type Creation](img/catalog_administration_relationshiptypes_create.png)
+
 Click **Create relationship type** to open a modal. Provide:
 
-- **Name** — unique identifier.
-- **Title** — optional human-readable display name.
-- **Source-to-target label** — the label describing the relationship direction from source to target (e.g., "depends on").
-- **Target-to-source label** — the label for the reverse direction (e.g., "is depended on by").
+- **Display Name** — the human-readable name
+- **Relationship ID** — a unique identifier
+- **Source to Target Name** — the label describing the relationship direction from source to target (e.g., "depends on").
+- **Target to Source Name** — the label for the reverse direction (e.g., "is depended on by").
+- **Description** — a longer description of the semantic of the relationship type.
 
 #### View a relationship type
 
 Clicking a relationship type navigates to its item detail page (the relationship type is stored as a catalog item), where you can inspect its metadata and specification.
+
+![Catalog Administration Relationship Type Details](img/catalog_administration_relationshiptypes_view.png)
 
 ---
 
@@ -357,9 +401,11 @@ Clicking a relationship type navigates to its item detail page (the relationship
 
 #### Browse connectors
 
+![Catalog Administration Connectors](img/catalog_administration_connectors.png)
+
 The connectors page supports two display modes, switchable from the toolbar:
 
-- **Grid** (default) — card view showing each connector's icon, provider, categories, and description.
+- **Grid** (default) — card view showing each connector's icon, provider, categories, description, and last update.
 - **List** — table view with columns for Name, Categories, Description, and Last update.
 
 In both modes you can:
@@ -371,6 +417,8 @@ In both modes you can:
 
 #### Create a connector
 
+![Catalog Administration Connector Creation](img/catalog_administration_connectors_create.png)
+
 Click **Add connector** to open a modal. Provide:
 
 - **Name** — unique identifier (lowercase alphanumeric and hyphens).
@@ -380,6 +428,8 @@ Click **Add connector** to open a modal. Provide:
 - **Provider** and **Category** (optional) — used for filtering and display.
 
 #### View a connector
+
+![Catalog Administration Connector Details](img/catalog_administration_connectors_view.png)
 
 Clicking a connector opens its catalog item detail page, where you can inspect all connector metadata, its ingested items, specification, and relationships.
 
@@ -391,15 +441,19 @@ Clicking a connector opens its catalog item detail page, where you can inspect a
 
 #### Browse users
 
+![Catalog Administration Users](img/catalog_administration_users.png)
+
 The users list is a paginated table that loads more entries as you scroll. From the list you can:
 
 - **Search** by name or email.
-- **Sort** by name or creation date.
+- **Sort** by name, email address or creation date.
 - **Refresh** the list.
 
 Columns shown: Name, Email, Creation date.
 
 #### Create a user
+
+![Catalog Administration User Creation](img/catalog_administration_users_create.png)
 
 Click **Create user** to open a modal. Provide:
 
@@ -407,6 +461,8 @@ Click **Create user** to open a modal. Provide:
 - **Full name** (optional) — used as the display title.
 
 #### View a user
+
+![Catalog Administration User Details](img/catalog_administration_users_view.png)
 
 Clicking a user navigates to its catalog item detail page, where you can see the user's metadata, edit it, manage tags, annotations, labels, and links, and view all relationships (including team memberships and items owned by the user).
 
@@ -418,6 +474,8 @@ Clicking a user navigates to its catalog item detail page, where you can see the
 
 #### Browse teams
 
+![Catalog Administration Teams](img/catalog_administration_teams.png)
+
 The teams list is a paginated table that loads more entries as you scroll. From the list you can:
 
 - **Search** by name or title.
@@ -428,6 +486,8 @@ Columns shown: Name, Members, Description, Creation date.
 
 #### Create a team
 
+![Catalog Administration Team Creation](img/catalog_administration_teams_create.png)
+
 Click **Create team** to open a modal. Provide:
 
 - **Title** (optional) — human-readable display name.
@@ -436,6 +496,8 @@ Click **Create team** to open a modal. Provide:
 - **Members** — search for existing users by name or email and add them to the team.
 
 #### View a team
+
+![Catalog Administration Team Details](img/catalog_administration_teams_view.png)
 
 Clicking a team navigates to its catalog item detail page, where you can see the team's metadata, manage its member list (add or remove users), edit metadata, tags, and relationships.
 

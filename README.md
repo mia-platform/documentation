@@ -35,7 +35,7 @@ We believe in the open source community, we think it is important to give back a
 
 The documentation site is built using [Docusaurus 2](https://v2.docusaurus.io/); to develop locally you need:
 
-- Node 16+
+- Node 24+
 
 To setup node, please if possible try to use [nvm][nvm], so you can manage
 multiple versions easily.
