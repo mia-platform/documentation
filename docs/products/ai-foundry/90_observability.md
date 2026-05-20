@@ -14,7 +14,7 @@ AI Foundry is in **beta**. We are actively shaping the product, so things may ch
 
 The **Observability** page gives you real-time visibility into how your agents and playbooks are performing in production. It surfaces aggregate usage statistics, charts, and a searchable session list, making it easier to diagnose problems, monitor costs, and understand usage patterns across your AI workloads.
 
-![AI Foundry Observabiliyt](img/ai_foundry_observability.png)
+![AI Foundry Observability](img/ai_foundry_observability.png)
 
 ## Getting there
 

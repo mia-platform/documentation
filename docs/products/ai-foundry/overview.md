@@ -14,6 +14,8 @@ AI Foundry is in **beta**. We are actively shaping the product, so things may ch
 
 **AI Foundry** is a web-based management and orchestration platform for building, managing, and running AI-powered workflows. It provides a unified interface to compose and test complex agentic applications without writing code directly, targeting enterprises that need to govern AI assets across teams.
 
+![AI Foundry Home Page](img/ai_foundry_welcome.png)
+
 ## Key Concepts
 
 AI Foundry organizes AI assets as catalog resources, each sharing common metadata (name, title, description, tags, labels, and timestamps). The platform manages eight resource types:
@@ -33,6 +35,8 @@ AI Foundry organizes AI assets as catalog resources, each sharing common metadat
 
 ### AI Playground
 
+![AI Foundry Playground](img/ai_foundry_playground.png)
+
 The **AI Playground** provides a live chat interface for testing agents in real time. Select a playbook, configure per-agent model overrides, and chat with the configured agentic flow. The playground streams responses using Server-Sent Events (SSE), visualises tool calls and "thinking" steps inline, and lets you enable or disable individual tools and skills on the fly. It also supports slash-prompt auto-completion from catalog prompts associated with the selected playbook.
 
 ### Agent Management
@@ -40,6 +44,8 @@ The **AI Playground** provides a live chat interface for testing agents in real 
 Create and configure agents by selecting an LLM model, writing system instructions in Markdown, and attaching tools and skills. Tools are shown grouped by category in the picker, including tools sourced from registered MCP servers. Agents can be created through a guided form or by editing the underlying JSON spec directly.
 
 ### Playbook Builder
+
+![AI Foundry Playbook Builder](img/ai_foundry_playbook_builder.png)
 
 The **Playbook Builder** is a three-step wizard for designing multi-step agentic workflows:
 
@@ -50,6 +56,8 @@ The **Playbook Builder** is a three-step wizard for designing multi-step agentic
 Playbooks can also be authored as raw JSON using the built-in Monaco editor.
 
 ### Observability
+
+![AI Foundry Observability](img/ai_foundry_observability.png)
 
 The **Observability** page provides real-time monitoring of agent sessions.
 
