@@ -14,6 +14,8 @@ Flow is in **beta**. We are actively shaping the product, so things may change a
 
 Flow is a web application: you access it from the browser and start building right away. This page walks you through the first session, from opening the app to deploying your first AI-generated project.
 
+![Mia Flow Home Page](img/mia_flow_welcome.png)
+
 ## What you need
 
 - Access to a Flow instance (URL and credentials are provided by your administrator).
@@ -31,15 +33,14 @@ You do not need to install any tool locally: the assistant, the live preview, an
 
 The main areas of the application are:
 
-| Area | What it is for |
-|------|----------------|
-| **Home** | Quick-start omnibar and recent conversations. |
-| **Chat** | Conversational interface with the AI assistant. |
-| **Canvas** | Code editor and live preview for the project tied to a conversation. |
-| **Catalog** | Reusable AI building blocks (agents, skills, prompts, specs, playbooks). |
-| **Connectors** | Authenticate to the external systems Flow can act on. |
-| **Memories** | Browse, rename, and reopen past conversations. |
-| **Settings** | Defaults, advanced options, and preferences. |
+| Area           | What it is for                                                           |
+| -------------- | ------------------------------------------------------------------------ |
+| **Home**       | Quick-start omnibar and recent conversations.                            |
+| **Chat**       | Conversational interface with the AI assistant.                          |
+| **Canvas**     | Code editor and live preview for the project tied to a conversation.     |
+| **Connectors** | Authenticate to the external systems Flow can act on.                    |
+| **Memories**   | Browse, rename, and reopen past conversations.                           |
+| **Settings**   | Defaults, advanced options, and preferences.                             |
 
 ## 3. (Optional) Connect external systems
 
@@ -51,9 +52,17 @@ Before your first conversation, it is worth linking the providers you intend to 
 
 You can come back to this page at any time to add, remove, or refresh a connection.
 
-## 4. Start a new conversation
+## 4a. Start a new conversation
 
-1. Click **New Conversation** in the sidebar (or use the Home omnibar).
+1. Click **Chat** in the sidebar.
+2. (Optional) Pick a **Playbook** to pre-configure the assistant for a specific use case.
+3. Type what you want to build. A good first prompt:
+
+> "Write the requirements for a Todo List app. Tasks should have a title, priority, and due date, and I want to be able to mark them complete, edit, and delete them."
+
+## 4b. Start a canvas session
+
+1. Click **Code** in the sidebar.
 2. Give it a name, for example `My Todo App`.
 3. (Optional) Pick a **Playbook** to pre-configure the assistant for a specific use case.
 4. Type what you want to build. A good first prompt:

@@ -14,6 +14,8 @@ Flow is in **beta**. We are actively shaping the product, so things may change a
 
 When a chat produces code, that code lives in the **Canvas**: the multi-pane workspace on the right side of the application. The Canvas combines a file tree, a code editor, a logs pane, and a live preview of the generated project. This page describes how generated code is organised and what you can do with it.
 
+![Mia Flow Code](../img/mia_flow_code.png)
+
 ## The Canvas
 
 The Canvas shows the project's source files alongside an interactive preview. Common actions:
@@ -24,6 +26,8 @@ The Canvas shows the project's source files alongside an interactive preview. Co
 - Switch between Editor, Preview, and Logs tabs.
 
 Generated code is owned by a **project** stored in Flow. Multiple conversations can target the same project, and any conversation can be reopened later to continue working on the same files.
+
+![Mia Flow Canvas](../img/mia_flow_canvas.png)
 
 ## Live preview
 
@@ -36,6 +40,8 @@ Every project gets a live preview that updates as the assistant generates or mod
 You can stop, restart, or refresh the preview from the Canvas at any time. The **Logs** tab streams build output and runtime messages, which is the first place to look if something is not working.
 
 Flow supports a wide range of frontend and backend frameworks. The right runtime is selected automatically based on the project files, so you do not have to configure it.
+
+![Mia Flow Canvas Preview](../img/mia_flow_canvas_preview.png)
 
 ## Pushing code to Mia-Platform
 

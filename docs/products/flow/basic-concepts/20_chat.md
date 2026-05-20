@@ -14,6 +14,8 @@ Flow is in **beta**. We are actively shaping the product, so things may change a
 
 The Chat page is the main entry point of Flow. It is where you describe what you want to build, ask questions about an existing project, and trigger tool calls against the systems you have connected. Each chat is a persistent **conversation** with its own session, memory, and (optionally) a generated project attached to it.
 
+![Mia Flow Chat](../img/mia_flow_chat.png)
+
 ## Anatomy of a conversation
 
 A conversation is made of:
@@ -37,16 +39,16 @@ AI:  [calls the GitHub tool]
      2. …
 ```
 
-Common rendering artifacts (single newlines between paragraphs, duplicated paragraphs, missed paragraph breaks after sentence-ending punctuation) are cleaned up automatically before the text reaches the chat window. Markdown tables, code blocks, and reasoning blocks emitted by heavy-thinking models are handled correctly: internal chain-of-thought is hidden by default and never leaks into the response.
+Common rendering artifacts (single newlines between paragraphs, duplicated paragraphs, missed paragraph breaks after sentence-ending punctuation) are cleaned up automatically before the text reaches the chat window. Markdown tables, code blocks, and reasoning blocks emitted by heavy-thinking models are formatted appropriately. Internal chain-of-thought is hidden by default.
 
 ## File and document attachments
 
 The Chat input and the Home page omnibar accept attachments in three categories. Flow extracts them to text before sending them to the model:
 
-| Category | Extensions |
-|----------|-----------|
-| Images | `.png`, `.jpg`, `.jpeg`, `.gif`, `.webp` |
-| Documents | `.pdf`, `.docx`, `.xlsx`, `.pptx` |
+| Category    | Extensions                                                                   |
+| ----------- | ---------------------------------------------------------------------------- |
+| Images      | `.png`, `.jpg`, `.jpeg`, `.gif`, `.webp`                                     |
+| Documents   | `.pdf`, `.docx`, `.xlsx`, `.pptx`                                            |
 | Code / text | `.js`, `.ts`, `.py`, `.go`, `.rs`, `.md`, `.json`, `.yaml`, `.sql`, `.sh`, … |
 
 Office documents are converted to readable text automatically, so the assistant can reason over slides, spreadsheets, and PDFs without any preparation on your side. The omnibar also supports drag-and-drop with visual feedback.

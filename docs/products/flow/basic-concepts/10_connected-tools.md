@@ -16,6 +16,8 @@ Flow's AI assistant becomes useful in real projects only when it can read from a
 
 This page describes the connectors that ship with Flow, how authentication works inside the application, and how to add custom MCP servers.
 
+![Mia Flow Connectors](../img/mia_flow_connectors.png)
+
 ## What is exposed
 
 Flow connects to a set of MCP servers and makes their tools available to the assistant. Each server contributes a category of tools:
