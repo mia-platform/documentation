@@ -26,13 +26,13 @@ const config = {
       additionalLanguages: ['rego', 'java', 'csharp', 'kotlin', 'nginx', 'docker', 'ini'],
     },
     image: "img/documentation-link-preview.png",
-    algolia: {
-      placeholder: "Search for terms, features and more...",
-      apiKey: "602a752c6342891e2488bea38b0d9292",
-      appId: "58NJDUVYVW",
-      indexName: "mia-platform-docs",
-      contextualSearch: true,
-    },
+    // algolia: {
+    //   placeholder: "Search for terms, features and more...",
+    //   apiKey: "602a752c6342891e2488bea38b0d9292",
+    //   appId: "58NJDUVYVW",
+    //   indexName: "mia-platform-docs",
+    //   contextualSearch: true,
+    // },
     colorMode: {
       // "light" | "dark"
       defaultMode: "light",

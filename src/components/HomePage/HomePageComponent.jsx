@@ -112,7 +112,7 @@ const HomepageHeader = ({data}) => {
                     </div>
                     <p className="hero-subtitle">{data.subtitle}</p>
                     <p className="hero-description">{data.description}</p>
-                    <div className="hero-search-bar-container">
+                    {/* <div className="hero-search-bar-container">
                         <div className="hero-search-bar-wrapper">
                             <SearchBar
                                 avoidKeyboardShortcuts
@@ -127,7 +127,7 @@ const HomepageHeader = ({data}) => {
                                 }}
                             />
                         </div>
-                    </div>
+                    </div> */}
                 </div>
             </div>
         </header>
