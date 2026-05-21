@@ -45,5 +45,32 @@
         "Fixed an issue in the Deploy History where switching the status filter back to _All Status_ after selecting a specific status triggered a 400 error and caused the history list to disappear."
       ]
     }
+  },
+  {
+    "title": "Data Catalog",
+    "icon": "data-catalog",
+    "defaultOpen": true,
+    "type": "versions",
+    "items": {
+      "newFeatures": [],
+      "improvements": [
+        {
+          "title": "CSV Import supports both `,` and `;` delimiters in Column Lineage",
+          "description": [
+            "When importing column lineage relations via CSV for a Virtual Job, the frontend now **supports** whether the file uses `,` or `;` as delimiter.",
+            "This feature is supported starting from v0.5.2 of data-catalog-frontend service.",
+            "For more information about the [Data Catalog Application](/docs/15.0.0/products/data_catalog/overview_data_catalog) and the latest service versions, check out the [compatibility matrix](/docs/15.0.0/products/data_catalog/data_catalog_compatibility_matrix)."
+          ]
+        }
+      ],
+      "bugFixes": [
+        {
+          "title": "When patching columnLineage of jobs should escape `.` and `$`",
+          "description": [
+            "This fix is included in version `v0.5.1` of the _Open Lineage_ service."
+          ]
+        }
+      ]
+    }
   }
 ]
