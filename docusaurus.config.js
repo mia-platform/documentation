@@ -164,6 +164,17 @@ const config = {
         {
           type: 'custom-CustomVersionsDropdown',
           position: 'right',
+          dropdownItemsBefore: [
+            {
+              type: 'html',
+              value: '<b style="margin-left: 8px; font-size: 14px;">Preview</b>',
+            },
+            { label: '15.0.0', href: 'https://v15.docs.mia-platform.eu' },
+            {
+              type: 'html',
+              value: '<hr style="margin: 4px 0;">',
+            }
+          ],
           dropdownItemsAfter: [
             {
               type: 'html',

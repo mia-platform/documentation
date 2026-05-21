@@ -82,6 +82,7 @@ export default function CustomVersionsDropdown({
   docsPluginId,
   dropdownActiveClassDisabled,
   dropdownItemsAfter,
+  dropdownItemsBefore,
   archivedVersions,
   versions: configs,
   ...props
@@ -121,7 +122,7 @@ export default function CustomVersionsDropdown({
     }
   }
 
-  const items = [...versionItems.map(versionItemToLink()), ...dropdownItemsAfter]
+  const items = [...dropdownItemsBefore, ...versionItems.map(versionItemToLink()), ...dropdownItemsAfter]
 
   // Mobile dropdown is handled a bit differently
   const dropdownLabel =
