@@ -317,9 +317,9 @@ const config = {
         docs: {
           sidebarPath: './sidebars.js',
           editUrl: createEditUrl,
-          includeCurrentVersion: process.env.NODE_ENV !== "production",
+          includeCurrentVersion: true,
           lastVersion: versionsMap.current,
-          versions: process.env.NODE_ENV !== "production" ? { current: { label: "Canary" } } : {},
+          versions: { current: { label: "15.0.0" } },
           async sidebarItemsGenerator({
             isCategoryIndex: defaultCategoryIndexMatcher,
             defaultSidebarItemsGenerator,

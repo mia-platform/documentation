@@ -98,18 +98,19 @@ export default function CustomVersionsDropdown({
     return ({version, label}, index) => {
       const targetDoc = getVersionTargetDoc(version, activeDocContext)
 
-      let itemLabel = label
+      let itemLabel = '15.0.0'
+      
 
-      // If we are in development mode, the first version of the list is the canary version
-      const isCanary = process.env.NODE_ENV !== "production" && index === 0
+      // // If we are in development mode, the first version of the list is the canary version
+      // const isCanary = process.env.NODE_ENV !== "production" && index === 0
 
-      if (isCanary) {
-        itemLabel = <CanaryTag label={'15.x.x'} />
-      } else if (versionsMap.current === version.name) {
-        itemLabel = <ProdTag label={label} />
-      } else if (versionsMap.next === version.name) {
-        itemLabel = <NextTag label={label} />
-      } 
+      // if (isCanary) {
+      //   itemLabel = <CanaryTag label={'15.x.x'} />
+      // } else if (versionsMap.current === version.name) {
+      //   itemLabel = <ProdTag label={label} />
+      // } else if (versionsMap.next === version.name) {
+      //   itemLabel = <NextTag label={label} />
+      // } 
 
       return {
         label: itemLabel,
