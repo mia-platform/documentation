@@ -50,7 +50,7 @@
     "@docusaurus/module-type-aliases": "^3.10.1",
     "@docusaurus/types": "3.10.1",
     "@ianvs/prettier-plugin-sort-imports": "4.7.1",
-    "@inquirer/core": "^11.1.9",
+    "@inquirer/core": "^11.1.10",
     "@inquirer/prompts": "^8.4.3",
     "@types/semver": "^7",
     "eslint": "^9.39.2",
