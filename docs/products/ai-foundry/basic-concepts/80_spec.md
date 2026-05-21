@@ -16,7 +16,7 @@ A **Spec Template** is a catalog resource that stores a structured or free-form 
 
 The command-driven authoring mode supports **Spec-Driven Development**: a workflow in which AI agents move through structured phases — from requirement definition and clarification through planning, task breakdown, and implementation. A Spec Template bound to a command supplies the template content injected when that phase is invoked by an agent.
 
-TODO Add screenshot
+![AI Foundry Spec Templates](../img/ai_foundry_spec_templates.png)
 
 ## When to use a Spec Template
 
