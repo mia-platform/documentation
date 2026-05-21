@@ -2076,6 +2076,10 @@
     {
       "id": "products/context-catalog/catalog-administration",
       "type": "doc"
+    },
+    {
+      "id": "products/context-catalog/tutorial",
+      "type": "doc"
     }
   ],
   "miaFlow": [
