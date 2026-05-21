@@ -2118,6 +2118,10 @@
           "dirName": "products/ai-foundry/basic-concepts"
         }
       ]
+    },
+    {
+      "id": "products/ai-foundry/tutorial",
+      "type": "doc"
     }
   ],
   "fastDataV2": [
