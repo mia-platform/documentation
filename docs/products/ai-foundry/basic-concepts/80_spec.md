@@ -1,7 +1,7 @@
 ---
 id: spec
-title: Spec
-sidebar_label: Spec
+title: Spec Templates
+sidebar_label: Spec Templates
 ---
 
 :::caution Beta
@@ -10,15 +10,17 @@ AI Foundry is in **beta**. We are actively shaping the product, so things may ch
 
 :::
 
-# Spec
+# Spec Templates
 
-A **Spec** is a catalog resource that stores a structured or free-form specification document. Specs are the way to inject rich, reference-grade knowledge into a [Playbook](./60_playbook.md): think API specifications, data schemas, architecture decision records, domain dictionaries, or any other document that an agent needs to consult at runtime.
+A **Spec Template** is a catalog resource that stores a structured or free-form specification document.
 
-Where a [Prompt](./30_prompt.md) carries short, focused instruction text, a Spec is designed for larger, more authoritative reference material.
+The command-driven authoring mode supports **Spec-Driven Development**: a workflow in which AI agents move through structured phases — from requirement definition and clarification through planning, task breakdown, and implementation. A Spec Template bound to a command supplies the template content injected when that phase is invoked by an agent.
 
-## When to use a Spec
+TODO Add screenshot
 
-Specs are appropriate when you need an agent to have access to:
+## When to use a Spec Template
+
+Spec Templates are appropriate when you need an agent to have access to:
 
 - **API contracts** (OpenAPI / AsyncAPI documents, GraphQL schemas) so the agent can construct valid requests.
 - **Domain glossaries** that define the precise meaning of business terms the agent must reason about.
@@ -26,136 +28,33 @@ Specs are appropriate when you need an agent to have access to:
 - **Data schemas** that describe the structure of inputs or outputs the agent processes.
 - **Architecture references** used by agents that assist with software design or code generation.
 
-## Manifest
+## Spec Template commands
 
-Spec resources can be authored in two modes: a **command-driven** mode for spec templates tied to a predefined spec command, or a **free-form** mode for arbitrary reference documents.
+Spec-Driven Development organises work into a sequence of structured phases, each invoked by a slash command. When a Spec is used as a template, its `command` field binds it to one of these phases so the template content is injected when that command is triggered.
 
-### Command-driven spec template
+The following commands are supported:
 
-```yaml
-apiVersion: new-ai.mia-platform.eu/v1alpha1
-kind: Spec
-metadata:
-  name: project-specification
-  title: Project Specification
-  description: System specification template for new projects.
-  tags:
-    - spec
-    - template
-spec:
-  command: /spec.specify         # One of the predefined spec commands
-  template: |
-    ## Project Overview
-    {{project_name}}: {{project_description}}
+| Command              | Purpose                                                       |
+| -------------------- | ------------------------------------------------------------- |
+| `/spec.constitution` | Establish project principles and coding guidelines            |
+| `/spec.specify`      | Write a detailed feature specification                        |
+| `/spec.clarify`      | Generate targeted clarifying questions before writing a spec  |
+| `/spec.plan`         | Produce a technical architecture plan from a spec             |
+| `/spec.tasks`        | Break a plan into an ordered, atomic task list                |
+| `/spec.analyze`      | Analyze existing code for patterns and anti-patterns          |
+| `/spec.checklist`    | Run a pre-build readiness check on a spec or plan             |
+| `/spec.implement`    | Implement a specific task from the task list                  |
+| `/spec.memory`       | Update the persistent project memory with finalised decisions |
 
-    ## Goals
-    {{goals}}
-
-    ## Constraints
-    {{constraints}}
-```
-
-### Free-form reference document
-
-```yaml
-apiVersion: new-ai.mia-platform.eu/v1alpha1
-kind: Spec
-metadata:
-  name: payments-api-contract
-  title: Payments API Contract
-  description: OpenAPI 3.1 specification for the internal Payments service.
-  tags:
-    - api
-    - payments
-    - openapi
-spec:
-  content: |
-    openapi: 3.1.0
-    info:
-      title: Payments API
-      version: 1.0.0
-    paths:
-      /payments:
-        post:
-          summary: Initiate a payment
-          ...
-```
-
-A free-form policy document:
-
-```yaml
-apiVersion: new-ai.mia-platform.eu/v1alpha1
-kind: Spec
-metadata:
-  name: data-retention-policy
-  title: Data Retention Policy
-  description: Corporate data retention and deletion rules.
-  tags:
-    - compliance
-    - policy
-spec:
-  definition: |
-    ## Data Retention Policy
-
-    ### PII Data
-    All personally identifiable information must be deleted within 90 days
-    of a user account closure request.
-
-    ### Logs
-    Application logs are retained for 12 months. Security audit logs are
-    retained for 7 years.
-```
-
-## Fields reference
-
-### `metadata`
+## Spec Template reference
 
 | Field         | Required | Description                                                                                    |
 | ------------- | -------- | ---------------------------------------------------------------------------------------------- |
-| `name`        | Yes      | Unique identifier. Referenced in `Playbook.spec.specs` and `Playbook.spec.flow.nodes[].specs`. |
-| `title`       | Yes      | Display name shown in the UI.                                                                  |
-| `description` | Yes      | Short description of what the document covers.                                                 |
-| `tags`        | No       | Free-form tags for filtering and discovery.                                                    |
-| `labels`      | No       | Key/value pairs for API-level filtering.                                                       |
-
-### `spec`
-
-Spec resources support two authoring modes. Use `command` + `template` for predefined spec templates, or use the free-form content fields for arbitrary reference documents.
-
-#### Command-driven fields
-
-| Field      | Required | Description                                                                                                            |
-| ---------- | -------- | ---------------------------------------------------------------------------------------------------------------------- |
-| `command`  | No       | A predefined spec command (see [Spec commands](#spec-commands) below). When set, `template` should also be populated.  |
-| `template` | No       | The Markdown content of the spec template associated with `command`. Rendered with a preview/source toggle in the UI.  |
-
-#### Free-form content fields
-
-The runtime resolves free-form content in priority order (`content` → `definition` → `description`) and uses the first non-empty value it finds.
-
-| Field         | Priority    | Description                                                                                                                                         |
-| ------------- | ----------- | --------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `content`     | 1 (highest) | Primary content field. Recommended for most documents.                                                                                              |
-| `definition`  | 2           | Alternative content field. Useful when `content` is semantically reserved for something else.                                                       |
-| `description` | 3 (lowest)  | Fallback. Generally avoid using the spec-level `description` for primary content; prefer the `metadata.description` for the catalog entry summary. |
-
-Additional arbitrary fields are allowed in `spec`, making it easy to store structured data (e.g. the full body of a YAML or JSON document) in any field name that suits the use case.
-
-## Spec commands
-
-When a Spec is used as a template, its `command` field selects a predefined spec operation. The following commands are supported:
-
-| Command              | Purpose                                                              |
-| -------------------- | -------------------------------------------------------------------- |
-| `/spec.constitution` | Define the system constitution and guiding principles.               |
-| `/spec.specify`      | Create a detailed specification for a feature or system.             |
-| `/spec.clarify`      | Clarify ambiguous requirements or resolve open questions.            |
-| `/spec.plan`         | Produce a high-level plan for implementing a feature or change.      |
-| `/spec.tasks`        | Break down a plan into concrete, actionable tasks.                   |
-| `/spec.analyze`      | Analyze an existing system, codebase, or problem space.              |
-| `/spec.checklist`    | Create a verification or review checklist.                           |
-| `/spec.implement`    | Provide a step-by-step implementation guide.                         |
-| `/spec.memory`       | Store persistent context or memory for the agent across sessions.    |
+| `Title`       | Yes      | Display name shown in the UI.                                                                  |
+| `Name`        | Yes      | Unique identifier. Referenced in `Playbook.spec.specs` and `Playbook.spec.flow.nodes[].specs`. |
+| `Description` | Yes      | Short description of what the document covers.                                                 |
+| `Command`     | Yes      | The command identifier that triggers this spec template.                                       |
+| `Template`    | Yes      | Markdown template produced or followed by the command.                                         |
 
 ## Specs vs. Prompts
 

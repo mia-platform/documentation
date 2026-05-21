@@ -16,66 +16,19 @@ An **Agent** is the central execution unit in AI Foundry. It combines a large la
 
 ![AI Foundry Agents](../img/ai_foundry_agents.png)
 
-## How an agent works
+## Agent reference
 
-At runtime the AI Foundry backend forwards a conversation to the agent's configured LLM. Along with the conversation it sends:
-
-1. The agent's **system instruction**: a Markdown document that shapes the LLM's persona and constraints.
-2. The schemas of the **tools** the agent is allowed to call.
-3. Any **skills** the agent has been assigned, which it can invoke as sub-routines.
-
-The LLM decides autonomously whether to respond directly or to call a tool/skill. If it calls a tool the platform executes it, feeds the result back into the conversation, and the LLM produces a final answer. This loop is sometimes called a **ReAct** (Reason + Act) cycle.
-
-## Manifest
-
-```yaml
-apiVersion: new-ai.mia-platform.eu/v1alpha1
-kind: Agent
-metadata:
-  name: support-agent          # RFC 1035 subdomain name, immutable after creation
-  title: Support Agent         # Human-readable display name
-  description: Answers customer support questions using the knowledge base.
-  tags:
-    - support
-    - customer-facing
-spec:
-  model: gpt-4o                # Name of a Model resource (required)
-  runtime_name: support-agent  # Unique runtime identifier (required)
-  instruction: |               # System prompt, Markdown (required)
-    You are a helpful support agent. Answer only questions related to our product.
-    When you cannot find an answer, apologise and escalate.
-  model_arguments:             # Optional: passed verbatim to the LLM provider
-    temperature: 0.2
-    max_tokens: 2048
-  tools:                       # Optional: names of Tool resources
-    - web-search
-    - ticket-lookup
-  skills:                      # Optional: names of Skill resources
-    - summarise-thread
-```
-
-## Fields reference
-
-### `metadata`
-
-| Field         | Required | Description                                                                                                                 |
-| ------------- | -------- | --------------------------------------------------------------------------------------------------------------------------- |
-| `name`        | Yes      | Unique identifier within the organization. Lowercase alphanumeric and hyphens, max 63 characters. Immutable after creation. |
-| `title`       | Yes      | Display name shown in the UI.                                                                                               |
-| `description` | Yes      | Short human-readable description of what the agent does.                                                                    |
-| `tags`        | No       | Free-form tags for search and filtering.                                                                                    |
-| `labels`      | No       | Key/value pairs for programmatic filtering via the Catalog API.                                                             |
-
-### `spec`
-
-| Field             | Required | Description                                                                                                 |
-| ----------------- | -------- | ----------------------------------------------------------------------------------------------------------- |
-| `model`           | Yes      | The `name` of a [Model](./20_model.md) resource that provides the LLM configuration.                        |
-| `runtime_name`    | Yes      | A unique identifier used by the runtime to route requests to this agent. Typically matches `metadata.name`. |
-| `instruction`     | Yes      | The system prompt sent to the LLM on every invocation. Supports Markdown.                                   |
-| `model_arguments` | No       | A free-form JSON object passed through to the LLM provider (e.g. `temperature`, `max_tokens`).              |
-| `tools`           | No       | List of [Tool](./40_tool.md) resource names the agent is allowed to call.                                   |
-| `skills`          | No       | List of [Skill](./50_skill.md) resource names the agent can invoke.                                         |
+| Field             | Required | Description                                                                                                                 |
+| ----------------- | -------- | --------------------------------------------------------------------------------------------------------------------------- |
+| `Title`           | Yes      | Display name shown in the UI.                                                                                               |
+| `Name`            | Yes      | Unique identifier within the organization. Lowercase alphanumeric and hyphens, max 63 characters. Immutable after creation. |
+| `Description`     | Yes      | Short human-readable description of what the agent does.                                                                    |
+| `Runtime Name`    | Yes      | A unique identifier used by the runtime to route requests to this agent. Typically matches `metadata.name`.                 |
+| `Model`           | Yes      | The `name` of a [Model](./20_model.md) resource that provides the LLM configuration.                                        |
+| `Instruction`     | Yes      | The system prompt sent to the LLM on every invocation. Supports Markdown.                                                   |
+| `Tools`           | No       | List of [Tool](./40_tool.md) resource names the agent is allowed to call.                                                   |
+| `Skills`          | No       | List of [Skill](./50_skill.md) resource names the agent can invoke.                                                         |
+| `Model Arguments` | No       | A free-form JSON object passed through to the LLM provider (e.g. `temperature`, `max_tokens`).                              |
 
 ## Designing effective agents
 

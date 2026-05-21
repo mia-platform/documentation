@@ -2114,11 +2114,6 @@
           "dirName": "products/ai-foundry/basic-concepts"
         }
       ]
-    },
-    {
-      "id": "products/ai-foundry/observability",
-      "label": "Observability",
-      "type": "doc"
     }
   ],
   "fastDataV2": [

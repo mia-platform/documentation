@@ -14,57 +14,21 @@ AI Foundry is in **beta**. We are actively shaping the product, so things may ch
 
 A **Tool** is a catalog resource that describes a discrete, executable capability that an [Agent](./10_agent.md) can invoke during a conversation. Tools are how agents extend their abilities beyond pure language generation: they can call REST APIs, query databases, run code, search knowledge bases, or interact with any external system.
 
+Tools exposed by [MCP Servers](./70_mcp-server.md) are surfaced automatically inside the tool browser and can be attached to agents the same way as manually registered tools.
+
 ![AI Foundry Tools](../img/ai_foundry_tools.png)
 
-## Tools in LLM-based systems
+## Tool reference
 
-Modern LLMs support a mechanism commonly called **function calling** (or **tool use**). The model receives a set of tool definitions alongside the conversation. Each definition contains a name, a description, and a JSON Schema for the expected parameters. When the model decides a tool should be called it emits a structured tool-call request, which the platform executes and feeds back as a new message. The model then incorporates the result into its response.
-
-AI Foundry acts as the intermediary: it reads the list of tool names from `Agent.spec.tools`, resolves them to Tool resources, assembles their schemas into the tool-call payload, and routes execution results back to the LLM.
-
-:::note
-Tools exposed by [MCP Servers](./70_mcp-server.md) are surfaced automatically inside the tool browser and can be attached to agents the same way as manually registered tools.
-:::
-
-## Manifest
-
-A Tool resource is intentionally lightweight. The behavioral definition (input/output schema, implementation) lives in the runtime system or in the associated MCP server. The catalog entry provides the metadata needed for discovery and governance.
-
-```yaml
-apiVersion: new-ai.mia-platform.eu/v1alpha1
-kind: Tool
-metadata:
-  name: web-search             # Name referenced in Agent.spec.tools
-  title: Web Search
-  description: |
-    Performs a web search and returns the top results.
-    Input: a query string. Output: a list of result snippets with URLs.
-  tags:
-    - search
-    - external
-```
-
-## Fields reference
-
-### `metadata`
-
-| Field         | Required | Description                                                                                                                                                                 |
-| ------------- | -------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `name`        | Yes      | Unique identifier. Referenced verbatim in `Agent.spec.tools`.                                                                                                               |
-| `title`       | Yes      | Display name shown in the UI and in the agent tool picker.                                                                                                                  |
-| `description` | Yes      | Plain-language description of what the tool does, what inputs it expects, and what it returns. This description is part of what helps the LLM decide when to call the tool. |
-| `tags`        | No       | Free-form tags for filtering.                                                                                                                                               |
-| `labels`      | No       | Key/value pairs for API-level filtering.                                                                                                                                    |
-
-## `spec`
-
-| Field         | Required | Description                                                                                                                   |
-| ------------- | -------- | ----------------------------------------------------------------------------------------------------------------------------- |
-| `type`        | Yes      | Tool source: `built-in` for tools implemented inside the AI Foundry backend, or `mcp-server` for tools exposed by an MCP server. |
-| `runtimeName` | Yes      | The identifier the runtime uses to invoke the tool (e.g. the function name registered in the backend). Must not contain spaces. |
-| `enabled`     | Yes      | When `false`, the tool is hidden from the agent creation picker and unavailable at runtime. Defaults to `true`.               |
-| `category`    | No       | Optional grouping label. Tools with the same `category` are shown together in the agent creation form's grouped picker.       |
-| `mcpServer`   | No       | For `mcp-server` type only. An object with a `name` field containing the name of the [MCP Server](./70_mcp-server.md) resource that exposes this tool. |
+| Field          | Required | Description                                                                                                                                                                 |
+| -------------- | -------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `Title`        | Yes      | Display name shown in the UI and in the agent tool picker.                                                                                                                  |
+| `Name`         | Yes      | Unique identifier. Referenced verbatim in `Agent.spec.tools`.                                                                                                               |
+| `Description`  | Yes      | Plain-language description of what the tool does, what inputs it expects, and what it returns. This description is part of what helps the LLM decide when to call the tool. |
+| `Type`         | Yes      | Tool source: `built-in` for tools implemented inside the AI Foundry backend, or `mcp-server` for tools exposed by an MCP server.                                            |
+| `Runtime Name` | Yes      | The identifier the runtime uses to invoke the tool (e.g. the function name registered in the backend). Must not contain spaces.                                             |
+| `Category`     | No       | Optional grouping label. Tools with the same `category` are shown together in the agent creation form's grouped picker.                                                     |
+| `Enabled`      | Yes      | When `false`, the tool is hidden from the agent creation picker and unavailable at runtime. Defaults to `true`.                                                             |
 
 ## Writing good tool descriptions
 
@@ -79,9 +43,10 @@ Avoid vague names or descriptions: the LLM uses them to reason about when a tool
 
 ## Attaching tools to agents
 
-Tools are attached to an agent by listing their `name` values in `Agent.spec.tools`. The AI Foundry UI provides a multi-select dropdown populated from all registered Tool resources.
+The AI Foundry UI provides a multi-select dropdown populated from all registered Tool resources to attach them to an agent .
 
-In the **AI Playground** you can toggle individual tools on or off for a live session without modifying the agent manifest. This is useful for debugging unexpected tool calls.
+In the **AI Playground** you can toggle individual tools on or off for a live session without modifying the agent manifest.
+This is useful for debugging unexpected tool calls.
 
 ## Tools vs. Skills
 
