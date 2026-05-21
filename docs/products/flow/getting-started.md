@@ -12,7 +12,8 @@ Flow is in **beta**. We are actively shaping the product, so things may change a
 
 # Getting started
 
-Flow is a web application: you access it from the browser and start building right away. This page walks you through the first session, from opening the app to deploying your first AI-generated project.
+Flow is an enterprise-grade AI coding assistant that helps you build, modernize, and deploy applications faster.
+This page walks you through the first session, from opening the app to deploying your first AI-generated project.
 
 ![Mia Flow Home Page](img/mia_flow_welcome.png)
 
@@ -24,12 +25,7 @@ Flow is a web application: you access it from the browser and start building rig
 
 You do not need to install any tool locally: the assistant, the live preview, and the catalog all run inside Flow.
 
-## 1. Sign in
-
-1. Open the Flow URL.
-2. Sign in with Mia-Platform credentials.
-
-## 2. Get familiar with the layout
+## 1. Get familiar with the layout
 
 The main areas of the application are:
 
@@ -42,7 +38,7 @@ The main areas of the application are:
 | **Memories**   | Browse, rename, and reopen past conversations.                           |
 | **Settings**   | Defaults, advanced options, and preferences.                             |
 
-## 3. (Optional) Connect external systems
+## 2. (Optional) Connect external systems
 
 Before your first conversation, it is worth linking the providers you intend to use:
 
@@ -52,26 +48,25 @@ Before your first conversation, it is worth linking the providers you intend to 
 
 You can come back to this page at any time to add, remove, or refresh a connection.
 
-## 4a. Start a new conversation
+## 3a. Start a chat session
 
 1. Click **Chat** in the sidebar.
 2. (Optional) Pick a **Playbook** to pre-configure the assistant for a specific use case.
 3. Type what you want to build. A good first prompt:
 
-> "Write the requirements for a Todo List app. Tasks should have a title, priority, and due date, and I want to be able to mark them complete, edit, and delete them."
+> Write the requirements for a Todo List app. Tasks should have a title, priority, and due date, and I want to be able to mark them complete, edit, and delete them.
 
-## 4b. Start a canvas session
+## 3b. Start a coding session
 
 1. Click **Code** in the sidebar.
-2. Give it a name, for example `My Todo App`.
 3. (Optional) Pick a **Playbook** to pre-configure the assistant for a specific use case.
 4. Type what you want to build. A good first prompt:
 
-> "Create a full-stack Todo List app with a React frontend, a Node.js/Express backend, and MongoDB persistence. Tasks should have a title, priority, and due date, and I want to be able to mark them complete, edit, and delete them."
+> Create a Todo List app. Tasks should have a title, priority, and due date, and I want to be able to mark them complete, edit, and delete them.
 
 Flow generates the code, opens the Canvas with the project files, and starts a live preview automatically. Each follow-up message refines the same project: the assistant keeps the conversation context and updates the preview in place.
 
-## 5. Iterate on the result
+## 4. Iterate on the result
 
 Use natural-language follow-ups to evolve the project:
 
@@ -79,9 +74,9 @@ Use natural-language follow-ups to evolve the project:
 - "Change the priority badges: low = grey, medium = orange, high = red."
 - "Generate unit tests for the task service using Jest."
 
-The Canvas reflects every change in real time. You can also open any file in the editor and make manual edits.
+The Canvas reflects every change in real time. You can also open any file in the editor, make manual edits and push your code to an external repository (requires external connectors like GitHub or GitLab).
 
-## 6. Deploy to Mia-Platform
+## 5. Deploy to Mia-Platform
 
 When you are happy with the result:
 

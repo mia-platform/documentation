@@ -21,28 +21,26 @@ Every building block listed below is a [AI Foundry](../../ai-foundry/overview.md
 | Type | What it is | AI Foundry reference |
 |------|------------|----------------------|
 | **Agents** | A model + a tool selection + system instructions. The unit that actually answers your messages. | [Agent](../../ai-foundry/basic-concepts/10_agent.md) |
-| **Skills** | Reusable, named operations an agent can perform. Distinct from the tools exposed by [Connectors](./10_connected-tools.md). | [Skill](../../ai-foundry/basic-concepts/50_skill.md) |
-| **Specs** | SpecKit command templates: structured commands the agent can apply to a project. | [Spec](../../ai-foundry/basic-concepts/80_spec.md) |
+| **Models** | LLM models available to agents. | [Model](../../ai-foundry/basic-concepts/20_model.md) |
 | **Prompts** | Reusable system prompts that shape the agent's tone, role, or workflow. | [Prompt](../../ai-foundry/basic-concepts/30_prompt.md) |
-| **AI Playbook Library** | Curated bundles of all of the above, applied as a single unit. | [Playbook](../../ai-foundry/basic-concepts/60_playbook.md) |
+| **Skills** | Reusable, named operations an agent can perform. Distinct from the tools exposed by [Connectors](./10_connected-tools.md). | [Skill](../../ai-foundry/basic-concepts/50_skill.md) |
+| **Spec Templates** | SpecKit command templates: structured commands the agent can apply to a project. | [Spec Templates](../../ai-foundry/basic-concepts/80_spec.md) |
+| **AI Playbooks** | Curated bundles of all of the above, applied as a single unit. | [Playbook](../../ai-foundry/basic-concepts/60_playbook.md) |
 
 ## Agents
 
-An agent has three things: a model, a set of instructions, and the tools it is allowed to use. Agents are defined in [AI Foundry](../../ai-foundry/basic-concepts/10_agent.md); from Flow you pick which agent answers your conversation.
+An agent has several components:
 
-Different agents are useful for different jobs: for example, a fast agent for quick edits and a slower reasoning agent for complex planning.
-
-## Skills
-
+- a model with advanced configurations (e.g. temperature);
+- a set of instructions;
+- one or more skills;
+- one or more tools.
+ 
 Skills are reusable, named operations that agents can perform. They are defined in [AI Foundry](../../ai-foundry/basic-concepts/50_skill.md) and are distinct from the **tools** that come from [Connectors](./10_connected-tools.md) (which expose external systems like GitHub or Jira).
 
-A skill bundles a piece of logic together with the prompt that tells the agent how and when to use it. Any agent that includes a skill in its configuration can invoke it during a conversation.
+Agents are defined in [AI Foundry](../../ai-foundry/basic-concepts/10_agent.md); from Flow you pick which agent answers your conversation.
 
-## SpecKit commands
-
-**SpecKit** lets agents run named commands against a project. Each command is a Catalog item of type **Spec** that bundles a prompt template and the steps the agent should follow.
-
-When you invoke a command in chat, Flow looks it up in the Catalog and runs the matching spec against the active project.
+Different agents are useful for different jobs: for example, a fast agent for quick edits and a slower reasoning agent for complex planning.
 
 ## AI Playbooks
 
@@ -55,6 +53,8 @@ AI Playbook
   ├── Specs   (SpecKit templates)
   └── Prompts (system instructions)
 ```
+
+A **Spec Template** lets agents run named commands against a project. When you invoke a command in chat, Flow looks it up in the Catalog and runs the matching spec against the active project.
 
 When a playbook is activated:
 

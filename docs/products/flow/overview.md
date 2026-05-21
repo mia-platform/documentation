@@ -26,7 +26,6 @@ Flow brings together three things developers normally juggle separately:
 - **Preview the result instantly.** Each generation is rendered in a live preview inside the Canvas, so you can interact with the application as it grows.
 - **Reach external systems through MCP.** The assistant can call tools exposed by GitHub, GitLab, Azure DevOps, Atlassian, Grafana, Google Drive, Mia-Platform itself, and any custom MCP server you register.
 - **Deploy to Mia-Platform.** A connected Mia-Platform project becomes the target for the generated code: pushing from Flow triggers the project's CI/CD pipeline.
-- **Reuse work across teams.** Skills, agents, prompts, specs, and playbooks are stored as catalog items that can be shared, versioned, and combined into playbooks.
 
 ## The main areas of the application
 
@@ -35,7 +34,7 @@ Flow brings together three things developers normally juggle separately:
 | **Home** | Quick-start omnibar and recent conversations. |
 | **Chat** | Conversational interface with the AI assistant. |
 | **Canvas** | Code editor and live preview for the project tied to a conversation. |
-| **Catalog** | Manage reusable agents, skills, prompts, specs, and playbooks. |
+| **AI Foundry** | Manage reusable agents, skills, prompts, specs, and playbooks. |
 | **Connectors** | Authenticate to the external systems Flow can act on. |
 | **Memories** | Browse, rename, and reopen past conversations. |
 | **Settings** | Defaults, advanced options, and preferences. |

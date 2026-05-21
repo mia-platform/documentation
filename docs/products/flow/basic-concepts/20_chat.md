@@ -12,7 +12,7 @@ Flow is in **beta**. We are actively shaping the product, so things may change a
 
 # Chat
 
-The Chat page is the main entry point of Flow. It is where you describe what you want to build, ask questions about an existing project, and trigger tool calls against the systems you have connected. Each chat is a persistent **conversation** with its own session, memory, and (optionally) a generated project attached to it.
+The Chat page is the main entry point of Flow. It is where you describe what you want to build, ask questions about an existing project, and trigger tool calls against the systems you have connected. Each chat is a persistent **conversation** with its own session, memory.
 
 ![Mia Flow Chat](../img/mia_flow_chat.png)
 
