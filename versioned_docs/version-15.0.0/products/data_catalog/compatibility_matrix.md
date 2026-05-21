@@ -22,7 +22,7 @@ Please ensure that versions shown in the matrix are respected in your deployed e
 
 ## Service Latest Versions
 
-#### 2026-05-06 | v15.0.0
+#### 2026-05-21 | v15.0.0
 
 | Service                                                               | Version |
 | --------------------------------------------------------------------- | ------- |
