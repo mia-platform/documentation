@@ -12,9 +12,9 @@ AI Foundry is in **beta**. We are actively shaping the product, so things may ch
 
 # Skill
 
-A **Skill** is a catalog resource that encapsulates a reusable, higher-level AI capability. Where a [Tool](./40_tool.md) wraps a single atomic operation (call this API, run this query), a skill captures a multi-step capability along with the knowledge, templates, scripts, and assets needed to exercise it, for example "summarise a document", "classify intent", or "draft a reply in brand voice".
+A **Skill** is a catalog resource that encapsulates a reusable, higher-level AI capability. Where a [Tool](/products/ai-foundry/basic-concepts/40_tool.md) wraps a single atomic operation (call this API, run this query), a skill captures a multi-step capability along with the knowledge, templates, scripts, and assets needed to exercise it, for example "summarise a document", "classify intent", or "draft a reply in brand voice".
 
-Skills can be referenced both by [Agents](./10_agent.md) or [Playbooks](./60_playbook.md). They act as a reusable building block that can be shared across multiple agents without duplicating the underlying logic.
+Skills can be referenced both by [Agents](/products/ai-foundry/basic-concepts/10_agent.md) or [Playbooks](/products/ai-foundry/basic-concepts/60_playbook.md). They act as a reusable building block that can be shared across multiple agents without duplicating the underlying logic.
 
 ![AI Foundry Skills](../img/ai_foundry_skills.png)
 
@@ -50,6 +50,6 @@ A skill bundles four optional content sections alongside its metadata:
 
 ## See also
 
-- [Agent](./10_agent.md): attaches skills.
-- [Tool](./40_tool.md): fine-grained executable capabilities.
-- [Playbook](./60_playbook.md): can declare skills at the playbook level or per node.
+- [Agent](/products/ai-foundry/basic-concepts/10_agent.md): attaches skills.
+- [Tool](/products/ai-foundry/basic-concepts/40_tool.md): fine-grained executable capabilities.
+- [Playbook](/products/ai-foundry/basic-concepts/60_playbook.md): can declare skills at the playbook level or per node.

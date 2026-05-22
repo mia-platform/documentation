@@ -14,7 +14,7 @@ The catalog models relationships with three built-in kinds:
 - `RelationshipConstraint` — declares which item kinds *may* participate as source and target of a given relationship type.
 - `Relationship` — the actual instance linking two specific items through a relationship type.
 
-All three are themselves catalog items, governed by Item Type Definitions under the `mia-platform.eu/v1alpha1` group, and exposed at fixed paths on the [Catalog API](../api-interactions.md#resource-uris).
+All three are themselves catalog items, governed by Item Type Definitions under the `mia-platform.eu/v1alpha1` group, and exposed at fixed paths on the [Catalog API](/products/context-catalog/api-interactions.md#resource-uris).
 
 ## RelationshipType
 
@@ -43,7 +43,7 @@ The catalog ships with a small set of relationship types under the `mia-platform
 | Name | source → target | target → source | Typical use |
 | :--- | :-------------- | :-------------- | :---------- |
 | `ownership.mia-platform.eu` | owns | is owned by | Connects a User or Team to the items they own. Surfaced by the UI as the item's *owner*. |
-| `follow.mia-platform.eu` | follows | is followed by | Connects a User to an item they want to be notified about (see [Campaigns](./50_campaigns.md)). |
+| `follow.mia-platform.eu` | follows | is followed by | Connects a User to an item they want to be notified about (see [Campaigns](/products/context-catalog/basic-concepts/50_campaigns.md)). |
 | `part-of.mia-platform.eu` | is part of | contains | Models containment (e.g. a Microservice *is part of* a Project). |
 | `dependency.mia-platform.eu` | depends on | is a dependency of | Models runtime or build-time dependencies. |
 | `affect.mia-platform.eu` | affects | is affected by | Connects a finding (e.g. a vulnerability) to the items it impacts. |
@@ -101,17 +101,17 @@ Required fields:
 
 ### Validation
 
-When a `Relationship` is created or updated, the catalog validates only the **URN format** of `sourceRef` and `targetRef`. It does *not* check that the referenced items actually exist, nor that their kinds satisfy any matching `RelationshipConstraint`. This is consistent with the broader [item-reference policy](./10_items.md#referencing-other-items): references are loosely coupled by design, so that items can be created in any order and dangling references can be repaired without coordinated writes.
+When a `Relationship` is created or updated, the catalog validates only the **URN format** of `sourceRef` and `targetRef`. It does *not* check that the referenced items actually exist, nor that their kinds satisfy any matching `RelationshipConstraint`. This is consistent with the broader [item-reference policy](/products/context-catalog/basic-concepts/10_items.md#referencing-other-items): references are loosely coupled by design, so that items can be created in any order and dangling references can be repaired without coordinated writes.
 
 ## Querying the graph
 
 Once relationships exist, you can navigate them through:
 
-- the **Relationships** tab of any item in the [Catalog Administration](../catalog-administration.md), as a table or as a visual graph;
-- the `related` operator of the Catalog [Query Language](./70_query-language.md), to express queries such as *"all services owned by team X"* or *"all items affected by vulnerability Y"*.
+- the **Relationships** tab of any item in the [Catalog Administration](/products/context-catalog/catalog-administration.md), as a table or as a visual graph;
+- the `related` operator of the Catalog [Query Language](/products/context-catalog/basic-concepts/70_query-language.md), to express queries such as *"all services owned by team X"* or *"all items affected by vulnerability Y"*.
 
 ## See also
 
-- [Items](./10_items.md): the entities relationships connect.
-- [Item Types](./20_item-types.md): how to introduce new kinds that participate in the graph.
-- [Query Language](./70_query-language.md): how to traverse relationships in queries.
+- [Items](/products/context-catalog/basic-concepts/10_items.md): the entities relationships connect.
+- [Item Types](/products/context-catalog/basic-concepts/20_item-types.md): how to introduce new kinds that participate in the graph.
+- [Query Language](/products/context-catalog/basic-concepts/70_query-language.md): how to traverse relationships in queries.

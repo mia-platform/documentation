@@ -91,6 +91,6 @@ Once the pipeline completes, open the URL associated to the environment you just
 
 ## Next steps
 
-- **[Connected tools](./basic-concepts/10_connected-tools.md)**: link GitHub or GitLab to push the generated code to your own repository before or after deploying.
-- **[Agentic AI](./basic-concepts/40_agentic-ai.md)**: create a custom playbook that pre-configures the assistant for your team's preferred frontend stack, style guide, and deployment target.
-- **[Chat](./basic-concepts/20_chat.md)**: reopen the conversation later to keep iterating on the same project files.
+- **[Connected tools](/products/flow/basic-concepts/10_connected-tools.md)**: link GitHub or GitLab to push the generated code to your own repository before or after deploying.
+- **[Agentic AI](/products/flow/basic-concepts/40_agentic-ai.md)**: create a custom playbook that pre-configures the assistant for your team's preferred frontend stack, style guide, and deployment target.
+- **[Chat](/products/flow/basic-concepts/20_chat.md)**: reopen the conversation later to keep iterating on the same project files.

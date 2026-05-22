@@ -22,7 +22,7 @@ A conversation is made of:
 
 - **A unique session** that ties every message to the same AI context.
 - **A name** (manually set or auto-generated) shown in the sidebar.
-- **A type**: `Chat` (open-ended assistance), `Code` (tied to a generated project), or `Playbook` (started from a [playbook](./40_agentic-ai.md)).
+- **A type**: `Chat` (open-ended assistance), `Code` (tied to a generated project), or `Playbook` (started from a [playbook](/products/flow/basic-concepts/40_agentic-ai.md)).
 - **Optional metadata** such as the linked project, tenant, environment, or playbook.
 
 Conversations are stored in Flow. Re-opening a conversation restores the original session, so the assistant keeps full context across browser reloads and across devices.
@@ -66,6 +66,6 @@ Every conversation is stored so you can come back to it later. The **Memories** 
 
 ## See also
 
-- [Connected tools](./10_connected-tools.md): the tools available to the assistant during a chat turn.
-- [Code](./30_code.md): how a chat turns into a live, runnable project.
-- [Agentic AI](./40_agentic-ai.md): playbooks and default playbooks for chat vs. code.
+- [Connected tools](/products/flow/basic-concepts/10_connected-tools.md): the tools available to the assistant during a chat turn.
+- [Code](/products/flow/basic-concepts/30_code.md): how a chat turns into a live, runnable project.
+- [Agentic AI](/products/flow/basic-concepts/40_agentic-ai.md): playbooks and default playbooks for chat vs. code.

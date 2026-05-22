@@ -6,7 +6,7 @@ sidebar_label: Mia-Platform Console
 
 # Mia-Platform Console Connector
 
-The Mia-Platform Console connector ingests data from a Mia-Platform Console instance into the Context Catalog. It runs through the [`ibdm`](./10_overview.md) binary in one of two modes:
+The Mia-Platform Console connector ingests data from a Mia-Platform Console instance into the Context Catalog. It runs through the [`ibdm`](/products/context-catalog/connectors/10_overview.md) binary in one of two modes:
 
 - **Sync** — pull-based: queries the Console APIs and exits.
 - **Run** — push-based: exposes a webhook endpoint that receives events from the Console.
@@ -57,4 +57,4 @@ ibdm run  console --mapping-file <path to mapping file or folder>
 
 ## See also
 
-- [Connectors Overview](./10_overview.md)
+- [Connectors Overview](/products/context-catalog/connectors/10_overview.md)

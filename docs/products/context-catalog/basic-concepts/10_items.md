@@ -12,11 +12,11 @@ An **item** is the unit of information stored in the Context Catalog. It is an *
 The full JSON schema describing a Catalog item is [available to download](https://cdn.mia-platform.eu/catalog/v1alpha1/mia-platform.eu.v1alpha1.Item.json).
 :::
 
-This page focuses on items themselves: their shape, the meaning of each field, and how clients should reference them. Item *types*, the schemas that an item must respect, are described in [Item Types](./20_item-types.md).
+This page focuses on items themselves: their shape, the meaning of each field, and how clients should reference them. Item *types*, the schemas that an item must respect, are described in [Item Types](/products/context-catalog/basic-concepts/20_item-types.md).
 
 ## Describing an item
 
-When you create an item, you must provide its specification together with a small amount of metadata. The same shape applies to objects exchanged with the [Catalog API](../api-interactions.md) and to descriptor files (manifests) on disk.
+When you create an item, you must provide its specification together with a small amount of metadata. The same shape applies to objects exchanged with the [Catalog API](/products/context-catalog/api-interactions.md) and to descriptor files (manifests) on disk.
 
 Example manifest of a Catalog item:
 
@@ -86,7 +86,7 @@ A free-form, human-readable display name for the object. Unlike `name`, the titl
 
 ### `description`
 
-A free-form, human-readable description of the object. Useful to surface context for browsers of the [Catalog Administration](../catalog-administration.md).
+A free-form, human-readable description of the object. Useful to surface context for browsers of the [Catalog Administration](/products/context-catalog/catalog-administration.md).
 
 ### `tags`
 
@@ -197,7 +197,7 @@ Because the lifecycle of `CustomField` entities is independent from the items th
 
 Two relationships are central to the way the catalog associates people with items. Both Users and Teams are themselves first-class items in the catalog (built-in kinds under the `mia-platform.eu` group), so the relationships below are just ordinary Relationship objects between items, there is no special "principal" concept.
 
-- **Owner.** Every item can have an *owner*, which is either a User or a Team. Ownership is modeled as a built-in relationship of type `ownership.mia-platform.eu` between the item and the User/Team. The Catalog Administration exposes ownership as a first-class field on the item form, but on the wire it is just a Relationship object — see [Relationships](./60_relationships.md).
+- **Owner.** Every item can have an *owner*, which is either a User or a Team. Ownership is modeled as a built-in relationship of type `ownership.mia-platform.eu` between the item and the User/Team. The Catalog Administration exposes ownership as a first-class field on the item form, but on the wire it is just a Relationship object — see [Relationships](/products/context-catalog/basic-concepts/60_relationships.md).
 - **Follower.** Any user can additionally *follow* an item to be notified about compliance events that involve it. Following is modeled as a built-in relationship of type `follow.mia-platform.eu` between the User and the item. Owners are implicitly considered followers.
 
 ## Primary key and Item URN
@@ -237,10 +237,10 @@ Items live inside an **organization**, which is a hard isolation boundary with i
 
 ## Relationships
 
-Items can be connected to one another through **relationships**: typed, directed links between a *source* and a *target* item. The catalog provides three built-in kinds (`RelationshipType`, `RelationshipConstraint`, and `Relationship`) that together model, govern, and record connections. See [Relationships](./60_relationships.md) for the full model, the built-in relationship types, and examples.
+Items can be connected to one another through **relationships**: typed, directed links between a *source* and a *target* item. The catalog provides three built-in kinds (`RelationshipType`, `RelationshipConstraint`, and `Relationship`) that together model, govern, and record connections. See [Relationships](/products/context-catalog/basic-concepts/60_relationships.md) for the full model, the built-in relationship types, and examples.
 
 ## See also
 
-- [Item Types](./20_item-types.md): the schemas that an item's `spec` must respect.
-- [Relationships](./60_relationships.md): how items reference one another, including ownership and follow.
-- [Catalog Administration](../catalog-administration.md): where items are browsed, edited, and tagged in the UI.
+- [Item Types](/products/context-catalog/basic-concepts/20_item-types.md): the schemas that an item's `spec` must respect.
+- [Relationships](/products/context-catalog/basic-concepts/60_relationships.md): how items reference one another, including ownership and follow.
+- [Catalog Administration](/products/context-catalog/catalog-administration.md): where items are browsed, edited, and tagged in the UI.

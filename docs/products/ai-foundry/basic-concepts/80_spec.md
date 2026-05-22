@@ -69,5 +69,5 @@ In practice the two complement each other: a playbook node might receive a Promp
 
 ## See also
 
-- [Playbook](./60_playbook.md): references specs at the playbook and node level.
-- [Prompt](./30_prompt.md): shorter, instruction-oriented text resources.
+- [Playbook](/products/ai-foundry/basic-concepts/60_playbook.md): references specs at the playbook and node level.
+- [Prompt](/products/ai-foundry/basic-concepts/30_prompt.md): shorter, instruction-oriented text resources.

@@ -6,7 +6,7 @@ sidebar_label: Bitbucket
 
 # Bitbucket Connector
 
-The Bitbucket connector ingests data from [Bitbucket Cloud](https://bitbucket.org/) into the Context Catalog. It runs through the [`ibdm`](./10_overview.md) binary in one of two modes:
+The Bitbucket connector ingests data from [Bitbucket Cloud](https://bitbucket.org/) into the Context Catalog. It runs through the [`ibdm`](/products/context-catalog/connectors/10_overview.md) binary in one of two modes:
 
 - **Sync** — pull-based: queries the Bitbucket REST API and exits.
 - **Run** — push-based: exposes a webhook endpoint that receives Bitbucket events.
@@ -55,4 +55,4 @@ Subscribed webhook events:
 
 ## See also
 
-- [Connectors Overview](./10_overview.md)
+- [Connectors Overview](/products/context-catalog/connectors/10_overview.md)

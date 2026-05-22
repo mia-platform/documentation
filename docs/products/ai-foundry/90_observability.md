@@ -105,6 +105,6 @@ Token usage (input, output, cached, thinking) is shown per event when available 
 
 ## See also
 
-- [Playbook](./basic-concepts/60_playbook.md): multi-step agentic workflows whose sessions are tracked here.
-- [Agent](./basic-concepts/10_agent.md): the execution unit whose calls are recorded as events.
-- [AI Foundry Overview](./overview.md): platform overview including the AI Playground.
+- [Playbook](/products/ai-foundry/basic-concepts/60_playbook.md): multi-step agentic workflows whose sessions are tracked here.
+- [Agent](/products/ai-foundry/basic-concepts/10_agent.md): the execution unit whose calls are recorded as events.
+- [AI Foundry Overview](/products/ai-foundry/overview.md): platform overview including the AI Playground.

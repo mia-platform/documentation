@@ -6,7 +6,7 @@ sidebar_label: Catalog Administration
 
 # Catalog Administration
 
-The **Catalog Administration** is the web interface that lets operators and platform users browse the Context Catalog, inspect the entities it tracks, and oversee compliance activities. It is the human-facing complement to the [Catalog API](./api-interactions.md).
+The **Catalog Administration** is the web interface that lets operators and platform users browse the Context Catalog, inspect the entities it tracks, and oversee compliance activities. It is the human-facing complement to the [Catalog API](/products/context-catalog/api-interactions.md).
 
 ![Catalog Administration Home Page](img/catalog_administration_home_page.png)
 
@@ -14,7 +14,7 @@ The **Catalog Administration** is the web interface that lets operators and plat
 
 - **Browse items.** Navigate the catalog by item type, filter by labels and fields, and inspect the full manifest of any item.
 - **Explore relationships.** Traverse the directed graph of relationships between items to perform impact analysis or discover dependencies.
-- **Monitor compliance.** View the results of [Evaluation Criteria](./basic-concepts/30_evaluation-criteria.md) (rule runs) attached to your items, follow [Campaigns](./basic-concepts/50_campaigns.md), and check [Scorecards](./basic-concepts/40_scorecards.md) progress.
+- **Monitor compliance.** View the results of [Evaluation Criteria](/products/context-catalog/basic-concepts/30_evaluation-criteria.md) (rule runs) attached to your items, follow [Campaigns](/products/context-catalog/basic-concepts/50_campaigns.md), and check [Scorecards](/products/context-catalog/basic-concepts/40_scorecards.md) progress.
 - **Curate data.** Edit metadata, labels, and annotations on items where the model allows it, and trigger ad-hoc rule evaluations.
 
 ## Architecture
@@ -24,7 +24,7 @@ The Catalog Administration is the entry point of a small set of cooperating serv
 | Component           | Role                                                                                                          |
 | :------------------ | :------------------------------------------------------------------------------------------------------------ |
 | **Catalog Website** | Web UI for the catalog. Lets users browse items, view rule evaluation results, and monitor campaign progress. |
-| **Catalog Engine**  | Core catalog backend. Stores and manages items and exposes the [Catalog API](./api-interactions.md).          |
+| **Catalog Engine**  | Core catalog backend. Stores and manages items and exposes the [Catalog API](/products/context-catalog/api-interactions.md).          |
 | **Policy Engine**   | Stateless rule-evaluation engine that drives compliance evaluations.                                          |
 
 ## Organizations
@@ -503,6 +503,6 @@ Clicking a team navigates to its catalog item detail page, where you can see the
 
 ## Where to go next
 
-- See [API Interactions](./api-interactions.md) for the underlying API the Catalog Administration consumes.
-- See [Items](./basic-concepts/10_items.md) and [Item Types](./basic-concepts/20_item-types.md) to understand what you are looking at in the UI.
-- See [Connectors](./connectors/10_overview.md) to learn how external systems feed data into the catalog.
+- See [API Interactions](/products/context-catalog/api-interactions.md) for the underlying API the Catalog Administration consumes.
+- See [Items](/products/context-catalog/basic-concepts/10_items.md) and [Item Types](/products/context-catalog/basic-concepts/20_item-types.md) to understand what you are looking at in the UI.
+- See [Connectors](/products/context-catalog/connectors/10_overview.md) to learn how external systems feed data into the catalog.

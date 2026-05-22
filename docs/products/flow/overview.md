@@ -41,8 +41,8 @@ Flow brings together three things developers normally juggle separately:
 
 ## Where to go next
 
-- **[Getting started](./getting-started.md)**: sign in and open your first conversation.
-- **[Connected tools](./basic-concepts/10_connected-tools.md)**: understand how MCP integrations expose external systems to the AI.
-- **[Chat](./basic-concepts/20_chat.md)**: the conversational interface and how sessions are persisted.
-- **[Code](./basic-concepts/30_code.md)**: the Canvas, live preview, and supported frameworks.
-- **[Agentic AI](./basic-concepts/40_agentic-ai.md)**: agents, skills, playbooks, and how the assistant reasons.
+- **[Getting started](/products/flow/getting-started.md)**: sign in and open your first conversation.
+- **[Connected tools](/products/flow/basic-concepts/10_connected-tools.md)**: understand how MCP integrations expose external systems to the AI.
+- **[Chat](/products/flow/basic-concepts/20_chat.md)**: the conversational interface and how sessions are persisted.
+- **[Code](/products/flow/basic-concepts/30_code.md)**: the Canvas, live preview, and supported frameworks.
+- **[Agentic AI](/products/flow/basic-concepts/40_agentic-ai.md)**: agents, skills, playbooks, and how the assistant reasons.

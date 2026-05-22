@@ -58,6 +58,6 @@ When the project is ready, the **Deploy** action on the Canvas sends the files t
 
 ## See also
 
-- [Chat](./20_chat.md): how a conversation drives the Canvas.
-- [Connected tools](./10_connected-tools.md): using MCP tools to seed or modify a project.
-- [Agentic AI](./40_agentic-ai.md): picking the right playbook before starting a code session.
+- [Chat](/products/flow/basic-concepts/20_chat.md): how a conversation drives the Canvas.
+- [Connected tools](/products/flow/basic-concepts/10_connected-tools.md): using MCP tools to seed or modify a project.
+- [Agentic AI](/products/flow/basic-concepts/40_agentic-ai.md): picking the right playbook before starting a code session.

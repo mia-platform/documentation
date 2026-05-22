@@ -64,7 +64,7 @@ This allows a common baseline (e.g. a shared style guide) while letting individu
 
 ## See also
 
-- [Agent](./10_agent.md): the execution unit referenced by playbook nodes.
-- [Prompt](./30_prompt.md): reusable text injected into nodes.
-- [Skill](./50_skill.md): reusable capabilities attached at playbook or node level.
-- [Spec](./80_spec.md): structured documents referenced by nodes.
+- [Agent](/products/ai-foundry/basic-concepts/10_agent.md): the execution unit referenced by playbook nodes.
+- [Prompt](/products/ai-foundry/basic-concepts/30_prompt.md): reusable text injected into nodes.
+- [Skill](/products/ai-foundry/basic-concepts/50_skill.md): reusable capabilities attached at playbook or node level.
+- [Spec](/products/ai-foundry/basic-concepts/80_spec.md): structured documents referenced by nodes.

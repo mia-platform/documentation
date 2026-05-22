@@ -42,7 +42,7 @@ Custom MCP servers support four authentication modes: `oauth`, `api_key`, `beare
 
 When you click **Connect** next to a provider, Flow drives the authentication flow with that provider. Once it completes, the corresponding tools become available to the assistant in every conversation. You can disconnect a provider at any time, and the related tools immediately stop being offered to the assistant.
 
-Custom MCP servers can be configured inside the [AI Foundry](../../ai-foundry/basic-concepts/70_mcp-server.md) and used directly inside Flow.
+Custom MCP servers can be configured inside the [AI Foundry](/products/ai-foundry/basic-concepts/70_mcp-server.md) and used directly inside Flow.
 
 ## How the assistant picks tools
 
@@ -50,5 +50,5 @@ In a given turn, the assistant has access to the tools exposed by custom MCP ser
 
 ## See also
 
-- [Chat](./20_chat.md): how tool calls surface inside a conversation.
-- [Agentic AI](./40_agentic-ai.md): bundling tools and skills via agents and playbooks.
+- [Chat](/products/flow/basic-concepts/20_chat.md): how tool calls surface inside a conversation.
+- [Agentic AI](/products/flow/basic-concepts/40_agentic-ai.md): bundling tools and skills via agents and playbooks.

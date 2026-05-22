@@ -88,7 +88,7 @@ The deployment status is reported inside Flow, and you can follow the pipeline d
 
 ## Next steps
 
-- **[Connected tools](./basic-concepts/10_connected-tools.md)**: link GitHub, GitLab, Jira, and other systems so the assistant can read and act on them.
-- **[Chat](./basic-concepts/20_chat.md)**: learn how conversations, sessions, and memory work.
-- **[Code](./basic-concepts/30_code.md)**: explore the Canvas, supported frameworks, and live preview.
-- **[Agentic AI](./basic-concepts/40_agentic-ai.md)**: configure agents, skills, and playbooks for your use case.
+- **[Connected tools](/products/flow/basic-concepts/10_connected-tools.md)**: link GitHub, GitLab, Jira, and other systems so the assistant can read and act on them.
+- **[Chat](/products/flow/basic-concepts/20_chat.md)**: learn how conversations, sessions, and memory work.
+- **[Code](/products/flow/basic-concepts/30_code.md)**: explore the Canvas, supported frameworks, and live preview.
+- **[Agentic AI](/products/flow/basic-concepts/40_agentic-ai.md)**: configure agents, skills, and playbooks for your use case.

@@ -12,9 +12,9 @@ AI Foundry is in **beta**. We are actively shaping the product, so things may ch
 
 # Tool
 
-A **Tool** is a catalog resource that describes a discrete, executable capability that an [Agent](./10_agent.md) can invoke during a conversation. Tools are how agents extend their abilities beyond pure language generation: they can call REST APIs, query databases, run code, search knowledge bases, or interact with any external system.
+A **Tool** is a catalog resource that describes a discrete, executable capability that an [Agent](/products/ai-foundry/basic-concepts/10_agent.md) can invoke during a conversation. Tools are how agents extend their abilities beyond pure language generation: they can call REST APIs, query databases, run code, search knowledge bases, or interact with any external system.
 
-Tools exposed by [MCP Servers](./70_mcp-server.md) are surfaced automatically inside the tool browser and can be attached to agents the same way as manually registered tools.
+Tools exposed by [MCP Servers](/products/ai-foundry/basic-concepts/70_mcp-server.md) are surfaced automatically inside the tool browser and can be attached to agents the same way as manually registered tools.
 
 ![AI Foundry Tools](../img/ai_foundry_tools.png)
 
@@ -55,12 +55,12 @@ Both tools and skills extend what an agent can do, but they operate at different
 | Aspect         | Tool                             | Skill                                                          |
 | -------------- | -------------------------------- | -------------------------------------------------------------- |
 | Granularity    | Fine-grained, single operation   | Higher-level, multi-step capability                            |
-| Implementation | External service / MCP server    | Documented in the catalog as a [Skill](./50_skill.md) manifest |
+| Implementation | External service / MCP server    | Documented in the catalog as a [Skill](/products/ai-foundry/basic-concepts/50_skill.md) manifest |
 | Called by      | Agent (via LLM function-calling) | Agent or Playbook node                                         |
 | Can be locked? | Yes, in the Playground           | Yes, prevents accidental invocation                            |
 
 ## See also
 
-- [Agent](./10_agent.md): attaches tools via `spec.tools`.
-- [Skill](./50_skill.md): higher-level reusable capabilities.
-- [MCP Server](./70_mcp-server.md): a server that exposes multiple tools through the Model Context Protocol.
+- [Agent](/products/ai-foundry/basic-concepts/10_agent.md): attaches tools via `spec.tools`.
+- [Skill](/products/ai-foundry/basic-concepts/50_skill.md): higher-level reusable capabilities.
+- [MCP Server](/products/ai-foundry/basic-concepts/70_mcp-server.md): a server that exposes multiple tools through the Model Context Protocol.

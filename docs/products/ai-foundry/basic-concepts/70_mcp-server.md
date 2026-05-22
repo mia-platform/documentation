@@ -15,7 +15,7 @@ AI Foundry is in **beta**. We are actively shaping the product, so things may ch
 An **MCP Server** is a catalog resource that registers an external [Model Context Protocol (MCP)](https://modelcontextprotocol.io/) server with AI Foundry.
 
 Once created, the tools and resources exposed by the server can be discovered and then added to the Catalog tools.
-From that moment you can attach the MCP Server tools to [Agents](./10_agent.md) like any other [Tool](./40_tool.md).
+From that moment you can attach the MCP Server tools to [Agents](/products/ai-foundry/basic-concepts/10_agent.md) like any other [Tool](/products/ai-foundry/basic-concepts/40_tool.md).
 
 ![AI Foundry MCP Servers](../img/ai_foundry_mcpservers.png)
 
@@ -60,5 +60,5 @@ When an MCP Server resource is registered:
 
 ## See also
 
-- [Tool](./40_tool.md): individual tools, including those sourced from MCP servers.
-- [Agent](./10_agent.md): attaches tools (including MCP tools).
+- [Tool](/products/ai-foundry/basic-concepts/40_tool.md): individual tools, including those sourced from MCP servers.
+- [Agent](/products/ai-foundry/basic-concepts/10_agent.md): attaches tools (including MCP tools).

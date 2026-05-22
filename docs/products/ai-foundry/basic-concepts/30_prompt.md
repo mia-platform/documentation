@@ -12,7 +12,7 @@ AI Foundry is in **beta**. We are actively shaping the product, so things may ch
 
 # Prompt
 
-A **Prompt** is a catalog resource that stores a reusable piece of text (typically a user message, an instruction template, or a few-shot example set) that agents and [Playbooks](./60_playbook.md) can reference by name.
+A **Prompt** is a catalog resource that stores a reusable piece of text (typically a user message, an instruction template, or a few-shot example set) that agents and [Playbooks](/products/ai-foundry/basic-concepts/60_playbook.md) can reference by name.
 
 Centralizing prompt text in the catalog keeps it version-controlled, searchable, and decoupled from the agents that consume it. When a prompt needs to change you update it in one place and every referencing resource benefits automatically.
 
@@ -48,6 +48,6 @@ Prompt engineering is an iterative process. Raw prompt strings scattered inside 
 
 ## See also
 
-- [Playbook](./60_playbook.md): workflows that reference prompts at the playbook and node level.
-- [Agent](./10_agent.md): agents carry their own `instruction` field but can also receive prompt context from a playbook.
-- [Spec](./80_spec.md): for longer, structured specification documents referenced by playbooks.
+- [Playbook](/products/ai-foundry/basic-concepts/60_playbook.md): workflows that reference prompts at the playbook and node level.
+- [Agent](/products/ai-foundry/basic-concepts/10_agent.md): agents carry their own `instruction` field but can also receive prompt context from a playbook.
+- [Spec](/products/ai-foundry/basic-concepts/80_spec.md): for longer, structured specification documents referenced by playbooks.

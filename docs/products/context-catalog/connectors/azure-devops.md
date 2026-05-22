@@ -6,7 +6,7 @@ sidebar_label: Azure DevOps
 
 # Microsoft Azure DevOps Connector
 
-The Microsoft Azure DevOps connector ingests entities from an Azure DevOps organization into the Context Catalog. It runs through the [`ibdm`](./10_overview.md) binary in one of two modes:
+The Microsoft Azure DevOps connector ingests entities from an Azure DevOps organization into the Context Catalog. It runs through the [`ibdm`](/products/context-catalog/connectors/10_overview.md) binary in one of two modes:
 
 - **Sync** — pull-based: queries the Azure DevOps REST APIs and exits.
 - **Run** — push-based: exposes a webhook endpoint that receives Azure DevOps service-hook events.
@@ -49,4 +49,4 @@ Subscribed webhook events:
 
 ## See also
 
-- [Connectors Overview](./10_overview.md)
+- [Connectors Overview](/products/context-catalog/connectors/10_overview.md)

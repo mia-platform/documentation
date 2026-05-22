@@ -32,7 +32,7 @@ Mia-Platform reserves the use of any group name ending in `mia-platform.eu`.
 
 ## Defining a custom Item Type
 
-Custom item types are added to an organization by creating an `ItemTypeDefinition` object. ITDs are themselves catalog objects, so they are created via the standard [Catalog API](../api-interactions.md).
+Custom item types are added to an organization by creating an `ItemTypeDefinition` object. ITDs are themselves catalog objects, so they are created via the standard [Catalog API](/products/context-catalog/api-interactions.md).
 
 :::note
 All catalog resources, including the built-in ones, are defined through ItemTypeDefinitions. The only exception is the `ItemTypeDefinition` kind itself.
@@ -144,7 +144,7 @@ The validation schema of an ITD version should be modified after creation. This 
 
 By default, items can be filtered only on their `metadata` fields (`metadata.name`, `metadata.title`, `metadata.tags`, `metadata.labels.*`, `metadata.urn`). To filter on a field inside `spec`, that field must be declared as **selectable** on the ITD version.
 
-Selectable fields are the catalog's contract for queryability: when you mark a field as selectable, the catalog provisions an index on it so that `field=` and `rawq` queries (see [Query Language](./70_query-language.md)) can filter on it efficiently. Marking a field selectable is the only way to make a `spec` field appear in API and Catalog Administration filters.
+Selectable fields are the catalog's contract for queryability: when you mark a field as selectable, the catalog provisions an index on it so that `field=` and `rawq` queries (see [Query Language](/products/context-catalog/basic-concepts/70_query-language.md)) can filter on it efficiently. Marking a field selectable is the only way to make a `spec` field appear in API and Catalog Administration filters.
 
 Selectable fields are declared at the ITD-version level alongside the schema. They must point to fields that hold a primitive value or a homogeneous array of primitives.
 
@@ -191,6 +191,6 @@ Without the corresponding `selectableFields` entry, the same query is rejected.
 
 ## See also
 
-- [Items](./10_items.md): the objects whose shape an ITD constrains.
-- [Query Language](./70_query-language.md): how `selectableFields` enables filtering and sorting on `spec`.
-- [API Interactions](../api-interactions.md): the REST endpoints an ITD exposes once registered.
+- [Items](/products/context-catalog/basic-concepts/10_items.md): the objects whose shape an ITD constrains.
+- [Query Language](/products/context-catalog/basic-concepts/70_query-language.md): how `selectableFields` enables filtering and sorting on `spec`.
+- [API Interactions](/products/context-catalog/api-interactions.md): the REST endpoints an ITD exposes once registered.

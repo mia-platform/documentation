@@ -35,4 +35,4 @@ A **Model** is a catalog resource that wraps the configuration needed to connect
 
 ## See also
 
-- [Agent](./10_agent.md): resources that reference a model.
+- [Agent](/products/ai-foundry/basic-concepts/10_agent.md): resources that reference a model.

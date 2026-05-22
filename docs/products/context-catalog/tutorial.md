@@ -43,7 +43,7 @@ The validation schema should define two fields for the Java runtime `version` (e
 :::tip
 
 You can also use annotations or labels to store relevant metadata instead of a custom ITD and connector 
-and customize your CI/CD pipelines to enrich your Catalog items using the [Catalog API](api-interactions.md#update).
+and customize your CI/CD pipelines to enrich your Catalog items using the [Catalog API](/products/context-catalog/api-interactions.md#update).
 
 :::
 

@@ -10,7 +10,7 @@ This page lists the foundational terms used across the Context Catalog. Cross-re
 
 ## Item
 
-An **item** is an entity recorded on the catalog. Anything can be an item, from a piece of software to a tangible physical resource. See [Items](./10_items.md).
+An **item** is an entity recorded on the catalog. Anything can be an item, from a piece of software to a tangible physical resource. See [Items](/products/context-catalog/basic-concepts/10_items.md).
 
 ## Type and family
 
@@ -24,7 +24,7 @@ For example, a call to `/console.mia-platform.eu/v1/items/projects` returns all 
 
 ## Item Type Definition (ITD)
 
-For the catalog to manage items of a given type, an **Item Type Definition (ITD)** must register that type in the system. Mia-Platform ships a set of default ITDs that enable core functionality; you can extend the catalog with custom ITDs of your own. See [Item Types](./20_item-types.md).
+For the catalog to manage items of a given type, an **Item Type Definition (ITD)** must register that type in the system. Mia-Platform ships a set of default ITDs that enable core functionality; you can extend the catalog with custom ITDs of your own. See [Item Types](/products/context-catalog/basic-concepts/20_item-types.md).
 
 :::note Technical note
 An ITD declares a *group*, a *kind*, a *family*, and one or more *versions*. The link between an item and its ITD is:
@@ -50,7 +50,7 @@ A **manifest** is the JSON or YAML representation of an object. The Catalog API 
 
 ## Relationship
 
-A **relationship** is a typed, directed link between a *source* item and a *target* item. The catalog provides built-in kinds (`RelationshipType`, `RelationshipConstraint`, and `Relationship`) to model, govern, and record connections between items. See [Relationships](./60_relationships.md).
+A **relationship** is a typed, directed link between a *source* item and a *target* item. The catalog provides built-in kinds (`RelationshipType`, `RelationshipConstraint`, and `Relationship`) to model, govern, and record connections between items. See [Relationships](/products/context-catalog/basic-concepts/60_relationships.md).
 
 ## Tags, labels, annotations, custom fields
 
@@ -61,19 +61,19 @@ Four different mechanisms to attach additional information to an item, each with
 - **Annotations**: arbitrary key/value pairs reserved to automated systems (`metadata.annotations`).
 - **Custom fields**: typed extensions stored in the top-level `customFields` map of an item, governed by separate `CustomField` definitions that declare a JSON Schema and the item types they apply to.
 
-See [Items](./10_items.md#tags-labels-annotations-and-custom-fields) for the full comparison.
+See [Items](/products/context-catalog/basic-concepts/10_items.md#tags-labels-annotations-and-custom-fields) for the full comparison.
 
 ## Owner and follower
 
-An **owner** is a User or Team responsible for an item, modeled as a built-in `ownership` relationship. A **follower** is any User who wants to receive compliance notifications about an item, modeled as a built-in `follow` relationship. Both relationships are surfaced in the UI and queried like any other relationship. See [Items](./10_items.md#ownership-and-followers).
+An **owner** is a User or Team responsible for an item, modeled as a built-in `ownership` relationship. A **follower** is any User who wants to receive compliance notifications about an item, modeled as a built-in `follow` relationship. Both relationships are surfaced in the UI and queried like any other relationship. See [Items](/products/context-catalog/basic-concepts/10_items.md#ownership-and-followers).
 
 ## View
 
-A **View** is a saved, named query that scopes the catalog to a subset of items. Views are themselves catalog items: they can be referenced by [Scorecards](./40_scorecards.md) and [Campaigns](./50_campaigns.md) to declare their scope, and they appear in the [Catalog Administration](../catalog-administration.md#views) sidebar as bookmarks.
+A **View** is a saved, named query that scopes the catalog to a subset of items. Views are themselves catalog items: they can be referenced by [Scorecards](/products/context-catalog/basic-concepts/40_scorecards.md) and [Campaigns](/products/context-catalog/basic-concepts/50_campaigns.md) to declare their scope, and they appear in the [Catalog Administration](/products/context-catalog/catalog-administration.md#views) sidebar as bookmarks.
 
 ## Selectable field
 
-A `spec` field declared on an [Item Type Definition](./20_item-types.md#selectable-fields) as queryable. The catalog provisions an index on selectable fields so that `field=` and `rawq` filters can target them.
+A `spec` field declared on an [Item Type Definition](/products/context-catalog/basic-concepts/20_item-types.md#selectable-fields) as queryable. The catalog provisions an index on selectable fields so that `field=` and `rawq` filters can target them.
 
 ## Organization
 
@@ -100,7 +100,7 @@ Each object carries a `resourceVersion` integer that uniquely identifies its cur
 
 ## Compliance terms
 
-- **Rule**: A deterministic condition evaluated against a Catalog item. See [Evaluation Criteria](./30_evaluation-criteria.md).
+- **Rule**: A deterministic condition evaluated against a Catalog item. See [Evaluation Criteria](/products/context-catalog/basic-concepts/30_evaluation-criteria.md).
 - **Rule-run**: The record of a single evaluation of a rule against a context of items.
-- **Campaign**: A grouping of rules that must be satisfied by a set of items within a defined time window. See [Campaigns](./50_campaigns.md).
-- **Scorecard**: A set of rules evaluated on a scope of items, used to express overall compliance posture. See [Scorecards](./40_scorecards.md).
+- **Campaign**: A grouping of rules that must be satisfied by a set of items within a defined time window. See [Campaigns](/products/context-catalog/basic-concepts/50_campaigns.md).
+- **Scorecard**: A set of rules evaluated on a scope of items, used to express overall compliance posture. See [Scorecards](/products/context-catalog/basic-concepts/40_scorecards.md).

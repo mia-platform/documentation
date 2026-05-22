@@ -74,11 +74,11 @@ Each registered server is stored as a catalog resource and its tools are include
 
 You can download the following AI assets to work from your workstation:
 
-- [Agents](./basic-concepts/10_agent.md)
-- [Playbooks](./basic-concepts/60_playbook.md)
-- [MCP Servers](./basic-concepts/70_mcp-server.md)
-- [Skills](./basic-concepts/50_skill.md)
-- [Prompts](./basic-concepts/30_prompt.md)
+- [Agents](/products/ai-foundry/basic-concepts/10_agent.md)
+- [Playbooks](/products/ai-foundry/basic-concepts/60_playbook.md)
+- [MCP Servers](/products/ai-foundry/basic-concepts/70_mcp-server.md)
+- [Skills](/products/ai-foundry/basic-concepts/50_skill.md)
+- [Prompts](/products/ai-foundry/basic-concepts/30_prompt.md)
 
 These exports let developers work seamlessly from the cloud or locally.
 
@@ -86,12 +86,12 @@ These exports let developers work seamlessly from the cloud or locally.
 
 New to AI Foundry? Start with the Basic Concepts section:
 
-- [Agent](./basic-concepts/10_agent.md): the autonomous AI actor at the heart of the platform.
-- [Model](./basic-concepts/20_model.md): LLM configurations that back agents.
-- [Prompt](./basic-concepts/30_prompt.md): reusable text templates for agents and workflows.
-- [Tool](./basic-concepts/40_tool.md): executable functions agents can call.
-- [Skill](./basic-concepts/50_skill.md): reusable, higher-level AI capabilities.
-- [Playbook](./basic-concepts/60_playbook.md): multi-step agentic workflows.
-- [MCP Server](./basic-concepts/70_mcp-server.md): Model Context Protocol server integrations.
-- [Spec](./basic-concepts/80_spec.md): structured reference documents for agents and playbooks.
-- [Observability](./90_observability.md): session monitoring and analytics.
+- [Agent](/products/ai-foundry/basic-concepts/10_agent.md): the autonomous AI actor at the heart of the platform.
+- [Model](/products/ai-foundry/basic-concepts/20_model.md): LLM configurations that back agents.
+- [Prompt](/products/ai-foundry/basic-concepts/30_prompt.md): reusable text templates for agents and workflows.
+- [Tool](/products/ai-foundry/basic-concepts/40_tool.md): executable functions agents can call.
+- [Skill](/products/ai-foundry/basic-concepts/50_skill.md): reusable, higher-level AI capabilities.
+- [Playbook](/products/ai-foundry/basic-concepts/60_playbook.md): multi-step agentic workflows.
+- [MCP Server](/products/ai-foundry/basic-concepts/70_mcp-server.md): Model Context Protocol server integrations.
+- [Spec](/products/ai-foundry/basic-concepts/80_spec.md): structured reference documents for agents and playbooks.
+- [Observability](/products/ai-foundry/90_observability.md): session monitoring and analytics.

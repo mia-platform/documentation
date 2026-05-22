@@ -6,7 +6,7 @@ sidebar_label: GitHub
 
 # GitHub Connector
 
-The GitHub connector ingests data from a GitHub organization into the Context Catalog. It runs through the [`ibdm`](./10_overview.md) binary in one of two modes:
+The GitHub connector ingests data from a GitHub organization into the Context Catalog. It runs through the [`ibdm`](/products/context-catalog/connectors/10_overview.md) binary in one of two modes:
 
 - **Sync** — pull-based: queries the [GitHub REST API](https://docs.github.com/en/rest) and exits.
 - **Run** — push-based: exposes a webhook endpoint that receives GitHub organization events.
@@ -79,5 +79,5 @@ If the languages call fails, the repository item is still emitted without `repos
 
 ## See also
 
-- [Connectors Overview](./10_overview.md)
-- [GitLab Connector](./gitlab.md), [Bitbucket Connector](./bitbucket.md) — sibling source-code hosting connectors.
+- [Connectors Overview](/products/context-catalog/connectors/10_overview.md)
+- [GitLab Connector](/products/context-catalog/connectors/gitlab.md), [Bitbucket Connector](/products/context-catalog/connectors/bitbucket.md) — sibling source-code hosting connectors.

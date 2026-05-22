@@ -6,7 +6,7 @@ sidebar_label: Sysdig
 
 # Sysdig Secure Connector
 
-The Sysdig connector ingests container-image vulnerability data from [Sysdig Secure](https://sysdig.com/) into the Context Catalog. It runs through the [`ibdm`](./10_overview.md) binary in one of two modes:
+The Sysdig connector ingests container-image vulnerability data from [Sysdig Secure](https://sysdig.com/) into the Context Catalog. It runs through the [`ibdm`](/products/context-catalog/connectors/10_overview.md) binary in one of two modes:
 
 - **Sync** — pull-based: queries the [Sysdig SysQL API](https://docs.sysdig.com/en/sysdig-secure/sysql/) for all image vulnerabilities and exits.
 - **Run** — push-based: exposes a webhook endpoint that receives pipeline scan failure notifications, calls the Sysdig Vulnerability API to retrieve the full result, and forwards each vulnerability to the Catalog.
@@ -87,4 +87,4 @@ Each `vulnerability` item — emitted by both modes — exposes the same fields 
 
 ## See also
 
-- [Connectors Overview](./10_overview.md)
+- [Connectors Overview](/products/context-catalog/connectors/10_overview.md)

@@ -264,6 +264,6 @@ You have completed the full resource creation cycle in AI Foundry:
 
 ## Next steps
 
-- Explore [Prompts](./basic-concepts/30_prompt.md) to extract the agent instructions into versioned, reusable templates.
+- Explore [Prompts](/products/ai-foundry/basic-concepts/30_prompt.md) to extract the agent instructions into versioned, reusable templates.
 - Add a **parallel** orchestration node to run independent agents concurrently.
-- Register an [MCP Server](./basic-concepts/70_mcp-server.md) to give agents access to live data sources such as your ticketing system.
+- Register an [MCP Server](/products/ai-foundry/basic-concepts/70_mcp-server.md) to give agents access to live data sources such as your ticketing system.

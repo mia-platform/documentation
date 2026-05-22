@@ -20,15 +20,15 @@ The **Context Catalog** is Mia-Platform's system to record, classify, and connec
 
 - Build a single source of truth for the entities that matter to your platform.
 - Extend the model with custom kinds and custom relationship types tailored to your domain.
-- Query and filter items via a [REST API](./api-interactions.md) using labels, fields, or a Catalog-specific query language.
-- Ingest data automatically from external systems through dedicated [connectors](./connectors/10_overview.md).
-- Govern compliance by attaching rules, scorecards, and campaigns to your items (see [Campaigns](./basic-concepts/50_campaigns.md), [Evaluation Criteria](./basic-concepts/30_evaluation-criteria.md), [Scorecards](./basic-concepts/40_scorecards.md)).
-- Browse and curate everything from the [Catalog Administration](./catalog-administration.md).
+- Query and filter items via a [REST API](/products/context-catalog/api-interactions.md) using labels, fields, or a Catalog-specific query language.
+- Ingest data automatically from external systems through dedicated [connectors](/products/context-catalog/connectors/10_overview.md).
+- Govern compliance by attaching rules, scorecards, and campaigns to your items (see [Campaigns](/products/context-catalog/basic-concepts/50_campaigns.md), [Evaluation Criteria](/products/context-catalog/basic-concepts/30_evaluation-criteria.md), [Scorecards](/products/context-catalog/basic-concepts/40_scorecards.md)).
+- Browse and curate everything from the [Catalog Administration](/products/context-catalog/catalog-administration.md).
 
 ## Where to go next
 
-- New to the catalog? Start with the [Getting Started](./getting-started.md) walkthrough, then the [Glossary](./basic-concepts/99_glossary.md) and the concepts of [Items](./basic-concepts/10_items.md) and [Item Types](./basic-concepts/20_item-types.md).
-- Wiring items together? See [Relationships](./basic-concepts/60_relationships.md).
-- Searching, scoping, filtering? See the [Query Language](./basic-concepts/70_query-language.md).
-- Integrating with the API? Jump to [API Interactions](./api-interactions.md).
-- Wiring data sources? See the [Connectors](./connectors/10_overview.md) section.
+- New to the catalog? Start with the [Getting Started](/products/context-catalog/getting-started.md) walkthrough, then the [Glossary](/products/context-catalog/basic-concepts/99_glossary.md) and the concepts of [Items](/products/context-catalog/basic-concepts/10_items.md) and [Item Types](/products/context-catalog/basic-concepts/20_item-types.md).
+- Wiring items together? See [Relationships](/products/context-catalog/basic-concepts/60_relationships.md).
+- Searching, scoping, filtering? See the [Query Language](/products/context-catalog/basic-concepts/70_query-language.md).
+- Integrating with the API? Jump to [API Interactions](/products/context-catalog/api-interactions.md).
+- Wiring data sources? See the [Connectors](/products/context-catalog/connectors/10_overview.md) section.

@@ -40,7 +40,7 @@ Item URIs generally take the form:
 
 ## Item Type Definitions
 
-[Item Type Definitions (ITDs)](./basic-concepts/20_item-types.md) are themselves catalog objects, but they are not exposed under `/items/`. They live at a dedicated endpoint, scoped to the core API group:
+[Item Type Definitions (ITDs)](/products/context-catalog/basic-concepts/20_item-types.md) are themselves catalog objects, but they are not exposed under `/items/`. They live at a dedicated endpoint, scoped to the core API group:
 
 ```text
 /mia-platform.eu/v1alpha1/item-type-definitions/{name}
@@ -153,7 +153,7 @@ Selectable fields must hold primitive values or homogeneous arrays of primitives
 
 ### `rawq`
 
-For complex queries (disjunctions, regex, relationship navigation), `rawq` accepts a full query expressed in the Catalog [Query Language](./basic-concepts/70_query-language.md), sent as a URL-safe base64-encoded JSON object. The decoded payload must not exceed roughly 4 KiB. See the dedicated page for the grammar and examples.
+For complex queries (disjunctions, regex, relationship navigation), `rawq` accepts a full query expressed in the Catalog [Query Language](/products/context-catalog/basic-concepts/70_query-language.md), sent as a URL-safe base64-encoded JSON object. The decoded payload must not exceed roughly 4 KiB. See the dedicated page for the grammar and examples.
 
 ## Sorting
 
