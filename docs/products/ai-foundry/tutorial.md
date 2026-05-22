@@ -40,9 +40,9 @@ A **Model** stores the LLM provider configuration that agents will reference. Yo
    | ------------------ | ----------------------------------------------------------------- |
    | **Title**          | Claude Haiku 4.5                                                  |
    | **Name**           | `claude-haiku-4-5`                                                |
-   | **Description**    | Claude Haiku 4.5 via Google Vertex AI                             |
+   | **Description**    | The Claude Haiku 4.5 model                             |
    | **Type**           | `vertex_ai/claude-haiku-4-5`                                      |
-   | **Provider**       | `vertex_ai`                                                       |
+   | **Provider**       | `Anthropic`                                                       |
    | **Supports Tools** | ✔ enabled                                                         |
    | **LiteLLM**        | ✔ enabled                                                         |
    | **Arguments**      | `{"max_output_tokens": 8192, "vertex_location": "europe-west1" }` |
@@ -50,6 +50,8 @@ A **Model** stores the LLM provider configuration that agents will reference. Yo
 4. Click **OK**.
 
 The model now appears in the **Models** list and is selectable when creating an Agent.
+
+![AI Foundry Claude Haiku model](img/ai_foundry_tutorial_model.png)
 
 ## Step 2: Create a Skill
 
@@ -98,6 +100,8 @@ A **Skill** is a reusable capability bundle. Here you will create a skill that c
 
 6. Click **Create Skill**.
 
+![AI Foundry Customer Support Skill](img/ai_foundry_tutorial_skill.png)
+
 ## Step 3: Create a Spec Template
 
 A **Spec Template** supplies a structured document that agents can reference during execution. Here you will define the schema that the Response Agent must use when drafting a reply.
@@ -130,6 +134,8 @@ A **Spec Template** supplies a structured document that agents can reference dur
    ```
 
 5. Click **Create Spec Template**.
+
+![AI Foundry Customer Reply Format Skill](img/ai_foundry_tutorial_spec_template.png)
 
 ## Step 4: Create the Agents
 
@@ -164,6 +170,8 @@ You need two agents for this pipeline. Create them one at a time.
 5. Leave **Skills** empty (classification is self-contained).
 6. Click **Create Agent**.
 
+![AI Foundry Customer Triage Agent](img/ai_foundry_tutorial_agent_customer_triage.png)
+
 ### 4b — Response Agent
 
 1. Click **New Agent** again.
@@ -188,6 +196,8 @@ You need two agents for this pipeline. Create them one at a time.
 
 4. Under **Skills**, select `Customer Support`.
 5. Click **Create Agent**.
+
+![AI Foundry Customer Response Agent](img/ai_foundry_tutorial_agent_customer_response.png)
 
 ## Step 5: Create the Playbook
 
@@ -222,6 +232,8 @@ Now you will wire the two agents together into a sequential pipeline using the *
 7. Click **Create Playbook**.
 
 Your playbook is ready. It now appears in the **Playbooks** list.
+
+![AI Foundry Customer Support Pipeline Playbook](img/ai_foundry_tutorial_playbook.png)
 
 ## Step 6: Test in the AI Playground
 
