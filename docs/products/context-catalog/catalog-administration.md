@@ -141,7 +141,7 @@ The evaluation criteria list shows all rules with their condition expression and
 
 Click **Create evaluation criteria** to open the creation form. You need to provide:
 
-- **Title** and **name** (auto-slugified from the title, editable).
+- **Title** and **name** (auto-slugged from the title, editable).
 - **Description** and **tags** (optional).
 - **Condition body** — the rule expression, in one of three formats:
   - **Visual builder** — pick a field, an operator (equals, not equals, matches, exists, etc.), and a value. Add multiple conditions combined with AND or OR.
@@ -198,7 +198,7 @@ In both modes you can:
 
 Click **Create scorecard** to open the creation wizard. On the first step, choose whether to start **from scratch** or from a template. On the second step, fill in:
 
-- **Title** and **name** (auto-slugified from the title, editable).
+- **Title** and **name** (auto-slugged from the title, editable).
 - **Description** and **tags** (optional).
 - **Levels** — define named levels in ascending order (e.g., Bronze → Silver → Gold), each with a display name and color.
 - **Evaluation Criteria** — add one or more rules, each optionally assigned to a level. Rules can be:
@@ -270,7 +270,7 @@ Click **Create campaign** to open the creation wizard. On the first step, choose
 
 On the second step, fill in:
 
-- **Title** and **name** (auto-slugified from the title, editable).
+- **Title** and **name** (auto-slugged from the title, editable).
 - **Description** and **tags** (optional).
 - **Start date** and **end date** — the campaign's time window.
 - **Items** (optional) — restrict which items the campaign evaluates, using a view reference or a raw query.
@@ -491,7 +491,7 @@ Columns shown: Name, Members, Description, Creation date.
 Click **Create team** to open a modal. Provide:
 
 - **Title** (optional) — human-readable display name.
-- **Name** (required) — unique identifier, auto-slugified from the title and editable.
+- **Name** (required) — unique identifier, auto-slugged from the title and editable.
 - **Description** (optional).
 - **Members** — search for existing users by name or email and add them to the team.
 

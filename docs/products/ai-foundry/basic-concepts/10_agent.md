@@ -48,7 +48,7 @@ The **AI Playground** provides a live chat interface where you can send messages
 - Tool call requests and their results
 - The final response
 
-You can toggle individual tools and skills on or off during a session to debug behaviour without modifying the agent manifest.
+You can toggle individual tools and skills on or off during a session to debug behavior without modifying the agent manifest.
 
 ## See also
 

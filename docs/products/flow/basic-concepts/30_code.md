@@ -12,7 +12,7 @@ Flow is in **beta**. We are actively shaping the product, so things may change a
 
 # Code
 
-When a chat produces code, that code lives in the **Canvas**: the multi-pane workspace on the right side of the application. The Canvas combines a file tree, a code editor, a logs pane, and a live preview of the generated project. This page describes how generated code is organised and what you can do with it.
+When a chat produces code, that code lives in the **Canvas**: the multi-pane workspace on the right side of the application. The Canvas combines a file tree, a code editor, a logs pane, and a live preview of the generated project. This page describes how generated code is organized and what you can do with it.
 
 ![Mia Flow Code](../img/mia_flow_code.png)
 

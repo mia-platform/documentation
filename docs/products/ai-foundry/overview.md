@@ -37,7 +37,7 @@ AI Foundry organizes AI assets as catalog resources, each sharing common metadat
 
 ![AI Foundry Playground](img/ai_foundry_playground.png)
 
-The **AI Playground** provides a live chat interface for testing agents in real time. Select a playbook, configure per-agent model overrides, and chat with the configured agentic flow. The playground streams responses, visualises tool calls and "thinking" steps inline, and lets you enable or disable individual tools and skills on the fly. It also supports slash-prompt auto-completion from prompts associated to the selected playbook.
+The **AI Playground** provides a live chat interface for testing agents in real time. Select a playbook, configure per-agent model overrides, and chat with the configured agentic flow. The playground streams responses, visualizes tool calls and "thinking" steps inline, and lets you enable or disable individual tools and skills on the fly. It also supports slash-prompt auto-completion from prompts associated to the selected playbook.
 
 ### Agent Management
 

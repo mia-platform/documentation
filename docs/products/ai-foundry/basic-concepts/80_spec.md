@@ -44,7 +44,7 @@ The following commands are supported:
 | `/spec.analyze`      | Analyze existing code for patterns and anti-patterns          |
 | `/spec.checklist`    | Run a pre-build readiness check on a spec or plan             |
 | `/spec.implement`    | Implement a specific task from the task list                  |
-| `/spec.memory`       | Update the persistent project memory with finalised decisions |
+| `/spec.memory`       | Update the persistent project memory with finalized decisions |
 
 ## Spec Template reference
 
