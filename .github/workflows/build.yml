@@ -2,10 +2,7 @@ name: Build and deploy documentation
 on:
   push:
     branches:
-      - "main"
-  pull_request:
-    branches:
-      - "main"
+      - "v15"
 
 jobs:
   install:
@@ -98,17 +95,3 @@ jobs:
           build-args: |
             BUILDTIME=${{ fromJSON(steps.meta.outputs.json).labels['org.opencontainers.image.created'] }}
             VERSION=${{ fromJSON(steps.meta.outputs.json).labels['org.opencontainers.image.version'] }}
-
-  deploy:
-    name: Deploy documentation trigger
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-      - uses: eic/trigger-gitlab-ci@v3
-        with:
-          url: https://git.tools.mia-platform.eu
-          project_id: ${{ vars.MIA_PLATFORM_DOCUMENTATION_GITLAB_PROJECT_ID }}
-          token: ${{ secrets.MIA_PLATFORM_DOCUMENTATION_GITLAB_TOKEN }}
-          variables: |
-            ENVIRONMENT_TO_DEPLOY=PROD
-          ref_name: master
