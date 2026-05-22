@@ -44,7 +44,7 @@ We are introducing **AI Foundry**, a new component of Mia-Platform for building,
 
 For more information, go to the [AI Foundry documentation](/docs/products/ai-foundry/overview) and visit [Mia-Platform v15 Overview](/release-notes/mia-platform-v15.mdx#ai-foundry).
 
-## Helm Charts in Design Area
+## Design Helm Charts and Deploy with Kustomize
 
 :::info
 This feature is only available for projects using the **Enhanced Workflow**.
@@ -52,13 +52,13 @@ This feature is only available for projects using the **Enhanced Workflow**.
 
 Console now provides a dedicated **Charts** section in the Design Area, allowing teams to create, manage, and configure [Helm](https://helm.sh/) chart configurations directly within their Console Projects.
 
+The integrated editor provides rich Helm-specific language support, making it easier to work on complex chart configurations with confidence.
+
 ![Configure Helm Charts in Design Area](img/helm-chart-design.png)
 
 The entire chart lifecycle — from editing to saving, versioning, and deploying — is fully integrated with the existing Console Design and Deploy workflows.
 
-The integrated editor provides rich Helm-specific language support, making it easier to work on complex chart configurations with confidence.
-
-To learn more about the features available in the new Charts section of the Design Area, and to understand how Git commits of chart configuration files and their deployment are handled via Kustomize, CI/CD pipelines, and MLP, please refer to the [Configure Helm Charts documentation](/docs/15.0.0/products/console/api-console/api-design/charts).
+To learn more about the features available in the new Charts section of the Design Area, and to understand how chart configuration files deployment is handled via Kustomize, CI/CD pipelines, and MLP, please refer to the [Configure Helm Charts documentation](/docs/products/console/api-console/api-design/charts).
 
 ## Other New Features, Improvements and Bug Fixes
 
@@ -112,4 +112,3 @@ For self-hosted installations, please head to the [self hosted upgrade guide](/d
 | nexus.mia-platform.eu/plugins/files-service                                    |  2.10.5   |
 | nexus.mia-platform.eu/plugins/ses-mail-notification-service                    |   3.5.0   |
 | nexus.mia-platform.eu/rond-authz/rond                                          |  1.14.2   |
-
