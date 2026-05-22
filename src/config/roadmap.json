@@ -18,7 +18,7 @@
         },
         {
           "title": "Set the Commit & Deployment strategy via Helm for Console Projects",
-          "description": ["Set your Commit & Deploy Strategy in the Project Settings by choosing the type of Git Repo Project Configuration structure and whether to manage namespace deployments with Kustomize (Flat Manifests) or with Helm (Encapsulated Charts)."],
+          "description": ["Set your Commit & Deploy Strategy in the Project Settings by choosing the type of Git Repo Project Configuration structure and whether to manage namespace deployments with Kustomize or with Helm."],
           "tags": ["Governance"]
         }
       ]
@@ -68,22 +68,22 @@
       "newFeatures": [
          {
           "title": "Items Versioning",
-          "description": [],
+          "description": ["Support for versioning of Context Catalog items, allowing users to track changes over time."],
           "tags": ["Context Catalog"]
         },
         {
           "title": "Items Lifecycle",
-          "description": [],
+          "description": ["Manage the full lifecycle of Context Catalog items — from creation to deprecation — with defined states and transitions that ensure governance and traceability across the organization."],
           "tags": ["Context Catalog"]
         },
         {
           "title": "Application management",
-          "description": [],
+          "description": ["Centralized management of applications within the Context Catalog, enabling teams to register, configure, and govern application assets in a unified catalog experience."],
           "tags": ["Context Catalog"]
         },
         {
           "title": "New Connectors",
-          "description": ["AWS", "Kubernetes", "Jenkins"],
+          "description": ["Expanding the Context Catalog with new out-of-the-box connectors for AWS, Kubernetes, and Jenkins, making it easier to integrate and govern assets from the most widely used cloud and DevOps platforms."],
           "tags": ["Context Catalog"]
         }
       ]
@@ -118,12 +118,12 @@
       "newFeatures": [
         {
           "title": "Drag & Drop components",
-          "description": [],
+          "description": ["Intuitive drag-and-drop interface for placing, arranging, and managing UI components within the Microfrontend Composer, simplifying the visual design of microfrontend pages."],
           "tags": []
         },
         {
           "title": "New Component Library",
-          "description": [],
+          "description": ["An expanded library of pre-built, ready-to-use UI components available in the Microfrontend Composer, accelerating page design and ensuring consistency across applications."],
           "tags": []
         }
       ]
@@ -138,12 +138,12 @@
       "newFeatures": [
         {
           "title": "AI-Native Flows configuration",
-          "description": [],
+          "description": ["AI-assisted configuration of Flow Manager flows, enabling users to define and manage complex event-driven workflows with intelligent suggestions and automated setup."],
           "tags": ["Flow Manager"]
         },
         {
           "title": "Guided sagas and state machines Flow configuration",
-          "description": [],
+          "description": ["A guided interface for configuring sagas and state machines within the Flow Manager, simplifying the setup of complex orchestration patterns with step-by-step assistance."],
           "tags": ["Flow Manager"]
         }
       ]
