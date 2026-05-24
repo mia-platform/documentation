@@ -43,6 +43,12 @@ This page describes how to secure frontend applications using a **Backend-For-Fr
 
 Two session modes are supported: **`bff`** (cookie-only, tokens stay server-side) and **`tokenExchange`** (cookie session + short-lived access token returned to JavaScript).
 
+Additional capabilities include:
+
+- **Multi-client support**: a single BFF instance can serve multiple OAuth 2.0 clients (e.g., multiple frontends with different redirect URIs) under a shared session cookie, with independent per-client token storage.
+- **[Back-Channel Logout](https://openid.net/specs/openid-connect-backchannel-1_0.html)**: the Authorization Server can terminate sessions server-to-server without browser interaction.
+- **JWKS endpoint** (`/.well-known/jwks.json`): publishes the BFF's public keys for `private_key_jwt` client authentication.
+
 ## Authentication for Public Applications
 
 Exposing frontend applications as OAuth 2.x public clients raises significant security
@@ -229,6 +235,38 @@ sequenceDiagram
     %% -------------------- Return to app --------------------
     AS-->>BR: 302 FOUND<br/>Location: /
 ```
+
+### Back-Channel Logout
+
+In addition to RP-initiated logout, the BFF supports [OpenID Connect Back-Channel Logout 1.0](https://openid.net/specs/openid-connect-backchannel-1_0.html). This allows the Authorization Server to notify the BFF directly when a session ends — for example, when a user logs out from another application or an administrator revokes a session.
+
+The AS sends a `POST` request to the BFF's `/oidc/logout/backchannel` endpoint containing a signed `logout_token` JWT. The BFF validates the token, resolves the browser session from the `sid` (or `sub`) claim, and destroys all stored tokens for that session.
+
+```mermaid
+sequenceDiagram
+    participant AS as Authorization Server
+    participant BFF as BFF
+    participant R as Redis
+
+    AS->>BFF: POST /oidc/logout/backchannel<br/>logout_token=<signed JWT>
+    BFF->>BFF: Validate JWT signature & claims
+    BFF->>R: Look up session by sid/sub
+    R-->>BFF: session_id
+    BFF->>R: Delete all tokens for session_id
+    BFF-->>AS: 200 OK
+
+    Note over BFF: Next browser request with<br/>the old session cookie<br/>will get 401 → re-login
+```
+
+This is especially useful when the BFF serves [multiple clients](#multi-client-support): a single back-channel logout notification destroys tokens for **all** clients associated with that session.
+
+### Multi-Client Support
+
+A single BFF instance can serve multiple OAuth 2.0 clients. This is useful when multiple frontend applications (e.g., running on different ports or domains) need independent client registrations with different redirect URIs or scopes, while sharing the same Authorization Server.
+
+All clients share the same session cookie. Token storage is keyed by `(session_id, client_id)`, so each client maintains independent tokens under the same browser session. The target client is selected via the `?client_id=<id>` query parameter on `/login`, `/logout`, `/session`, and `/token` endpoints. When the parameter is omitted, the default client is used.
+
+See [Configuration — Multi-Client](/products/console/project-configuration/auth-flow/configuration.mdx#multi-client-configuration) for setup details.
 
 ### Token Exchange
 
