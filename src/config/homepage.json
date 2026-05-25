@@ -9,20 +9,14 @@
   "announcement": {
     "buttons": [
       {
-        "label": "View roadmap",
-        "link": "/release-notes/roadmap",
-        "primary": true,
-        "target": "_self"
-      },
-      {
-        "label": "View release note",
-        "link": "/release-notes/v14-overview",
+        "label": "View v15 documentation",
+        "link": "https://v15.docs.mia-platform.eu",
         "primary": true,
         "target": "_self"
       }
     ],
-    "description": "Ready to unleash the invisible?",
-    "title": "Mia Platform v14 is now available!"
+    "description": "Ready to master the vibe?",
+    "title": "Mia Platform v15 is now available in preview!"
   },
   "featureGrid": [
     {

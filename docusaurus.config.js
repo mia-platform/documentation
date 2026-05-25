@@ -26,6 +26,13 @@ const config = {
       additionalLanguages: ['rego', 'java', 'csharp', 'kotlin', 'nginx', 'docker', 'ini'],
     },
     image: "img/documentation-link-preview.png",
+    announcementBar: {
+        id: 'archived',
+        content: 'Mia-Platform v15 is now available in preview. Please, check the <a target="_blank" rel="noopener noreferrer" href="https://v15.docs.mia-platform.eu/">v15 documentation</a> for up-to-date information.',
+        backgroundColor: '#def2ff',
+        textColor: '#193c47',
+        isCloseable: false,
+    },
     algolia: {
       placeholder: "Search for terms, features and more...",
       apiKey: "602a752c6342891e2488bea38b0d9292",
@@ -164,6 +171,17 @@ const config = {
         {
           type: 'custom-CustomVersionsDropdown',
           position: 'right',
+          dropdownItemsBefore: [
+            {
+              type: 'html',
+              value: '<b style="margin-left: 8px; font-size: 14px;">Preview</b>',
+            },
+            { label: '15.0.0', href: 'https://v15.docs.mia-platform.eu' },
+            {
+              type: 'html',
+              value: '<hr style="margin: 4px 0;">',
+            }
+          ],
           dropdownItemsAfter: [
             {
               type: 'html',
