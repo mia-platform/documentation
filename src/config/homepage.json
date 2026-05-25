@@ -16,7 +16,7 @@
       },
       {
         "label": "View release note",
-        "link": "/release-notes/v14-overview",
+        "link": "/release-notes/v15-overview",
         "primary": true,
         "target": "_self"
       }

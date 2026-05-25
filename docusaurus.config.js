@@ -50,7 +50,7 @@ const config = {
           activeBaseRegex: "(docs|docs/\\d.x)/getting-started"
         },
         {
-          label: "Products",
+          label: "Product",
           position: "left",
           activeBaseRegex: "(docs|docs/\\d.x)/products",
           type: "dropdown",
@@ -232,26 +232,6 @@ const config = {
         {
           label: "Privacy Policy",
           href: "https://mia-platform.eu/img/Privacy_Policy_Website_EN.pdf",
-        },
-        ],
-      },
-      {
-        title: "Core Platform",
-        items: [{
-          label: "Mia-Platform Console",
-          href: "https://mia-platform.eu/platform/console/",
-        },
-        {
-          label: "Mia-Platform Marketplace",
-          href: "https://mia-platform.eu/platform/mia-platform-marketplace/",
-        },
-        {
-          label: "Mia-Platform Fast Data",
-          href: "https://mia-platform.eu/platform/fast-data/",
-        },
-        {
-          label: "Release Notes",
-          to: "/release-notes/versions",
         },
         ],
       },
