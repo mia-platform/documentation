@@ -12,7 +12,7 @@
           "description": [
             "The new version `v0.7.0` of the _Stream Processor_ is available!",
             "This version introduces a **breaking change** in cache key handling: cache index keys are now enforced to be **strings only**. If a non-conforming value (object, array, number, etc.) is provided as a cache key, the Stream Processor will either crash or terminate the operation to the DLQ (if configured). Users relying on Kafka keys as-is or already using plain strings are not affected by this change.",
-            "Check the service [changelog](/docs/next/products/fast_data_v2/stream_processor/changelog) for the full list of changes."
+            "Check the service [changelog](/docs/products/fast_data_v2/stream_processor/changelog) for the full list of changes."
           ]
         },
         {
@@ -20,7 +20,7 @@
           "description": [
             "The new version `v0.6.3` of _Farm Data_ is available!",
             "This patch release fixes the handling of `MergeStageNoMatchingDocument` errors (error code 13113) in the read-write pipeline, improving resiliency in scenarios where no matching document is found during a merge stage.",
-            "Check the service [changelog](/docs/next/products/fast_data_v2/farm_data/changelog) for the full list of changes."
+            "Check the service [changelog](/docs/products/fast_data_v2/farm_data/changelog) for the full list of changes."
           ]
         }
       ],
@@ -44,6 +44,53 @@
         "Fixed an issue where the External Orchestrator Generator activation card was incorrectly displayed in the Settings of Standard Workflow projects. The card is now only shown for Enhanced Workflow projects, where the feature is supported.",
         "Fixed an issue in the Deploy History where switching the status filter back to _All Status_ after selecting a specific status triggered a 400 error and caused the history list to disappear."
       ]
+    }
+  },
+  {
+    "title": "Data Catalog",
+    "icon": "data-catalog",
+    "defaultOpen": true,
+    "type": "versions",
+    "items": {
+      "newFeatures": [],
+      "improvements": [
+        {
+          "title": "CSV Import supports both `,` and `;` delimiters in Column Lineage",
+          "description": [
+            "When importing column lineage relations via CSV for a Virtual Job, the frontend now **supports** whether the file uses `,` or `;` as delimiter.",
+            "This feature is supported starting from v0.5.2 of data-catalog-frontend service.",
+            "For more information about the [Data Catalog Application](/docs/products/data_catalog/overview_data_catalog) and the latest service versions, check out the [compatibility matrix](/docs/products/data_catalog/data_catalog_compatibility_matrix)."
+          ]
+        }
+      ],
+      "bugFixes": [
+        {
+          "title": "When patching columnLineage of jobs should escape `.` and `$`",
+          "description": [
+            "This fix is included in version `v0.5.1` of the _Open Lineage_ service."
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "title": "Data Catalog",
+    "icon": "data-catalog",
+    "defaultOpen": true,
+    "type": "versions",
+    "items": {
+      "newFeatures": [],
+      "improvements": [
+        {
+          "title": "CSV Import supports both `,` and `;` delimiters in Column Lineage",
+          "description": [
+            "When importing column lineage relations via CSV for a Virtual Job, the frontend now **supports** whether the file uses `,` or `;` as delimiter.",
+            "This feature is supported starting from v0.5.2 of data-catalog-frontend service.",
+            "For more information about the [Data Catalog Application](/docs/products/data_catalog/overview_data_catalog) and the latest service versions, check out the [compatibility matrix](/docs/products/data_catalog/data_catalog_compatibility_matrix)."
+          ]
+        }
+      ],
+      "bugFixes": []
     }
   }
 ]

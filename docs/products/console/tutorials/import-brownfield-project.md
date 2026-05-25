@@ -22,7 +22,7 @@ After installing miactl, before proceeding with the import of Kubernetes resourc
 
 For the authentication method, you can choose to use either your personal account or a `service account`. For instructions on creating a service account, refer to [this documentation page](/products/console/identity-and-access-management/manage-service-accounts.md). To learn in detail how to configure the `context` for miactl, refer to [this documentation page](/products/console/cli/miactl/30_commands.md#context).
 
-## Import Kubernetes resources into an empty Mia-Platform Console Project
+## Import Kubernetes resources into an empty Console Project
 
 :::caution
 Kubernetes resources can only be imported into an empty project. Additionally, at the time of writing this tutorial, the `import` command is lossy, meaning that some advanced configurations might be lost during the process. We recommend reviewing the generated files before attempting a deployment to ensure that nothing is missing or incorrect.

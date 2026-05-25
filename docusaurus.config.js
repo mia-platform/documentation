@@ -57,25 +57,15 @@ const config = {
           items: [
             {
               type: 'doc',
-              docId: "products/overview",
-              label: "Overview",
-              activeBaseRegex: "(docs|docs/\\d.x)/products/overview"
-            },
-            {
-              type: 'doc',
               docId: "products/context-catalog/overview",
               label: "Context Catalog",
               activeBaseRegex: "(docs|docs/\\d.x)/products/context-catalog"
             },
             {
-              type: 'html',
-              value: '<div style="margin: 8px 12px 4px; font-weight: 600; font-size: 12px; text-transform: uppercase; opacity: 0.6;">AI</div>',
-            },
-            {
               type: 'doc',
-              docId: "products/mia-flow/overview",
-              label: "Mia Flow",
-              activeBaseRegex: "(docs|docs/\\d.x)/products/mia-flow"
+              docId: "products/flow/overview",
+              label: "Flow",
+              activeBaseRegex: "(docs|docs/\\d.x)/products/flow"
             },
             {
               type: 'doc',
@@ -130,6 +120,14 @@ const config = {
               docId: "runtime-components/overview_marketplace",
               label: "Runtime components",
               activeBaseRegex: "(docs|docs/\\d.x)/runtime-components"
+            },
+            {
+              type: 'html',
+              value: '<div style="margin: 8px 12px 4px; font-weight: 600; font-size: 12px; text-transform: uppercase; opacity: 0.6;">Other Apps</div>',
+            },
+            {
+              label: "P4SaMD",
+              href: "https://docs.mia-care.io/docs/p4samd/overview",
             }
           ]
         },
@@ -151,6 +149,11 @@ const config = {
           href: "https://makeitapp.atlassian.net/servicedesk/customer/portal/21",
           position: "right",
           label: "Support"
+        },
+        {
+          href: "https://github.com/mia-platform/community/discussions",
+          position: "right",
+          label: "Community"
         },
         {
           type: 'custom-CustomVersionsDropdown',

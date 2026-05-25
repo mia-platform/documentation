@@ -26,8 +26,8 @@
   },
   "featureGrid": [
     {
-      "description": "Explore how to manage and reuse software components, APIs, and microservices via a self-service catalog.",
-      "icon": "software-catalog",
+      "description": "Connect, configure, and serve context to AI agents and applications through a governed catalog of enterprise knowledge.",
+      "icon": "context-catalog",
       "link": "/docs/products/context-catalog/overview",
       "target": "_self",
       "title": "Context Catalog"
@@ -35,51 +35,37 @@
     {
       "description": "Discover how to easily find, understand, and effectively govern all of your company's data assets.",
       "icon": "data-catalog",
-      "link": "/docs/products/data_catalog/overview",
+      "link": "/docs/products/data_catalog/overview_data_catalog",
       "target": "_self",
       "title": "Data Catalog"
     },
     {
-      "description": "Mia-Flow.",
-      "icon": "data-catalog",
-      "link": "/docs/products/mia-flow/overview",
+      "description": "Accelerate prototyping with AI-driven workflows for your enterprise applications and services.",
+      "icon": "flow",
+      "link": "/docs/products/flow/overview",
       "target": "_self",
-      "title": "Mia-Flow"
+      "title": "Flow"
     },
     {
-      "description": "AI-Foundry",
-      "icon": "runtime-environment",
+      "description": "Design, manage, and govern AI playbooks to bring generative AI applications and agents to production on a secure, enterprise-ready foundation.",
+      "icon": "ai-foundry",
       "link": "/docs/products/ai-foundry/overview",
       "target": "_self",
       "title": "AI Foundry"
     },
     {
-      "description": "Discover how to govern and industrialize your entire cloud-native development and operations lifecycle.",
+      "description": "Automate your cloud-native development lifecycle with self-service Environment as a Service capabilities.",
       "icon": "mia-platform-console",
-      "link": "/docs/development_suite/overview-dev-suite",
+      "link": "/docs/products/console/overview-dev-suite",
       "target": "_self",
-      "title": "Mia-Platform Console"
+      "title": "Console"
     },
     {
-      "description": "Find out how to make real-time, data-driven decisions with always-on, constantly updated data.",
+      "description": "Configure and manage real-time Fast Data pipelines to power always-on, data-driven decisions across your business.",
       "icon": "real-time-data-integration",
-      "link": "/docs/fast_data/what_is_fast_data",
+      "link": "/docs/products/fast_data_v2/overview",
       "target": "_self",
-      "title": "Mia-Platform Fast Data"
-    },
-    {
-      "description": "Learn how to visually build and orchestrate microfrontends for modern, scalable web applications.",
-      "icon": "mfe-composer",
-      "link": "/docs/microfrontend-composer/what-is",
-      "target": "_self",
-      "title": "Microfrontend Composer"
-    },
-    {
-      "description": "Marketplace",
-      "icon": "software-catalog",
-      "link": "/docs/runtime-components/overview_marketplace",
-      "target": "_self",
-      "title": "Runtime Components Marketplace"
+      "title": "Fast Data"
     }
   ],
   "beginnersSection": {

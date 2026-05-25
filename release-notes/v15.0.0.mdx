@@ -7,7 +7,7 @@ image: "img/release-note-link-preview.png"
 import Accordion from '@site/src/components/Accordion/index.js';
 import dataAccordion from '@site/src/config/release-notes/release-note-v15-0-0.json';
 
-_April 29th, 2026_
+_May 26th, 2026_
 
 :::info
 
@@ -18,13 +18,41 @@ Console SaaS users can try out v15.0.0 latest improvements in Preview! Open a Se
 For self-hosted installations, please read the [following guidelines](#how-to-update-your-console).
 :::
 
-## Helm Charts in Design Area
+## Context Catalog
+
+![Catalog](./img/catalog.png)
+
+We are introducing **Context Catalog**, a brand-new component of Mia-Platform that lets teams centralize, govern, and connect any entity that lives in their organization — services, infrastructure resources, datasets, AI assets, processes — and make them discoverable across the platform.
+
+Context Catalog ships with a REST API, a web Backoffice, a typed relationship graph, a compliance layer (rules, scorecards, campaigns), a growing set of connectors that keep the catalog in sync with GitHub, GitLab, Bitbucket, Azure, Azure DevOps, Google Cloud, the Mia-Platform Console, Sonatype Nexus, and Sysdig Secure, and an MCP server that exposes the catalog to AI agents.
+
+For more information, go to the [Context Catalog documentation](/docs/products/context-catalog/overview) and visit [Mia-Platform v15 Overview](/release-notes/mia-platform-v15.mdx#context-catalog).
+
+## Flow
+
+![Flow](./img/flow.png)
+
+We are introducing **Flow**, a new component of Mia-Platform that brings visual workflow orchestration to the platform. Flow lets business and technical stakeholders design, execute, and monitor end-to-end processes that span microservices, data pipelines, and human-in-the-loop steps on a single canvas.
+
+For more information, go to the [Flow documentation](/docs/products/flow/overview) and visit [Mia-Platform v15 Overview](/release-notes/mia-platform-v15.mdx#flow).
+
+## AI Foundry
+
+![AI Foundry](./img/ai_foundry.png)
+
+We are introducing **AI Foundry**, a new component of Mia-Platform for building, deploying, and governing AI-powered experiences. AI Foundry provides a unified environment to configure agents, manage LLM models, prompts, tools, and skills, compose multi-step agentic workflows through the Playbook Builder, and test everything in a live AI Playground — all governed as first-class catalog resources.
+
+For more information, go to the [AI Foundry documentation](/docs/products/ai-foundry/overview) and visit [Mia-Platform v15 Overview](/release-notes/mia-platform-v15.mdx#ai-foundry).
+
+## Design Helm Charts and Deploy with Kustomize
 
 :::info
 This feature is only available for projects using the **Enhanced Workflow**.
 :::
 
 Console now provides a dedicated **Charts** section in the Design Area, allowing teams to create, manage, and configure [Helm](https://helm.sh/) chart configurations directly within their Console Projects.
+
+The integrated editor provides rich Helm-specific language support, making it easier to work on complex chart configurations with confidence.
 
 ![Configure Helm Charts in Design Area](img/helm-chart-design.png)
 
@@ -86,4 +114,3 @@ For self-hosted installations, please head to the [self hosted upgrade guide](/d
 | nexus.mia-platform.eu/plugins/files-service                                    |  2.10.5   |
 | nexus.mia-platform.eu/plugins/ses-mail-notification-service                    |   3.5.0   |
 | nexus.mia-platform.eu/rond-authz/rond                                          |  1.14.2   |
-

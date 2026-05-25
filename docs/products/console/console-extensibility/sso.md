@@ -4,7 +4,7 @@ title: Integrate Single Sign-On (SSO)
 sidebar_label: Integrate Single Sign-On (SSO)
 ---
 
-# Integrate Mia-Platform Console Single Sign-On (SSO) for extensions
+# Integrate Console Single Sign-On (SSO) for extensions
 
 Using Mia-Platform extensions, users can access custom data and perform custom actions. If this data is protected, or these actions may be restricted to a specific set of users only, you need a way to authenticate the user and validate its permissions.  
 

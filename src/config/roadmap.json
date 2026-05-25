@@ -1,85 +1,90 @@
 [
   {
-    "title": "Mia-Platform Console",
+    "title": "Console",
     "icon": "console",
     "defaultOpen": false,
     "type": "roadmap",
     "items": {
       "newFeatures": [
         {
-          "title": "Company/Profile management optimization",
-          "description": [],
+          "title": "New Authentication based on Keycloak",
+          "description": ["Redesign of the Console authentication layer based on Keycloak, enabling SSO, fine-grained role and permission management, and improved user lifecycle control."],
           "tags": ["Governance"]
         },
         {
-          "title": "Extended FinOps integration",
-          "description": [],
+          "title": "Bridging Design expressiveness with Helm Charts",
+          "description": ["Configure your project resources using the intuitive interfaces within the Design Area sections (e.g. Microservices, Resources, Applications, ...) and get a read-only Helm chart view that automatically reflects your configuration."],
           "tags": ["Governance"]
         },
         {
-          "title": "Customizable Home Page",
-          "description": [],
+          "title": "Set the Commit & Deployment strategy via Helm for Console Projects",
+          "description": ["Set your Commit & Deploy Strategy in the Project Settings by choosing the type of Git Repo Project Configuration structure and whether to manage namespace deployments with Kustomize or with Helm."],
           "tags": ["Governance"]
-        },
-        {
-          "title": "Customizable metrics dashboards",
-          "description": [],
-          "tags": ["Governance"]
-        },
-        {
-          "title": "Enhanced CLI",
-          "description": [],
-          "tags": ["DevX"]
-        },
-        {
-          "title": "Enhanced Pair with AI",
-          "description": [],
-          "tags": ["DevX"]
-        },
-        {
-          "title": "Improved Secret Managers integrations",
-          "description": [],
-          "tags": ["DevX"]
-        },
-        {
-          "title": "Console public API reference documentation",
-          "description": [],
-          "tags": ["Extensibility"]
-        },
-        {
-          "title": "Extended support for Infrastructure Management",
-          "description": [],
-          "tags": ["Extensibility"]
         }
       ]
     }
   },
   {
-    "title": "Mia-Platform Data Fabric",
+    "title": "Fast Data",
     "icon": "fast-data",
     "defaultOpen": false,
     "type": "roadmap",
     "items": {
       "newFeatures": [
         {
-          "title": "New AI-Native Data Pipeline configurator",
-          "description": [],
+          "title": "Fast Data Control Plane v2 - Cross Namespace Management",
+          "description": ["To provide centralized management of the Fast Data v2 Runtime, the Control Plane will support access and control over all namespaces where Fast Data pipelines are deployed. Provisioning will be done via a dedicated Helm chart."],
           "tags": ["Fast Data"]
         },
         {
-          "title": "Runtime aggregation performance improvements for Fast Data",
-          "description": [],
+          "title": "Guided Operations & Troubleshooting Interface on Control Plane v2",
+          "description": ["A Control Plane interface to perform ordered and guided operations."],
+          "tags": ["Fast Data"]
+        },
+        {
+          "title": "New AI-Native Data Pipeline configurator",
+          "description": ["A visual, AI-assisted interface for configuring and managing end-to-end Fast Data pipelines, reducing manual effort and accelerating pipeline setup."],
           "tags": ["Fast Data"]
         },
         {
           "title": "Data processing functions generation & testing with AI support",
-          "description": [],
+          "description": ["AI-powered generation of data processing functions with built-in testing capabilities, allowing validation of each pipeline step using fixed input data and expected output review."],
           "tags": ["Fast Data"]
         },
         {
-          "title": "MongoDB-Kafka Connector",
-          "description": [],
+          "title": "Fast Data MCP Agent",
+          "description": ["An AI agent leveraging the Model Context Protocol to interact with Fast Data pipelines, enabling natural language-driven configuration and monitoring."],
           "tags": ["Fast Data"]
+        }
+      ]
+    }
+  },
+  {
+    "title": "Context Catalog",
+    "icon": "context-catalog",
+    "defaultOpen": false,
+    "type": "roadmap",
+    "items": {
+      "newFeatures": [
+         {
+          "title": "Items Versioning",
+          "description": ["Support for versioning of Context Catalog items, allowing users to track changes over time."],
+          "tags": ["Context Catalog"]
+        },
+        {
+          "title": "Items Lifecycle",
+          "description": ["Manage the full lifecycle of Context Catalog items — from creation to deprecation — with defined states and transitions that ensure governance and traceability across the organization."],
+          "tags": ["Context Catalog"]
+        },
+        {
+          "title": "Application management",
+          "description": ["Centralized management of applications within the Context Catalog, enabling teams to register, configure, and govern application assets in a unified catalog experience."],
+          "tags": ["Context Catalog"]
+        },
+        {
+          "title": "New Connectors",
+          "description": ["Expanding the Context Catalog with new out-of-the-box connectors for AWS, Kubernetes, and Jenkins, making it easier to integrate and govern assets from the most widely used cloud and DevOps platforms."],
+          "tags": ["Context Catalog"]
         }
       ]
     }
@@ -92,59 +97,14 @@
     "items": {
       "newFeatures": [
         {
-          "title": "Export Data Catalog assets at scale",
-          "description": [],
-          "tags": []
+          "title": "Business Glossary",
+          "description": ["A business glossary contains the definitions of commonly used business terms in an organization, serving as the single authoritative source for concepts and definitions. Users with enough permissions can define categories and terms to create the organization business catalog, enrich data assets with glossary terms, and search assets based on specific glossary terms."],
+          "tags": ["Data Catalog"]
         },
         {
-          "title": "Excel integration for bulk metadata enrichment and sync with the Catalog",
-          "description": [],
-          "tags": []
-        },
-        {
-          "title": "Improved management of schema validation and indexes for MongoDB assets",
-          "description": [],
-          "tags": ["Database Management"]
-        }
-      ]
-    }
-  },
-  {
-    "title": "Software Catalog",
-    "icon": "software-catalog",
-    "defaultOpen": false,
-    "type": "roadmap",
-    "items": {
-      "newFeatures": [
-        {
-          "title": "Improved Governance",
-          "description": [],
-          "tags": []
-        },
-        {
-          "title": "Enhanced PBC (Application) Lifecycle",
-          "description": [],
-          "tags": []
-        },
-        {
-          "title": "Modular PBCs",
-          "description": [],
-          "tags": []
-        },
-        {
-          "title": "Catalog Items Enrichment",
-          "description": [],
-          "tags": []
-        },
-        {
-          "title": "Catalog integration with third-party tools",
-          "description": [],
-          "tags": []
-        },
-        {
-          "title": "AI-driven Catalog Items discovery",
-          "description": [],
-          "tags": []
+          "title": "Integration of Data Catalog in Context Catalog",
+          "description": ["Seamless integration between Data Catalog and Context Catalog, enabling users to discover and govern data assets directly within the unified Context Catalog experience."],
+          "tags": ["Data Catalog"]
         }
       ]
     }
@@ -158,12 +118,12 @@
       "newFeatures": [
         {
           "title": "Drag & Drop components",
-          "description": [],
+          "description": ["Intuitive drag-and-drop interface for placing, arranging, and managing UI components within the Microfrontend Composer, simplifying the visual design of microfrontend pages."],
           "tags": []
         },
         {
           "title": "New Component Library",
-          "description": [],
+          "description": ["An expanded library of pre-built, ready-to-use UI components available in the Microfrontend Composer, accelerating page design and ensuring consistency across applications."],
           "tags": []
         }
       ]
@@ -178,12 +138,12 @@
       "newFeatures": [
         {
           "title": "AI-Native Flows configuration",
-          "description": [],
+          "description": ["AI-assisted configuration of Flow Manager flows, enabling users to define and manage complex event-driven workflows with intelligent suggestions and automated setup."],
           "tags": ["Flow Manager"]
         },
         {
           "title": "Guided sagas and state machines Flow configuration",
-          "description": [],
+          "description": ["A guided interface for configuring sagas and state machines within the Flow Manager, simplifying the setup of complex orchestration patterns with step-by-step assistance."],
           "tags": ["Flow Manager"]
         }
       ]
