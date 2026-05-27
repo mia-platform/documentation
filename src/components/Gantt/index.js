@@ -2,19 +2,21 @@ import React from 'react';
 import styles from './styles.module.css';
 
 // --- Helper Functions ---
-const getCurrentYearMonth = () => {
-    const now = new Date();
-    const year = now.getFullYear();
-    const month = (now.getMonth() + 1).toString().padStart(2, '0');
-    return `${year}-${month}`;
+const parseISODate = (dateString) => {
+    if (!dateString) return null;
+    const date = new Date(dateString + 'T00:00:00');
+    return isNaN(date.getTime()) ? null : date;
 };
 
-const getTaskStatus = (task, currentYearMonth) => {
-    const startMonth = task.start.slice(0, 7);
-    const endMonth = task.end.slice(0, 7);
-    if (endMonth < currentYearMonth) return 'passed';
-    if (startMonth <= currentYearMonth && endMonth >= currentYearMonth) return 'current';
-    return 'next';
+const getTaskStatus = (task, currentDate) => {
+    const previewDate = parseISODate(task.releaseDates?.preview);
+    const stableDate = parseISODate(task.releaseDates?.stable) || parseISODate(task.start);
+    const endDate = parseISODate(task.end);
+
+    if (endDate && endDate < currentDate) return 'passed';
+    if (previewDate && stableDate && previewDate <= currentDate && currentDate < stableDate) return 'preview';
+    if (stableDate && endDate && stableDate <= currentDate && currentDate <= endDate) return 'current';
+    return 'future';
 };
 
 /**
@@ -61,39 +63,78 @@ const findQuarter = (dateString) => {
     return `Q${quarter} - ${year}`;
 };
 
+const renderTaskName = (name = '') => {
+    const normalized = String(name).replace(/\\n/g, '\n');
+    return normalized.split('\n').map((line, index) => (
+        <React.Fragment key={`${line}-${index}`}>
+            {index > 0 ? <br /> : null}
+            {line}
+        </React.Fragment>
+    ));
+};
+
+const renderStatusLegend = () => (
+    <div className={styles.legend} aria-label="Stable versions status legend">
+        <span className={styles.legendItem}>
+            <span className={`${styles.legendSwatch} ${styles.passedLegend}`} />
+            {`Passed`}
+        </span>
+        <span className={styles.legendItem}>
+            <span className={`${styles.legendSwatch} ${styles.currentLegend}`} />
+            {`Active`}
+        </span>
+        <span className={styles.legendItem}>
+            <span className={`${styles.legendSwatch} ${styles.previewLegend}`} />
+            {`Preview`}
+        </span>
+        <span className={styles.legendItem}>
+            <span className={`${styles.legendSwatch} ${styles.futureLegend}`} />
+            {`Future`}
+        </span>
+    </div>
+);
+
 // --- Main Component ---
 export default function GanttChart({config, renderAs = 'chart'}) {
     if (!config || !config.tasks || (renderAs === 'chart' && !config.timeline)) {
         return <pre><code>{`Error: The 'config' prop is missing or invalid.`}</code></pre>;
     }
 
+    const currentDate = new Date();
+
     // MODIFIED: Render a styled HTML table if specified
     if (renderAs === 'table') {
         return (
-            <table>
-                <thead>
-                <tr>
-                    <th>{`Quarter`}</th>
-                    <th>{`Stable Version*`}</th>
-                    <th>{`Preview Release Date`}</th>
-                    <th>{`Stable Release Date`}</th>
-                    <th>{`Start MTW`}</th>
-                    <th>{`End MTW`}</th>
-                </tr>
-                </thead>
-                <tbody>
-                {config.tasks.map(task => (
-                    <tr key={task.name}>
-                        <td>{findQuarter(task.start)}</td>
-                        <td>{task.name}</td>
-                        <td>{formatDateForTable(task.releaseDates?.preview)}</td>
-                        <td>{formatDateForTable(task.releaseDates?.stable)}</td>
-                        <td>{formatDateForTable(task.start)}</td>
-                        <td>{formatDateForTable(task.end)}</td>
+            <div className={styles.ganttContainer}>
+                <table className={styles.statusTable}>
+                    <thead>
+                    <tr>
+                        <th>{`Quarter`}</th>
+                        <th>{`Stable Version*`}</th>
+                        <th>{`Preview Release Date`}</th>
+                        <th>{`Stable Release Date`}</th>
+                        <th>{`Start MTW`}</th>
+                        <th>{`End MTW`}</th>
                     </tr>
-                ))}
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                    {config.tasks.map(task => {
+                        const status = getTaskStatus(task, currentDate);
+
+                        return (
+                        <tr key={task.name} className={styles[`${status}Row`]}>
+                            <td>{findQuarter(task.start)}</td>
+                            <td>{renderTaskName(task.name)}</td>
+                            <td>{formatDateForTable(task.releaseDates?.preview)}</td>
+                            <td>{formatDateForTable(task.releaseDates?.stable)}</td>
+                            <td>{formatDateForTable(task.start)}</td>
+                            <td>{formatDateForTable(task.end)}</td>
+                        </tr>
+                    )})}
+                    </tbody>
+                </table>
+                {renderStatusLegend()}
+            </div>
         );
     }
 
@@ -105,7 +146,6 @@ export default function GanttChart({config, renderAs = 'chart'}) {
         })
     );
 
-    const currentYearMonth = getCurrentYearMonth();
     const totalMonths = allMonths.length;
 
     return (
@@ -141,7 +181,7 @@ export default function GanttChart({config, renderAs = 'chart'}) {
                         );
                     }
 
-                    const status = getTaskStatus(task, currentYearMonth);
+                    const status = getTaskStatus(task, currentDate);
                     const gridColumn = `${startIndex + 1} / ${endIndex + 2}`;
 
                     return (
@@ -149,7 +189,7 @@ export default function GanttChart({config, renderAs = 'chart'}) {
                             <td className={styles.barCell} colSpan={totalMonths}>
                                 <div className={styles.barContainer} style={{'--total-months': totalMonths}}>
                                     <div className={`${styles.bar} ${styles[status]}`} style={{gridColumn}}>
-                                        {task.name}
+                                        {renderTaskName(task.name)}
                                     </div>
                                 </div>
                             </td>
@@ -158,6 +198,7 @@ export default function GanttChart({config, renderAs = 'chart'}) {
                 })}
                 </tbody>
             </table>
+            {renderStatusLegend()}
         </div>
     );
 }
