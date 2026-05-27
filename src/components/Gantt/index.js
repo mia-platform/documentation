@@ -38,8 +38,9 @@ const getOrdinalSuffix = (d) => {
  * @returns {string} The formatted date.
  */
 const formatDateForTable = (dateString) => {
+    if (!dateString) return 'TBD';
     const date = new Date(dateString + 'T00:00:00');
-    if (isNaN(date.getTime())) return 'Invalid Date';
+    if (isNaN(date.getTime())) return 'TBD';
     const day = date.getDate();
     const year = date.getFullYear();
     const month = date.toLocaleString('en-US', {month: 'long'});
@@ -74,6 +75,8 @@ export default function GanttChart({config, renderAs = 'chart'}) {
                 <tr>
                     <th>{`Quarter`}</th>
                     <th>{`Stable Version*`}</th>
+                    <th>{`Preview Release Date`}</th>
+                    <th>{`Stable Release Date`}</th>
                     <th>{`Start MTW`}</th>
                     <th>{`End MTW`}</th>
                 </tr>
@@ -83,6 +86,8 @@ export default function GanttChart({config, renderAs = 'chart'}) {
                     <tr key={task.name}>
                         <td>{findQuarter(task.start)}</td>
                         <td>{task.name}</td>
+                        <td>{formatDateForTable(task.releaseDates?.preview)}</td>
+                        <td>{formatDateForTable(task.releaseDates?.stable)}</td>
                         <td>{formatDateForTable(task.start)}</td>
                         <td>{formatDateForTable(task.end)}</td>
                     </tr>
