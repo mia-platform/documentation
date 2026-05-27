@@ -16,8 +16,8 @@
     {"name": "v14.4.x", "releaseDates": {"preview": "2025-11-27", "stable": "2026-01-15"}, "start": "2026-01-15", "end": "2026-04-16"},
     {"name": "v14.5.x", "releaseDates": {"preview": "2026-02-19", "stable": "2026-04-16"}, "start": "2026-04-16", "end": "2026-07-16"},
     {"name": "v15.0.x", "releaseDates": {"preview": "2026-05-26", "stable": "2026-07-16"}, "start": "2026-07-16", "end": "2026-10-22"},
-    {"name": "v15.2.x", "releaseDates": {"preview": "2026-09-10", "stable": "2026-10-22"}, "start": "2026-10-22", "end": "2027-01-21"},
-    {"name": "v15.4.x", "releaseDates": {"preview": "2026-11-05", "stable": "2027-01-21"}, "start": "2027-01-21", "end": "2027-04-15"},
-    {"name": "v15.6.x", "releaseDates": {"preview": "2027-02-18", "stable": "2027-04-15"}, "start": "2027-04-15", "end": "2027-07-15"}
+    {"name": "v15.1.x", "releaseDates": {"preview": "2026-09-10", "stable": "2026-10-22"}, "start": "2026-10-22", "end": "2027-01-21"},
+    {"name": "v15.2.x", "releaseDates": {"preview": "2026-11-05", "stable": "2027-01-21"}, "start": "2027-01-21", "end": "2027-04-15"},
+    {"name": "v15.3.x", "releaseDates": {"preview": "2027-02-18", "stable": "2027-04-15"}, "start": "2027-04-15", "end": "2027-07-15"}
   ]
 }
