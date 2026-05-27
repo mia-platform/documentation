@@ -5482,5 +5482,9 @@
   "/docs/microfrontend-composer/(.*)": {
     "destination": "/docs/products/microfrontend-composer/$1",
     "addedOn": "2026-03-11"
+  },
+  "/release-notes/v15.0.0": {
+    "destination": "https://v15.docs.mia-platform.eu/release-notes/v15.0.0",
+    "addedOn": "2026-05-27"
   }
 }
