@@ -53,7 +53,7 @@ Add the following namespaces in the related CMS section. They are required to co
 [mia-notification-manager]: /runtime-components/plugins/notification-manager-service/20_configuration.md#channels-configuration
 [mia-notification-manager-env-var]: /runtime-components/plugins/notification-manager-service/20_configuration.md#environment-variables
 [mia-sms-service]: /runtime-components/plugins/sms-service/10_overview.md
-[mia-mail-service]: /runtime-components/plugins/ses-mail-notification-service/configuration.md
+[mia-mail-service]: /runtime-components/plugins/mail-notification-service/configuration.md
 [mia-files-service]: /runtime-components/plugins/files-service/configuration.mdx
 [mia-timer-service]: /runtime-components/plugins/timer-service/20_configuration.md
 [mia-mlp]: https://github.com/mia-platform/mlp

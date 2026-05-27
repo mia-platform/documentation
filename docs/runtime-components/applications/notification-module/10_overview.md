@@ -66,7 +66,7 @@ Users data can be requested from an external API, which must expose an compatibl
 [mia-notification-manager-crud]: /runtime-components/plugins/notification-manager-service/20_configuration.md#crud-collections
 [mia-notification-manager-users]: /runtime-components/plugins/notification-manager-service/20_configuration.md#users-crud
 [mia-sms-service]: /runtime-components/plugins/sms-service/10_overview.md
-[mia-mail-service]: /runtime-components/plugins/ses-mail-notification-service/configuration.md
+[mia-mail-service]: /runtime-components/plugins/mail-notification-service/configuration.md
 [mia-files-service]: /runtime-components/plugins/files-service/configuration.mdx
 [mia-timer-service]: /runtime-components/plugins/timer-service/20_configuration.md
 [mia-crud-service]: /runtime-components/plugins/crud-service/10_overview_and_usage.md

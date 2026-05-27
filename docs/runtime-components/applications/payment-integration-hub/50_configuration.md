@@ -132,7 +132,7 @@ For further configuration of the microservices you can refer to the dedicated do
 - [Flow-Manager-Service](/runtime-components/plugins/flow-manager-service/10_overview.md)
 - [Files-Service](/runtime-components/plugins/files-service/configuration.mdx)
 - [Messaging Service](/runtime-components/plugins/messaging-service/10_overview.md): use version 1.5.0 or above
-- [SMTP Mail Notification Service](/runtime-components/plugins/ses-mail-notification-service/usage.md)
+- [SMTP Mail Notification Service](/runtime-components/plugins/mail-notification-service/usage.md)
 - [Adaptive Approval Service](/runtime-components/plugins/adaptive-approval-service/30_configuration.md)
 - [Data-Visualization](/products/microfrontend-composer/use-cases/data-visualization.md)
 - [Analytics](/runtime-components/plugins/mongodb-reader/10_configuration.md)
