@@ -160,7 +160,7 @@ In this case the `eq` function is provided by the [handlebars-helpers][handlebar
 [handlebars-helpers]: https://github.com/helpers/handlebars-helpers
 [bcp-47-language-tag]: https://en.wikipedia.org/wiki/IETF_language_tag
 
-[ses-mail-notification]: /runtime-components/plugins/ses-mail-notification-service/configuration.md
+[ses-mail-notification]: /runtime-components/plugins/mail-notification-service/configuration.md
 [sms-service]: /runtime-components/plugins/sms-service/20_configuration.md
 [kafka2firebase]: /runtime-components/plugins/kafka2firebase/10_overview.md
 [flow-manager]: /runtime-components/plugins/flow-manager-service/10_overview.md

@@ -3752,16 +3752,28 @@
     "addedOn": "2025-09-11"
   },
   "/docs/runtime_suite/ses-mail-notification-service/usage": {
-    "destination": "/docs/runtime-components/plugins/ses-mail-notification-service/usage",
+    "destination": "/docs/runtime-components/plugins/mail-notification-service/usage",
     "addedOn": "2025-09-11"
   },
   "/docs/runtime_suite/ses-mail-notification-service/configuration": {
-    "destination": "/docs/runtime-components/plugins/ses-mail-notification-service/configuration",
+    "destination": "/docs/runtime-components/plugins/mail-notification-service/configuration",
     "addedOn": "2025-09-11"
   },
   "/docs/runtime_suite/ses-mail-notification-service/changelog": {
-    "destination": "/docs/runtime-components/plugins/ses-mail-notification-service/changelog",
+    "destination": "/docs/runtime-components/plugins/mail-notification-service/changelog",
     "addedOn": "2025-09-11"
+  },
+  "/docs/runtime-components/plugins/ses-mail-notification-service/usage": {
+    "destination": "/docs/runtime-components/plugins/mail-notification-service/usage",
+    "addedOn": "2026-05-27"
+  },
+  "/docs/runtime-components/plugins/ses-mail-notification-service/configuration": {
+    "destination": "/docs/runtime-components/plugins/mail-notification-service/configuration",
+    "addedOn": "2026-05-27"
+  },
+  "/docs/runtime-components/plugins/ses-mail-notification-service/changelog": {
+    "destination": "/docs/runtime-components/plugins/mail-notification-service/changelog",
+    "addedOn": "2026-05-27"
   },
   "/docs/runtime_suite/rest2kafka-service/changelog": {
     "destination": "/docs/runtime-components/plugins/rest2kafka-service/changelog",

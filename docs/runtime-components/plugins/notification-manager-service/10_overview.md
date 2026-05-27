@@ -610,7 +610,7 @@ The users targeted by these tests all share the same phone number, and therefore
 [bcp-47-language-tag]: https://en.wikipedia.org/wiki/IETF_language_tag
 
 [sms-service]: /runtime-components/plugins/sms-service/20_configuration.md
-[ses-mail-notification]: /runtime-components/plugins/ses-mail-notification-service/configuration.md
+[ses-mail-notification]: /runtime-components/plugins/mail-notification-service/configuration.md
 [kafka2firebase]: /runtime-components/plugins/kafka2firebase/20_configuration.md
 [flow-manager]: /runtime-components/plugins/flow-manager-service/10_overview.md
 [timer-service]: /runtime-components/plugins/timer-service/10_overview.md

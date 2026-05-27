@@ -21,7 +21,7 @@ The Payment Integration Hub is composed by:
 4. The **Subscription saga** is used to define the subscription life-cycle; it is implemented with the [Flow Manager Service](/runtime-components/plugins/flow-manager-service/10_overview.md) and it is fully customizable.
 5. A set of microservices that implement some functionality to support the payment process:
     - the [Invoice Service](/runtime-components/plugins/invoice-service/10_overview.md) generates an invoice of a payment in pdf format;
-    - the [Messaging Service](/runtime-components/plugins/messaging-service/10_overview.md) and [Mail Notification Service](/runtime-components/plugins/ses-mail-notification-service/usage.md) used to notify the user about the outcome of payment;
+    - the [Messaging Service](/runtime-components/plugins/messaging-service/10_overview.md) and [Mail Notification Service](/runtime-components/plugins/mail-notification-service/usage.md) used to notify the user about the outcome of payment;
     - the [Adaptive Approval Service](/runtime-components/plugins/adaptive-approval-service/10_overview.md) used to provide the adaptive checkout feature;
     - the **Frullino Service** handles pending payments by periodically checking their status of through the provider and updates the payment state accordingly;
     - the **Payment Frontend** provides a UI to accompany the end user to complete the payment with the chosen method with the related **back end for front end**;

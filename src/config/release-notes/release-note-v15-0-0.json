@@ -8,10 +8,11 @@
       "newFeatures": [],
       "improvements": [
         {
-          "title": "Stream Processor v0.7.0",
+          "title": "Stream Processor v0.7.1",
           "description": [
-            "The new version `v0.7.0` of the _Stream Processor_ is available!",
-            "This version introduces a **breaking change** in cache key handling: cache index keys are now enforced to be **strings only**. If a non-conforming value (object, array, number, etc.) is provided as a cache key, the Stream Processor will either crash or terminate the operation to the DLQ (if configured). Users relying on Kafka keys as-is or already using plain strings are not affected by this change.",
+            "The new versions `v0.7.1` and `v0.7.0` of the _Stream Processor_ are available!",
+            "`v0.7.1` adds support for **shared/dedicated DLQ producer** and fixes a partition revoke leak. The same fix has also been backported to `v0.6.4`.",
+            "`v0.7.0` introduces a **breaking change** in cache key handling: cache index keys are now enforced to be **strings only**. If a non-conforming value (object, array, number, etc.) is provided as a cache key, the Stream Processor will either crash or terminate the operation to the DLQ (if configured). Users relying on Kafka keys as-is or already using plain strings are not affected by this change.",
             "Check the service [changelog](/docs/products/fast_data_v2/stream_processor/changelog) for the full list of changes."
           ]
         },

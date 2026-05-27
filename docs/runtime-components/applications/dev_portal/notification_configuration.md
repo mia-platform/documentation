@@ -48,7 +48,7 @@ If you already defined a variable with the desired value in the Envs or in the P
 
 The ses-mail-notification-service will be responsible for sending the emails once requested by another helper service, the **Function Service**.
 
-To have further details regarding the **SES mail notification service configuration** please refer to the official [documentation](/runtime-components/plugins/ses-mail-notification-service/configuration.md).
+To have further details regarding the **Mail Notification Service configuration** please refer to the official [documentation](/runtime-components/plugins/mail-notification-service/configuration.md).
 
 ## Create the Function Service 
 This service allows users to define custom functions directly from the console and expose them to a specific endpoint. 

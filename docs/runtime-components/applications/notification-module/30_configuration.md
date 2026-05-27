@@ -104,7 +104,7 @@ For additional details about the **Notification Module** configuration, please r
 [mia-notification-manager]: /runtime-components/plugins/notification-manager-service/20_configuration.md#channels-configuration
 [mia-notification-manager-custom-handler]: /runtime-components/plugins/notification-manager-service/20_configuration.md#custom-event-handlers
 [mia-sms-service]: /runtime-components/plugins/sms-service/10_overview.md
-[mia-mail-service]: /runtime-components/plugins/ses-mail-notification-service/configuration.md
+[mia-mail-service]: /runtime-components/plugins/mail-notification-service/configuration.md
 [mia-files-service]: /runtime-components/plugins/files-service/configuration.mdx
 [mia-timer-service]: /runtime-components/plugins/timer-service/20_configuration.md
 [mia-api-gateway]: /runtime-components/plugins/api-gateway/10_overview.md

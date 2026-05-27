@@ -1,6 +1,6 @@
 ---
 id: configuration
-title: SES Mail Notification Service
+title: Mail Notification Service
 sidebar_label: Configuration
 ---
 
