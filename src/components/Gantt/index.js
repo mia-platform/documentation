@@ -74,7 +74,7 @@ const renderTaskName = (name = '') => {
 };
 
 const renderStatusLegend = () => (
-    <div className={styles.legend} aria-label="Stable versions status legend">
+    <div aria-label="Stable versions status legend" className={styles.legend}>
         <span className={styles.legendItem}>
             <span className={`${styles.legendSwatch} ${styles.passedLegend}`} />
             {`Passed`}
@@ -122,7 +122,7 @@ export default function GanttChart({config, renderAs = 'chart'}) {
                         const status = getTaskStatus(task, currentDate);
 
                         return (
-                        <tr key={task.name} className={styles[`${status}Row`]}>
+                        <tr className={styles[`${status}Row`]} key={task.name}>
                             <td>{findQuarter(task.start)}</td>
                             <td>{renderTaskName(task.name)}</td>
                             <td>{formatDateForTable(task.releaseDates?.preview)}</td>
