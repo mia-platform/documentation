@@ -290,9 +290,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/eslint-parser@npm:^7.28.6":
-  version: 7.28.6
-  resolution: "@babel/eslint-parser@npm:7.28.6"
+"@babel/eslint-parser@npm:^7.29.7":
+  version: 7.29.7
+  resolution: "@babel/eslint-parser@npm:7.29.7"
   dependencies:
     "@nicolo-ribaudo/eslint-scope-5-internals": "npm:5.1.1-v1"
     eslint-visitor-keys: "npm:^2.1.0"
@@ -300,7 +300,7 @@ __metadata:
   peerDependencies:
     "@babel/core": ^7.11.0
     eslint: ^7.5.0 || ^8.0.0 || ^9.0.0
-  checksum: 10/15c0c9c78abcc5f267a34bab95437c37dfc468e3ac5e11094ed26bebd63c7a5b056fa47c005ba74eb9fbed6c79e37f90cbe2a24ed09425921275391fe9a5bbe7
+  checksum: 10/fb12b127ba7231b07eb4a809fd7cf07f9df6f1abe5f9a0ce8be5edfce07c5a9f6f5745cd608af19b037961e4e8d5e30f844c7fa5f7b3d6d24f017f2194156a50
   languageName: node
   linkType: hard
 
@@ -11882,7 +11882,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "mia-platform-docs@workspace:."
   dependencies:
-    "@babel/eslint-parser": "npm:^7.28.6"
+    "@babel/eslint-parser": "npm:^7.29.7"
     "@docusaurus/core": "npm:^3.10.1"
     "@docusaurus/faster": "npm:^3.10.1"
     "@docusaurus/module-type-aliases": "npm:^3.10.1"
