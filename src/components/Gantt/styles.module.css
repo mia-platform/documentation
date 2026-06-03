@@ -1,10 +1,12 @@
 .ganttContainer {
     --gantt-passed-bg: #e0e0e0;
     --gantt-passed-text: #616161;
-    --gantt-current-bg: #1a73e8;
-    --gantt-current-text: #ffffff;
-    --gantt-next-bg: #d1e3ff;
-    --gantt-next-text: #174ea6;
+    --gantt-current-bg: #e6f4ff;
+    --gantt-current-text: #0958d9;
+    --gantt-preview-bg: #f9f0ff;
+    --gantt-preview-text: #722ed1;
+    --gantt-future-bg: #ffffff;
+    --gantt-future-text: #595959;
     overflow-x: auto;
     padding: 1rem 0;
     border: 1px solid var(--ifm-color-emphasis-200);
@@ -15,10 +17,12 @@
 html[data-theme='dark'] .ganttContainer {
     --gantt-passed-bg: #636363;
     --gantt-passed-text: #e5e5e5;
-    --gantt-current-bg: #1a73e8;
-    --gantt-current-text: #ffffff;
-    --gantt-next-bg: #d1e3ff;
-    --gantt-next-text: #174ea6;
+    --gantt-current-bg: #e6f4ff;
+    --gantt-current-text: #0958d9;
+    --gantt-preview-bg: #f9f0ff;
+    --gantt-preview-text: #722ed1;
+    --gantt-future-bg: #24344f;
+    --gantt-future-text: #dbe9ff;
 }
 
 .ganttTable {
@@ -36,6 +40,38 @@ html[data-theme='dark'] .ganttContainer {
     text-align: center;
     font-size: 0.8rem;
     white-space: nowrap;
+}
+
+.statusTable {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.statusTable th,
+.statusTable td {
+    border: 1px solid var(--ifm-color-emphasis-200);
+    padding: 0.5rem;
+    text-align: center;
+}
+
+.passedRow td {
+    background-color: var(--gantt-passed-bg);
+    color: var(--gantt-passed-text);
+}
+
+.currentRow td {
+    background-color: var(--gantt-current-bg);
+    color: var(--gantt-current-text);
+}
+
+.previewRow td {
+    background-color: var(--gantt-preview-bg);
+    color: var(--gantt-preview-text);
+}
+
+.futureRow td {
+    background-color: var(--gantt-future-bg);
+    color: var(--gantt-future-text);
 }
 
 .ganttTable thead tr:first-child th:first-child,
@@ -88,12 +124,14 @@ html[data-theme='dark'] .ganttContainer {
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 30px;
+    min-height: 30px;
+    padding: 0.2rem 0.35rem;
     border-radius: 4px;
     font-weight: bold;
     font-size: 0.8rem;
     overflow: hidden;
-    white-space: nowrap;
+    white-space: pre-line;
+    text-align: center;
     margin: 0 2px;
 }
 
@@ -107,7 +145,50 @@ html[data-theme='dark'] .ganttContainer {
     color: var(--gantt-current-text);
 }
 
-.next {
-    background-color: var(--gantt-next-bg);
-    color: var(--gantt-next-text);
+.preview {
+    background-color: var(--gantt-preview-bg);
+    color: var(--gantt-preview-text);
+}
+
+.future {
+    background-color: var(--gantt-future-bg);
+    color: var(--gantt-future-text);
+}
+
+.legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem 1.25rem;
+    align-items: center;
+    padding: 0.75rem 0.5rem 0.25rem;
+    font-size: 0.85rem;
+}
+
+.legendItem {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+}
+
+.legendSwatch {
+    width: 12px;
+    height: 12px;
+    border-radius: 3px;
+    border: 1px solid color-mix(in srgb, var(--ifm-color-emphasis-900) 20%, transparent);
+}
+
+.passedLegend {
+    background-color: var(--gantt-passed-bg);
+}
+
+.previewLegend {
+    background-color: var(--gantt-preview-bg);
+}
+
+.currentLegend {
+    background-color: var(--gantt-current-bg);
+}
+
+.futureLegend {
+    background-color: var(--gantt-future-bg);
 }
