@@ -1,12 +1,12 @@
 .ganttContainer {
     --gantt-passed-bg: #e0e0e0;
     --gantt-passed-text: #616161;
-    --gantt-current-bg: #2e7d32;
-    --gantt-current-text: #ffffff;
-    --gantt-preview-bg: #1a73e8;
-    --gantt-preview-text: #ffffff;
-    --gantt-future-bg: #edf4ff;
-    --gantt-future-text: #2f5ea6;
+    --gantt-current-bg: #e6f4ff;
+    --gantt-current-text: #0958d9;
+    --gantt-preview-bg: #f9f0ff;
+    --gantt-preview-text: #722ed1;
+    --gantt-future-bg: #ffffff;
+    --gantt-future-text: #595959;
     overflow-x: auto;
     padding: 1rem 0;
     border: 1px solid var(--ifm-color-emphasis-200);
@@ -17,10 +17,10 @@
 html[data-theme='dark'] .ganttContainer {
     --gantt-passed-bg: #636363;
     --gantt-passed-text: #e5e5e5;
-    --gantt-current-bg: #2f9d44;
-    --gantt-current-text: #ffffff;
-    --gantt-preview-bg: #3d7fd6;
-    --gantt-preview-text: #f2f7ff;
+    --gantt-current-bg: #e6f4ff;
+    --gantt-current-text: #0958d9;
+    --gantt-preview-bg: #f9f0ff;
+    --gantt-preview-text: #722ed1;
     --gantt-future-bg: #24344f;
     --gantt-future-text: #dbe9ff;
 }
