@@ -1,4 +1,4 @@
-FROM nginx:1.31.0-alpine
+FROM nginx:1.31.1-alpine
 
 LABEL maintainer="Mia Platform Core Team<core@mia-platform.eu>" \
   name="Documentation" \
