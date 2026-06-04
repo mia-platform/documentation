@@ -17,7 +17,7 @@ The email builder plugin exposes a React-based front-end at the `/email-builder`
 | Parameter | Required | Description |
 |---|---|---|
 | `id` | yes | ID of the template being edited |
-| `endpoint` | yes | Base path used to load (`GET endpoint/id`) and save (`PATCH endpoint/id`) the template |
+| `endpoint` | yes | Base path used to load (`GET endpoint/:id`) and save (`PATCH endpoint/:id`) the template |
 | `jsonField` | yes | Name of the property used to store the template in JSON format |
 | `htmlField` | yes | Name of the property used to store the template in HTML format |
 | `presetsEndpoint` | no | URL of a list endpoint whose items are shown in the left sidebar as starting-point presets. Clicking a preset loads its content into the editor without changing the save target |
@@ -30,9 +30,9 @@ If neither `presetsEndpoint` is provided nor the default presets are visible, th
 
 The email builder provides a user interface for creating email templates. This tool converts the graphical elements of the template into both a JSON object and an HTML file.
 
-On opening, the request `GET endpoint/id` is performed to fetch the template. The `jsonField` property of the response is used to load the current JSON version. If `jsonField` is undefined an empty template is loaded instead.
+On opening, the request `GET endpoint/:id` is performed to fetch the template. The `jsonField` property of the response is used to load the current JSON version. If `jsonField` is undefined an empty template is loaded instead.
 
-By clicking the Save button the current template is saved remotely via a `PATCH endpoint/id` call with the following body:
+By clicking the Save button the current template is saved remotely via a `PATCH endpoint/:id` call with the following body:
 
 ```json
 {
@@ -47,9 +47,9 @@ If `htmlField` is not passed in the URL the PATCH will fail.
 
 ### Preset sidebar
 
-When `presetsEndpoint` is provided, the left sidebar is populated by performing a `GET presetsEndpoint` request. Each item in the response must contain the same `jsonField` property used for the main template. Clicking a preset copies its content into the editor — the save target (`endpoint/id`) is unchanged.
+When `presetsEndpoint` is provided, the left sidebar is populated by performing a `GET presetsEndpoint` request. Each item in the response must contain the same `jsonField` property used for the main template. Clicking a preset copies its content into the editor — the save target (`endpoint/:id`) is unchanged.
 
-The built-in presets (Empty, New appointment, Mia Care) are always visible unless `hideDefaultPresets=true` is set.
+The built-in presets (Empty, New appointment, Mia Care) are always visible unless `hideDefaultPresets` is set to `true`.
 
 ### Internationalisation
 
