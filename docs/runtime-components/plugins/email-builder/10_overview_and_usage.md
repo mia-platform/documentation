@@ -1,4 +1,10 @@
-# Email Builder
+---
+id: overview_and_usage
+title: Email Builder
+sidebar_label: Email Builder
+---
+
+
 
 ## Overview
 
