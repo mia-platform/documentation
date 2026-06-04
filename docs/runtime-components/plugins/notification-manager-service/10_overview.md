@@ -197,7 +197,8 @@ In the [service configuration][service-configuration], you must set the followin
 
 - `activeChannels` must include the `push` value;
 - `push.provider` must specify if the push notifications are sent to Firebase (`firebase`) or Kafka (`kafka`), default is `kafka` for backwards compatibility;
-- `userFields.deviceToken` must specify the custom name of the `deviceToken` field of the [*users* CRUD collection][crud-users].
+- `userFields.deviceToken` (deprecated, use `deviceTokens` instead) must specify the custom name of the `deviceToken` field of the [*users* CRUD collection][crud-users];
+- `userFields.deviceTokens` (optional) must specify the custom name of the `deviceTokens` field of the [*users* CRUD collection][crud-users], which holds multiple device tokens per user as an array of strings. Defaults to `deviceTokens`. The service always uses this field first; if absent, it falls back to `deviceToken`.
 
 Message templates need the following fields in the [*templates* CRUD collection][crud-templates]:
 
@@ -211,7 +212,8 @@ or, as an alternative, just one:
 
 Push notification recipients need the following fields in the [*users* CRUD collection][crud-users]:
 
-- `deviceToken`: if the field has a different name in your collection, remember to set the custom name in the [service configuration][service-configuration] `userFields.deviceToken` field.
+- `deviceToken` (deprecated, use `deviceTokens` instead): if the field has a different name in your collection, remember to set the custom name in the [service configuration][service-configuration] `userFields.deviceToken` field;
+- `deviceTokens` (optional): an array of strings containing multiple device tokens for the same user. The service always looks for this field first; if absent, it falls back to `deviceToken`. If the field has a different name in your collection, set the custom name via the [service configuration][service-configuration] `userFields.deviceTokens` field (defaults to `deviceTokens`).
 
 ### Voice calls
 

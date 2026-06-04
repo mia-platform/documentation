@@ -54,6 +54,7 @@ The CRUD collection must have the properties listed in the following table.
 | emailAddress | `string`           | For email notifications | A valid e-mail address.                                                                                                                               |
 | phoneNumber  | `string`           | For SMS notifications   | A phone number in [E.164 format][e164]format.                                                                                                         |
 | deviceToken  | `string`           | For push notifications  | A Firebase devices token.                                                                                                                             |
+| deviceTokens | `Array of strings` | No                      | An array of Firebase device tokens per user. The service always looks for this field first; if absent, it falls back to `deviceToken`. |
 
 :::tip
 The naming of these properties is up to you. By default, the service will look for the names listed above, but if
@@ -558,6 +559,7 @@ as default.
   - **emailAddress** - `string`: the name of the property in the Users CRUD containing the user's e-mail address.
   - **phoneNumber** - `string`: the name of the property in the Users CRUD containing the user's phone number.
   - **deviceToken** - `string`: the name of the property in the Users CRUD containing the user's device token.
+  - **deviceTokens** - `string` (optional): the name of the property in the Users CRUD containing the user's array of device tokens, used to support multiple devices per user. Defaults to `deviceTokens`. The service always uses this field first; if absent from the collection, it falls back to `deviceToken`.
   - **clusters** - `string`: the name of the property in the Users CRUD containing the user's clusters list.
   - **groups** - `string`: the name of the property in the Users CRUD containing the user's groups list.
   - **roles** - `string`: the name of the property in the Users CRUD containing the user's roles list.

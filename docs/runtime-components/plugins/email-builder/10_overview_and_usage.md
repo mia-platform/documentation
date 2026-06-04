@@ -12,30 +12,73 @@ The Email builder is a Mia-Care plugin that allows the user to create html email
 
 ## Usage
 
-The email builder plugin exposes a React-based front-end at the `/email-builder` path. For the plugin to work correctly 4 query parameters need to present in the URL
+The email builder plugin exposes a React-based front-end at the `/email-builder` path. The following query parameters are supported:
 
-- `id`: It must contain the id that identifies the current template that is being edited
-- `endpoint`: it must contain the path from which the template needs to loaded. It is also the endpoint used to save the new HTML template 
-- `jsonField`: it must contain the name of the property used to save the template in JSON format
-- `htmlField`: it must contain the name of the property used to save the template in HTML format
+| Parameter | Required | Description |
+|---|---|---|
+| `id` | yes | ID of the template being edited |
+| `endpoint` | yes | Base path used to load (`GET endpoint/:id`) and save (`PATCH endpoint/:id`) the template |
+| `jsonField` | yes | Name of the property used to store the template in JSON format |
+| `htmlField` | yes | Name of the property used to store the template in HTML format |
+| `presetsEndpoint` | no | URL of a list endpoint whose items are shown in the left sidebar as starting-point presets. Clicking a preset loads its content into the editor without changing the save target |
+| `hideDefaultPresets` | no | Set to `true` to hide the built-in presets (Empty, New appointment, Mia Care) from the left sidebar |
+| `lang` | no | UI language. Supported values: `en` (default), `it` |
+
+If neither `presetsEndpoint` is provided nor the default presets are visible, the left sidebar and its toggle button are not rendered.
 
 ## How it works
 
 The email builder provides a user interface for creating email templates. This tool converts the graphical elements of the template into both a JSON object and an HTML file.
 
-The email builder enables users to save the HTML and JSON versions of the current template in a CRUD. Users can also download the template as a JSON file. Additionally, it supports importing a JSON template for modifying existing templates. Integrated in the plugin are already present some templates to start with.
+On opening, the request `GET endpoint/:id` is performed to fetch the template. The `jsonField` property of the response is used to load the current JSON version. If `jsonField` is undefined an empty template is loaded instead.
 
-For the front-end to load correctly, the `id`, `endpoint` and `jsonField` query parameters are required. On opening the request `GET endpoint/id`,  where `endpoint` and `id` are the value of the relative query parameters, is done to fetch the template. From the fetched template, the `jsonField` property is used to access the current JSON version of the template and load it. If the `jsonField` property of the fetched template is undefined an empty template is loaded instead.
+By clicking the Save button the current template is saved remotely via a `PATCH endpoint/:id` call with the following body:
 
-By clicking the Save button in the top right is it possible to save the current template remotely. To save the template, the email builder performs a PATCH rest call to the path `endpoint/id`  with the following body:
-
-```
+```json
 {
-  $set: {
-    jsonField: 'JSON template',
-    htmlField: 'HTML template'
+  "$set": {
+    "<jsonField>": "JSON template",
+    "<htmlField>": "HTML template"
   }
 }
 ```
 
-If the query parameter `htmlField` is not passed in the URL the PATCH will fail automatically.
+If `htmlField` is not passed in the URL the PATCH will fail.
+
+### Preset sidebar
+
+When `presetsEndpoint` is provided, the left sidebar is populated by performing a `GET presetsEndpoint` request. Each item in the response must contain the same `jsonField` property used for the main template. Clicking a preset copies its content into the editor — the save target (`endpoint/:id`) is unchanged.
+
+The built-in presets (Empty, New appointment, Mia Care) are always visible unless `hideDefaultPresets` is set to `true`.
+
+### Internationalisation
+
+The UI language is controlled by the `lang` query parameter. Currently supported locales:
+
+| Value | Language |
+|---|---|
+| `en` (default) | English |
+| `it` | Italian |
+
+All interface labels — toolbar buttons, tooltips, inspector panel fields, error messages, and the preset sidebar — are translated. Content inside the template itself is not affected.
+
+### iframe integration
+
+When the email builder is embedded in an `iframe` and the user clicks Save, a `postMessage` is dispatched to the parent window upon successful save:
+
+```json
+{
+  "type": "email-template-saved",
+  "templateId": "<id>"
+}
+```
+
+The message is only sent when the email builder is embedded in an iframe. If opened as a standalone page it has no effect. The parent page can listen for it as follows:
+
+```js
+window.addEventListener('message', (event) => {
+  if (event.data?.type === 'email-template-saved') {
+    console.log('Template saved:', event.data.templateId)
+  }
+})
+```
