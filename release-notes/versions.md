@@ -9,6 +9,24 @@ import Changelog from '@site/src/components/Changelog';
 
 <Changelog>
 
+## [v14.5.5](/release-notes/v14.5.5.mdx)
+*June 11th, 2026*
+
+This release includes a performance optimization for the **Console Design Overview** page, reducing timeout risk when rendering many projects with large configurations.
+
+[Read the release notes](/release-notes/v14.5.5.mdx)
+
+---
+
+## [v14.5.4](/release-notes/v14.5.4.mdx)
+*May 04th, 2026*
+
+This release includes bug fixes for the **Console**, backporting fixes related to Deploy History redeploy, environment selection in the Deploy section, and Azure DevOps pipeline status reporting.
+
+[Read the release notes](/release-notes/v14.5.4.mdx)
+
+---
+
 ## [v14.7.0](/release-notes/v14.7.0.mdx)
 *April 29th, 2026*
 
@@ -26,15 +44,6 @@ This release introduces **Column Lineage** in the Data Catalog, to inspect and t
 For **Fast Data**, Stream Processor `v0.6.3` adds configurable custom partitioner support, Control Plane v2 reaches `v0.2.0` with several UI improvements, and Farm Data and Kango are updated to `v0.6.2`.
 
 [Read the release notes](/release-notes/v14.6.0.mdx)
-
----
-
-## [v14.5.4](/release-notes/v14.5.4.mdx)
-*May 04th, 2026*
-
-This release includes bug fixes for the **Console**, backporting fixes related to Deploy History redeploy, environment selection in the Deploy section, and Azure DevOps pipeline status reporting.
-
-[Read the release notes](/release-notes/v14.5.4.mdx)
 
 ---
 
@@ -99,6 +108,15 @@ This release resolves issues with Azure DevOps connections when using the Git Pr
 
 ---
 
+## [14.1.2](/release-notes/v14.1.2.mdx)
+*November 28th, 2025*
+
+This release resolves a bug in the Company’s Provider section that prevented establishing a connection to Azure DevOps when the Git Provider capability and Client Credentials authentication method settings were selected.
+
+[Read the release notes](/release-notes/v14.1.2.mdx)
+
+---
+
 ## [v14.4.0](/release-notes/v14.4.0.mdx)
 *November 27th, 2025*
 
@@ -126,6 +144,15 @@ This release introduces the **Fast Data v2**, a new suite of workloads designed 
 
 ---
 
+## [14.1.1](/release-notes/v14.1.1.mdx)
+*October 16th, 2025*
+
+This release enhances Console stability by resolving a critical bug that could cause configuration corruption when specific resources were updated under particular conditions.
+
+[Read the release notes](/release-notes/v14.1.1.mdx)
+
+---
+
 ## [v14.2.1](/release-notes/v14.2.1.mdx)
 *October 2nd, 2025*
 
@@ -141,24 +168,6 @@ This release introduces a **new tabular view for Microservices** as a **Feature 
 This release enhances project management by introducing the ability to **configure projects locally via the `miactl CLI`**, using the new `describe` and `apply` commands. Two major efficiency improvements have also been introduced: the ability to **redeploy a configuration directly from the Deploy History** and a new `Tag Deleted` **webhook event** for automations. This update is rounded out by several minor fixes and improvements to increase **overall platform stability**.
 
 [Read the release notes](/release-notes/v14.2.0.mdx)
-
----
-
-## [14.1.2](/release-notes/v14.1.2.mdx)
-*November 28th, 2025*
-
-This release resolves a bug in the Company’s Provider section that prevented establishing a connection to Azure DevOps when the Git Provider capability and Client Credentials authentication method settings were selected.
-
-[Read the release notes](/release-notes/v14.1.2.mdx)
-
----
-
-## [14.1.1](/release-notes/v14.1.1.mdx)
-*October 16th, 2025*
-
-This release enhances Console stability by resolving a critical bug that could cause configuration corruption when specific resources were updated under particular conditions.
-
-[Read the release notes](/release-notes/v14.1.1.mdx)
 
 ---
 

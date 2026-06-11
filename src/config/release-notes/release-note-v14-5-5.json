@@ -1,0 +1,15 @@
+[
+  {
+    "title": "Console",
+    "icon": "console",
+    "defaultOpen": true,
+    "type": "versions",
+    "items": {
+      "newFeatures": [],
+      "improvements": [],
+      "bugFixes": [
+        "Optimized Console Design Overview loading to improve performance and reduce timeout risk for companies with many projects and large configurations."
+      ]
+    }
+  }
+]
