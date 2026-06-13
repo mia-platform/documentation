@@ -62,50 +62,7 @@ is an object where each key can represent a specific Kafka consumer configuratio
   with a default of 500ms and a minimum of 0. In case the need to change this value should arise,
   we recommend to assign the same value to all the consumers.
 
-Additional properties for Kafka consumer configuration can be found in the [librdkafka](https://docs.confluent.io/platform/current/clients/librdkafka/html/md_CONFIGURATION.html) documentation.
-
-:::warning
-When configuring the service, it is important to configure the following Kafka consumer properties:
-
-```text
-queued.min.messages
-queued.max.messages.kbytes
-```
-Since they regulate the amount of memory consumed by the service, these values should be
-tuned depending on the resources (CPU and memory) that can assigned to the service
-and the size of the underlying database. Indeed, those external factors affect the processing
-throughput; therefore, retaining more messages in the consumer fetch queue than
-the amount the service can process may risk to waste service memory.
-
-For example, when using a MongoDB M30 instance with a maximum of 2400 IOPS for read+write,
-we recommend to start by setting these values to:
-
-```text
-queued.min.messages=1000
-queued.max.messages.kbytes=16384
-```
-:::
-
-:::info
-When configuring consumers, it is important to know that different configurations (e.g. `group.id`)
-would trigger the creation of different consumer clients. This may be necessary to enable
-the same stream to be aggregated in different manners.
-
-Please, notice that the instantiation of additional consumers may require to increase service
-memory requests and limits, since these consumers would have their own internal fetch queue.
-:::
-
-:::note
-The following Kafka consumer properties are not configurable:
-
-- `allow.auto.create.topics` &rarr; `"false"`
-- `enable.auto.commit` &rarr; `"false"`
-
-The first parameter is included to enforce user responsibility over topics creation,
-so that the proper configurations, such as number of partitions, replication factor
-and retention policy are set. In addition, the latter property disables the driver
-auto-commit feature in favour of an ad-hoc internal logic.
-:::
+Additional information about Kafka consumer configuration can be found in the [Kafka reference page](/products/fast_data_v2/kafka.md#consumer-configuration) or in the [librdkafka](https://docs.confluent.io/platform/current/clients/librdkafka/html/md_CONFIGURATION.html) documentation.
 
 ### Producer
 
@@ -115,23 +72,7 @@ The `producer` configuration defines how the system produces data. Currently,
 * `connectionName`: The name of the Kafka connection to use from the `connections` map.
 * `topic`: The name of the Kafka topic to which the producer will send messages.
 
-Additional properties for Kafka producer configuration can be found in the [librdkafka](https://docs.confluent.io/platform/current/clients/librdkafka/html/md_CONFIGURATION.html) documentation.
-
-:::note
-Kafka producer is configured to compress messages by default using [`snappy`](https://en.wikipedia.org/wiki/Snappy_(compression)) algorithm.
-This enables reducing the disk space consumed on the Kafka broker.
-
-Furthermore, the following properties are not configurable:
-
-- `allow.auto.create.topics` &rarr; `"false"`
-- `enable.idempotence` &rarr; `"true"`
-- `acks` &rarr; `"all"`
-
-The first parameter is included to enforce user responsibility over topics creation,
-so that the proper configurations, such as number of partitions, replication factor
-and retention policy are set. In addition, the latter properties ensure that
-no duplicated messages are produced on Kafka brokers.
-:::
+Additional properties for Kafka producer configuration can be found in the [Kafka reference page](/products/fast_data_v2/kafka.md#producer-configuration) or in the [librdkafka](https://docs.confluent.io/platform/current/clients/librdkafka/html/md_CONFIGURATION.html) documentation.
 
 ### Processor
 
@@ -144,34 +85,9 @@ The `persistence` configuration defines how aggregated data is stored.
 Currently, `PersistenceConfig` can only be of type `mongo`.
 The `MongoConfig` requires a `url`, which is a `Secret`, and can optionally specify
 a `database`.  
-For proper functioning, sink collections need to be created. The `indexer` CLI can
-be run to automatically create the necessary indexes.
+For proper functioning, sink collections need to be created.
 
-Example of connection configuration:
-
-```json
-{
-  // other properties
-  "persistence": {
-    "type": "mongo",
-    "config": {
-      "url": "mongodb://localhost:27017/farm-data",
-      "database": "/farm-data",
-      "appName": "eu.miaplatfor.farm-data.lakes"
-    }
-  },
-  // other properties
-}
-```
-
-:::warning
-
-Farm Data service heavily relies on the persistence layer to cache the current stream
-state. Consequently, it is highly recommended to configure MongoDB instance to
-actually sustain a heavy IO load, setting maximum IOPS to at least a value of 2400 IOPS (1200 read + 1200 write),
-though higher values would only benefit the service throughput.
-
-:::
+For detailed information on Farm Data's MongoDB persistence model, required indexes, IOPS requirements, and collection naming conventions, see [Farm Data — Aggregation Persistence](/products/fast_data_v2/mongodb.md#farm-data--aggregation-persistence) in the MongoDB Reference.
 
 #### Internal Updates
 
@@ -221,32 +137,9 @@ For more details on how to configure it, please refer to the [Workloads Configur
 
 ### Recommended Kafka Configuration
 
-When configuring Kafka consumer, it is advised to set appropriate values for
-constraining the consumer internal queue. In this manner:
+For a full explanation of the consumer queue tuning parameters, see [Consumer Queue Tuning](/products/fast_data_v2/kafka.md#consumer-queue-tuning) in the Kafka Reference.
 
-- the maximum amount of memory employed by the service can be finely tuned to avoid
-  wasting resources, since only the number of messages that can effectively be
-  processed in real-time should be pulled in memory;
-- it is ensured that consumer continuously poll the broker to avoid it exiting the
-  consumer group, since a lower number of buffered messages can trigger a new fetch to
-  replenish it;
-
-The main values to tune are:
-
-- `queued.max.messages.kbytes`: maximum number of kilobytes of queued pre-fetched
-  messages in the local consumer queue;
-- `queued.min.messages`: minimum number of messages per topic+partition _librdkafka_
-  tries to maintain in the local consumer queue;
-
-It is recommended to set `queued.min.messages` to a value greater, but close to the
-average message consumption rate. It is possible to observer:
-
-- `kafka_consumer_rx_msgs_total` &rarr; messages read
-- `farm_data_processed_msg` &rarr; total number of processed messages
-
-to check the average values.
-
-For _Farm Data_ service, an example of configuration can be the following one:
+**Starting values for Farm Data input consumers:**
 
 ```json
 {
@@ -255,30 +148,20 @@ For _Farm Data_ service, an example of configuration can be the following one:
 }
 ```
 
-Another important property that might need to be tuned is `fetch.message.max.bytes`,
-which however should be set only in case `queued.max.messages.kbytes` is set to
-a value lower than `1024`.
+For a MongoDB M30 cluster (2400 IOPS), a more specific recommendation is:
+
+```json
+{
+  "queued.min.messages": "1000",
+  "queued.max.messages.kbytes": "16384"
+}
+```
 
 #### Internal Updates Consumer
 
-`internal-updates` consumer requires an **ad-hoc consumer configuration** due
-to its messages' uniqueness. In fact, `internal-update` messages are very small
-(in the bytes range), but they trigger a larger computation that may require different
-milliseconds to complete.
+The `internal-updates` consumer requires a **dedicated configuration** because its messages are very small (bytes range) but trigger heavier computations. Using the same queue parameters as the regular input consumers causes the consumer to fail to poll within `max.poll.interval.ms` (default: 5 minutes), resulting in eviction from the consumer group and a service restart.
 
-Due to the combination of these factors, using the default queue parameters or even the ones
-adopted for the input streams is not recommended. Indeed, the Kafka consumer tries
-to fetch and buffer a large amount of events, since they are small, but it takes a considered
-amount of time to clear them from the queue. This prevents the consumer from fetching newer
-messages within the constraint set by `max.poll.interval.ms` (a default interval of 5 minutes).
-Once that time elapses, the consumer instance is considered dead by the Kafka broker and
-forces it to leave the group, triggering a restart of the service since its events stream has
-terminated.
-
-To prevent this unwanted situation that hinders the advancement of events processing, it
-has been observed that modifying the consumer parameters can improve the stability of the
-service itself. Thus, below are provided the recommended configuration to apply to the
-Kafka consumer of the `internal-updates` configuration:
+Apply the following configuration to the `internal-updates` consumer:
 
 ```json
 {
@@ -288,26 +171,8 @@ Kafka consumer of the `internal-updates` configuration:
 }
 ```
 
-As it can be observed, here also `fetch.message.max.bytes` parameter has changed, since
-it governs how many bytes are fetched per topic+partition the first time the consumer
-connects. Consequently, leaving the default value of 1MB would lead to a behavior where
-the service starts, aggregates events for about 5 minutes and then it restarts because
-it has been forced out of the consumer group.
-
-:::danger
-
-When a consumer instance is forced out of its consumer group, such instance may not have
-the chance to commit the work it has already carried out. Thus, setting
-the proper values is fundamental to guaranteed service stability and progress in
-consuming messages from Kafka topic.
-
-:::
-
 :::note
-
-`queued.max.messages.kbytes` value use **KBytes** unit, whereas `fetch.message.max.bytes`
-use **bytes** unit. Thus, the latter appears larger, though it isn't.
-
+`queued.max.messages.kbytes` uses **KB** units; `fetch.message.max.bytes` uses **bytes**. Despite the apparent difference in magnitude, both values above are intentional.
 :::
 
 ## Kubernetes

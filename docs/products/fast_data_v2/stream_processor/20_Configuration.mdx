@@ -121,7 +121,9 @@ The `consumer` field configures the input stream source. Currently supports:
 }
 ```
 
-### Producer
+For details on consumer group behavior, offset management, and queue tuning recommendations, see [Consumer Configuration](/products/fast_data_v2/kafka.md#consumer-configuration) in the Kafka Reference.
+
+#### Producer
 
 The `producer` field configures the output stream destination. Currently supports:
 
@@ -152,6 +154,8 @@ The `producer` field configures the output stream destination. Currently support
     This is equivalent to applying `consistent_random` using CRC32 hasher on the specified subset of partitions.
 
     For usage examples and details on the partition selection algorithm, refer to the [Custom Partitioner](/products/fast_data_v2/stream_processor/30_Usage.md#custom-partitioner) section in the Usage page.
+
+For details on producer fixed properties and compression settings, see [Producer Configuration](/products/fast_data_v2/kafka.md#producer-configuration) in the Kafka Reference.
 
 ### Processor
 
@@ -188,6 +192,8 @@ Each cache can be:
   - `database`: database name (optional)
   - `appName`: application name for MongoDB connection (optional - useful to track
     which program is carrying out queries on the database)
+
+  For details on MongoDB cache capabilities, required collection setup, and optimistic locking behavior, see [Stream Processor — Stateful Cache](/products/fast_data_v2/mongodb.md#stream-processor--stateful-cache) in the MongoDB Reference.
 - **In-Memory Cache** (`type: "in-memory"`): Simple in-memory key-value storage.
   Use only when sharing the stream state across different service
   instances is not necessary. However, when it is possible use a sharable stream state.
@@ -240,31 +246,6 @@ and it how works, please read the [Usage](/products/fast_data_v2/stream_processo
 
 ## Recommended Kafka Configuration
 
-When configuring Kafka consumer, it is advised to set appropriate values for
-constraining the consumer internal queue. In this manner:
-
-- the maximum amount of memory employed by the service can be finely tuned to avoid
-  wasting resources, since only the number of messages that can effectively be
-  processed in real-time should be pulled in memory;
-- it is ensured that consumer continuously poll the broker to avoid it exiting the
-  consumer group, since a lower number of buffered messages can trigger a new fetch to
-  replenish it;
-
-The main values to tune are:
-
-- `queued.max.messages.kbytes`: maximum number of kilobytes of queued pre-fetched
-  messages in the local consumer queue;
-- `queued.min.messages`: minimum number of messages per topic+partition _librdkafka_
-  tries to maintain in the local consumer queue;
-
-It is recommended to set `queued.min.messages` to a value greater, but close to the
-average message consumption rate. It is possible to observer:
-
-- `kafka_consumer_rx_msgs_total` &rarr; messages read
-- `sp_processed_messages` &rarr; total number of processed messages
-
-to check the average values.
-
 For _Stream Processor_ service, an example of configuration can be the following one:
 
 ```json
@@ -274,9 +255,7 @@ For _Stream Processor_ service, an example of configuration can be the following
 }
 ```
 
-Another important property that might need to be tuned is `fetch.message.max.bytes`,
-which however should be changed only in case `queued.max.messages.kbytes` is set to
-a value lower than `1024`.
+For additional information about Kafka consumer configuration and performance tuning, please check the [Kafka reference page](/products/fast_data_v2/kafka.md#consumer-configuration).
 
 ## Kubernetes
 

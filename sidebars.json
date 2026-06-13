@@ -2174,9 +2174,25 @@
       "type": "doc"
     },
     {
-      "id": "products/fast_data_v2/architecture",
+      "type": "category",
       "label": "Architecture",
-      "type": "doc"
+      "collapsed": false,
+      "link": {
+        "id": "products/fast_data_v2/architecture",
+        "type": "doc"
+      },
+      "items": [
+        {
+          "id": "products/fast_data_v2/kafka",
+          "label": "Kafka",
+          "type": "doc"
+        },
+        {
+          "id": "products/fast_data_v2/mongodb",
+          "label": "MongoDB",
+          "type": "doc"
+        }
+      ]
     },
     {
       "type": "category",

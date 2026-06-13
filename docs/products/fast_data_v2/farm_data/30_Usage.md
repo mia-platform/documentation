@@ -9,12 +9,8 @@ sidebar_label: Usage
 To use the plugin, the following requirements must be met:
 
 - Kafka connection must have permission to read and write the topics declared in the configuration file;
-- Kafka topics must exist on the Kafka cluster, with the appropriate number of partitions (which constrain service replicas), retention and replication factor;
-- MongoDB collections must be defined on the MongoDB cluster with the necessary indexes;
-  to aid in the generation of them it is possible to exploit provided tools, such as
-  the `indexer` command of `the_world_outside` CLI. This command connects to the
-  configured persistence layer and, analyzing the aggregation graph, automatically
-  generate the recommended indexes for your use case. 
+- Kafka topics must exist on the Kafka cluster with the appropriate configuration (partitions, retention, replication factor); see [Topics](/products/fast_data_v2/kafka.md#topics) in the Kafka Reference;
+- MongoDB collections must be defined on the MongoDB cluster with the necessary indexes.
 
 ## Messages Spec
 
@@ -176,93 +172,9 @@ Output messages are compliant with [Fast Data message format](/products/fast_dat
 As explained in the [Configuration page](/products/fast_data_v2/farm_data/20_Configuration.mdx), Farm Data service
 processes events using a stateful model and therefore it needs to store intermediate
 results on persistent storage system.  
-Currently, Farm Data supports only MongoDB as external persistence system. 
+Currently, Farm Data supports only MongoDB as external persistence system.
 
-### MongoDB Persistence
-
-When using MongoDB as persistence storage, Farm Data service needs the details
-for connecting to a MongoDB cluster, which allows the service to create the
-needed collections and store there the intermediate aggregated documents.
-
-In fact, the service creates on the selected database a collection for each
-aggregation node (processing unit), which will store the intermediate results.  
-These collections are named following the pattern below:
-
-```text
-__sink_<aggregation_id>_<aggregation_node_name>
-```
-
-where:
-
-- `__sink` is a constant prefix to signal that the collection is used internally;
-- `<aggregation_id>` is the value of configuration field `id` that identifies the
-  specific aggregation process that is employing such collection.  
-  Please, beware that this identifier MUST be between 8 and 16 characters and it
-  should satisfy MongoDB [collection name restrictions](https://www.mongodb.com/docs/manual/reference/limits/#mongodb-limit-Restriction-on-Collection-Names);
-- `<aggregation_node_name>` is the name of a node in the aggregation graph;
-
-To support read/write operations over `__sink` collections, each of them should have
-the indexes defined:
-
-- a **unique** index supporting the internal primary key of the record
-    ```json
-    {
-      "__pk": 1
-    }
-    ```
-- an index for each `value` property of the current aggregation node, which
-  is employed for lookup operations by children nodes (in the aggregation graph).  
-  For example:
-    ```json
-    {
-      "value.userId": 1
-    }
-    ```
-- an index for each `dependency.*.__pk` property of the current aggregation node, which
-  is employed for lookup operations by current towards children nodes
-  (in the aggregation graph).  
-  For example:
-    ```json
-    {
-      "dependency.posts.__pk": 1
-    }
-    ```
-
-### Indexer CLI
-
-To aid in the creation of `__sink` collections alongside their indexes, the
-`the_world_outside` CLI is provided. It reads a Farm Data configuration file,
-connects to the defined persistence storage and generate the needed collections
-and their indexes. When generating indexes, it accounts also for complex filters,
-so that lookup queries are correctly supported.
-
-Secrets resolution is handled automatically. The secret just need to be reachable
-from the CLI, either from an environmental variable or from a file.
-
-The CLI can be installed using the following command:
-
-```shell
-npm install -g @mia-platform-internal/the-world-outside
-```
-
-and launched as show below:
-
-```shell
-two indexer -c <path-to-config-folder>
-```
-
-In the `-c` argument it is necessary to give the path to a directory folder which
-holds the Farm Data configuration file (either named `farm-data.json` or `config.json`).
-
-:::warning
-
-In order to use `two` CLI it is necessary to own a Mia-Platform subscription and
-have access to the private repository.
-
-Furthermore, since the CLI directly connects to your MongoDB cluster, please ensure that
-you can connect to it from your machine.
-
-:::
+For complete details on how Farm Data uses MongoDB — including collection naming conventions, required indexes, IOPS requirements, and configuration examples — see [Farm Data — Aggregation Persistence](/products/fast_data_v2/mongodb.md#farm-data--aggregation-persistence) in the MongoDB Reference.
 
 ## Aggregation Graph
 
