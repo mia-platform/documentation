@@ -43,7 +43,7 @@ In order to correctly integrate the plugins with the Fast Data in a parallel way
 
 :::note
 Parallel architecture requires configuring a subsequent Real-Time Updater which shares the same configuration of the standard data flow,
-whereas it reads different ingestion topics (the reingestion ones). This service can deployed alongside the whole Bucket Storage Support
+whereas it reads different ingestion topics (the reingestion ones). This service can be deployed alongside the whole Bucket Storage Support
 configuration with its replicas set to zero (no actual pod is created on Kubernetes).  
 Whenever it is necessary to perform a re-ingestion operation it would then be sufficient to scale up the service's replicas.
 :::
