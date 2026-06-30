@@ -8,9 +8,10 @@
       "newFeatures": [],
       "improvements": [
         {
-          "title": "Stream Processor v0.7.1",
+          "title": "Stream Processor v0.7.2",
           "description": [
-            "The new versions `v0.7.1` and `v0.7.0` of the _Stream Processor_ are available!",
+            "The new versions `v0.7.2`, `v0.7.1` and `v0.7.0` of the _Stream Processor_ are available!",
+            "`v0.7.2` moves cache key string validation exclusively to the MongoDB cache layer.",
             "`v0.7.1` adds support for **shared/dedicated DLQ producer** and fixes a partition revoke leak. The same fix has also been backported to `v0.6.4`.",
             "`v0.7.0` introduces a **breaking change** in cache key handling: cache index keys are now enforced to be **strings only**. If a non-conforming value (object, array, number, etc.) is provided as a cache key, the Stream Processor will either crash or terminate the operation to the DLQ (if configured). Users relying on Kafka keys as-is or already using plain strings are not affected by this change.",
             "Check the service [changelog](/docs/products/fast_data_v2/stream_processor/changelog) for the full list of changes."
@@ -22,6 +23,14 @@
             "The new version `v0.6.3` of _Farm Data_ is available!",
             "This patch release fixes the handling of `MergeStageNoMatchingDocument` errors (error code 13113) in the read-write pipeline, improving resiliency in scenarios where no matching document is found during a merge stage.",
             "Check the service [changelog](/docs/products/fast_data_v2/farm_data/changelog) for the full list of changes."
+          ]
+        },
+        {
+          "title": "Single View Trigger Generator v3.5.2",
+          "description": [
+            "The new version `v3.5.2` of _Single View Trigger Generator_ is available!",
+            "This patch release updates the heartbeat timer to survive rebalances across batches.",
+            "Check the service [changelog](/docs/runtime-components/plugins/single-view-trigger-generator/changelog) for the full list of changes."
           ]
         }
       ],
