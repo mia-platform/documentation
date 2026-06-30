@@ -1,0 +1,6 @@
+---
+title: How To Upgrade
+sidebar_label: How To Upgrade
+---
+
+This page is a placeholder for Keycloak Realm Management upgrade guidance.

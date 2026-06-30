@@ -18,8 +18,8 @@ To follow this tutorial correctly, it is necessary to have configured a Docker R
 
 The project must:
 
-- Be integrated with a [deploy pipeline](/requirements/self-hosted/pipeline-configuration.md);
-- Have an [ingress route](/requirements/paas/tools/traefik.md) with "api-gateway" as `service`;
+- Be integrated with a [deploy pipeline](/requirements/installation-guidelines/console/self-hosted/pipeline-configuration.md);
+- Have an [ingress route](/requirements/installation-guidelines/console/paas/tools/traefik.md) with "api-gateway" as `service`;
 - Be aware of have configured your project domain to be called. If the project links have been configured, you can find them in the "Environments" section of the "Project Overview" area, under the "Application" column;
 - Have a properly configured API Portal.
 - Have a properly configured CRUD Service.

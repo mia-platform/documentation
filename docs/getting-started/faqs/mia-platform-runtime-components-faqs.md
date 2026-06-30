@@ -176,7 +176,7 @@ In the Console, for each microservice or plugin, you can specify its Kubernetes 
 
 #### Can I deploy these components on serverless platforms?
 Yes. Since all runtime components are containerized, they can be deployed on **serverless** container platforms like **aws fargate** or **google cloud run**. This can simplify operations and provide cost savings, as you only pay for the resources consumed when your services are actively running.
-[Discover more](/requirements/paas/overview.md)
+[Discover more](/requirements/installation-guidelines/console/paas/overview.md)
 
 #### What is the recommended way to handle database migrations for a service?
 Database schema migrations should be handled as part of your service's startup logic. A common pattern is to use a library (like Flyway for Java or a custom script for Node.js) that checks the database schema version on startup and applies any pending migration scripts before the service starts accepting traffic. These migration scripts should be version-controlled alongside your service's code.

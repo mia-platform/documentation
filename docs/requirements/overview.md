@@ -4,15 +4,32 @@ title:  Mia-Platform Infrastructure overview
 sidebar_label: Infrastructure overview
 ---
 
-Mia-Platform can be adopted in three different ways, according to your needs:
+With v15, Mia-Platform is delivered as a product suite composed of multiple Helm charts.
 
-- **Platform as a Service (PaaS)**: Purchase Mia-Platform as a fully managed environment, ready to use for your development teams. Further information available [here](/requirements/paas/overview.md).
-- **Bring Your Own Infrastructure (SaaS)**: Purchase Mia-Platform as a managed service but keep the runtime infrastructure under your control and management. Further information available [here](/requirements/byoi/overview.md).
-- **Self Hosted (on-premises or your cloud infrastructure)**: Purchase Mia-Platform License and have everything installed and managed on your own infrastructure. Further information available [here](/requirements/self-hosted/self-hosted-requirements.md).
+Installation for self-hosted setups is no longer based on a single console-only path: each product has its own installation and upgrade track, with shared infrastructure requirements and explicit cross-product dependencies.
 
-The BYOI distribution is the most widely adopted by our customers. In the picture below, you can see what each model offers:
+## Global Installation Dependencies
 
-![Mia-Platform Distribution Model](img/mia-platform_distribution_model.png)
+Use this high-level order before entering product-specific guides:
 
-If you are interested in PaaS or BYOI, you can [book a free demo](https://contact.mia-platform.eu/ask-for-a-demo-mia-platform) and then agree for a PoC.  
-For Self Hosted, you can purchase the license and start your project right away.
+1. Install Keycloak first.
+2. Install Catalog before AI Foundry.
+3. Install the remaining product charts according to your target architecture.
+
+## Shared Infrastructure Requirements
+
+The following table highlights the main shared dependencies across products.
+
+| Infrastructure / Tool | Keycloak | Console | Services | Catalog | AI Foundry |
+| --- | --- | --- | --- | --- | --- |
+| Traefik (IngressRoute) | ✅ | ✅ | ✅ | ✅ | ✅ |
+| Keycloak (Authorization Server) | — | ✅ | ✅ | ✅ | ✅ |
+| PostgreSQL | ✅ | ❌ | ❌ | ✅ | ✅ |
+| MongoDB | ❌ | ✅ | ❌ | ✅ | ❌ |
+| Redis | ❌ | ✅ | ✅ | ✅ | ✅ |
+| Kafka | ❌ | ❌ | ❌ | ✅ (optional) | ❌ |
+| Catalog dependency | ❌ | ❌ | ❌ | — | ✅ |
+
+## Next Step
+
+Continue with the [Installation Guidelines](/requirements/installation-guidelines/00_overview.md) to access the full product-by-product documentation tree.
