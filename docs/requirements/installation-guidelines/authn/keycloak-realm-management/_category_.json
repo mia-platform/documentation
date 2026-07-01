@@ -1,3 +1,4 @@
 {
-  "label": "Keycloak Realm Management"
+  "label": "Keycloak Realm Management",
+  "position": 40
 }
