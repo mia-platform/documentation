@@ -99,7 +99,7 @@ Controls which Mia Platform product OIDC clients are included in the realm. Enab
 
 | Key | Default | Description |
 |---|---|---|
-| `products.authz` | `false` | Include the Homepage & AuthZ OIDC client |
+| `products.authz` | `false` | Include the Homepage & RBAC OIDC client |
 | `products.catalog` | `false` | Include the Catalog OIDC client |
 | `products.console` | `false` | Include the Console OIDC client |
 | `products.aiFoundry` | `false` | Include the AI Foundry OIDC client |
@@ -114,7 +114,7 @@ Product base URLs used to generate OIDC redirect URIs for each product client.
 | Key | Description |
 |---|---|
 | `urls.keycloak` | **Required.** Keycloak base URL (e.g. `https://keycloak.example.com`). |
-| `urls.authz` | Base URL for Homepage & AuthZ (required when `products.authz: true`). |
+| `urls.authz` | Base URL for Homepage & RBAC (required when `products.authz: true`). |
 | `urls.catalog` | Base URL for Catalog (required when `products.catalog: true`). |
 | `urls.console` | Base URL for Console (required when `products.console: true`). |
 | `urls.consoleCms` | Base URL for Console CMS, if deployed separately. |

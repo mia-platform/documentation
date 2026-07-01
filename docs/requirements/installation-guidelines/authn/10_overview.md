@@ -5,7 +5,7 @@ sidebar_label: Overview
 
 # Authentication in Mia Platform
 
-The Mia Platform product suite — Console, Catalog, AI Foundry, Homepage & AuthZ, and extensions — shares a unified authentication and Single Sign-On (SSO) layer across all its components. This layer is built on [Keycloak](https://www.keycloak.org/), deployed and managed by Mia Platform as part of the platform installation.
+The Mia Platform product suite — Console, Catalog, AI Foundry, Homepage & RBAC, and extensions — shares a unified authentication and Single Sign-On (SSO) layer across all its components. This layer is built on [Keycloak](https://www.keycloak.org/), deployed and managed by Mia Platform as part of the platform installation.
 
 ## Mia-scoped Keycloak instance
 
