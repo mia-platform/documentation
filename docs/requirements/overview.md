@@ -18,16 +18,72 @@ The Mia-Platform Product Suite can be distributed in three different operating m
 
 The ownership model changes according to the selected distribution type.
 
-| Domain | Tooling Scope | PaaS | BYOI | Self-Hosted |
-| --- | --- | --- | --- | --- |
-| Runtime | Kubernetes runtime and networking | Managed by Mia-Platform | Customer managed infrastructure, Mia-Platform supported integration | Customer managed |
-| Runtime | Ingress layer (Traefik / IngressRoute) | Managed by Mia-Platform | Customer managed infrastructure, Mia-Platform supported integration | Customer managed |
-| Data | Data services (PostgreSQL, MongoDB, Redis, Kafka) | Managed by Mia-Platform | Customer managed infrastructure, Mia-Platform supported integration | Customer managed |
-| Identity and Security | AuthN/AuthZ tooling (Keycloak, Keycloak Realm Management) | Shared responsibility | Shared responsibility | Customer managed |
-| Delivery | CI/CD and Git provider integration | Shared responsibility | Shared responsibility | Customer managed |
-| Delivery | Container registry and image lifecycle | Shared responsibility | Customer managed infrastructure, Mia-Platform supported integration | Customer managed |
-| Identity and Security | Secrets management and key material | Shared responsibility | Shared responsibility | Customer managed |
-| Operations | Observability and operational monitoring | Managed by Mia-Platform | Shared responsibility | Customer managed |
+<table>
+  <thead>
+    <tr>
+      <th>Domain</th>
+      <th>Tooling Scope</th>
+      <th>PaaS</th>
+      <th>BYOI</th>
+      <th>Self-Hosted</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr style={{backgroundColor: "var(--ifm-table-stripe-background)"}}>
+      <td rowspan="2"><strong>Runtime</strong></td>
+      <td>Kubernetes runtime and networking</td>
+      <td><strong>Managed by Mia-Platform</strong></td>
+      <td><strong>Customer managed</strong> infrastructure, Mia-Platform supported integration</td>
+      <td><strong>Customer managed</strong></td>
+    </tr>
+    <tr style={{backgroundColor: "var(--ifm-table-stripe-background)"}}>
+      <td>Ingress layer (Traefik / IngressRoute)</td>
+      <td><strong>Managed by Mia-Platform</strong></td>
+      <td><strong>Customer managed</strong> infrastructure, Mia-Platform supported integration</td>
+      <td><strong>Customer managed</strong></td>
+    </tr>
+    <tr style={{backgroundColor: "transparent"}}>
+      <td><strong>Data</strong></td>
+      <td>Data services (PostgreSQL, MongoDB, Redis, Kafka)</td>
+      <td><strong>Managed by Mia-Platform</strong></td>
+      <td><strong>Customer managed</strong> infrastructure, Mia-Platform supported integration</td>
+      <td><strong>Customer managed</strong></td>
+    </tr>
+    <tr style={{backgroundColor: "var(--ifm-table-stripe-background)"}}>
+      <td rowspan="2"><strong>Identity and Security</strong></td>
+      <td>AuthN/AuthZ tooling (Keycloak, Keycloak Realm Management)</td>
+      <td><strong>Shared responsibility</strong></td>
+      <td><strong>Shared responsibility</strong></td>
+      <td><strong>Customer managed</strong></td>
+    </tr>
+    <tr style={{backgroundColor: "var(--ifm-table-stripe-background)"}}>
+      <td>Secrets management and key material</td>
+      <td><strong>Shared responsibility</strong></td>
+      <td><strong>Shared responsibility</strong></td>
+      <td><strong>Customer managed</strong></td>
+    </tr>
+    <tr style={{backgroundColor: "transparent"}}>
+      <td rowspan="2"><strong>Delivery</strong></td>
+      <td>CI/CD and Git provider integration</td>
+      <td><strong>Shared responsibility</strong></td>
+      <td><strong>Shared responsibility</strong></td>
+      <td><strong>Customer managed</strong></td>
+    </tr>
+    <tr style={{backgroundColor: "transparent"}}>
+      <td>Container registry and image lifecycle</td>
+      <td><strong>Shared responsibility</strong></td>
+      <td><strong>Customer managed</strong> infrastructure, Mia-Platform supported integration</td>
+      <td><strong>Customer managed</strong></td>
+    </tr>
+    <tr style={{backgroundColor: "var(--ifm-table-stripe-background)"}}>
+      <td><strong>Operations</strong></td>
+      <td>Observability and operational monitoring</td>
+      <td><strong>Managed by Mia-Platform</strong></td>
+      <td><strong>Shared responsibility</strong></td>
+      <td><strong>Customer managed</strong></td>
+    </tr>
+  </tbody>
+</table>
 
 `Shared responsibility` indicates areas where platform-level integration is provided by Mia-Platform, while infrastructure provisioning and/or day-2 operations remain in customer scope.
 
@@ -51,7 +107,7 @@ The following table highlights the main shared dependencies across products.
 | AuthN/AuthZ platform tooling (Keycloak + Realm Management) | ✅ | ✅ | ✅ | ✅ |
 | Container Registry | ✅ | ✅ | ✅ | ✅ |
 | PostgreSQL | ❌ | ✅ | ✅ | ❌ |
-| MongoDB | ❌ | ✅ | ❌ | ✅ |
+| MongoDB | ❌ | ❌ | ❌ | ✅ |
 | Redis | ✅ | ✅ | ✅ | ✅ |
 | Kafka | ❌ | ✅ (optional) | ❌ | ❌ |
 
