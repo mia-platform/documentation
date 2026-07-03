@@ -53,11 +53,15 @@ Console, Homepage & RBAC, and Catalog are fully independent of each other — th
 
 ## Product index
 
+:::tip Before you start — Auth architecture
+If this is your first self-hosted Mia Platform installation, read the [Authentication Architecture overview](/requirements/installation-guidelines/authn/10_overview.md) and the [Federation Strategies guide](/requirements/installation-guidelines/authn/20_federation-strategies.md) before touching any product chart. These decisions (realm layout, IdP federation model) propagate to every product's `configurations.keycloak` block.
+:::
+
 | Product | Helm chart | Deployment wrapper | Documentation |
 |---|---|---|---|
 | **Auth tooling — Keycloak** | `keycloak-operator` | — | [Overview](/requirements/installation-guidelines/authn/keycloak/10_overview.md) · [Getting Started](/requirements/installation-guidelines/authn/keycloak/15_getting-started.md) |
 | **Auth tooling — Realm Management** | `keycloak-dev-realms` | — | [Overview](/requirements/installation-guidelines/authn/keycloak-realm-management/10_overview.md) · [Getting Started](/requirements/installation-guidelines/authn/keycloak-realm-management/15_getting-started.md) |
-| **Console** | `console` | `paas-console-deployment` | [Overview](/requirements/installation-guidelines/console/infrastructure_overview.md) · [Getting Started](/requirements/installation-guidelines/console/self-hosted/15_getting-started.md) |
+| **Console** | `console` | `console-deployment` | [Overview](/requirements/installation-guidelines/console/infrastructure_overview.md) · [Getting Started](/requirements/installation-guidelines/console/self-hosted/15_getting-started.md) |
 | **Homepage & RBAC** | `services` | `services-deployment` | [Overview](/requirements/installation-guidelines/services/10_overview.md) · [Getting Started](/requirements/installation-guidelines/services/15_getting-started.md) |
 | **Catalog** | `catalog` | `catalog-deployment` | [Overview](/requirements/installation-guidelines/catalog/10_overview.md) · [Getting Started](/requirements/installation-guidelines/catalog/15_getting-started.md) |
 | **AI Foundry** | `ai-foundry` | `ai-foundry-deployment` | [Overview](/requirements/installation-guidelines/ai-foundry/10_overview.md) · [Getting Started](/requirements/installation-guidelines/ai-foundry/15_getting-started.md) |

@@ -4,7 +4,9 @@ title: How to Upgrade
 sidebar_label: How To Upgrade
 ---
 
-
+:::info Console v15 users
+This page contains general upgrade instructions for all Console versions. If you are upgrading **from v14 to v15**, jump directly to the [Console v15 upgrade section](#console-v15---version-upgrades) below — the Helm chart and authentication model changed significantly in v15.
+:::
 
 In order to upgrade Mia-Platform Console, all you need to do is to update the `mia-console` Chart version dependency in your `Chart.yaml` file.
 
@@ -113,6 +115,19 @@ The following top-level service keys are no longer present in the chart and must
 | `apiPortal` | API Portal has been removed |
 | `loginSite` | Login site is now managed by Keycloak |
 | `notificationProvider` | Notification provider has been removed |
+
+#### 5. Update `configurations.redis.hosts` format
+
+The `configurations.redis.hosts` field changed from a single connection string to an **array of objects** with `ip` and `port` properties:
+
+```diff
+ configurations:
+   redis:
+-    hosts: "redis-host:6379"
++    hosts:
++      - ip: "redis-host"
++        port: 6379
+```
 
 ---
 

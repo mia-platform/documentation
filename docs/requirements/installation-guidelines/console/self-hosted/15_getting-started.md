@@ -100,7 +100,7 @@ helm search repo mia-platform
 3. Launch the installation
 
 ```bash
-helm install -f values.yml --create-namespace -n console --atomic --timeout 10m console mia-platform/mia-console
+helm install -f values.yml --create-namespace -n console --atomic --timeout 10m console mia-platform/console
 ```
 
 

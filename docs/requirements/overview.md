@@ -108,10 +108,11 @@ The following table highlights the main shared dependencies across products.
 | Traefik (IngressRoute) | ✅ (optional) | ✅ (optional)| ✅ (optional)| ✅ (optional)|
 | AuthN/AuthZ platform tooling (Keycloak + Realm Management) | ✅ | ✅ | ✅ | ✅ |
 | Container Registry | ✅ | ✅ | ✅ | ✅ |
-| PostgreSQL | ✅ | ✅ | ✅ | ❌ |
+| PostgreSQL | ❌ | ✅ | ✅ | ❌ |
 | MongoDB | ❌ | ❌ | ❌ | ✅ |
 | Redis | ✅ | ✅ | ✅ | ✅ |
 | Kafka | ❌ | ✅ | ❌ | ❌ |
+| Google Cloud / Vertex AI | ❌ | ❌ | ✅ *(adkBeApp)* | ❌ |
 
 :::info
 The provisioning and management of these tools depends on what distribution model has been chosen (see paragraph above).

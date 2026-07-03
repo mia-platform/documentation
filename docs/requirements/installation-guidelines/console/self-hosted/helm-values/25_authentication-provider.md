@@ -6,52 +6,71 @@ sidebar_label: Authentication Provider
 
 
 
-In order to authenticate users Mia-Platform Console requires a connection to an Identity Provider that is in charge of authenticate users.
+In Mia Platform Console v15, authentication is handled exclusively through **Keycloak**. The `authtool-bff` service manages the OIDC PKCE session flow and replaces the previous `authenticationService`.
 
-## Supported Authentication Providers
-
-Any `OAuth2` compliant Identity Provider is supported, however Mia-Platform Console provides specific integrations with most IDPs, here is a comprehensive list, each provider identified by an id that can be used during configuration:
-
-* Okta (`okta`)
-* Keycloak (`keycloak`)
-* GitLab (`gitlab`)
-* GitHub (`github`)
-* Microsoft (`microsoft`)
-* Bitbucket (`bitbucket`)
-
-:::info
-For provider not listed here, you can use the `generic` authentication provider to configure your own.
+:::info Prerequisites
+Before configuring the authentication provider, ensure you have a running Keycloak instance with the required realms and OIDC clients configured. Refer to the [Keycloak installation guide](/requirements/installation-guidelines/authn/keycloak/15_getting-started.md) and the [Realm Management guide](/requirements/installation-guidelines/authn/keycloak-realm-management/15_getting-started.md).
 :::
 
-## Configure your Authentication Provider
+## Keycloak Configuration
 
-To connect Mia-Platform Console with your Authentication Provider you have to setup the `authProviders` configuration.
+Connect Console to the Keycloak instance by configuring the `configurations.keycloak` block.
 
-:::warning
-Please bear in mind that the `authProviders` field is a required field, you can't install Mia-Platform Console without configuring at least one Authentication Provider.
+| Name | Type | Description | Optional |
+|:----:|:----:|:-----------:|:--------:|
+| `configurations.keycloak.protocol` | string | Protocol for the Keycloak connection: `http` or `https` | ❌ |
+| `configurations.keycloak.host` | string | Hostname of the Keycloak instance, without the protocol prefix | ❌ |
+| `configurations.keycloak.realm` | string | Realm name used for Console user authentication (e.g. `mia-platform`) | ❌ |
+| `configurations.keycloak.extensibilityRealm` | string | Realm name used for service-to-service and extensibility token exchange (e.g. `mia-extensions`) | ❌ |
+
+```yaml
+configurations:
+  keycloak:
+    protocol: "https"
+    host: "keycloak.your-domain.com"
+    realm: "mia-platform"
+    extensibilityRealm: "mia-extensions"
+```
+
+:::note Dual-realm model
+Mia Platform uses two Keycloak realms by default: one for human user authentication (`realm`) and one for machine-to-machine token exchange used by internal services (`extensibilityRealm`). Both realms are configured by the Realm Management chart. See [Federation Strategies](/requirements/installation-guidelines/authn/20_federation-strategies.md) for the reasoning behind this split.
 :::
 
-| Name | Type | Description | Default | Optional |
-|:----:|:----:|:-----------:|:-------:|:--------:|
-| `name` | string | A unique name for the provider |  | ❌ |
-| `type` | string | The type of provider, one of `okta`, `gitlab`, `github`, `microsoft`, `bitbucket`, `keycloak`, `generic` |  | ❌ |
-| `baseUrl` | string | The url of the git provider |  | ❌ |
-| `apiBaseUrl` | string | The url of the git provider API andpoint | value of `baseUrl` | ✅ |
-| `label` | string | The label to be shown to the final user |  | ❌ |
-| `clientId` | string | The client Id for authentication |  | ❌ |
-| `clientSecret` | string | The client secret for authentication |  | ❌ |
-| `authPath` | string | The path for the authentication API |  | ✅ |
-| `authUrl` | string | The full url for the authentication API | value of `apiBaseUrl/authPath` | ✅ |
-| `tokenPath` | string | The path for retrieving the user token  |  | ✅ |
-| `tokenUrl` | string | The full url for retrieving the user token | value of `apiBaseUrl/tokenPath` | ✅ |
-| `userInfoPath` | string | The path for retrieving the user data |  | ✅ |
-| `userInfoUrl` | string | The full url for retrieving the user data | value of `apiBaseUrl/userInfoPath` | ✅ |
-| `userSettingsURL` | string | The full url to the API endpoint for requesting the user data | empty string | ✅ |
-| `skipRefreshProviderTokenOnMiaTokenRefresh`| boolean | Skip refresh the provider token when the console one is expired | `true` | ✅ |
-| `cmsClientId` | string | The client Id for CMS authentication | value of `clientId` | ✅ |
-| `cmsClientSecret` | string | The client secret for CMS authentication | value of `clientSecret` | ✅ |
-| `additionalScopes` | string[] | The additional scope for the provider | [] | ✅ |
-| `genericProviderOidcKeys` | object | The keys that must be extracted from the provider response, only available for `generic` auth provider type |  | ✅ |
+## Authtool BFF Keys
+
+The `authtool-bff` service requires three cryptographic secrets for session management. These are provided via `authtoolBff.keys` and **must be generated before installation**.
+
+| Name | Type | Description | Optional |
+|:----:|:----:|:-----------:|:--------:|
+| `authtoolBff.keys.privateKey` | string | RSA private key (PEM format), base64 encoded. Used for `private_key_jwt` client authentication with Keycloak. | ❌ |
+| `authtoolBff.keys.cookieSecret` | string | Secret used to sign and encrypt session cookies. | ❌ |
+| `authtoolBff.keys.redisTokenEncKey` | string | Key used to encrypt token data stored in Redis. | ❌ |
+
+Generate the key material with the following commands:
+
+```bash
+# RSA private key for authtool-bff (base64 encoded, no passphrase)
+ssh-keygen -t rsa -b 4096 -m PEM -f private.key -N "" > /dev/null
+authtoolBffPrivateKey=$(base64 < private.key)
+rm private.key private.key.pub
+
+cookieSecret=$(openssl rand -hex 64)
+redisTokenEncKey=$(openssl rand -hex 32)
+```
+
+Then set the generated values in your `values.yaml`:
+
+```yaml
+authtoolBff:
+  keys:
+    privateKey: "<BASE64_ENCODED_RSA_PRIVATE_KEY>"
+    cookieSecret: "<COOKIE_SECRET>"
+    redisTokenEncKey: "<REDIS_TOKEN_ENC_KEY>"
+```
+
+:::tip Secret management
+In production, store these values in a secrets manager (e.g. HashiCorp Vault) and use External Secrets Operator to inject them into the cluster. The `*-deployment` wrapper repositories include example ESO-based secret configurations.
+:::
 
 ## Expose synchronization webhooks
 
