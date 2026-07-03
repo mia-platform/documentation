@@ -18,58 +18,11 @@ configurations:
   cmsUrl: "<CONSOLE_CMS_URL>"
   marketplaceSyncFilters: "" # optional: use one or more of this values separated by a comma: template plugin example application sidecar. It is suggested to use at least plugin, to have the plugin automatically updated in marketplace
   repositoryHostname: "<DOCKER_REPOSITORY>" # the docker registry host used for all the docker images in the projects
-  authProviders:
-    # this is the placeholder to use if your auth provider is gitlab
-    - name: "<AUTH_PROVIDER_ID>" # name of the provider
-      type: "gitlab"
-      label: "Login" # label of the login button
-      baseUrl: "<OAUTH_BASE_URL>" # base url of the gitlab instance
-      clientId: "<OAUTH_APP_ID>"
-      clientSecret: "<OAUTH_SECRET>"
-      authPath: "/oauth/authorize"
-      tokenPath: "/oauth/token"
-      userInfoPath: "/api/v4/user"
-      userSettingsURL: "<BASE_URL>/-/profile" # url to get user settings
-      skipRefreshProviderTokenOnMiaTokenRefresh: true # optional: skip the refresh of the provider token when the console one is expired
-    # this is the placeholder to use if your auth provider is github
-    - name: "<AUTH_PROVIDER_ID>" # name of the provider
-      type: "github"
-      baseUrl: "<OAUTH_BASE_URL>" # base url of the github instance
-      apiBaseUrl: <API_BASE_URL> # api base url
-      clientId: "<OAUTH_APP_ID>"
-      clientSecret: "<OAUTH_SECRET>"
-      cmsClientId: "<CMS_OAUTH_APP_ID>" # The app id with redirect to cms
-      cmsClientSecret: "<CMS_OAUTH_SECRET>" # The app secret with redirect to cms
-      authPath: "/oauth/authorize"
-      tokenPath: "/oauth/token"
-      userInfoUrl: "<API_BASE_URL>/user"
-      userSettingsURL: "<BASE_URL>/settings/profile" # url to get user settings
-      skipRefreshProviderTokenOnMiaTokenRefresh: true # optional: skip the refresh of the provider token when the console one is expired
-    # this is the placeholder to use if your auth provider is okta
-    - name: "<AUTH_PROVIDER_ID>" # name of the provider
-      type: "okta"
-      label: "Login" # label of the login button
-      baseUrl: "<OAUTH_BASE_URL>" # base url of okta
-      clientId: "<OAUTH_APP_ID>"
-      clientSecret: "<OAUTH_SECRET>"
-      authPath: "/oauth2/v1/authorize"
-      tokenPath: "/oauth2/v1/token"
-      userInfoPath: "/oauth2/v1/userinfo"
-      userSettingsURL: "<BASE_URL>/enduser/settings"
-      logoutUrlPath: "/oauth2/v1/logout"
-      skipRefreshProviderTokenOnMiaTokenRefresh: true # optional: skip the refresh of the provider token when the console one is expired
-    # this is the placeholder to use if your auth provider is microsoft
-    - name: "<AUTH_PROVIDER_ID>" # name of the provider
-      type: "microsoft"
-      baseUrl: "<OAUTH_BASE_URL>" # base url of microsoft instance
-      clientId: "<OAUTH_APP_ID>"
-      clientSecret: "<OAUTH_SECRET>"
-      authPath: "/authorize"
-      tokenPath: "/token"
-      userInfoUrl: "https://graph.microsoft.com/oidc/userinfo"
-      userSettingsURL: "https://account.microsoft.com/profile/"
-      logoutUrlPath: "/logout"
-      skipRefreshProviderTokenOnMiaTokenRefresh: true # optional: skip the refresh of the provider token when the console one is expired
+  keycloak:
+    protocol: "<KEYCLOAK_PROTOCOL>" # http or https
+    host: "<KEYCLOAK_HOST>" # hostname of the Keycloak instance (without protocol)
+    realm: "<KEYCLOAK_REALM>" # realm for Console user authentication
+    extensibilityRealm: "<KEYCLOAK_EXTENSIBILITY_REALM>" # realm for extensibility and service-to-service authentication
   redis:
     hosts:
       - "<REDIS_HOST>" # host to connect to redis
@@ -85,12 +38,6 @@ configurations:
     clientIdSalt: "CLIENT SALT"
     rsaPrivateKeyBase64: |
       "BASE64_PrivateKey"
-  userAccountAuthProvider:
-    tokenPassphrase: "<PROVIDER_TOKEN_PASS_PHRASE>" # An HMAC string of 128 bytes for authentication purpose
-    jwtTokenPrivateKeyBase64: |
-      "BASE64_PrivateKey"
-    jwtTokenPrivateKeyPassword: "PRIVATE KEY PASSPHRASE"
-    jwtTokenPrivateKeyKid: "PRIVATE KEY ID"
   servicesImagePullSecrets:
     - "<SERVICE_PULL_SECRET>" # array of image pull secret to pull your custom services
   defaultCoreResources:
@@ -132,34 +79,18 @@ apiGateway:
         cpu: "500m"
         memory: "250Mi"
 
-rateLimitEnvoy:
-  deploy:
-    resources:
-      requests:
-        cpu: "100m"
-        memory: "150Mi"
-      limits:
-        cpu: "300m"
-        memory: "200Mi"
-
-apiPortal:
-  deploy:
-    resources:
-      requests:
-        cpu: "10m"
-        memory: "5Mi"
-      limits:
-        cpu: "50m"
-        memory: "25Mi"
-
-authenticationService:
+authtoolBff:
+  keys:
+    privateKey: "<BASE64_PRIVATE_KEY>"
+    cookieSecret: "<COOKIE_SECRET>"
+    redisTokenEncKey: "<REDIS_TOKEN_ENC_KEY>"
   deploy:
     resources:
       requests:
         cpu: "50m"
         memory: "20Mi"
       limits:
-        memory: 100Mi
+        memory: "100Mi"
         cpu: "200m"
 
 authorizationService:
@@ -349,16 +280,6 @@ miaCraftBff:
       limits:
         memory: "300Mi"
         cpu: "300m"
-
-notificationProvider:
-  deploy:
-    resources:
-      requests:
-        cpu: "30m"
-        memory: "100Mi"
-      limits:
-        cpu: "100m"
-        memory: "200Mi"
 
 projectService:
   deploy:

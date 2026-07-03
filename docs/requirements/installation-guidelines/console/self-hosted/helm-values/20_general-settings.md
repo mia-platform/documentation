@@ -9,7 +9,7 @@ sidebar_label: General Settings
 This document describes the required values that you will have to configure to work properly.
 
 :::info
-More specific configurations, such as those for the [Authentication Providers](/requirements/installation-guidelines/console/self-hosted/helm-values/25_authentication-provider.md), [Client-Side Database Encryption](/requirements/installation-guidelines/console/self-hosted/helm-values/40_mongodb-configurations-and-encryption.md), [File Storage](/requirements/installation-guidelines/console/self-hosted/helm-values/50_file-storage.md) and [Email Connectivity](/requirements/installation-guidelines/console/self-hosted/helm-values/60_email-setup.md) are described in separate documents.
+More specific configurations, such as those for the [Keycloak Configuration](/requirements/installation-guidelines/console/self-hosted/helm-values/25_authentication-provider.md), [Client-Side Database Encryption](/requirements/installation-guidelines/console/self-hosted/helm-values/40_mongodb-configurations-and-encryption.md), [File Storage](/requirements/installation-guidelines/console/self-hosted/helm-values/50_file-storage.md) and [Email Connectivity](/requirements/installation-guidelines/console/self-hosted/helm-values/60_email-setup.md) are described in separate documents.
 
 If you want to fine tune resources for specific services the proper documentation can be found in [this page](/requirements/installation-guidelines/console/self-hosted/helm-values/30_service-specific-configurations.md).
 :::

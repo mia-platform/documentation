@@ -27,7 +27,7 @@ Before to start make sure you have addressed the following requirements:
 Requirement|Example
 --|--
 Console and CMS URLs|Console: `https://console.your-domain`<br /> CMS: `https://console-cms.your-domain`
-OAuth2 application BaseURL, ClientID, ClientSecret| [Okta example](https://developer.okta.com/docs/guides/find-your-app-credentials/main/) <br />
+Keycloak connection details (host, realm, extensibilityRealm)| Your Keycloak instance details (see [Authentication Provider configuration](/requirements/installation-guidelines/console/self-hosted/helm-values/25_authentication-provider.md))
 MongoDB connection string for a user with readWrite permission and dbAdmin permission for console DB| [How to create an Atlas MongoDB cluster](https://www.mongodb.com/docs/guides/atlas/cluster/)<br /> [How to create an Atlas MongoDB user](https://www.mongodb.com/docs/manual/tutorial/create-users/)
 Redis host and port|`redis.default.svc.cluster.local:6379`
 Private docker registry host and port| `your-repo-hostname:port`
@@ -48,12 +48,12 @@ ssh-keygen -t rsa -b 4096 -m PEM -f private.key -N "$rsaPrivateKeyPass" > /dev/n
 rsaPrivateKeyBase64=$(base64 < private.key)
 rm private.key private.key.pub
 
-tokenPassphrase=$(openssl rand -hex 128)
-jwtTokenPrivateKeyPassword=$(openssl rand -hex 128)
-ssh-keygen -t rsa -b 4096 -m PEM -f private.key -N "$jwtTokenPrivateKeyPassword" > /dev/null
-jwtTokenPrivateKeyBase64=$(base64 < private.key)
-jwtTokenPrivateKeyKid=$(uuidgen | tr '[:upper:]' '[:lower:]')
+ssh-keygen -t rsa -b 4096 -m PEM -f private.key -N "" > /dev/null
+authtoolBffPrivateKey=$(base64 < private.key)
 rm private.key private.key.pub
+
+cookieSecret=$(openssl rand -hex 64)
+redisTokenEncKey=$(openssl rand -hex 32)
 
 masterKey=$(LC_CTYPE=ALL tr -dc 'a-zA-Z0-9' < /dev/urandom | fold -w 96 | head -1)
 
@@ -62,22 +62,21 @@ echo "rsaPrivateKeyPass: $rsaPrivateKeyPass"
 echo "clientIdSalt: $clientIdSalt"
 echo "rsaPrivateKeyBase64: $rsaPrivateKeyBase64"
 
-echo "tokenPassphrase: $tokenPassphrase"
-echo "jwtTokenPrivateKeyPassword: $jwtTokenPrivateKeyPassword"
-echo "jwtTokenPrivateKeyBase64: $jwtTokenPrivateKeyBase64"
-echo "jwtTokenPrivateKeyKid: $jwtTokenPrivateKeyKid"
+echo "authtoolBffPrivateKey: $authtoolBffPrivateKey"
+echo "cookieSecret: $cookieSecret"
+echo "redisTokenEncKey: $redisTokenEncKey"
 
 echo "masterKey: $masterKey"
 ```
 
-3. Run the script to generate the values of the following variables and edit the values.yaml file: `rsaPrivateKeyId`,`rsaPrivateKeyPass`, `clientIdSalt`, `rsaPrivateKeyBase64`, `tokenPassphrase`, `jwtTokenPrivateKeyPassword`, `jwtTokenPrivateKeyBase64`, `masterKey`. These are some of the required [general settings](/requirements/installation-guidelines/console/self-hosted/helm-values/20_general-settings.md) that need to be configured.
+3. Run the script to generate the values of the following variables and edit the values.yaml file: `rsaPrivateKeyId`, `rsaPrivateKeyPass`, `clientIdSalt`, `rsaPrivateKeyBase64`, `authtoolBffPrivateKey`, `cookieSecret`, `redisTokenEncKey`, `masterKey`. These are some of the required [general settings](/requirements/installation-guidelines/console/self-hosted/helm-values/20_general-settings.md) that need to be configured.
 
 ```bash
 bash scriptname.sh
 ```
 
 4. Add the remaining [mandatory fields](/requirements/installation-guidelines/console/self-hosted/helm-values/20_general-settings.md) you already prepared before to start
-5. Configure the OAuth provider with the [required info](/requirements/installation-guidelines/console/self-hosted/helm-values/25_authentication-provider.md)
+5. Configure Keycloak with the [required info](/requirements/installation-guidelines/console/self-hosted/helm-values/25_authentication-provider.md)
 6. Configure the mandatory [MongoDB fields](/requirements/installation-guidelines/console/self-hosted/helm-values/40_mongodb-configurations-and-encryption.md)
 
 :::info

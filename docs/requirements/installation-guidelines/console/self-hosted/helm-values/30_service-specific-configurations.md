@@ -17,9 +17,7 @@ All of the following values are root values for the `mia-console` chart values.
 |                  Name                  |                 Type                 |                                     Description                                      | Default | Optional |
 |:--------------------------------------:|:------------------------------------:|:------------------------------------------------------------------------------------:|:-------:|:--------:|
 |              `apiGateway`              |    [Service Conf](#service-conf)     |                    The configurations for the API Gateway Service                    |         |    ✅     |
-|            `rateLimitEnvoy`            |    [Service Conf](#service-conf)     |              The configurations for the API Gateway Rate Limit Service               |         |    ✅     |
-|              `apiPortal`               |    [Service Conf](#service-conf)     |                    The configurations for the API Portal Service                     |         |    ✅     |
-|        `authenticationService`         |    [Service Conf](#service-conf)     |                  The configurations for the Authentication Service                   |         |    ✅     |
+|            `authtoolBff`               |    [Service Conf](#service-conf)     |                  The configurations for the Authtool BFF Service (Keycloak session management) |         |    ✅     |
 |         `authorizationService`         |    [Service Conf](#service-conf)     |                   The configurations for the Authorization Service                   |         |    ✅     |
 |            `backendService`            |    [Service Conf](#service-conf)     |                  The configurations for the Console Backend Service                  |         |    ✅     |
 |             `crudService`              |    [Service Conf](#service-conf)     |                       The configurations for the CRUD Service                        |         |    ✅     |
@@ -29,8 +27,6 @@ All of the following values are root values for the `mia-console` chart values.
 |     `extensibilityManagerService`      |    [Service Conf](#service-conf)     |               The configurations for the Extensibility Manager Service               |         |    ✅     |
 |             `filesService`             |    [Service Conf](#service-conf)     |                       The configurations for the Files Service                       |         |    ✅     |
 |          `kubernetesService`           |    [Service Conf](#service-conf)     |                    The configurations for the Kubernetes Service                     |         |    ✅     |
-|              `loginSite`               |    [Service Conf](#service-conf)     |                   The configurations for the Login website Service                   |         |    ✅     |
-|         `notificationProvider`         |    [Service Conf](#service-conf)     |               The configurations for the Notification Provider Service               |         |    ✅     |
 |          `swaggerAggregator`           |    [Service Conf](#service-conf)     |                The configurations for the Swagger Aggregator Service                 |         |    ✅     |
 |               `websites`               |    [Service Conf](#service-conf)     |                  The configurations for the Console website Service                  |         |    ✅     |
 |             `miaCraftBff`              |    [Service Conf](#service-conf)     |              The configurations for the mia-craft backend for frontend               |         |    ✅     |

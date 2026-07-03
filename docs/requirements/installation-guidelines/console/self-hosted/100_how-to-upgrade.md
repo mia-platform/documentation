@@ -33,6 +33,89 @@ When upgrading also make sure to check if any new configuration option is availa
 The Chart version follows [semver](https://semver.org/) policy so any breaking change with the Chart will always be followed by a Major release. Minor releases may include new configuration options while as a general rule of thumb, patches never holds new configuration options but only internal updates and fixes.
 :::
 
+## Console v15 - version upgrades
+
+### Upgrade from last Console v14 to v15.0.0
+
+Console v15 introduces a **breaking change** in the authentication architecture: the OAuth2-based provider configuration is replaced by a direct integration with **Keycloak**. The `authenticationService` is replaced by the new `authtool-bff` service.
+
+Make sure you have a running Keycloak instance configured before upgrading. Refer to the [Authentication Provider documentation](/requirements/installation-guidelines/console/self-hosted/helm-values/25_authentication-provider.md) for details.
+
+#### 1. Replace `authProviders` with `configurations.keycloak`
+
+Remove the entire `configurations.authProviders` array and replace it with the new `configurations.keycloak` block:
+
+```diff
+ configurations:
+-  authProviders:
+-    - name: "<PROVIDER_NAME>"
+-      type: "okta"          # or gitlab, github, microsoft, ...
+-      baseUrl: "..."
+-      clientId: "..."
+-      clientSecret: "..."
+-      # ... other provider fields
++  keycloak:
++    protocol: "https"
++    host: "<KEYCLOAK_HOST>"
++    realm: "<KEYCLOAK_REALM>"
++    extensibilityRealm: "<KEYCLOAK_EXTENSIBILITY_REALM>"
+```
+
+#### 2. Remove `userAccountAuthProvider`
+
+The `configurations.userAccountAuthProvider` block is no longer used. Remove it entirely:
+
+```diff
+ configurations:
+-  userAccountAuthProvider:
+-    tokenPassphrase: "..."
+-    jwtTokenPrivateKeyBase64: "..."
+-    jwtTokenPrivateKeyPassword: "..."
+-    jwtTokenPrivateKeyKid: "..."
+```
+
+#### 3. Replace `authenticationService` with `authtoolBff`
+
+The `authenticationService` is replaced by `authtoolBff`. Rename any resource overrides and add the required cryptographic keys:
+
+```diff
+-authenticationService:
+-  deploy:
+-    resources: { ... }
++authtoolBff:
++  keys:
++    privateKey: "<BASE64_PRIVATE_KEY>"
++    cookieSecret: "<COOKIE_SECRET>"
++    redisTokenEncKey: "<REDIS_TOKEN_ENC_KEY>"
++  deploy:
++    resources: { ... }
+```
+
+Generate the new secrets with the following commands:
+
+```bash
+# RSA private key for authtool-bff (base64 encoded, no passphrase)
+ssh-keygen -t rsa -b 4096 -m PEM -f private.key -N "" > /dev/null
+authtoolBffPrivateKey=$(base64 < private.key)
+rm private.key private.key.pub
+
+cookieSecret=$(openssl rand -hex 64)
+redisTokenEncKey=$(openssl rand -hex 32)
+```
+
+#### 4. Remove deprecated service configurations
+
+The following top-level service keys are no longer present in the chart and must be removed from your `values.yaml`:
+
+| Removed key | Notes |
+|---|---|
+| `rateLimitEnvoy` | Rate limiting is now handled differently |
+| `apiPortal` | API Portal has been removed |
+| `loginSite` | Login site is now managed by Keycloak |
+| `notificationProvider` | Notification provider has been removed |
+
+---
+
 ## Console v14 - version upgrades
 
 ### Upgrade from versions prior to v14.5.2 (or later)

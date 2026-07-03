@@ -103,13 +103,17 @@ The following table highlights the main shared dependencies across products.
 
 | Infrastructure / Tool | Homepage | Catalog | AI Foundry | Console |
 | --- | --- | --- | --- | --- |
-| Traefik (IngressRoute) | ✅ | ✅ | ✅ | ✅ |
+| Traefik (IngressRoute) | ✅ (optional) | ✅ (optional)| ✅ (optional)| ✅ (optional)|
 | AuthN/AuthZ platform tooling (Keycloak + Realm Management) | ✅ | ✅ | ✅ | ✅ |
 | Container Registry | ✅ | ✅ | ✅ | ✅ |
-| PostgreSQL | ❌ | ✅ | ✅ | ❌ |
+| PostgreSQL | ✅ | ✅ | ✅ | ❌ |
 | MongoDB | ❌ | ❌ | ❌ | ✅ |
 | Redis | ✅ | ✅ | ✅ | ✅ |
-| Kafka | ❌ | ✅ (optional) | ❌ | ❌ |
+| Kafka | ❌ | ✅ | ❌ | ❌ |
+
+:::info
+The provisioning and management of these tools depends on what distribution model has been chosen (see paragraph above).
+:::
 
 ## Next Step
 
