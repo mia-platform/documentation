@@ -87,21 +87,23 @@ The ownership model changes according to the selected distribution type.
 
 `Shared responsibility` indicates areas where platform-level integration is provided by Mia-Platform, while infrastructure provisioning and/or day-2 operations remain in customer scope.
 
-Products in scope are **Console**, **Homepage**, **Catalog**, and **AI Foundry**.
+The Mia Platform product suite in scope comprises **Console**, **Homepage & RBAC**, **Catalog**, and **AI Foundry**. The AuthN/AuthZ tooling — Keycloak and Realm Management — is a platform-level prerequisite provisioned by Mia Platform; it enables the suite but is not a standalone business product.
 
 ## Cross-Product Dependencies
 
-Use this high-level order before entering product-specific guides:
+The **Auth tooling layer** (Keycloak and Realm Management) is the foundational prerequisite for the entire suite: every product requires a functioning Keycloak realm and OIDC issuer before it can be installed.
 
-1. Install Keycloak first.
-2. Install Catalog before AI Foundry.
-3. Install the remaining product charts according to your target architecture.
+Among the business products, Console, Homepage & RBAC, and Catalog are independent of each other at installation time. The only inter-product dependency is:
+
+- **AI Foundry** integrates with Catalog (shared agent backend and navigation links) — Catalog must be in place before deploying AI Foundry.
+
+For the detailed installation map and product entry points, see the [Installation Guidelines](/requirements/installation-guidelines/00_overview.md).
 
 ## Shared Infrastructure Requirements
 
 The following table highlights the main shared dependencies across products.
 
-| Infrastructure / Tool | Homepage | Catalog | AI Foundry | Console |
+| Infrastructure / Tool | Homepage & RBAC | Catalog | AI Foundry | Console |
 | --- | --- | --- | --- | --- |
 | Traefik (IngressRoute) | ✅ (optional) | ✅ (optional)| ✅ (optional)| ✅ (optional)|
 | AuthN/AuthZ platform tooling (Keycloak + Realm Management) | ✅ | ✅ | ✅ | ✅ |
