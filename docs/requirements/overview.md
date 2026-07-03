@@ -93,9 +93,11 @@ The Mia Platform product suite in scope comprises **Console**, **Homepage & RBAC
 
 The **Auth tooling layer** (Keycloak and Realm Management) is the foundational prerequisite for the entire suite: every product requires a functioning Keycloak realm and OIDC issuer before it can be installed.
 
-Among the business products, Console, Homepage & RBAC, and Catalog are independent of each other at installation time. The only inter-product dependency is:
+Among the business products, the installation order is:
 
-- **AI Foundry** integrates with Catalog (shared agent backend and navigation links) — Catalog must be in place before deploying AI Foundry.
+1. **Homepage & RBAC** — provides the `authtool-bff` authorization service that Console and Catalog depend on.
+2. **Console** and **Catalog** — can be installed in parallel after Homepage & RBAC is running.
+3. **AI Foundry** — integrates with Catalog (shared agent backend and navigation links); Catalog must be in place first.
 
 For the detailed installation map and product entry points, see the [Installation Guidelines](/requirements/installation-guidelines/00_overview.md).
 

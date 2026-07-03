@@ -26,7 +26,9 @@ The following tools must be available on the operator's workstation before insta
 
 The only hard sequencing constraint across the entire suite is that the **Auth tooling layer** (Keycloak + Realm Management) must be operational before any product chart is installed — all products require a valid OIDC issuer URL at install time.
 
-Among the business products, the only installation-time dependency is between **AI Foundry** and **Catalog**: AI Foundry integrates with the Catalog for agent context and navigation, so Catalog must be deployed first.
+**Homepage & RBAC** must be installed next: it provides the authorization service (`authtool-bff`) consumed by both Console and Catalog.
+
+Once Homepage & RBAC is running, **Console** and **Catalog** can be installed in parallel. AI Foundry depends on Catalog (shared agent backend and navigation links) and must be installed last.
 
 ```
 ┌──────────────────────────────────────────────────────────────────────┐
@@ -34,23 +36,21 @@ Among the business products, the only installation-time dependency is between **
 │                                                                      │
 │       Keycloak  ──►  Realm Management                                │
 └────────────────────────────────┬─────────────────────────────────────┘
-                                 │
-              ┌──────────────────┼──────────────────┐
-              │                  │                  │
-              ▼                  ▼                  ▼
-   ┌──────────────────┐  ┌──────────────────┐  ┌──────────────────┐
-   │  2 — Console     │  │  2 — Homepage    │  │  2 — Catalog     │
-   │                  │  │      & RBAC      │  │                  │
-   └──────────────────┘  └──────────────────┘  └────────┬─────────┘
-                                                         │
-                                             ┌───────────▼──────────┐
-                                             │  3 — AI Foundry      │
-                                             │  (requires Catalog)  │
-                                             └──────────────────────┘
+                                 ▼
+              ┌───────────────────────────────────────┐
+              │  2 — Homepage & RBAC                  │
+              └──────────────────┬────────────────────┘
+                    ┌────────────┴─────────────┐
+                    ▼                          ▼
+         ┌──────────────────┐         ┌──────────────────┐
+         │  3 — Console     │         │  3 — Catalog     │
+         └──────────────────┘         └────────┬─────────┘
+                                               ▼
+                                   ┌────────────────────────┐
+                                   │  4 — AI Foundry        │
+                                   │  (requires Catalog)    │
+                                   └────────────────────────┘
 ```
-
-Console, Homepage & RBAC, and Catalog are fully independent of each other — they can be installed in any order after the Auth tooling is ready.
-
 ## Product index
 
 :::tip Before you start — Auth architecture
