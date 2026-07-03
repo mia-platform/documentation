@@ -13,12 +13,12 @@ For the infrastructure model overview, distribution responsibility breakdown, an
 
 The following tools must be available on the operator's workstation before installing any product chart:
 
-| Tool | Minimum version | Notes |
+| Tool | Version | Notes |
 |---|---|---|
 | [kubectl](https://kubernetes.io/docs/tasks/tools/) | — | Configured to access the target cluster. |
 | [Helm](https://helm.sh/docs/intro/install/) | v3 | |
 | [helm-secrets](https://github.com/jkroepke/helm-secrets) *(optional)* | — | Required only when using SOPS-encrypted values files, as in the `*-deployment` wrapper repositories. |
-| Kubernetes cluster | 1.23+ | |
+| Kubernetes cluster | 1.32 – 1.34 | |
 | [Traefik](https://doc.traefik.io/traefik/) | — | Required for `IngressRoute` resources. Other ingress controllers can be used but require custom configuration. |
 | Container registry access | — | Credentials for `nexus.mia-platform.eu`, provided by Mia Platform. |
 

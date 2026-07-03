@@ -173,7 +173,7 @@ Blanks cell in the following table are for tools that do not require a specific 
       <tr>
          <td><strong>Runtime</strong></td>
          <td><img src="/img/kubernetes.png" width="15" height="15"/> Kubernetes</td>
-         <td>&gt;= 1.25<br/>&lt;= 1.33</td>
+         <td>&gt;= 1.32<br/>&lt;= 1.34</td>
          <td>2 CPU requests</td>
          <td>4 GiB Memory requests</td>
       </tr>

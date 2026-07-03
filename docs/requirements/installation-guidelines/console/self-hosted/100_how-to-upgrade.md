@@ -20,7 +20,7 @@ To find out how to upgrade your installation to the latest version of v13.
 apiVersion: v2
 name: console
 version: "0.0.0"
-kubeVersion: ">= 1.20.0"
+kubeVersion: ">= 1.32.0"
 description: Self Hosted Console Installation Chart
 type: application
 dependencies:
