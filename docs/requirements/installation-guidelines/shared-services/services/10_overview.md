@@ -47,7 +47,7 @@ The `services` chart connects to an **external Keycloak instance**. You need to 
    - Redirect URIs pointing to `<url>/callback` (and `<url>/silent-callback` for silent renew).
    - The token endpoint authentication method matching `authtoolBff.tokenAuthMethod` (`private_key_jwt` by default — the client's JWKS URI must be registered in Keycloak).
 
-Refer to the [Keycloak installation guide](/requirements/installation-guidelines/authn/keycloak/15_getting-started.md) and the [Realm Management guide](/requirements/installation-guidelines/authn/keycloak-realm-management/15_getting-started.md) to set up your Keycloak instance and configure the realm.
+Refer to the [Keycloak installation guide](/requirements/installation-guidelines/shared-services/authn/keycloak/15_getting-started.md) and the [Realm Management guide](/requirements/installation-guidelines/shared-services/authn/keycloak-realm-management/15_getting-started.md) to set up your Keycloak instance and configure the realm.
 
 ## Deployment models
 

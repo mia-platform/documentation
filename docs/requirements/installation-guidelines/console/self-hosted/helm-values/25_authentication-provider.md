@@ -9,7 +9,7 @@ sidebar_label: Authentication Provider
 In Mia Platform Console v15, authentication is handled exclusively through **Keycloak**. The `authtool-bff` service manages the OIDC PKCE session flow and replaces the previous `authenticationService`.
 
 :::info Prerequisites
-Before configuring the authentication provider, ensure you have a running Keycloak instance with the required realms and OIDC clients configured. Refer to the [Keycloak installation guide](/requirements/installation-guidelines/authn/keycloak/15_getting-started.md) and the [Realm Management guide](/requirements/installation-guidelines/authn/keycloak-realm-management/15_getting-started.md).
+Before configuring the authentication provider, ensure you have a running Keycloak instance with the required realms and OIDC clients configured. Refer to the [Keycloak installation guide](/requirements/installation-guidelines/shared-services/authn/keycloak/15_getting-started.md) and the [Realm Management guide](/requirements/installation-guidelines/shared-services/authn/keycloak-realm-management/15_getting-started.md).
 :::
 
 ## Keycloak Configuration
@@ -33,7 +33,7 @@ configurations:
 ```
 
 :::note Dual-realm model
-Mia Platform uses two Keycloak realms by default: one for human user authentication (`realm`) and one for machine-to-machine token exchange used by internal services (`extensibilityRealm`). Both realms are configured by the Realm Management chart. See [Federation Strategies](/requirements/installation-guidelines/authn/20_federation-strategies.md) for the reasoning behind this split.
+Mia Platform uses two Keycloak realms by default: one for human user authentication (`realm`) and one for machine-to-machine token exchange used by internal services (`extensibilityRealm`). Both realms are configured by the Realm Management chart. See [Federation Strategies](/requirements/installation-guidelines/shared-services/authn/20_federation-strategies.md) for the reasoning behind this split.
 :::
 
 ## Authtool BFF Keys

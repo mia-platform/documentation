@@ -11,7 +11,7 @@ This guide walks through installing the `catalog` chart to deploy the Mia Platfo
 
 - [kubectl](https://kubernetes.io/docs/tasks/tools/)
 - [Helm](https://helm.sh/docs/helm/helm_install/) v3
-- A running **Keycloak** instance with a configured realm and a registered OIDC client for `authtool-bff`. See the [Keycloak installation guide](/requirements/installation-guidelines/authn/keycloak/15_getting-started.md).
+- A running **Keycloak** instance with a configured realm and a registered OIDC client for `authtool-bff`. See the [Keycloak installation guide](/requirements/installation-guidelines/shared-services/authn/keycloak/15_getting-started.md).
 - An external **PostgreSQL** database (v14+) for `catalogEngine`.
 - A **Kafka** cluster — either an external broker or the embedded Strimzi deployment managed by the chart.
 

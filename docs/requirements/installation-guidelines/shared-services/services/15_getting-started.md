@@ -11,7 +11,7 @@ This guide walks through installing the `services` chart to deploy the Mia Platf
 
 - [kubectl](https://kubernetes.io/docs/tasks/tools/)
 - [Helm](https://helm.sh/docs/helm/helm_install/) v3
-- A running **Keycloak** instance with a configured realm and a registered OIDC client for `authtool-bff`. See the [Keycloak installation guide](/requirements/installation-guidelines/authn/keycloak/15_getting-started.md).
+- A running **Keycloak** instance with a configured realm and a registered OIDC client for `authtool-bff`. See the [Keycloak installation guide](/requirements/installation-guidelines/shared-services/authn/keycloak/15_getting-started.md).
 
 ## Required information
 
@@ -97,7 +97,7 @@ global:
     registry: "nexus.mia-platform.eu"
 ```
 
-See the [Helm Values reference](/requirements/installation-guidelines/services/helm-values/00_overview.md) for the full list of available options.
+See the [Helm Values reference](/requirements/installation-guidelines/shared-services/services/helm-values/00_overview.md) for the full list of available options.
 
 ## Step 4 — Add the Helm repository and install
 

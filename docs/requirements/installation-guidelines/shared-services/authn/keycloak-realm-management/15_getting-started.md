@@ -7,7 +7,7 @@ sidebar_label: Getting Started
 
 ## Prerequisites
 
-1. The [Keycloak chart](/requirements/installation-guidelines/authn/keycloak/15_getting-started.md) already installed and Keycloak running.
+1. The [Keycloak chart](/requirements/installation-guidelines/shared-services/authn/keycloak/15_getting-started.md) already installed and Keycloak running.
 2. [Helm](https://helm.sh/) v3.
 3. [Docker](https://www.docker.com/) (used by the import pipeline to run `keycloak-config-cli`).
 4. Admin credentials for the target Keycloak instance.
@@ -72,7 +72,7 @@ identityProviders:
       isAccessTokenJWT: "true"
 ```
 
-See the [Helm Values reference](/requirements/installation-guidelines/authn/keycloak-realm-management/helm-values/00_overview.md) for the full list of available values.
+See the [Helm Values reference](/requirements/installation-guidelines/shared-services/authn/keycloak-realm-management/helm-values/00_overview.md) for the full list of available values.
 
 ## Step 2 — Render and review
 

@@ -57,8 +57,8 @@ AI Foundry integrates with several external systems and other Mia Platform produ
 
 Refer to the following installation guides to set up the required dependencies before installing AI Foundry:
 
-- [Keycloak installation guide](/requirements/installation-guidelines/authn/keycloak/15_getting-started.md)
-- [Realm Management guide](/requirements/installation-guidelines/authn/keycloak-realm-management/15_getting-started.md)
+- [Keycloak installation guide](/requirements/installation-guidelines/shared-services/authn/keycloak/15_getting-started.md)
+- [Realm Management guide](/requirements/installation-guidelines/shared-services/authn/keycloak-realm-management/15_getting-started.md)
 
 ## Deployment models
 

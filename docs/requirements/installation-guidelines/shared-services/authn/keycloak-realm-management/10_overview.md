@@ -5,7 +5,7 @@ sidebar_label: Overview
 
 # Keycloak Realm Management
 
-The `keycloak-realm-management` Helm chart provides **realm blueprints** for Keycloak, rendered into [keycloak-config-cli](https://github.com/adorsys/keycloak-config-cli) partial-import files. It manages the declarative configuration of the Mia Platform realms within the Keycloak instance deployed by the [Keycloak chart](/requirements/installation-guidelines/authn/keycloak/10_overview.md).
+The `keycloak-realm-management` Helm chart provides **realm blueprints** for Keycloak, rendered into [keycloak-config-cli](https://github.com/adorsys/keycloak-config-cli) partial-import files. It manages the declarative configuration of the Mia Platform realms within the Keycloak instance deployed by the [Keycloak chart](/requirements/installation-guidelines/shared-services/authn/keycloak/10_overview.md).
 
 ## What the chart manages
 

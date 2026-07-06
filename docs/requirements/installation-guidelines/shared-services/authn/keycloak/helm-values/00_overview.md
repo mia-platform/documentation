@@ -8,7 +8,7 @@ sidebar_label: Overview
 This page documents all configurable values for the `keycloak-operator` Helm chart. Values are organized by functional area.
 
 :::tip
-For a minimal working configuration, see the [Getting Started guide](/requirements/installation-guidelines/authn/keycloak/15_getting-started.md). For a production HA example, see `ci/prod-ha-example.yaml` in the chart repository.
+For a minimal working configuration, see the [Getting Started guide](/requirements/installation-guidelines/shared-services/authn/keycloak/15_getting-started.md). For a production HA example, see `ci/prod-ha-example.yaml` in the chart repository.
 :::
 
 ## imagePullSecrets

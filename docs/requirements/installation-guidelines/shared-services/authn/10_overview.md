@@ -11,8 +11,8 @@ The Mia Platform product suite — Console, Catalog, AI Foundry, Homepage & RBAC
 
 Each Mia Platform on-premises installation includes a **dedicated Keycloak instance** that is:
 
-- Deployed via the [**Keycloak chart**](/requirements/installation-guidelines/authn/keycloak/10_overview.md) — a Helm chart wrapping the official Keycloak Operator.
-- Configured declaratively via the [**Keycloak Realm Management chart**](/requirements/installation-guidelines/authn/keycloak-realm-management/10_overview.md) — realm blueprints rendered into `keycloak-config-cli` import files.
+- Deployed via the [**Keycloak chart**](/requirements/installation-guidelines/shared-services/authn/keycloak/10_overview.md) — a Helm chart wrapping the official Keycloak Operator.
+- Configured declaratively via the [**Keycloak Realm Management chart**](/requirements/installation-guidelines/shared-services/authn/keycloak-realm-management/10_overview.md) — realm blueprints rendered into `keycloak-config-cli` import files.
 - Scoped exclusively to the Mia Platform product suite — it does not replace or interfere with the customer's existing identity infrastructure.
 
 This Keycloak instance runs in the same Kubernetes cluster as the Mia Platform products and its lifecycle (installation, upgrades, monitoring) is fully managed by Mia Platform through the two charts above.
@@ -97,11 +97,11 @@ Every Mia Platform installation uses two Keycloak realms:
 | **`mia-platform`** | Core product realm. Holds all Mia Platform OIDC clients, roles, authorization policies, and protocol mappers. This realm is the OIDC issuer for all Mia Platform services. |
 | **`mia-extensions`** | Extensibility realm. Designed for customer-specific integrations, custom OIDC clients, and additional identity flows. Federated 1:1 with the `mia-platform` realm. |
 
-Both realms are managed declaratively via the [Keycloak Realm Management chart](/requirements/installation-guidelines/authn/keycloak-realm-management/10_overview.md).
+Both realms are managed declaratively via the [Keycloak Realm Management chart](/requirements/installation-guidelines/shared-services/authn/keycloak-realm-management/10_overview.md).
 
 ## Choosing a federation strategy
 
-Before installing, review the [Federation Strategies](/requirements/installation-guidelines/authn/20_federation-strategies.md) page to select the integration model that best fits your identity infrastructure. It covers four scenarios — from a fully managed Keycloak with customer IdP federation to in-realm integration in constrained environments — with architecture diagrams, responsibility matrices, and a comparison table.
+Before installing, review the [Federation Strategies](/requirements/installation-guidelines/shared-services/authn/20_federation-strategies.md) page to select the integration model that best fits your identity infrastructure. It covers four scenarios — from a fully managed Keycloak with customer IdP federation to in-realm integration in constrained environments — with architecture diagrams, responsibility matrices, and a comparison table.
 
 ## Installation
 
@@ -109,5 +109,5 @@ The authentication layer requires two Helm charts, installed in order:
 
 | Step | Chart | Purpose |
 |---|---|---|
-| 1 | [**Keycloak**](/requirements/installation-guidelines/authn/keycloak/10_overview.md) | Deploy the Keycloak Operator and the Keycloak instance |
-| 2 | [**Keycloak Realm Management**](/requirements/installation-guidelines/authn/keycloak-realm-management/10_overview.md) | Configure realms, OIDC clients, roles, groups, and IdP federation |
+| 1 | [**Keycloak**](/requirements/installation-guidelines/shared-services/authn/keycloak/10_overview.md) | Deploy the Keycloak Operator and the Keycloak instance |
+| 2 | [**Keycloak Realm Management**](/requirements/installation-guidelines/shared-services/authn/keycloak-realm-management/10_overview.md) | Configure realms, OIDC clients, roles, groups, and IdP federation |

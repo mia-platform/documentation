@@ -37,7 +37,7 @@ The Keycloak Operator version (`operator.image.tag`) and the Keycloak instance i
 
 - **Patch-only Keycloak bump** — change only `keycloak.image.tag`. The running operator detects the CR update and performs a rolling StatefulSet update without restarting itself.
 - **Operator bump** — change only `operator.image.tag` in a separate release. The operator pod restarts but the Keycloak StatefulSet is not modified.
-- **Minor or major Keycloak bump** — bump both in separate releases (operator first). See the [upgrade guide](/requirements/installation-guidelines/authn/keycloak/100_how-to-upgrade.md) for details.
+- **Minor or major Keycloak bump** — bump both in separate releases (operator first). See the [upgrade guide](/requirements/installation-guidelines/shared-services/authn/keycloak/100_how-to-upgrade.md) for details.
 
 This separation means that routine Keycloak patch upgrades never require an operator restart.
 

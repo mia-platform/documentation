@@ -128,7 +128,7 @@ keycloak:
       memory: 1536Mi
 ```
 
-See the [Helm Values reference](/requirements/installation-guidelines/authn/keycloak/helm-values/00_overview.md) for the full list of available values.
+See the [Helm Values reference](/requirements/installation-guidelines/shared-services/authn/keycloak/helm-values/00_overview.md) for the full list of available values.
 
 ## Step 3 — Install
 

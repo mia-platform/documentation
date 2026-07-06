@@ -72,8 +72,8 @@ The Envoy gateway validates JWT tokens on every request and checks RBAC policies
 
 Refer to the following installation guides to set up the required dependencies before installing the Catalog:
 
-- [Keycloak installation guide](/requirements/installation-guidelines/authn/keycloak/15_getting-started.md)
-- [Realm Management guide](/requirements/installation-guidelines/authn/keycloak-realm-management/15_getting-started.md)
+- [Keycloak installation guide](/requirements/installation-guidelines/shared-services/authn/keycloak/15_getting-started.md)
+- [Realm Management guide](/requirements/installation-guidelines/shared-services/authn/keycloak-realm-management/15_getting-started.md)
 
 ## Deployment models
 

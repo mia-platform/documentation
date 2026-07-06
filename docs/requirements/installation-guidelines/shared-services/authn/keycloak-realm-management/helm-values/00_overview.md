@@ -8,7 +8,7 @@ sidebar_label: Overview
 This page documents all configurable values for the `keycloak-realm-management` chart. Each values file defines one Keycloak realm and the OIDC clients, identity providers, and user mappings it contains.
 
 :::tip
-For step-by-step setup, see the [Getting Started guide](/requirements/installation-guidelines/authn/keycloak-realm-management/15_getting-started.md). For real-world values examples, see the `values/` directory and the `ci/` directory in the chart repository.
+For step-by-step setup, see the [Getting Started guide](/requirements/installation-guidelines/shared-services/authn/keycloak-realm-management/15_getting-started.md). For real-world values examples, see the `values/` directory and the `ci/` directory in the chart repository.
 :::
 
 ## Realm identity

@@ -11,7 +11,7 @@ This guide walks through installing the `ai-foundry` chart to deploy the AI Foun
 
 - [kubectl](https://kubernetes.io/docs/tasks/tools/)
 - [Helm](https://helm.sh/docs/helm/helm_install/) v3
-- A running **Keycloak** instance with a configured realm and a registered OIDC client for `authtool-bff`. See the [Keycloak installation guide](/requirements/installation-guidelines/authn/keycloak/15_getting-started.md).
+- A running **Keycloak** instance with a configured realm and a registered OIDC client for `authtool-bff`. See the [Keycloak installation guide](/requirements/installation-guidelines/shared-services/authn/keycloak/15_getting-started.md).
 - A **Google Cloud** project with the [Vertex AI API](https://cloud.google.com/vertex-ai/docs/start/introduction-unified-platform) enabled and a service account with `Vertex AI User` permissions.
 - An external **PostgreSQL** database (v14+) accessible from the cluster.
 - A **Tempo** instance (or compatible OpenTelemetry traces backend) for agent trace collection.

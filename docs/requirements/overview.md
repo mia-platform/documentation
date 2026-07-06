@@ -87,17 +87,18 @@ The ownership model changes according to the selected distribution type.
 
 `Shared responsibility` indicates areas where platform-level integration is provided by Mia-Platform, while infrastructure provisioning and/or day-2 operations remain in customer scope.
 
-The Mia Platform product suite in scope comprises **Console**, **Homepage & RBAC**, **Catalog**, and **AI Foundry**. The AuthN/AuthZ tooling — Keycloak and Realm Management — is a platform-level prerequisite provisioned by Mia Platform; it enables the suite but is not a standalone business product.
+The Mia Platform product suite in scope comprises three products — **Console**, **Catalog**, and **AI Foundry** — backed by a shared services layer. The shared services layer includes the **Auth tooling** (Keycloak and Realm Management) and the **Homepage & RBAC** component (platform gateway, session management, and authorization). Both are platform-level prerequisites provisioned by Mia Platform; they enable the suite but are not standalone business products.
 
 ## Cross-Product Dependencies
 
 The **Auth tooling layer** (Keycloak and Realm Management) is the foundational prerequisite for the entire suite: every product requires a functioning Keycloak realm and OIDC issuer before it can be installed.
 
-Among the business products, the installation order is:
+The **shared services layer** must be fully operational before any product chart is installed. Within it, **Auth tooling** (Keycloak and Realm Management) provides the OIDC issuer required by all components. **Homepage & RBAC** follows: it provides the `authtool-bff` authorization service that Console and Catalog depend on.
 
-1. **Homepage & RBAC** — provides the `authtool-bff` authorization service that Console and Catalog depend on.
-2. **Console** and **Catalog** — can be installed in parallel after Homepage & RBAC is running.
-3. **AI Foundry** — integrates with Catalog (shared agent backend and navigation links); Catalog must be in place first.
+Among the products, the installation order is:
+
+1. **Console** and **Catalog** — can be installed in parallel once the shared services layer is running.
+2. **AI Foundry** — integrates with Catalog (shared agent backend and navigation links); Catalog must be in place first.
 
 For the detailed installation map and product entry points, see the [Installation Guidelines](/requirements/installation-guidelines/00_overview.md).
 
