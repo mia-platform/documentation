@@ -37,12 +37,75 @@ _RELEASE_DATE_
 
 ### Bug Fix
 
-## How to update your Console
+## How to update
 
-For self-hosted installations, please head to the [self hosted upgrade guide](/docs/requirements/self-hosted/installation-chart/how-to-upgrade) or contact your Mia-Platform referent and upgrade to _Console Helm Chart_ `x.x.x`.
+To run this version of the Mia-Platform product suite, the following Helm chart versions must be installed on your cluster. For the complete installation sequence and per-product upgrade guides, see the [Installation Guidelines](/docs/requirements/installation-guidelines/overview).
+
+### Helm chart versions
+
+| Product | Helm Chart | Version | Upgrade guide |
+|---|---|---|---|
+| **Auth — Keycloak** | `keycloak-operator` | `_KEYCLOAK_VER_` | [How to upgrade](/docs/requirements/installation-guidelines/shared-services/authn/keycloak/how-to-upgrade) |
+| **Auth — Realm Management** | `keycloak-realm-management` | `_REALM_MGMT_VER_` | [How to upgrade](/docs/requirements/installation-guidelines/shared-services/authn/keycloak-realm-management/how-to-upgrade) |
+| **Homepage & RBAC** | `services` | `_SERVICES_VER_` | [How to upgrade](/docs/requirements/installation-guidelines/shared-services/services/how-to-upgrade) |
+| **Catalog** | `catalog` | `_CATALOG_VER_` | [How to upgrade](/docs/requirements/installation-guidelines/catalog/how-to-upgrade) |
+| **AI Foundry** | `ai-foundry` | `_AI_FOUNDRY_VER_` | [How to upgrade](/docs/requirements/installation-guidelines/ai-foundry/how-to-upgrade) |
+| **Console** | `console` | `_CONSOLE_VER_` | [How to upgrade](/docs/requirements/installation-guidelines/console/self-hosted/how-to-upgrade) |
 
 ### Bill of materials
 
+Click on each chart to expand its full image list.
+
+<details>
+<summary><strong>keycloak-operator _KEYCLOAK_VER_</strong></summary>
+
 | Image repository | Version |
-| ---------------- | :-----: |
-|                  |         |
+|---|:---:|
+|  |  |
+
+</details>
+
+<details>
+<summary><strong>keycloak-realm-management _REALM_MGMT_VER_</strong></summary>
+
+| Image repository | Version |
+|---|:---:|
+|  |  |
+
+</details>
+
+<details>
+<summary><strong>services _SERVICES_VER_</strong></summary>
+
+| Image repository | Version |
+|---|:---:|
+|  |  |
+
+</details>
+
+<details>
+<summary><strong>catalog _CATALOG_VER_</strong></summary>
+
+| Image repository | Version |
+|---|:---:|
+|  |  |
+
+</details>
+
+<details>
+<summary><strong>ai-foundry _AI_FOUNDRY_VER_</strong></summary>
+
+| Image repository | Version |
+|---|:---:|
+|  |  |
+
+</details>
+
+<details>
+<summary><strong>console _CONSOLE_VER_</strong></summary>
+
+| Image repository | Version |
+|---|:---:|
+|  |  |
+
+</details>

@@ -11,11 +11,11 @@ _May 26th, 2026_
 
 :::info
 
-Mia-Platform Console v15.0.0 is **now in Preview** and will be generally available by the End of June!
+Mia-Platform v15.0.0 is **now in Preview** and will be generally available by the July 16th!
 
-Console SaaS users can try out v15.0.0 latest improvements in Preview! Open a Service Request to ask for the creation of a sandbox Company in case you do not have access to any Company.
+Mia-Platform SaaS users can try out v15.0.0 latest improvements in Preview!
 
-For self-hosted installations, please read the [following guidelines](#how-to-update-your-console).
+For self-hosted installations, please read the [following guidelines](#how-to-update).
 :::
 
 ## Context Catalog
@@ -66,11 +66,90 @@ To learn more about the features available in the new Charts section of the Desi
 
 <Accordion data={dataAccordion} />
 
-## How to update your Console
+## How to update
 
-For self-hosted installations, please head to the [self hosted upgrade guide](/docs/requirements/self-hosted/installation-chart/how-to-upgrade) or contact your Mia-Platform referent and upgrade to _Console Helm Chart_ `v15.0.14-beta.2`.
+To run Mia-Platform v15.0.0, the following Helm chart versions must be installed on your cluster. For the complete installation sequence and per-product upgrade guides, see the [Installation Guidelines](/docs/requirements/installation-guidelines/overview).
+
+### Helm chart versions
+
+| Product | Helm Chart | Version | Upgrade guide |
+|---|---|---|---|
+| **Auth — Keycloak** | `keycloak-operator` | `0.4.0` | [How to upgrade](/docs/requirements/installation-guidelines/shared-services/authn/keycloak/how-to-upgrade) |
+| **Auth — Realm Management** | `keycloak-realm-management` | `0.3.0` | [How to upgrade](/docs/requirements/installation-guidelines/shared-services/authn/keycloak-realm-management/how-to-upgrade) |
+| **Homepage & RBAC** | `services` | `1.2.0` | [How to upgrade](/docs/requirements/installation-guidelines/shared-services/services/how-to-upgrade) |
+| **Catalog** | `catalog` | `1.0.0` | [How to upgrade](/docs/requirements/installation-guidelines/catalog/how-to-upgrade) |
+| **AI Foundry** | `ai-foundry` | `1.0.0` | [How to upgrade](/docs/requirements/installation-guidelines/ai-foundry/how-to-upgrade) |
+| **Console** | `console` | `15.0.14` | [How to upgrade](/docs/requirements/installation-guidelines/console/self-hosted/how-to-upgrade) |
 
 ### Bill of materials
+
+Click on each chart to expand its full image list.
+
+<details>
+<summary><strong>keycloak-operator v0.4.0</strong></summary>
+
+| Image repository | Version |
+|---|:---:|
+| nexus.mia-platform.eu/platform/keycloak | 0.2.2-26.6.2-postgres |
+| quay.io/keycloak/keycloak-operator | 26.6.2 |
+| quay.io/keycloak/keycloak | 26.6.2 |
+
+</details>
+
+<details>
+<summary><strong>keycloak-realm-management v0.3.0</strong></summary>
+
+| Image repository | Version |
+|---|:---:|
+| quay.io/adorsys/keycloak-config-cli | 6.4.0-26.6.2 |
+
+</details>
+
+<details>
+<summary><strong>services v1.2.0</strong></summary>
+
+| Image repository | Version |
+|---|:---:|
+| docker.io/envoyproxy/envoy | v1.32.3 |
+| docker.io/redis | 7.4.2-alpine |
+| nexus.mia-platform.eu/console/homepage | 2.0.0 |
+| nexus.mia-platform.eu/core/swagger-aggregator | 3.9.6 |
+| nexus.mia-platform.eu/platform/auth/access-control/ext-authz | 1.3.2 |
+| nexus.mia-platform.eu/platform/auth/authtool/authtool-bff | 0.5.0 |
+
+</details>
+
+<details>
+<summary><strong>catalog v1.0.0</strong></summary>
+
+| Image repository | Version |
+|---|:---:|
+| docker.io/redis | 7.4.2-alpine |
+| nexus.mia-platform.eu/context-catalog/backend | 1.0.4 |
+| nexus.mia-platform.eu/context-catalog/frontend | 1.0.2 |
+| nexus.mia-platform.eu/context-catalog/ibdm | 0.8.1 |
+| nexus.mia-platform.eu/context-catalog/mcp-server | 1.0.0 |
+| nexus.mia-platform.eu/core/crud-service | 6.10.3 |
+| nexus.mia-platform.eu/platform/auth/authtool/authtool-bff | 0.5.0 |
+
+</details>
+
+<details>
+<summary><strong>ai-foundry v1.0.0</strong></summary>
+
+| Image repository | Version |
+|---|:---:|
+| docker.io/redis | 7.4.2-alpine |
+| nexus.mia-platform.eu/ai-foundry/adk-be-app | 1.0.2 |
+| nexus.mia-platform.eu/ai-foundry/backend | 1.0.3 |
+| nexus.mia-platform.eu/ai-foundry/frontend | 1.0.1 |
+| nexus.mia-platform.eu/ai-foundry/playbook-service | 1.0.1 |
+| nexus.mia-platform.eu/platform/auth/authtool/authtool-bff | 0.5.0 |
+
+</details>
+
+<details>
+<summary><strong>console v15.0.14</strong></summary>
 
 | Image repository                                                               |  Version  |
 |--------------------------------------------------------------------------------|:---------:|
@@ -114,3 +193,5 @@ For self-hosted installations, please head to the [self hosted upgrade guide](/d
 | nexus.mia-platform.eu/plugins/files-service                                    |  2.10.5   |
 | nexus.mia-platform.eu/plugins/ses-mail-notification-service                    |   3.5.0   |
 | nexus.mia-platform.eu/rond-authz/rond                                          |  1.14.2   |
+
+</details>

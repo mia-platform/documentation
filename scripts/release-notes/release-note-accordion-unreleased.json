@@ -8,5 +8,25 @@
       "newFeatures": [],
       "improvements": []
     }
+  },
+  {
+    "title": "Context Catalog",
+    "icon": "context-catalog",
+    "defaultOpen": false,
+    "type": "versions",
+    "items": {
+      "newFeatures": [],
+      "improvements": []
+    }
+  },
+  {
+    "title": "AI Foundry",
+    "icon": "ai-foundry",
+    "defaultOpen": false,
+    "type": "versions",
+    "items": {
+      "newFeatures": [],
+      "improvements": []
+    }
   }
 ]
