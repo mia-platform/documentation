@@ -22,8 +22,8 @@ ibdm run  sysdig --mapping-file <path to mapping file or folder>
 
 | Variable | Required | Default | Description |
 | :------- | :------- | :------ | :---------- |
-| `SYSDIG_URL` | Sync | _(empty)_ | Base URL of the Sysdig Secure instance (e.g. `https://secure.sysdig.com`). |
-| `SYSDIG_API_TOKEN` | Sync | _(empty)_ | API bearer token for the SysQL API. |
+| `SYSDIG_URL` | Yes | _(empty)_ | Base URL of the Sysdig Secure instance (e.g. `https://secure.sysdig.com`). Required for both Sync and Run. |
+| `SYSDIG_API_TOKEN` | Yes | _(empty)_ | API bearer token for the SysQL API. Required for both Sync and Run, for the same reason as `SYSDIG_URL`. |
 | `SYSDIG_HTTP_TIMEOUT` | No | `30s` | HTTP request timeout (Go duration). |
 | `SYSDIG_PAGE_SIZE` | No | `1000` | Items per SysQL query page (1–1000). |
 | `SYSDIG_BASE_URL` | Run | _(empty)_ | Base URL of the Sysdig Vulnerability API for the account's region (see below). |
@@ -71,19 +71,21 @@ When a matching notification arrives, the source:
 
 ```json
 {
-  "vuln": { "<full vulnerability object>": "..." },
+  "vuln": { "<flattened vulnerability fields — see Data structure below>": "..." },
   "img":  { "imageReference": "<pullString>" }
 }
 ```
 
-The event timestamp is derived from the notification's `timestamp` field (microseconds, converted to milliseconds).
+The event timestamp is derived from the notification's `timestamp` field, interpreted as microseconds since the Unix epoch.
 
 ## Data structure
 
-Each `vulnerability` item — emitted by both modes — exposes the same fields in the mapping context:
+The shape of `.vuln` differs between the two modes — they are **not** the same:
 
-- `.vuln` — full vulnerability object (name, severity, CVSS score, dates, exploitability, …).
-- `.img.imageReference` — container image pull string (e.g. `registry.example.com/app:v1.0.0`).
+- **Sync** — `.vuln` is the raw, unmodified vulnerability object as returned by the SysQL `RETURN img, vuln` query, in whatever nested shape the Sysdig API returns.
+- **Webhook** — `.vuln` is flattened into a fixed set of fields before being emitted: `name`, `severity`, `cvssScore`, `cvssSource`, `cvssVector`, `cvssVersion`, `publicationDate`, `solutionDate`, `exploitable`, `fixedInVersion`.
+
+In both modes, `.img.imageReference` is the container image pull string (e.g. `registry.example.com/app:v1.0.0`).
 
 ## See also
 

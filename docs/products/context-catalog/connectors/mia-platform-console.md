@@ -55,6 +55,14 @@ ibdm run  console --mapping-file <path to mapping file or folder>
 
 `project` carries Console project metadata. `revision` represents a named revision of a project. `service` represents a single microservice within a project's default-branch revision — only services of type `custom` and not marked as `advanced` are emitted. `cluster` represents a Kubernetes cluster registered in the Console, fetched through the tenant/cluster APIs; the `linkedProjects` field is stripped from the payload. `clusterProjectRelationship` emits one relationship entry per project listed in a cluster's `linkedProjects`, carrying both the project and the cluster data as template values.
 
+`service.dockerImage` is normalized so it always carries an explicit tag: if the image reference has no tag and no `@digest`, `ibdm` appends `:latest` before emitting the item.
+
+### Webhook events
+
+`project` webhook updates are a direct pass-through of the Console's `project_*` event payload. `revision` and `service` updates, however, are not driven by dedicated events — they are triggered by the Console's `configuration_*` events, and on receipt `ibdm` calls back into the Console API (fetching the full project and the full configuration) to rebuild the `revision`/`service` items, rather than using the webhook payload directly.
+
+The operation (upsert vs delete) is inferred from the event name itself: any event name ending in `deleted` or `removed` (case-insensitive) is treated as a delete; every other event is an upsert. There is no separate `action` field as in some other connectors' webhook payloads.
+
 ## See also
 
 - [Connectors Overview](/products/context-catalog/connectors/10_overview.md)

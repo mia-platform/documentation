@@ -38,14 +38,14 @@ Requests against the Azure DevOps REST API are authenticated with the Personal A
 
 | Type | Sync | Webhook |
 | :--- | :--- | :------ |
-| `repository` | ✅ | ✅ |
+| `gitrepository` | ✅ | ✅ |
 | `team` | ✅ | — |
 
 Subscribed webhook events:
 
-- [`git.repo.created`](https://learn.microsoft.com/en-us/azure/devops/service-hooks/events?view=azure-devops#repository-created) → `repository` upsert
-- [`git.repo.renamed`](https://learn.microsoft.com/en-us/azure/devops/service-hooks/events?view=azure-devops#repository-renamed) → `repository` upsert
-- [`git.repo.deleted`](https://learn.microsoft.com/en-us/azure/devops/service-hooks/events?view=azure-devops#repository-deleted) → `repository` delete
+- [`git.repo.created`](https://learn.microsoft.com/en-us/azure/devops/service-hooks/events?view=azure-devops#repository-created) → `gitrepository` upsert
+- [`git.repo.renamed`](https://learn.microsoft.com/en-us/azure/devops/service-hooks/events?view=azure-devops#repository-renamed) → `gitrepository` upsert
+- [`git.repo.deleted`](https://learn.microsoft.com/en-us/azure/devops/service-hooks/events?view=azure-devops#repository-deleted) → `gitrepository` delete
 
 ## See also
 

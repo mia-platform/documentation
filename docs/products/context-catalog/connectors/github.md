@@ -55,6 +55,8 @@ ibdm run  github --mapping-file <path to mapping file or folder>
 | `personal_access_token_request` | `approved`, `created` | `cancelled`, `denied` |
 | `workflow_dispatch` | _(all — no action field)_ | — |
 
+GitHub's `push` webhook event is also handled: it does not add a new data type, but re-upserts the corresponding `repository` item (refreshing `repositoryLanguages`). Subscribing only to the **Repositories** event, as in step 5 below, does **not** include `push` events — subscribe to **Pushes** as well if you want repository items refreshed on every push, not just on repository metadata changes.
+
 ### Repository languages enrichment
 
 Whenever a `repository` item is produced (sync or webhook), `ibdm` calls `GET /repos/{owner}/{repo}/languages` and adds a `repositoryLanguages` field to the mapping context — a JSON object mapping each language to its percentage share, rounded to two decimal places:
@@ -76,6 +78,7 @@ If the languages call fails, the repository item is still emitted without `repos
    - **Workflow runs** → `workflow_run`
    - **Personal access token requests** → `personal_access_token_request`
    - **Workflow dispatches** → `workflow_dispatch`
+   - **Pushes** *(optional)* → refreshes the corresponding `repository` item on every push, see note above
 
 ## See also
 

@@ -53,6 +53,13 @@ Subscribed webhook events:
 | `repo:updated` | `repository` upsert |
 | `pullrequest:fulfilled` | `repository` upsert |
 
+## Setting up a Bitbucket webhook
+
+1. In the Bitbucket repository or workspace, go to **Repository settings → Webhooks → Add webhook**.
+2. Set **URL** to your public `ibdm` URL followed by `BITBUCKET_WEBHOOK_PATH` (default `/bitbucket/webhook`).
+3. Set **Secret** to the value of `BITBUCKET_WEBHOOK_SECRET`. Bitbucket signs the payload as `X-Hub-Signature: sha256=<hex-hmac>`; `ibdm` rejects requests with a missing or invalid signature.
+4. Under **Triggers**, select the events that match the data you want: **Repository → Push**, **Repository → Updated**, and **Pull request → Merged** (these deliver the `repo:push`, `repo:updated`, and `pullrequest:fulfilled` event keys respectively).
+
 ## See also
 
 - [Connectors Overview](/products/context-catalog/connectors/10_overview.md)

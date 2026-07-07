@@ -27,7 +27,7 @@ ibdm run  gitlab --mapping-file <path to mapping file or folder>
 | `GITLAB_TOKEN` | Yes | _(empty)_ | Personal, project, or group access token used for REST API requests. |
 | `GITLAB_BASE_URL` | Yes | _(empty)_ | Base URL of the GitLab instance (e.g. `https://gitlab.com`). |
 | `GITLAB_WEBHOOK_PATH` | No | `/gitlab/webhook` | HTTP path for inbound webhook events. |
-| `GITLAB_WEBHOOK_TOKEN` | Run | _(empty)_ | Secret used to validate the `X-Gitlab-Token` header on inbound webhooks. If unset, the webhook endpoint is not registered. |
+| `GITLAB_WEBHOOK_TOKEN` | Run | _(empty)_ | Secret used to validate the `X-Gitlab-Token` header on inbound webhooks. If unset, `ibdm run gitlab` fails to start. |
 
 ## Authentication
 
@@ -56,13 +56,13 @@ Each `project` item includes a `project_languages` field containing the language
 { "Go": 97.50, "Makefile": 2.43, "Dockerfile": 0.07 }
 ```
 
-If the languages call fails, the project item is still emitted with an empty `project_languages` object.
+If the languages call fails, the sync run aborts entirely for that project (and thus the whole sync) rather than emitting the item without `project_languages`.
 
 ### Webhook mode
 
 | Event | Emits |
 | :---- | :---- |
-| **Pipeline Hook** | `project` + `pipeline` (only the data types present in the mapping) |
+| **Pipeline Hook** | `project` + `pipeline` (`pipeline` is only emitted if `project` is also in the mapping — a mapping containing only `pipeline` produces no events at all) |
 | **Push Hook** | `project` |
 
 Both webhook event types also populate `project_languages` on `project` items, using the same enrichment call as sync mode.

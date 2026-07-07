@@ -45,7 +45,7 @@ To create a user token, open your Nexus user profile, select **User Token**, cli
 | :--- | :--- | :------ |
 | `dockerimage` | ✅ | ✅ |
 
-Each `dockerimage` item corresponds to a Docker component. It exposes component-level fields (`host`, `name`, `version`, `repository`, `format`, `tags`) plus an `assets` array carrying every asset of that component (accessible in mappings via `{{ .assets }}`). Components with no assets are skipped.
+Each `dockerimage` item corresponds to a Docker component. It exposes component-level fields (`host`, `id`, `name`, `version`, `repository`, `format`, `group`, `tags`) plus an `assets` array carrying every asset of that component (accessible in mappings via `{{ .assets }}`). Components with no assets are skipped.
 
 ## Webhook events
 
