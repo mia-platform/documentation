@@ -12,7 +12,7 @@ This section covers the foundational platform-layer components that must be depl
 The Auth section covers the identity and OIDC layer of the platform:
 
 - **Keycloak**: deployed via the `keycloak-operator` Helm chart. It acts as an *Identity Broker* for the platform, supporting *OpenID Connect* and federating with external identity providers to authenticate platform users.
-- **Realm Management**: the `keycloak-dev-realms` chart that manages Mia Platform realm configuration declaratively via `keycloak-config-cli`.
+- **Realm Management**: the `keycloak-realm-management` chart that manages Mia Platform realm configuration declaratively via `keycloak-config-cli`.
 
 Auth must be fully operational before any other component is installed.
 

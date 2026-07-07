@@ -63,7 +63,7 @@ If this is your first self-hosted Mia Platform installation, read the [Authentic
 | Component | Helm chart | Documentation |
 |---|---|---|
 | **Auth: Keycloak** | `keycloak-operator` | [Overview](/requirements/installation-guidelines/shared-services/authn/keycloak/10_overview.md) · [Getting Started](/requirements/installation-guidelines/shared-services/authn/keycloak/15_getting-started.md) |
-| **Auth: Realm Management** | `keycloak-dev-realms` | [Overview](/requirements/installation-guidelines/shared-services/authn/keycloak-realm-management/10_overview.md) · [Getting Started](/requirements/installation-guidelines/shared-services/authn/keycloak-realm-management/15_getting-started.md) |
+| **Auth: Realm Management** | `keycloak-realm-management` | [Overview](/requirements/installation-guidelines/shared-services/authn/keycloak-realm-management/10_overview.md) · [Getting Started](/requirements/installation-guidelines/shared-services/authn/keycloak-realm-management/15_getting-started.md) |
 | **Homepage & RBAC** | `services` | [Overview](/requirements/installation-guidelines/shared-services/services/10_overview.md) · [Getting Started](/requirements/installation-guidelines/shared-services/services/15_getting-started.md) |
 
 ### Products

@@ -23,11 +23,11 @@ For step-by-step setup, see the [Getting Started guide](/requirements/installati
 | Key | Type | Default | Description |
 |---|---|---|---|
 | `themes.login` | string | `""` | Login page theme name. Set to `mia-platform-keycloak-ui` to use the custom Mia Platform login theme. Leave empty to use the Keycloak default. |
-| `themes.account` | string | `""` | Account management portal theme name. |
+| `themes.account` | string | `""` | Account management portal theme name. Leave empty to use the Keycloak default. |
 
-## Products to configure (`products`)
+## Products (`products`)
 
-Controls which Mia Platform product OIDC clients are created in the realm. Setting a product to `true` renders the corresponding `client` and `scope` resources in the realm import.
+Controls which Mia Platform product OIDC clients are created in the realm. Setting a product to `true` renders the corresponding `client` and `scope` resources in the realm import. Enable only the products that are deployed in your installation.
 
 | Key | Type | Default | Description |
 |---|---|---|---|
@@ -36,6 +36,8 @@ Controls which Mia Platform product OIDC clients are created in the realm. Setti
 | `products.aiFoundry` | bool | `false` | Create the OIDC client and scopes for **AI Foundry**. |
 | `products.flow` | bool | `false` | Create the OIDC client and scopes for **Mia Flow**. |
 | `products.authz` | bool | `false` | Create the OIDC client and scopes for the Authorization service. |
+
+When a product is enabled, the corresponding `urls.*` value must be set.
 
 ## Product URLs (`urls`)
 
@@ -55,130 +57,18 @@ Base URLs used to compute OIDC redirect URIs, post-logout redirect URIs, and COR
 
 | Key | Type | Default | Description |
 |---|---|---|---|
-| `options.isPaaS` | bool | `false` | Enables PaaS-specific configuration. Adjusts certain product client settings for the Mia Platform SaaS topology (different redirect URI patterns, additional org-routing attributes). |
+| `options.isPaaS` | bool | `false` | Enables PaaS-specific configuration. Adjusts certain product client settings for the Mia Platform SaaS topology (different redirect URI patterns, additional org-routing attributes). **Do not set** for on-premises installations. |
 | `options.cimd` | bool | `false` | Enables CIMD (Continuous Integration & Monitoring Delivery) integration. |
 
 ## Identity Providers (`identityProviders`)
 
 A list of external IdP configurations. Each entry is a full Keycloak `identityProvider` object passed through to the realm import. Supported protocols include OIDC, SAML, and any provider supported by Keycloak.
 
-```yaml
-identityProviders:
-  - alias: my-okta                      # unique alias used in login flow routing
-    displayName: "Okta"
-    providerId: oidc                    # or saml
-    enabled: true
-    trustEmail: true
-    config:
-      issuer: "https://example.okta.com"
-      authorizationUrl: "https://example.okta.com/oauth2/v1/authorize"
-      tokenUrl: "https://example.okta.com/oauth2/v1/token"
-      clientId: "<CLIENT_ID>"
-      clientAuthMethod: private_key_jwt # or client_secret_post
-      pkceEnabled: "true"
-      pkceMethod: S256
-      defaultScope: "openid email profile"
-      syncMode: IMPORT
-```
-
-For organization-based routing (Keycloak `kc.org.*` attributes), add the relevant `config` keys to each IdP entry. See the `ci/paas-dev-products-values.yaml` file in the chart repository for a complete example.
-
-## Identity Provider Mappers (`identityProviderMappers`)
-
-A list of claim/role mappers applied after the IdP authentication. Each entry is a full Keycloak `identityProviderMapper` object.
-
-```yaml
-identityProviderMappers:
-  - name: "map-uid-to-provider-sub"
-    identityProviderAlias: "my-okta"
-    identityProviderMapper: oidc-user-attribute-idp-mapper
-    config:
-      claim: uid
-      user.attribute: provider_sub
-      syncMode: IMPORT
-  - name: "hardcode-admin-role"
-    identityProviderAlias: "my-okta"
-    identityProviderMapper: oidc-hardcoded-role-idp-mapper
-    config:
-      role: admin
-      syncMode: IMPORT
-```
-
-## SMTP server (`smtpServer`)
-
-| Key | Type | Default | Description |
-|---|---|---|---|
-| `smtpServer.enabled` | bool | `false` | Configure the realm SMTP server for email notifications (password reset, email verification). |
-| `smtpServer.config.port` | string | `"587"` | SMTP port. |
-| `smtpServer.config.starttls` | bool | `false` | Enable STARTTLS. |
-| `smtpServer.config.auth` | bool | `false` | Enable SMTP authentication. |
-
-Additional SMTP fields (host, user, password, from, fromDisplayName) can be added under `smtpServer.config` as pass-through values.
-
-## IdP settings (`idpSettings`)
-
-| Key | Type | Default | Description |
-|---|---|---|---|
-| `idpSettings.enabled` | bool | `false` | Enable per-realm IdP settings configuration. |
-| `idpSettings.redirectUris` | list | `[]` | Additional allowed redirect URIs added to IdP-triggered login flows. |
-
-## Custom clients (`customClients`)
-
-Pass-through list of additional OIDC client definitions not covered by the `products.*` flags. Each entry is a full Keycloak `client` object.
-
-```yaml
-customClients:
-  - clientId: "my-custom-service"
-    name: "My Custom Service"
-    publicClient: false
-    serviceAccountsEnabled: true
-    standardFlowEnabled: false
-    redirectUris:
-      - "https://my-service.example.com/callback"
-```
-
-## Custom users (`customUsers`)
-
-Pass-through list of initial users to create in the realm. Each entry is a full Keycloak `user` object.
-
-```yaml
-customUsers:
-  - username: "service-admin"
-    email: "service-admin@example.com"
-    enabled: true
-    realmRoles:
-      - admin
-```
-
-:::warning
-Custom users with sensitive credentials should not be defined in plain-text values files. Use this field only for non-sensitive technical accounts or during initial bootstrapping.
-# Helm Values: keycloak-realm-management chart
-
-This page describes the configurable values for the `keycloak-realm-management` chart. Each values file represents the configuration of a single Keycloak realm. Values are used by the component templates in `templates/<realm>/` to generate the YAML files applied by `keycloak-config-cli`.
-
-## Realm identity
-
-| Key | Default | Description |
-|---|---|---|
-| `realmId` | `""` | **Required.** The Keycloak realm identifier, used as the realm `id` and `realm` name in the API. |
-| `realmName` | `""` | Display name for the realm shown in the admin console and on the login page. |
-
-## Themes
-
-| Key | Default | Description |
-|---|---|---|
-| `themes.login` | `""` | Login page theme name. Leave empty to use the Keycloak default. |
-| `themes.account` | `""` | Account console theme name. Leave empty to use the Keycloak default. |
-
-## Identity providers
-
-Configure one or more external OIDC Identity Providers to federate into the realm. Each entry corresponds to an `identityProviders` resource in Keycloak.
-
 | Key | Description |
 |---|---|
 | `identityProviders[].alias` | **Required.** Unique alias for the IdP within the realm. Used in redirect URIs and mappers. |
 | `identityProviders[].displayName` | Human-readable name shown on the login page. |
-| `identityProviders[].providerId` | Always `oidc` for OIDC providers. |
+| `identityProviders[].providerId` | Provider type, e.g. `oidc` or `saml`. |
 | `identityProviders[].enabled` | Whether the IdP is active. |
 | `identityProviders[].trustEmail` | If `true`, the email from the IdP is considered verified without a separate email verification flow. |
 | `identityProviders[].config.issuer` | OIDC issuer URL of the upstream IdP. |
@@ -219,9 +109,11 @@ identityProviders:
       isAccessTokenJWT: "true"
 ```
 
-## Identity provider mappers
+For organization-based routing (Keycloak `kc.org.*` attributes), add the relevant `config` keys to each IdP entry. See the `ci/paas-dev-products-values.yaml` file in the chart repository for a complete example.
 
-Configure attribute and role mappers for each federated IdP.
+## Identity Provider Mappers (`identityProviderMappers`)
+
+A list of claim/role mappers applied after the IdP authentication. Each entry is a full Keycloak `identityProviderMapper` object.
 
 | Key | Description |
 |---|---|
@@ -230,84 +122,76 @@ Configure attribute and role mappers for each federated IdP.
 | `identityProviderMappers[].identityProviderMapper` | Mapper type, e.g. `oidc-user-attribute-idp-mapper`, `oidc-role-idp-mapper`, `oidc-hardcoded-role-idp-mapper`. |
 | `identityProviderMappers[].config` | Mapper-specific configuration (depends on `identityProviderMapper` type). |
 
-**Example: hardcoded role mapper:**
-
 ```yaml
 identityProviderMappers:
-  - name: assign-reporter-role
-    identityProviderAlias: corporate-sso
+  - name: "map-uid-to-provider-sub"
+    identityProviderAlias: "corporate-sso"
+    identityProviderMapper: oidc-user-attribute-idp-mapper
+    config:
+      claim: uid
+      user.attribute: provider_sub
+      syncMode: IMPORT
+  - name: "hardcode-reporter-role"
+    identityProviderAlias: "corporate-sso"
     identityProviderMapper: oidc-hardcoded-role-idp-mapper
     config:
       role: realm/reporter
       syncMode: IMPORT
 ```
 
-## Products
-
-Controls which Mia Platform product OIDC clients are included in the realm. Enable only the products that are deployed in your installation.
-
-| Key | Default | Description |
-|---|---|---|
-| `products.authz` | `false` | Include the Homepage & RBAC OIDC client |
-| `products.catalog` | `false` | Include the Catalog OIDC client |
-| `products.console` | `false` | Include the Console OIDC client |
-| `products.aiFoundry` | `false` | Include the AI Foundry OIDC client |
-| `products.flow` | `false` | Include the Flow OIDC client |
-
-When a product is enabled, the corresponding `urls.*` value must be set.
-
-## URLs
-
-Product base URLs used to generate OIDC redirect URIs for each product client.
-
-| Key | Description |
-|---|---|
-| `urls.keycloak` | **Required.** Keycloak base URL (e.g. `https://keycloak.example.com`). |
-| `urls.authz` | Base URL for Homepage & RBAC (required when `products.authz: true`). |
-| `urls.catalog` | Base URL for Catalog (required when `products.catalog: true`). |
-| `urls.console` | Base URL for Console (required when `products.console: true`). |
-| `urls.consoleCms` | Base URL for Console CMS, if deployed separately. |
-| `urls.flow` | Base URL for Flow (required when `products.flow: true`). |
-
-## Options
-
-Feature flags controlling platform-specific realm behaviours.
-
-| Key | Default | Description |
-|---|---|---|
-| `options.isPaaS` | `false` | Enable PaaS-specific configurations. **Do not set** for on-premises installations. |
-| `options.cimd` | `false` | Enable CIMD-specific configurations. |
-
-## SMTP server
+## SMTP server (`smtpServer`)
 
 Configure an SMTP server for Keycloak to send email notifications (password reset, email verification, etc.).
 
-| Key | Default | Description |
-|---|---|---|
-| `smtpServer.enabled` | `false` | Enable SMTP configuration |
-| `smtpServer.config.host` | - | SMTP host |
-| `smtpServer.config.port` | `587` | SMTP port |
-| `smtpServer.config.from` | - | Sender email address |
-| `smtpServer.config.starttls` | `false` | Use STARTTLS |
-| `smtpServer.config.auth` | `false` | Enable SMTP authentication |
-| `smtpServer.config.user` | - | SMTP username (when `auth: true`) |
-| `smtpServer.config.password` | - | SMTP password (when `auth: true`) |
+| Key | Type | Default | Description |
+|---|---|---|---|
+| `smtpServer.enabled` | bool | `false` | Enable SMTP configuration. |
+| `smtpServer.config.host` | string | - | SMTP host. |
+| `smtpServer.config.port` | string | `"587"` | SMTP port. |
+| `smtpServer.config.from` | string | - | Sender email address. |
+| `smtpServer.config.starttls` | bool | `false` | Enable STARTTLS. |
+| `smtpServer.config.auth` | bool | `false` | Enable SMTP authentication. |
+| `smtpServer.config.user` | string | - | SMTP username (when `auth: true`). |
+| `smtpServer.config.password` | string | - | SMTP password (when `auth: true`). |
 
-## Custom clients
+## IdP settings (`idpSettings`)
 
-Add OIDC clients beyond those provided by the `products.*` flags.
+| Key | Type | Default | Description |
+|---|---|---|---|
+| `idpSettings.enabled` | bool | `false` | Enable per-realm IdP settings configuration. |
+| `idpSettings.redirectUris` | list | `[]` | Additional allowed redirect URIs added to IdP-triggered login flows. |
 
-| Key | Description |
-|---|---|
-| `customClients[]` | List of additional OIDC client definitions. Each entry is a full Keycloak client representation. |
+## Custom clients (`customClients`)
 
-## Custom users
+Pass-through list of additional OIDC client definitions not covered by the `products.*` flags. Each entry is a full Keycloak `client` object.
 
-Add service account users to the realm (e.g. for CI/CD or automation tooling).
+```yaml
+customClients:
+  - clientId: "my-custom-service"
+    name: "My Custom Service"
+    publicClient: false
+    serviceAccountsEnabled: true
+    standardFlowEnabled: false
+    redirectUris:
+      - "https://my-service.example.com/callback"
+```
 
-| Key | Description |
-|---|---|
-| `customUsers[]` | List of user definitions. Each entry is a Keycloak user representation. |
+## Custom users (`customUsers`)
+
+Pass-through list of initial users to create in the realm. Each entry is a full Keycloak `user` object.
+
+```yaml
+customUsers:
+  - username: "service-admin"
+    email: "service-admin@example.com"
+    enabled: true
+    realmRoles:
+      - admin
+```
+
+:::warning
+Custom users with sensitive credentials should not be defined in plain-text values files. Use this field only for non-sensitive technical accounts or during initial bootstrapping.
+:::
 
 ## Complete example
 
