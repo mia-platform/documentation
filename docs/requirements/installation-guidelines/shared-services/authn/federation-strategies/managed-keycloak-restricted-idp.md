@@ -1,5 +1,5 @@
 ---
-title: Managed Keycloak: Restricted Customer IdP
+title: "Managed Keycloak: Restricted Customer IdP"
 sidebar_label: Restricted Customer IdP
 sidebar_position: 3
 ---
