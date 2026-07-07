@@ -4,12 +4,6 @@ title: Tool
 sidebar_label: Tool
 ---
 
-:::caution Beta
-
-AI Foundry is in **beta**. We are actively shaping the product, so things may change as we iterate. Your feedback is welcome.
-
-:::
-
 # Tool
 
 A **Tool** is a catalog resource that describes a discrete, executable capability that an [Agent](/products/ai-foundry/basic-concepts/10_agent.md) can invoke during a conversation. Tools are how agents extend their abilities beyond pure language generation: they can call REST APIs, query databases, run code, search knowledge bases, or interact with any external system.
@@ -23,10 +17,13 @@ Tools exposed by [MCP Servers](/products/ai-foundry/basic-concepts/70_mcp-server
 | Field          | Required | Description                                                                                                                                                                 |
 | -------------- | -------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `Title`        | Yes      | Display name shown in the UI and in the agent tool picker.                                                                                                                  |
-| `Name`         | Yes      | Unique identifier. Referenced verbatim in `Agent.spec.tools`.                                                                                                               |
+| `Name`         | Yes      | Unique identifier, auto-derived from Title. Lowercase letters, digits, dots, and hyphens only (must start and end with an alphanumeric character), max 63 characters. Immutable after creation. Referenced verbatim in `Agent.spec.tools`.                                                                                                               |
 | `Description`  | Yes      | Plain-language description of what the tool does, what inputs it expects, and what it returns. This description is part of what helps the LLM decide when to call the tool. |
-| `Type`         | Yes      | Tool source: `built-in` for tools implemented inside the AI Foundry backend, or `mcp-server` for tools exposed by an MCP server.                                            |
-| `Runtime Name` | Yes      | The identifier the runtime uses to invoke the tool (e.g. the function name registered in the backend). Must not contain spaces.                                             |
+| `Tags`         | No       | Free-form, multi-value tags used to make the tool easier to find and filter.                                                                                                |
+| `Type`         | Yes      | Tool source: `built-in` for tools implemented inside the AI Foundry backend, or `mcp-server` for tools exposed by an MCP server. The form branches to show an additional field depending on the selected type (see below).                                            |
+| `Application`  | Conditional | Shown, and required, only when `Type` is `built-in`. References (`spec.application`) the [App](/products/ai-foundry/basic-concepts/90_app.md) catalog item that this built-in tool belongs to. |
+| `MCP Server Name` | Conditional | Shown, and required, only when `Type` is `mcp-server`. The name of the MCP Server catalog item that exposes this tool (`spec.mcpServer.name`), selected from a dropdown of registered servers. |
+| `Runtime Name` | Yes      | The identifier the runtime uses to invoke the tool (e.g. the function name registered in the backend). Must start with a lowercase letter, followed by lowercase letters, digits, or underscores only (`^[a-z][a-z0-9_]*$`), for example `web_search`.                                             |
 | `Category`     | No       | Optional grouping label. Tools with the same `category` are shown together in the agent creation form's grouped picker.                                                     |
 | `Enabled`      | Yes      | When `false`, the tool is hidden from the agent creation picker and unavailable at runtime. Defaults to `true`.                                                             |
 
@@ -64,3 +61,4 @@ Both tools and skills extend what an agent can do, but they operate at different
 - [Agent](/products/ai-foundry/basic-concepts/10_agent.md): attaches tools via `spec.tools`.
 - [Skill](/products/ai-foundry/basic-concepts/50_skill.md): higher-level reusable capabilities.
 - [MCP Server](/products/ai-foundry/basic-concepts/70_mcp-server.md): a server that exposes multiple tools through the Model Context Protocol.
+- [App](/products/ai-foundry/basic-concepts/90_app.md): the application/plugin that a built-in tool belongs to.
