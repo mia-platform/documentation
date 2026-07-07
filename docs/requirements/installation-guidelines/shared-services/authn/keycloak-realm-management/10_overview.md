@@ -84,3 +84,28 @@ templates/
 ```
 
 The numeric prefix determines import order. This matters because some resources depend on others (e.g. roles must exist before they can be assigned to groups or clients).
+
+## Login theme
+
+The chart exposes two values to select which Keycloak theme is applied to login and account pages across all three managed realms (`master`, `mia-platform`, `mia-extensions`):
+
+| Value | Controls | Default |
+|---|---|---|
+| `themes.login` | Login page theme (`loginTheme` in Keycloak) | `""` (Keycloak built-in) |
+| `themes.account` | Account console theme (`accountTheme` in Keycloak) | `""` (Keycloak built-in) |
+
+The Mia Platform custom image ships two pre-built themes:
+
+- `mia-platform-keycloak-ui`: standard Mia Platform login UI (used for Console, Catalog, AI Foundry deployments)
+- `mia-care-keycloak-ui`: Mia Care variant
+
+```yaml
+# Example in *-values.yaml
+themes:
+  login: mia-platform-keycloak-ui
+  account: mia-platform-keycloak-ui
+```
+
+The text displayed on the login page title is derived from the `realmName` value, which the chart uses as the realm's `displayName`.
+
+> Logo, colours, and fonts are compiled into the theme at Docker image build time. They are not configurable via chart values.

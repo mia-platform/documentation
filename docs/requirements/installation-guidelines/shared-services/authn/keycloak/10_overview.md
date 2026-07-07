@@ -28,6 +28,7 @@ The chart uses a Mia Platform pre-built image (`nexus.mia-platform.eu/platform/a
 - **OpenTelemetry**: distributed traces, metrics, and structured logs exportable to any OTEL Collector.
 - **File vault** (`KC_VAULT=file`): Keycloak resolves `${vault.<name>}` placeholders from mounted secrets, enabling credential injection without environment variables.
 - **SCIM 2.0** (`KC_FEATURE_SCIM_API`): built-in user provisioning endpoint for automated user lifecycle management.
+- **Keycloakify login themes**: two pre-built React-based login UI themes are included (`mia-platform-keycloak-ui` and `mia-care-keycloak-ui`). Logo, colours, and fonts are compiled into the image at build time and are not configurable via chart values; the active theme is selected per realm via the [Realm Management chart](/requirements/installation-guidelines/shared-services/authn/keycloak-realm-management/10_overview.md#login-theme).
 
 The image tag format is `<appVersion>-<keycloakVersion>-postgres` (e.g. `0.3.0-26.6.4-postgres`).
 
