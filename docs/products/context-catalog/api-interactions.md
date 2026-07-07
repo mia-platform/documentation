@@ -16,6 +16,19 @@ You can view and interact with the API of your Catalog with the Mia-Platform API
 Otherwise, you can download the OpenAPI 3.1 specification in JSON format <a download target="_blank" href="/docs_files_to_download/context-catalog/context-catalog.openapi.json">here</a>.
 :::
 
+## Scoping headers
+
+Every request to the Catalog API is scoped by two required headers:
+
+| Header (default name) | Meaning |
+| :--------------------- | :------ |
+| `x-mia-org`     | Identifier of the [organization](/products/context-catalog/basic-concepts/10_items.md#organizations) the request operates in. |
+| `x-mia-tenant`   | Identifier of the tenant — the broader Mia-Platform Console-level boundary the organization lives in. |
+
+A request missing either header is rejected with `400 Bad Request`. The header names above are the defaults; a Catalog installation can configure different header names.
+
+In a standard Mia-Platform deployment you will rarely set these yourself: the platform gateway injects both headers automatically, derived from your authenticated session (when using the Catalog Administration) or from the identity behind your client credentials (when using a connector or another OAuth2 client-credentials-authenticated tool). You only need to set them explicitly if you call the Catalog API's underlying service directly, bypassing the platform gateway.
+
 ## MCP server
 
 In addition to the REST API, the Context Catalog exposes an **MCP (Model Context Protocol) server**, allowing AI agents and MCP-compatible clients to interact with the catalog through a standardized protocol. This enables natural-language exploration of catalog items, programmatic discovery of resources, and integration into agentic workflows without writing custom API clients.

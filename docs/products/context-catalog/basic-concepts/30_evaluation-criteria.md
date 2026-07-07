@@ -31,7 +31,7 @@ Every rule evaluation follows the same four-step flow, regardless of whether the
 
 1. A rule evaluation request is received and a **Run** item is created in the catalog with status `pending`.
 2. The system evaluates the rule body on the set of target items.
-3. Once complete, the `Run` item is updated with the final status (`success` or `failed`) and the per-item results.
+3. Once finished, the `Run` item is updated with the final status — `complete` (carrying the per-item results) or `error` (carrying an error message, if the evaluation itself could not run to completion).
 4. The **Catalog Administration** renders the status and the results of the run.
 
 ## Where rules live
@@ -48,16 +48,16 @@ Treating rules as catalog items means they are versioned, queryable, and referen
 A rule evaluation can be triggered by:
 
 - **An explicit request**: typically initiated from the [Catalog Administration](/products/context-catalog/catalog-administration.md) by an operator.
-- **A campaign milestone**: at `startDate`, at `endDate`, or in incremental re-evaluations driven by item-change events. See [Campaigns](/products/context-catalog/basic-concepts/50_campaigns.md).
+- **A campaign milestone**: at `startTime`, at `endTime`, at scheduled intervals in between (per the campaign's report frequency), or in incremental re-evaluations driven by item-change events. See [Campaigns](/products/context-catalog/basic-concepts/50_campaigns.md).
 - **A scorecard refresh**: when a [Scorecard](/products/context-catalog/basic-concepts/40_scorecards.md) recomputes its score over its scope.
 
 ## Outcome
 
 Each rule-run produces:
 
-- a final **status** (`success` or `failed`),
-- a per-item result indicating whether each item satisfies the rule,
-- enough context (timestamps, the evaluated rule version, the targeted items) to reconstruct what was evaluated and when.
+- a final **status** for the run itself — `complete` if the evaluation ran to completion, or `error` if it could not (these describe whether the *evaluation* succeeded, not whether items are compliant);
+- when `complete`, a per-item result (`true`/`false`) indicating whether each item satisfies the rule — this is the actual pass/fail signal, surfaced in the UI as *Passed* / *Failed*;
+- enough context (start/end timestamps, the evaluated rule reference, the targeted items) to reconstruct what was evaluated and when.
 
 These results are persisted on the `Run` item and exposed both via the [Catalog API](/products/context-catalog/api-interactions.md) and through the [Catalog Administration](/products/context-catalog/catalog-administration.md).
 

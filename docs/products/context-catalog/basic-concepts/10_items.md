@@ -92,12 +92,14 @@ A free-form, human-readable description of the object. Useful to surface context
 
 A flat list of short strings used to categorize the item. Tags are the lightest form of classification the catalog offers and are intended to be set and consumed by humans directly through the UI. The Catalog API exposes them as a filterable field (`field=metadata.tags=...`).
 
+Each tag is validated against a fixed pattern: lowercase alphanumeric characters plus `:`, `+`, and `#`, with `-` allowed only as a separator between segments (e.g. `ai`, `env-production`). At most 63 characters. Tags that don't match — spaces, uppercase letters, underscores, leading/trailing/consecutive hyphens — are rejected by the API.
+
 ### `labels`
 
 Key/value pairs identical in spirit to [Kubernetes labels](https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/). They are used for classifying and filtering objects.
 
 - Both keys and values are strings.
-- Label keys may have an optional prefix and a required name segment, separated by `/`. The name segment is at most 63 characters, must start and end with an alphanumeric character, and may contain `-`, `_`, `.` in between.
+- Label keys may have an optional prefix and a required name segment, separated by `/`. The name segment is at most 63 characters, must start and end with an alphanumeric character, and may contain `-`, `.` in between (unlike label values, key segments do not allow `_`).
 - The optional prefix must be a DNS subdomain (max 253 chars). If omitted, the key is considered private to the user. Automated components must specify a prefix.
 - The `mia-platform.eu/` prefix is reserved.
 - Label values are at most 63 characters; if non-empty they must start and end with an alphanumeric character and may contain `-`, `_`, `.` in between.
@@ -169,6 +171,10 @@ spec:
 
 Unlike an ITD's `spec` schema — which is fixed at the ITD-version level — a `CustomField` can be introduced or deprecated independently and reused across many item types. This makes custom fields the right tool when you want to attach an attribute (e.g. data sensitivity, runtime version, business owner) consistently across several otherwise unrelated kinds.
 
+:::note
+Custom fields are not supported on the core `Relationship`, `RelationshipType`, and `RelationshipConstraint` kinds.
+:::
+
 #### Patching custom fields
 
 The `customFields` map has a dedicated endpoint that uses [JSON Merge Patch (RFC 7396)](https://www.rfc-editor.org/rfc/rfc7396) semantics:
@@ -234,6 +240,8 @@ When a field of one item points to another item, use the URN format and a key en
 ## Organizations
 
 Items live inside an **organization**, which is a hard isolation boundary with its own database namespace. Resources of the same type must be unique within an organization.
+
+Every Catalog API request is actually scoped by two identifiers, not one: the organization, and the broader tenant it lives in (the Mia-Platform Console-level boundary). See [Scoping headers](/products/context-catalog/api-interactions.md#scoping-headers) for how the two are carried on the wire and who is responsible for setting them.
 
 ## Relationships
 

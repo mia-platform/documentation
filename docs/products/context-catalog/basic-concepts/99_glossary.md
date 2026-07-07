@@ -77,7 +77,7 @@ A `spec` field declared on an [Item Type Definition](/products/context-catalog/b
 
 ## Organization
 
-An **organization** is a hard isolation boundary in the catalog: each organization has its own database namespace, and resources of the same type must be unique within it.
+An **organization** is a hard isolation boundary in the catalog: each organization has its own database namespace, and resources of the same type must be unique within it. Every API request is actually scoped by two identifiers — the organization and the broader **tenant** it lives in — see [Scoping headers](/products/context-catalog/api-interactions.md#scoping-headers).
 
 ## URN (Item URN)
 
@@ -104,3 +104,4 @@ Each object carries a `resourceVersion` integer that uniquely identifies its cur
 - **Rule-run**: The record of a single evaluation of a rule against a context of items.
 - **Campaign**: A grouping of rules that must be satisfied by a set of items within a defined time window. See [Campaigns](/products/context-catalog/basic-concepts/50_campaigns.md).
 - **Scorecard**: A set of rules evaluated on a scope of items, used to express overall compliance posture. See [Scorecards](/products/context-catalog/basic-concepts/40_scorecards.md).
+- **Scorecard Evaluation**: The record of a single evaluation of a scorecard — the per-item, per-rule raw results a scorecard's achieved level, median, and progress are computed from. The scorecard counterpart to a Rule-run. See [Scorecards](/products/context-catalog/basic-concepts/40_scorecards.md#how-a-scorecard-is-evaluated).

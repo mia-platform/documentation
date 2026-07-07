@@ -49,14 +49,12 @@ metadata:
   # Name must match the spec fields below, and be in the form `<plural>.<group>`.
   name: dockerimages.stable.example.com
 spec:
-  # Group name to use for REST API `/api/{group}/{version}/items/{plural}/*`.
+  # Group name to use for REST API `/{group}/{version}/items/{plural}/*`.
   group: stable.example.com
   versions:
     - name: v1
       # Each version can be enabled/disabled by Served flag.
       served: true
-      # One and only one version must be marked as the storage version.
-      storage: true
       schema:
         openAPIV31Schema:
           type: object
@@ -75,7 +73,7 @@ spec:
   # Currently only "Organization" is supported (see note below).
   scope: Organization
   names:
-    # Plural name to use for REST API `/api/{group}/{version}/items/{plural}/*`.
+    # Plural name to use for REST API `/{group}/{version}/items/{plural}/*`.
     plural: dockerimages
     # Kind is normally the CamelCased singular type. Your resource manifests use this.
     kind: DockerImage
@@ -84,7 +82,7 @@ spec:
 Posting this ITD creates a new organization-scoped REST endpoint at:
 
 ```text
-/api/stable.example.com/v1/items/dockerimages/*
+/stable.example.com/v1/items/dockerimages/*
 ```
 
 Items created through that endpoint will have:
@@ -96,12 +94,16 @@ Items created through that endpoint will have:
 When you create a new ITD, the API server creates a new RESTful resource path for each version. The path is constructed as:
 
 ```text
-/api/{spec.group}/{spec.versions.name}/items/{spec.names.plural}/*
+/{spec.group}/{spec.versions.name}/items/{spec.names.plural}/*
 ```
 
 ## The validation schema
 
-Resources store structured data in custom fields under their `spec` root field (alongside the built-in `apiVersion`, `kind`, and `metadata`, validated implicitly). ITDs must declare a schema in `spec.versions.schema.openAPIV31Schema` against which items are validated on creation and update.
+Resources store their type-specific data under the `spec` root field (alongside the built-in `apiVersion`, `kind`, and `metadata`, validated implicitly). ITDs must declare a schema in `spec.versions.schema.openAPIV31Schema` against which items are validated on creation and update.
+
+:::note
+Don't confuse an item's `spec` — the domain-specific payload constrained by its ITD's schema, covered here — with [custom fields](/products/context-catalog/basic-concepts/10_items.md#custom-fields-in-detail), a separate, independently-defined `customFields` map that can extend any item regardless of its ITD.
+:::
 
 This *structural schema* is an [OpenAPI v3.1 validation schema](https://spec.openapis.org/oas/v3.1.0.html#schema-object) which:
 
@@ -137,7 +139,7 @@ properties:
 ```
 
 :::caution
-The validation schema of an ITD version should be modified after creation. This guarantees the stability of the interface so clients can safely cache ITD versions and always interpret the `spec` of custom resources. We advice to change the schema creating a new version of the ITD or a brand new ITD.
+The validation schema of an ITD version should not modified after creation. This guarantees the stability of the interface so clients can safely cache ITD versions and always interpret the `spec` of custom resources. We advice to change the schema creating a new version of the ITD or a brand new ITD.
 :::
 
 ## Selectable fields
@@ -158,7 +160,6 @@ spec:
   versions:
     - name: v1
       served: true
-      storage: true
       schema:
         openAPIV31Schema: { ... }
       selectableFields:
@@ -177,17 +178,6 @@ GET /stable.example.com/v1/items/dockerimages?field=spec.registry=nexus.mia-plat
 ```
 
 Without the corresponding `selectableFields` entry, the same query is rejected.
-
-### Error messages
-
-- Be precise.
-- Tell users what they CAN do, not just what they cannot.
-- Use **must** for positive requirements (e.g. "must be greater than 0"). Avoid "should", which implies optionality.
-- Use **must not** for negative formatting requirements (e.g. "must not contain '..'").
-- Use **may not** for negative behavioral requirements (e.g. "may not be specified when otherField is empty").
-- Quote literal strings with single quotes; reference field names with backticks.
-- Use words for inequalities ("must be less than 256"), not symbols.
-- Use inclusive ranges when possible.
 
 ## See also
 

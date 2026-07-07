@@ -33,22 +33,29 @@ Most useful catalogs start by introducing a few **custom item types** specific t
 
 From the Catalog Administration, go to **Configuration → Item Types → Create item type** and fill in:
 
-- **API group** — a DNS-like name your team owns, e.g. `stable.example.com`.
-- **Kind** and **plural** — e.g. `DockerImage` and `dockerimages`.
-- **OpenAPI v3.1 schema** — the validation schema for the `spec` of the items (see [Item Types](/products/context-catalog/basic-concepts/20_item-types.md#the-validation-schema)).
+- **Group** — a DNS-like name your team owns, e.g. `stable.acme.com`.
+- **Scope** — `Organization` or `Project`, depending on whether items of this type should be visible catalog-wide or scoped to a single project.
+- **Kind** and **Plural** — e.g. `DockerImage` and `dockerimages`.
+- **Version name** — e.g. `v1`, following the `v<number>` (optionally `alpha<number>`/`beta<number>`) pattern.
+- **Validation Schema** — the OpenAPI-style JSON schema for the `spec` of the items (see [Item Types](/products/context-catalog/basic-concepts/20_item-types.md#the-validation-schema)).
 - **Selectable fields** — the `spec` fields you want to filter on later (see [Selectable Fields](/products/context-catalog/basic-concepts/20_item-types.md#selectable-fields)).
 
 Creating an ITD provisions a brand-new REST endpoint at `/{group}/{version}/items/{plural}`.
 
 ## 3. Create your first item
 
-From **Items → Create item**, pick the type you just defined, fill in the [metadata](/products/context-catalog/basic-concepts/10_items.md#metadata) — [`title`](/products/context-catalog/basic-concepts/10_items.md#title), [`name`](/products/context-catalog/basic-concepts/10_items.md#name), [`description`](/products/context-catalog/basic-concepts/10_items.md#description), [`tags`](/products/context-catalog/basic-concepts/10_items.md#tags), [owner](/products/context-catalog/basic-concepts/10_items.md#ownership-and-followers) — and the [`spec`](/products/context-catalog/basic-concepts/10_items.md#required-fields) (the type-specific payload validated against the ITD's [schema](/products/context-catalog/basic-concepts/20_item-types.md#the-validation-schema)). The wizard validates the `spec` against the ITD schema as you type.
+From **Items → Create item**, pick the type you just defined, and fill in:
 
-You can do the same thing via API by `POST`ing to the resource path; see [API Interactions](/products/context-catalog/api-interactions.md).
+- [metadata](/products/context-catalog/basic-concepts/10_items.md#metadata): [`title`](/products/context-catalog/basic-concepts/10_items.md#title), [`name`](/products/context-catalog/basic-concepts/10_items.md#name), [`description`](/products/context-catalog/basic-concepts/10_items.md#description), [`tags`](/products/context-catalog/basic-concepts/10_items.md#tags), [owner](/products/context-catalog/basic-concepts/10_items.md#ownership-and-followers)
+- [`spec`](/products/context-catalog/basic-concepts/10_items.md#required-fields) (the type-specific payload validated against the ITD's [schema](/products/context-catalog/basic-concepts/20_item-types.md#the-validation-schema)). 
+
+The wizard validates the `spec` against the ITD schema as you type.
+
+You can do the same thing via API by sending a `POST` request to the resource path; see [API Interactions](/products/context-catalog/api-interactions.md).
 
 ## 4. Connect items with a relationship
 
-Open the detail page of an item, jump to the **Relationships** tab, and link it to another item using one of the [built-in relationship types](/products/context-catalog/basic-concepts/60_relationships.md#built-in-relationship-types) (e.g. `ownership`, `part-of`, `depends-on`) or one you have defined yourself. From now on, you can navigate that connection from either endpoint, both in the table view and in the graph view.
+Open the detail page of an item, jump to the **Relationships** tab, and link it to another item using one of the [built-in relationship types](/products/context-catalog/basic-concepts/60_relationships.md#built-in-relationship-types) (e.g. `ownership`, `part-of`, `dependency`) or one you have defined yourself. From now on, you can navigate that connection from either endpoint, both in the table view and in the graph view.
 
 ## 5. Run a compliance check
 
@@ -65,17 +72,17 @@ Most catalogs are not populated by hand: they are kept in sync with the systems 
 
 In short, Mia-Platform connectors:
 
-- are deployed alongside your platform and runs in **sync** mode (pull from the upstream REST APIs) or **run** mode (listen for webhooks);
+- are deployed alongside your platform and run in **sync** mode (a one-off pull from the upstream REST APIs) or **run** mode (an event-stream integration that, depending on the source, either listens for webhooks or polls the upstream system);
 - transform upstream payloads into Catalog items through user-provided **mapping files** (YAML with Go templates);
-- write into the Catalog using a Client ID / Secret pair 
+- write into the Catalog authenticated with a Client ID / Secret pair.
 
 The high-level setup is:
 
-1. **Register the connector in the Catalog Administration.** Open **Configuration → Connectors → Add connector** to create a *Connector* item and manually specify a Client ID / Secret pair (see [Connectors section](/products/context-catalog/catalog-administration.md#connectors) of the Catalog Administration reference).
-2. **Configure `ibdm`.** Set `MIA_CATALOG_ENDPOINT`, `MIA_CATALOG_CLIENT_ID`, `MIA_CATALOG_CLIENT_SECRET` for the destination, plus the source-specific variables documented on each connector page.
-3. **Pick a mapping file.** Reference mappings are provided in the [`ibdm` repository examples](https://github.com/mia-platform/ibdm/tree/main/docs/examples); you can use them as-is or customize them.
-4. **Launch `ibdm`.** Either `ibdm sync <source>` for a one-off pull, or `ibdm run <source>` to expose a webhook listener.
-5. **Inspect what came in.** Open the connector's detail page in the Catalog Administration and switch to the **Connector items** tab to browse the items it has synchronized.
+1. **Register the connector in the Catalog Administration.** Open **Configuration → Connectors → Add connector** to create a *Connector* item and give it a Client ID — every item it later syncs in will be attributed to this ID (see [Connectors section](/products/context-catalog/catalog-administration.md#connectors) of the Catalog Administration reference). The matching Client Secret is not set here; obtain it from your platform administrator or identity provider as a separate M2M credential.
+2. **Configure `ibdm`.** Set `MIA_CATALOG_ENDPOINT`, `MIA_CATALOG_CLIENT_ID` (matching the Client ID from step 1), and `MIA_CATALOG_CLIENT_SECRET` for the destination, plus the source-specific variables documented on each connector page.
+3. **Add a mapping file.** Reference mappings are provided in the [`ibdm` repository examples](https://github.com/mia-platform/ibdm/tree/main/docs/examples); you can use them as-is or customize them.
+4. **Launch `ibdm`.** Either `ibdm sync <source> --mapping-path mapping.yaml` for a one-off pull, or `ibdm run <source> --mapping-path mapping.yaml` to start the event-stream integration.
+5. **Inspect what came in.** Open the connector's detail page in the Catalog Administration and switch to the **Imported items** tab to browse the items it has synchronized.
 6. **Wire compliance on top.** Point your [Evaluation Criteria](/products/context-catalog/basic-concepts/30_evaluation-criteria.md), [Scorecards](/products/context-catalog/basic-concepts/40_scorecards.md), and [Campaigns](/products/context-catalog/basic-concepts/50_campaigns.md) at the ingested items just like at hand-created items.
 
 The available sources and the upstream system each one targets are listed in the [Connectors Overview](/products/context-catalog/connectors/10_overview.md).

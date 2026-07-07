@@ -10,12 +10,13 @@ A **Campaign** groups one or more [Rules](/products/context-catalog/basic-concep
 
 A campaign declares:
 
-- `startDate`: when the campaign period begins.
-- `endDate`: the deadline by which all rules should be satisfied.
-- `rules[]`: one or more [Rules](/products/context-catalog/basic-concepts/30_evaluation-criteria.md), either **copied from a [Scorecard](/products/context-catalog/basic-concepts/40_scorecards.md)** when the campaign is built from one (once a target level is selected, the matching rules are duplicated onto the campaign) or **written directly on the campaign** when it is built from scratch. Once on the campaign, the rules are independent of the source scorecard: later changes to the scorecard do not propagate.
+- `startTime`: when the campaign period begins.
+- `endTime`: the deadline by which all rules should be satisfied.
+- `rules[]`: one or more [Rules](/products/context-catalog/basic-concepts/30_evaluation-criteria.md), either **copied from a [Scorecard](/products/context-catalog/basic-concepts/40_scorecards.md)** when the campaign is built from one (once a target level is selected, that level's rules *and every level below it* are duplicated onto the campaign) or **written directly on the campaign** when it is built from scratch. Once on the campaign, the rules are independent of the source scorecard: later changes to the scorecard do not propagate.
 - `scope`: a target set of items defined as a [view](/products/context-catalog/catalog-administration.md#views) reference or a raw query (see [Query Language](/products/context-catalog/basic-concepts/70_query-language.md)).
+- `reportFrequency` *(optional)*: `Daily`, `Weekly`, or `Monthly` — see [Evaluation](#evaluation) for how it drives scheduled re-evaluation.
 
-The dates define the campaign's time window for reporting and audit purposes; they do not currently drive automatic evaluations (see [Evaluation](#evaluation) below).
+The dates define the campaign's time window and also drive automatic evaluations — see [Evaluation](#evaluation) below.
 
 ## Relationship with Scorecards
 
@@ -30,9 +31,13 @@ The mental model:
 
 ## Evaluation
 
-A campaign is evaluated **on demand**: an operator triggers a run from the [Catalog Administration](/products/context-catalog/catalog-administration.md#evaluate-a-campaign), and every configured rule is evaluated against the target item set (the same flow used by a standalone rule run, see [Evaluation Criteria](/products/context-catalog/basic-concepts/30_evaluation-criteria.md)). Results are stored on the `Campaign` item and exposed both via the [Catalog API](/products/context-catalog/api-interactions.md) and in the Catalog Administration.
+Every configured rule is evaluated against the target item set (the same flow used by a standalone rule run, see [Evaluation Criteria](/products/context-catalog/basic-concepts/30_evaluation-criteria.md)). Results are stored on the `Campaign` item and exposed both via the [Catalog API](/products/context-catalog/api-interactions.md) and in the Catalog Administration.
 
-There is no automatic re-evaluation when `startDate` or `endDate` is reached, nor when an item in scope changes: each refresh is initiated manually.
+A campaign is re-evaluated through three independent mechanisms:
+
+- **On demand**: an operator triggers a run from the [Catalog Administration](/products/context-catalog/catalog-administration.md#evaluate-a-campaign).
+- **On a schedule**: evaluations are automatically triggered at `startTime`, at `endTime`, and — if `reportFrequency` is set — at every `Daily`/`Weekly`/`Monthly` interval in between.
+- **On item change**: whenever any item in the catalog is created or updated, the catalog automatically checks whether that item belongs to the scope of any campaign and, if so, re-evaluates those campaigns.
 
 ## Item types involved
 

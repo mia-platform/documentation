@@ -33,12 +33,14 @@ A query is one of four node types:
 | `or` | Logical OR of two or more sub-queries. |
 | `related` | Select items that are related to a given item through a relationship type. |
 
-The same query can mix all four nodes freely, with the following limits applied by the server:
+The same query can mix all four nodes freely. The server currently enforces:
 
-- at most 20 sub-queries per `and` / `or` node,
-- at most 6 levels of nesting,
 - at most 3 `related` nodes per query,
-- decoded JSON must not exceed roughly 4 KiB.
+- the `rawq` parameter itself (the base64-encoded string on the wire, before decoding) must not exceed 5600 bytes — roughly 4 KiB once decoded.
+
+:::note
+Limits on the number of sub-queries per `and`/`or` node and on nesting depth are planned but not yet enforced by the server — today, only the two limits above are actually checked.
+:::
 
 ### Field predicates
 
@@ -53,10 +55,10 @@ Supported operators:
 | Operator | Applies to | Meaning |
 | :------- | :--------- | :------ |
 | `eq`     | any primitive | equal to |
-| `notEq`  | any primitive | not equal to |
+| `not_eq`  | any primitive | not equal to |
 | `gt`, `gte`, `lt`, `lte` | numbers | numeric comparison |
 | `contains` | arrays | the array contains the given primitive |
-| `notContains` | arrays | the array does not contain the given primitive |
+| `not_contains` | arrays | the array does not contain the given primitive |
 | `matches` | strings | matches a regex of the form `/pattern/[i]` |
 | `exists` | any field | field is present (`true`) / absent (`false`) |
 

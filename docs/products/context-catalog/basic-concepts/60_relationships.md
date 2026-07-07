@@ -36,21 +36,6 @@ Required fields:
 - `spec.names.sourceToTarget` — how the relationship reads from the source toward the target (e.g. *"is part of"*, *"depends on"*, *"owns"*).
 - `spec.names.targetToSource` — the reverse reading (e.g. *"contains"*, *"is a dependency of"*, *"is owned by"*).
 
-### Built-in relationship types
-
-The catalog ships with a small set of relationship types under the `mia-platform.eu` group:
-
-| Name | source → target | target → source | Typical use |
-| :--- | :-------------- | :-------------- | :---------- |
-| `ownership.mia-platform.eu` | owns | is owned by | Connects a User or Team to the items they own. Surfaced by the UI as the item's *owner*. |
-| `follow.mia-platform.eu` | follows | is followed by | Connects a User to an item they want to be notified about (see [Campaigns](/products/context-catalog/basic-concepts/50_campaigns.md)). |
-| `part-of.mia-platform.eu` | is part of | contains | Models containment (e.g. a Microservice *is part of* a Project). |
-| `dependency.mia-platform.eu` | depends on | is a dependency of | Models runtime or build-time dependencies. |
-| `affect.mia-platform.eu` | affects | is affected by | Connects a finding (e.g. a vulnerability) to the items it impacts. |
-| `origin.mia-platform.eu` | originates from | is the origin of | Records provenance (e.g. an item ingested from a connector). |
-
-You can introduce custom relationship types by creating additional `RelationshipType` items.
-
 ## RelationshipConstraint
 
 A `RelationshipConstraint` declares which item kinds may legitimately participate in a relationship of a given type. It is the catalog's way to *document* the intended shape of the graph.
@@ -88,14 +73,14 @@ kind: Relationship
 metadata:
   name: api-gateway-owned-by-platform-team
 spec:
-  relationshipTypeRef: urn:mia-platform-catalog:mia-platform.eu:v1alpha1:RelationshipType:ownership.mia-platform.eu
+  typeRef: urn:mia-platform-catalog:mia-platform.eu:v1alpha1:RelationshipType:ownership.mia-platform.eu
   sourceRef: urn:mia-platform-catalog:mia-platform.eu:v1:Team:platform-team
   targetRef: urn:mia-platform-catalog:console.mia-platform.eu:v1:Service:api-gateway
 ```
 
 Required fields:
 
-- `spec.relationshipTypeRef` — URN of the `RelationshipType`.
+- `spec.typeRef` — URN of the `RelationshipType`. Note this is `typeRef` here, unlike the `relationshipTypeRef` field on a `RelationshipConstraint`.
 - `spec.sourceRef` — URN of the source item.
 - `spec.targetRef` — URN of the target item.
 
