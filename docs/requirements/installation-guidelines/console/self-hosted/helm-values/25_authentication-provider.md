@@ -33,7 +33,7 @@ configurations:
 ```
 
 :::note Dual-realm model
-Mia Platform uses two Keycloak realms by default: one for human user authentication (`realm`) and one for machine-to-machine token exchange used by internal services (`extensibilityRealm`). Both realms are configured by the Realm Management chart. See [Federation Strategies](/requirements/installation-guidelines/shared-services/authn/20_federation-strategies.md) for the reasoning behind this split.
+Mia Platform uses two Keycloak realms by default: one for human user authentication (`realm`) and one for machine-to-machine token exchange used by internal services (`extensibilityRealm`). Both realms are configured by the Realm Management chart. See [Federation Strategies](/requirements/installation-guidelines/shared-services/authn/federation-strategies/index.md) for the reasoning behind this split.
 :::
 
 ## Authtool BFF Keys

@@ -16,18 +16,18 @@ The `keycloak-operator` Helm chart deploys a Keycloak instance on Kubernetes usi
 | **Keycloak CR** (`k8s.keycloak.org/v2beta1`) | Declarative specification of the Keycloak instance. The operator translates it into a managed `StatefulSet`. |
 | **RBAC** | `ClusterRole`, `Role`, and `RoleBinding` for the operator. Monitoring RBAC (`monitoring.coreos.com` permissions) is always included so the operator can manage `ServiceMonitor` resources. |
 | **Service** | `ClusterIP` service exposing the Keycloak HTTP port. |
-| **Ingress / IngressRoute** | Optional. Standard Kubernetes `Ingress` or Traefik `IngressRoute` for public and admin hostnames — mutually exclusive. |
+| **Ingress / IngressRoute** | Optional. Standard Kubernetes `Ingress` or Traefik `IngressRoute` for public and admin hostnames: mutually exclusive. |
 | **ExternalSecrets** | Optional. `ExternalSecret` resources that sync Vault-backed secrets and PKCS12 keystores from a remote secret store into Kubernetes secrets, via the External Secrets Operator. |
 
 ## Custom Mia Platform image
 
 The chart uses a Mia Platform pre-built image (`nexus.mia-platform.eu/platform/auth/keycloak`) built with `kc.sh build --optimized` at image time, which reduces startup time significantly compared to the standard Keycloak image. The image includes:
 
-- **PostgreSQL driver** — the only supported database vendor for production deployments.
-- **Health and metrics endpoints** — required for the operator's liveness/readiness probes and for Prometheus ServiceMonitor scraping.
-- **OpenTelemetry** — distributed traces, metrics, and structured logs exportable to any OTEL Collector.
-- **File vault** (`KC_VAULT=file`) — Keycloak resolves `${vault.<name>}` placeholders from mounted secrets, enabling credential injection without environment variables.
-- **SCIM 2.0** (`KC_FEATURE_SCIM_API`) — built-in user provisioning endpoint for automated user lifecycle management.
+- **PostgreSQL driver**: the only supported database vendor for production deployments.
+- **Health and metrics endpoints**: required for the operator's liveness/readiness probes and for Prometheus ServiceMonitor scraping.
+- **OpenTelemetry**: distributed traces, metrics, and structured logs exportable to any OTEL Collector.
+- **File vault** (`KC_VAULT=file`): Keycloak resolves `${vault.<name>}` placeholders from mounted secrets, enabling credential injection without environment variables.
+- **SCIM 2.0** (`KC_FEATURE_SCIM_API`): built-in user provisioning endpoint for automated user lifecycle management.
 
 The image tag format is `<appVersion>-<keycloakVersion>-postgres` (e.g. `0.3.0-26.6.4-postgres`).
 
@@ -35,9 +35,9 @@ The image tag format is `<appVersion>-<keycloakVersion>-postgres` (e.g. `0.3.0-2
 
 The Keycloak Operator version (`operator.image.tag`) and the Keycloak instance image version (`keycloak.image.tag`) are pinned independently. This means:
 
-- **Patch-only Keycloak bump** — change only `keycloak.image.tag`. The running operator detects the CR update and performs a rolling StatefulSet update without restarting itself.
-- **Operator bump** — change only `operator.image.tag` in a separate release. The operator pod restarts but the Keycloak StatefulSet is not modified.
-- **Minor or major Keycloak bump** — bump both in separate releases (operator first). See the [upgrade guide](/requirements/installation-guidelines/shared-services/authn/keycloak/100_how-to-upgrade.md) for details.
+- **Patch-only Keycloak bump**: change only `keycloak.image.tag`. The running operator detects the CR update and performs a rolling StatefulSet update without restarting itself.
+- **Operator bump**: change only `operator.image.tag` in a separate release. The operator pod restarts but the Keycloak StatefulSet is not modified.
+- **Minor or major Keycloak bump**: bump both in separate releases (operator first). See the [upgrade guide](/requirements/installation-guidelines/shared-services/authn/keycloak/100_how-to-upgrade.md) for details.
 
 This separation means that routine Keycloak patch upgrades never require an operator restart.
 

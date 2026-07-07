@@ -28,7 +28,7 @@ A convenience helper that creates the bootstrap admin Kubernetes Secret in-clust
 | `adminBootstrap.password` | string | `""` | Bootstrap admin password. |
 
 :::warning
-`adminBootstrap` stores credentials in plain-text Helm values. **Do not use in production** — create `keycloak-bootstrap-admin` manually or via ESO instead.
+`adminBootstrap` stores credentials in plain-text Helm values. **Do not use in production**: create `keycloak-bootstrap-admin` manually or via ESO instead.
 :::
 
 ## Vault integration (`vault`)
@@ -72,7 +72,7 @@ Creates labeled ConfigMaps that the Grafana sidecar picks up automatically.
 | `grafana.defaultLabel` | bool | `true` | Add the default `grafana_dashboard: "1"` label. |
 | `grafana.extraLabels` | object | `{}` | Additional labels to add to dashboard ConfigMaps. |
 
-## PostgreSQL subchart (`postgres`) — dev only
+## PostgreSQL subchart (`postgres`): dev only
 
 Deploys a single-instance PostgreSQL via the Bitnami subchart and auto-wires the Keycloak CR database connection to it.
 
@@ -177,7 +177,7 @@ The chart supports two mutually exclusive ingress approaches: **Kubernetes Ingre
 | `keycloak.ingress.annotations` | object | `{}` | Ingress annotations. |
 | `keycloak.ingress.tlsSecret` | string | `""` | TLS secret name for the Ingress. |
 
-**Admin Ingress (`keycloak.adminIngress`)** — used when `hostname.admin` points to a separate domain:
+**Admin Ingress (`keycloak.adminIngress`)**: used when `hostname.admin` points to a separate domain:
 
 | Key | Type | Default | Description |
 |---|---|---|---|
@@ -205,8 +205,8 @@ The chart supports two mutually exclusive ingress approaches: **Kubernetes Ingre
 | `keycloak.resources.limits.memory` | string | `"1536Mi"` | Memory limit. |
 | `keycloak.scheduling` | object | `~` | Full Kubernetes scheduling spec (affinity, tolerations, topologySpreadConstraints). When `null`, the chart injects a default pod anti-affinity by `topology.kubernetes.io/zone`. |
 | `keycloak.podDisruptionBudget.enabled` | bool | `false` | Create a PodDisruptionBudget. |
-| `keycloak.podDisruptionBudget.minAvailable` | int/string | — | Minimum available pods during disruptions. |
-| `keycloak.podDisruptionBudget.maxUnavailable` | int/string | — | Maximum unavailable pods during disruptions. |
+| `keycloak.podDisruptionBudget.minAvailable` | int/string | - | Minimum available pods during disruptions. |
+| `keycloak.podDisruptionBudget.maxUnavailable` | int/string | - | Maximum unavailable pods during disruptions. |
 
 ### Update strategy
 
@@ -225,12 +225,12 @@ The chart supports two mutually exclusive ingress approaches: **Kubernetes Ingre
 
 | Key | Type | Default | Description |
 |---|---|---|---|
-| `keycloak.telemetry.endpoint` | string | — | OpenTelemetry collector endpoint (e.g. `http://otel-collector.monitoring.svc:4317`). |
-| `keycloak.telemetry.serviceName` | string | — | Service name for OTEL spans. |
-| `keycloak.telemetry.protocol` | string | — | OTEL protocol: `grpc` (default) or `http/protobuf`. |
-| `keycloak.tracing.enabled` | bool | — | Enable Keycloak distributed tracing. |
-| `keycloak.tracing.endpoint` | string | — | Tracing collector endpoint. |
-| `keycloak.tracing.protocol` | string | — | Tracing protocol: `grpc` or `http/protobuf`. |
+| `keycloak.telemetry.endpoint` | string | - | OpenTelemetry collector endpoint (e.g. `http://otel-collector.monitoring.svc:4317`). |
+| `keycloak.telemetry.serviceName` | string | - | Service name for OTEL spans. |
+| `keycloak.telemetry.protocol` | string | - | OTEL protocol: `grpc` (default) or `http/protobuf`. |
+| `keycloak.tracing.enabled` | bool | - | Enable Keycloak distributed tracing. |
+| `keycloak.tracing.endpoint` | string | - | Tracing collector endpoint. |
+| `keycloak.tracing.protocol` | string | - | Tracing protocol: `grpc` or `http/protobuf`. |
 
 ### Additional options
 
@@ -250,7 +250,7 @@ The chart supports two mutually exclusive ingress approaches: **Kubernetes Ingre
 | Key | Type | Default | Description |
 |---|---|---|---|
 | `realms` | list | `[]` | List of `KeycloakRealmImport` CR definitions. Iterate this list to create realm import resources. In most deployments, realms are managed via the `keycloak-realm-management` chart instead. |
-# Helm Values — keycloak-operator chart
+# Helm Values: keycloak-operator chart
 
 This page describes all configurable values for the `keycloak-operator` chart. Values are documented by group; see `values.yaml` for defaults and inline comments.
 
@@ -306,7 +306,7 @@ For production, provision an external PostgreSQL instance and configure the conn
 | `keycloak.db.poolMinSize` | `~` | Minimum connection pool size |
 | `keycloak.db.poolMaxSize` | `~` | Maximum connection pool size |
 
-**Example — external PostgreSQL:**
+**Example: external PostgreSQL:**
 
 ```yaml
 keycloak:
@@ -375,10 +375,10 @@ The chart supports two mutually exclusive routing approaches. Use standard `Ingr
 |---|---|---|
 | `keycloak.scheduling` | `~` | Pod scheduling overrides. Accepts `affinity`, `tolerations`, and `topologySpreadConstraints`. When not set, the chart injects a default zone-aware `podAntiAffinity` rule. |
 | `keycloak.podDisruptionBudget.enabled` | `false` | Create a `PodDisruptionBudget` for Keycloak pods |
-| `keycloak.podDisruptionBudget.minAvailable` | — | Minimum number of pods that must remain available during voluntary disruptions |
-| `keycloak.podDisruptionBudget.maxUnavailable` | — | Maximum number of pods that can be unavailable during voluntary disruptions |
+| `keycloak.podDisruptionBudget.minAvailable` | - | Minimum number of pods that must remain available during voluntary disruptions |
+| `keycloak.podDisruptionBudget.maxUnavailable` | - | Maximum number of pods that can be unavailable during voluntary disruptions |
 
-**Example — HA with PDB and topology spread:**
+**Example: HA with PDB and topology spread:**
 
 ```yaml
 keycloak:
@@ -406,17 +406,17 @@ keycloak:
 | `keycloak.serviceMonitor.enabled` | `true` | Instruct the Keycloak Operator to create a `ServiceMonitor` for Prometheus scraping |
 | `keycloak.serviceMonitor.interval` | `15s` | Scrape interval |
 
-The operator creates the `ServiceMonitor` automatically — no additional Prometheus configuration is required beyond having the Prometheus Operator installed.
+The operator creates the `ServiceMonitor` automatically, no additional Prometheus configuration is required beyond having the Prometheus Operator installed.
 
 ### Telemetry (OpenTelemetry)
 
 | Key | Default | Description |
 |---|---|---|
-| `keycloak.telemetry.endpoint` | — | OTLP exporter endpoint (e.g. `http://otel-collector.monitoring.svc:4317`) |
-| `keycloak.telemetry.serviceName` | — | Service name reported in OTEL spans |
-| `keycloak.telemetry.protocol` | — | OTLP protocol: `grpc` (default) or `http/protobuf` |
-| `keycloak.tracing.enabled` | — | Enable distributed tracing |
-| `keycloak.tracing.endpoint` | — | Tracing OTLP endpoint |
+| `keycloak.telemetry.endpoint` | - | OTLP exporter endpoint (e.g. `http://otel-collector.monitoring.svc:4317`) |
+| `keycloak.telemetry.serviceName` | - | Service name reported in OTEL spans |
+| `keycloak.telemetry.protocol` | - | OTLP protocol: `grpc` (default) or `http/protobuf` |
+| `keycloak.tracing.enabled` | - | Enable distributed tracing |
+| `keycloak.tracing.endpoint` | - | Tracing OTLP endpoint |
 
 ## Vault integration (ExternalSecret)
 
@@ -460,7 +460,7 @@ Syncs a PKCS12 keystore from a remote secret store and mounts it into Keycloak p
 
 ## PostgreSQL (development only)
 
-Deploys a single-instance Bitnami PostgreSQL via a subchart dependency. **For development and testing only — do not use in production.**
+Deploys a single-instance Bitnami PostgreSQL via a subchart dependency. **For development and testing only, do not use in production.**
 
 | Key | Default | Description |
 |---|---|---|

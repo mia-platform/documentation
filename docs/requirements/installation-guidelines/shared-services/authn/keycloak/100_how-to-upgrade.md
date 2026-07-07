@@ -3,7 +3,7 @@ title: How To Upgrade
 sidebar_label: How To Upgrade
 ---
 
-# How To Upgrade — Keycloak chart
+# How To Upgrade: Keycloak chart
 
 This page describes how to upgrade the Keycloak chart and the components it manages. Because the Keycloak Operator version and the Keycloak instance version are decoupled, upgrades follow specific procedures to minimise or eliminate downtime.
 
@@ -14,7 +14,7 @@ The chart defaults to `update.strategy: Auto` in the Keycloak CR. The operator e
 | Change type | Strategy | Downtime |
 |---|---|---|
 | Patch version bump (same major.minor) | Rolling update on the StatefulSet | None |
-| Minor or major version bump | Recreate (scale to 0, then up) | Yes — expected for schema migrations |
+| Minor or major version bump | Recreate (scale to 0, then up) | Yes: expected for schema migrations |
 | Operator image bump only | Operator pod restarts; StatefulSet untouched | None |
 
 ## Upgrade procedures
@@ -45,7 +45,7 @@ helm upgrade keycloak . \
 
 ### Minor or major Keycloak version upgrade
 
-1. Upgrade the operator version first (separate `helm upgrade`) — the operator must support the target Keycloak version before the Keycloak image is changed.
+1. Upgrade the operator version first (separate `helm upgrade`); the operator must support the target Keycloak version before the Keycloak image is changed.
 2. Update `keycloak.image.tag` to the new version. The operator detects the incompatible change and uses the recreate strategy.
 3. Keycloak is scaled down, applies database schema migrations, then scales back up.
 

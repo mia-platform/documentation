@@ -55,7 +55,7 @@ Once the shared services layer is running, **Console** and **Catalog** can be in
 ## Component index
 
 :::tip Before you start — Auth architecture
-If this is your first self-hosted Mia Platform installation, read the [Authentication Architecture overview](/requirements/installation-guidelines/shared-services/authn/10_overview.md) and the [Federation Strategies guide](/requirements/installation-guidelines/shared-services/authn/20_federation-strategies.md) before touching any product chart. These decisions (realm layout, IdP federation model) propagate to every product's `configurations.keycloak` block.
+If this is your first self-hosted Mia Platform installation, read the [Authentication Architecture overview](/requirements/installation-guidelines/shared-services/authn/10_overview.md) and the [Federation Strategies guide](/requirements/installation-guidelines/shared-services/authn/federation-strategies/index.md) before touching any product chart. These decisions (realm layout, IdP federation model) propagate to every product's `configurations.keycloak` block.
 :::
 
 ### Shared services & tools

@@ -29,7 +29,7 @@ keycloak-realm-management/
 
 Each realm is rendered and imported independently. A separate values file per realm+environment drives the configuration.
 
-## Step 1 — Create a values file
+## Step 1: Create a values file
 
 Create a values file for the `mia-platform` realm. At minimum, provide the realm identity, the Keycloak URL, the enabled products, and the IdP configuration:
 
@@ -74,7 +74,7 @@ identityProviders:
 
 See the [Helm Values reference](/requirements/installation-guidelines/shared-services/authn/keycloak-realm-management/helm-values/00_overview.md) for the full list of available values.
 
-## Step 2 — Render and review
+## Step 2: Render and review
 
 Render the `mia-platform` realm templates to review what will be applied:
 
@@ -86,7 +86,7 @@ helm template keycloak-realm-management . \
 
 This outputs the component YAML files that `keycloak-config-cli` will apply.
 
-## Step 3 — Import
+## Step 3: Import
 
 Use the Makefile target to render and import directly into Keycloak via `keycloak-config-cli`:
 
@@ -112,7 +112,7 @@ make import \
   KEYCLOAK_PASSWORD=<admin_password>
 ```
 
-## Step 4 — Verify
+## Step 4: Verify
 
 After import, verify the realm in the Keycloak admin console:
 
@@ -128,4 +128,4 @@ After import, verify the realm in the Keycloak admin console:
 | `KEYCLOAK_URL` | `http://localhost:8080` | Keycloak base URL |
 | `KEYCLOAK_USER` | `admin` | Admin username |
 | `KEYCLOAK_PASSWORD` | `admin` | Admin password |
-| `ENV` | `dev` | Environment name — used to organise rendered output in `rendered/<ENV>/` |
+| `ENV` | `dev` | Environment name: used to organise rendered output in `rendered/<ENV>/` |

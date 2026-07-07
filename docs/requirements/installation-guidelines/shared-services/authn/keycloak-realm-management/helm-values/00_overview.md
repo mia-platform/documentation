@@ -152,7 +152,7 @@ customUsers:
 
 :::warning
 Custom users with sensitive credentials should not be defined in plain-text values files. Use this field only for non-sensitive technical accounts or during initial bootstrapping.
-# Helm Values — keycloak-realm-management chart
+# Helm Values: keycloak-realm-management chart
 
 This page describes the configurable values for the `keycloak-realm-management` chart. Each values file represents the configuration of a single Keycloak realm. Values are used by the component templates in `templates/<realm>/` to generate the YAML files applied by `keycloak-config-cli`.
 
@@ -187,13 +187,13 @@ Configure one or more external OIDC Identity Providers to federate into the real
 | `identityProviders[].config.userInfoUrl` | IdP userinfo endpoint. |
 | `identityProviders[].config.jwksUrl` | IdP JWKS endpoint for token signature verification. |
 | `identityProviders[].config.clientId` | Client ID registered on the upstream IdP for the Mia Keycloak broker. |
-| `identityProviders[].config.clientAuthMethod` | Client authentication method. `private_key_jwt` is strongly recommended — no shared secrets. |
+| `identityProviders[].config.clientAuthMethod` | Client authentication method. `private_key_jwt` is strongly recommended: no shared secrets. |
 | `identityProviders[].config.defaultScope` | OIDC scopes to request (e.g. `openid email profile`). |
 | `identityProviders[].config.pkceEnabled` | Enable PKCE on the broker flow (`"true"` / `"false"` as strings). |
 | `identityProviders[].config.pkceMethod` | PKCE method: `S256`. |
 | `identityProviders[].config.syncMode` | User attribute sync mode: `FORCE` (overwrite on every login) or `IMPORT` (set on first login only). |
 
-**Example — corporate OIDC IdP with `private_key_jwt`:**
+**Example: corporate OIDC IdP with `private_key_jwt`:**
 
 ```yaml
 identityProviders:
@@ -230,7 +230,7 @@ Configure attribute and role mappers for each federated IdP.
 | `identityProviderMappers[].identityProviderMapper` | Mapper type, e.g. `oidc-user-attribute-idp-mapper`, `oidc-role-idp-mapper`, `oidc-hardcoded-role-idp-mapper`. |
 | `identityProviderMappers[].config` | Mapper-specific configuration (depends on `identityProviderMapper` type). |
 
-**Example — hardcoded role mapper:**
+**Example: hardcoded role mapper:**
 
 ```yaml
 identityProviderMappers:
@@ -285,13 +285,13 @@ Configure an SMTP server for Keycloak to send email notifications (password rese
 | Key | Default | Description |
 |---|---|---|
 | `smtpServer.enabled` | `false` | Enable SMTP configuration |
-| `smtpServer.config.host` | — | SMTP host |
+| `smtpServer.config.host` | - | SMTP host |
 | `smtpServer.config.port` | `587` | SMTP port |
-| `smtpServer.config.from` | — | Sender email address |
+| `smtpServer.config.from` | - | Sender email address |
 | `smtpServer.config.starttls` | `false` | Use STARTTLS |
 | `smtpServer.config.auth` | `false` | Enable SMTP authentication |
-| `smtpServer.config.user` | — | SMTP username (when `auth: true`) |
-| `smtpServer.config.password` | — | SMTP password (when `auth: true`) |
+| `smtpServer.config.user` | - | SMTP username (when `auth: true`) |
+| `smtpServer.config.password` | - | SMTP password (when `auth: true`) |
 
 ## Custom clients
 

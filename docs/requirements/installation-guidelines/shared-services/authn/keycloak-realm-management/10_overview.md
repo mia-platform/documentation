@@ -11,17 +11,17 @@ The `keycloak-realm-management` Helm chart provides **realm blueprints** for Key
 
 The chart renders and applies the following Keycloak realm resources:
 
-- **Realm settings** — display name, login theme, password policies, brute-force protection, session timeouts.
-- **Roles** — realm-level and client-level roles used by Mia Platform products for authorization.
-- **Groups** — global groups scoped by product (e.g. `realm/admin`, `realm/reporter`). Groups carry realm-management client roles, enabling fine-grained admin delegation.
-- **Client scopes** — OIDC scopes and protocol mappers that control what appears in access tokens.
-- **OIDC clients** — one client per Mia Platform product (Console, Catalog, AI Foundry, Homepage & RBAC). Each client is conditionally included via `products.*` values.
-- **Identity providers** — external IdPs federated via OIDC. Supports multiple IdPs per realm (one per customer organization / email domain).
-- **Identity provider mappers** — attribute and role mappers that transform incoming IdP claims into Mia Platform user attributes and roles.
-- **Authentication flows** — custom flows extending Keycloak's defaults.
-- **Organizations** — customer organizations mapped to email domains. When a user enters their email, Keycloak matches the domain to the correct IdP automatically.
-- **User profile** — custom attributes for traceability of user identity across IdP migrations.
-- **Components** — `UserProfileProvider` and `ClientRegistrationPolicy` defaults, always included to prevent keycloak-config-cli from removing Keycloak's built-in defaults.
+- **Realm settings**: display name, login theme, password policies, brute-force protection, session timeouts.
+- **Roles**: realm-level and client-level roles used by Mia Platform products for authorization.
+- **Groups**: global groups scoped by product (e.g. `realm/admin`, `realm/reporter`). Groups carry realm-management client roles, enabling fine-grained admin delegation.
+- **Client scopes**: OIDC scopes and protocol mappers that control what appears in access tokens.
+- **OIDC clients**: one client per Mia Platform product (Console, Catalog, AI Foundry, Homepage & RBAC). Each client is conditionally included via `products.*` values.
+- **Identity providers**: external IdPs federated via OIDC. Supports multiple IdPs per realm (one per customer organization / email domain).
+- **Identity provider mappers**: attribute and role mappers that transform incoming IdP claims into Mia Platform user attributes and roles.
+- **Authentication flows**: custom flows extending Keycloak's defaults.
+- **Organizations**: customer organizations mapped to email domains. When a user enters their email, Keycloak matches the domain to the correct IdP automatically.
+- **User profile**: custom attributes for traceability of user identity across IdP migrations.
+- **Components**: `UserProfileProvider` and `ClientRegistrationPolicy` defaults, always included to prevent keycloak-config-cli from removing Keycloak's built-in defaults.
 
 ## Dual-realm model
 
@@ -38,9 +38,9 @@ Realm configuration is managed **declaratively**: values files are rendered into
 
 This means:
 
-- **Incremental** — only the resources defined in each import file are managed. Everything else in the realm is left untouched.
-- **Non-destructive** — all resource types use `no-delete` policy: removing an entry from a values file stops managing that resource but does not delete it from Keycloak.
-- **Idempotent** — applying the same values file multiple times produces the same result.
+- **Incremental**: only the resources defined in each import file are managed. Everything else in the realm is left untouched.
+- **Non-destructive**: all resource types use `no-delete` policy: removing an entry from a values file stops managing that resource but does not delete it from Keycloak.
+- **Idempotent**: applying the same values file multiple times produces the same result.
 
 ## Identity Provider federation
 
@@ -48,14 +48,14 @@ Users are never created directly in the Mia Platform realm (except service accou
 
 Each federated IdP is configured with:
 
-- **`trustEmail: true`** — the email from the IdP is considered verified.
-- **`syncMode: FORCE`** (or `IMPORT`) — controls whether user attributes are overwritten on every login (`FORCE`) or only set on first login (`IMPORT`).
-- **`pkceEnabled: true` + `pkceMethod: S256`** — PKCE on the broker flow.
-- **`clientAuthMethod: private_key_jwt`** — the IdP client authenticates to the upstream provider with a signed JWT. No shared secrets are used.
+- **`trustEmail: true`**: the email from the IdP is considered verified.
+- **`syncMode: FORCE`** (or `IMPORT`): controls whether user attributes are overwritten on every login (`FORCE`) or only set on first login (`IMPORT`).
+- **`pkceEnabled: true` + `pkceMethod: S256`**: PKCE on the broker flow.
+- **`clientAuthMethod: private_key_jwt`**: the IdP client authenticates to the upstream provider with a signed JWT. No shared secrets are used.
 
 ## Organization-based IdP routing
 
-When organizations are enabled (Keycloak ≥ 25.0.0), each organization owns one or more verified email domains and is linked to one or more identity providers. When a user enters their email at login, Keycloak matches the domain to the organization and redirects to the associated IdP — no manual IdP selection is needed by the user.
+When organizations are enabled (Keycloak ≥ 25.0.0), each organization owns one or more verified email domains and is linked to one or more identity providers. When a user enters their email at login, Keycloak matches the domain to the organization and redirects to the associated IdP, no manual IdP selection is needed by the user.
 
 ## Component templates
 

@@ -17,7 +17,7 @@ All strategies rely on [Keycloak](https://www.keycloak.org/) as the central Iden
 
 ### Dual-Realm Model
 
-Every Mia Platform **On-Premises** installation uses **two Keycloak realms** (we use the label `mia-platform` as a placeholder here — the customer can choose any realm name):
+Every Mia Platform **On-Premises** installation uses **two Keycloak realms** (we use the label `mia-platform` as a placeholder here, the customer can choose any realm name):
 
 | Realm | Purpose |
 |---|---|
@@ -69,17 +69,17 @@ sequenceDiagram
 
 **Available mappings** from the customer IdP into the `mia-platform` realm include:
 
-- **Attribute mappers** — map external claims/attributes to Mia Platform user attributes.
-- **Role mappers** — map external roles or groups to Mia Platform realm/client roles.
-- **Hardcoded mappers** — assign default roles or attributes upon first login.
-- **Username template mappers** — normalize usernames across identity boundaries.
-- **Custom mappers** — Keycloak SPI-based mappers for advanced transformation logic.
+- **Attribute mappers**: map external claims/attributes to Mia Platform user attributes.
+- **Role mappers**: map external roles or groups to Mia Platform realm/client roles.
+- **Hardcoded mappers**: assign default roles or attributes upon first login.
+- **Username template mappers**: normalize usernames across identity boundaries.
+- **Custom mappers**: Keycloak SPI-based mappers for advanced transformation logic.
 
 ---
 
 ## On-Prem Federation Strategies
 
-### Strategy 1 — Managed Keycloak with Customer IdP Federation
+### Strategy 1: Managed Keycloak with Customer IdP Federation
 
 > **When to use:** The customer has an existing Identity Provider (OIDC, LDAP, Active Directory) but does **not** have a pre-existing Keycloak installation, or prefers a fully managed identity layer.
 
@@ -140,14 +140,16 @@ The customer's existing IdP is then registered as an **Identity Provider** in th
 
 | ✅ Pros | ⚠️ Cons |
 |---|---|
-| Turnkey deployment — single Helm install | Additional infrastructure component to operate |
-| Full control over realm configuration | — |
-| Clean separation between product and customer identity | — |
-| Straightforward upgrade path via Helm | — |
+| Turnkey deployment: single Helm install | Additional infrastructure component to operate |
+| Full control over realm configuration | - |
+| Clean separation between product and customer identity | - |
+| Straightforward upgrade path via Helm | - |
+
+→ **[Installation guide](./managed-keycloak.md)**
 
 ---
 
-### Strategy 2 — Customer-Owned Keycloak Instance
+### Strategy 2: Customer-Owned Keycloak Instance
 
 > **When to use:** The customer already operates a **Keycloak instance** with full admin access and wants to integrate Mia Platform into their existing identity infrastructure.
 
@@ -218,11 +220,13 @@ Since Mia Platform does not own the Keycloak lifecycle in this scenario, realm u
 | Leverages existing Keycloak investment | Requires coordination on Keycloak version upgrades |
 | Customer retains full control of their identity infra | CLI-based patching requires operational discipline |
 | No additional Keycloak instance to manage | Potential conflicts if customer modifies Mia-owned realms |
-| Easiest federation — customer realm is already co-located | Mia Platform needs service account access to the instance |
+| Easiest federation: customer realm is already co-located | Mia Platform needs service account access to the instance |
+
+→ **[Installation guide](./customer-keycloak-cli.md)**
 
 ---
 
-### Strategy 3 — Single-Realm Constraint (No Admin Access)
+### Strategy 3: Single-Realm Constraint (No Admin Access)
 
 > **When to use:** The customer has a Keycloak instance but **cannot create new realms** (e.g., shared enterprise Keycloak managed by a central IT team, limited RBAC).
 
@@ -230,7 +234,7 @@ This scenario branches into two sub-strategies:
 
 ---
 
-#### Strategy 3a — Standalone Managed Keycloak (Recommended)
+#### Strategy 3a: Standalone Managed Keycloak (Recommended)
 
 > **Approach:** Deploy Strategy 1 alongside the customer's existing Keycloak. The customer's constrained realm is used solely as an external IdP.
 
@@ -267,22 +271,24 @@ Since the customer cannot add realms to their own instance, Mia Platform deploys
 └─────────────────────────────────────────────────────────────────┘
 ```
 
-This is **functionally identical to Strategy 1** — the only difference is that the "Customer IdP" happens to be a realm on their restricted Keycloak, exposed via OIDC.
+This is **functionally identical to Strategy 1**: the only difference is that the "Customer IdP" happens to be a realm on their restricted Keycloak, exposed via OIDC.
 
 **Recommendation:** This is the preferred approach for Strategy 3 as it maintains the clean dual-realm architecture and all operational benefits of a managed instance.
 
+→ **[Installation guide](./managed-keycloak-restricted-idp.md)**
+
 ---
 
-#### Strategy 3b — In-Realm Integration (Customer-Managed)
+#### Strategy 3b: In-Realm Integration (Customer-Managed)
 
 > **Approach:** Embed Mia Platform's identity configuration directly into the customer's existing realm. **The customer fully owns and manages this integration.**
 
 When deploying a separate Keycloak is not feasible or desired, Mia Platform provides **documentation and reference configurations** for the customer to integrate the following resources into their own realm:
 
-- **Clients** — OIDC clients for each Mia Platform application.
-- **Client scopes** — Scopes and protocol mappers required by the platform.
-- **Roles** — Realm and client roles used for Mia Platform authorization.
-- **Authorization policies** — Fine-grained policies attached to Mia Platform clients.
+- **Clients**: OIDC clients for each Mia Platform application.
+- **Client scopes**: Scopes and protocol mappers required by the platform.
+- **Roles**: Realm and client roles used for Mia Platform authorization.
+- **Authorization policies**: Fine-grained policies attached to Mia Platform clients.
 
 `mia-extensions` are remapped inside the same realm.
 
@@ -338,8 +344,8 @@ When deploying a separate Keycloak is not feasible or desired, Mia Platform prov
 | No additional Keycloak instance needed | Customer bears full integration & migration burden |
 | Works within the strictest infrastructure constraints | High risk of configuration drift across upgrades |
 | Maximum flexibility for the customer | No clean separation between Mia and customer resources |
-| — | SSO behavior depends on correct customer configuration |
-| — | Troubleshooting is harder without realm isolation |
+| - | SSO behavior depends on correct customer configuration |
+| - | Troubleshooting is harder without realm isolation |
 
 > ⚠️ **Important:** Strategy 3b is a **last-resort** option. It trades operational simplicity for maximum constraint compatibility. Mia Platform **strongly recommends Strategy 3a** whenever possible.
 

@@ -38,9 +38,9 @@ keycloak-operator/
 
 Key design points:
 
-- **CRDs in `crds/`** — Helm installs them before any template is rendered, solving the chicken-and-egg problem of having both the operator deployment and the Keycloak CR in the same chart.
-- **Operator RBAC is always-on** — monitoring RBAC is not conditional; the operator always has `ServiceMonitor` permissions, so Prometheus integration works out of the box.
-- **Flat values** — all configuration is at the root level (no subchart nesting), with the exception of `postgres.*` which proxies to the optional Bitnami PostgreSQL dependency.
+- **CRDs in `crds/`**: Helm installs them before any template is rendered, solving the chicken-and-egg problem of having both the operator deployment and the Keycloak CR in the same chart.
+- **Operator RBAC is always-on**: monitoring RBAC is not conditional; the operator always has `ServiceMonitor` permissions, so Prometheus integration works out of the box.
+- **Flat values**: all configuration is at the root level (no subchart nesting), with the exception of `postgres.*` which proxies to the optional Bitnami PostgreSQL dependency.
 
 ## Prerequisites
 
@@ -51,7 +51,7 @@ Before installing, ensure the following are in place:
 3. An external PostgreSQL instance reachable from the cluster (for production). The database, user, and password should be provisioned before install.
 4. If using `vault.enabled: true` or `keystore.enabled: true`: the External Secrets Operator installed with a configured `SecretStore` or `ClusterSecretStore`.
 
-## Step 1 — Create required secrets
+## Step 1: Create required secrets
 
 Create the bootstrap admin secret in the target namespace:
 
@@ -72,7 +72,7 @@ kubectl create secret generic keycloak-db \
   --from-literal=password=<DB_PASSWORD>
 ```
 
-## Step 2 — Prepare a values file
+## Step 2: Prepare a values file
 
 Below is a minimal production values file for a two-instance deployment with an external PostgreSQL database:
 
@@ -130,7 +130,7 @@ keycloak:
 
 See the [Helm Values reference](/requirements/installation-guidelines/shared-services/authn/keycloak/helm-values/00_overview.md) for the full list of available values.
 
-## Step 3 — Install
+## Step 3: Install
 
 ```bash
 helm upgrade --install keycloak . \
@@ -141,7 +141,7 @@ helm upgrade --install keycloak . \
 
 Helm installs the CRDs first, then creates the operator `Deployment`, followed by the `Keycloak` CR. The operator reconciles the CR and provisions the Keycloak `StatefulSet`.
 
-## Step 4 — Verify
+## Step 4: Verify
 
 Check that the operator and Keycloak pods are running:
 
