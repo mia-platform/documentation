@@ -33,7 +33,7 @@ This guide walks through installing the `ai-foundry` chart to deploy the AI Foun
 | Mia Platform Catalog URL | `https://catalog.your-domain.com` |
 | Private container registry credentials | Nexus username and password |
 
-## Step 1 — Create the authtool-bff secret
+## Step 1: Create the authtool-bff secret
 
 The `authtool-bff` service requires cryptographic key material for session management. Generate and create the secret in the target namespace:
 
@@ -55,10 +55,10 @@ kubectl create secret generic authtool-bff-keys \
 ```
 
 :::info
-Alternatively, set `secrets.authtoolBffKeys.enabled: true` in your `values.yaml` and provide the values inline — the chart will create the Secret automatically. This is convenient for GitOps pipelines where secret values are injected at deploy time.
+Alternatively, set `secrets.authtoolBffKeys.enabled: true` in your `values.yaml` and provide the values inline; the chart will create the Secret automatically. This is convenient for GitOps pipelines where secret values are injected at deploy time.
 :::
 
-## Step 2 — Create the adk-be-app secret
+## Step 2: Create the adk-be-app secret
 
 The `adkBeApp` requires Google Cloud credentials and a PostgreSQL connection string:
 
@@ -74,7 +74,7 @@ kubectl create secret generic adk-be-app-keys \
 Alternatively, set `secrets.adkBeAppKeys.enabled: true` in your `values.yaml`. The `googleApplicationCredentials` field must contain the full JSON content of the service account key file (not the path).
 :::
 
-## Step 3 — Create the ai-foundry-bff secret
+## Step 3: Create the ai-foundry-bff secret
 
 The `aiFoundryBff` service requires credentials to access Tempo and PostgreSQL:
 
@@ -90,7 +90,7 @@ kubectl create secret generic ai-foundry-bff-keys \
 This secret is typically managed via [External Secrets Operator](https://external-secrets.io/) in production environments.
 :::
 
-## Step 4 — Create the image pull secret
+## Step 4: Create the image pull secret
 
 ```bash
 kubectl create secret docker-registry nexus-pull-secret \
@@ -100,7 +100,7 @@ kubectl create secret docker-registry nexus-pull-secret \
   --docker-password=<PASSWORD>
 ```
 
-## Step 5 — Prepare a values file
+## Step 5: Prepare a values file
 
 Create a `values.yaml` with the minimum required configuration:
 
@@ -162,7 +162,7 @@ global:
 
 See the [Helm Values reference](/requirements/installation-guidelines/ai-foundry/helm-values/00_overview.md) for the full list of available options.
 
-## Step 6 — Add the Helm repository and install
+## Step 6: Add the Helm repository and install
 
 ```bash
 helm repo add mia-platform \
@@ -180,7 +180,7 @@ helm install ai-foundry mia-platform/ai-foundry \
   --timeout 5m
 ```
 
-## Step 7 — Verify
+## Step 7: Verify
 
 ```bash
 kubectl get pods -n ai-foundry

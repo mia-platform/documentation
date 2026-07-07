@@ -22,7 +22,7 @@ This guide walks through installing the `services` chart to deploy the Mia Platf
 | OIDC client ID for `authtool-bff` | `homepage-bff` |
 | Private container registry credentials | Nexus username and password |
 
-## Step 1 — Create the authtool-bff secret
+## Step 1: Create the authtool-bff secret
 
 The `authtool-bff` service requires three cryptographic secrets. Generate and create them in the target namespace:
 
@@ -45,12 +45,12 @@ kubectl create secret generic authtool-bff-keys \
 ```
 
 :::info
-Alternatively, set `secrets.authtoolBffKeys.enabled: true` in your `values.yaml` and provide the values inline — the chart will create the Secret automatically. This is convenient for GitOps pipelines where secret values are injected at deploy time.
+Alternatively, set `secrets.authtoolBffKeys.enabled: true` in your `values.yaml` and provide the values inline; the chart will create the Secret automatically. This is convenient for GitOps pipelines where secret values are injected at deploy time.
 :::
 
 If using `authtoolBff.tokenAuthMethod: client_secret_post` or `client_secret_basic` instead of the default `private_key_jwt`, also include the `clientSecret` key with the OIDC client secret from Keycloak.
 
-## Step 2 — Create the image pull secret
+## Step 2: Create the image pull secret
 
 ```bash
 kubectl create secret docker-registry nexus-pull-secret \
@@ -60,7 +60,7 @@ kubectl create secret docker-registry nexus-pull-secret \
   --docker-password=<PASSWORD>
 ```
 
-## Step 3 — Prepare a values file
+## Step 3: Prepare a values file
 
 Create a `values.yaml` with the minimum required configuration:
 
@@ -99,7 +99,7 @@ global:
 
 See the [Helm Values reference](/requirements/installation-guidelines/shared-services/services/helm-values/00_overview.md) for the full list of available options.
 
-## Step 4 — Add the Helm repository and install
+## Step 4: Add the Helm repository and install
 
 ```bash
 helm repo add mia-platform \
@@ -117,7 +117,7 @@ helm install services mia-platform/services \
   --timeout 5m
 ```
 
-## Step 5 — Verify
+## Step 5: Verify
 
 Check that all pods are running:
 
@@ -135,7 +135,7 @@ cache-xxxx                         1/1     Running   0          1m
 homepage-website-xxxx              1/1     Running   0          1m
 ```
 
-Navigate to `https://home.your-domain.com` — you should be redirected to the Keycloak login page and, after authentication, see the Mia Platform homepage.
+Navigate to `https://home.your-domain.com`; you should be redirected to the Keycloak login page and, after authentication, see the Mia Platform homepage.
 
 ## Using the services-deployment wrapper
 

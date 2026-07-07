@@ -32,7 +32,7 @@ Keycloak lives in its own `keycloak` namespace, independent of the product tier 
 {tier-prefix}.{product}.{cluster-domain}
 ```
 
-The **production** tier has no prefix — the bare product subdomain is production (e.g. `catalog.cloud.example.com`). All other tiers use a short prefix (e.g. `dev.catalog.gcp.example.com`).
+The **production** tier has no prefix; the bare product subdomain is production (e.g. `catalog.cloud.example.com`). All other tiers use a short prefix (e.g. `dev.catalog.gcp.example.com`).
 
 ### Tier glossary
 
@@ -41,7 +41,7 @@ The **production** tier has no prefix — the bare product subdomain is producti
 | `production` | Live production traffic. No prefix in DNS. |
 | `demo` | Persistent demo environment, production-like. |
 | `preview` | Next-version preview / canary slot. |
-| `lts` | Long-term support — pinned to a stable release. |
+| `lts` | Long-term support, pinned to a stable release. |
 | `preproduction` | Staging environment mirroring production. |
 | `development` | Active development / integration testing. |
 | `experimental` | Feature branches and experimental builds. |
@@ -50,7 +50,7 @@ The **production** tier has no prefix — the bare product subdomain is producti
 
 ## Reference cluster topology (Mia Platform SaaS)
 
-### Cluster `tools` — Auth tooling (production)
+### Cluster `tools`: Auth tooling (production)
 
 This cluster runs only Keycloak. It is isolated from product clusters to limit the blast radius of any Keycloak change and to allow independent operator/Keycloak upgrades.
 
@@ -62,7 +62,7 @@ This cluster runs only Keycloak. It is isolated from product clusters to limit t
 
 ---
 
-### Cluster `console` — Products (production tiers)
+### Cluster `console`: Products (production tiers)
 
 Hosts production, demo, and preview environments for all business products.
 
@@ -100,7 +100,7 @@ Hosts production, demo, and preview environments for all business products.
 
 ---
 
-### Cluster `console-noprod` — Products (non-production tiers)
+### Cluster `console-noprod`: Products (non-production tiers)
 
 Hosts LTS, preproduction, development, and experimental environments. Also runs the non-production Keycloak instance.
 
@@ -153,4 +153,4 @@ Hosts LTS, preproduction, development, and experimental environments. Also runs 
 - **Keycloak cluster isolation** is recommended for production but not required. Keycloak can run in a dedicated namespace on the same cluster as the products if cluster-per-tier is not feasible.
 - **Realm-to-tier mapping:** In a multi-tier setup, each tier environment typically has its own set of Keycloak realms. The non-production Keycloak instance (`keycloak-dev.*`) serves all non-production tiers.
 - **DNS naming** is flexible. What matters is that each product deployment references the correct `urls.keycloak` in its Realm Management values file, and the correct `configurations.keycloak.host` in its Helm values.
-- **Network policies** should restrict product namespaces from talking directly to the production Keycloak, and vice versa — use the Keycloak instance appropriate for each environment tier.
+- **Network policies** should restrict product namespaces from talking directly to the production Keycloak, and vice versa; use the Keycloak instance appropriate for each environment tier.

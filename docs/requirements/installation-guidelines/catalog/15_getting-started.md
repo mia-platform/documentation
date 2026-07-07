@@ -13,7 +13,7 @@ This guide walks through installing the `catalog` chart to deploy the Mia Platfo
 - [Helm](https://helm.sh/docs/helm/helm_install/) v3
 - A running **Keycloak** instance with a configured realm and a registered OIDC client for `authtool-bff`. See the [Keycloak installation guide](/requirements/installation-guidelines/shared-services/authn/keycloak/15_getting-started.md).
 - An external **PostgreSQL** database (v14+) for `catalogEngine`.
-- A **Kafka** cluster — either an external broker or the embedded Strimzi deployment managed by the chart.
+- A **Kafka** cluster, either an external broker or the embedded Strimzi deployment managed by the chart.
 
 ## Required information
 
@@ -27,7 +27,7 @@ This guide walks through installing the `catalog` chart to deploy the Mia Platfo
 | Kafka bootstrap servers (if external) | `kafka.your-domain.com:9092` |
 | Private container registry credentials | Nexus username and password |
 
-## Step 1 — Create the authtool-bff secret
+## Step 1: Create the authtool-bff secret
 
 The `authtool-bff` service requires cryptographic key material for session management:
 
@@ -49,10 +49,10 @@ kubectl create secret generic authtool-bff-keys \
 ```
 
 :::info
-Alternatively, set `secrets.authtoolBffKeys.enabled: true` in your `values.yaml` and provide the values inline — the chart will create the Secret automatically.
+Alternatively, set `secrets.authtoolBffKeys.enabled: true` in your `values.yaml` and provide the values inline; the chart will create the Secret automatically.
 :::
 
-## Step 2 — Create the catalog-engine secret
+## Step 2: Create the catalog-engine secret
 
 The `catalogEngine` requires a PostgreSQL connection string:
 
@@ -66,7 +66,7 @@ kubectl create secret generic catalog-engine-keys \
 Alternatively, set `secrets.catalogEngineKeys.enabled: true` and provide `secrets.catalogEngineKeys.postgresConnectionString` inline.
 :::
 
-## Step 3 — Create the Kafka secret (external Kafka only)
+## Step 3: Create the Kafka secret (external Kafka only)
 
 Skip this step if you are using the **embedded Kafka** (`kafka.enabled: true`, `kafka.operator.enabled: true`).
 
@@ -84,7 +84,7 @@ kubectl create secret generic kafka-keys \
 Set `secrets.kafkaKeys.enabled: true` to have the chart create this Secret inline.
 :::
 
-## Step 4 — Create the ADK secret (optional)
+## Step 4: Create the ADK secret (optional)
 
 The `adkBeApp` component requires GCP credentials. Skip this step if you set `adkBeApp.enabled: false`.
 
@@ -100,7 +100,7 @@ kubectl create secret generic adk-be-app-keys \
 Set `secrets.adkBeAppKeys.enabled: true` to have the chart create this Secret inline. The `googleApplicationCredentials` field must contain the full JSON content of the service account key file.
 :::
 
-## Step 5 — Create the image pull secret
+## Step 5: Create the image pull secret
 
 ```bash
 kubectl create secret docker-registry nexus-pull-secret \
@@ -110,7 +110,7 @@ kubectl create secret docker-registry nexus-pull-secret \
   --docker-password=<PASSWORD>
 ```
 
-## Step 6 — Prepare a values file
+## Step 6: Prepare a values file
 
 Create a `values.yaml` with the minimum required configuration:
 
@@ -178,7 +178,7 @@ adkBeApp:
 
 See the [Helm Values reference](/requirements/installation-guidelines/catalog/helm-values/00_overview.md) for the full list of available options.
 
-## Step 7 — Add the Helm repository and install
+## Step 7: Add the Helm repository and install
 
 ```bash
 helm repo add mia-platform \
@@ -200,7 +200,7 @@ helm install catalog mia-platform/catalog \
 The `doclingService` pulls a 4.4 GB image at first install. If the timeout is insufficient, increase it or pre-pull the image on the nodes.
 :::
 
-## Step 8 — Verify
+## Step 8: Verify
 
 ```bash
 kubectl get pods -n catalog

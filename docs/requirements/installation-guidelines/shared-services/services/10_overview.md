@@ -3,7 +3,7 @@ title: Services Overview
 sidebar_label: Overview
 ---
 
-# Services — Homepage & RBAC Layer
+# Services: Homepage & RBAC Layer
 
 The `services` Helm chart deploys the core infrastructure that powers the **Mia Platform homepage** and the **authentication and authorization layer** that protects it.
 
@@ -42,10 +42,10 @@ The Envoy gateway evaluates every incoming request against the `accessControl` e
 
 The `services` chart connects to an **external Keycloak instance**. You need to provide:
 
-1. **The Keycloak realm issuer URL** via `authorizationServer.issuer` — used by Envoy and `authtool-bff` to discover OIDC endpoints and validate tokens.
+1. **The Keycloak realm issuer URL** via `authorizationServer.issuer`, used by Envoy and `authtool-bff` to discover OIDC endpoints and validate tokens.
 2. **An OIDC client** in Keycloak for `authtool-bff`, configured with:
    - Redirect URIs pointing to `<url>/callback` (and `<url>/silent-callback` for silent renew).
-   - The token endpoint authentication method matching `authtoolBff.tokenAuthMethod` (`private_key_jwt` by default — the client's JWKS URI must be registered in Keycloak).
+   - The token endpoint authentication method matching `authtoolBff.tokenAuthMethod` (`private_key_jwt` by default; the client's JWKS URI must be registered in Keycloak).
 
 Refer to the [Keycloak installation guide](/requirements/installation-guidelines/shared-services/authn/keycloak/15_getting-started.md) and the [Realm Management guide](/requirements/installation-guidelines/shared-services/authn/keycloak-realm-management/15_getting-started.md) to set up your Keycloak instance and configure the realm.
 

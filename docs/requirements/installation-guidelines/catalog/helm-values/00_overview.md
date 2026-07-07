@@ -3,7 +3,7 @@ title: Helm Values Overview
 sidebar_label: Overview
 ---
 
-# Helm Values — catalog chart
+# Helm Values: catalog chart
 
 This page describes all configurable values for the `catalog` chart. See `values.yaml` for defaults.
 
@@ -265,7 +265,7 @@ Aggregates OpenAPI specs from platform projects into a unified portal. Disabled 
 | `itemsCompressor.config.mongoConfig.cache.collectionName` | string | `"item-compressor-cache"` | MongoDB collection for the cache. |
 
 :::info
-The MongoDB dependency in `itemsCompressor` is temporary. A migration to PostgreSQL is in progress — the `secrets.mongoKeys` block and this configuration will be removed in a future chart version.
+The MongoDB dependency in `itemsCompressor` is temporary. A migration to PostgreSQL is in progress; the `secrets.mongoKeys` block and this configuration will be removed in a future chart version.
 :::
 
 ### itemsConsumer

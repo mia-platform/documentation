@@ -5,14 +5,14 @@ sidebar_label: Shared services & tools
 
 # Shared services & tools
 
-This section covers the foundational platform-layer components that must be deployed before any Mia Platform product (Console, Catalog, AI Foundry). These components are not standalone business products — they form the shared infrastructure that authenticates users, enforces authorization, and exposes the platform entry point.
+This section covers the foundational platform-layer components that must be deployed before any Mia Platform product (Console, Catalog, AI Foundry). These components are not standalone business products; they form the shared infrastructure that authenticates users, enforces authorization, and exposes the platform entry point.
 
 ## Auth
 
 The Auth section covers the identity and OIDC layer of the platform:
 
-- **Keycloak** — deployed via the `keycloak-operator` Helm chart. It acts as the OIDC identity provider for all platform products and optionally federates with external identity providers.
-- **Realm Management** — the `keycloak-dev-realms` chart that manages Mia Platform realm configuration declaratively via `keycloak-config-cli`.
+- **Keycloak**: deployed via the `keycloak-operator` Helm chart. It acts as an *Identity Broker* for the platform, supporting *OpenID Connect* and federating with external identity providers to authenticate platform users.
+- **Realm Management**: the `keycloak-dev-realms` chart that manages Mia Platform realm configuration declaratively via `keycloak-config-cli`.
 
 Auth must be fully operational before any other component is installed.
 
@@ -22,9 +22,9 @@ Auth must be fully operational before any other component is installed.
 
 The Homepage & RBAC section covers the `services` Helm chart, which deploys the shared gateway and authorization layer:
 
-- **Envoy API gateway** — routes all inbound traffic and delegates per-request authorization to the ext-authz service.
-- **Access Control** (OPA-based ext-authz) — enforces RBAC policies on every request. Console and Catalog both delegate authorization to this service.
-- **authtool-bff** — the OIDC Backend-for-Frontend that manages browser sessions and PKCE flows with Keycloak.
+- **Envoy API gateway**: routes all inbound traffic and delegates per-request authorization to the ext-authz service.
+- **Access Control** (OPA-based ext-authz): enforces RBAC policies on every request. Console and Catalog both delegate authorization to this service.
+- **authtool-bff**: the OIDC Backend-for-Frontend that manages browser sessions and PKCE flows with Keycloak.
 - **Mia Platform homepage** frontend.
 
 This layer must be running before installing Console or Catalog, both of which depend on `authtool-bff` for session management and on `access-control` for request authorization.

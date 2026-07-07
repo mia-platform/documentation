@@ -15,12 +15,12 @@ The following tools must be available on the operator's workstation before insta
 
 | Tool | Version | Notes |
 |---|---|---|
-| [kubectl](https://kubernetes.io/docs/tasks/tools/) | — | Configured to access the target cluster. |
+| [kubectl](https://kubernetes.io/docs/tasks/tools/) | | Configured to access the target cluster. |
 | [Helm](https://helm.sh/docs/intro/install/) | v3 | |
-| [helm-secrets](https://github.com/jkroepke/helm-secrets) *(optional)* | — | Required only when using SOPS-encrypted values files, as in the `*-deployment` wrapper repositories. |
+| [helm-secrets](https://github.com/jkroepke/helm-secrets) *(optional)* | | Required only when using SOPS-encrypted values files. |
 | Kubernetes cluster | 1.32 – 1.34 | |
-| [Traefik](https://doc.traefik.io/traefik/) | — | Required for `IngressRoute` resources. Other ingress controllers can be used but require custom configuration. |
-| Container registry access | — | Credentials for `nexus.mia-platform.eu`, provided by Mia Platform. |
+| [Traefik](https://doc.traefik.io/traefik/) | | Required for `IngressRoute` resources. Other ingress controllers can be used but require custom configuration. |
+| Container registry access | | Credentials for `nexus.mia-platform.eu`, provided by Mia Platform. |
 
 ## Installation map
 
@@ -54,22 +54,22 @@ Once the shared services layer is running, **Console** and **Catalog** can be in
 ```
 ## Component index
 
-:::tip Before you start — Auth architecture
+:::tip Before you start: Auth architecture
 If this is your first self-hosted Mia Platform installation, read the [Authentication Architecture overview](/requirements/installation-guidelines/shared-services/authn/10_overview.md) and the [Federation Strategies guide](/requirements/installation-guidelines/shared-services/authn/federation-strategies/index.md) before touching any product chart. These decisions (realm layout, IdP federation model) propagate to every product's `configurations.keycloak` block.
 :::
 
 ### Shared services & tools
 
-| Component | Helm chart | Deployment wrapper | Documentation |
-|---|---|---|---|
-| **Auth — Keycloak** | `keycloak-operator` | — | [Overview](/requirements/installation-guidelines/shared-services/authn/keycloak/10_overview.md) · [Getting Started](/requirements/installation-guidelines/shared-services/authn/keycloak/15_getting-started.md) |
-| **Auth — Realm Management** | `keycloak-dev-realms` | — | [Overview](/requirements/installation-guidelines/shared-services/authn/keycloak-realm-management/10_overview.md) · [Getting Started](/requirements/installation-guidelines/shared-services/authn/keycloak-realm-management/15_getting-started.md) |
-| **Homepage & RBAC** | `services` | `services-deployment` | [Overview](/requirements/installation-guidelines/shared-services/services/10_overview.md) · [Getting Started](/requirements/installation-guidelines/shared-services/services/15_getting-started.md) |
+| Component | Helm chart | Documentation |
+|---|---|---|
+| **Auth: Keycloak** | `keycloak-operator` | [Overview](/requirements/installation-guidelines/shared-services/authn/keycloak/10_overview.md) · [Getting Started](/requirements/installation-guidelines/shared-services/authn/keycloak/15_getting-started.md) |
+| **Auth: Realm Management** | `keycloak-dev-realms` | [Overview](/requirements/installation-guidelines/shared-services/authn/keycloak-realm-management/10_overview.md) · [Getting Started](/requirements/installation-guidelines/shared-services/authn/keycloak-realm-management/15_getting-started.md) |
+| **Homepage & RBAC** | `services` | [Overview](/requirements/installation-guidelines/shared-services/services/10_overview.md) · [Getting Started](/requirements/installation-guidelines/shared-services/services/15_getting-started.md) |
 
 ### Products
 
-| Product | Helm chart | Deployment wrapper | Documentation |
-|---|---|---|---|
-| **Console** | `console` | `console-deployment` | [Overview](/requirements/installation-guidelines/console/infrastructure_overview.md) · [Getting Started](/requirements/installation-guidelines/console/self-hosted/15_getting-started.md) |
-| **Catalog** | `catalog` | `catalog-deployment` | [Overview](/requirements/installation-guidelines/catalog/10_overview.md) · [Getting Started](/requirements/installation-guidelines/catalog/15_getting-started.md) |
-| **AI Foundry** | `ai-foundry` | `ai-foundry-deployment` | [Overview](/requirements/installation-guidelines/ai-foundry/10_overview.md) · [Getting Started](/requirements/installation-guidelines/ai-foundry/15_getting-started.md) |
+| Product | Helm chart | Documentation |
+|---|---|---|
+| **Console** | `console` | [Overview](/requirements/installation-guidelines/console/infrastructure_overview.md) · [Getting Started](/requirements/installation-guidelines/console/self-hosted/15_getting-started.md) |
+| **Catalog** | `catalog` | [Overview](/requirements/installation-guidelines/catalog/10_overview.md) · [Getting Started](/requirements/installation-guidelines/catalog/15_getting-started.md) |
+| **AI Foundry** | `ai-foundry` | [Overview](/requirements/installation-guidelines/ai-foundry/10_overview.md) · [Getting Started](/requirements/installation-guidelines/ai-foundry/15_getting-started.md) |

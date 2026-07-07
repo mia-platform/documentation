@@ -3,7 +3,7 @@ title: Helm Values Overview
 sidebar_label: Overview
 ---
 
-# Helm Values — ai-foundry chart
+# Helm Values: ai-foundry chart
 
 This page describes all configurable values for the `ai-foundry` chart. See `values.yaml` for defaults.
 
@@ -69,7 +69,7 @@ tokenEncKey=$(openssl rand -hex 32)
 | Key | Type | Default | Description |
 |---|---|---|---|
 | `secrets.adkBeAppKeys.enabled` | boolean | `false` | When `true`, the chart creates a Secret named `adk-be-app-keys` from the values below. |
-| `secrets.adkBeAppKeys.googleApplicationCredentials` | string | `""` | Full JSON content of the GCP service account key file (not base64 encoded — the chart handles encoding). |
+| `secrets.adkBeAppKeys.googleApplicationCredentials` | string | `""` | Full JSON content of the GCP service account key file (not base64 encoded; the chart handles encoding). |
 | `secrets.adkBeAppKeys.postgresConnectionString` | string | `""` | PostgreSQL connection string used by the ADK backend (e.g. `postgresql://user:pass@host:5432/dbname`). |
 | `secrets.adkBeAppKeys.gcpServiceAccount` | string | `""` | GCP service account email, used for Workload Identity Federation when running on GKE. |
 | `secrets.adkBeAppKeys.otelExporterOtlpHeaders` | string | `""` | OTLP authentication headers for the ADK backend (e.g. `Authorization=Bearer <token>`). |
@@ -143,17 +143,17 @@ The AI Foundry frontend application. The `config.links` section configures all c
 | Key | Type | Default | Description |
 |---|---|---|---|
 | `aiFoundryWebsite.config.enabled` | boolean | `true` | Enable the runtime configuration injection. |
-| `aiFoundryWebsite.config.links.catalogHref` | string | — | URL of the Mia Platform Catalog website. |
-| `aiFoundryWebsite.config.links.miaFlowHref` | string | — | URL of the Mia Flow application. |
-| `aiFoundryWebsite.config.links.consoleHref` | string | — | URL of the Mia Platform Console. |
-| `aiFoundryWebsite.config.links.dataFabricHref` | string | — | URL of the Data Fabric control plane. |
-| `aiFoundryWebsite.config.links.homepageHref` | string | — | URL of the Mia Platform homepage (deployed by the `services` chart). |
-| `aiFoundryWebsite.config.links.p4samdHref` | string | — | URL of the p4samd platform. |
-| `aiFoundryWebsite.config.links.claudeCodeHref` | string | — | URL of Claude Code. |
-| `aiFoundryWebsite.config.links.githubCopilotHref` | string | — | URL of GitHub Copilot. |
-| `aiFoundryWebsite.config.links.miaDocsHref` | string | — | URL of the Mia Platform documentation. |
-| `aiFoundryWebsite.config.links.vscodeDocsHref` | string | — | URL of the VS Code agent customization docs. |
-| `aiFoundryWebsite.config.links.kiroDocsHref` | string | — | URL of the Kiro IDE docs. |
+| `aiFoundryWebsite.config.links.catalogHref` | string |  | URL of the Mia Platform Catalog website. |
+| `aiFoundryWebsite.config.links.miaFlowHref` | string |  | URL of the Mia Flow application. |
+| `aiFoundryWebsite.config.links.consoleHref` | string |  | URL of the Mia Platform Console. |
+| `aiFoundryWebsite.config.links.dataFabricHref` | string |  | URL of the Data Fabric control plane. |
+| `aiFoundryWebsite.config.links.homepageHref` | string |  | URL of the Mia Platform homepage (deployed by the `services` chart). |
+| `aiFoundryWebsite.config.links.p4samdHref` | string |  | URL of the p4samd platform. |
+| `aiFoundryWebsite.config.links.claudeCodeHref` | string |  | URL of Claude Code. |
+| `aiFoundryWebsite.config.links.githubCopilotHref` | string |  | URL of GitHub Copilot. |
+| `aiFoundryWebsite.config.links.miaDocsHref` | string |  | URL of the Mia Platform documentation. |
+| `aiFoundryWebsite.config.links.vscodeDocsHref` | string |  | URL of the VS Code agent customization docs. |
+| `aiFoundryWebsite.config.links.kiroDocsHref` | string |  | URL of the Kiro IDE docs. |
 | `aiFoundryWebsite.config.otelServices` | array | `["copilot-chat","claude-code","mia-ai-foundry","mia-flow"]` | List of service names displayed in the OTEL traces view. |
 | `aiFoundryWebsite.env.BASE_PATH` | string | `"/website/"` | Base path at which the website is served. |
 

@@ -87,7 +87,7 @@ The ownership model changes according to the selected distribution type.
 
 `Shared responsibility` indicates areas where platform-level integration is provided by Mia-Platform, while infrastructure provisioning and/or day-2 operations remain in customer scope.
 
-The Mia Platform product suite in scope comprises three products — **Console**, **Catalog**, and **AI Foundry** — backed by a shared services layer. The shared services layer includes the **Auth tooling** (Keycloak and Realm Management) and the **Homepage & RBAC** component (platform gateway, session management, and authorization). Both are platform-level prerequisites provisioned by Mia Platform; they enable the suite but are not standalone business products.
+The Mia Platform product suite in scope comprises three products (**Console**, **Catalog**, and **AI Foundry**) backed by a shared services layer. The shared services layer includes the **Auth tooling** (Keycloak and Realm Management) and the **Homepage & RBAC** component (platform gateway, session management, and authorization). Both are platform-level prerequisites provisioned by Mia Platform; they enable the suite but are not standalone business products.
 
 ## Cross-Product Dependencies
 
@@ -97,8 +97,8 @@ The **shared services layer** must be fully operational before any product chart
 
 Among the products, the installation order is:
 
-1. **Console** and **Catalog** — can be installed in parallel once the shared services layer is running.
-2. **AI Foundry** — integrates with Catalog (shared agent backend and navigation links); Catalog must be in place first.
+1. **Console** and **Catalog**: can be installed in parallel once the shared services layer is running.
+2. **AI Foundry**: integrates with Catalog (shared agent backend and navigation links); Catalog must be in place first.
 
 For the detailed installation map and product entry points, see the [Installation Guidelines](/requirements/installation-guidelines/00_overview.md).
 

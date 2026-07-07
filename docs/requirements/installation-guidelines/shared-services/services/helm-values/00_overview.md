@@ -3,7 +3,7 @@ title: Helm Values Overview
 sidebar_label: Overview
 ---
 
-# Helm Values — services chart
+# Helm Values: services chart
 
 This page describes all configurable values for the `services` chart. See `values.yaml` for defaults.
 
