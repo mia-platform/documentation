@@ -6,7 +6,7 @@ sidebar_label: Google Cloud
 
 # Google Cloud Connector
 
-The Google Cloud connector ingests cloud resources from a Google Cloud Platform organization, folder, or project into the Context Catalog. It runs through the [`ibdm`](/products/context-catalog/connectors/10_overview.md) binary in one of two modes:
+The Google Cloud connector ingests cloud resources from a Google Cloud Platform organization, folder, or project into the Catalog. It runs through the [`ibdm`](/products/catalog/connectors/10_overview.md) binary in one of two modes:
 
 - **Sync** — pull-based: enumerates resources via the [Cloud Asset](https://cloud.google.com/asset-inventory/docs/overview) API and exits. Only resource metadata is retrieved (the `RESOURCE` content type) — IAM policies, org policies, and other Cloud Asset content types are not synced.
 - **Run** — push-based: subscribes to a Pub/Sub subscription fed by a [Cloud Asset Feed](https://cloud.google.com/asset-inventory/docs/monitoring-asset-changes). On delete events, the emitted item carries the last-known (`priorAsset`) resource snapshot, since there is no current asset to report.
@@ -33,5 +33,5 @@ The source authenticates through [Application Default Credentials (ADC)](https:/
 
 ## See also
 
-- [Connectors Overview](/products/context-catalog/connectors/10_overview.md)
-- [Azure Connector](/products/context-catalog/connectors/azure.md) — sibling cloud source.
+- [Connectors Overview](/products/catalog/connectors/10_overview.md)
+- [Azure Connector](/products/catalog/connectors/azure.md) — sibling cloud source.

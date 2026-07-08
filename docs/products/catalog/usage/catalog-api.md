@@ -6,14 +6,14 @@ sidebar_label: Catalog API
 
 # Catalog API
 
-The Catalog API lets you query and manipulate items in the Context Catalog. It is RESTful: clients create, update, delete, and read objects via standard HTTP verbs, and the API preferentially accepts and returns JSON. Every payload has a schema identified by the `kind` and `apiVersion` fields of the object.
+The Catalog API lets you query and manipulate items in the Catalog. It is RESTful: clients create, update, delete, and read objects via standard HTTP verbs, and the API preferentially accepts and returns JSON. Every payload has a schema identified by the `kind` and `apiVersion` fields of the object.
 
 To support evolution and extension, the Catalog implements API groups and multiple API versions. This information is encoded both in the REST path (`/{GROUP}/{VERSION}/*`, e.g. `/mia-platform.eu/v1/*`) and in the `apiVersion` field of serialized objects.
 
 :::tip
 You can view and interact with the API of your Catalog with the Mia-Platform API Portal. The API Portal for your Catalog installation is exposed under `<your-catalog-host>/documentations/api-portal/`.
 
-Otherwise, you can download the OpenAPI 3.1 specification in JSON format <a download target="_blank" href="/docs_files_to_download/context-catalog/context-catalog.openapi.json">here</a>.
+Otherwise, you can download the OpenAPI 3.1 specification in JSON format <a download target="_blank" href="/docs_files_to_download/catalog/catalog.openapi.json">here</a>.
 :::
 
 ## Scoping headers
@@ -22,7 +22,7 @@ Every request to the Catalog API is scoped by two required headers:
 
 | Header (default name) | Meaning |
 | :--------------------- | :------ |
-| `x-mia-org`     | Identifier of the [organization](/products/context-catalog/basic-concepts/10_items.md#organizations) the request operates in. |
+| `x-mia-org`     | Identifier of the [organization](/products/catalog/basic-concepts/10_items.md#organizations) the request operates in. |
 | `x-mia-tenant`   | Identifier of the tenant — the broader Mia-Platform Console-level boundary the organization lives in. |
 
 A request missing either header is rejected with `400 Bad Request`. The header names above are the defaults; a Catalog installation can configure different header names.
@@ -31,7 +31,7 @@ In a standard Mia-Platform deployment you will rarely set these yourself: the pl
 
 ## MCP server
 
-In addition to the REST API, the Context Catalog exposes an **MCP (Model Context Protocol) server**, allowing AI agents and MCP-compatible clients to interact with the catalog through a standardized protocol. This enables natural-language exploration of catalog items, programmatic discovery of resources, and integration into agentic workflows without writing custom API clients.
+In addition to the REST API, the Catalog exposes an **MCP (Model Context Protocol) server**, allowing AI agents and MCP-compatible clients to interact with the catalog through a standardized protocol. This enables natural-language exploration of catalog items, programmatic discovery of resources, and integration into agentic workflows without writing custom API clients.
 
 The codebase of the Catalog MCP is [publicly available on GitHub](https://github.com/mia-platform/catalog-mcp-server). The MCP for your Catalog installation is exposed under `<your-catalog-host>/mcp`.
 
@@ -53,7 +53,7 @@ Item URIs generally take the form:
 
 ## Item Type Definitions
 
-[Item Type Definitions (ITDs)](/products/context-catalog/basic-concepts/20_item-types.md) are themselves catalog objects, but they are not exposed under `/items/`. They live at a dedicated endpoint, scoped to the core API group:
+[Item Type Definitions (ITDs)](/products/catalog/basic-concepts/20_item-types.md) are themselves catalog objects, but they are not exposed under `/items/`. They live at a dedicated endpoint, scoped to the core API group:
 
 ```text
 /mia-platform.eu/v1alpha1/item-type-definitions/{name}
@@ -167,7 +167,7 @@ Selectable fields must hold primitive values or homogeneous arrays of primitives
 
 ### `rawq`
 
-For complex queries (disjunctions, regex, relationship navigation), `rawq` accepts a full query expressed in the Catalog [Query Language](/products/context-catalog/basic-concepts/70_query-language.md), sent as a URL-safe base64-encoded JSON object. The decoded payload must not exceed roughly 4 KiB. See the dedicated page for the grammar and examples.
+For complex queries (disjunctions, regex, relationship navigation), `rawq` accepts a full query expressed in the Catalog [Query Language](/products/catalog/basic-concepts/70_query-language.md), sent as a URL-safe base64-encoded JSON object. The decoded payload must not exceed roughly 4 KiB. See the dedicated page for the grammar and examples.
 
 ## Sorting
 

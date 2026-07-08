@@ -60,31 +60,31 @@
     }
   },
   {
-    "title": "Context Catalog",
-    "icon": "context-catalog",
+    "title": "Catalog",
+    "icon": "catalog",
     "defaultOpen": false,
     "type": "roadmap",
     "items": {
       "newFeatures": [
          {
           "title": "Items Versioning",
-          "description": ["Support for versioning of Context Catalog items, allowing users to track changes over time."],
-          "tags": ["Context Catalog"]
+          "description": ["Support for versioning of Catalog items, allowing users to track changes over time."],
+          "tags": ["Catalog"]
         },
         {
           "title": "Items Lifecycle",
-          "description": ["Manage the full lifecycle of Context Catalog items — from creation to deprecation — with defined states and transitions that ensure governance and traceability across the organization."],
-          "tags": ["Context Catalog"]
+          "description": ["Manage the full lifecycle of Catalog items — from creation to deprecation — with defined states and transitions that ensure governance and traceability across the organization."],
+          "tags": ["Catalog"]
         },
         {
           "title": "Application management",
-          "description": ["Centralized management of applications within the Context Catalog, enabling teams to register, configure, and govern application assets in a unified catalog experience."],
-          "tags": ["Context Catalog"]
+          "description": ["Centralized management of applications within the Catalog, enabling teams to register, configure, and govern application assets in a unified catalog experience."],
+          "tags": ["Catalog"]
         },
         {
           "title": "New Connectors",
-          "description": ["Expanding the Context Catalog with new out-of-the-box connectors for AWS, Kubernetes, and Jenkins, making it easier to integrate and govern assets from the most widely used cloud and DevOps platforms."],
-          "tags": ["Context Catalog"]
+          "description": ["Expanding the Catalog with new out-of-the-box connectors for AWS, Kubernetes, and Jenkins, making it easier to integrate and govern assets from the most widely used cloud and DevOps platforms."],
+          "tags": ["Catalog"]
         }
       ]
     }
@@ -102,8 +102,8 @@
           "tags": ["Data Catalog"]
         },
         {
-          "title": "Integration of Data Catalog in Context Catalog",
-          "description": ["Seamless integration between Data Catalog and Context Catalog, enabling users to discover and govern data assets directly within the unified Context Catalog experience."],
+          "title": "Integration of Data Catalog in Catalog",
+          "description": ["Seamless integration between Data Catalog and Catalog, enabling users to discover and govern data assets directly within the unified Catalog experience."],
           "tags": ["Data Catalog"]
         }
       ]

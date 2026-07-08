@@ -13,7 +13,7 @@ import Changelog from '@site/src/components/Changelog';
 *May 26th, 2026*
 
 Mia-Platform v15 expands the platform with **three brand-new components**:
-- **Context Catalog**, the single place to record, classify, and govern any entity that exists in your organization, with a built-in compliance layer and a growing set of connectors
+- **Catalog**, the single place to record, classify, and govern any entity that exists in your organization, with a built-in compliance layer and a growing set of connectors
 - **Flow**, a visual workflow orchestrator to design, execute, and monitor end-to-end processes across services, data pipelines, and human-in-the-loop steps
 - **AI Foundry**, the new home for building, deploying, and governing AI-powered experiences, with agents, models, prompts, tools, skills, playbooks, and a live AI Playground.
 

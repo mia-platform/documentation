@@ -12,23 +12,23 @@ Large enterprises are integrating AI as a structural component of their architec
 
 While modern AI models are highly capable, deploying them within an enterprise architecture introduces severe operational friction. Without **comprehensive governance** and a **clear mapping of the organization’s assets**, AI deployments inevitably produce unreliable, disconnected outputs. This fragments operational control, reiterates technical debt, blocks validation pipelines, and compromises compliance, ultimately hampering scaling and standardization.
 
-**Mia-Platform** is the **AI-Native Developer Platform** engineered to eliminate this friction and enable **fully governed AI adoption**. By seamlessly orchestrating data, infrastructure, operations and services, Mia-Platform transitions AI from an isolated utility into an active engine of co-creation. This entire system is anchored in a comprehensive digital twin of your enterprise, the **Context Catalog**, which provides the foundational knowledge for governed AI execution.
+**Mia-Platform** is the **AI-Native Developer Platform** engineered to eliminate this friction and enable **fully governed AI adoption**. By seamlessly orchestrating data, infrastructure, operations and services, Mia-Platform transitions AI from an isolated utility into an active engine of co-creation. This entire system is anchored in a comprehensive digital twin of your enterprise, the **Catalog**, which provides the foundational knowledge for governed AI execution.
 
-### The Core Pillars: Context Catalog and AI Foundry
+### The Core Pillars: Catalog and AI Foundry
 
-The entire Mia-Platform ecosystem is built upon two foundational pillars that work symbiotically to turn fragmented, shadow AI into a secure, value-generating asset: the [**Context Catalog**](/products/context-catalog/overview.md) and the [**AI Foundry**](/products/ai-foundry/overview.md).
+The entire Mia-Platform ecosystem is built upon two foundational pillars that work symbiotically to turn fragmented, shadow AI into a secure, value-generating asset: the [**Catalog**](/products/catalog/overview.md) and the [**AI Foundry**](/products/ai-foundry/overview.md).
 
 Together, they address both context overload and governance limitations. This allows you to accelerate your development lifecycle while maintaining predefined enterprise guardrails and strict boundaries of risk.
 
-#### The Context Catalog: Your Actionable Digital Twin
+#### The Catalog: Your Actionable Digital Twin
 
-The [**Context Catalog**](/products/context-catalog/overview.md) is a living, enriched metadata map of your entire IT ecosystem. Rather than acting as a static registry, the Catalog dynamically links software components, data products, infrastructure resources, APIs, policies, and AI agents, mapping their interrelations to enable semantic navigation.
+The [**Catalog**](/products/catalog/overview.md) is a living, enriched metadata map of your entire IT ecosystem. Rather than acting as a static registry, the Catalog dynamically links software components, data products, infrastructure resources, APIs, policies, and AI agents, mapping their interrelations to enable semantic navigation.
 
-![Context Catalog](./img/context-catalog.png)
+![Catalog](./img/context-catalog.png)
 
 Key features include:
 
-* **Filtered Intelligence:** The Catalog feeds AI models with precise, governed context based on [item types](/products/context-catalog/basic-concepts/20_item-types.md) and [relationship maps](/products/context-catalog/basic-concepts/60_relationships.md). This drastically reduces token consumption, latency, and hallucination risks.  
+* **Filtered Intelligence:** The Catalog feeds AI models with precise, governed context based on [item types](/products/catalog/basic-concepts/20_item-types.md) and [relationship maps](/products/catalog/basic-concepts/60_relationships.md). This drastically reduces token consumption, latency, and hallucination risks.  
 * **Governance by Design:** The Catalog integrates access controls and deterministic rules directly into the foundational data model, eliminating the need for post-deployment patches. Then, you can manually add non-deterministic compliance directives and policies, ensuring that all generated code adheres to your desired standards.   
 * **Orchestration-Ready Blueprint:** The Catalog enforces structural guardrails, golden paths, and organizational standards to guarantee that every deployed asset is optimized for Day 2 operations.
 
@@ -41,21 +41,21 @@ This framework operates through [**AI Playbooks**](/products/ai-foundry/basic-co
 ![AI Playbooks](./img/ai-playbooks.png)
 
 * When a user submits a natural language request, the **AI Foundry interprets the intent and routes it to a specific Playbook**, which triggers a multi-step execution converting unpredictable agentic flows into auditable processes.  
-* Every generated task is cross-checked against enterprise constraints and the Context Catalog before execution, ensuring **compliance and adherence to the architectural reality of the organization**.  
+* Every generated task is cross-checked against enterprise constraints and the Catalog before execution, ensuring **compliance and adherence to the architectural reality of the organization**.  
 * Identical goals always trigger **standardized automation workflows**, eliminating redundancy and architectural drift, ensuring predictable outcomes even for complex operational goals.
 
 ### Basic Components: The Standard Foundation
 
 Every Mia-Platform configuration includes a **suite of basic components** designed to ensure a consistent developer experience and a unified interface for AI, maintaining **standardization** across the whole ecosystem.
 
-* [**Catalog App**](/products/context-catalog/usage/catalog-app.md)**:** The central nervous system for governing your software, data, and logic in one unified dashboard.  
+* [**Catalog App**](/products/catalog/usage/catalog-app.md)**:** The central nervous system for governing your software, data, and logic in one unified dashboard.  
 * [**AI Foundry**](/products/ai-foundry/overview.md)**:** The mechanism that automatically enforces policies, access hierarchies and approved templates for governed AI workflows.  
-* [**Catalog MCP Server**](/products/context-catalog/usage/catalog-api.md#mcp-server)**:** The native interface that uses the Model Context Protocol (MCP) to allow any AI agent or assistant to discover and interact with assets. It also connects the catalog to broader external tools and data lakes.  
+* [**Catalog MCP Server**](/products/catalog/usage/catalog-api.md#mcp-server)**:** The native interface that uses the Model Context Protocol (MCP) to allow any AI agent or assistant to discover and interact with assets. It also connects the catalog to broader external tools and data lakes.  
 * [**Flow**](/products/flow/overview.md)**:** An [AI-powered IDE](/products/flow/basic-concepts/40_agentic-ai.md) that uses platform context to help teams build and deploy faster without leaving the enterprise boundaries.
 
 ### Modular Configurations for Your Teams
 
-The Context Catalog and AI Foundry provide the foundational framework. On top of them, Mia-Platform offers specialized **modular setups** designed to optimize software delivery for your engineering, infrastructure, and data departments.
+The Catalog and AI Foundry provide the foundational framework. On top of them, Mia-Platform offers specialized **modular setups** designed to optimize software delivery for your engineering, infrastructure, and data departments.
 
 #### 1\. Development (Software Engineering Teams)
 
@@ -63,8 +63,8 @@ To counter the budget waste of "Shadow AI" and help teams move fluidly from busi
 
 Main components are:
 
-* [**Predefined Item Types for Services**](/products/context-catalog/basic-concepts/20_item-types.md)**:** Readily available item types that grant developers a standardized, governed foundation for cataloging new software.  
-* [**Connectors for Applications**](/products/context-catalog/connectors/10_overview.md)**:** Ready-made integrations that seamlessly pull your existing apps into the catalog, improving their discoverability and governance.  
+* [**Predefined Item Types for Services**](/products/catalog/basic-concepts/20_item-types.md)**:** Readily available item types that grant developers a standardized, governed foundation for cataloging new software.  
+* [**Connectors for Applications**](/products/catalog/connectors/10_overview.md)**:** Ready-made integrations that seamlessly pull your existing apps into the catalog, improving their discoverability and governance.  
 * [**Marketplace**](/runtime-components/overview_marketplace.md)**:** An internal showcase where engineers can search, find, and reuse any approved building block to speed up the setup.
 
 #### 2\. Infrastructure (Ops & Platform Teams)
@@ -73,9 +73,9 @@ Transforming invisible infrastructure into a governed, scalable ecosystem is cru
 
 Main components are:
 
-* [**Item Types Infra/DevOps**](/products/context-catalog/basic-concepts/20_item-types.md)**:** A specialized library bringing complex infrastructure assets under unified catalog governance.  
-* **Cloud & DevOps Connectors:** Automated integrations with major providers (e.g. [Azure](/products/context-catalog/connectors/azure.md), [Google Cloud](/products/context-catalog/connectors/google-cloud.md), [GitHub](/products/context-catalog/connectors/github.md), [GitLab](/products/context-catalog/connectors/gitlab.md)) that actively pull resources into the platform, ensuring live tracking alongside application assets.  
-* **Engineering Intelligence:** A governance section within the Catalog, related to [Scorecards](/products/context-catalog/basic-concepts/40_scorecards.md) and [Campaigns](/products/context-catalog/basic-concepts/50_campaigns.md). They aggregate data into the catalog to offer leadership clear visibility into platform adoption, delivery metrics, and custom insights. See the Scorecards tutorial to get started.
+* [**Item Types Infra/DevOps**](/products/catalog/basic-concepts/20_item-types.md)**:** A specialized library bringing complex infrastructure assets under unified catalog governance.  
+* **Cloud & DevOps Connectors:** Automated integrations with major providers (e.g. [Azure](/products/catalog/connectors/azure.md), [Google Cloud](/products/catalog/connectors/google-cloud.md), [GitHub](/products/catalog/connectors/github.md), [GitLab](/products/catalog/connectors/gitlab.md)) that actively pull resources into the platform, ensuring live tracking alongside application assets.  
+* **Engineering Intelligence:** A governance section within the Catalog, related to [Scorecards](/products/catalog/basic-concepts/40_scorecards.md) and [Campaigns](/products/catalog/basic-concepts/50_campaigns.md). They aggregate data into the catalog to offer leadership clear visibility into platform adoption, delivery metrics, and custom insights. See the Scorecards tutorial to get started.
 
 #### 3\. Data (Data Teams)
 
@@ -107,8 +107,8 @@ These components power the platform behind the scenes: they act as the **operati
 
 Mia-Platform is designed to fit your existing workflows, offering two complementary ways to interact with the ecosystem based on your technical requirements:
 
-* **Headless & API-First**: The [Context Catalog](/products/context-catalog/usage/catalog-api.md) and AI Foundry expose their capabilities via modern protocols ([**MCP, API, CLI and A2A**) to inject your enterprise context into external tools like IDEs, CI/CD pipelines, and custom AI assistants.  
-* **Mia-Platform Apps**: It offers a guided, visual experience through dedicated interfaces (like [Catalog App](/products/context-catalog/usage/catalog-app.md), [Flow](/products/flow/overview.md), and the [EaaS portal](/products/console/overview-dev-suite.md#environment-as-a-service)) that optimize workflows for all organizational roles. These apps are modular and tailored to specific use cases, so the components included depend on the selected package or operational model.
+* **Headless & API-First**: The [Catalog](/products/catalog/usage/catalog-api.md) and AI Foundry expose their capabilities via modern protocols ([**MCP, API, CLI and A2A**) to inject your enterprise context into external tools like IDEs, CI/CD pipelines, and custom AI assistants.  
+* **Mia-Platform Apps**: It offers a guided, visual experience through dedicated interfaces (like [Catalog App](/products/catalog/usage/catalog-app.md), [Flow](/products/flow/overview.md), and the [EaaS portal](/products/console/overview-dev-suite.md#environment-as-a-service)) that optimize workflows for all organizational roles. These apps are modular and tailored to specific use cases, so the components included depend on the selected package or operational model.
 
 ![Product Overview](./img/product-overview.png)
 
@@ -116,7 +116,7 @@ Mia-Platform is designed to fit your existing workflows, offering two complement
 
 Most enterprises must cope with a complex, widespread issue: trying to channel the power of AI tools within enterprise tracks to enhance reliability, ensure compliance, and minimize redundancy. 
 
-Mia-Platform resolves this issue with an **actionable context layer** that guarantees governance by design, and promotes standardization. The [Context Catalog](/products/context-catalog/overview.md) is the single source of truth that maps all organization’s assets and guarantees AI outputs are grounded in reality. The [AI Foundry](/products/ai-foundry/overview.md) anchors AI workflows to predefined intents for specific goals, circumscribing their scope and fostering reusability.
+Mia-Platform resolves this issue with an **actionable context layer** that guarantees governance by design, and promotes standardization. The [Catalog](/products/catalog/overview.md) is the single source of truth that maps all organization’s assets and guarantees AI outputs are grounded in reality. The [AI Foundry](/products/ai-foundry/overview.md) anchors AI workflows to predefined intents for specific goals, circumscribing their scope and fostering reusability.
 
 This symbiosis ensures a **sustainable use of AI systems**, which produce reproducible results because they are secure and validated against enterprise standards.
 

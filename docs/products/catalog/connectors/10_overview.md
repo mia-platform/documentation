@@ -6,7 +6,7 @@ sidebar_label: Overview
 
 # Connectors Overview
 
-Most catalogs are not populated by hand: they are kept in sync with the systems where the entities already live (source-code hosting, the Mia-Platform Console, cloud providers, artifact registries, security tools). The Context Catalog ingests data from those systems through a dedicated binary called **`ibdm`**.
+Most catalogs are not populated by hand: they are kept in sync with the systems where the entities already live (source-code hosting, the Mia-Platform Console, cloud providers, artifact registries, security tools). The Catalog ingests data from those systems through a dedicated binary called **`ibdm`**.
 
 `ibdm` (International Berthing and Docking Mechanism) is the connector engine. It is open-source software (AGPL-3.0) developed at [github.com/mia-platform/ibdm](https://github.com/mia-platform/ibdm). A single deployable binary can be configured as one of nine **sources** — each source talks to a specific upstream system — and pushes the resulting data into the Catalog as items.
 
@@ -38,7 +38,7 @@ Each source page lists the **data types** it exposes inside the mapping context 
 
 `ibdm` writes into the Catalog over HTTP, using a client-credentials pair provisioned in the Catalog App.
 
-1. **Register the connector in the Catalog App.** Open **Configuration → Connectors → Add connector**. You will be asked for a `Name`, an optional `Title` and `Description`, a `Client ID`, and a `Provider` / `Category` for UI filtering (see the [Connectors section](/products/context-catalog/usage/catalog-app.md#connectors) of the Catalog App reference). The Catalog App creates a *Connector* item in the catalog and surfaces a credentials pair you will use to authenticate `ibdm`.
+1. **Register the connector in the Catalog App.** Open **Configuration → Connectors → Add connector**. You will be asked for a `Name`, an optional `Title` and `Description`, a `Client ID`, and a `Provider` / `Category` for UI filtering (see the [Connectors section](/products/catalog/usage/catalog-app.md#connectors) of the Catalog App reference). The Catalog App creates a *Connector* item in the catalog and surfaces a credentials pair you will use to authenticate `ibdm`.
 2. **Configure the destination on `ibdm`.** Set the following environment variables before launching `ibdm`:
 
    | Variable | Description |
@@ -58,15 +58,15 @@ Running `ibdm` with `--local-output` redirects results to stdout instead of push
 
 | Source | Modes | Typical entities |
 | :----- | :---- | :--------------- |
-| [Microsoft Azure](/products/context-catalog/connectors/azure.md) | `sync` (Resource Graph), `run` (EventHub) | Cloud resources (compute, networking, storage, …) |
-| [Microsoft Azure DevOps](/products/context-catalog/connectors/azure-devops.md) | `sync`, `run` (webhooks) | Repositories, teams |
-| [Bitbucket](/products/context-catalog/connectors/bitbucket.md) | `sync`, `run` (webhooks) | Repositories, pipelines |
-| [GitHub](/products/context-catalog/connectors/github.md) | `sync`, `run` (webhooks) | Repositories, workflow runs, access-token requests, workflow dispatches |
-| [GitLab](/products/context-catalog/connectors/gitlab.md) | `sync`, `run` (webhooks) | Projects, pipelines, access tokens |
-| [Google Cloud](/products/context-catalog/connectors/google-cloud.md) | `sync` (Cloud Asset API), `run` (PubSub) | Cloud resources |
-| [Mia-Platform Console](/products/context-catalog/connectors/mia-platform-console.md) | `sync`, `run` (webhooks) | Projects, revisions, services |
-| [Sonatype Nexus](/products/context-catalog/connectors/nexus.md) | `sync`, `run` (webhooks) | Docker images |
-| [Sysdig Secure](/products/context-catalog/connectors/sysdig.md) | `sync` (SysQL), `run` (webhooks) | Vulnerabilities |
+| [Microsoft Azure](/products/catalog/connectors/azure.md) | `sync` (Resource Graph), `run` (EventHub) | Cloud resources (compute, networking, storage, …) |
+| [Microsoft Azure DevOps](/products/catalog/connectors/azure-devops.md) | `sync`, `run` (webhooks) | Repositories, teams |
+| [Bitbucket](/products/catalog/connectors/bitbucket.md) | `sync`, `run` (webhooks) | Repositories, pipelines |
+| [GitHub](/products/catalog/connectors/github.md) | `sync`, `run` (webhooks) | Repositories, workflow runs, access-token requests, workflow dispatches |
+| [GitLab](/products/catalog/connectors/gitlab.md) | `sync`, `run` (webhooks) | Projects, pipelines, access tokens |
+| [Google Cloud](/products/catalog/connectors/google-cloud.md) | `sync` (Cloud Asset API), `run` (PubSub) | Cloud resources |
+| [Mia-Platform Console](/products/catalog/connectors/mia-platform-console.md) | `sync`, `run` (webhooks) | Projects, revisions, services |
+| [Sonatype Nexus](/products/catalog/connectors/nexus.md) | `sync`, `run` (webhooks) | Docker images |
+| [Sysdig Secure](/products/catalog/connectors/sysdig.md) | `sync` (SysQL), `run` (webhooks) | Vulnerabilities |
 
 ## Installation
 
@@ -99,6 +99,6 @@ See the [`ibdm` installation guide](https://github.com/mia-platform/ibdm/blob/ma
 
 ## See also
 
-- [Items](/products/context-catalog/basic-concepts/10_items.md) — the shape of the entities produced by `ibdm`.
-- [Item Types](/products/context-catalog/basic-concepts/20_item-types.md) — how to register custom kinds the connector can populate.
-- [Catalog App → Connectors](/products/context-catalog/usage/catalog-app.md#connectors) — how to create and inspect a connector record from the UI.
+- [Items](/products/catalog/basic-concepts/10_items.md) — the shape of the entities produced by `ibdm`.
+- [Item Types](/products/catalog/basic-concepts/20_item-types.md) — how to register custom kinds the connector can populate.
+- [Catalog App → Connectors](/products/catalog/usage/catalog-app.md#connectors) — how to create and inspect a connector record from the UI.

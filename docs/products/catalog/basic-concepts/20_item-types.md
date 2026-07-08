@@ -6,7 +6,7 @@ sidebar_label: Item Types
 
 # Item Types
 
-Each item in the Context Catalog has a **type**. Items of the same type are a **family** and share a common schema that defines the shape of the data they carry. The catalog can manage items of a given type only if that type has been registered through an **Item Type Definition (ITD)**.
+Each item in the Catalog has a **type**. Items of the same type are a **family** and share a common schema that defines the shape of the data they carry. The catalog can manage items of a given type only if that type has been registered through an **Item Type Definition (ITD)**.
 
 Mia-Platform provides a set of default ITDs that enable the catalog to function correctly out of the box. Users and external systems can extend the catalog's functionalities with custom ITDs that introduce new kinds of items.
 
@@ -32,7 +32,7 @@ Mia-Platform reserves the use of any group name ending in `mia-platform.eu`.
 
 ## Defining a custom Item Type
 
-Custom item types are added to an organization by creating an `ItemTypeDefinition` object. ITDs are themselves catalog objects, so they are created via the standard [Catalog API](/products/context-catalog/usage/catalog-api.md).
+Custom item types are added to an organization by creating an `ItemTypeDefinition` object. ITDs are themselves catalog objects, so they are created via the standard [Catalog API](/products/catalog/usage/catalog-api.md).
 
 :::note
 All catalog resources, including the built-in ones, are defined through ItemTypeDefinitions. The only exception is the `ItemTypeDefinition` kind itself.
@@ -102,7 +102,7 @@ When you create a new ITD, the API server creates a new RESTful resource path fo
 Resources store their type-specific data under the `spec` root field (alongside the built-in `apiVersion`, `kind`, and `metadata`, validated implicitly). ITDs must declare a schema in `spec.versions.schema.openAPIV31Schema` against which items are validated on creation and update.
 
 :::note
-Don't confuse an item's `spec` — the domain-specific payload constrained by its ITD's schema, covered here — with [custom fields](/products/context-catalog/basic-concepts/10_items.md#custom-fields-in-detail), a separate, independently-defined `customFields` map that can extend any item regardless of its ITD.
+Don't confuse an item's `spec` — the domain-specific payload constrained by its ITD's schema, covered here — with [custom fields](/products/catalog/basic-concepts/10_items.md#custom-fields-in-detail), a separate, independently-defined `customFields` map that can extend any item regardless of its ITD.
 :::
 
 This *structural schema* is an [OpenAPI v3.1 validation schema](https://spec.openapis.org/oas/v3.1.0.html#schema-object) which:
@@ -146,7 +146,7 @@ The validation schema of an ITD version should not modified after creation. This
 
 By default, items can be filtered only on their `metadata` fields (`metadata.name`, `metadata.title`, `metadata.tags`, `metadata.labels.*`, `metadata.urn`). To filter on a field inside `spec`, that field must be declared as **selectable** on the ITD version.
 
-Selectable fields are the catalog's contract for queryability: when you mark a field as selectable, the catalog provisions an index on it so that `field=` and `rawq` queries (see [Query Language](/products/context-catalog/basic-concepts/70_query-language.md)) can filter on it efficiently. Marking a field selectable is the only way to make a `spec` field appear in API and Catalog App filters.
+Selectable fields are the catalog's contract for queryability: when you mark a field as selectable, the catalog provisions an index on it so that `field=` and `rawq` queries (see [Query Language](/products/catalog/basic-concepts/70_query-language.md)) can filter on it efficiently. Marking a field selectable is the only way to make a `spec` field appear in API and Catalog App filters.
 
 Selectable fields are declared at the ITD-version level alongside the schema. They must point to fields that hold a primitive value or a homogeneous array of primitives.
 
@@ -181,6 +181,6 @@ Without the corresponding `selectableFields` entry, the same query is rejected.
 
 ## See also
 
-- [Items](/products/context-catalog/basic-concepts/10_items.md): the objects whose shape an ITD constrains.
-- [Query Language](/products/context-catalog/basic-concepts/70_query-language.md): how `selectableFields` enables filtering and sorting on `spec`.
-- [Catalog API](/products/context-catalog/usage/catalog-api.md): the REST endpoints an ITD exposes once registered.
+- [Items](/products/catalog/basic-concepts/10_items.md): the objects whose shape an ITD constrains.
+- [Query Language](/products/catalog/basic-concepts/70_query-language.md): how `selectableFields` enables filtering and sorting on `spec`.
+- [Catalog API](/products/catalog/usage/catalog-api.md): the REST endpoints an ITD exposes once registered.

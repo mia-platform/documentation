@@ -6,7 +6,7 @@ sidebar_label: Catalog App
 
 # Catalog App
 
-The **Catalog App** is the web interface that lets operators and platform users browse the Context Catalog, inspect the entities it tracks, and oversee compliance activities. It is the human-facing complement to the [Catalog API](/products/context-catalog/usage/catalog-api.md).
+The **Catalog App** is the web interface that lets operators and platform users browse the Catalog, inspect the entities it tracks, and oversee compliance activities. It is the human-facing complement to the [Catalog API](/products/catalog/usage/catalog-api.md).
 
 ![Catalog App Home Page](../img/catalog_welcome.png)
 
@@ -14,7 +14,7 @@ The **Catalog App** is the web interface that lets operators and platform users 
 
 - **Browse items.** Navigate the catalog by item type, filter by labels and fields, and inspect the full manifest of any item.
 - **Explore relationships.** Traverse the directed graph of relationships between items to perform impact analysis or discover dependencies.
-- **Monitor compliance.** View the results of [Evaluation Criteria](/products/context-catalog/basic-concepts/30_evaluation-criteria.md) (rule runs) attached to your items, follow [Campaigns](/products/context-catalog/basic-concepts/50_campaigns.md), and check [Scorecards](/products/context-catalog/basic-concepts/40_scorecards.md) progress.
+- **Monitor compliance.** View the results of [Evaluation Criteria](/products/catalog/basic-concepts/30_evaluation-criteria.md) (rule runs) attached to your items, follow [Campaigns](/products/catalog/basic-concepts/50_campaigns.md), and check [Scorecards](/products/catalog/basic-concepts/40_scorecards.md) progress.
 - **Curate data.** Edit metadata, labels, and annotations on items where the model allows it, and trigger ad-hoc rule evaluations.
 
 ## Architecture
@@ -24,7 +24,7 @@ The Catalog App is the entry point of a small set of cooperating services:
 | Component           | Role                                                                                                          |
 | :------------------ | :------------------------------------------------------------------------------------------------------------ |
 | **Catalog Website** | Web UI for the catalog. Lets users browse items, view rule evaluation results, and monitor campaign progress. |
-| **Catalog Engine**  | Core catalog backend. Stores and manages items and exposes the [Catalog API](/products/context-catalog/usage/catalog-api.md).          |
+| **Catalog Engine**  | Core catalog backend. Stores and manages items and exposes the [Catalog API](/products/catalog/usage/catalog-api.md).          |
 | **Policy Engine**   | Stateless rule-evaluation engine that drives compliance evaluations.                                          |
 
 ## Organizations
@@ -328,7 +328,7 @@ The item types list shows all registered ITDs. From the list you can:
 
 Click **Create item type** to open a two-step wizard:
 
-1. **Specifications** — define the group, scope (only `Organization` is currently supported — see [Item Types](/products/context-catalog/basic-concepts/20_item-types.md)), kind and plural names, a version name, and the OpenAPI v3.1 JSON schema for that version, plus optional selectable fields.
+1. **Specifications** — define the group, scope (only `Organization` is currently supported — see [Item Types](/products/catalog/basic-concepts/20_item-types.md)), kind and plural names, a version name, and the OpenAPI v3.1 JSON schema for that version, plus optional selectable fields.
 2. **Metadata** — the item name is auto-generated from `<plural>.<group>` and read-only; add tags, a description, labels, annotations, and links.
 
 #### View an item type
@@ -452,6 +452,6 @@ From the actions menu on the item detail page, click **Delete**. This only remov
 
 ## Where to go next
 
-- See [Catalog API](/products/context-catalog/usage/catalog-api.md) for the underlying API the Catalog App consumes.
-- See [Items](/products/context-catalog/basic-concepts/10_items.md) and [Item Types](/products/context-catalog/basic-concepts/20_item-types.md) to understand what you are looking at in the UI.
-- See [Connectors](/products/context-catalog/connectors/10_overview.md) to learn how external systems feed data into the catalog.
+- See [Catalog API](/products/catalog/usage/catalog-api.md) for the underlying API the Catalog App consumes.
+- See [Items](/products/catalog/basic-concepts/10_items.md) and [Item Types](/products/catalog/basic-concepts/20_item-types.md) to understand what you are looking at in the UI.
+- See [Connectors](/products/catalog/connectors/10_overview.md) to learn how external systems feed data into the catalog.

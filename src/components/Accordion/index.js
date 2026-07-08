@@ -124,7 +124,7 @@ const iconMap = {
   'microfrontend-composer': <MicrofrontendComposerIcon/>,
   'runtime-components': <MarketplaceIcon/>,
   'software-catalog': <ContextCatalogIcon/>,
-  'context-catalog': <ContextCatalogIcon/>,
+  'catalog': <ContextCatalogIcon/>,
 };
 
 // Component to dynamically render a main icon based on a provided `iconId`.

@@ -14,7 +14,7 @@ The catalog models relationships with three built-in kinds:
 - `RelationshipConstraint` — declares which item kinds *may* participate as source and target of a given relationship type.
 - `Relationship` — the actual instance linking two specific items through a relationship type.
 
-All three are themselves catalog items, governed by Item Type Definitions under the `mia-platform.eu/v1alpha1` group, and exposed at fixed paths on the [Catalog API](/products/context-catalog/usage/catalog-api.md#resource-uris).
+All three are themselves catalog items, governed by Item Type Definitions under the `mia-platform.eu/v1alpha1` group, and exposed at fixed paths on the [Catalog API](/products/catalog/usage/catalog-api.md#resource-uris).
 
 ## RelationshipType
 
@@ -86,17 +86,17 @@ Required fields:
 
 ### Validation
 
-When a `Relationship` is created or updated, the catalog validates only the **URN format** of `sourceRef` and `targetRef`. It does *not* check that the referenced items actually exist, nor that their kinds satisfy any matching `RelationshipConstraint`. This is consistent with the broader [item-reference policy](/products/context-catalog/basic-concepts/10_items.md#referencing-other-items): references are loosely coupled by design, so that items can be created in any order and dangling references can be repaired without coordinated writes.
+When a `Relationship` is created or updated, the catalog validates only the **URN format** of `sourceRef` and `targetRef`. It does *not* check that the referenced items actually exist, nor that their kinds satisfy any matching `RelationshipConstraint`. This is consistent with the broader [item-reference policy](/products/catalog/basic-concepts/10_items.md#referencing-other-items): references are loosely coupled by design, so that items can be created in any order and dangling references can be repaired without coordinated writes.
 
 ## Querying the graph
 
 Once relationships exist, you can navigate them through:
 
-- the **Relationships** tab of any item in the [Catalog App](/products/context-catalog/usage/catalog-app.md), as a table or as a visual graph;
-- the `related` operator of the Catalog [Query Language](/products/context-catalog/basic-concepts/70_query-language.md), to express queries such as *"all services owned by team X"* or *"all items affected by vulnerability Y"*.
+- the **Relationships** tab of any item in the [Catalog App](/products/catalog/usage/catalog-app.md), as a table or as a visual graph;
+- the `related` operator of the Catalog [Query Language](/products/catalog/basic-concepts/70_query-language.md), to express queries such as *"all services owned by team X"* or *"all items affected by vulnerability Y"*.
 
 ## See also
 
-- [Items](/products/context-catalog/basic-concepts/10_items.md): the entities relationships connect.
-- [Item Types](/products/context-catalog/basic-concepts/20_item-types.md): how to introduce new kinds that participate in the graph.
-- [Query Language](/products/context-catalog/basic-concepts/70_query-language.md): how to traverse relationships in queries.
+- [Items](/products/catalog/basic-concepts/10_items.md): the entities relationships connect.
+- [Item Types](/products/catalog/basic-concepts/20_item-types.md): how to introduce new kinds that participate in the graph.
+- [Query Language](/products/catalog/basic-concepts/70_query-language.md): how to traverse relationships in queries.

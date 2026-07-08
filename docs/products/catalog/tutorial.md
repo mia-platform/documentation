@@ -1,6 +1,6 @@
 ---
 id: tutorial
-title: Context Catalog Tutorial
+title: Catalog Tutorial
 sidebar_label: Tutorial
 ---
 
@@ -43,7 +43,7 @@ The validation schema should define two fields for the Java runtime `version` (e
 :::tip
 
 You can also use annotations or labels to store relevant metadata instead of a custom ITD and connector 
-and customize your CI/CD pipelines to enrich your Catalog items using the [Catalog API](/products/context-catalog/usage/catalog-api.md#update).
+and customize your CI/CD pipelines to enrich your Catalog items using the [Catalog API](/products/catalog/usage/catalog-api.md#update).
 
 :::
 

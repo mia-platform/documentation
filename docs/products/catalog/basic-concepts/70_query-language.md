@@ -6,7 +6,7 @@ sidebar_label: Query Language
 
 # Query Language
 
-The Catalog exposes a query language to express filters that go beyond the simple `label=` and `field=` query parameters of the [REST API](/products/context-catalog/usage/catalog-api.md). Queries are written as JSON, sent to the API through the `rawq` query parameter (URL-safe base64 encoded), and used internally by [Views](/products/context-catalog/usage/catalog-app.md#views), [Scorecards](/products/context-catalog/basic-concepts/40_scorecards.md), and [Campaigns](/products/context-catalog/basic-concepts/50_campaigns.md) to declare their scope.
+The Catalog exposes a query language to express filters that go beyond the simple `label=` and `field=` query parameters of the [REST API](/products/catalog/usage/catalog-api.md). Queries are written as JSON, sent to the API through the `rawq` query parameter (URL-safe base64 encoded), and used internally by [Views](/products/catalog/usage/catalog-app.md#views), [Scorecards](/products/catalog/basic-concepts/40_scorecards.md), and [Campaigns](/products/catalog/basic-concepts/50_campaigns.md) to declare their scope.
 
 This page describes the grammar of the query language and gives concrete examples.
 
@@ -17,8 +17,8 @@ The full JSON schema describing the Catalog query language is [available to down
 ## Where it is used
 
 - **`rawq` API parameter** on any `list` endpoint, for ad-hoc queries.
-- **Scope** of a [View](/products/context-catalog/usage/catalog-app.md#views).
-- **Scope** of a [Scorecard](/products/context-catalog/basic-concepts/40_scorecards.md) or a [Campaign](/products/context-catalog/basic-concepts/50_campaigns.md).
+- **Scope** of a [View](/products/catalog/usage/catalog-app.md#views).
+- **Scope** of a [Scorecard](/products/catalog/basic-concepts/40_scorecards.md) or a [Campaign](/products/catalog/basic-concepts/50_campaigns.md).
 
 The same JSON shape is accepted everywhere; the only thing that differs is how it is transported (encoded as a query string for `rawq`, or stored verbatim on the catalog object for scopes).
 
@@ -62,7 +62,7 @@ Supported operators:
 | `matches` | strings | matches a regex of the form `/pattern/[i]` |
 | `exists` | any field | field is present (`true`) / absent (`false`) |
 
-Field paths reach into items with dot notation, the same way the simpler `field=` parameter does: e.g. `metadata.name`, `metadata.labels.env`, `spec.registry`. Predicates on `spec.*` fields require that those fields are declared as [selectable](/products/context-catalog/basic-concepts/20_item-types.md#selectable-fields) on the item's ITD.
+Field paths reach into items with dot notation, the same way the simpler `field=` parameter does: e.g. `metadata.name`, `metadata.labels.env`, `spec.registry`. Predicates on `spec.*` fields require that those fields are declared as [selectable](/products/catalog/basic-concepts/20_item-types.md#selectable-fields) on the item's ITD.
 
 ### Logical composition
 
@@ -87,7 +87,7 @@ The `related` operator selects items that are connected to a given item through 
 }
 ```
 
-- `type` is the URN of the `RelationshipType` (see [Relationships](/products/context-catalog/basic-concepts/60_relationships.md)).
+- `type` is the URN of the `RelationshipType` (see [Relationships](/products/catalog/basic-concepts/60_relationships.md)).
 - `as` declares the role the *matched item* plays in the relationship: `source` means "match items that are the source of a relationship pointing to `where.ref`"; `target` means "match items that are the target of a relationship coming from `where.ref`".
 - `where.ref` is the URN of the *other* endpoint.
 
@@ -140,6 +140,6 @@ Use `label=` and `field=` for one-liner filters; reach for `rawq` when you need 
 
 ## See also
 
-- [Catalog API](/products/context-catalog/usage/catalog-api.md): how `rawq` is transported on the wire.
-- [Relationships](/products/context-catalog/basic-concepts/60_relationships.md): the relationship types `related` can traverse.
-- [Item Types](/products/context-catalog/basic-concepts/20_item-types.md#selectable-fields): how to make a `spec` field queryable.
+- [Catalog API](/products/catalog/usage/catalog-api.md): how `rawq` is transported on the wire.
+- [Relationships](/products/catalog/basic-concepts/60_relationships.md): the relationship types `related` can traverse.
+- [Item Types](/products/catalog/basic-concepts/20_item-types.md#selectable-fields): how to make a `spec` field queryable.
