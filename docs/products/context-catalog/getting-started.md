@@ -12,9 +12,9 @@ This page walks you through the very first interactions with the Context Catalog
 
 To get started you need:
 
-- access to the [Catalog App](/products/context-catalog/catalog-app.md) — the web UI is the easiest entry point;
+- access to the [Catalog App](/products/context-catalog/usage/catalog-app.md) — the web UI is the easiest entry point;
 - an **organization** in which to operate (the catalog isolates everything per organization, see [Items](/products/context-catalog/basic-concepts/10_items.md#organizations));
-- optionally, credentials for the [Catalog API](/products/context-catalog/catalog-api.md) if you plan to script ingestion or queries.
+- optionally, credentials for the [Catalog API](/products/context-catalog/usage/catalog-api.md) if you plan to script ingestion or queries.
 
 ## 1. Explore what is already there
 
@@ -51,7 +51,7 @@ From **Items → Create item**, pick the type you just defined, and fill in:
 
 The wizard validates the `spec` against the ITD schema as you type.
 
-You can do the same thing via API by sending a `POST` request to the resource path; see [Catalog API](/products/context-catalog/catalog-api.md).
+You can do the same thing via API by sending a `POST` request to the resource path; see [Catalog API](/products/context-catalog/usage/catalog-api.md).
 
 ## 4. Connect items with a relationship
 
@@ -78,7 +78,7 @@ In short, Mia-Platform connectors:
 
 The high-level setup is:
 
-1. **Register the connector in the Catalog App.** Open **Configuration → Connectors → Add connector** to create a *Connector* item and give it a Client ID — every item it later syncs in will be attributed to this ID (see [Connectors section](/products/context-catalog/catalog-app.md#connectors) of the Catalog App reference). The matching Client Secret is not set here; obtain it from your platform administrator or identity provider as a separate M2M credential.
+1. **Register the connector in the Catalog App.** Open **Configuration → Connectors → Add connector** to create a *Connector* item and give it a Client ID — every item it later syncs in will be attributed to this ID (see [Connectors section](/products/context-catalog/usage/catalog-app.md#connectors) of the Catalog App reference). The matching Client Secret is not set here; obtain it from your platform administrator or identity provider as a separate M2M credential.
 2. **Configure `ibdm`.** Set `MIA_CATALOG_ENDPOINT`, `MIA_CATALOG_CLIENT_ID` (matching the Client ID from step 1), and `MIA_CATALOG_CLIENT_SECRET` for the destination, plus the source-specific variables documented on each connector page.
 3. **Add a mapping file.** Reference mappings are provided in the [`ibdm` repository examples](https://github.com/mia-platform/ibdm/tree/main/docs/examples); you can use them as-is or customize them.
 4. **Launch `ibdm`.** Either `ibdm sync <source> --mapping-file mapping.yaml` for a one-off pull, or `ibdm run <source> --mapping-file mapping.yaml` to start the event-stream integration.
@@ -93,5 +93,5 @@ The available sources and the upstream system each one targets are listed in the
 - [Relationships](/products/context-catalog/basic-concepts/60_relationships.md) — the graph layer.
 - [Query Language](/products/context-catalog/basic-concepts/70_query-language.md) — how to search and scope.
 - [Connectors](/products/context-catalog/connectors/10_overview.md) — feed the catalog from external systems through `ibdm`.
-- [Catalog API](/products/context-catalog/catalog-api.md) — when you graduate from clicks to scripts.
-- [Catalog App](/products/context-catalog/catalog-app.md) — the UI reference.
+- [Catalog API](/products/context-catalog/usage/catalog-api.md) — when you graduate from clicks to scripts.
+- [Catalog App](/products/context-catalog/usage/catalog-app.md) — the UI reference.

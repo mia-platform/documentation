@@ -47,7 +47,7 @@ Treating rules as catalog items means they are versioned, queryable, and referen
 
 A rule evaluation can be triggered by:
 
-- **An explicit request**: typically initiated from the [Catalog App](/products/context-catalog/catalog-app.md) by an operator.
+- **An explicit request**: typically initiated from the [Catalog App](/products/context-catalog/usage/catalog-app.md) by an operator.
 - **A campaign milestone**: at `startTime`, at `endTime`, at scheduled intervals in between (per the campaign's report frequency), or in incremental re-evaluations driven by item-change events. See [Campaigns](/products/context-catalog/basic-concepts/50_campaigns.md).
 - **A scorecard refresh**: when a [Scorecard](/products/context-catalog/basic-concepts/40_scorecards.md) recomputes its score over its scope.
 
@@ -59,10 +59,10 @@ Each rule-run produces:
 - when `complete`, a per-item result (`true`/`false`) indicating whether each item satisfies the rule — this is the actual pass/fail signal, surfaced in the UI as *Passed* / *Failed*;
 - enough context (start/end timestamps, the evaluated rule reference, the targeted items) to reconstruct what was evaluated and when.
 
-These results are persisted on the `Run` item and exposed both via the [Catalog API](/products/context-catalog/catalog-api.md) and through the [Catalog App](/products/context-catalog/catalog-app.md).
+These results are persisted on the `Run` item and exposed both via the [Catalog API](/products/context-catalog/usage/catalog-api.md) and through the [Catalog App](/products/context-catalog/usage/catalog-app.md).
 
 ## See also
 
 - [Scorecards](/products/context-catalog/basic-concepts/40_scorecards.md): how individual rules roll up into a levelled compliance model.
 - [Campaigns](/products/context-catalog/basic-concepts/50_campaigns.md): how rules are used as goals in time-bounded compliance programs.
-- [Catalog App](/products/context-catalog/catalog-app.md): where rules are authored, triggered, and inspected in the UI.
+- [Catalog App](/products/context-catalog/usage/catalog-app.md): where rules are authored, triggered, and inspected in the UI.

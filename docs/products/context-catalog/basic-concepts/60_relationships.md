@@ -14,7 +14,7 @@ The catalog models relationships with three built-in kinds:
 - `RelationshipConstraint` — declares which item kinds *may* participate as source and target of a given relationship type.
 - `Relationship` — the actual instance linking two specific items through a relationship type.
 
-All three are themselves catalog items, governed by Item Type Definitions under the `mia-platform.eu/v1alpha1` group, and exposed at fixed paths on the [Catalog API](/products/context-catalog/catalog-api.md#resource-uris).
+All three are themselves catalog items, governed by Item Type Definitions under the `mia-platform.eu/v1alpha1` group, and exposed at fixed paths on the [Catalog API](/products/context-catalog/usage/catalog-api.md#resource-uris).
 
 ## RelationshipType
 
@@ -92,7 +92,7 @@ When a `Relationship` is created or updated, the catalog validates only the **UR
 
 Once relationships exist, you can navigate them through:
 
-- the **Relationships** tab of any item in the [Catalog App](/products/context-catalog/catalog-app.md), as a table or as a visual graph;
+- the **Relationships** tab of any item in the [Catalog App](/products/context-catalog/usage/catalog-app.md), as a table or as a visual graph;
 - the `related` operator of the Catalog [Query Language](/products/context-catalog/basic-concepts/70_query-language.md), to express queries such as *"all services owned by team X"* or *"all items affected by vulnerability Y"*.
 
 ## See also

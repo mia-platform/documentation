@@ -69,7 +69,7 @@ An **owner** is a User or Team responsible for an item, modeled as a built-in `o
 
 ## View
 
-A **View** is a saved, named query that scopes the catalog to a subset of items. Views are themselves catalog items: they can be referenced by [Scorecards](/products/context-catalog/basic-concepts/40_scorecards.md) and [Campaigns](/products/context-catalog/basic-concepts/50_campaigns.md) to declare their scope, and they appear in the [Catalog App](/products/context-catalog/catalog-app.md#views) sidebar as bookmarks.
+A **View** is a saved, named query that scopes the catalog to a subset of items. Views are themselves catalog items: they can be referenced by [Scorecards](/products/context-catalog/basic-concepts/40_scorecards.md) and [Campaigns](/products/context-catalog/basic-concepts/50_campaigns.md) to declare their scope, and they appear in the [Catalog App](/products/context-catalog/usage/catalog-app.md#views) sidebar as bookmarks.
 
 ## Selectable field
 
@@ -77,7 +77,7 @@ A `spec` field declared on an [Item Type Definition](/products/context-catalog/b
 
 ## Organization
 
-An **organization** is a hard isolation boundary in the catalog: each organization has its own database namespace, and resources of the same type must be unique within it. Every API request is actually scoped by two identifiers — the organization and the broader **tenant** it lives in — see [Scoping headers](/products/context-catalog/catalog-api.md#scoping-headers).
+An **organization** is a hard isolation boundary in the catalog: each organization has its own database namespace, and resources of the same type must be unique within it. Every API request is actually scoped by two identifiers — the organization and the broader **tenant** it lives in — see [Scoping headers](/products/context-catalog/usage/catalog-api.md#scoping-headers).
 
 ## URN (Item URN)
 

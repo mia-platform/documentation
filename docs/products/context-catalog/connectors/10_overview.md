@@ -38,7 +38,7 @@ Each source page lists the **data types** it exposes inside the mapping context 
 
 `ibdm` writes into the Catalog over HTTP, using a client-credentials pair provisioned in the Catalog App.
 
-1. **Register the connector in the Catalog App.** Open **Configuration → Connectors → Add connector**. You will be asked for a `Name`, an optional `Title` and `Description`, a `Client ID`, and a `Provider` / `Category` for UI filtering (see the [Connectors section](/products/context-catalog/catalog-app.md#connectors) of the Catalog App reference). The Catalog App creates a *Connector* item in the catalog and surfaces a credentials pair you will use to authenticate `ibdm`.
+1. **Register the connector in the Catalog App.** Open **Configuration → Connectors → Add connector**. You will be asked for a `Name`, an optional `Title` and `Description`, a `Client ID`, and a `Provider` / `Category` for UI filtering (see the [Connectors section](/products/context-catalog/usage/catalog-app.md#connectors) of the Catalog App reference). The Catalog App creates a *Connector* item in the catalog and surfaces a credentials pair you will use to authenticate `ibdm`.
 2. **Configure the destination on `ibdm`.** Set the following environment variables before launching `ibdm`:
 
    | Variable | Description |
@@ -101,4 +101,4 @@ See the [`ibdm` installation guide](https://github.com/mia-platform/ibdm/blob/ma
 
 - [Items](/products/context-catalog/basic-concepts/10_items.md) — the shape of the entities produced by `ibdm`.
 - [Item Types](/products/context-catalog/basic-concepts/20_item-types.md) — how to register custom kinds the connector can populate.
-- [Catalog App → Connectors](/products/context-catalog/catalog-app.md#connectors) — how to create and inspect a connector record from the UI.
+- [Catalog App → Connectors](/products/context-catalog/usage/catalog-app.md#connectors) — how to create and inspect a connector record from the UI.
