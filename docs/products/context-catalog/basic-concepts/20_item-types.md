@@ -32,7 +32,7 @@ Mia-Platform reserves the use of any group name ending in `mia-platform.eu`.
 
 ## Defining a custom Item Type
 
-Custom item types are added to an organization by creating an `ItemTypeDefinition` object. ITDs are themselves catalog objects, so they are created via the standard [Catalog API](/products/context-catalog/api-interactions.md).
+Custom item types are added to an organization by creating an `ItemTypeDefinition` object. ITDs are themselves catalog objects, so they are created via the standard [Catalog API](/products/context-catalog/catalog-api.md).
 
 :::note
 All catalog resources, including the built-in ones, are defined through ItemTypeDefinitions. The only exception is the `ItemTypeDefinition` kind itself.
@@ -183,4 +183,4 @@ Without the corresponding `selectableFields` entry, the same query is rejected.
 
 - [Items](/products/context-catalog/basic-concepts/10_items.md): the objects whose shape an ITD constrains.
 - [Query Language](/products/context-catalog/basic-concepts/70_query-language.md): how `selectableFields` enables filtering and sorting on `spec`.
-- [API Interactions](/products/context-catalog/api-interactions.md): the REST endpoints an ITD exposes once registered.
+- [Catalog API](/products/context-catalog/catalog-api.md): the REST endpoints an ITD exposes once registered.

@@ -6,7 +6,7 @@ sidebar_label: Query Language
 
 # Query Language
 
-The Catalog exposes a query language to express filters that go beyond the simple `label=` and `field=` query parameters of the [REST API](/products/context-catalog/api-interactions.md). Queries are written as JSON, sent to the API through the `rawq` query parameter (URL-safe base64 encoded), and used internally by [Views](/products/context-catalog/catalog-app.md#views), [Scorecards](/products/context-catalog/basic-concepts/40_scorecards.md), and [Campaigns](/products/context-catalog/basic-concepts/50_campaigns.md) to declare their scope.
+The Catalog exposes a query language to express filters that go beyond the simple `label=` and `field=` query parameters of the [REST API](/products/context-catalog/catalog-api.md). Queries are written as JSON, sent to the API through the `rawq` query parameter (URL-safe base64 encoded), and used internally by [Views](/products/context-catalog/catalog-app.md#views), [Scorecards](/products/context-catalog/basic-concepts/40_scorecards.md), and [Campaigns](/products/context-catalog/basic-concepts/50_campaigns.md) to declare their scope.
 
 This page describes the grammar of the query language and gives concrete examples.
 
@@ -140,6 +140,6 @@ Use `label=` and `field=` for one-liner filters; reach for `rawq` when you need 
 
 ## See also
 
-- [API Interactions](/products/context-catalog/api-interactions.md): how `rawq` is transported on the wire.
+- [Catalog API](/products/context-catalog/catalog-api.md): how `rawq` is transported on the wire.
 - [Relationships](/products/context-catalog/basic-concepts/60_relationships.md): the relationship types `related` can traverse.
 - [Item Types](/products/context-catalog/basic-concepts/20_item-types.md#selectable-fields): how to make a `spec` field queryable.

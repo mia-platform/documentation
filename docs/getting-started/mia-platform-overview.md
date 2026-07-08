@@ -50,7 +50,7 @@ Every Mia-Platform configuration includes a **suite of basic components** design
 
 * [**Catalog App**](/products/context-catalog/catalog-app.md)**:** The central nervous system for governing your software, data, and logic in one unified dashboard.  
 * [**AI Foundry**](/products/ai-foundry/overview.md)**:** The mechanism that automatically enforces policies, access hierarchies and approved templates for governed AI workflows.  
-* [**Catalog MCP Server**](/products/context-catalog/api-interactions.md#mcp-server)**:** The native interface that uses the Model Context Protocol (MCP) to allow any AI agent or assistant to discover and interact with assets. It also connects the catalog to broader external tools and data lakes.  
+* [**Catalog MCP Server**](/products/context-catalog/catalog-api.md#mcp-server)**:** The native interface that uses the Model Context Protocol (MCP) to allow any AI agent or assistant to discover and interact with assets. It also connects the catalog to broader external tools and data lakes.  
 * [**Flow**](/products/flow/overview.md)**:** An [AI-powered IDE](/products/flow/basic-concepts/40_agentic-ai.md) that uses platform context to help teams build and deploy faster without leaving the enterprise boundaries.
 
 ### Modular Configurations for Your Teams
@@ -107,7 +107,7 @@ These components power the platform behind the scenes: they act as the **operati
 
 Mia-Platform is designed to fit your existing workflows, offering two complementary ways to interact with the ecosystem based on your technical requirements:
 
-* **Headless & API-First**: The [Context Catalog](/products/context-catalog/api-interactions.md) and AI Foundry expose their capabilities via modern protocols ([**MCP, API, CLI and A2A**) to inject your enterprise context into external tools like IDEs, CI/CD pipelines, and custom AI assistants.  
+* **Headless & API-First**: The [Context Catalog](/products/context-catalog/catalog-api.md) and AI Foundry expose their capabilities via modern protocols ([**MCP, API, CLI and A2A**) to inject your enterprise context into external tools like IDEs, CI/CD pipelines, and custom AI assistants.  
 * **Mia-Platform Apps**: It offers a guided, visual experience through dedicated interfaces (like [Catalog App](/products/context-catalog/catalog-app.md), [Flow](/products/flow/overview.md), and the [EaaS portal](/products/console/overview-dev-suite.md#environment-as-a-service)) that optimize workflows for all organizational roles. These apps are modular and tailored to specific use cases, so the components included depend on the selected package or operational model.
 
 ![Product Overview](./img/product-overview.png)

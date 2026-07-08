@@ -16,7 +16,7 @@ This page focuses on items themselves: their shape, the meaning of each field, a
 
 ## Describing an item
 
-When you create an item, you must provide its specification together with a small amount of metadata. The same shape applies to objects exchanged with the [Catalog API](/products/context-catalog/api-interactions.md) and to descriptor files (manifests) on disk.
+When you create an item, you must provide its specification together with a small amount of metadata. The same shape applies to objects exchanged with the [Catalog API](/products/context-catalog/catalog-api.md) and to descriptor files (manifests) on disk.
 
 Example manifest of a Catalog item:
 
@@ -241,7 +241,7 @@ When a field of one item points to another item, use the URN format and a key en
 
 Items live inside an **organization**, which is a hard isolation boundary with its own database namespace. Resources of the same type must be unique within an organization.
 
-Every Catalog API request is actually scoped by two identifiers, not one: the organization, and the broader tenant it lives in (the Mia-Platform Console-level boundary). See [Scoping headers](/products/context-catalog/api-interactions.md#scoping-headers) for how the two are carried on the wire and who is responsible for setting them.
+Every Catalog API request is actually scoped by two identifiers, not one: the organization, and the broader tenant it lives in (the Mia-Platform Console-level boundary). See [Scoping headers](/products/context-catalog/catalog-api.md#scoping-headers) for how the two are carried on the wire and who is responsible for setting them.
 
 ## Relationships
 

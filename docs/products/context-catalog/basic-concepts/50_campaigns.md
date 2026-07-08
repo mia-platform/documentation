@@ -31,7 +31,7 @@ The mental model:
 
 ## Evaluation
 
-Every configured rule is evaluated against the target item set (the same flow used by a standalone rule run, see [Evaluation Criteria](/products/context-catalog/basic-concepts/30_evaluation-criteria.md)). Results are stored on the `Campaign` item and exposed both via the [Catalog API](/products/context-catalog/api-interactions.md) and in the Catalog App.
+Every configured rule is evaluated against the target item set (the same flow used by a standalone rule run, see [Evaluation Criteria](/products/context-catalog/basic-concepts/30_evaluation-criteria.md)). Results are stored on the `Campaign` item and exposed both via the [Catalog API](/products/context-catalog/catalog-api.md) and in the Catalog App.
 
 A campaign is re-evaluated through three independent mechanisms:
 

@@ -1,10 +1,10 @@
 ---
-id: api-interactions
-title: API Interactions
-sidebar_label: API Interactions
+id: catalog-api
+title: Catalog API
+sidebar_label: Catalog API
 ---
 
-# API Interactions
+# Catalog API
 
 The Catalog API lets you query and manipulate items in the Context Catalog. It is RESTful: clients create, update, delete, and read objects via standard HTTP verbs, and the API preferentially accepts and returns JSON. Every payload has a schema identified by the `kind` and `apiVersion` fields of the object.
 

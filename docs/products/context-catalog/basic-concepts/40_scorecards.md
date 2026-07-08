@@ -33,7 +33,7 @@ The Catalog App also surfaces the count of items *without level* — those that 
 
 Scorecards are catalog items governed by an Item Type Definition under the `compliance.mia-platform.eu` group. As catalog items they:
 
-- can be created, listed, fetched, updated, and deleted via the [Catalog API](/products/context-catalog/api-interactions.md),
+- can be created, listed, fetched, updated, and deleted via the [Catalog API](/products/context-catalog/catalog-api.md),
 - can carry labels and annotations,
 - can be related to the items they target via the catalog's relationship system,
 - are versioned through `resourceVersion` like any other object.

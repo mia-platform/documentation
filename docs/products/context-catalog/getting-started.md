@@ -14,7 +14,7 @@ To get started you need:
 
 - access to the [Catalog App](/products/context-catalog/catalog-app.md) — the web UI is the easiest entry point;
 - an **organization** in which to operate (the catalog isolates everything per organization, see [Items](/products/context-catalog/basic-concepts/10_items.md#organizations));
-- optionally, credentials for the [Catalog API](/products/context-catalog/api-interactions.md) if you plan to script ingestion or queries.
+- optionally, credentials for the [Catalog API](/products/context-catalog/catalog-api.md) if you plan to script ingestion or queries.
 
 ## 1. Explore what is already there
 
@@ -51,7 +51,7 @@ From **Items → Create item**, pick the type you just defined, and fill in:
 
 The wizard validates the `spec` against the ITD schema as you type.
 
-You can do the same thing via API by sending a `POST` request to the resource path; see [API Interactions](/products/context-catalog/api-interactions.md).
+You can do the same thing via API by sending a `POST` request to the resource path; see [Catalog API](/products/context-catalog/catalog-api.md).
 
 ## 4. Connect items with a relationship
 
@@ -93,5 +93,5 @@ The available sources and the upstream system each one targets are listed in the
 - [Relationships](/products/context-catalog/basic-concepts/60_relationships.md) — the graph layer.
 - [Query Language](/products/context-catalog/basic-concepts/70_query-language.md) — how to search and scope.
 - [Connectors](/products/context-catalog/connectors/10_overview.md) — feed the catalog from external systems through `ibdm`.
-- [API Interactions](/products/context-catalog/api-interactions.md) — when you graduate from clicks to scripts.
+- [Catalog API](/products/context-catalog/catalog-api.md) — when you graduate from clicks to scripts.
 - [Catalog App](/products/context-catalog/catalog-app.md) — the UI reference.

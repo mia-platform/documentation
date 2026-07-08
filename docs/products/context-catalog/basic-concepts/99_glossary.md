@@ -77,7 +77,7 @@ A `spec` field declared on an [Item Type Definition](/products/context-catalog/b
 
 ## Organization
 
-An **organization** is a hard isolation boundary in the catalog: each organization has its own database namespace, and resources of the same type must be unique within it. Every API request is actually scoped by two identifiers — the organization and the broader **tenant** it lives in — see [Scoping headers](/products/context-catalog/api-interactions.md#scoping-headers).
+An **organization** is a hard isolation boundary in the catalog: each organization has its own database namespace, and resources of the same type must be unique within it. Every API request is actually scoped by two identifiers — the organization and the broader **tenant** it lives in — see [Scoping headers](/products/context-catalog/catalog-api.md#scoping-headers).
 
 ## URN (Item URN)
 

@@ -59,7 +59,7 @@ Each rule-run produces:
 - when `complete`, a per-item result (`true`/`false`) indicating whether each item satisfies the rule — this is the actual pass/fail signal, surfaced in the UI as *Passed* / *Failed*;
 - enough context (start/end timestamps, the evaluated rule reference, the targeted items) to reconstruct what was evaluated and when.
 
-These results are persisted on the `Run` item and exposed both via the [Catalog API](/products/context-catalog/api-interactions.md) and through the [Catalog App](/products/context-catalog/catalog-app.md).
+These results are persisted on the `Run` item and exposed both via the [Catalog API](/products/context-catalog/catalog-api.md) and through the [Catalog App](/products/context-catalog/catalog-app.md).
 
 ## See also
 
