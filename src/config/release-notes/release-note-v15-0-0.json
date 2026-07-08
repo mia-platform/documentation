@@ -53,15 +53,7 @@
     "defaultOpen": true,
     "type": "versions",
     "items": {
-      "newFeatures": [
-        {
-          "title": "Example new feature for Context Catalog",
-          "description": [
-            "This is a **placeholder** new feature entry for the Context Catalog section.",
-            "Real content will go here for the actual release note."
-          ]
-        }
-      ],
+      "newFeatures": [],
       "improvements": [],
       "bugFixes": []
     }
@@ -72,15 +64,7 @@
     "defaultOpen": true,
     "type": "versions",
     "items": {
-      "newFeatures": [
-        {
-          "title": "Example new feature for AI Foundry",
-          "description": [
-            "This is a **placeholder** new feature entry for the AI Foundry section.",
-            "Real content will go here for the actual release note."
-          ]
-        }
-      ],
+      "newFeatures": [],
       "improvements": [],
       "bugFixes": []
     }

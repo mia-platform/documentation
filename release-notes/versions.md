@@ -10,7 +10,7 @@ import Changelog from '@site/src/components/Changelog';
 <Changelog>
 
 ## [v15.0.0 - Preview](/release-notes/v15.0.0.mdx)
-*May 26th, 2026*
+*Jul 16th, 2026*
 
 Mia-Platform v15 expands the platform with **three brand-new components**:
 - **Context Catalog**, the single place to record, classify, and govern any entity that exists in your organization, with a built-in compliance layer and a growing set of connectors
