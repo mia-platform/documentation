@@ -81,10 +81,13 @@ The Catalog maps HTTP verbs to operation verbs as follows:
 | HTTP verb | Operation |
 | :-------- | :-------- |
 | GET, HEAD | `get` (single resource), `list` (collection) |
-| POST      | `create` |
-| PUT       | `update` |
-| PATCH     | `patch` |
+| PUT       | `upsert` (creates the item if missing, replaces it otherwise — see [Create / Update](#create--update)) |
+| PATCH     | `patch` (only available for the `customFields` map — see [Fields validation](#fields-validation)) |
 | DELETE    | `delete` |
+
+:::note
+Items have no `POST`-based create endpoint, unlike some REST APIs. Creating and updating an item are the same operation: `PUT` to the item's full path (including its `{NAME}`), the same way [ITDs](#item-type-definitions) are created and replaced.
+:::
 
 ### List
 
@@ -118,17 +121,15 @@ Supported query parameters: `limit`, `continue`, `label`, `field`, `rawq`, `sort
 
 `GET /{GROUP}/{VERSION}/items/{RESOURCE_NAME_PLURAL}/{NAME}`: returns a single resource. Supports content negotiation as for `list`.
 
-### Create
-
-`POST /{GROUP}/{VERSION}/items/{RESOURCE_NAME_PLURAL}`
-
-The body must contain the full object to create. The server validates types, presence of required fields, and rejects unknown fields with `400 Bad Request`.
-
-### Update
+### Create / Update
 
 `PUT /{GROUP}/{VERSION}/items/{RESOURCE_NAME_PLURAL}/{NAME}`
 
-Upserts the resource: omitted fields are interpreted as a request to clear them; PUT does not accept partial updates. The body must include the `resourceVersion` for optimistic concurrency control.
+A single endpoint handles both: it creates the item if `{NAME}` doesn't exist yet, or replaces it otherwise (the match is made on `metadata.name`). The body must contain the full object; PUT does not accept partial updates, so omitted fields are interpreted as a request to clear them. There is no separate `POST`-based create endpoint.
+
+Include `resourceVersion` in the body when updating an existing item, matching the value you last observed, for optimistic concurrency control — it isn't required on first creation. The server validates types and presence of required fields, and rejects unknown fields, all with `400 Bad Request`.
+
+Response codes: `201 Created` for a new item, `200 OK` for a replaced one, `409 Conflict` if the supplied `resourceVersion` doesn't match the item's current one, `404 Not Found` if the target Item Type Definition doesn't exist.
 
 ### Delete
 

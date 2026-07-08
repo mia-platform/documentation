@@ -8,7 +8,7 @@ sidebar_label: Catalog Administration
 
 The **Catalog Administration** is the web interface that lets operators and platform users browse the Context Catalog, inspect the entities it tracks, and oversee compliance activities. It is the human-facing complement to the [Catalog API](/products/context-catalog/api-interactions.md).
 
-![Catalog Administration Home Page](img/catalog_administration_home_page.png)
+![Catalog Administration Home Page](img/catalog_welcome.png)
 
 ## What you can do
 
@@ -37,11 +37,11 @@ The Catalog Administration offers a full set of operations on items across two m
 
 ### Browse items
 
-![Catalog Administration Items](img/catalog_administration_items.png)
+![Catalog Administration Items](img/catalog_items.png)
 
 Items are presented in a paginated table that loads more entries as you scroll. From the list you can:
 
-- **Search** items by name using the search bar.
+- **Search** items by name or title using the search bar.
 - **Filter** items by type, name, labels, and tags using the filter panel.
 - **Sort** items by name.
 - **Customize columns** to show or hide the Name, Tag, Owner, and Source columns.
@@ -49,35 +49,34 @@ Items are presented in a paginated table that loads more entries as you scroll. 
 
 ### Create an item
 
-![Catalog Administration Items Creation Dialog](img/catalog_administration_items_create.png)
+![Catalog Administration Items Creation Dialog](img/catalog_items_create.png)
 
 Click **Create item** to open a guided three-step wizard:
 
-1. **Select type** — choose an Item Type Definition (the kind of item you want to create).
+1. **Item Type** — choose an Item Type Definition (the kind of item you want to create).
 2. **Metadata** — provide a title, name, description, tags, and optionally an owner (a User or Team).
 3. **Specification** — fill in the item's `spec` as a JSON document, guided by the schema defined in the selected Item Type Definition.
 
 ### View an item
 
-![Catalog Administration Item Overview](img/catalog_administration_item_overview.png)
+![Catalog Administration Item Overview](img/catalog_item_overview.png)
 
 Clicking an item opens its detail page, which is organized into tabs:
 
 | Tab | Content |
 | :-- | :------ |
 | **Overview** | High-level metadata (title, name, description, kind, owner, tags, linked connector) and a summary of the item's relationships. |
+| **Imported items** | *(Connector-kind items only, shown right after Overview)* Items ingested into the catalog through this connector. |
 | **Relationships** | The full set of relationships to and from the item, viewable as a table or a visual graph. You can add, edit, and delete relationships from here. |
-| **Specifications** | The item's `spec` field, viewable in JSON or interactive tree format. You can edit the spec inline directly from this tab. |
+| **Specifications** | The item's `spec` field, viewable in Tree or Code (raw JSON) format. Click **Edit** to open a modal where you can edit the raw spec JSON. |
 | **Metadata** | Manage annotations, labels, and links attached to the item (add, edit, and delete each). |
-| **Connector items** | *(Connector-kind items only)* Items ingested into the catalog through this connector. |
 
 ### Edit an item
 
 From the detail page you can also:
 
-- **Edit metadata** — update the title, description, and owner (a User or Team). For Connector-kind items, you can also update the icon.
-- **Edit tags** — add or remove tags.
-- **Edit followers** — add or remove user following this item.
+- **Edit metadata** — from the actions menu, update the title, description, tags, and owner (a User or Team). For Connector-kind items, you can also update the icon.
+- **Manage followers** — from the **Overview** tab (not the actions menu), add or remove users following this item.
 - **View manifest** — inspect the full raw manifest of the item in a modal, and download it as a JSON file.
 - **Delete** — permanently remove the item from the catalog.
 
@@ -87,11 +86,11 @@ A **view** is a saved filter that scopes the catalog to a subset of items. Each 
 
 ### Create a view
 
-![Catalog Administration View Creation dialog](img/catalog_administration_view_create.png)
+![Catalog Administration View Creation dialog](img/catalog_view_create.png)
 
-Click **Create new view** at the bottom of the Items section in the sidebar. You will need to provide:
+Click **Create view** at the bottom of the Items section in the sidebar. You will need to provide:
 
-- **Display name** — the label shown in the sidebar navigation.
+- **Display Name** — the label shown in the sidebar navigation.
 - **View ID** — a unique identifier for the view, auto-generated from the display name and editable.
 - **Filter conditions** — one or more conditions that define which items the view includes:
   - **Fields**: API version, Type, Name, Title, Tags, or Label.
@@ -100,11 +99,11 @@ Click **Create new view** at the bottom of the Items section in the sidebar. You
 
 ### Browse a view
 
-![Catalog Administration View items list](img/catalog_administration_view_details.png)
+![Catalog Administration View items list](img/catalog_view_details.png)
 
 Opening a view shows items that satisfy its filter. The same browsing capabilities available on the full catalog list are also available within a view:
 
-- Search items by name.
+- Search items by name or title.
 - Apply additional filters by type, name, labels, title, and tags.
 - Sort by name.
 - Customize visible columns (Name, Tag, Owner, Source).
@@ -126,7 +125,7 @@ Open the actions menu on the view page and click **Delete view**. This removes t
 
 #### Browse evaluation criteria
 
-![Catalog Administration Evaluation Criteria](img/catalog_administration_evaluationcriteria.png)
+![Catalog Administration Evaluation Criteria](img/catalog_evaluationcriteria.png)
 
 The evaluation criteria list shows all rules with their condition expression and target item types. From the list you can:
 
@@ -137,7 +136,7 @@ The evaluation criteria list shows all rules with their condition expression and
 
 #### Create an evaluation criterion
 
-![Catalog Administration Evaluation Criteria Creation dialog](img/catalog_administration_evaluationcriteria_create.png)
+![Catalog Administration Evaluation Criteria Creation dialog](img/catalog_evaluationcriteria_create.png)
 
 Click **Create evaluation criteria** to open the creation form. You need to provide:
 
@@ -151,7 +150,7 @@ Click **Create evaluation criteria** to open the creation form. You need to prov
 
 #### View an evaluation criterion
 
-![Catalog Administration Evaluation Criteria details](img/catalog_administration_evaluationcriteria_details.png)
+![Catalog Administration Evaluation Criteria details](img/catalog_evaluationcriteria_details.png)
 
 Clicking a rule opens its detail page, which has three sections:
 
@@ -179,7 +178,7 @@ A **scorecard** aggregates one or more Evaluation Criteria into a levelled compl
 
 #### Browse scorecards
 
-![Catalog Administration Scorecards](img/catalog_administration_scorecards.png)
+![Catalog Administration Scorecards](img/catalog_scorecards.png)
 
 The scorecards page can be displayed in two modes, switchable from the toolbar:
 
@@ -194,7 +193,7 @@ In both modes you can:
 
 #### Create a scorecard
 
-![Catalog Administration Scorecard Creation](img/catalog_administration_scorecards_create.png)
+![Catalog Administration Scorecard Creation](img/catalog_scorecards_create.png)
 
 Click **Create scorecard** to open the creation wizard. On the first step, choose whether to start **from scratch** or from a template. On the second step, fill in:
 
@@ -208,7 +207,7 @@ Click **Create scorecard** to open the creation wizard. On the first step, choos
 
 #### View a scorecard
 
-![Catalog Administration Scorecard Details](img/catalog_administration_scorecards_view.png)
+![Catalog Administration Scorecard Details](img/catalog_scorecards_view.png)
 
 Clicking a scorecard opens its detail page, organized into five sections:
 
@@ -246,7 +245,7 @@ A **campaign** is a time-boxed compliance drive: it bundles a set of goals (eval
 
 #### Browse campaigns
 
-![Catalog Administration Campaigns](img/catalog_administration_campaigns.png)
+![Catalog Administration Campaigns](img/catalog_campaigns.png)
 
 The campaigns page supports two display modes, switchable from the toolbar:
 
@@ -261,12 +260,14 @@ In both modes you can:
 
 #### Create a campaign
 
-![Catalog Administration Campaign Creation](img/catalog_administration_campaigns_create.png)
+![Catalog Administration Campaign Creation](img/catalog_campaigns_create.png)
 
 Click **Create campaign** to open the creation wizard. On the first step, choose how to source the campaign's goals:
 
 - **From a scorecard** — pick an existing scorecard and select either a target level (all criteria from that level upward are imported) or individual evaluation criteria from the scorecard.
 - **From scratch** — define goals manually using the same condition-builder interface as standalone Evaluation Criteria.
+
+![Catalog Administration Campaign Creation Form](img/catalog_campaigns_create_2.png)
 
 On the second step, fill in:
 
@@ -278,7 +279,7 @@ On the second step, fill in:
 
 #### View a campaign
 
-![Catalog Administration Campaign Details](img/catalog_administration_campaign_view.png)
+![Catalog Administration Campaign Details](img/catalog_campaign_view.png)
 
 Clicking a campaign opens its detail page, organized into three sections:
 
@@ -312,7 +313,7 @@ From the actions menu, click **Delete campaign** to permanently remove it.
 
 #### Browse item types
 
-![Catalog Administration Item Type Definitions](img/catalog_administration_itds.png)
+![Catalog Administration Item Type Definitions](img/catalog_itds.png)
 
 The item types list shows all registered ITDs. From the list you can:
 
@@ -323,16 +324,16 @@ The item types list shows all registered ITDs. From the list you can:
 
 #### Create an item type
 
-![Catalog Administration Item Type Definition Creation](img/catalog_administration_itds_create.png)
+![Catalog Administration Item Type Definition Creation](img/catalog_itds_create.png)
 
 Click **Create item type** to open a two-step wizard:
 
-1. **Specifications** — define the API group, kind name, plural name, and the OpenAPI v3.1 JSON schema for the first version, plus optional selectable fields.
-2. **Metadata** — add a description, labels, annotations, and links.
+1. **Specifications** — define the group, scope (only `Organization` is currently supported — see [Item Types](/products/context-catalog/basic-concepts/20_item-types.md)), kind and plural names, a version name, and the OpenAPI v3.1 JSON schema for that version, plus optional selectable fields.
+2. **Metadata** — the item name is auto-generated from `<plural>.<group>` and read-only; add tags, a description, labels, annotations, and links.
 
 #### View an item type
 
-![Catalog Administration Item Type Definition Details](img/catalog_administration_itds_view.png)
+![Catalog Administration Item Type Definition Details](img/catalog_itds_view.png)
 
 Clicking an ITD opens its detail page, organized into four tabs:
 
@@ -365,7 +366,7 @@ From the actions menu on the detail page, click **Delete** (disabled for system 
 
 #### Browse relationship types
 
-![Catalog Administration Relationship Types](img/catalog_administration_relationshiptypes.png)
+![Catalog Administration Relationship Types](img/catalog_relationshiptypes.png)
 
 The relationship types list shows all registered types. From the list you can:
 
@@ -377,7 +378,7 @@ The relationship types list shows all registered types. From the list you can:
 
 #### Create a relationship type
 
-![Catalog Administration Relationship Type Creation](img/catalog_administration_relationshiptypes_create.png)
+![Catalog Administration Relationship Type Creation](img/catalog_relationshiptypes_create.png)
 
 Click **Create relationship type** to open a modal. Provide:
 
@@ -391,7 +392,15 @@ Click **Create relationship type** to open a modal. Provide:
 
 Clicking a relationship type navigates to its item detail page (the relationship type is stored as a catalog item), where you can inspect its metadata and specification.
 
-![Catalog Administration Relationship Type Details](img/catalog_administration_relationshiptypes_view.png)
+![Catalog Administration Relationship Type Details](img/catalog_relationshiptypes_view.png)
+
+#### Edit a relationship type
+
+Relationship types are edited like any other catalog item, from their item detail page: use **Edit item** (actions menu) to update the title, description, and tags, and edit the **Specifications** tab to change the `Source to Target Name` / `Target to Source Name` labels. The same actions menu also has **View manifest**, to inspect and download the raw manifest as JSON.
+
+#### Delete a relationship type
+
+From the actions menu on the item detail page, click **Delete**. Unlike Item Type Definitions, this is not disabled for the built-in relationship types (`ownership`, `follow`, `part-of`, `dependency`, `affect`, `origin`) — deleting one removes it like any other item, so use caution when deleting a relationship type that existing `Relationship` items still reference.
 
 ---
 
@@ -401,11 +410,11 @@ Clicking a relationship type navigates to its item detail page (the relationship
 
 #### Browse connectors
 
-![Catalog Administration Connectors](img/catalog_administration_connectors.png)
+![Catalog Administration Connectors](img/catalog_connectors.png)
 
 The connectors page supports two display modes, switchable from the toolbar:
 
-- **Grid** (default) — card view showing each connector's icon, provider, categories, description, and last update.
+- **Grid** (default) — card view showing each connector's icon, name, provider, categories, description, and last update.
 - **List** — table view with columns for Name, Categories, Description, and Last update.
 
 In both modes you can:
@@ -417,7 +426,7 @@ In both modes you can:
 
 #### Create a connector
 
-![Catalog Administration Connector Creation](img/catalog_administration_connectors_create.png)
+![Catalog Administration Connector Creation](img/catalog_connectors_create.png)
 
 Click **Add connector** to open a modal. Provide:
 
@@ -429,77 +438,17 @@ Click **Add connector** to open a modal. Provide:
 
 #### View a connector
 
-![Catalog Administration Connector Details](img/catalog_administration_connectors_view.png)
+![Catalog Administration Connector Details](img/catalog_connectors_view.png)
 
 Clicking a connector opens its catalog item detail page, where you can inspect all connector metadata, its ingested items, specification, and relationships.
 
-## Users & Permissions
+#### Edit a connector
 
-### Users
+There is no dedicated edit form — from the connector's item detail page, use **Edit item** (actions menu) to update the title, description, tags, and owner. Connector-kind items also get an extra **Icon URL** field here, letting you set or change the icon shown on the connectors list. The same actions menu also has **View manifest**, to inspect and download the raw manifest as JSON.
 
-**Users** represent people who own or are associated with items in the catalog. Each user is identified by their email address; the name is computed as a SHA-256 hash of the email.
+#### Delete a connector
 
-#### Browse users
-
-![Catalog Administration Users](img/catalog_administration_users.png)
-
-The users list is a paginated table that loads more entries as you scroll. From the list you can:
-
-- **Search** by name or email.
-- **Sort** by name, email address or creation date.
-- **Refresh** the list.
-
-Columns shown: Name, Email, Creation date.
-
-#### Create a user
-
-![Catalog Administration User Creation](img/catalog_administration_users_create.png)
-
-Click **Create user** to open a modal. Provide:
-
-- **Email** (required) — used as the unique identity; the item name is derived from a SHA-256 hash of this value.
-- **Full name** (optional) — used as the display title.
-
-#### View a user
-
-![Catalog Administration User Details](img/catalog_administration_users_view.png)
-
-Clicking a user navigates to its catalog item detail page, where you can see the user's metadata, edit it, manage tags, annotations, labels, and links, and view all relationships (including team memberships and items owned by the user).
-
----
-
-### Teams
-
-**Teams** group users together and can be set as owners of catalog items.
-
-#### Browse teams
-
-![Catalog Administration Teams](img/catalog_administration_teams.png)
-
-The teams list is a paginated table that loads more entries as you scroll. From the list you can:
-
-- **Search** by name or title.
-- **Sort** by name or creation date.
-- **Refresh** the list.
-
-Columns shown: Name, Members, Description, Creation date.
-
-#### Create a team
-
-![Catalog Administration Team Creation](img/catalog_administration_teams_create.png)
-
-Click **Create team** to open a modal. Provide:
-
-- **Title** (optional) — human-readable display name.
-- **Name** (required) — unique identifier, auto-slugged from the title and editable.
-- **Description** (optional).
-- **Members** — search for existing users by name or email and add them to the team.
-
-#### View a team
-
-![Catalog Administration Team Details](img/catalog_administration_teams_view.png)
-
-Clicking a team navigates to its catalog item detail page, where you can see the team's metadata, manage its member list (add or remove users), edit metadata, tags, and relationships.
+From the actions menu on the item detail page, click **Delete**. This only removes the *Connector* item itself — items it previously ingested are not deleted and are not re-attributed, so they remain in the catalog with a Client ID that no longer resolves to a connector.
 
 ## Where to go next
 
