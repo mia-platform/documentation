@@ -6,19 +6,19 @@ sidebar_label: Getting Started
 
 # Getting Started with the Context Catalog
 
-This page walks you through the very first interactions with the Context Catalog, from opening the Catalog Administration to your first item, first relationship and first compliance check. It assumes the catalog is already provisioned for your organization; if it is not, contact your platform administrator.
+This page walks you through the very first interactions with the Context Catalog, from opening the Catalog App to your first item, first relationship and first compliance check. It assumes the catalog is already provisioned for your organization; if it is not, contact your platform administrator.
 
 ## Prerequisites
 
 To get started you need:
 
-- access to the [Catalog Administration](/products/context-catalog/catalog-administration.md) — the web UI is the easiest entry point;
+- access to the [Catalog App](/products/context-catalog/catalog-app.md) — the web UI is the easiest entry point;
 - an **organization** in which to operate (the catalog isolates everything per organization, see [Items](/products/context-catalog/basic-concepts/10_items.md#organizations));
 - optionally, credentials for the [Catalog API](/products/context-catalog/api-interactions.md) if you plan to script ingestion or queries.
 
 ## 1. Explore what is already there
 
-When you open the Catalog Administration you land on the **Homepage**: a dashboard that gives you an at-a-glance overview of your catalog. From here you can see counters for total items, item types, connectors and items added in the current month, plus quick-action buttons (*View catalog*, *View item types*, *Create new item*, *Create scorecard*, *Create campaign*) and panels listing your **Scorecards**, **Campaigns**, **Recently added items**, and **Recently updated items**.
+When you open the Catalog App you land on the **Homepage**: a dashboard that gives you an at-a-glance overview of your catalog. From here you can see counters for total items, item types, connectors and items added in the current month, plus quick-action buttons (*View catalog*, *View item types*, *Create new item*, *Create scorecard*, *Create campaign*) and panels listing your **Scorecards**, **Campaigns**, **Recently added items**, and **Recently updated items**.
 
 From the left sidebar, you can browse the following:
 
@@ -31,7 +31,7 @@ From the left sidebar, you can browse the following:
 
 Most useful catalogs start by introducing a few **custom item types** specific to your domain. For example, you may want to track *Docker images* with their registry and tag.
 
-From the Catalog Administration, go to **Configuration → Item Types → Create item type** and fill in:
+From the Catalog App, go to **Configuration → Item Types → Create item type** and fill in:
 
 - **Group** — a DNS-like name your team owns, e.g. `stable.acme.com`.
 - **Scope** — `Organization` or `Project`, depending on whether items of this type should be visible catalog-wide or scoped to a single project.
@@ -78,11 +78,11 @@ In short, Mia-Platform connectors:
 
 The high-level setup is:
 
-1. **Register the connector in the Catalog Administration.** Open **Configuration → Connectors → Add connector** to create a *Connector* item and give it a Client ID — every item it later syncs in will be attributed to this ID (see [Connectors section](/products/context-catalog/catalog-administration.md#connectors) of the Catalog Administration reference). The matching Client Secret is not set here; obtain it from your platform administrator or identity provider as a separate M2M credential.
+1. **Register the connector in the Catalog App.** Open **Configuration → Connectors → Add connector** to create a *Connector* item and give it a Client ID — every item it later syncs in will be attributed to this ID (see [Connectors section](/products/context-catalog/catalog-app.md#connectors) of the Catalog App reference). The matching Client Secret is not set here; obtain it from your platform administrator or identity provider as a separate M2M credential.
 2. **Configure `ibdm`.** Set `MIA_CATALOG_ENDPOINT`, `MIA_CATALOG_CLIENT_ID` (matching the Client ID from step 1), and `MIA_CATALOG_CLIENT_SECRET` for the destination, plus the source-specific variables documented on each connector page.
 3. **Add a mapping file.** Reference mappings are provided in the [`ibdm` repository examples](https://github.com/mia-platform/ibdm/tree/main/docs/examples); you can use them as-is or customize them.
 4. **Launch `ibdm`.** Either `ibdm sync <source> --mapping-file mapping.yaml` for a one-off pull, or `ibdm run <source> --mapping-file mapping.yaml` to start the event-stream integration.
-5. **Inspect what came in.** Open the connector's detail page in the Catalog Administration and switch to the **Imported items** tab to browse the items it has synchronized.
+5. **Inspect what came in.** Open the connector's detail page in the Catalog App and switch to the **Imported items** tab to browse the items it has synchronized.
 6. **Wire compliance on top.** Point your [Evaluation Criteria](/products/context-catalog/basic-concepts/30_evaluation-criteria.md), [Scorecards](/products/context-catalog/basic-concepts/40_scorecards.md), and [Campaigns](/products/context-catalog/basic-concepts/50_campaigns.md) at the ingested items just like at hand-created items.
 
 The available sources and the upstream system each one targets are listed in the [Connectors Overview](/products/context-catalog/connectors/10_overview.md).
@@ -94,4 +94,4 @@ The available sources and the upstream system each one targets are listed in the
 - [Query Language](/products/context-catalog/basic-concepts/70_query-language.md) — how to search and scope.
 - [Connectors](/products/context-catalog/connectors/10_overview.md) — feed the catalog from external systems through `ibdm`.
 - [API Interactions](/products/context-catalog/api-interactions.md) — when you graduate from clicks to scripts.
-- [Catalog Administration](/products/context-catalog/catalog-administration.md) — the UI reference.
+- [Catalog App](/products/context-catalog/catalog-app.md) — the UI reference.

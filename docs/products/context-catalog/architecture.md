@@ -16,7 +16,7 @@ All client traffic enters through the **API Gateway**, which handles **Authentic
 
 Two kinds of clients sit in front of the gateway:
 
-- **Catalog Website**: the browser application that powers the [Catalog Administration](/products/context-catalog/catalog-administration.md), used by humans to browse and configure the catalog.
+- **Catalog Website**: the browser application that powers the [Catalog App](/products/context-catalog/catalog-app.md), used by humans to browse and configure the catalog.
 - **Connectors**: agents that feed the catalog with data from external systems (Mia-Platform Console, source-code hosts, artifact registries, cloud providers, etc.). The reference implementation is [`ibdm`](/products/context-catalog/connectors/10_overview.md).
 
 ## Ingestion pipeline

@@ -1,14 +1,14 @@
 ---
-id: catalog-administration
-title: Catalog Administration
-sidebar_label: Catalog Administration
+id: catalog-app
+title: Catalog App
+sidebar_label: Catalog App
 ---
 
-# Catalog Administration
+# Catalog App
 
-The **Catalog Administration** is the web interface that lets operators and platform users browse the Context Catalog, inspect the entities it tracks, and oversee compliance activities. It is the human-facing complement to the [Catalog API](/products/context-catalog/api-interactions.md).
+The **Catalog App** is the web interface that lets operators and platform users browse the Context Catalog, inspect the entities it tracks, and oversee compliance activities. It is the human-facing complement to the [Catalog API](/products/context-catalog/api-interactions.md).
 
-![Catalog Administration Home Page](img/catalog_welcome.png)
+![Catalog App Home Page](img/catalog_welcome.png)
 
 ## What you can do
 
@@ -19,7 +19,7 @@ The **Catalog Administration** is the web interface that lets operators and plat
 
 ## Architecture
 
-The Catalog Administration is the entry point of a small set of cooperating services:
+The Catalog App is the entry point of a small set of cooperating services:
 
 | Component           | Role                                                                                                          |
 | :------------------ | :------------------------------------------------------------------------------------------------------------ |
@@ -29,15 +29,15 @@ The Catalog Administration is the entry point of a small set of cooperating serv
 
 ## Organizations
 
-The Catalog Administration allows users to select the organization they want to explore in the Catalog Administration.
+The Catalog App allows users to select the organization they want to explore in the Catalog App.
 
 ## Items
 
-The Catalog Administration offers a full set of operations on items across two main surfaces: the **item list** and the **item detail** page.
+The Catalog App offers a full set of operations on items across two main surfaces: the **item list** and the **item detail** page.
 
 ### Browse items
 
-![Catalog Administration Items](img/catalog_items.png)
+![Catalog App Items](img/catalog_items.png)
 
 Items are presented in a paginated table that loads more entries as you scroll. From the list you can:
 
@@ -49,7 +49,7 @@ Items are presented in a paginated table that loads more entries as you scroll. 
 
 ### Create an item
 
-![Catalog Administration Items Creation Dialog](img/catalog_items_create.png)
+![Catalog App Items Creation Dialog](img/catalog_items_create.png)
 
 Click **Create item** to open a guided three-step wizard:
 
@@ -59,7 +59,7 @@ Click **Create item** to open a guided three-step wizard:
 
 ### View an item
 
-![Catalog Administration Item Overview](img/catalog_item_overview.png)
+![Catalog App Item Overview](img/catalog_item_overview.png)
 
 Clicking an item opens its detail page, which is organized into tabs:
 
@@ -86,7 +86,7 @@ A **view** is a saved filter that scopes the catalog to a subset of items. Each 
 
 ### Create a view
 
-![Catalog Administration View Creation dialog](img/catalog_view_create.png)
+![Catalog App View Creation dialog](img/catalog_view_create.png)
 
 Click **Create view** at the bottom of the Items section in the sidebar. You will need to provide:
 
@@ -99,7 +99,7 @@ Click **Create view** at the bottom of the Items section in the sidebar. You wil
 
 ### Browse a view
 
-![Catalog Administration View items list](img/catalog_view_details.png)
+![Catalog App View items list](img/catalog_view_details.png)
 
 Opening a view shows items that satisfy its filter. The same browsing capabilities available on the full catalog list are also available within a view:
 
@@ -125,7 +125,7 @@ Open the actions menu on the view page and click **Delete view**. This removes t
 
 #### Browse evaluation criteria
 
-![Catalog Administration Evaluation Criteria](img/catalog_evaluationcriteria.png)
+![Catalog App Evaluation Criteria](img/catalog_evaluationcriteria.png)
 
 The evaluation criteria list shows all rules with their condition expression and target item types. From the list you can:
 
@@ -136,7 +136,7 @@ The evaluation criteria list shows all rules with their condition expression and
 
 #### Create an evaluation criterion
 
-![Catalog Administration Evaluation Criteria Creation dialog](img/catalog_evaluationcriteria_create.png)
+![Catalog App Evaluation Criteria Creation dialog](img/catalog_evaluationcriteria_create.png)
 
 Click **Create evaluation criteria** to open the creation form. You need to provide:
 
@@ -150,7 +150,7 @@ Click **Create evaluation criteria** to open the creation form. You need to prov
 
 #### View an evaluation criterion
 
-![Catalog Administration Evaluation Criteria details](img/catalog_evaluationcriteria_details.png)
+![Catalog App Evaluation Criteria details](img/catalog_evaluationcriteria_details.png)
 
 Clicking a rule opens its detail page, which has three sections:
 
@@ -178,7 +178,7 @@ A **scorecard** aggregates one or more Evaluation Criteria into a levelled compl
 
 #### Browse scorecards
 
-![Catalog Administration Scorecards](img/catalog_scorecards.png)
+![Catalog App Scorecards](img/catalog_scorecards.png)
 
 The scorecards page can be displayed in two modes, switchable from the toolbar:
 
@@ -193,7 +193,7 @@ In both modes you can:
 
 #### Create a scorecard
 
-![Catalog Administration Scorecard Creation](img/catalog_scorecards_create.png)
+![Catalog App Scorecard Creation](img/catalog_scorecards_create.png)
 
 Click **Create scorecard** to open the creation wizard. On the first step, choose whether to start **from scratch** or from a template. On the second step, fill in:
 
@@ -207,7 +207,7 @@ Click **Create scorecard** to open the creation wizard. On the first step, choos
 
 #### View a scorecard
 
-![Catalog Administration Scorecard Details](img/catalog_scorecards_view.png)
+![Catalog App Scorecard Details](img/catalog_scorecards_view.png)
 
 Clicking a scorecard opens its detail page, organized into five sections:
 
@@ -245,7 +245,7 @@ A **campaign** is a time-boxed compliance drive: it bundles a set of goals (eval
 
 #### Browse campaigns
 
-![Catalog Administration Campaigns](img/catalog_campaigns.png)
+![Catalog App Campaigns](img/catalog_campaigns.png)
 
 The campaigns page supports two display modes, switchable from the toolbar:
 
@@ -260,14 +260,14 @@ In both modes you can:
 
 #### Create a campaign
 
-![Catalog Administration Campaign Creation](img/catalog_campaigns_create.png)
+![Catalog App Campaign Creation](img/catalog_campaigns_create.png)
 
 Click **Create campaign** to open the creation wizard. On the first step, choose how to source the campaign's goals:
 
 - **From a scorecard** — pick an existing scorecard and select either a target level (all criteria from that level upward are imported) or individual evaluation criteria from the scorecard.
 - **From scratch** — define goals manually using the same condition-builder interface as standalone Evaluation Criteria.
 
-![Catalog Administration Campaign Creation Form](img/catalog_campaigns_create_2.png)
+![Catalog App Campaign Creation Form](img/catalog_campaigns_create_2.png)
 
 On the second step, fill in:
 
@@ -279,7 +279,7 @@ On the second step, fill in:
 
 #### View a campaign
 
-![Catalog Administration Campaign Details](img/catalog_campaign_view.png)
+![Catalog App Campaign Details](img/catalog_campaign_view.png)
 
 Clicking a campaign opens its detail page, organized into three sections:
 
@@ -313,7 +313,7 @@ From the actions menu, click **Delete campaign** to permanently remove it.
 
 #### Browse item types
 
-![Catalog Administration Item Type Definitions](img/catalog_itds.png)
+![Catalog App Item Type Definitions](img/catalog_itds.png)
 
 The item types list shows all registered ITDs. From the list you can:
 
@@ -324,7 +324,7 @@ The item types list shows all registered ITDs. From the list you can:
 
 #### Create an item type
 
-![Catalog Administration Item Type Definition Creation](img/catalog_itds_create.png)
+![Catalog App Item Type Definition Creation](img/catalog_itds_create.png)
 
 Click **Create item type** to open a two-step wizard:
 
@@ -333,7 +333,7 @@ Click **Create item type** to open a two-step wizard:
 
 #### View an item type
 
-![Catalog Administration Item Type Definition Details](img/catalog_itds_view.png)
+![Catalog App Item Type Definition Details](img/catalog_itds_view.png)
 
 Clicking an ITD opens its detail page, organized into four tabs:
 
@@ -366,7 +366,7 @@ From the actions menu on the detail page, click **Delete** (disabled for system 
 
 #### Browse relationship types
 
-![Catalog Administration Relationship Types](img/catalog_relationshiptypes.png)
+![Catalog App Relationship Types](img/catalog_relationshiptypes.png)
 
 The relationship types list shows all registered types. From the list you can:
 
@@ -378,7 +378,7 @@ The relationship types list shows all registered types. From the list you can:
 
 #### Create a relationship type
 
-![Catalog Administration Relationship Type Creation](img/catalog_relationshiptypes_create.png)
+![Catalog App Relationship Type Creation](img/catalog_relationshiptypes_create.png)
 
 Click **Create relationship type** to open a modal. Provide:
 
@@ -392,7 +392,7 @@ Click **Create relationship type** to open a modal. Provide:
 
 Clicking a relationship type navigates to its item detail page (the relationship type is stored as a catalog item), where you can inspect its metadata and specification.
 
-![Catalog Administration Relationship Type Details](img/catalog_relationshiptypes_view.png)
+![Catalog App Relationship Type Details](img/catalog_relationshiptypes_view.png)
 
 #### Edit a relationship type
 
@@ -410,7 +410,7 @@ From the actions menu on the item detail page, click **Delete**. Unlike Item Typ
 
 #### Browse connectors
 
-![Catalog Administration Connectors](img/catalog_connectors.png)
+![Catalog App Connectors](img/catalog_connectors.png)
 
 The connectors page supports two display modes, switchable from the toolbar:
 
@@ -426,7 +426,7 @@ In both modes you can:
 
 #### Create a connector
 
-![Catalog Administration Connector Creation](img/catalog_connectors_create.png)
+![Catalog App Connector Creation](img/catalog_connectors_create.png)
 
 Click **Add connector** to open a modal. Provide:
 
@@ -438,7 +438,7 @@ Click **Add connector** to open a modal. Provide:
 
 #### View a connector
 
-![Catalog Administration Connector Details](img/catalog_connectors_view.png)
+![Catalog App Connector Details](img/catalog_connectors_view.png)
 
 Clicking a connector opens its catalog item detail page, where you can inspect all connector metadata, its ingested items, specification, and relationships.
 
@@ -452,6 +452,6 @@ From the actions menu on the item detail page, click **Delete**. This only remov
 
 ## Where to go next
 
-- See [API Interactions](/products/context-catalog/api-interactions.md) for the underlying API the Catalog Administration consumes.
+- See [API Interactions](/products/context-catalog/api-interactions.md) for the underlying API the Catalog App consumes.
 - See [Items](/products/context-catalog/basic-concepts/10_items.md) and [Item Types](/products/context-catalog/basic-concepts/20_item-types.md) to understand what you are looking at in the UI.
 - See [Connectors](/products/context-catalog/connectors/10_overview.md) to learn how external systems feed data into the catalog.

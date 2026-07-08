@@ -27,7 +27,7 @@ Every request to the Catalog API is scoped by two required headers:
 
 A request missing either header is rejected with `400 Bad Request`. The header names above are the defaults; a Catalog installation can configure different header names.
 
-In a standard Mia-Platform deployment you will rarely set these yourself: the platform gateway injects both headers automatically, derived from your authenticated session (when using the Catalog Administration) or from the identity behind your client credentials (when using a connector or another OAuth2 client-credentials-authenticated tool). You only need to set them explicitly if you call the Catalog API's underlying service directly, bypassing the platform gateway.
+In a standard Mia-Platform deployment you will rarely set these yourself: the platform gateway injects both headers automatically, derived from your authenticated session (when using the Catalog App) or from the identity behind your client credentials (when using a connector or another OAuth2 client-credentials-authenticated tool). You only need to set them explicitly if you call the Catalog API's underlying service directly, bypassing the platform gateway.
 
 ## MCP server
 

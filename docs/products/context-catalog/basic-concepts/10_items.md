@@ -86,7 +86,7 @@ A free-form, human-readable display name for the object. Unlike `name`, the titl
 
 ### `description`
 
-A free-form, human-readable description of the object. Useful to surface context for browsers of the [Catalog Administration](/products/context-catalog/catalog-administration.md).
+A free-form, human-readable description of the object. Useful to surface context for browsers of the [Catalog App](/products/context-catalog/catalog-app.md).
 
 ### `tags`
 
@@ -112,7 +112,7 @@ Annotations are intended to be written and read by automated systems that need t
 
 ### `links`
 
-A list of URL references attached to the object (e.g. dashboards, documentation pages, runbooks). Each link is a `{ url, title }` pair. Links are surfaced in the Catalog Administration and have no effect on the catalog logic itself.
+A list of URL references attached to the object (e.g. dashboards, documentation pages, runbooks). Each link is a `{ url, title }` pair. Links are surfaced in the Catalog App and have no effect on the catalog logic itself.
 
 ## Tags, labels, annotations and custom fields
 
@@ -203,7 +203,7 @@ Because the lifecycle of `CustomField` entities is independent from the items th
 
 Two relationships are central to the way the catalog associates people with items. Both Users and Teams are themselves first-class items in the catalog (built-in kinds under the `mia-platform.eu` group), so the relationships below are just ordinary Relationship objects between items, there is no special "principal" concept.
 
-- **Owner.** Every item can have an *owner*, which is either a User or a Team. Ownership is modeled as a built-in relationship of type `ownership.mia-platform.eu` between the item and the User/Team. The Catalog Administration exposes ownership as a first-class field on the item form, but on the wire it is just a Relationship object — see [Relationships](/products/context-catalog/basic-concepts/60_relationships.md).
+- **Owner.** Every item can have an *owner*, which is either a User or a Team. Ownership is modeled as a built-in relationship of type `ownership.mia-platform.eu` between the item and the User/Team. The Catalog App exposes ownership as a first-class field on the item form, but on the wire it is just a Relationship object — see [Relationships](/products/context-catalog/basic-concepts/60_relationships.md).
 - **Follower.** Any user can additionally *follow* an item to be notified about compliance events that involve it. Following is modeled as a built-in relationship of type `follow.mia-platform.eu` between the User and the item. Owners are implicitly considered followers.
 
 ## Primary key and Item URN
@@ -251,4 +251,4 @@ Items can be connected to one another through **relationships**: typed, directed
 
 - [Item Types](/products/context-catalog/basic-concepts/20_item-types.md): the schemas that an item's `spec` must respect.
 - [Relationships](/products/context-catalog/basic-concepts/60_relationships.md): how items reference one another, including ownership and follow.
-- [Catalog Administration](/products/context-catalog/catalog-administration.md): where items are browsed, edited, and tagged in the UI.
+- [Catalog App](/products/context-catalog/catalog-app.md): where items are browsed, edited, and tagged in the UI.

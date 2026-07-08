@@ -10,7 +10,7 @@ A **Scorecard** is a set of rules evaluated on a scope of catalog items, used to
 
 ## Concepts
 
-- **Scope.** The set of catalog items the scorecard applies to. The scope is either a reference to a [View](/products/context-catalog/catalog-administration.md#views) or a raw query over the catalog (see [Query Language](/products/context-catalog/basic-concepts/70_query-language.md)).
+- **Scope.** The set of catalog items the scorecard applies to. The scope is either a reference to a [View](/products/context-catalog/catalog-app.md#views) or a raw query over the catalog (see [Query Language](/products/context-catalog/basic-concepts/70_query-language.md)).
 - **Levels.** A scorecard is organized into named, ordered levels (for example *Bronze → Silver → Gold*). Each level groups a subset of the scorecard's rules.
 - **Rules.** The list of rules whose results contribute to the scorecard. Each rule is normally assigned to one level and is evaluated independently per item; a rule left without a level is still evaluated but never contributes to any level's outcome. A rule can also be *skipped* for a given item (for example, when the item's type falls outside the rule's target item types) — a skip never counts against the item, but a level needs at least one actually-executed rule to be achievable.
 - **Achieved level.** The result of a scorecard evaluation for a single item is the *highest* level whose rules are *all* satisfied by that item. An item that does not satisfy every rule of the lowest level has no achieved level (it is reported as "without level").
@@ -22,12 +22,12 @@ When a scorecard is evaluated, every item in scope gets:
 - a per-rule pass/fail result,
 - an **achieved level** computed from those results.
 
-From the per-item achieved level the catalog derives two aggregate indicators that are surfaced on the scorecard and on the [Catalog Administration](/products/context-catalog/catalog-administration.md):
+From the per-item achieved level the catalog derives two aggregate indicators that are surfaced on the scorecard and on the [Catalog App](/products/context-catalog/catalog-app.md):
 
 - **Median level.** The median achieved level across all items in scope. It summarizes "where most of the fleet sits" without being skewed by a handful of outliers.
 - **Progress.** The percentage of items in scope that have achieved at least the *lowest* level of the scorecard (i.e. items that have a level at all). Progress is the simplest reading of "how many things in scope are compliant *enough* to be on the ladder".
 
-The Catalog Administration also surfaces the count of items *without level* — those that fail at least one rule of the lowest level — which is the natural starting point for remediation work.
+The Catalog App also surfaces the count of items *without level* — those that fail at least one rule of the lowest level — which is the natural starting point for remediation work.
 
 ## Where scorecards live
 
@@ -66,4 +66,4 @@ In practice, the two are complementary: a campaign can use a scorecard's rule se
 
 - [Evaluation Criteria](/products/context-catalog/basic-concepts/30_evaluation-criteria.md): the rule model and evaluation flow scorecards build on.
 - [Campaigns](/products/context-catalog/basic-concepts/50_campaigns.md): time-bounded compliance programs.
-- [Catalog Administration](/products/context-catalog/catalog-administration.md): where scorecard scores are visualized.
+- [Catalog App](/products/context-catalog/catalog-app.md): where scorecard scores are visualized.

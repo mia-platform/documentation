@@ -24,9 +24,9 @@ The **Context Catalog** is Mia-Platform's system to record, classify, and connec
 - Extend the model with custom kinds and custom relationship types tailored to your domain.
 - Query and filter items via a [REST API](/products/context-catalog/api-interactions.md) using labels, fields, or a Catalog-specific query language.
 - Ingest data automatically from external systems through dedicated [connectors](/products/context-catalog/connectors/10_overview.md).
-- Save a filtered slice of the catalog as a **view** so your team can bookmark and revisit the items it cares about most (see [Catalog Administration](/products/context-catalog/catalog-administration.md#views)).
+- Save a filtered slice of the catalog as a **view** so your team can bookmark and revisit the items it cares about most (see [Catalog App](/products/context-catalog/catalog-app.md#views)).
 - Govern compliance by attaching rules, scorecards, and campaigns to your items (see [Campaigns](/products/context-catalog/basic-concepts/50_campaigns.md), [Evaluation Criteria](/products/context-catalog/basic-concepts/30_evaluation-criteria.md), [Scorecards](/products/context-catalog/basic-concepts/40_scorecards.md)).
-- Browse and curate everything from the [Catalog Administration](/products/context-catalog/catalog-administration.md).
+- Browse and curate everything from the [Catalog App](/products/context-catalog/catalog-app.md).
 
 ## Where to go next
 
