@@ -120,6 +120,77 @@ The following table highlights the main shared dependencies across products.
 The provisioning and management of these tools depends on what distribution model has been chosen (see paragraph above).
 :::
 
+## Product-Specific Requirements
+
+The following requirements complement the shared infrastructure prerequisites and are scoped to each product.
+
+### Console
+
+No changes from the standard Console requirements.
+
+### Catalog
+
+Kubernetes-centric architecture.
+
+| Dependency | Version |
+| --- | --- |
+| PostgreSQL | >= 15 |
+| Kafka | >= 2.x |
+| Redis | >= 8.4 |
+| Keycloak | >= 26.2 |
+| Kubernetes | >= 1.34 |
+| LLM API key / Service Account (optional) | Optional |
+| S3-compatible bucket (optional) | Optional |
+
+
+### IBDM
+
+Distributed as an open-source Docker container.
+
+Compatibility matrix:
+
+| Provider | Version |
+| --- | --- |
+| GitLab | >= 17.11.7 |
+| GitHub | API version >= 2026-03-10 |
+| Nexus | >= 3.82.0-08 |
+| Sysdig | Cloud SaaS |
+| Mia-Platform Console | >= 14 |
+| Bitbucket | >= 10.3.0 |
+| Google Cloud (GCP) | Cloud SaaS |
+| Azure | API version >= 2025-08-01 |
+| Azure DevOps | Cloud SaaS |
+
+### Mia Flow
+
+| Dependency | Version |
+| --- | --- |
+| Keycloak | >= 26.2 |
+| Redis | >= 8.4 |
+| MongoDB | Atlas, >= v7 |
+| PostgreSQL | >= 16 |
+| LLM API key / Service Account | N/A |
+| Kubernetes | >= 1.34 |
+| Mia-Platform Console | >= v15 |
+| Mia-Platform Catalog | V2 |
+| Mia-Platform AI Foundry | Required |
+| SCM | Currently compatible only with GitLab, GitHub (SaaS), and Azure DevOps (SaaS) |
+| CI/CD tool | Currently compatible only with GitLab, GitHub Actions (SaaS), and Azure Pipelines |
+
+
+### Mia Foundry
+
+| Dependency | Version |
+| --- | --- |
+| Keycloak | >= 26.2 |
+| Redis | >= 8.4 |
+| PostgreSQL | >= 16 |
+| LLM API key / Service Account | N/A |
+| Kubernetes | >= 1.34 |
+| Mia-Platform Catalog | V2 |
+| Mia Flow (optional) | Optional |
+| Grafana Tempo (optional) | Optional |
+
 ## Next Step
 
 Continue with the [Installation Guidelines](/requirements/installation-guidelines/00_overview.md) to access the full product-by-product documentation tree.
