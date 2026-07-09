@@ -106,16 +106,15 @@ For the detailed installation map and product entry points, see the [Installatio
 
 The following table highlights the main shared dependencies across products.
 
-| Infrastructure / Tool | Homepage & RBAC | Catalog | AI Foundry | Console |
+| Infrastructure / Tool | Shared services & tools | Catalog | AI Foundry | Console |
 | --- | --- | --- | --- | --- |
-| Traefik (IngressRoute) | ✅ (optional) | ✅ (optional)| ✅ (optional)| ✅ (optional)|
 | AuthN/AuthZ platform tooling (Keycloak + Realm Management) | ✅ | ✅ | ✅ | ✅ |
 | Container Registry | ✅ | ✅ | ✅ | ✅ |
-| PostgreSQL | ❌ | ✅ | ✅ | ❌ |
+| PostgreSQL | ✅ | ✅ | ✅ | ❌ |
 | MongoDB | ❌ | ❌ | ❌ | ✅ |
 | Redis | ✅ | ✅ | ✅ | ✅ |
 | Kafka | ❌ | ✅ | ❌ | ❌ |
-| Google Cloud / Vertex AI | ❌ | ❌ | ✅ *(adkBeApp)* | ❌ |
+| Google Cloud / Vertex AI | ✅ | ✅ | ✅ | ✅ optional |
 
 :::info
 The provisioning and management of these tools depends on what distribution model has been chosen (see paragraph above).
