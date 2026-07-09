@@ -18,16 +18,29 @@ Otherwise, you can download the OpenAPI 3.1 specification in JSON format <a down
 
 ## Scoping headers
 
-Every request to the Catalog API is scoped by two required headers:
+Every request to the Catalog API must carry the `x-mia-acl-context` header, which scopes the request to an [organization](/products/catalog/basic-concepts/10_items.md#organizations) and the tenant it lives in.
 
-| Header (default name) | Meaning |
-| :--------------------- | :------ |
-| `x-mia-org`     | Identifier of the [organization](/products/catalog/basic-concepts/10_items.md#organizations) the request operates in. |
-| `x-mia-tenant`   | Identifier of the tenant — the broader Mia-Platform Console-level boundary the organization lives in. |
+The header value is a URL-safe base64-encoded (no padding) JSON object with the following properties:
 
-A request missing either header is rejected with `400 Bad Request`. The header names above are the defaults; a Catalog installation can configure different header names.
+| Property | Type | Meaning |
+| :------- | :--- | :------ |
+| `organization` | string | Identifier of the organization the request operates in. |
+| `tenant` | string | Slug of the tenant — the broader Mia-Platform Console-level boundary the organization lives in. |
+| `tenantName` | string, optional | Human-readable name of the tenant. |
 
-In a standard Mia-Platform deployment you will rarely set these yourself: the platform gateway injects both headers automatically, derived from your authenticated session (when using the Catalog App) or from the identity behind your client credentials (when using a connector or another OAuth2 client-credentials-authenticated tool). You only need to set them explicitly if you call the Catalog API's underlying service directly, bypassing the platform gateway.
+For example, the JSON payload before encoding might look like:
+
+```json
+{
+  "organization": "my-org",
+  "tenant": "my-tenant",
+  "tenantName": "My Tenant"
+}
+```
+
+A request missing the header, or carrying a value that isn't valid URL-safe base64 or doesn't decode to a JSON object with the required properties, is rejected with `400 Bad Request`.
+
+In a standard Mia-Platform deployment you will rarely set this yourself: the platform gateway injects the header automatically, derived from your authenticated session (when using the Catalog App) or from the identity behind your client credentials (when using a connector or another OAuth2 client-credentials-authenticated tool). You only need to set it explicitly if you call the Catalog API's underlying service directly, bypassing the platform gateway.
 
 ## MCP server
 
