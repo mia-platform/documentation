@@ -126,7 +126,7 @@ The following requirements complement the shared infrastructure prerequisites an
 
 ### Console
 
-No changes from the standard Console requirements.
+See the [Console self-hosted requirements](/requirements/installation-guidelines/console/self-hosted/self-hosted-requirements.md#architectural-prerequisites).
 
 ### Catalog
 
