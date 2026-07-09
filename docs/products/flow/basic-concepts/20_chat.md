@@ -22,8 +22,8 @@ A conversation is made of:
 
 - **A unique session** that ties every message to the same AI context.
 - **A name** (manually set or auto-generated) shown in the sidebar.
-- **A type**: `Chat` (open-ended assistance), `Code` (tied to a generated project), or `Playbook` (started from a [playbook](/products/flow/basic-concepts/40_agentic-ai.md)).
-- **Optional metadata** such as the linked project, tenant, environment, or playbook.
+- **A mode**: `Chat` (open-ended assistance) or `Code` (tied to a generated project).
+- **Optional metadata**: the linked project and project name (for Code conversations), a tenant, and a [playbook](/products/flow/basic-concepts/40_agentic-ai.md) applied to the conversation.
 
 Conversations are stored in Flow. Re-opening a conversation restores the original session, so the assistant keeps full context across browser reloads and across devices.
 
@@ -60,7 +60,7 @@ Every conversation is stored so you can come back to it later. The **Memories** 
 - All conversations listed chronologically with relative timestamps.
 - Real-time search filtering by name.
 - Inline rename (Enter to confirm, Esc to cancel) and delete with confirmation.
-- Type badges for **Chat**, **Code**, and **Playbook**.
+- Type badges for **Chat** or **Code**, or the playbook's name when the conversation runs a dedicated playbook agent.
 - Project name displayed on code conversations.
 - Clicking a memory reopens the conversation and restores the AI session, so you can pick up exactly where you left off.
 
