@@ -2312,6 +2312,29 @@
           "type": "doc"
         }
       ]
+    },
+    {
+      "label": "Migration from v1",
+      "type": "category",
+      "collapsed": true,
+      "link": {
+        "id": "products/fast_data_v2/migration/overview",
+        "type": "doc"
+      },
+      "items": [
+        {
+          "id": "products/fast_data_v2/migration/component_mapping",
+          "type": "doc"
+        },
+        {
+          "id": "products/fast_data_v2/migration/migration_steps",
+          "type": "doc"
+        },
+        {
+          "id": "products/fast_data_v2/migration/worked_example",
+          "type": "doc"
+        }
+      ]
     }
   ]
 }

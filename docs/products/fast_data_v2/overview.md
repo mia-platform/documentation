@@ -41,3 +41,4 @@ To discover more about Fast Data v2 and understand how to leverage its capabilit
 2. **[Fast Data Engine](/products/fast_data_v2/fast_data_engine.md)** - Explore the four specialized workloads that power Fast Data v2 and learn how they work together to build high-performance data pipelines
 3. **[Architecture](/products/fast_data_v2/architecture.md)** - Discover the most common examples of Fast Data architecture patterns, in order to compose modular data pipelines tailored to your specific business needs
 4. **[Runtime Management](/products/fast_data_v2/runtime_management/overview.md)** - Learn how to manage and control Fast Data execution at runtime, from the dedicated Control Plane UI
+5. **[Migration from v1](/products/fast_data_v2/migration/overview)** - If you are running a Fast Data v1 pipeline, follow the step-by-step vademecum to migrate your project to v2
