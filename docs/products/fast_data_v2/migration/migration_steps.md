@@ -38,8 +38,13 @@ Before writing any v2 configuration, produce a complete inventory of your curren
 | List of Single Views | `TYPE` env var or collection name in SVC |
 | Single View root Projection | Root node in `erSchema.json` (the HEAD) |
 | Join relationships | `erSchema.json` `outgoing` entries |
+| **Projections used by this Single View** | All nodes reachable from the HEAD in `erSchema.json` via `outgoing` edges — this is the exact perimeter of the Farm Data DAG for this SV |
 | Field mapping logic | `aggregation.json` (Low Code) or custom SVC code |
 | Single View identifier field | `singleViewKey.json` |
+
+:::tip ER Schema may be shared across multiple Single Views
+In many v1 projects, a single `erSchema.json` describes all entity relationships globally, even when different SVCs use only a subset of those entities. As you inventory each Single View, explicitly map which projections it actually uses — not all projections in the ER schema. This subset is what goes into the corresponding Farm Data DAG. Projections present in the ER schema but not reachable from a given SV's HEAD node are **irrelevant** to that Farm Data instance.
+:::
 
 **Produce a summary table** like this for each Projection. This table is your working reference for the rest of the migration: each row corresponds to one Stream Processor + Kango pair to create in Steps 3–4, and the columns map directly to fields in `config.json` and `index.js`.
 
@@ -275,6 +280,14 @@ For each Projection, create a **Kango** service that persists the normalized str
 ---
 
 ## Step 5 — Convert ER Schema to Farm Data Graph
+
+:::warning One ER Schema → one Farm Data graph **per Single View**, not a global conversion
+In a v1 project, a single `erSchema.json` may describe N entities shared across multiple SVCs. Do **not** convert the entire schema into a single Farm Data graph.
+
+Each Farm Data instance manages exactly **one** Single View. Its `processor.graph` must include only the projections that contribute to that specific SV — the HEAD node and all nodes reachable from it via the join edges used by that SV.
+
+Including projections that are not needed by the Single View causes Farm Data to subscribe to unnecessary Kafka topics, maintain irrelevant internal state, and waste resources.
+:::
 
 For each Single View that has an ER Schema, apply the conversion rules described in [Component Mapping — ER Schema → Farm Data Graph](/products/fast_data_v2/migration/component_mapping#er-schema--farm-data-graph).
 

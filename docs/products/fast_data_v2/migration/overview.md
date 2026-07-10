@@ -21,6 +21,40 @@ Fast Data v2 is **stream-first**: every stage of the pipeline communicates exclu
 - **Simpler operations**: stateless Stream Processors, declarative aggregation graphs, no manual advanced custom strategies
 - **Better observability**: every processing stage is independently monitorable through the Control Plane v2 UI
 
+## Pipeline at a Glance
+
+The diagrams below show how a typical Single View pipeline changes from v1 to v2 (simplified to one Projection and one Single View for clarity).
+
+**Fast Data v1**
+
+```mermaid
+flowchart LR
+  I1([ingestion-topic]) --> PS["Projection Storer"]
+  PS --> B1([pr-update-topic])
+  PS --> DB1[(MongoDB Projections)]
+  B1 --> SVTG["SVTG"]
+  SVTG --> B2([sv-trigger-topic])
+  B2 --> SVC["Single View Creator"]
+  SVC --> DB2[(MongoDB Single View)]
+```
+
+**Fast Data v2**
+
+```mermaid
+flowchart LR
+  I2([ingestion-topic]) --> SP["Stream Processor"]
+  SP --> B3([projection.pre])
+  B3 --> FD["Farm Data"]
+  FD --> B4([single-view.aggregated])
+  B4 --> K["Kango"]
+  K --> DB3[(MongoDB Single View)]
+```
+
+Key differences visible in the diagram:
+- The `pr-update-topic`, `sv-trigger-topic`, and intermediate MongoDB Projections collection are **eliminated**
+- **Farm Data** absorbs both the SVTG trigger logic and the SVC aggregation logic, coordinating purely via Kafka state
+- **Kango** replaces the direct MongoDB writes that were embedded in SVC
+
 ## What Changes, What Stays the Same
 
 ### Unchanged
