@@ -8,9 +8,10 @@
       "newFeatures": [],
       "improvements": [
         {
-          "title": "Stream Processor v0.7.1",
+          "title": "Stream Processor v0.7.2",
           "description": [
-            "The new versions `v0.7.1` and `v0.7.0` of the _Stream Processor_ are available!",
+            "The new versions `v0.7.2`, `v0.7.1` and `v0.7.0` of the _Stream Processor_ are available!",
+            "`v0.7.2` moves cache key string validation exclusively to the MongoDB cache layer.",
             "`v0.7.1` adds support for **shared/dedicated DLQ producer** and fixes a partition revoke leak. The same fix has also been backported to `v0.6.4`.",
             "`v0.7.0` introduces a **breaking change** in cache key handling: cache index keys are now enforced to be **strings only**. If a non-conforming value (object, array, number, etc.) is provided as a cache key, the Stream Processor will either crash or terminate the operation to the DLQ (if configured). Users relying on Kafka keys as-is or already using plain strings are not affected by this change.",
             "Check the service [changelog](/docs/products/fast_data_v2/stream_processor/changelog) for the full list of changes."
@@ -22,6 +23,14 @@
             "The new version `v0.6.3` of _Farm Data_ is available!",
             "This patch release fixes the handling of `MergeStageNoMatchingDocument` errors (error code 13113) in the read-write pipeline, improving resiliency in scenarios where no matching document is found during a merge stage.",
             "Check the service [changelog](/docs/products/fast_data_v2/farm_data/changelog) for the full list of changes."
+          ]
+        },
+        {
+          "title": "Single View Trigger Generator v3.5.2",
+          "description": [
+            "The new version `v3.5.2` of _Single View Trigger Generator_ is available!",
+            "This patch release updates the heartbeat timer to survive rebalances across batches.",
+            "Check the service [changelog](/docs/runtime-components/plugins/single-view-trigger-generator/changelog) for the full list of changes."
           ]
         }
       ],
@@ -35,7 +44,20 @@
     "type": "versions",
     "items": {
       "newFeatures": [],
-      "improvements": [],
+      "improvements": [
+        {
+          "title": "Diffing support for Fast Data v1 ER-Schema",
+          "description": [
+            "It is now possible to diff **ER-Schema** Fast Data v1 resources in the merge, compare, and unsaved local changes views."
+          ]
+        },
+        {
+          "title": "New configuration merge experience enabled by default",
+          "description": [
+            "The new configuration merge experience is now **enabled by default** for all Console Projects. The previous experience can be restored on a per-project basis by disabling this setting from the Feature Preview section of your Project."
+          ]
+        }
+      ],
       "bugFixes": [
         "Fixed an issue where the Redeploy action from Deploy History was incorrectly sending the most recent configuration payload instead of the one associated with the selected historical deployment.",
         "Fixed an issue where the Deploy section could display information related to an environment different from the one shown in the Environment dropdown. The Deploy section now always reflects the environment currently selected in the dropdown.",
@@ -43,7 +65,8 @@
         "Fixed an issue where Azure DevOps pipeline statuses were incorrectly reported as `succeeded` while the pipeline was still running.",
         "Fixed an issue where navigating to any Runtime Area section other than Pods caused the area selector to incorrectly switch to the Overview area. The selector now correctly remains on Runtime regardless of which Runtime section is selected.",
         "Fixed an issue where the External Orchestrator Generator activation card was incorrectly displayed in the Settings of Standard Workflow projects. The card is now only shown for Enhanced Workflow projects, where the feature is supported.",
-        "Fixed an issue in the Deploy History where switching the status filter back to _All Status_ after selecting a specific status triggered a 400 error and caused the history list to disappear."
+        "Fixed an issue in the Deploy History where switching the status filter back to _All Status_ after selecting a specific status triggered a 400 error and caused the history list to disappear.",
+        "Fixed an issue where updating a service version from the new Microservices page did not correctly propagate the Docker image update."
       ]
     }
   },
