@@ -145,7 +145,7 @@ Kubernetes-centric architecture.
 
 ### IBDM
 
-`ibdm` is the Context Catalog's connector engine, used to sync data from external systems. See the [Connectors Overview](/products/context-catalog/connectors/10_overview.md) for details.
+`ibdm` is the Context Catalog's connector engine, used to sync data from external systems. See the [Connectors Overview](/products/catalog/connectors/10_overview.md) for details.
 
 Compatibility matrix:
 
