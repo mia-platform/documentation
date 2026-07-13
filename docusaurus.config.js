@@ -57,9 +57,9 @@ const config = {
           items: [
             {
               type: 'doc',
-              docId: "products/context-catalog/overview",
-              label: "Context Catalog",
-              activeBaseRegex: "(docs|docs/\\d.x)/products/context-catalog"
+              docId: "products/catalog/overview",
+              label: "Catalog",
+              activeBaseRegex: "(docs|docs/\\d.x)/products/catalog"
             },
             {
               type: 'doc',

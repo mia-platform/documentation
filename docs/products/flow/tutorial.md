@@ -49,7 +49,7 @@ Once the build finishes, the **Preview** tab in the Canvas shows the running app
 - Mark a task as complete and check the visual feedback.
 - Try editing and deleting a task.
 
-If the preview does not load, switch to the **Logs** tab to read the build output and look for errors.
+If the preview does not load, switch to the **Cloud** tab to read the build output and look for errors.
 
 ![Mia Flow Canvas Preview](img/mia_flow_tutorial_add_tasks.png)
 

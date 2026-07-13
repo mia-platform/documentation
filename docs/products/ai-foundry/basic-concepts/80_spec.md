@@ -4,12 +4,6 @@ title: Spec Templates
 sidebar_label: Spec Templates
 ---
 
-:::caution Beta
-
-AI Foundry is in **beta**. We are actively shaping the product, so things may change as we iterate. Your feedback is welcome.
-
-:::
-
 # Spec Templates
 
 A **Spec Template** is a catalog resource that stores a structured or free-form specification document.
@@ -51,8 +45,9 @@ The following commands are supported:
 | Field         | Required | Description                                                                                    |
 | ------------- | -------- | ---------------------------------------------------------------------------------------------- |
 | `Title`       | Yes      | Display name shown in the UI.                                                                  |
-| `Name`        | Yes      | Unique identifier. Referenced in `Playbook.spec.specs` and `Playbook.spec.flow.nodes[].specs`. |
+| `Name`        | Yes      | Unique identifier, auto-derived from Title. Lowercase letters, digits, dots, and hyphens only (must start and end with an alphanumeric character), max 63 characters. Immutable after creation. Referenced in `Playbook.spec.spectemplates` and `Playbook.spec.flow.nodes[].spectemplates`. |
 | `Description` | Yes      | Short description of what the document covers.                                                 |
+| `Tags`        | No       | Free-form, multi-value tags used to make the spec template easier to find and filter.           |
 | `Command`     | Yes      | The command identifier that triggers this spec template.                                       |
 | `Template`    | Yes      | Markdown template produced or followed by the command.                                         |
 

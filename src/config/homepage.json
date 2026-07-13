@@ -27,10 +27,10 @@
   "featureGrid": [
     {
       "description": "Connect, configure, and serve context to AI agents and applications through a governed catalog of enterprise knowledge.",
-      "icon": "context-catalog",
-      "link": "/docs/products/context-catalog/overview",
+      "icon": "catalog",
+      "link": "/docs/products/catalog/overview",
       "target": "_self",
-      "title": "Context Catalog"
+      "title": "Catalog"
     },
     {
       "description": "Discover how to easily find, understand, and effectively govern all of your company's data assets.",

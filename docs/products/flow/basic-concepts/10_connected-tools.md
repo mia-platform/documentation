@@ -29,20 +29,17 @@ Flow provides a set of built-in integrations with third party tools and make the
 | Cloud storage      | Google Drive (read-only)                | List, search, fetch file content                         |
 | Platform           | Mia-Platform Console & Data Catalog     | Projects, services, lineage, catalog items               |
 
-In addition to the built-in connectors, you can register any number of **custom MCP servers** from the Connectors page.
-Flow loads them automatically and treats them like any other tools.
+In addition to the built-in connectors, you can register any number of **custom MCP servers**. Registration itself happens in [AI Foundry](/products/ai-foundry/basic-concepts/70_mcp-server.md): the **Add new MCP server** action on the **Connected Tools** page opens AI Foundry in a new tab, where you configure the server and its authentication. Once a server is registered, Flow loads it automatically and treats its tools like any other tools.
 
-## The Connectors page
+## The Connected Tools page
 
-The **Connectors** page is the single hub for authenticating to all external providers. Each provider shows its current state with connect/disconnect actions.
+The **Connected Tools** page is the hub for authenticating to the built-in providers. Each provider shows its current state with connect/disconnect actions. Custom MCP servers registered in AI Foundry also show up here, with a link back to AI Foundry to edit their configuration.
 
-Custom MCP servers support four authentication modes: `oauth`, `api_key`, `bearer`, and `none`. Once a server is added or removed, Flow refreshes the assistant's tool set on the next message you send.
+Custom MCP servers support four authentication modes: `oauth`, `api_key`, `bearer`, and `none`, resolved when Flow builds the assistant's tool list for a conversation. Once a server is added or removed in AI Foundry, Flow refreshes the assistant's tool set on the next message you send.
 
 ## How authentication works
 
-When you click **Connect** next to a provider, Flow drives the authentication flow with that provider. Once it completes, the corresponding tools become available to the assistant in every conversation. You can disconnect a provider at any time, and the related tools immediately stop being offered to the assistant.
-
-Custom MCP servers can be configured inside the [AI Foundry](/products/ai-foundry/basic-concepts/70_mcp-server.md) and used directly inside Flow.
+When you click **Connect** next to a built-in provider, Flow drives the authentication flow with that provider. Once it completes, the corresponding tools become available to the assistant in every conversation. You can disconnect a provider at any time, and the related tools immediately stop being offered to the assistant.
 
 ## How the assistant picks tools
 

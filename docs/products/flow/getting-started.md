@@ -21,28 +21,30 @@ This page walks you through the first session, from opening the app to deploying
 
 - Access to a Flow instance (URL and credentials are provided by your administrator).
 - A modern browser.
-- (Optional) The credentials of the external systems you want to connect (GitHub, GitLab, Atlassian, Grafana, Google Drive, etc.). You can add them later from the **Connectors** page.
+- (Optional) The credentials of the external systems you want to connect (GitHub, GitLab, Atlassian, Grafana, Google Drive, etc.). You can add them later from the **Connected Tools** page.
 
-You do not need to install any tool locally: the assistant, the live preview, and the catalog all run inside Flow.
+You do not need to install any tool locally: the assistant and the live preview both run inside Flow.
 
 ## 1. Get familiar with the layout
 
 The main areas of the application are:
 
-| Area           | What it is for                                                           |
-| -------------- | ------------------------------------------------------------------------ |
-| **Home**       | Quick-start omnibar and recent conversations.                            |
-| **Chat**       | Conversational interface with the AI assistant.                          |
-| **Canvas**     | Code editor and live preview for the project tied to a conversation.     |
-| **Connectors** | Authenticate to the external systems Flow can act on.                    |
-| **Memories**   | Browse, rename, and reopen past conversations.                           |
-| **Settings**   | Defaults, advanced options, and preferences.                             |
+| Area                | What it is for                                                                     |
+| ------------------- | ----------------------------------------------------------------------------------- |
+| **Home**            | Quick-start omnibar and recent conversations.                                       |
+| **Chat**            | Conversational interface with the AI assistant, without the Canvas.                 |
+| **Code**            | The same conversational interface paired with the Canvas: the code editor and live preview for the project tied to the conversation. |
+| **Projects**        | Browse your own, starred, and shared projects, and discover projects shared by others. |
+| **Connected Tools** | Authenticate to the external systems Flow can act on.                               |
+| **Memories**        | Browse, rename, and reopen past conversations.                                      |
+| **Learn**           | Onboarding material and guided tutorials.                                           |
+| **Settings**        | Theme, advanced options, analytics, privacy, billing, and feedback.                  |
 
 ## 2. (Optional) Connect external systems
 
 Before your first conversation, it is worth linking the providers you intend to use:
 
-1. Open the **Connectors** page.
+1. Open the **Connected Tools** page.
 2. Click **Connect** next to the providers you need: GitHub, GitLab, Atlassian, Grafana, Google Drive, the Mia-Platform Data Catalog, or any custom MCP server.
 3. Complete the authentication flow for each provider. Once linked, the related tools become available to the assistant.
 
@@ -81,7 +83,7 @@ The Canvas reflects every change in real time. You can also open any file in the
 When you are happy with the result:
 
 1. Open the **Deploy** action from the Canvas.
-2. Select the destination Mia-Platform project and environment.
+2. Select the destination environment; the project is the one already tied to your Canvas session.
 3. Confirm. Flow pushes the code to the project and triggers its CI/CD pipeline.
 
 The deployment status is reported inside Flow, and you can follow the pipeline directly in the Mia-Platform Console.

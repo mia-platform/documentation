@@ -39,7 +39,7 @@ const GetIcons = ({icon}) => {
                     </g>
                 </svg>
             )
-        case 'context-catalog':
+        case 'catalog':
             return (
                 <svg fill="none" height="48" viewBox="0 0 56 48" width="56" xmlns="http://www.w3.org/2000/svg">
                     <path d="M21.8898 0L0.971191 11.9945V35.9945L21.8898 48L42.7973 35.9945V11.9945L21.8898 0Z" fill="#AAD1FF"/>

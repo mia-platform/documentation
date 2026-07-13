@@ -12,15 +12,17 @@ Flow is in **beta**. We are actively shaping the product, so things may change a
 
 # Agentic AI
 
-The assistant behind Flow is not a single prompt: it is an **agent**, with explicit instructions, a set of callable tools, and the ability to chain its own actions. Agents, skills, prompts, specs, and playbooks are authored in **[AI Foundry](/products/ai-foundry/overview.md)** and surfaced inside Flow through the Catalog page, where you pick which ones to use in your conversations. This page explains the building blocks and how they fit together.
+The assistant behind Flow is not a single prompt: it is an **agent**, with explicit instructions, a set of callable tools, and the ability to chain its own actions. Agents, skills, prompts, specs, and playbooks are authored in **[AI Foundry](/products/ai-foundry/overview.md)**: the **AI Playbook Library** link in the sidebar opens AI Foundry in a new tab, where you pick which ones to use in your conversations. This page explains the building blocks and how they fit together.
 
 ## The building blocks
 
-Every building block listed below is a [AI Foundry](/products/ai-foundry/overview.md) catalog resource. Inside Flow, the **Catalog** page is the place where you browse them and decide which ones to apply to your conversations:
+Every building block listed below is an [AI Foundry](/products/ai-foundry/overview.md) catalog resource, browsed and picked from AI Foundry via the **AI Playbook Library** link:
 
 | Type | What it is | AI Foundry reference |
 |------|------------|----------------------|
 | **Agents** | A model + a tool selection + system instructions. The unit that actually answers your messages. | [Agent](/products/ai-foundry/basic-concepts/10_agent.md) |
+| **Tools** | A discrete, executable capability an agent can call: a REST request, a database query, or any operation exposed by an MCP Server. | [Tool](/products/ai-foundry/basic-concepts/40_tool.md) |
+| **MCP Server** | An external [Model Context Protocol (MCP)](https://modelcontextprotocol.io/docs/getting-started/intro) server. Its tools are discovered and become attachable to agents like any other tool. | [MCP Servers](/products/ai-foundry/basic-concepts/70_mcp-server.md) |
 | **Models** | LLM models available to agents. | [Model](/products/ai-foundry/basic-concepts/20_model.md) |
 | **Prompts** | Reusable system prompts that shape the agent's tone, role, or workflow. | [Prompt](/products/ai-foundry/basic-concepts/30_prompt.md) |
 | **Skills** | Reusable, named operations an agent can perform. Distinct from the tools exposed by [Connectors](/products/flow/basic-concepts/10_connected-tools.md). | [Skill](/products/ai-foundry/basic-concepts/50_skill.md) |
@@ -33,10 +35,12 @@ An agent has several components:
 
 - a model with advanced configurations (e.g. temperature);
 - a set of instructions;
-- one or more skills;
-- one or more tools.
- 
-Skills are reusable, named operations that agents can perform. They are defined in [AI Foundry](/products/ai-foundry/basic-concepts/50_skill.md) and are distinct from the **tools** that come from [Connectors](/products/flow/basic-concepts/10_connected-tools.md) (which expose external systems like GitHub or Jira).
+- one or more tools;
+- one or more skills.
+
+**Tools** are discrete, executable capabilities an agent can call: a REST request, a database query, or any operation exposed by an [MCP Server](/products/ai-foundry/basic-concepts/70_mcp-server.md). Flow's built-in [connectors](/products/flow/basic-concepts/10_connected-tools.md) and any custom MCP server you register are both surfaced as tools this way, so an agent's tool selection is a pick from what those MCP servers (plus any built-in tools) expose.
+
+**Skills** are reusable, named, higher-level operations an agent can perform — coarser-grained than a single tool call, and defined in [AI Foundry](/products/ai-foundry/basic-concepts/50_skill.md) as a distinct resource from tools.
 
 Agents are defined in [AI Foundry](/products/ai-foundry/basic-concepts/10_agent.md); from Flow you pick which agent answers your conversation.
 
@@ -44,7 +48,7 @@ Different agents are useful for different jobs: for example, a fast agent for qu
 
 ## AI Playbooks
 
-A **Playbook** is a named bundle of every artifact above and is the unit you usually apply to a conversation. Playbooks are authored in [AI Foundry](/products/ai-foundry/basic-concepts/60_playbook.md) and made available inside Flow through the Catalog:
+A **Playbook** is a named bundle of every artifact above and is the unit you usually apply to a conversation. Playbooks are authored in [AI Foundry](/products/ai-foundry/basic-concepts/60_playbook.md); inside Flow you pick one as a suggested chip when starting a conversation, or apply/change one mid-conversation from the active instructions picker in the chat compose bar:
 
 ```
 AI Playbook
@@ -54,7 +58,7 @@ AI Playbook
   └── Prompts (system instructions)
 ```
 
-A **Spec Template** lets agents run named commands against a project. When you invoke a command in chat, Flow looks it up in the Catalog and runs the matching spec against the active project.
+A **Spec Template** lets agents run named commands against a project. When you invoke a command in chat, Flow looks it up among the active playbook's specs and runs the matching spec against the active project.
 
 When a playbook is activated:
 
@@ -68,7 +72,7 @@ Under **Settings → Advanced**, you can pick a **Default Chat Playbook** and a 
 
 ## Reasoning and limits
 
-For heavy reasoning models, Flow hides internal chain-of-thought from the chat by default, so responses stay focused on what is useful to the user. The number of consecutive tool calls per agent turn is capped to keep conversations responsive: if a task needs more steps, the agent splits the work across multiple turns.
+When a response includes reasoning steps, Flow collapses them by default so the conversation stays focused on what is useful to the user; you can expand them to see the model's reasoning. The number of consecutive tool calls the assistant can make within a single turn is capped (50 by default) to keep conversations responsive.
 
 ## Putting it together
 
@@ -76,7 +80,7 @@ A typical workflow looks like this:
 
 1. In [AI Foundry](/products/ai-foundry/overview.md), define **Skills** for the operations agents should perform, group them into **Agents**, wrap recurring tone or workflow choices in **Prompts**, and add **Specs** for repeatable commands.
 2. Bundle everything into a **Playbook**.
-3. Open Flow, pick the playbook from the Catalog, and start a conversation: the assistant is already configured for the use case the playbook was built for.
+3. Open Flow, pick the playbook (as a suggested chip on Home, or as your default under Settings → Advanced), and start a conversation: the assistant is already configured for the use case the playbook was built for.
 
 If you want a playbook to be applied automatically every time you open Flow, set it as your default in **Settings → Advanced**.
 
