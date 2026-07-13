@@ -145,7 +145,7 @@ The customer's existing IdP is then registered as an **Identity Provider** in th
 | Clean separation between product and customer identity | - |
 | Straightforward upgrade path via Helm | - |
 
-→ **[Installation guide](./managed-keycloak.md)**
+→ **[Installation guide](/requirements/installation-guidelines/shared-services/authn/federation-strategies/managed-keycloak.md)**
 
 ---
 
@@ -222,7 +222,7 @@ Since Mia Platform does not own the Keycloak lifecycle in this scenario, realm u
 | No additional Keycloak instance to manage | Potential conflicts if customer modifies Mia-owned realms |
 | Easiest federation: customer realm is already co-located | Mia Platform needs service account access to the instance |
 
-→ **[Installation guide](./customer-keycloak-cli.md)**
+→ **[Installation guide](/requirements/installation-guidelines/shared-services/authn/federation-strategies/customer-keycloak-cli.md)**
 
 ---
 
@@ -275,7 +275,7 @@ This is **functionally identical to Strategy 1**: the only difference is that th
 
 **Recommendation:** This is the preferred approach for Strategy 3 as it maintains the clean dual-realm architecture and all operational benefits of a managed instance.
 
-→ **[Installation guide](./managed-keycloak-restricted-idp.md)**
+→ **[Installation guide](/requirements/installation-guidelines/shared-services/authn/federation-strategies/managed-keycloak-restricted-idp.md)**
 
 ---
 

@@ -8,7 +8,7 @@ sidebar_position: 2
 
 > **When to use this guide:** the customer already operates a Keycloak instance with full admin access and wants Mia Platform realms provisioned within it. Mia Platform **does not deploy a Keycloak instance** in this scenario. The `keycloak-realm-management` chart is used as a CLI tool to import and incrementally update the `mia-platform` and `mia-platform-extensibility` realms on the customer's Keycloak.
 
-For an overview of all available federation models see [Federation Strategies](./index.md).
+For an overview of all available federation models see [Federation Strategies](/requirements/installation-guidelines/shared-services/authn/federation-strategies/index.md).
 
 ---
 
@@ -81,7 +81,7 @@ make deps
 
 ### Step 2.2: Create a values file for each realm
 
-The values file structure for the three realms (master, products, extensibility) follows the same template described in the [Managed Keycloak guide](./managed-keycloak.md#step-22--create-a-values-file-for-each-realm).
+The values file structure for the three realms (master, products, extensibility) follows the same template described in the [Managed Keycloak guide](/requirements/installation-guidelines/shared-services/authn/federation-strategies/managed-keycloak.md#step-22--create-a-values-file-for-each-realm).
 
 The only differences for this scenario:
 
@@ -243,4 +243,4 @@ The `KEYCLOAK_CONFIG_CLI_IMAGE` variable in the `Makefile` must match the custom
 ## Next steps
 
 - **Configure Mia Platform products** to use the customer's Keycloak as the Authentication Provider → [Authentication Provider](/requirements/installation-guidelines/console/self-hosted/helm-values/25_authentication-provider.md)
-- **Future realm updates** → [How To Upgrade: Keycloak Realm Management](../keycloak-realm-management/100_how-to-upgrade.md)
+- **Future realm updates** → [How To Upgrade: Keycloak Realm Management](/requirements/installation-guidelines/shared-services/authn/keycloak-realm-management/100_how-to-upgrade.md)

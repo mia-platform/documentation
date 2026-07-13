@@ -8,7 +8,7 @@ sidebar_position: 1
 
 > **When to use this guide:** the customer does not have a dedicated Keycloak instance, or prefers to rely on a Keycloak instance fully managed by Mia Platform. Keycloak is deployed via the Helm chart and configured to federate the customer's existing Identity Provider.
 
-For an overview of all available federation models see [Federation Strategies](./index.md).
+For an overview of all available federation models see [Federation Strategies](/requirements/installation-guidelines/shared-services/authn/federation-strategies/index.md).
 
 ---
 
@@ -33,7 +33,7 @@ kubectl create namespace keycloak
 
 ## Phase 1: Deploy the managed Keycloak
 
-Follow the [Keycloak chart Getting Started guide](../keycloak/15_getting-started.md) to complete the following steps:
+Follow the [Keycloak chart Getting Started guide](/requirements/installation-guidelines/shared-services/authn/keycloak/15_getting-started.md) to complete the following steps:
 
 1. Create the required Kubernetes secrets (`keycloak-bootstrap-admin`, `keycloak-db`).
 2. Prepare a production values file with hostname, Ingress, and database settings.
@@ -207,7 +207,7 @@ identityProviderMappers:
       syncMode: IMPORT
 ```
 
-For the full list of available mapper types see the [Helm Values Reference](../keycloak-realm-management/helm-values/00_overview.md).
+For the full list of available mapper types see the [Helm Values Reference](/requirements/installation-guidelines/shared-services/authn/keycloak-realm-management/helm-values/00_overview.md).
 
 ### Step 2.4: Render templates without applying (dry-run)
 
@@ -256,7 +256,7 @@ make import-admin-extensibility \
 ```
 
 :::note
-`import-admin-*` uses username/password and is appropriate for the initial bootstrap. For subsequent updates, switch to service account authentication (`import-*` with `KEYCLOAK_CLIENT_SECRET`) to avoid exposing admin credentials. See [How To Upgrade](../keycloak-realm-management/100_how-to-upgrade.md).
+`import-admin-*` uses username/password and is appropriate for the initial bootstrap. For subsequent updates, switch to service account authentication (`import-*` with `KEYCLOAK_CLIENT_SECRET`) to avoid exposing admin credentials. See [How To Upgrade](/requirements/installation-guidelines/shared-services/authn/keycloak-realm-management/100_how-to-upgrade.md).
 :::
 
 ### Step 2.6: Verify
@@ -271,5 +271,5 @@ make import-admin-extensibility \
 ## Next steps
 
 - **Configure Mia Platform products** to use this Keycloak as the Authentication Provider → [Authentication Provider](/requirements/installation-guidelines/console/self-hosted/helm-values/25_authentication-provider.md)
-- **Future realm updates** → [How To Upgrade: Keycloak Realm Management](../keycloak-realm-management/100_how-to-upgrade.md)
-- **Keycloak chart upgrades** → [How To Upgrade: Keycloak](../keycloak/100_how-to-upgrade.md)
+- **Future realm updates** → [How To Upgrade: Keycloak Realm Management](/requirements/installation-guidelines/shared-services/authn/keycloak-realm-management/100_how-to-upgrade.md)
+- **Keycloak chart upgrades** → [How To Upgrade: Keycloak](/requirements/installation-guidelines/shared-services/authn/keycloak/100_how-to-upgrade.md)

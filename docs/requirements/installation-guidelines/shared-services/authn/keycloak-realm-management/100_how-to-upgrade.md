@@ -34,7 +34,7 @@ In production environments, realm updates should be applied using the `keycloak-
 
 ### Using the service account (`import-*`)
 
-The `import-*` Makefile targets authenticate via OAuth2 `client_credentials` grant using the `keycloak-config-cli` client created during setup (see [Customer Keycloak via CLI](../federation-strategies/customer-keycloak-cli.md#step-11--create-the-keycloak-config-cli-service-account) or the equivalent bootstrap step for managed Keycloak installations).
+The `import-*` Makefile targets authenticate via OAuth2 `client_credentials` grant using the `keycloak-config-cli` client created during setup (see [Customer Keycloak via CLI](/requirements/installation-guidelines/shared-services/authn/federation-strategies/customer-keycloak-cli.md#step-11--create-the-keycloak-config-cli-service-account) or the equivalent bootstrap step for managed Keycloak installations).
 
 ```bash
 # Update the mia-platform realm

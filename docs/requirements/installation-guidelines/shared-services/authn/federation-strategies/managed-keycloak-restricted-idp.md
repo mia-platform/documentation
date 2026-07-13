@@ -8,9 +8,9 @@ sidebar_position: 3
 
 > **When to use this guide:** the customer has a Keycloak instance but **cannot create new realms** on it (e.g., a shared enterprise Keycloak managed by a central IT team with restricted RBAC). Mia Platform deploys its own managed Keycloak instance and federates it with the customer's existing realm via standard OIDC.
 
-This scenario is **functionally identical to [Managed Keycloak](./managed-keycloak.md)**. The only difference is that the federated IdP is a realm on the customer's existing Keycloak instance rather than a generic IdP (Okta, Azure AD, etc.). Federation happens over the standard OIDC protocol, no changes are required on the customer's Keycloak beyond registering an OIDC client.
+This scenario is **functionally identical to [Managed Keycloak](/requirements/installation-guidelines/shared-services/authn/federation-strategies/managed-keycloak.md)**. The only difference is that the federated IdP is a realm on the customer's existing Keycloak instance rather than a generic IdP (Okta, Azure AD, etc.). Federation happens over the standard OIDC protocol, no changes are required on the customer's Keycloak beyond registering an OIDC client.
 
-For an overview of all available federation models see [Federation Strategies](./index.md).
+For an overview of all available federation models see [Federation Strategies](/requirements/installation-guidelines/shared-services/authn/federation-strategies/index.md).
 
 ---
 
@@ -25,7 +25,7 @@ Identical to the Managed Keycloak scenario, plus:
 
 ## Phase 1: Deploy the managed Keycloak
 
-Identical to the Managed Keycloak guide. Follow Steps 1.1 through 1.4 from the [Managed Keycloak installation guide](./managed-keycloak.md#phase-1--deploy-the-managed-keycloak).
+Identical to the Managed Keycloak guide. Follow Steps 1.1 through 1.4 from the [Managed Keycloak installation guide](/requirements/installation-guidelines/shared-services/authn/federation-strategies/managed-keycloak.md#phase-1--deploy-the-managed-keycloak).
 
 ---
 
@@ -121,7 +121,7 @@ The secret must be referenced via vault (requires `vault.enabled: true` in the K
 
 ### Step 2.4: Complete the configuration
 
-For the remaining steps (products and extensibility values files, `make deps`, dry-run render, and import) follow Steps 2.1–2.6 from the [Managed Keycloak guide](./managed-keycloak.md#phase-2--realm-configuration), replacing the `identityProviders` block with the one shown above.
+For the remaining steps (products and extensibility values files, `make deps`, dry-run render, and import) follow Steps 2.1–2.6 from the [Managed Keycloak guide](/requirements/installation-guidelines/shared-services/authn/federation-strategies/managed-keycloak.md#phase-2--realm-configuration), replacing the `identityProviders` block with the one shown above.
 
 ---
 
@@ -141,4 +141,4 @@ For the remaining steps (products and extensibility values files, `make deps`, d
 ## Next steps
 
 - **Configure Mia Platform products** → [Authentication Provider](/requirements/installation-guidelines/console/self-hosted/helm-values/25_authentication-provider.md)
-- **Future realm updates** → [How To Upgrade: Keycloak Realm Management](../keycloak-realm-management/100_how-to-upgrade.md)
+- **Future realm updates** → [How To Upgrade: Keycloak Realm Management](/requirements/installation-guidelines/shared-services/authn/keycloak-realm-management/100_how-to-upgrade.md)
