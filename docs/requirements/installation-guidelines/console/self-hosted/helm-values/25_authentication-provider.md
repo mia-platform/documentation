@@ -80,4 +80,8 @@ If you want to control user creation and deletion from an external Identity Prov
 |:----:|:----:|:-----------:|:-------:|:--------:|
 |`enableUserSynchronizationWebhooks`| boolean | Activates webhooks for automatic user synchronization with external Identity providers |  | ✅ |
 
+:::caution Not yet wired in this chart version
+As of the current chart version, `enableUserSynchronizationWebhooks` is declared in `values.yaml`/`values.schema.json` but is not consumed by any chart template. Setting it currently has no effect. Track the chart's `_CHANGELOG.md` for when this flag becomes active.
+:::
+
 To know more about user synchronization with an Identity Provider, visit the [dedicated documentation page](/requirements/installation-guidelines/console/self-hosted/helm-values/26_synchronize-users-with-an-identity-provider.md).

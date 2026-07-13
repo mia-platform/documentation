@@ -6,7 +6,7 @@ sidebar_label: Synchronize users with an identity provider
 
 
 
-The Console uses external Identity Providers to manage user identities and authentication; configuration details can be found in the Console Installation documentation section dedicated to the [Authentication Provider](/requirements/installation-guidelines/console/self-hosted/helm-values/25_authentication-provider.md#supported-authentication-providers).
+The Console uses external Identity Providers to manage user identities and authentication; configuration details can be found in the Console Installation documentation section dedicated to the [Authentication Provider](/requirements/installation-guidelines/console/self-hosted/helm-values/25_authentication-provider.md#keycloak-configuration).
 
 # How to setup user synchronization
 
@@ -16,7 +16,7 @@ If you want to synchronize users between the Identity Provider and the Console, 
 POST /api/webhooks/apps/console/providers/:providerId/user
 ```
 
-Where `providerId` must be set based on the [`authProvider.name` configuration field](/requirements/installation-guidelines/console/self-hosted/helm-values/25_authentication-provider.md#configure-your-authentication-provider) set in the installation chart
+Where `providerId` must be set based on the alias of the identity provider configured in Keycloak (the `identityProviders[].alias` value in the [Realm Management chart](/requirements/installation-guidelines/shared-services/authn/keycloak-realm-management/helm-values/00_overview.md#identity-providers-identityproviders))
 
 :::info
 Webhooks **are not** exposed by default, to make them available check-out [user synchronization activation flag](/requirements/installation-guidelines/console/self-hosted/helm-values/25_authentication-provider.md#expose-synchronization-webhooks).

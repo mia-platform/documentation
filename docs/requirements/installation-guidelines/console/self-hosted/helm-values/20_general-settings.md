@@ -139,6 +139,7 @@ For this reason, you can control a different connection string to be used to sto
 |  `configurations.deployServiceJenkinsRetryMs`  | integer |                                                                                                                                                    Controls Deploy Service Jenkins retries if no build is found (minimum value: 1)                                                                                                                                                     |                                 |    ✅     |
 |  `configurations.configurationsCleaner.maxConfigurationsRetentionNumber`  | integer | Max number of configurations per ref to be preserved (default 100, set to 0 to disable history cleanup)                                                                                                                                                   |                100                 |    ✅     |
 |  `configurations.configurationsCleaner.schedule`  | crontab |  Cleaner crontab schedule     |                   `0 8 * * *`              |    ✅     |
+|  `configurations.miaPlatformDefaultCompanyId`  | string | Default Mia-Platform tenant/company ID injected as `TENANT_ID_TO_SET` into scheduled maintenance jobs (e.g. the software catalog sync and version upgrader jobs) |  |    ✅     |
 
 ### Optional Feature Toggle configurations
 

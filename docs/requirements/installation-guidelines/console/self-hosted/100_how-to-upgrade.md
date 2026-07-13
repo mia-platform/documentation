@@ -111,10 +111,12 @@ The following top-level service keys are no longer present in the chart and must
 
 | Removed key | Notes |
 |---|---|
-| `rateLimitEnvoy` | Rate limiting is now handled differently |
 | `apiPortal` | API Portal has been removed |
 | `loginSite` | Login site is now managed by Keycloak |
-| `notificationProvider` | Notification provider has been removed |
+
+:::note
+`rateLimitEnvoy` and `notificationProvider` are still present in the chart and do not need to be removed.
+:::
 
 #### 5. Update `configurations.redis.hosts` format
 
