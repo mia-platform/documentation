@@ -85,28 +85,6 @@
     }
   },
   {
-    "title": "Context Catalog",
-    "icon": "context-catalog",
-    "defaultOpen": true,
-    "type": "versions",
-    "items": {
-      "newFeatures": [],
-      "improvements": [],
-      "bugFixes": []
-    }
-  },
-  {
-    "title": "AI Foundry",
-    "icon": "ai-foundry",
-    "defaultOpen": true,
-    "type": "versions",
-    "items": {
-      "newFeatures": [],
-      "improvements": [],
-      "bugFixes": []
-    }
-  },
-  {
     "title": "Data Catalog",
     "icon": "data-catalog",
     "defaultOpen": true,
