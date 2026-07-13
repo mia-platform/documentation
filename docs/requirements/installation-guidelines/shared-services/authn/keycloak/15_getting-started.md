@@ -7,7 +7,7 @@ sidebar_label: Getting Started
 
 ## Chart structure
 
-The `keycloak-operator` chart is organised as follows:
+The `keycloak-operator` chart is organized as follows:
 
 ```
 keycloak-operator/

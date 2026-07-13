@@ -5,7 +5,7 @@ sidebar_label: Overview
 
 # Keycloak
 
-The `keycloak-operator` Helm chart deploys a Keycloak instance on Kubernetes using the [official Keycloak Operator](https://www.keycloak.org/operator/installation) and a Mia Platform custom image optimised for PostgreSQL, OpenTelemetry, and Vault-based secret management.
+The `keycloak-operator` Helm chart deploys a Keycloak instance on Kubernetes using the [official Keycloak Operator](https://www.keycloak.org/operator/installation) and a Mia Platform custom image optimized for PostgreSQL, OpenTelemetry, and Vault-based secret management.
 
 ## What the chart deploys
 

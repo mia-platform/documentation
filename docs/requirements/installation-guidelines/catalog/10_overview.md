@@ -54,7 +54,7 @@ The Catalog also exposes its API via the **Model Context Protocol (MCP)**, makin
   adkBeApp ──► Google Cloud (Vertex AI / ADK)
 ```
 
-The Envoy gateway validates JWT tokens on every request and checks RBAC policies via `accessControl`. Envoy merges the JWKS published by `authtoolBff` and `accessControl` so that tokens issued to either OIDC client validate correctly. The `catalogEngine` is the authoritative store for all catalog data. The Kafka pipeline provides an event-driven path for bulk item ingestion and synchronisation.
+The Envoy gateway validates JWT tokens on every request and checks RBAC policies via `accessControl`. Envoy merges the JWKS published by `authtoolBff` and `accessControl` so that tokens issued to either OIDC client validate correctly. The `catalogEngine` is the authoritative store for all catalog data. The Kafka pipeline provides an event-driven path for bulk item ingestion and synchronization.
 
 ## Authorization context integration
 

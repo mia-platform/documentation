@@ -399,7 +399,12 @@
     "twox",
     "sslmode",
     "Kiro",
-    "behaviour"
+    "behaviour",
+    "Kafbat",
+    "cimd",
+    "SCIM",
+    "Keycloakify",
+    "Infinispan"
   ],
   "dictionaries": [
     "softwareTerms",
