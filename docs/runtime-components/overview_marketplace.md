@@ -11,7 +11,7 @@ Each component is designed to solve specific runtime needs, from service communi
 
 All components are maintained by **Mia-Platform** or trusted **technology partners**, and are published in the public 👉 [GitHub repository](https://github.com/mia-platform-marketplace/public-catalog)
 
-#### Want to propose a change or add a new item?
+## Want to propose a change or add a new item?
 
 All updates must go submitted via a Pull Request (PR) on the [public-catalog](https://github.com/mia-platform-marketplace/public-catalog) repository — ensuring transparency and consistency across the Catalog.
 
@@ -40,7 +40,7 @@ More information about this type of customization can be found in the [marketpla
 
 Even if they are provided automatically on Console installations and updates, Mia-Platform items are still standard Catalog items. This means that they belong to a specific Company, and thus can be edited through the [Software Catalog](/products/console/software-catalog/overview.md) of that Company.
 
-The Company in question is the **default one** of the Console installation, specified in the the `configurations.miaPlatformDefaultCompanyId` key of the [installation Helm chart](/requirements/self-hosted/installation-chart/helm-values/10_installation-chart-example.md) (defaults to `mia-platform`). However, by default, nobody has access to this default Company: a **binding** need to be created on the **Console Backoffice** to give access to a user who can then add other users through the IAM section of the Company.
+The Company in question is the **default one** of the Console installation, specified in the the `configurations.miaPlatformDefaultCompanyId` key of the [installation Helm chart](/requirements/installation-guidelines/console/self-hosted/helm-values/10_installation-chart-example.md) (defaults to `mia-platform`). However, by default, nobody has access to this default Company: a **binding** need to be created on the **Console Backoffice** to give access to a user who can then add other users through the IAM section of the Company.
 
 Specifically, the steps to achieve this are:
 
@@ -64,5 +64,5 @@ Once the binding is added, the chosen user should be able to see with the defaul
 Any change made to Mia-Platform items will be **reverted** by the synchronization job on the next Console update.
 :::
 
-[resources-customization]: /requirements/self-hosted/installation-chart/helm-values/45_marketplace.md
+[resources-customization]: /requirements/installation-guidelines/console/self-hosted/helm-values/45_marketplace.md
 [public-catalog]: https://github.com/mia-platform-marketplace/public-catalog

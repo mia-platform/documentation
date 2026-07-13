@@ -42,7 +42,7 @@ Gaining deep, actionable insights into the health, performance, and security of 
 
 Security is not an afterthought but is embedded into the fabric of the platform. Mia-Platform enables the deployment of automated policies and controls that enforce security best practices system-wide.
 
-* [**Automated Security Measures**](/requirements/paas/security-measures.md)**:** The platform enforces security by default with features like TLS encryption, centralized authentication and authorization flows, and vulnerability management.
+* [**Automated Security Measures**](/requirements/installation-guidelines/console/paas/security-measures.md)**:** The platform enforces security by default with features like TLS encryption, centralized authentication and authorization flows, and vulnerability management.
 
 * [**Fine-Grained Access Control**](/products/console/api-console/api-design/authorization.md)**:** Utilize **Rönd**, a lightweight sidecar, to distribute security policy enforcement throughout your application, ensuring that access to sensitive data and operations is strictly controlled.
 
@@ -52,6 +52,6 @@ Take command of your cloud spend and drive environmental sustainability by reduc
 
 * [**Resource Optimization**](/products/console/tutorials/set-requests-limits-of-a-microservice.mdx)**:** The Console provides tools to set and monitor CPU and memory requests, including limits for each microservice, eventually preventing resource waste while optimizing costs.
 
-* [**Automated Environment Shutdown with Kube-Green**](/requirements/paas/tools/kube-green.md)**:** Reduce the CO2 footprint of your clusters by automatically shutting down non-production environments (e.g., development, testing) during non-working hours, significantly cutting down on energy consumption and costs.
+* [**Automated Environment Shutdown with Kube-Green**](/requirements/installation-guidelines/console/paas/tools/kube-green.md)**:** Reduce the CO2 footprint of your clusters by automatically shutting down non-production environments (e.g., development, testing) during non-working hours, significantly cutting down on energy consumption and costs.
 
 By adopting these Cloud Operations practices with Mia-Platform, organizations can achieve a state of operational excellence, managing complexity with confidence and transforming their infrastructure into a powerful engine for innovation.

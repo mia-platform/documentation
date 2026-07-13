@@ -128,6 +128,6 @@ Ultimately, Mia-Platform delivers tangible benefits: faster time-to-market, high
 
 To meet diverse security, compliance, and operational requirements, Mia-Platform offers [three flexible distribution models](/requirements/overview.md):
 
-* **Platform as a Service (PaaS)**: A fully managed, turn-key environment. Mia-Platform handles the infrastructure, updates, and maintenance, allowing your teams to focus exclusively on software delivery. See [PaaS requirements](/requirements/paas/overview.md).
-* **Bring Your Own Infrastructure (SaaS)**: A hybrid approach where Mia-Platform is provided as a managed service, but the runtime infrastructure remains under your organization’s direct control and management. See [BYOI requirements](/requirements/byoi/overview.md).
-* **Self-Hosted (On-Premise)**: The platform is installed and managed entirely within your own infrastructure. See [Self-Hosted requirements](/requirements/self-hosted/self-hosted-requirements.md).
+* **Platform as a Service (PaaS)**: A fully managed, turn-key environment. Mia-Platform handles the infrastructure, updates, and maintenance, allowing your teams to focus exclusively on software delivery. See [PaaS requirements](/requirements/installation-guidelines/console/paas/overview.md).
+* **Bring Your Own Infrastructure (SaaS)**: A hybrid approach where Mia-Platform is provided as a managed service, but the runtime infrastructure remains under your organization’s direct control and management. See [BYOI requirements](/requirements/installation-guidelines/console/byoi/overview.md).
+* **Self-Hosted (On-Premise)**: The platform is installed and managed entirely within your own infrastructure. See [Self-Hosted requirements](/requirements/installation-guidelines/console/self-hosted/self-hosted-requirements.md).

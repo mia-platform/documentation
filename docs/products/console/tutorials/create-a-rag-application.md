@@ -312,4 +312,4 @@ You may need to restart the service pod or manually create (or update) the index
 
 ### The frontend is not visible
 
-Make sure you have correctly configured the ingress route, for example, with Traefik (you can refer to the [documentation](/requirements/paas/tools/traefik.md) for more information on how to configure it).
+Make sure you have correctly configured the ingress route, for example, with Traefik (you can refer to the [documentation](/requirements/installation-guidelines/console/paas/tools/traefik.md) for more information on how to configure it).

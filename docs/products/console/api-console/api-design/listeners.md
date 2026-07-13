@@ -89,7 +89,7 @@ In order to receive incoming requests from the newly exposed API Gateway port, i
 :::info
 For example, if your Kubernetes cluster is configured to use [Traefik][traefik] as Ingress Controller provider, you may need to define a new [IngressRoute][ingress-route].
 
-For more details on configuring a new `IngressRoute`, please refer to [this guide](/requirements/paas/tools/traefik.md#expose-an-endpoint).
+For more details on configuring a new `IngressRoute`, please refer to [this guide](/requirements/installation-guidelines/console/paas/tools/traefik.md#expose-an-endpoint).
 :::
 
 ## Edit a Listener

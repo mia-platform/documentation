@@ -7,7 +7,7 @@ sidebar_label: Setup
 ## Connecting to the remote Console MCP Server
 
 :::note
-Please also consider that this is available only for projects and companies in the [Mia-Platform PaaS](/requirements/paas/overview.md). To log in to the remote Console MCP Server in self-hosted installation, you must create a Service Account first.
+Please also consider that this is available only for projects and companies in the [Mia-Platform PaaS](/requirements/installation-guidelines/console/paas/overview.md). To log in to the remote Console MCP Server in self-hosted installation, you must create a Service Account first.
 :::
 
 From version `v14.3.1` of the Mia Platform Console, it is possible to connect to the remote MCP Server from the dedicated endpoint, simplifying the configuration process and requiring only to authenticate at the server startup before to use all the tools and prompts of the official Mia-Platform Console MCP Server.

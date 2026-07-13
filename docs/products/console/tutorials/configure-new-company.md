@@ -22,7 +22,7 @@ This tutorial guides the user through each phase to make the Company fully opera
 ### Prerequisites
 
 Before starting, ensure you have the following:
-* An active and functioning Kubernetes cluster. We recommend a version between **1.25** and **1.33**. For more details on specific requirements, you can consult the [architectural prerequisites](/requirements/self-hosted/self-hosted-requirements.md#architectural-prerequisites).
+* An active and functioning Kubernetes cluster. We recommend a version between **1.32** and **1.34**. For more details on specific requirements, you can consult the [architectural prerequisites](/requirements/installation-guidelines/console/self-hosted/self-hosted-requirements.md#architectural-prerequisites).
 * A Git provider (e.g., GitLab, GitHub) with an account that has sufficient permissions to generate access tokens.
 * The necessary credentials and endpoints for all the external tools you intend to connect.
 

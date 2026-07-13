@@ -215,7 +215,7 @@ In our plugins, we try to follow the common data schema specified in the table, 
 
 [am-calendar]: /runtime-components/plugins/care-kit/20_components/10_am-calendar.md
 [appointment-manager]: /runtime-components/plugins/appointment-manager/10_overview.md
-[paas-grafana-alerting]: /requirements/paas/tools/grafana.md#alerting
+[paas-grafana-alerting]: /requirements/installation-guidelines/console/paas/tools/grafana.md#alerting
 [crud-service]: /runtime-components/plugins/crud-service/10_overview_and_usage.md
 [kafka2rest]: /runtime-components/plugins/crud-service/10_overview_and_usage.md
 [microfrontend-composer]: /products/microfrontend-composer/overview.md

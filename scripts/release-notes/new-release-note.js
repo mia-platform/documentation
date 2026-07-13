@@ -4,6 +4,7 @@ const path = require('path');
 const createMarkdownFile = (newVersion) => {
   let unreleasedMarkdown = fs.readFileSync(path.join(__dirname, './release-note-unreleased.mdx'), {encoding: 'utf8'});
   unreleasedMarkdown = unreleasedMarkdown.replace(/_ACCORDION_VERSION_/g, newVersion.replaceAll('.', '-'))
+  unreleasedMarkdown = unreleasedMarkdown.replace(/_CONSOLE_VER_/g, newVersion)
   unreleasedMarkdown = unreleasedMarkdown.replace(/_VERSION_/g, newVersion)
 
   const dir = path.join(__dirname, '..', '..', 'release-notes')

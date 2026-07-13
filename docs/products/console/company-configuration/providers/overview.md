@@ -12,4 +12,4 @@ The Mia-Platform Console supports providers with 3 different capabilities:
 * **Secret Managers**: allow users to securely store API keys, passwords, certificates, and other sensitive data;
 * **CI/CD (Continuous Integration and Continuous Delivery) Tools**: allow users to automate one or more stages of the so-called CI/CD pipelines (which usually consist of commit, build, test, and deploy).
 
-The supported version of the services are present in [this table](/requirements/self-hosted/self-hosted-requirements.md#software-and-hardware-prerequisites).
+The supported version of the services are present in [this table](/requirements/installation-guidelines/console/self-hosted/self-hosted-requirements.md#software-and-hardware-prerequisites).
