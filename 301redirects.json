@@ -5510,5 +5510,9 @@
   "/docs/products/software-catalog/(.*)": {
     "destination": "/docs/products/console/software-catalog/$1",
     "addedOn": "2026-05-07"
+  },
+  "/docs/products/context-catalog/(.*)": {
+    "destination": "/docs/products/catalog/$1",
+    "addedOn": "2026-07-08"
   }
 }
