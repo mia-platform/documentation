@@ -396,7 +396,8 @@
     "IMDRF",
     "autho",
     "FSTDEP021",
-    "twox"
+    "twox",
+    "sslmode"
   ],
   "dictionaries": [
     "softwareTerms",
