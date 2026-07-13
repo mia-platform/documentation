@@ -9,23 +9,76 @@ import dataAccordion from '@site/src/config/release-notes/release-note-v15-0-0.j
 
 _Jul 16th, 2026_
 
-## Context Catalog
+## Suite Home
+
+The new Suite Home page provides a centralized entry point for accessing Mia-Platform Suite products and managing tenant-related settings.
+
+Available capabilities include:
+
+* Access to all tenants and products available for the current user.
+* Recently used items for faster navigation.
+* Tenant switching through the project switcher.
+* Administration features for managing tenants, groups, and roles.
+* Integrated AI assistant support for navigation and common user requests.
+* Quick access to Suite products, including Console, Flow, Data Fabric, and P4SaMD, while preserving the selected tenant context.
+
+### Access Control & User Management
+
+The new RBAC Management service centralizes access control management across the Mia-Platform Suite.
+
+It provides a unified authorization model for managing:
+
+* Organizations.
+* Tenants.
+* Users and groups.
+* Roles and permissions.
+
+Roles can be assigned to individual users or groups, allowing administrators to define access rules according to their organization structure.
+
+By introducing a centralized authorization model, Suite components can rely on a single source of truth for permissions instead of maintaining independent access configurations.
+
+Read the documentation to understand how to manage users and add roles in Catalog and in AI Foundry.
+
+## Catalog
 
 ![Catalog](./img/catalog.png)
 
-We are introducing **Context Catalog**, a brand-new component of Mia-Platform that lets teams centralize, govern, and connect any entity that lives in their organization — services, infrastructure resources, datasets, AI assets, processes — and make them discoverable across the platform.
+We are introducing **Catalog**, a brand-new component of Mia-Platform that lets teams centralize, govern, and connect any entity that lives in their organization — services, infrastructure resources, datasets, AI assets, processes — and make them discoverable across the platform.
 
-Context Catalog ships with a REST API, a web Backoffice, a typed relationship graph, a compliance layer (rules, scorecards, campaigns), a growing set of connectors that keep the catalog in sync with GitHub, GitLab, Bitbucket, Azure, Azure DevOps, Google Cloud, the Mia-Platform Console, Sonatype Nexus, and Sysdig Secure, and an MCP server that exposes the catalog to AI agents.
+Catalog ships with a REST API, a web Backoffice, a typed relationship graph, a compliance layer (rules, scorecards, campaigns), a growing set of connectors that keep the catalog in sync with GitHub, GitLab, Bitbucket, Azure, Azure DevOps, Google Cloud, the Mia-Platform Console, Sonatype Nexus, and Sysdig Secure, and an MCP server that exposes the catalog to AI agents.
 
-For more information, go to the [Context Catalog documentation](/docs/products/context-catalog/overview) and visit [Mia-Platform v15 Overview](/release-notes/mia-platform-v15.mdx#context-catalog).
+For more information, go to the [Catalog documentation](/docs/products/context-catalog/overview) and visit [Mia-Platform v15 Overview](/release-notes/mia-platform-v15.mdx#context-catalog).
 
-## Flow
+### Campaign Notifications
 
-![Flow](./img/flow.png)
+Compliance campaigns now support automated notifications to keep users informed about relevant campaign events and progress.
 
-We are introducing **Flow**, a new component of Mia-Platform that brings visual workflow orchestration to the platform. Flow lets business and technical stakeholders design, execute, and monitor end-to-end processes that span microservices, data pipelines, and human-in-the-loop steps on a single canvas.
+Campaign administrators can configure notifications for:
 
-For more information, go to the [Flow documentation](/docs/products/flow/overview) and visit [Mia-Platform v15 Overview](/release-notes/mia-platform-v15.mdx#flow).
+* Campaign start.
+* Campaign completion.
+* Periodic progress reports.
+
+Notifications can be scheduled according to the campaign requirements, with configurable frequencies.
+
+Recipients can be selected among:
+
+* Campaign owners.
+* Campaign followers.
+* Item owners.
+* Item followers.
+
+Users can follow a campaign to receive future updates, and notification settings are displayed in the campaign details page.
+
+Notifications are triggered by campaign events and scheduled activities. They are currently delivered through email only.
+
+### Catalog MCP Server
+
+The Catalog MCP Server enables AI assistants (such as Claude Desktop, VS Code, Cursor, or Windsurf) to read and update the Mia Platform Catalog directly through natural-language requests.
+
+* **Key Capabilities:** AI assistants can handle tasks like "Which services does my team own?", "Show me the details of this service", or "Register a new service with these details."
+* **Automated Alignment:** Available actions are generated automatically from the Catalog's API, ensuring they stay up-to-date without manual intervention.
+* **Flexible Deployment:** The server can run locally for desktop/IDE assistants or as a shared service over the network, with a ready-to-use Docker image available for both.
 
 ## AI Foundry
 
@@ -34,6 +87,14 @@ For more information, go to the [Flow documentation](/docs/products/flow/overvie
 We are introducing **AI Foundry**, a new component of Mia-Platform for building, deploying, and governing AI-powered experiences. AI Foundry provides a unified environment to configure agents, manage LLM models, prompts, tools, and skills, compose multi-step agentic workflows through the Playbook Builder, and test everything in a live AI Playground — all governed as first-class catalog resources.
 
 For more information, go to the [AI Foundry documentation](/docs/products/ai-foundry/overview) and visit [Mia-Platform v15 Overview](/release-notes/mia-platform-v15.mdx#ai-foundry).
+
+## Flow
+
+![Flow](./img/flow.png)
+
+We are introducing **Flow**, a new component of Mia-Platform that brings visual workflow orchestration to the platform. Flow lets business and technical stakeholders design, execute, and monitor end-to-end processes that span microservices, data pipelines, and human-in-the-loop steps on a single canvas.
+
+For more information, go to the [Flow documentation](/docs/products/flow/overview) and visit [Mia-Platform v15 Overview](/release-notes/mia-platform-v15.mdx#flow).
 
 ## Design Helm Charts and Deploy with Kustomize
 
