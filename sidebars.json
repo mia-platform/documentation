@@ -1754,6 +1754,14 @@
     },
     {
       "type": "doc",
+      "id": "getting-started/mia-platform-suite"
+    },
+    {
+      "type": "doc",
+      "id": "getting-started/rbac-management"
+    },
+    {
+      "type": "doc",
       "id": "getting-started/tutorials/tutorials"
     },
     {
