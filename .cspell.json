@@ -397,7 +397,9 @@
     "autho",
     "FSTDEP021",
     "twox",
-    "sslmode"
+    "sslmode",
+    "Kiro",
+    "behaviour"
   ],
   "dictionaries": [
     "softwareTerms",
