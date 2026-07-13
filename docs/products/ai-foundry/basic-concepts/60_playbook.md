@@ -4,12 +4,6 @@ title: Playbook
 sidebar_label: Playbook
 ---
 
-:::caution Beta
-
-AI Foundry is in **beta**. We are actively shaping the product, so things may change as we iterate. Your feedback is welcome.
-
-:::
-
 # Playbook
 
 A **Playbook** is a catalog resource that describes a multi-step agentic workflow. It composes agents, prompts, skills, and spec templates into a directed graph where each node performs a discrete task and edges define the flow of control and data between them.
@@ -23,17 +17,23 @@ Playbooks move the AI platform from single-agent interactions toward **agentic p
 | Field                         | Required | Description                                                                                 |
 | ----------------------------- | -------- | ------------------------------------------------------------------------------------------- |
 | `Title`                       | Yes      | Display name shown in the UI.                                                               |
-| `Name`                        | Yes      | Unique identifier. Immutable after creation.                                                |
+| `Name`                        | Yes      | Unique identifier, auto-derived from Title. Lowercase letters, digits, dots, and hyphens only (must start and end with an alphanumeric character), max 63 characters. Immutable after creation. |
 | `Description`                 | Yes      | Short description of the workflow's purpose.                                                |
-| `Show on Home`                | No       | When enabled, this playbook appears as a quick-launch button on the home screen.            |
-| `Launch Mode`                 | No       | Default UI to open when this playbook is launched.                                          |
-| `Home Prompt`                 | No       | Optional pre-filled prompt auto-sent when the user clicks this playbook from the home page. |
-| `Source Template ID`          | No       | Optional source template linked to this playbook on the home screen.                        |
-| `Project Template ID`         | No       | Optional project template linked to this playbook on the home screen.                       |
-| `Prompts`                     | No       | Built-in Agents (reference)                                                                 |
+| `Tags`                        | No       | Free-form, multi-value tags used to make the playbook easier to find and filter.             |
+| `Prompts`                     | No       | Playbook-level prompts injected into every agent node in the flow.                           |
 | `Skills`                      | No       | Skills available to all agents in this playbook.                                            |
 | `Spec Templates`              | No       | Spec templates available to all agents in this playbook.                                    |
-| `Built-in Agents (reference)` | No       | Built-in external AI agents referenced by this playbook.                                    |
+| `Built-in Agents (reference)` | No       | Read-only summary of built-in agent nodes (external AI agents not managed by the Catalog) placed in the Agentic Flow. Managed from the flow canvas, not from this list.               |
+
+## Mia Flow integration
+
+A playbook can optionally be exposed in [Mia Flow](/products/ai-foundry/overview.md). This is configured in the Overview step's Configuration section:
+
+| Field                | Required                      | Description                                                                                     |
+| -------------------- | ------------------------------ | ------------------------------------------------------------------------------------------------ |
+| `Enable on Mia Flow` | No                              | Master switch. When off, none of the fields below apply and the playbook is not exposed in Mia Flow. |
+| `Show on Home`       | No                              | Shown only when `Enable on Mia Flow` is on. When enabled, this playbook appears as a quick-launch button on the Mia Flow home screen. |
+| `Launch Mode`        | Yes, when Mia Flow is enabled  | Shown only when `Enable on Mia Flow` is on. Default UI to open when this playbook is launched from Mia Flow: `Chat`, `Code`, or `Both`. |
 
 ## Playbook flow model
 
@@ -67,4 +67,4 @@ This allows a common baseline (e.g. a shared style guide) while letting individu
 - [Agent](/products/ai-foundry/basic-concepts/10_agent.md): the execution unit referenced by playbook nodes.
 - [Prompt](/products/ai-foundry/basic-concepts/30_prompt.md): reusable text injected into nodes.
 - [Skill](/products/ai-foundry/basic-concepts/50_skill.md): reusable capabilities attached at playbook or node level.
-- [Spec](/products/ai-foundry/basic-concepts/80_spec.md): structured documents referenced by nodes.
+- [Spec Templates](/products/ai-foundry/basic-concepts/80_spec.md): structured documents referenced by nodes.

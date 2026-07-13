@@ -4,12 +4,6 @@ title: Prompt
 sidebar_label: Prompt
 ---
 
-:::caution Beta
-
-AI Foundry is in **beta**. We are actively shaping the product, so things may change as we iterate. Your feedback is welcome.
-
-:::
-
 # Prompt
 
 A **Prompt** is a catalog resource that stores a reusable piece of text (typically a user message, an instruction template, or a few-shot example set) that agents and [Playbooks](/products/ai-foundry/basic-concepts/60_playbook.md) can reference by name.
@@ -32,8 +26,9 @@ Prompt engineering is an iterative process. Raw prompt strings scattered inside 
 | Field         | Required | Description                                                                                              |
 | ------------- | -------- | -------------------------------------------------------------------------------------------------------- |
 | `Title`       | Yes      | Display name shown in the UI.                                                                            |
-| `Name`        | Yes      | Unique identifier. Used when referencing the prompt from playbooks.                                      |
+| `Name`        | Yes      | Unique identifier, auto-derived from Title. Lowercase letters, digits, dots, and hyphens only (must start and end with an alphanumeric character), max 63 characters. Immutable after creation. Used when referencing the prompt from playbooks. |
 | `Description` | Yes      | Short description of the prompt's purpose.                                                               |
+| `Tags`        | No       | Free-form, multi-value tags used to make the prompt easier to find and filter.                            |
 | `Prompt`      | Yes      | The full prompt text. Supports Markdown. Rendered with syntax highlighting and a preview pane in the UI. |
 
 ## Prompt content guidelines

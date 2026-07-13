@@ -4,12 +4,6 @@ title: Skill
 sidebar_label: Skill
 ---
 
-:::caution Beta
-
-AI Foundry is in **beta**. We are actively shaping the product, so things may change as we iterate. Your feedback is welcome.
-
-:::
-
 # Skill
 
 A **Skill** is a catalog resource that encapsulates a reusable, higher-level AI capability. Where a [Tool](/products/ai-foundry/basic-concepts/40_tool.md) wraps a single atomic operation (call this API, run this query), a skill captures a multi-step capability along with the knowledge, templates, scripts, and assets needed to exercise it, for example "summarise a document", "classify intent", or "draft a reply in brand voice".
@@ -32,8 +26,9 @@ A skill bundles four optional content sections alongside its metadata:
 | Field         | Required | Description                                                                                                             |
 | ------------- | -------- | ----------------------------------------------------------------------------------------------------------------------- |
 | `Title`       | Yes      | Display name shown in the UI.                                                                                           |
-| `Name`        | Yes      | Unique identifier. Immutable after creation. Referenced in `Agent.spec.skills` and `Playbook.spec.skills`.              |
-| `Description` | No       | Short description of what the skill enables.                                                                            |
+| `Name`        | Yes      | Unique identifier, auto-derived from Title. Lowercase letters, digits, dots, and hyphens only (must start and end with an alphanumeric character), max 63 characters. Immutable after creation. Referenced in `Agent.spec.skills` and `Playbook.spec.skills`.              |
+| `Description` | Yes      | Short description of what the skill enables.                                                                            |
+| `Tags`        | No       | Free-form, multi-value tags used to make the skill easier to find and filter.                                           |
 | `Manifest`    | Yes      | Markdown documentation of the skill. Must be non-empty. Rendered in the detail view with a source/preview toggle.       |
 | `Refs`        | No       | A key-value map where each key is a reference name and each value is the reference content (Markdown).                  |
 | `Assets`      | No       | A key-value map where each key is an asset name and each value is the asset content (templates, schemas, etc.).         |

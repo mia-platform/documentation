@@ -4,12 +4,6 @@ title: Agent
 sidebar_label: Agent
 ---
 
-:::caution Beta
-
-AI Foundry is in **beta**. We are actively shaping the product, so things may change as we iterate. Your feedback is welcome.
-
-:::
-
 # Agent
 
 An **Agent** is the central execution unit in AI Foundry. It combines a large language model (LLM) with a set of instructions, tools, and skills to produce a reusable, autonomous AI actor that can carry out a specific task, such as answering questions, calling external APIs, running code, or coordinating with other agents inside a [Playbook](/products/ai-foundry/basic-concepts/60_playbook.md).
@@ -21,9 +15,10 @@ An **Agent** is the central execution unit in AI Foundry. It combines a large la
 | Field             | Required | Description                                                                                                                 |
 | ----------------- | -------- | --------------------------------------------------------------------------------------------------------------------------- |
 | `Title`           | Yes      | Display name shown in the UI.                                                                                               |
-| `Name`            | Yes      | Unique identifier within the organization. Lowercase alphanumeric and hyphens, max 63 characters. Immutable after creation. |
+| `Name`            | Yes      | Unique identifier within the organization, auto-derived from Title. Lowercase letters, digits, dots, and hyphens only (must start and end with an alphanumeric character), max 63 characters. Immutable after creation. |
 | `Description`     | Yes      | Short human-readable description of what the agent does.                                                                    |
-| `Runtime Name`    | Yes      | A unique identifier used by the runtime to route requests to this agent. Typically matches `metadata.name`.                 |
+| `Tags`            | No       | Free-form, multi-value tags used to make the agent easier to find and filter.                                               |
+| `Runtime Name`    | Yes      | A unique identifier used by the runtime to route requests to this agent. Auto-derived from Title using lowercase letters, digits, and underscores only, starting with a letter (e.g. `my_assistant`) — note this differs in format from `Name`, which uses hyphens instead of underscores. |
 | `Model`           | Yes      | The `name` of a [Model](/products/ai-foundry/basic-concepts/20_model.md) resource that provides the LLM configuration.                                        |
 | `Instruction`     | Yes      | The system prompt sent to the LLM on every invocation. Supports Markdown.                                                   |
 | `Tools`           | No       | List of [Tool](/products/ai-foundry/basic-concepts/40_tool.md) resource names the agent is allowed to call.                                                   |
