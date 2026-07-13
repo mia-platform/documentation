@@ -50,7 +50,7 @@ Below is the specific behavior for each product.
 
 For Console, roles and permissions are chosen from a **fixed, predefined list**, they cannot be customized or extended. Admins can assign these predefined roles to users, service accounts, or groups.
 
-See organization's detail at [Manage users](https://v15.docs.mia-platform.eu/docs/products/console/identity-and-access-management/manage-users).
+See organization's detail at [Manage users](/products/console/identity-and-access-management/manage-users.md).
 
 ### Data (Data Fabric)
 

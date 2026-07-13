@@ -8,13 +8,13 @@ sidebar_label: Suite Introduction
 
 ## Introduction
 
-### What is the Mia Platform?
+### What is the Mia Platform Suite?
 
-The Mia-Platform Suite is your starting point every time you work on Mia-Platform. It's the web page you land on after logging in (e.g. `https://catalog-dev.mia-demo-re5gu6.gcp.mia-platform.eu/home/`), and from there you can reach every project you have access to, switch between them, manage who's allowed to do what, and get help.
+The Mia-Platform Suite is your starting point every time you work on Mia-Platform. It's the web page you land on after logging in, and from there you can reach every project you have access to, switch between them, manage who's allowed to do what, and get help.
 
 ### Why it exists
 
-If your organization uses Mia-Platform for more than one project or team, you need a way to move between them without confusion, and a way to control who can see or change what. The Console gives you that in one place:
+If your organization uses Mia-Platform for more than one project or team, you need a way to move between them without confusion, and a way to control who can see or change what. The Mia-Platform Suite gives you that in one place:
 
 - **One homepage** to find every project and application you work with.
 - **One switch** to change which project (tenant) you're currently working in.

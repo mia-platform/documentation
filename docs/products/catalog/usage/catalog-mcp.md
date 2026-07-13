@@ -10,7 +10,7 @@ The Catalog MCP Server exposes the Mia-Platform Catalog to any [MCP](https://mod
 
 It works as a thin proxy in front of the Catalog Engine: it reads the Engine's OpenAPI specification and turns each operation into an MCP tool a client can call. There's no separate business logic to configure, point it at your Catalog Engine and the available tools follow automatically.
 
-New to items and ITDs? See the [Catalog overview](https://v15.docs.mia-platform.eu/docs/products/context-catalog/overview) for an introduction to those concepts before diving in here.
+New to items and ITDs? See the [Catalog overview](/products/catalog/overview.md) for an introduction to those concepts before diving in here.
 
 ## Connecting to the remote MCP Server
 
