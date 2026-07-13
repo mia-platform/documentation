@@ -21,11 +21,14 @@ This page describes all configurable values for the `services` chart. See `value
 | `ingressRoute.enabled` | boolean | `false` | ❌ | Create a Traefik `IngressRoute` resource for the homepage. |
 | `ingressRoute.entryPoints` | array | `["websecure"]` | ❌ | Traefik entry points to attach the route to. |
 | `ingressRoute.middlewares` | array | `[]` | ❌ | Additional Traefik middleware references (e.g. IP filtering, rate limiting). |
+| `ingressRoute.tlsEnabled` | boolean | `false` | ❌ | Add a `tls` block to the `IngressRoute` spec. |
+| `ingressRoute.tls` | object | `{}` | ❌ | Pass-through Traefik TLS spec (e.g. `{ secretName: my-cert }`). Rendered only when `tlsEnabled: true`. |
 
 ## Authorization server
 
 | Key | Type | Default | Required | Description |
 |---|---|---|---|---|
+| `authorizationServer.enabled` | boolean | `true` | ❌ | Enable OIDC token validation against the configured issuer. |
 | `authorizationServer.issuer` | string | `""` | ✅ | Keycloak realm issuer URL (e.g. `https://keycloak.your-domain.com/realms/my-realm`). Used by Envoy and `authtool-bff` to discover OIDC endpoints and validate tokens. |
 
 ## Telemetry
@@ -57,14 +60,39 @@ tokenEncKey=$(openssl rand -hex 32)
 ```
 :::
 
+The chart can similarly manage the `rbacManagement` PostgreSQL connection string as a Kubernetes `Secret`:
+
+| Key | Type | Default | Required | Description |
+|---|---|---|---|---|
+| `secrets.rbacManagementKeys.enabled` | boolean | `false` | ❌ | When `true`, the chart creates a `Secret` named `rbac-management-keys` from the value below. |
+| `secrets.rbacManagementKeys.postgresConnectionString` | string | `""` | ❌ | Full PostgreSQL connection string (e.g. `postgresql://user:password@host:5432/database`), mounted into the `rbacManagement` pod. |
+
 ## Global image settings
 
 | Key | Type | Default | Description |
 |---|---|---|---|
-| `global.imagePullSecrets` | array | `[]` | List of image pull secret names applied to all pods. |
-| `global.imageCredentials.registry` | string | `""` | Container registry hostname (used when creating a pull secret inline). |
 | `global.labels` | object | `{}` | Additional labels added to all resources. |
 | `global.annotations` | object | `{}` | Additional annotations added to all resources. |
+| `global.imagePullSecret.enabled` | boolean | `false` | When `true`, the chart creates a `kubernetes.io/dockerconfigjson` Secret from `global.imageCredentials` and references it on every pod. |
+| `global.imagePullSecret.name` | string | `""` | Name of the image pull secret. Must match an existing Secret when `enabled: false`, or is created by the chart when `enabled: true`. |
+| `global.imageCredentials.registry` | string | `""` | Container registry hostname (e.g. `nexus.mia-platform.eu`). Also used as the fallback registry for any microservice image that does not set its own `image.registry`. |
+| `global.imageCredentials.username` | string | `""` | Registry username. Typically injected at deploy time via `--set` rather than committed to a values file. |
+| `global.imageCredentials.password` | string | `""` | Registry password/token. Typically injected at deploy time via `--set`. |
+| `global.imageCredentials.email` | string | `""` | Email associated with the registry credentials (required by the `dockerconfigjson` format). |
+
+## Service accounts
+
+Each microservice gets its own dedicated `ServiceAccount`, created by default.
+
+| Key | Type | Default | Description |
+|---|---|---|---|
+| `serviceAccounts.accessControl.enabled` | boolean | `true` | Create a ServiceAccount for `accessControl`. |
+| `serviceAccounts.apiGateway.enabled` | boolean | `true` | Create a ServiceAccount for `apiGateway`. |
+| `serviceAccounts.authtoolBff.enabled` | boolean | `true` | Create a ServiceAccount for `authtoolBff`. |
+| `serviceAccounts.cache.enabled` | boolean | `true` | Create a ServiceAccount for `cache`. |
+| `serviceAccounts.homepageWebsite.enabled` | boolean | `true` | Create a ServiceAccount for `homepageWebsite`. |
+| `serviceAccounts.rbacManagement.enabled` | boolean | `true` | Create a ServiceAccount for `rbacManagement`. |
+| `serviceAccounts.swaggerAggregator.enabled` | boolean | `true` | Create a ServiceAccount for `swaggerAggregator`. |
 
 ## Common microservice fields
 
@@ -75,7 +103,10 @@ All microservices share the following configurable fields:
 | `<service>.enabled` | boolean | Enable or disable the microservice. |
 | `<service>.replicaCount` | integer | Number of pod replicas. |
 | `<service>.autoscaling.enabled` | boolean | Enable Horizontal Pod Autoscaler. |
-| `<service>.image.registry` | string | Container registry. |
+| `<service>.autoscaling.minReplicas` | integer | Minimum replicas when autoscaling is enabled. |
+| `<service>.autoscaling.maxReplicas` | integer | Maximum replicas when autoscaling is enabled. |
+| `<service>.autoscaling.targetCPUUtilizationPercentage` | integer | Target average CPU utilization used to scale the HPA. |
+| `<service>.image.registry` | string | Container registry. Falls back to `global.imageCredentials.registry` when unset. |
 | `<service>.image.repository` | string | Image repository path. |
 | `<service>.image.tag` | string | Image tag. |
 | `<service>.image.pullPolicy` | string | `IfNotPresent`, `Always`, or `Never`. |
@@ -84,6 +115,7 @@ All microservices share the following configurable fields:
 | `<service>.resources.limits.cpu` | string | CPU limit. |
 | `<service>.resources.limits.memory` | string | Memory limit. |
 | `<service>.logLevel` | string | Log level: `trace`, `debug`, `info`, `warn`, `error`. |
+| `<service>.env` | array | Extra environment variables (`{name, value}` or `{name, valueFrom}` objects) injected into the container. |
 
 ## apiGateway
 
@@ -93,6 +125,8 @@ Envoy reverse proxy. Routes all inbound traffic and delegates per-request author
 |---|---|---|---|
 | `apiGateway.enabled` | boolean | `true` | Deploy the API gateway. |
 | `apiGateway.maxBodyBytes` | integer | `10485760` | Maximum allowed request body size in bytes (default: 10 MiB). |
+| `apiGateway.extraVirtualHosts` | array | `[]` | Additional hostnames (and, optionally, ports) accepted on the main virtual host, e.g. when the homepage is reachable under more than one domain/port. |
+| `apiGateway.authorizationServer.audiences` | array | `["authz-api"]` | Expected token audiences accepted when validating requests against the authorization server. |
 | `apiGateway.config.clusterOverrides` | object | `{}` | Override upstream cluster addresses. Keys are cluster names; values are objects with `address` (string) and `port_value` (integer). |
 
 ## accessControl
@@ -112,6 +146,7 @@ OIDC Backend-for-Frontend. Handles the PKCE login/logout flow with Keycloak and 
 | `authtoolBff.enabled` | boolean | `true` | Deploy the authtool-bff service. |
 | `authtoolBff.tokenAuthMethod` | string | `private_key_jwt` | Token endpoint authentication method. One of: `private_key_jwt` (requires `privateKey` secret), `client_secret_basic`, `client_secret_post` (both require `clientSecret` secret). |
 | `authtoolBff.config.clientId` | string | `""` | **Required.** OIDC client ID registered in Keycloak. |
+| `authtoolBff.config.disableAccessTokenEncryption` | boolean | `false` | Disable encryption of the access token stored in Redis. Leave `false` unless required for debugging. |
 | `authtoolBff.config.userClaims` | array | `[]` | List of Keycloak token claims to forward in the session. |
 | `authtoolBff.config.authorizationCache` | object | `{}` | Configuration for caching authorization decisions in Redis. |
 
@@ -132,6 +167,14 @@ Mia Platform homepage frontend Single Page Application.
 |---|---|---|---|
 | `homepageWebsite.enabled` | boolean | `true` | Deploy the homepage website. |
 | `homepageWebsite.config.baseHref` | string | `"/home/"` | Base href for the SPA router. Set to `"/"` when the homepage is served at the root path. |
+
+## rbacManagement
+
+RBAC administration API (REST on port `80`/`3000`, gRPC on port `50051`). Manages roles, permissions, and product access, backed by an external PostgreSQL database. Requires the `rbac-management-keys` Secret (see [Secrets](#secrets)).
+
+| Key | Type | Default | Description |
+|---|---|---|---|
+| `rbacManagement.enabled` | boolean | `true` | Deploy the RBAC management service. |
 
 ## swaggerAggregator
 

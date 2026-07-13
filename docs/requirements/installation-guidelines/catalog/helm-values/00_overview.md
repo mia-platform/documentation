@@ -13,7 +13,8 @@ This page describes all configurable values for the `catalog` chart. See `values
 |---|---|---|---|---|
 | `url` | string | `~` | ✅ | Full public URL where the Catalog is exposed (e.g. `https://catalog.your-domain.com`). Used for OIDC redirect URIs, CORS, and routing. |
 | `isPaaS` | boolean | `false` | ❌ | Set to `true` for Mia Platform PaaS deployments. |
-| `environment` | string | `""` | ❌ | Logical environment name (e.g. `production`, `development`). |
+| `environment` | string | `""` | ❌ | Logical environment name. One of `local`, `development`, `experimental`, `lts`, `preproduction`, `preview`, `demo`. |
+| `authzUrl` | string | `~` | ❌ | URL of an external authorization API used by `accessControl` to enrich policy evaluation with external context (e.g. the `services` chart's `apiGateway`, routed to `rbacManagement`). Required when `accessControl.config.externalContext.enabled: true`. |
 
 ## IngressRoute (Traefik)
 
@@ -127,19 +128,47 @@ tokenEncKey=$(openssl rand -hex 32)
 
 ### MongoDB keys
 
+:::info
+The `itemsCompressor` deduplication cache has been migrated from MongoDB to a dedicated PostgreSQL schema. Use [`secrets.itemsCompressorKeys`](#items-compressor-keys) instead; the MongoDB-based `secrets.mongoKeys` block has been removed.
+:::
+
+### items-compressor keys
+
 | Key | Type | Default | Description |
 |---|---|---|---|
-| `secrets.mongoKeys.enabled` | boolean | `false` | When `true`, the chart creates a Secret named `mongo-keys`. |
-| `secrets.mongoKeys.connectionString` | string | `""` | MongoDB connection string used by `itemsCompressor` as a temporary deduplication cache. A migration to PostgreSQL is in progress. |
+| `secrets.itemsCompressorKeys.enabled` | boolean | `false` | When `true`, the chart creates a Secret named `items-compressor-keys`. |
+| `secrets.itemsCompressorKeys.postgresConnectionString` | string | `""` | PostgreSQL connection string used by `itemsCompressor` as its deduplication cache (e.g. `postgresql://user:pass@host:5432/catalog`). |
+
+### access-control keys
+
+Used only when `accessControl.config.externalContext.enabled: true`: `accessControl` authenticates as its own OIDC client to call the API configured via `authzUrl`.
+
+| Key | Type | Default | Description |
+|---|---|---|---|
+| `secrets.accessControlKeys.enabled` | boolean | `false` | When `true`, the chart creates a Secret named `access-control-keys`. |
+| `secrets.accessControlKeys.privateKey` | string | `""` | RSA private key in PEM format, base64 encoded. Used when `accessControl.config.externalContext.authorization.tokenAuthMethod` is `private_key_jwt`. |
+| `secrets.accessControlKeys.clientSecret` | string | `""` | OIDC client secret. Used when `accessControl.config.externalContext.authorization.tokenAuthMethod` is `client_secret_post` or `client_secret_basic`. |
 
 ## Global image settings
 
 | Key | Type | Default | Description |
 |---|---|---|---|
-| `global.imagePullSecrets` | array | `[]` | List of image pull secret names applied to all pods. |
-| `global.imageCredentials.registry` | string | `""` | Container registry hostname. |
 | `global.labels` | object | `{}` | Additional labels added to all resources. |
 | `global.annotations` | object | `{}` | Additional annotations added to all resources. |
+| `global.imagePullSecret.enabled` | boolean | `false` | When `true`, the chart creates a `kubernetes.io/dockerconfigjson` Secret from `global.imageCredentials` and references it on every pod. |
+| `global.imagePullSecret.name` | string | `""` | Name of the image pull secret. Must match an existing Secret when `enabled: false`, or is created by the chart when `enabled: true`. |
+| `global.imageCredentials.registry` | string | `""` | Container registry hostname. Also used as the fallback registry for any microservice image that does not set its own `image.registry`. |
+| `global.imageCredentials.username` | string | `""` | Registry username. Typically injected at deploy time via `--set` rather than committed to a values file. |
+| `global.imageCredentials.password` | string | `""` | Registry password/token. Typically injected at deploy time via `--set`. |
+| `global.imageCredentials.email` | string | `""` | Email associated with the registry credentials (required by the `dockerconfigjson` format). |
+
+## Service accounts
+
+Each microservice gets its own dedicated `ServiceAccount`, created by default. Applies to: `accessControl`, `adkBeApp`, `apiGateway`, `authtoolBff`, `cache`, `catalogEngine`, `catalogWebsite`, `doclingService`, `itemsCompressor`, `itemsConsumer`, `itemsProducer`, `mcpServer`, `policyEngine`, `swaggerAggregator`.
+
+| Key | Type | Default | Description |
+|---|---|---|---|
+| `serviceAccounts.<service>.enabled` | boolean | `true` | Create a ServiceAccount for `<service>`. |
 
 ## Common microservice fields
 
@@ -173,15 +202,34 @@ The core Catalog REST API. Serves all catalog data from PostgreSQL.
 |---|---|---|---|
 | `catalogEngine.config.persistence.config.maxConnections` | integer | `10` | Maximum number of PostgreSQL connections in the pool. |
 
-## authtoolBff
+## accessControl
 
-The OIDC Backend-for-Frontend. Manages session lifecycle and the PKCE login/logout flow.
+OPA-based ext-authz service. Enforces RBAC policies on every request forwarded by the API gateway. Can optionally fetch additional authorization context from an external API.
 
 | Key | Type | Default | Description |
 |---|---|---|---|
-| `authtoolBff.tokenAuthMethod` | string | `"private_key_jwt"` | Authentication method for the OIDC client. Options: `private_key_jwt`, `client_secret_post`, `client_secret_basic`. |
-| `authtoolBff.config.clientId` | string | `~` | OIDC client ID registered in Keycloak for `authtool-bff`. |
+| `accessControl.config.externalContext.enabled` | boolean | `true` | Enable fetching external authorization context from the API configured via `authzUrl`. |
+| `accessControl.config.externalContext.authorization.enabled` | boolean | `true` | Authenticate to the external authorization API as an OIDC client. |
+| `accessControl.config.externalContext.authorization.clientId` | string | `"catalog-access-control"` | OIDC client ID registered in Keycloak for `accessControl`. |
+| `accessControl.config.externalContext.authorization.tokenAuthMethod` | string | `"private_key_jwt"` | Token endpoint authentication method. Options: `private_key_jwt`, `client_secret_post`, `client_secret_basic`. |
+| `accessControl.config.externalContext.authorization.credentialsName` | string | `""` | Optional override for the credentials file name mounted from `secrets.accessControlKeys`. |
+
+## authtoolBff
+
+The OIDC Backend-for-Frontend. Manages session lifecycle and the PKCE login/logout flow. Configures two OIDC clients: `website` (browser login/logout) and `exchange` (token exchange for calling authorization APIs on the user's behalf).
+
+| Key | Type | Default | Description |
+|---|---|---|---|
+| `authtoolBff.config.clients.website.clientId` | string | `"catalog-website-bff"` | OIDC client ID registered in Keycloak for the browser login/logout flow. |
+| `authtoolBff.config.clients.website.tokenAuthMethod` | string | `"private_key_jwt"` | Token endpoint authentication method for the website client. Options: `private_key_jwt`, `client_secret_post`, `client_secret_basic`. |
+| `authtoolBff.config.clients.website.credentialsName` | string | `""` | Optional override for the credentials file name mounted from `secrets.authtoolBffKeys.website`. |
+| `authtoolBff.config.clients.exchange.clientId` | string | `"catalog-token-exchange"` | OIDC client ID used for the `urn:ietf:params:oauth:grant-type:token-exchange` grant. |
+| `authtoolBff.config.clients.exchange.clientAlias` | string | `"authz-api"` | Alias under which the exchanged token is issued; requested with audience `authz-api` and scope `mia:authz`. |
+| `authtoolBff.config.clients.exchange.tokenAuthMethod` | string | `"private_key_jwt"` | Token endpoint authentication method for the exchange client. |
+| `authtoolBff.config.clients.exchange.credentialsName` | string | `""` | Optional override for the credentials file name mounted from `secrets.authtoolBffKeys.exchange`. |
+| `authtoolBff.config.disableAccessTokenEncryption` | boolean | `false` | Disable encryption of the access token stored in Redis. Leave `false` unless required for debugging. |
 | `authtoolBff.config.userClaims` | array | `[]` | Additional JWT claims to propagate as user context within the session. |
+| `authtoolBff.config.authorizationCache` | object | `{}` | Pass-through cache connection config, used when `cache.enabled: false`. |
 
 ## apiGateway
 
@@ -190,6 +238,7 @@ The Envoy API gateway. Validates JWTs and routes traffic to backend services.
 | Key | Type | Default | Description |
 |---|---|---|---|
 | `apiGateway.logLevel` | string | `"info"` | Envoy log level. |
+| `apiGateway.extraVirtualHosts` | array | `[]` | Additional hostnames (and, optionally, ports) accepted on the main virtual host. |
 | `apiGateway.authorizationServer.name` | string | `""` | Name of the OIDC authorization server cluster in Envoy (used for JWKS resolution). |
 | `apiGateway.authorizationServer.audiences` | array | `["catalog-api"]` | Expected JWT audiences. |
 | `apiGateway.maxBodyBytes` | integer | `10485760` | Maximum allowed request body size in bytes (default: 10 MiB). |
@@ -256,17 +305,18 @@ Aggregates OpenAPI specs from platform projects into a unified portal. Disabled 
 
 ### itemsCompressor
 
+Requires the `items-compressor-keys` Secret (see [items-compressor keys](#items-compressor-keys)) for its PostgreSQL connection string.
+
 | Key | Type | Default | Description |
 |---|---|---|---|
 | `itemsCompressor.config.kafkaConsumerConfig.group.id` | string | `""` | Kafka consumer group ID. |
 | `itemsCompressor.config.kafkaConsumerConfig.auto.offset.reset` | string | `"earliest"` | Offset reset policy. |
-| `itemsCompressor.config.mongoConfig.databaseName` | string | `"catalog-system"` | MongoDB database name used as deduplication cache. |
-| `itemsCompressor.config.mongoConfig.cache.enabled` | boolean | `true` | Enable MongoDB-backed cache. |
-| `itemsCompressor.config.mongoConfig.cache.collectionName` | string | `"item-compressor-cache"` | MongoDB collection for the cache. |
-
-:::info
-The MongoDB dependency in `itemsCompressor` is temporary. A migration to PostgreSQL is in progress; the `secrets.mongoKeys` block and this configuration will be removed in a future chart version.
-:::
+| `itemsCompressor.config.kafkaConsumerConfig.queued.max.messages.kbytes` | string | `"32840"` | Maximum size (KB) of queued messages on the consumer side. |
+| `itemsCompressor.config.kafkaConsumerConfig.queued.min.messages` | string | `"5000"` | Minimum number of messages to keep queued on the consumer side. |
+| `itemsCompressor.config.kafkaProducerConfig.compression.type` | string | `"snappy"` | Compression codec used when producing merged events back to Kafka. |
+| `itemsCompressor.config.postgresConfig.cache.enabled` | boolean | `true` | Enable the PostgreSQL-backed deduplication cache. |
+| `itemsCompressor.config.postgresConfig.cache.schemaName` | string | `"items_compressor"` | PostgreSQL schema used for the cache table. |
+| `itemsCompressor.config.postgresConfig.cache.tableName` | string | `"items_compressor_cache"` | PostgreSQL table used for the cache. |
 
 ### itemsConsumer
 
@@ -279,5 +329,3 @@ The MongoDB dependency in `itemsCompressor` is temporary. A migration to Postgre
 ### itemsProducer
 
 `itemsProducer` has no additional configuration beyond the common microservice fields. It reads Kafka credentials from the `kafka-keys` secret and writes to the `catalogKafkaContext.topics.output` topic.
-
-This page is a placeholder for Catalog Helm values documentation.

@@ -106,9 +106,16 @@ Configuration for the Keycloak Operator Deployment that manages the Keycloak CR.
 | `operator.service.enabled` | bool | `true` | Create a Service for the operator. |
 | `operator.service.type` | string | `"ClusterIP"` | Service type. |
 | `operator.service.port` | int | `8080` | Service port. |
+| `operator.serviceAccount.create` | bool | `true` | Create a ServiceAccount for the operator. |
+| `operator.serviceAccount.annotations` | object | `{}` | Annotations for the operator ServiceAccount (e.g. for IRSA/Workload Identity). |
+| `operator.serviceAccount.name` | string | `""` | Override the ServiceAccount name. Defaults to the chart fullname when empty. |
+| `operator.deploymentAnnotations` | object | `{}` | Annotations for the operator Deployment. |
 | `operator.podAnnotations` | object | `{}` | Annotations for the operator pod. |
+| `operator.podSecurityContext` | object | `{}` | Pod-level `securityContext` for the operator pod. |
+| `operator.securityContext` | object | `{}` | Container-level `securityContext` for the operator container. |
 | `operator.nodeSelector` | object | `{}` | Node selector for the operator pod. |
 | `operator.tolerations` | list | `[]` | Tolerations for the operator pod. |
+| `operator.affinity` | object | `{}` | Affinity rules for the operator pod. |
 
 ## Keycloak CR (`keycloak`)
 
@@ -119,10 +126,11 @@ Configuration for the Keycloak custom resource managed by the operator.
 | Key | Type | Default | Description |
 |---|---|---|---|
 | `keycloak.enabled` | bool | `true` | Deploy the Keycloak CR. Set to `false` to deploy only the operator. |
+| `keycloak.name` | string | `"keycloak"` | Name of the Keycloak CR and the resulting StatefulSet. Changing this after installation creates a new CR and abandons the old StatefulSet. |
 | `keycloak.version` | string | `"26.6.4"` | Keycloak version. Used by the operator to validate image compatibility. |
 | `keycloak.instances` | int | `1` | Number of Keycloak replicas (StatefulSet). Use `2` or more for HA. |
 | `keycloak.image.repository` | string | `"nexus.mia-platform.eu/platform/auth/keycloak"` | Keycloak image repository. |
-| `keycloak.image.tag` | string | `"0.3.0-26.6.4-postgres"` | Keycloak image tag. The custom Mia Platform image includes PostgreSQL JDBC driver, OTEL agent, and Vault integration. |
+| `keycloak.image.tag` | string | `"0.3.1-26.6.4-postgres"` | Keycloak image tag. The custom Mia Platform image includes PostgreSQL JDBC driver, OTEL agent, and Vault integration. |
 | `keycloak.imagePullSecrets` | list | `~` | Image pull secrets for the Keycloak pods. |
 
 ### Bootstrap admin
@@ -184,6 +192,14 @@ keycloak:
 | `keycloak.http.httpPort` | int | `~` | HTTP listener port (default: 8080). |
 | `keycloak.http.httpsPort` | int | `~` | HTTPS listener port (default: 8443). |
 | `keycloak.http.tlsSecret` | string | `~` | Name of the TLS Secret for HTTPS termination at the Keycloak pod. |
+| `keycloak.httpManagement.port` | int | `~` | Port for the management interface (health and metrics endpoints), separate from the main HTTP/HTTPS listener. |
+
+### Feature toggles (`keycloak.features`)
+
+| Key | Type | Default | Description |
+|---|---|---|---|
+| `keycloak.features.enabled` | list | `[]` | Keycloak feature flags to explicitly enable (e.g. `scim`). |
+| `keycloak.features.disabled` | list | `[]` | Keycloak feature flags to explicitly disable. |
 
 ### Ingress
 
@@ -228,6 +244,13 @@ The chart supports two mutually exclusive ingress approaches: **Kubernetes Ingre
 | `keycloak.podDisruptionBudget.enabled` | bool | `false` | Create a PodDisruptionBudget. |
 | `keycloak.podDisruptionBudget.minAvailable` | int/string | - | Minimum available pods during disruptions. |
 | `keycloak.podDisruptionBudget.maxUnavailable` | int/string | - | Maximum unavailable pods during disruptions. |
+| `keycloak.livenessProbe.failureThreshold` | int | `~` | Failure threshold for the liveness probe before restarting the pod. |
+| `keycloak.livenessProbe.periodSeconds` | int | `~` | Interval between liveness probe checks. |
+| `keycloak.readinessProbe.failureThreshold` | int | `~` | Failure threshold for the readiness probe before removing the pod from Service endpoints. |
+| `keycloak.readinessProbe.periodSeconds` | int | `~` | Interval between readiness probe checks. |
+| `keycloak.startupProbe.failureThreshold` | int | `~` | Failure threshold for the startup probe before the pod is considered failed. |
+| `keycloak.startupProbe.periodSeconds` | int | `~` | Interval between startup probe checks. |
+| `keycloak.networkPolicy` | object | `~` | Pass-through `NetworkPolicy` spec managed by the operator for the Keycloak pods. |
 
 **Example: HA with PDB and topology spread:**
 

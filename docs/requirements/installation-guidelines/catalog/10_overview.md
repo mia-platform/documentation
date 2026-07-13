@@ -21,7 +21,7 @@ The Catalog also exposes its API via the **Model Context Protocol (MCP)**, makin
 | **catalogEngine** | `catalog/catalog-engine` | Core catalog REST API. Persists all catalog items in a PostgreSQL database. |
 | **catalogWebsite** | `catalog/catalog-website` | Frontend web application. Provides the Catalog UI served at `<url>/website/`. |
 | **doclingService** | `docling-project/docling-serve-cpu` | *(Optional, CPU-intensive.)* Document parsing service. Converts uploaded files (PDF, DOCX, etc.) into structured content for AI agent context. |
-| **itemsCompressor** | `data-fabric/stream-processor` | Kafka consumer. Reads raw item events, compresses/merges them, and writes the result back to Kafka. Uses MongoDB as a temporary cache (PostgreSQL migration planned). |
+| **itemsCompressor** | `data-fabric/stream-processor` | Kafka consumer. Reads raw item events, compresses/merges them, and writes the result back to Kafka. Uses a dedicated PostgreSQL schema as a deduplication cache. |
 | **itemsConsumer** | `catalog/items-consumer` | Kafka consumer. Processes catalog item events from Kafka and persists them to the catalog via `catalogEngine`. |
 | **itemsProducer** | `catalog/items-producer` | Kafka producer. Publishes catalog item lifecycle events (create, update, delete) to the `catalog-events.input` topic. |
 | **mcpServer** | `catalog/catalog-mcp-server` | Model Context Protocol server. Exposes the Catalog API as an MCP tool, making it directly queryable by AI coding assistants and agents. |
@@ -48,13 +48,19 @@ The Catalog also exposes its API via the **Model Context Protocol (MCP)**, makin
   itemsProducer ──► Kafka (catalog-events.input)
                          │
                     itemsConsumer ──► catalogEngine ──► PostgreSQL
-                    itemsCompressor ──► MongoDB (temp cache)
+                    itemsCompressor ──► PostgreSQL (dedup cache)
   ──────────────────────────────────────────────────────────
 
   adkBeApp ──► Google Cloud (Vertex AI / ADK)
 ```
 
-The Envoy gateway validates JWT tokens on every request and checks RBAC policies via `accessControl`. The `catalogEngine` is the authoritative store for all catalog data. The Kafka pipeline provides an event-driven path for bulk item ingestion and synchronisation.
+The Envoy gateway validates JWT tokens on every request and checks RBAC policies via `accessControl`. Envoy merges the JWKS published by `authtoolBff` and `accessControl` so that tokens issued to either OIDC client validate correctly. The `catalogEngine` is the authoritative store for all catalog data. The Kafka pipeline provides an event-driven path for bulk item ingestion and synchronisation.
+
+## Authorization context integration
+
+`accessControl` can enrich its policy evaluation with an **external authorization context** fetched from a remote authorization API, configured via `authzUrl` (typically the `services` chart's `apiGateway`, routed to the `rbacManagement` service). When enabled, `accessControl` authenticates to that API as its own OIDC client (`accessControl.config.externalContext.authorization`, backed by the `secrets.accessControlKeys` Secret).
+
+Separately, `authtoolBff` supports a **token-exchange client** (`authtoolBff.config.clients.exchange`) that exchanges the user's website session token for a token with the `authz-api` audience and `mia:authz` scope, used by the frontend to call authorization APIs directly on the user's behalf.
 
 ## Relationships with other Mia Platform products
 
@@ -64,10 +70,10 @@ The Envoy gateway validates JWT tokens on every request and checks RBAC policies
 | **AI Foundry** | `adkBeApp` is the same component used in the AI Foundry chart. The `mcpServer` exposes the Catalog API to AI tools so that AI Foundry agents (and other AI assistants) can query catalog context directly. | `adkBeApp.*`, `mcpServer.*` |
 | **Console** | The Console generates and publishes catalog items via the `itemsProducer` / Kafka pipeline. Catalog items reflect Console-managed projects and components. | `catalogKafkaContext.*` |
 | **Services (Homepage)** | The Catalog website is linked from the Mia Platform homepage deployed by the `services` chart. The homepage uses the Catalog as the primary navigation hub. | `url` |
-| **PostgreSQL** | `catalogEngine` stores all catalog items in PostgreSQL. `adkBeApp` also connects to PostgreSQL for agent state. | `secrets.catalogEngineKeys`, `secrets.adkBeAppKeys` |
+| **PostgreSQL** | `catalogEngine` stores all catalog items in PostgreSQL. `adkBeApp` also connects to PostgreSQL for agent state, and `itemsCompressor` uses a dedicated schema as its deduplication cache. | `secrets.catalogEngineKeys`, `secrets.adkBeAppKeys`, `secrets.itemsCompressorKeys` |
 | **Kafka** | The items pipeline uses two Kafka topics (`catalog-events.input`, `catalog-events.output`). Can be deployed embedded (Strimzi Operator) or connected to an external cluster. | `kafka.*`, `secrets.kafkaKeys`, `catalogKafkaContext.*` |
-| **MongoDB** | `itemsCompressor` temporarily uses MongoDB as a cache for item deduplication. A migration to PostgreSQL is planned. | `secrets.mongoKeys` |
 | **Redis** | Used by `authtoolBff` for session token storage and by `policyEngine` for policy caching. | `cache.*`, `policyEngine.config.redisKeyNamespace` |
+| **Services (RBAC management)** | `accessControl` can call an external authorization API (e.g. the `services` chart's `rbacManagement` component, via its `apiGateway`) to enrich policy evaluation with product/permission context. | `authzUrl`, `accessControl.config.externalContext.*`, `secrets.accessControlKeys` |
 | **MCP-compatible AI tools** | `mcpServer` exposes the Catalog API via the Model Context Protocol. Compatible with Claude Code, GitHub Copilot, VS Code agents, and Kiro IDE. | `mcpServer.*` |
 
 Refer to the following installation guides to set up the required dependencies before installing the Catalog:

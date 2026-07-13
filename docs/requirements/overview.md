@@ -145,7 +145,7 @@ Kubernetes-centric architecture.
 
 ### IBDM
 
-Distributed as an open-source Docker container.
+`ibdm` is the Context Catalog's connector engine, used to sync data from external systems. See the [Connectors Overview](/products/context-catalog/connectors/10_overview.md) for details.
 
 Compatibility matrix:
 
@@ -161,7 +161,7 @@ Compatibility matrix:
 | Azure | API version >= 2025-08-01 |
 | Azure DevOps | Cloud SaaS |
 
-### Mia Flow
+### Flow
 
 | Dependency | Version |
 | --- | --- |
@@ -178,7 +178,7 @@ Compatibility matrix:
 | CI/CD tool | Currently compatible only with GitLab, GitHub Actions (SaaS), and Azure Pipelines |
 
 
-### Mia Foundry
+### Foundry
 
 | Dependency | Version |
 | --- | --- |

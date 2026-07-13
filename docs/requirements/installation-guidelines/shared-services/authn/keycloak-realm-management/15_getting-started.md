@@ -88,28 +88,43 @@ This outputs the component YAML files that `keycloak-config-cli` will apply.
 
 ## Step 3: Import
 
-Use the Makefile target to render and import directly into Keycloak via `keycloak-config-cli`:
+The chart does not call `keycloak-config-cli` directly; import is driven by Makefile targets that render the chart and then run `keycloak-config-cli` via Docker.
+
+Two import modes are available, depending on how `keycloak-config-cli` authenticates to Keycloak:
+
+- **`make import-<realm>`** — authenticates with a `client_credentials` grant against a service account client (typically `keycloak-config-cli`). Requires `KEYCLOAK_CLIENT_SECRET` and, for non-`master` realms, `LOGIN_REALM` set to the realm the service account client lives in.
+- **`make import-admin-<realm>`** — authenticates as an admin user (`KEYCLOAK_USER` / `KEYCLOAK_PASSWORD`) against the `master` realm. Useful for the very first import, before a `keycloak-config-cli` service account client exists.
 
 ```bash
+# client_credentials grant (steady-state imports)
 make import-products \
+  ENV=dev \
+  KEYCLOAK_URL=https://keycloak.example.com \
+  KEYCLOAK_CLIENT_SECRET=<keycloak-config-cli_client_secret> \
+  LOGIN_REALM=mia-platform
+
+# admin user/password grant (initial bootstrap only)
+make import-admin-products \
+  ENV=dev \
   KEYCLOAK_URL=https://keycloak.example.com \
   KEYCLOAK_USER=admin \
   KEYCLOAK_PASSWORD=<admin_password>
 ```
 
-`make import-products` runs:
+`make import-products` (and `make import-admin-products`) run:
 
-1. `helm template` for each component file in `templates/products/`.
-2. Renders files to `rendered/<ENV>/products/`.
-3. Invokes `keycloak-config-cli` with `IMPORT_FILES_LOCATIONS='rendered/<ENV>/products/*.yaml'` and all `no-delete` policy flags enabled.
+1. `hacks/template.sh` to render each component file in `templates/products/` for the given values file.
+2. Renders files to `rendered/<ENV>/products/<values-file-name>/`.
+3. Invokes `keycloak-config-cli` via Docker with `IMPORT_FILES_LOCATIONS='/configs/*.yaml'` and all resource types set to the `no-delete` managed policy (`IMPORT_MANAGED_CLIENT`, `IMPORT_MANAGED_ROLE`, `IMPORT_MANAGED_GROUP`, `IMPORT_MANAGED_ORGANIZATION`, etc.), plus `IMPORT_REMOTESTATE_ENABLED=true`.
 
-To import all realms at once:
+The `master` realm uses the dedicated `make import-master` / `make import-admin-master` targets, which do not require `--env`.
+
+To import every realm, run the target for each one individually (`master`, `products`, `extensibility`, or any custom realm folder under `templates/`):
 
 ```bash
-make import \
-  KEYCLOAK_URL=https://keycloak.example.com \
-  KEYCLOAK_USER=admin \
-  KEYCLOAK_PASSWORD=<admin_password>
+make import-admin-master KEYCLOAK_URL=https://keycloak.example.com KEYCLOAK_USER=admin KEYCLOAK_PASSWORD=<admin_password>
+make import-admin-products ENV=dev KEYCLOAK_URL=https://keycloak.example.com KEYCLOAK_USER=admin KEYCLOAK_PASSWORD=<admin_password>
+make import-admin-extensibility ENV=dev KEYCLOAK_URL=https://keycloak.example.com KEYCLOAK_USER=admin KEYCLOAK_PASSWORD=<admin_password>
 ```
 
 ## Step 4: Verify
@@ -126,6 +141,9 @@ After import, verify the realm in the Keycloak admin console:
 | Variable | Default | Description |
 |---|---|---|
 | `KEYCLOAK_URL` | `http://localhost:8080` | Keycloak base URL |
-| `KEYCLOAK_USER` | `admin` | Admin username |
-| `KEYCLOAK_PASSWORD` | `admin` | Admin password |
-| `ENV` | `dev` | Environment name: used to organise rendered output in `rendered/<ENV>/` |
+| `KEYCLOAK_USER` | `admin` | Admin username. Used only by `make import-admin-*` targets. |
+| `KEYCLOAK_PASSWORD` | `admin` | Admin password. Used only by `make import-admin-*` targets. |
+| `KEYCLOAK_CLIENT_SECRET` | - | Client secret for the `keycloak-config-cli` service account client. Required by `make import-*` (non-admin) targets. |
+| `LOGIN_REALM` | - | Realm containing the `keycloak-config-cli` service account client, used for the `client_credentials` grant. Required by `make import-*` (non-admin) targets for non-`master` realms. |
+| `ENV` | `dev` | Environment name: used to organise rendered output in `rendered/<ENV>/` and to resolve the default values file path `values/<ENV>/<realm>-values.yaml`. Not used for the `master` realm. |
+| `VALUES` | `values/<ENV>/<realm>-values.yaml` | Override the values file path passed to `hacks/template.sh`. |

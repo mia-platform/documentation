@@ -25,6 +25,14 @@ For step-by-step setup, see the [Getting Started guide](/requirements/installati
 | `themes.login` | string | `""` | Login page theme name. Set to `mia-platform-keycloak-ui` to use the custom Mia Platform login theme. Leave empty to use the Keycloak default. |
 | `themes.account` | string | `""` | Account management portal theme name. Leave empty to use the Keycloak default. |
 
+## Identity provider redirector (`identityProviderRedirector`)
+
+Configures the browser flow's `identity-provider-redirector` authenticator, which can automatically redirect users to a default identity provider instead of showing the Keycloak login form (e.g. for the `master` realm, always redirecting to the corporate IdP).
+
+| Key | Type | Default | Description |
+|---|---|---|---|
+| `identityProviderRedirector.defaultAlias` | string | `""` | Alias of the identity provider to redirect to by default. Must match an `identityProviders[].alias` entry. Leave empty to disable the default redirect and show the standard login form. |
+
 ## Products (`products`)
 
 Controls which Mia Platform product OIDC clients are created in the realm. Setting a product to `true` renders the corresponding `client` and `scope` resources in the realm import. Enable only the products that are deployed in your installation.
@@ -139,6 +147,29 @@ identityProviderMappers:
       syncMode: IMPORT
 ```
 
+## Organizations (`organizations`)
+
+A list of Keycloak organizations to create in the realm (requires Keycloak ≥ 25.0.0, `organizationsEnabled`). Each organization owns one or more verified email domains and can be linked to one or more identity providers, enabling automatic IdP routing based on the email domain entered at login.
+
+| Key | Description |
+|---|---|
+| `organizations[].alias` | **Required.** Unique identifier for the organization. |
+| `organizations[].name` | **Required.** Human-readable name of the organization. |
+| `organizations[].description` | Description of the organization. |
+| `organizations[].domains[].name` | **Required.** Domain name associated with the organization (e.g. `mia-platform.eu`). |
+| `organizations[].identityProviders[].alias` | Alias of an identity provider linked to this organization. Must match an `identityProviders[].alias` entry. |
+
+```yaml
+organizations:
+  - alias: mia-platform
+    name: Mia Platform
+    description: Mia Platform organization
+    domains:
+      - name: mia-platform.eu
+    identityProviders:
+      - alias: corporate-sso
+```
+
 ## SMTP server (`smtpServer`)
 
 Configure an SMTP server for Keycloak to send email notifications (password reset, email verification, etc.).
@@ -149,17 +180,24 @@ Configure an SMTP server for Keycloak to send email notifications (password rese
 | `smtpServer.config.host` | string | - | SMTP host. |
 | `smtpServer.config.port` | string | `"587"` | SMTP port. |
 | `smtpServer.config.from` | string | - | Sender email address. |
+| `smtpServer.config.fromDisplayName` | string | - | Display name shown as the email sender (e.g. `"Mia Platform"`). |
 | `smtpServer.config.starttls` | bool | `false` | Enable STARTTLS. |
 | `smtpServer.config.auth` | bool | `false` | Enable SMTP authentication. |
 | `smtpServer.config.user` | string | - | SMTP username (when `auth: true`). |
 | `smtpServer.config.password` | string | - | SMTP password (when `auth: true`). |
 
+`smtpServer.config` accepts any additional Keycloak `smtpServer` field as a pass-through.
+
 ## IdP settings (`idpSettings`)
+
+Controls creation of the Mia Platform Identity Provider client used to federate the `mia-extensions` realm (and other extensibility realms) with `mia-platform` for organization-based routing.
 
 | Key | Type | Default | Description |
 |---|---|---|---|
-| `idpSettings.enabled` | bool | `false` | Enable per-realm IdP settings configuration. |
-| `idpSettings.redirectUris` | list | `[]` | Additional allowed redirect URIs added to IdP-triggered login flows. |
+| `idpSettings.enabled` | bool | `false` | Create the Mia Platform Identity Provider client. |
+| `idpSettings.redirectUris` | list | `[]` | Allowed redirect URIs for the Mia Platform Identity Provider client. |
+| `idpSettings.postLogoutRedirectUris` | list | `[]` | Allowed post-logout redirect URIs for the Mia Platform Identity Provider client. |
+| `idpSettings.clientSecret` | string | `""` | Client secret for the Mia Platform Identity Provider client. Should be injected via a vault placeholder (e.g. `${vault.mia-platform-identity-provider-client-secret}`), not hardcoded. |
 
 ## Custom clients (`customClients`)
 
@@ -244,12 +282,22 @@ identityProviderMappers:
       role: realm/reporter
       syncMode: IMPORT
 
+organizations:
+  - alias: corporate
+    name: Corporate
+    description: Corporate organization
+    domains:
+      - name: example.com
+    identityProviders:
+      - alias: corporate-sso
+
 smtpServer:
   enabled: true
   config:
     host: smtp.example.com
     port: "587"
     from: noreply@example.com
+    fromDisplayName: "Mia Platform"
     starttls: true
     auth: true
     user: smtp-user

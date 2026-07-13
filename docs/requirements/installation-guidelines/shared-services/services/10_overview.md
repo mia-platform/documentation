@@ -18,6 +18,7 @@ Every user who accesses the Mia Platform interface is routed through this stack:
 | **authtoolBff** | `platform/auth/authtool/authtool-bff` | OIDC Backend-for-Frontend. Manages the PKCE login/logout flow with Keycloak and issues signed, encrypted session cookies to the browser. |
 | **cache** | `redis` | Redis instance used by `authtool-bff` to store and encrypt session tokens. |
 | **homepageWebsite** | `console/homepage` | Mia Platform homepage frontend application, served at the configured `url`. |
+| **rbacManagement** | `platform/services/rbac-management` | RBAC administration API (REST + gRPC). Manages roles, permissions, and product access backed by an external PostgreSQL database. Routed through the `apiGateway` alongside the other services. |
 | **swaggerAggregator** | `core/swagger-aggregator` | *(Optional, disabled by default.)* Aggregates OpenAPI specs from projects and exposes them in a unified API portal. |
 
 ## Architecture overview
@@ -27,11 +28,11 @@ Every user who accesses the Mia Platform interface is routed through this stack:
                    │
              apiGateway (Envoy)
                    │
-          ┌────────┼────────────────────────┐
-          │        │                        │
-   accessControl   authtoolBff         homepageWebsite
-   (ext-authz)      │
-                   cache (Redis)
+          ┌────────┼───────────────────────────────────┐
+          │        │                                   │
+   accessControl   authtoolBff    homepageWebsite   rbacManagement
+   (ext-authz)      │                                   │
+                   cache (Redis)                 PostgreSQL (external)
                        │
               Keycloak (external)
 ```

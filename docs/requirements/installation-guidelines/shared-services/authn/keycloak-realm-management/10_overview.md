@@ -64,26 +64,75 @@ The chart splits each realm into numbered component files inside `templates/`:
 ```
 templates/
 ├── master/                        # master realm
-│   └── 01-realm-settings.yaml
-├── products/                      # mia-platform realm
 │   ├── 01-realm-settings.yaml
-│   ├── 10-roles.yaml
-│   ├── 20-groups.yaml
-│   ├── 30-client-scopes.yaml
-│   ├── 32-clients.yaml
-│   ├── 35-client-profiles.yaml
-│   ├── 37-client-policies.yaml
-│   ├── 50-components.yaml
+│   ├── 05-themes.yaml
+│   ├── 10-components.yaml
+│   ├── 20-client-scopes.yaml
+│   ├── 30-clients.yaml
+│   ├── 40-roles.yaml
+│   ├── 50-groups.yaml
 │   ├── 60-users.yaml
 │   ├── 80-authentication-flows.yaml
 │   ├── 81-authentication-flows-bindings.yaml
-│   ├── 90-identity-providers.yaml
-│   └── 93-organizations.yaml
-└── extensibility/                 # mia-extensions realm
-    └── ...
+│   ├── 85-required-actions.yaml
+│   └── 90-identity-providers.yaml
+├── products/                      # mia-platform realm
+│   ├── 010-realm-settings.yaml
+│   ├── 030-smtp.yaml
+│   ├── 050-themes.yaml
+│   ├── 100-components.yaml
+│   ├── 200-client-scopes.yaml
+│   ├── 300-clients.yaml           # base product clients
+│   ├── 305-clients-cimd.yaml      # Client ID Metadata Description clients (options.cimd)
+│   ├── 310-clients-authz.yaml     # products.authz
+│   ├── 315-clients-ai-foundry.yaml # products.aiFoundry
+│   ├── 320-clients-catalog.yaml   # products.catalog
+│   ├── 325-clients-flow.yaml      # products.flow
+│   ├── 330-clients-console.yaml   # products.console
+│   ├── 400-roles.yaml
+│   ├── 450-client-scope-mappings.yaml
+│   ├── 500-groups.yaml
+│   ├── 600-users.yaml
+│   ├── 800-authentication-flows.yaml
+│   ├── 810-authentication-flows-bindings.yaml
+│   ├── 850-required-actions.yaml
+│   ├── 900-identity-providers.yaml
+│   └── 930-organizations.yaml
+├── extensibility/                 # mia-extensions realm
+│   ├── 01-realm-settings.yaml
+│   ├── 05-themes.yaml
+│   ├── 10-components.yaml
+│   ├── 20-client-scopes.yaml
+│   ├── 30-clients.yaml
+│   ├── 35-client-profiles.yaml
+│   ├── 37-client-policies.yaml
+│   ├── 40-roles.yaml
+│   ├── 45-client-scope-mappings.yaml
+│   ├── 50-groups.yaml
+│   ├── 60-users.yaml
+│   ├── 80-authentication-flows.yaml
+│   ├── 81-authentication-flows-bindings.yaml
+│   ├── 85-required-actions.yaml
+│   └── 90-identity-providers.yaml
+└── default/                       # generic reusable realm template
+    ├── 01-realm-settings.yaml
+    ├── 05-themes.yaml
+    ├── 10-components.yaml
+    ├── 20-client-scopes.yaml
+    ├── 30-clients.yaml
+    ├── 40-roles.yaml
+    ├── 45-client-scope-mappings.yaml
+    ├── 50-groups.yaml
+    ├── 60-users.yaml
+    ├── 80-authentication-flows.yaml
+    ├── 81-authentication-flows-bindings.yaml
+    ├── 85-required-actions.yaml
+    └── 90-identity-providers.yaml
 ```
 
 The numeric prefix determines import order. This matters because some resources depend on others (e.g. roles must exist before they can be assigned to groups or clients).
+
+The `products/` templates use a wider numbering scheme (increments of 10 with room for per-product files) so that new product clients can be inserted without renumbering existing files. Each `3XX-clients-*.yaml` file renders only when the corresponding `products.*` (or `options.cimd`) flag is enabled.
 
 ## Login theme
 

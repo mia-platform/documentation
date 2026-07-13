@@ -23,14 +23,15 @@ This guide walks through installing the `ai-foundry` chart to deploy the AI Foun
 | Public AI Foundry URL | `https://ai-foundry.your-domain.com` |
 | Environment name | `production` |
 | Keycloak realm issuer URL | `https://keycloak.your-domain.com/realms/my-realm` |
-| OIDC client ID for `authtool-bff` | `ai-foundry-bff` |
-| OIDC client ID for token exchange | `catalog-api` |
+| OIDC client ID for `authtool-bff` (website) | `ai-foundry-website-bff` |
+| OIDC client ID for `authtool-bff` (token exchange) | `ai-foundry-token-exchange` |
 | GCP project ID | `my-gcp-project` |
 | GCP location | `europe-west1` |
 | GCP service account key (JSON) | `service-account.json` |
 | PostgreSQL connection string | `postgresql://user:pass@host:5432/ai_foundry` |
 | Tempo base URL | `https://tempo.your-domain.com` |
 | Mia Platform Catalog URL | `https://catalog.your-domain.com` |
+| External Authorization API URL (optional, for `accessControl`/`aiFoundryBff`) | `https://home.your-domain.com` |
 | Private container registry credentials | Nexus username and password |
 
 ## Step 1: Create the authtool-bff secret
@@ -58,7 +59,25 @@ kubectl create secret generic authtool-bff-keys \
 Alternatively, set `secrets.authtoolBffKeys.enabled: true` in your `values.yaml` and provide the values inline; the chart will create the Secret automatically. This is convenient for GitOps pipelines where secret values are injected at deploy time.
 :::
 
-## Step 2: Create the adk-be-app secret
+`authtool-bff` is configured with three OIDC clients: `website` (the browser login/logout flow), `exchangeCatalog` (a token-exchange client aliased `catalog-api`), and `exchangeAuthz` (a token-exchange client aliased `authz-api`). Each client has its own key material, nested under `secrets.authtoolBffKeys.website.*` / `secrets.authtoolBffKeys.exchangeCatalog.*` / `secrets.authtoolBffKeys.exchangeAuthz.*`.
+
+## Step 2: Create the access-control secret
+
+When `accessControl.config.externalContext.enabled: true` (used together with `authzUrl`), `accessControl` authenticates as its own OIDC client to fetch external authorization context:
+
+```bash
+kubectl create secret generic access-control-keys \
+  --namespace ai-foundry \
+  --from-literal=key.pem="$(base64 < access-control-private.key)"
+```
+
+Use `client-secret` instead of `key.pem` when `accessControl.config.externalContext.authorization.tokenAuthMethod` is not `private_key_jwt`.
+
+:::info
+Alternatively, set `secrets.accessControlKeys.enabled: true` and provide `secrets.accessControlKeys.privateKey` (or `.clientSecret`) inline.
+:::
+
+## Step 3: Create the adk-be-app secret
 
 The `adkBeApp` requires Google Cloud credentials and a PostgreSQL connection string:
 
@@ -74,23 +93,21 @@ kubectl create secret generic adk-be-app-keys \
 Alternatively, set `secrets.adkBeAppKeys.enabled: true` in your `values.yaml`. The `googleApplicationCredentials` field must contain the full JSON content of the service account key file (not the path).
 :::
 
-## Step 3: Create the ai-foundry-bff secret
+## Step 4: The ai-foundry-bff secret
 
-The `aiFoundryBff` service requires credentials to access Tempo and PostgreSQL:
+Unlike the other secrets above, the `ai-foundry-bff-keys` Secret is **always created by the chart** (there is no `secrets.aiFoundryBffKeys.enabled` gate) whenever `aiFoundryBff.enabled: true`. It only contains the Tempo bearer token:
 
-```bash
-kubectl create secret generic ai-foundry-bff-keys \
-  --namespace ai-foundry \
-  --from-literal=tempoAuthHeader="Bearer <TEMPO_TOKEN>" \
-  --from-literal=postgresPassword="<DB_PASSWORD>" \
-  --from-literal=otelExporterOtlpHeaders=""
+```yaml
+secrets:
+  aiFoundryBffKeys:
+    tempoAuthHeader: "Bearer <TEMPO_TOKEN>"
 ```
 
 :::tip
-This secret is typically managed via [External Secrets Operator](https://external-secrets.io/) in production environments.
+This value is typically injected at deploy time (e.g. via `--set` or a SOPS-encrypted values file) rather than committed in plain text.
 :::
 
-## Step 4: Create the image pull secret
+## Step 5: Create the image pull secret
 
 ```bash
 kubectl create secret docker-registry nexus-pull-secret \
@@ -100,7 +117,7 @@ kubectl create secret docker-registry nexus-pull-secret \
   --docker-password=<PASSWORD>
 ```
 
-## Step 5: Prepare a values file
+## Step 6: Prepare a values file
 
 Create a `values.yaml` with the minimum required configuration:
 
@@ -113,7 +130,16 @@ environment: "production"
 
 # Integration with Mia Platform Catalog
 catalogUrl: "https://catalog.your-domain.com"
-catalogCluster: "console"
+catalogClientId: "catalog-api"
+
+# Optional: URL and client ID of an external Authz API (e.g. the services chart's
+# api-gateway, routed to rbacManagement) used by aiFoundryBff and accessControl
+# authzUrl: "https://home.your-domain.com"
+# authzClientId: "authz-api"
+
+# Optional: route token-exchange calls through authtool-bff for cross-cluster calls.
+# Leave empty to forward the caller's JWT verbatim to authzUrl/catalogUrl instead.
+# authtoolBffUrl: "http://authtool-bff"
 
 # Keycloak realm issuer URL
 authorizationServer:
@@ -137,12 +163,21 @@ aiFoundryBff:
   config:
     tempoBaseUrl: "https://tempo.your-domain.com"
 
-# authtool-bff OIDC client
+# authtool-bff OIDC clients: website (browser login) + two token-exchange clients
 authtoolBff:
-  tokenAuthMethod: "private_key_jwt"
   config:
-    clientId: "ai-foundry-bff"
-    exchangeClientId: "catalog-api"
+    clients:
+      website:
+        clientId: "ai-foundry-website-bff"
+        tokenAuthMethod: "private_key_jwt"
+      exchangeCatalog:
+        clientId: "ai-foundry-token-exchange"
+        clientAlias: "catalog-api"
+        tokenAuthMethod: "private_key_jwt"
+      exchangeAuthz:
+        clientId: "ai-foundry-token-exchange"
+        clientAlias: "authz-api"
+        tokenAuthMethod: "private_key_jwt"
 
 # Website links to other platform products
 aiFoundryWebsite:
@@ -154,15 +189,19 @@ aiFoundryWebsite:
 
 # Image pull secret
 global:
-  imagePullSecrets:
-    - name: nexus-pull-secret
+  imagePullSecret:
+    enabled: true
+    name: nexus-pull-secret
   imageCredentials:
     registry: "nexus.mia-platform.eu"
+    username: "<USERNAME>"
+    password: "<PASSWORD>"
+    email: "operations@your-domain.com"
 ```
 
 See the [Helm Values reference](/requirements/installation-guidelines/ai-foundry/helm-values/00_overview.md) for the full list of available options.
 
-## Step 6: Add the Helm repository and install
+## Step 7: Add the Helm repository and install
 
 ```bash
 helm repo add mia-platform \
@@ -180,7 +219,7 @@ helm install ai-foundry mia-platform/ai-foundry \
   --timeout 5m
 ```
 
-## Step 7: Verify
+## Step 8: Verify
 
 ```bash
 kubectl get pods -n ai-foundry
@@ -190,17 +229,26 @@ All pods should reach `Running` state. Navigate to your configured `url` to acce
 
 ## Using the ai-foundry-deployment wrapper
 
-If you are using the `ai-foundry-deployment` wrapper repository for multi-environment GitOps, all chart values must be nested under the `aiFoundry:` key (the Helm dependency alias):
+If you are using the `ai-foundry-deployment` wrapper repository for multi-environment GitOps, all chart values must be nested under the `aiFoundry:` key (the Helm dependency alias), **except** `global.*`, which Helm automatically shares with subcharts and must stay at the top level:
 
 ```yaml
 # values/production.yaml
+
+global:
+  imagePullSecret:
+    enabled: true
+    name: nexus-pull-secret
+  imageCredentials:
+    registry: "nexus.mia-platform.eu"
+    email: "operations@your-domain.com"
+    # username/password are typically injected at deploy time via --set
 
 aiFoundry:
   url: "https://ai-foundry.your-domain.com"
   environment: "production"
 
   catalogUrl: "https://catalog.your-domain.com"
-  catalogCluster: "console"
+  catalogClientId: "catalog-api"
 
   authorizationServer:
     issuer: "https://keycloak.your-domain.com/realms/my-realm"
@@ -211,6 +259,8 @@ aiFoundry:
       - websecure
 
   secrets:
+    accessControlKeys:
+      enabled: true
     authtoolBffKeys:
       enabled: true
     adkBeAppKeys:
@@ -224,8 +274,18 @@ aiFoundry:
 
   authtoolBff:
     config:
-      clientId: "ai-foundry-bff"
-      exchangeClientId: "catalog-api"
+      clients:
+        website:
+          clientId: "ai-foundry-website-bff"
+          tokenAuthMethod: "private_key_jwt"
+        exchangeCatalog:
+          clientId: "ai-foundry-token-exchange"
+          clientAlias: "catalog-api"
+          tokenAuthMethod: "private_key_jwt"
+        exchangeAuthz:
+          clientId: "ai-foundry-token-exchange"
+          clientAlias: "authz-api"
+          tokenAuthMethod: "private_key_jwt"
 ```
 
 Deploy with:
