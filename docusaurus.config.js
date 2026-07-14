@@ -57,6 +57,16 @@ const config = {
           items: [
             {
               type: 'doc',
+              docId: "products/mia-platform-suite/mia-platform-suite",
+              label: "Mia-Platform Suite",
+              activeBaseRegex: "(docs|docs/\\d.x)/products/mia-platform-suite"
+            },
+            {
+              type: 'html',
+              value: '<hr style="margin: 4px 0;">',
+            },
+            {
+              type: 'doc',
               docId: "products/catalog/overview",
               label: "Catalog",
               activeBaseRegex: "(docs|docs/\\d.x)/products/catalog"
