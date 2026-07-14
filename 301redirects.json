@@ -1,4 +1,12 @@
 {
+  "/docs/getting-started/mia-platform-suite": {
+    "destination": "/docs/products/mia-platform-suite/mia-platform-suite",
+    "addedOn": "2026-07-14"
+  },
+  "/docs/getting-started/rbac-management": {
+    "destination": "/docs/products/mia-platform-suite/rbac-management",
+    "addedOn": "2026-07-14"
+  },
   "/docs/fast_data/configuration/single_view_creator/common.md": {
     "destination": "/docs/fast_data/configuration/single_view_creator",
     "addedOn": "2023-06-15"

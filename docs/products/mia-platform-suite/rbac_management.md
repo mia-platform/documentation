@@ -1,10 +1,10 @@
 ---
 id: rbac-management
-title: RBAC Management
-sidebar_label: RBAC Management
+title: Platform Administration
+sidebar_label: Platform Administration
 ---
 
-# RBAC Management
+# Platform Administration
 
 This page describes the roles, permissions, and groups model for the whole Mia-Platform Suite. RBAC is a cross-product capability, but the specific set of assignable roles/permissions, and the level of granularity, is defined independently for each product (see [Accessing the Administration section](#accessing-the-administration-section) below).
 
@@ -52,10 +52,6 @@ For Console, roles and permissions are chosen from a **fixed, predefined list**,
 
 See organization's detail at [Manage users](/products/console/identity-and-access-management/manage-users.md).
 
-### Data (Data Fabric)
-
-For Data, roles and permissions are likewise chosen from a **fixed, predefined list**. A representative example is the *Data Analyst* role, which grants read-only visualization of Data Fabric data (see the [Practical Example](#practical-example-of-granularity-and-access-management) below).
-
 ### AI Foundry
 
 Like Catalog, AI Foundry supports a potentially unbounded set of roles, permissions, and groups, with maximum granularity for defining fine-grained access to AI Foundry resources.
@@ -70,15 +66,15 @@ Like Catalog, AI Foundry supports a potentially unbounded set of roles, permissi
 
 ## Practical example of granularity and access management
 
-The system allows combining a **Primary Role** (defining the general scope) with specific permissions derived from **Group Membership**.
+The system allows combining a **Primary Role** (defining the general scope) with additional permissions derived from **Group Membership**.
 
-* **User:** Alice | **Tenant:** Catalog org_MIA
-* **Primary Role:** *Item Editor* (Base permissions: catalog modification).
-* **Additional Permissions (via Group Membership):**
-  * **Group "AI Engineers"**: (2 members). Enables the *Admin* role on the Console: allows managing high-level configurations and monitoring tasks.
-  * **Group "Research Scientists"**: (2 members). (Role *Data Analyst*). Enables read-only visualization of *Data Fabric* data, ideal for analysis without item intervention.
+* **User:** Alice
+* **Primary Role:** *Item Editor* on the **Catalog** — she can view and modify Catalog items.
+* **Additional permissions (via Group Membership):**
+  * **Group "AI Engineers"** — grants the *Admin* role on the **Console**, allowing her to manage high-level project configurations.
+  * **Group "AI Researchers"** — grants the *Viewer* role on **AI Foundry**, allowing her to browse playbooks and agents in read-only.
 
-Alice is therefore an Item Editor in the Catalog, an Admin on the Console (via the AI Engineers group), and a viewer of Data Fabric information (via the Research Scientists group).
+Alice is therefore an Item Editor in the Catalog, an Admin on the Console (via the AI Engineers group), and a read-only viewer in AI Foundry (via the AI Researchers group). Her effective permissions are the combination of her primary role and every role granted by the groups she belongs to.
 
 ## What can be managed via API
 
@@ -90,7 +86,7 @@ Alice is therefore an Item Editor in the Catalog, an Admin on the Console (via t
 
 ## Permission matrix
 
-Below is a summary of the enablements by functional area.
+Below is a summary of the capabilities enabled, by functional area.
 
 Role assignments can be configured with a global scope ("/") or limited to specific paths/tenants using wildcards, allowing dynamic application of permissions across entire resource hierarchies. Combined permissions (e.g., R/W or R/W/E) indicate that multiple access rights are granted simultaneously.
 

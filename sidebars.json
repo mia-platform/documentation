@@ -1754,14 +1754,6 @@
     },
     {
       "type": "doc",
-      "id": "getting-started/mia-platform-suite"
-    },
-    {
-      "type": "doc",
-      "id": "getting-started/rbac-management"
-    },
-    {
-      "type": "doc",
       "id": "getting-started/tutorials/tutorials"
     },
     {
@@ -1920,6 +1912,16 @@
           "dirName": "runtime-components/tools"
         }
       ]
+    }
+  ],
+  "miaPlatformSuite": [
+    {
+      "id": "products/mia-platform-suite/mia-platform-suite",
+      "type": "doc"
+    },
+    {
+      "id": "products/mia-platform-suite/rbac-management",
+      "type": "doc"
     }
   ],
   "catalog": [

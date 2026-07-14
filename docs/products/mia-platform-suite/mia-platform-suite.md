@@ -1,16 +1,32 @@
 ---
 id: mia-platform-suite
-title: Mia-Platform Suite
-sidebar_label: Suite Introduction
+title: Overview
+sidebar_label: Overview
 ---
 
-# Mia-Platform Suite
+# Overview
 
 ## Introduction
 
 ### What is the Mia Platform Suite?
 
 The Mia-Platform Suite is your starting point every time you work on Mia-Platform. It's the web page you land on after logging in, and from there you can reach every project you have access to, switch between them, manage who's allowed to do what, and get help.
+
+### What the Home Page looks like
+
+When you log in, this is the first screen you see, the Suite **Home Page**:
+
+![Suite Home](img/suite-home.png)
+
+At a glance, the page is organized into a few areas:
+
+- **Left sidebar** — always visible; it lists every product you can open (Context Catalog, AI Foundry, Console, Flow, Data Fabric, P4SaMD) and, at the very bottom next to your account, the **Administration** area for admins.
+- **Welcome banner** — the header at the top that greets you into the Suite.
+- **AI Assistant** — ask a question in plain language (e.g. "How does the Catalog work?") and get pointed to the right place.
+- **Daily launchpad** — the tools you've pinned, for one-click access to what you use most.
+- **Helpful resources** — links to documentation, community, events, and learning paths.
+
+Each of these areas is described in more detail in [Finding Your Way Around](#finding-your-way-around) below.
 
 ### Why it exists
 
