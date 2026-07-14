@@ -86,7 +86,7 @@ Alice is therefore an Item Editor in the Catalog, an Admin on the Console (via t
 
 ## Permission matrix
 
-Below is a summary of the enablements by functional area.
+Below is a summary of the capabilities enabled, by functional area.
 
 Role assignments can be configured with a global scope ("/") or limited to specific paths/tenants using wildcards, allowing dynamic application of permissions across entire resource hierarchies. Combined permissions (e.g., R/W or R/W/E) indicate that multiple access rights are granted simultaneously.
 
