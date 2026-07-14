@@ -27,7 +27,7 @@ Everything you build with Mia-Platform lives behind one of these applications, a
 
 The Home Page is your control room: everything you need to get moving is one click away:
 
-- **Sidebar**: always visible on the left; opens any application. At the bottom, next to your account, the gear (⚙️) icon opens **Administration**, where a tenant **Admin** manages users, groups, roles, and permissions. See [Platform Administration](./rbac_management.md) for the full picture.
+- **Sidebar**: always visible on the left; opens any application. At the bottom, next to your account, the gear (⚙️) icon opens **Administration**, where a tenant **Admin** manages users, groups, roles, and permissions. See [Platform Administration](/products/mia-platform-suite/rbac_management.md) for the full picture.
 - **Tenant selector**: at the top of the page; switches the tenant you're working in if you belong to more than one. Everything else on the page updates accordingly.
 - **AI Assistant**: ask a question in plain language (e.g. "How does the Catalog work?") and get pointed to the right place.
 - **Daily launchpad**: the applications you've pinned, for one-click access to what you use most.
@@ -62,7 +62,7 @@ graph LR
     R1 --> P1[Permissions]
 ```
 
-From **Administration** you can manage tenants, users, groups, and roles for your organization. Assigning a role to a user or group grants exactly those permissions, and you can scope it to the whole organization or to a single tenant. See [Platform Administration](./rbac_management.md) for the full details.
+From **Administration** you can manage tenants, users, groups, and roles for your organization. Assigning a role to a user or group grants exactly those permissions, and you can scope it to the whole organization or to a single tenant. See [Platform Administration](/products/mia-platform-suite/rbac_management.md) for the full details.
 
 ## Getting Help
 
