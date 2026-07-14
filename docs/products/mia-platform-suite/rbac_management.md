@@ -6,7 +6,8 @@ sidebar_label: Platform Administration
 
 # Platform Administration
 
-This page describes the roles, permissions, and groups model for the whole Mia-Platform Suite. RBAC is a cross-product capability, but the specific set of assignable roles/permissions, and the level of granularity, is defined independently for each product (see [Accessing the Administration section](#accessing-the-administration-section) below).
+This page describes the roles, permissions, and groups model for the whole Mia-Platform Suite. 
+RBAC is a cross-product capability, but the specific set of assignable roles/permissions, and the level of granularity, is defined independently for each product (see [Accessing the Administration section](#accessing-the-administration-section) below).
 
 ![Users](img/users.png)
 
@@ -58,28 +59,34 @@ Like Catalog, AI Foundry supports a potentially unbounded set of roles, permissi
 
 ## How it works, in practice
 
-* An administrator defines the available roles or creates new ones (e.g., "Organization Admin", "Configuration Editor"), specifying the permissions associated with each role. See the matrix table for default roles.
-* The administrator **assigns** these roles to users, service accounts, or groups, optionally limiting their validity to a specific scope.
+* The administrator **assigns** roles to users, service accounts, or groups, optionally limiting their validity to a specific scope. In practice, this means creating a group, adding members to it, and assigning one or more roles to that group.
+
+![Users](img/groups_ad.png)
+
+
 * When a user or a service attempts to perform an action on the platform (e.g., creating a new role, modifying an organization's configuration), the system:
   * automatically retrieves the roles and permissions associated with the requester;
   * verifies, through authorization rules, if the requested action is permitted.
 
 ## Practical example of granularity and access management
 
-The system allows combining a **Primary Role** (defining the general scope) with additional permissions derived from **Group Membership**.
+The system lets you combine permissions from multiple **Group Memberships**, so a user's effective access is simply the union of everything granted by every group they belong to.
 
-* **User:** Alice
-* **Primary Role:** *Item Editor* on the **Catalog** — she can view and modify Catalog items.
-* **Additional permissions (via Group Membership):**
-  * **Group "AI Engineers"** — grants the *Admin* role on the **Console**, allowing her to manage high-level project configurations.
-  * **Group "AI Researchers"** — grants the *Viewer* role on **AI Foundry**, allowing her to browse playbooks and agents in read-only.
+Take **Alice Parker** as an example:
 
-Alice is therefore an Item Editor in the Catalog, an Admin on the Console (via the AI Engineers group), and a read-only viewer in AI Foundry (via the AI Researchers group). Her effective permissions are the combination of her primary role and every role granted by the groups she belongs to.
+![Users](img/user_example.png)
+
+Alice belongs to two groups, each contributing a different set of permissions:
+
+* **Group "Platform Engineers"** — grants the *Viewer* role on **Catalog** and **AI Foundry**, letting her view items and their configuration.
+* **Group "Software Engineers | Catalog"** — grants the *Item Editor* and *Item Type Definition Editor* roles on **Catalog**, letting her create, delete, and edit items and item type definitions.
+
+Alice's effective permissions are the combination of these two groups' roles. From the users overview, an admin can open her profile at any time to see the full, resulting list of permissions.
 
 ## What can be managed via API
 
-* **Principal**: consultation of registered users/service accounts.
 * **Groups**: creation, modification, deletion; member management; role assignment to the group.
+* **Users**: creation, modification, deletion, consultation.
 * **Roles**: creation, modification, deletion, consultation.
 * **Tenant**: creation and edit of tenants, also at the individual organization level.
 * **Configuration**: reading and updating an organization's settings.
@@ -98,12 +105,12 @@ Access legend:
 
 ### Permission matrix for Catalog
 
-| Functional Area | Operational Detail | Super Admin | Admin | Viewer | Item Editor | ITD Editor | Governor |
-| :---- | :---- | :---- | :---- | :---- | :---- | :---- | :---- |
-| **Items** | Management, creation, modification, and deletion of items | **R/W** | **R/W** | **R** | **R/W** | **R** | **R** |
-| **Governance** | Definition of control rules (scorecards and campaigns) | **R/W/E** | **R/W/E** | **R** | **R/W** | **R** | **R/W/E** |
-| **Configuration** | Configuration of relationships and connectors for items | **R/W** | **R/W** | **R** | **R/W** | **R** | **R** |
-| **ITD** | Modification of type definitions | **R/W** | **R/W** | **R** | **R** | **R/W** | **R** |
+| Functional Area | Operational Detail | Super Admin | Admin | Viewer | Item Editor | ITD Editor | Item Publisher | Governor |
+| :---- | :---- | :---- | :---- | :---- | :---- | :---- | :---- | :---- |
+| **Items** | Management, creation, modification, and deletion of items | **R/W** | **R/W** | **R** | **R/W** | **R** | **W**| **R** |
+| **Governance** | Definition of control rules (scorecards and campaigns) | **R/W/E** | **R/W/E** | **R** | **R/W** | **R** | - | **R/W/E** |
+| **Configuration** | Configuration of relationships and connectors for items | **R/W** | **R/W** | **R** | **R/W** | **R** | - | **R** |
+| **ITD** | Modification of type definitions | **R/W** | **R/W** | **R** | **R** | **R/W** | - | **R** |
 
 ### Permission matrix for AI Foundry
 
@@ -124,7 +131,7 @@ Access legend:
 | **Connections/Apps & Plugins** | R/W | R | R | - | - |
 | **Data download** | R | R | R | - | - |
 
-## Current limitations (v15)
+## Current limitations (v15.0.0)
 
 In this v15 release, Catalog RBAC management has the following constraints:
 
