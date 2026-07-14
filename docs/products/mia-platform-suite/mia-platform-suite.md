@@ -4,113 +4,52 @@ title: Overview
 sidebar_label: Overview
 ---
 
-# Overview
+# Mia-Platform Suite
 
-## Introduction
-
-### What is the Mia Platform Suite?
-
-The Mia-Platform Suite is your starting point every time you work on Mia-Platform. It's the web page you land on after logging in, and from there you can reach every project you have access to, switch between them, manage who's allowed to do what, and get help.
-
-### What the Home Page looks like
-
-When you log in, this is the first screen you see, the Suite **Home Page**:
+Welcome to the Mia-Platform Suite: the front door to everything you do on Mia-Platform. It's the page you land on right after logging in, and from here you can open every application you have access to, switch between tenants, manage who's allowed to do what, and get help whenever you need it.
 
 ![Suite Home](img/suite-home.png)
 
-At a glance, the page is organized into a few areas:
+## The Components
 
-- **Left sidebar** — always visible; it lists every product you can open (Context Catalog, AI Foundry, Console, Flow, Data Fabric, P4SaMD) and, at the very bottom next to your account, the **Administration** area for admins.
-- **Welcome banner** — the header at the top that greets you into the Suite.
-- **AI Assistant** — ask a question in plain language (e.g. "How does the Catalog work?") and get pointed to the right place.
-- **Daily launchpad** — the tools you've pinned, for one-click access to what you use most.
-- **Helpful resources** — links to documentation, community, events, and learning paths.
+Everything you build with Mia-Platform lives behind one of these applications, all reachable from the sidebar:
 
-Each of these areas is described in more detail in [Finding Your Way Around](#finding-your-way-around) below.
-
-### Why it exists
-
-If your organization uses Mia-Platform for more than one project or team, you need a way to move between them without confusion, and a way to control who can see or change what. The Mia-Platform Suite gives you that in one place:
-
-- **One homepage** to find every project and application you work with.
-- **One switch** to change which project (tenant) you're currently working in.
-- **One section** to manage teammates, groups, and permissions.
-- **One assistant** to ask "how do I do X?" and get pointed in the right direction.
-
-### What you can do here
-
-| If you want to... | Go to... |
+| Components | What it does |
 |---|---|
-| See your projects and recently used items | **Homepage** |
-| Switch to a different project/environment | **Tenant selector** (top of the homepage) |
-| Open an application (Console, Flow, Data Fabric, P4SaMD) | **Sidebar** |
-| Add or remove teammates, or change what they can access | **Administration** |
-| Get quick guidance on how to do something | **AI Assistant** |
-| Find supporting documentation or links | **Resources** (bottom of the page) |
+| **Catalog**| Records, classifies, and connects any entity in your organization, giving you a unified, queryable model of your platform's context. |
+| **AI Foundry** | Web-based management and orchestration platform for building, managing, and validating AI-powered workflows. |
+| **Console** | Platform Builder that lets you build, manage, and simplify your own fully customized Internal Developer Platform. |
+| **Flow** | AI-driven development application: describe what you want to build in natural language and it generates, previews, and deploys the code. |
+| **Data Fabric** | Configures and manages real-time, enterprise-scale data aggregation pipelines. |
+| **P4SaMD** | Compliance governance platform. |
+
+## Finding your way around
+
+The Home Page is your control room: everything you need to get moving is one click away:
+
+- **Sidebar**: always visible on the left; opens any application. At the bottom, next to your account, the gear (⚙️) icon opens **Administration**, where a tenant **Admin** manages users, groups, roles, and permissions. See [Platform Administration](./rbac_management.md) for the full picture.
+- **Tenant selector**: at the top of the page; switches the tenant you're working in if you belong to more than one. Everything else on the page updates accordingly.
+- **AI Assistant**: ask a question in plain language (e.g. "How does the Catalog work?") and get pointed to the right place.
+- **Daily launchpad**: the applications you've pinned, for one-click access to what you use most.
+- **Helpful resources**: links to Mia-Platform Docs, the Community Hub, Webinars & Events, and the Platform Academy.
 
 ## Key Concepts
-
-A few terms you'll come across while using the Platform:
 
 | Term | What it means for you |
 |---|---|
 | **Organization** | Your company's overall account on Mia-Platform. |
-| **Tenant** | A project or environment inside your organization (e.g. "Mia Platform Core", "Data Platform Team"). Each one has its own content and its own team. |
-| **User** | A person who logs into the Mia-Platform Suite — a teammate, essentially. |
-| **Service account** | A non-human identity used by an application or automated process to access Mia-Platform on its own, without a person logging in. |
-| **Group** | A named set of users (e.g. "AI Engineers"), useful when you want to give the same permissions to several people at once instead of one by one. |
-| **Role** | A named set of permissions (e.g. "Admin", "Data Analyst") that says what someone is allowed to do. |
+| **Tenant** | A project or environment inside your organization. Each one has its own content and its own team. |
+| **User** | A person who logs into the Suite |
+| **Service account** | A non-human identity used by an application or automated process to access Mia-Platform on its own. |
+| **Group** | A named set of users, useful for giving the same permissions to several people at once. |
+| **Role** | A named set of permissions (e.g. "Admin", "Software Engineer") that says what someone is allowed to do. |
 | **Permission** | One specific allowed action, e.g. "view", "create", or "edit" something in a given product. |
 
 In short: your organization has one or more **tenants**; each tenant has its own **users** and **groups**; users or groups get **roles** assigned to them, and each role determines exactly what they can and can't do.
 
-## Finding Your Way Around
-
-### Overview
-
-After logging in, you land on the **Homepage**. It's organized top to bottom as a set of clearly separated blocks: a **sidebar** on the left for navigating between products, a **welcome banner**, an **AI Assistant**, a **Daily launchpad** of shortcuts, and a **Helpful resources** section in that order.
-
-### The sidebar (left-hand navigation)
-
-Always visible on the left, it lists every product in the suite so you can jump straight into any of them:
-
-- **Homepage** — brings you back to this landing page.
-- **Catalog** — connect, configure, and serve context to AI.
-- **AI Foundry** — manage AI playbooks.
-- **Console** — automate Environment as a Service.
-- **Flow** — fast prototyping with AI.
-- **Data Fabric** — configure and manage fast data.
-- **P4SaMD** — the compliance governance platform.
-
-Each entry opens in its own product; the small arrow icon next to each one signals that it takes you to a separate application.
-
-At the bottom-left of the sidebar, next to your account name/avatar, a **gear (⚙️) icon** opens **Administration**: this is where a tenant **Admin** manages users, groups, roles, and permissions for the current tenant. It's only meant for admins; regular users won't need it day-to-day.
-
-### AI Assistant
-
-Right below the banner, the **AI Assistant** offers a few **suggested questions** to get you started e.g. "How does the Catalog work?", "What is a Playbook?", "How many Scorecards are there in the Catalog?". You can click one of these or type your own question in the message box below.
-
-### Daily launchpad
-
-This section lets you **pin the tools you use every day** for one-click access, so you don't have to go through the sidebar every time. Each entry shows the product's icon, name, and a short description (e.g. "AI Foundry — Manage AI playbooks", "Console — Automate Environment as a Service", "Flow — Fast prototyping with AI", "Catalog — Connect, configure, and serve context to AI", "Data Fabric — Configure and manage fast data", "P4SaMD — Compliance governance platform"). A bell icon on each card lets you manage notifications for that product, and a **"View All"** button in the top-right expands the full list if you have more pinned tools than fit on screen.
-
-### Helpful resources
-
-At the bottom of the homepage, this section gathers supporting material to keep you and your team aligned:
-
-- **Mia-Platform Docs** — product documentation, guides, and API references.
-- **Community Hub** — share best practices and ask the community.
-- **Webinars & Events** — upcoming webinars, demos, and customer sessions.
-- **Platform Academy** — role-based learning paths for your teams.
-
-
 ## Understanding Access & Permissions
 
 If you're an admin, this is how access control fits together:
-
-- Your **organization** is made up of one or more **tenants**.
-- Each tenant has its own **users** and **groups**.
-- **Roles** are collections of permissions; assigning a role to a user or a group gives them exactly those permissions, and you can limit that role to a specific tenant instead of the whole organization.
 
 ```mermaid
 graph LR
@@ -123,17 +62,7 @@ graph LR
     R1 --> P1[Permissions]
 ```
 
-## Walkthrough: Managing Access as an Admin
-
-1. **Log in** to Mia-Platform. You land on the **Homepage**.
-2. If you work across multiple projects, use the **tenant selector** at the top to pick the one you want to work in (e.g. Catalog, AI Foundry, etc.).
-3. Open **Administration** from the sidebar.
-4. Under **Tenants**, see the list of tenants in your organization that you can switch to.
-5. Under **Administration/Users**, see existing users and when they were last active. Click a user to see their profile and how many groups they belong to.
-6. Under **Administration/Groups**, see existing groups (e.g. "AI Engineers", "Research Scientists"), how many members each has, and when they were last active. Click **"New group"** to create one and add members.
-7. Under **Administration/Roles**, click a role (e.g. "Admin") to see what it allows (e.g. viewing, creating, or editing specific things). Assign that role to a user or a group, and choose whether it applies everywhere or just to one tenant.
-8. Stuck on something? Open the **AI Assistant** and pick a suggested question — it'll guide you to the right place.
-9. Check the **Resources** section at the bottom of the page for further help and documentation.
+From **Administration** you can manage tenants, users, groups, and roles for your organization. Assigning a role to a user or group grants exactly those permissions, and you can scope it to the whole organization or to a single tenant. See [Platform Administration](./rbac_management.md) for the full details.
 
 ## Getting Help
 

@@ -12,7 +12,7 @@ It works as a thin proxy in front of the Catalog Engine: it reads the Engine's O
 
 New to items and ITDs? See the [Catalog overview](/products/catalog/overview.md) for an introduction to those concepts before diving in here.
 
-## Connecting to the remote MCP Server
+## Connecting to the MCP Server
 
 Prerequisites:
 
@@ -20,11 +20,9 @@ Prerequisites:
 
 The simplest way to get started is the hosted endpoint, no installation required:
 
-```
-https://catalog.mia-demo-re5gu6.gcp.mia-platform.eu/mcp
-```
+``` https://<catalog-hostname>/mcp ```
 
-Add it to your MCP client as an HTTP server, authenticating with client id `catalog-mcp` and no client secret. Refer to your client's documentation for where this goes (e.g. VS Code's `mcp.json`, Claude Desktop's settings, Cursor's MCP settings).
+Add it to your MCP client as an HTTP server, authenticating with client id `catalog-mcp`. Refer to your client's documentation for where this goes (e.g. VS Code's `mcp.json`, Claude Desktop's settings, Cursor's MCP settings).
 
 ## Using Docker
 
