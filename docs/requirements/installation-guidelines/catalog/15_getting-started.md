@@ -13,7 +13,10 @@ This guide walks through installing the `catalog` chart to deploy the Mia Platfo
 - [Helm](https://helm.sh/docs/helm/helm_install/) v3
 - A running **Keycloak** instance with a configured realm and a registered OIDC client for `authtool-bff`. See the [Keycloak installation guide](/requirements/installation-guidelines/shared-services/authn/keycloak/15_getting-started.md).
 - An external **PostgreSQL** database (v14+) for `catalogEngine`.
-- A **Kafka** cluster, either an external broker or the embedded Strimzi deployment managed by the chart.
+- A **Kafka** cluster. Three deployment options are supported:
+  1. An existing **external** broker (Kafka, Confluent, MSK, etc.), connected via `catalogKafkaContext`.
+  2. An **embedded** Kafka cluster, deployed by the chart via the Strimzi Operator, which the chart also installs (`kafka.enabled: true`, `kafka.operator.enabled: true`).
+  3. An **embedded** Kafka cluster deployed by the chart, but reusing a **Strimzi Operator already installed cluster-wide** (`kafka.enabled: true`, `kafka.operator.enabled: false`) — no need to install a second operator instance.
 
 ## Required information
 
@@ -186,11 +189,15 @@ authtoolBff:
 # authzUrl: "https://home.your-domain.com"
 
 # Kafka event pipeline
-# Option A — embedded Kafka via Strimzi (requires operator installed separately)
+# Option A — embedded Kafka via Strimzi
 kafka:
   enabled: true
   operator:
-    enabled: false   # set true to also deploy the Strimzi operator
+    # Set to true to also let the chart install the Strimzi operator.
+    # Set to false if a Strimzi operator is already installed cluster-wide:
+    # the chart will only create the Kafka custom resource, reconciled by
+    # that existing operator.
+    enabled: false
   node:
     replicas: 1
 
