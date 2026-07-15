@@ -90,6 +90,43 @@ This outputs the component YAML files that `keycloak-config-cli` will apply.
 
 The chart does not call `keycloak-config-cli` directly; import is driven by Makefile targets that render the chart and then run `keycloak-config-cli` via Docker.
 
+### Where the `keycloak-config-cli` client comes from
+
+Each realm template (`master`, `products`, `extensibility`) declares its **own** `keycloak-config-cli` service-account client, with a secret resolved via Keycloak's Vault SPI as `${vault.keycloak-config-cli-client-secret}`. This client is created **by the realm's own import** — it is not something you create manually in the admin console — but the vault entry backing its secret must already exist *before* that first import, otherwise Keycloak cannot resolve the secret.
+
+Provision the vault entry through the [Keycloak chart](/requirements/installation-guidelines/shared-services/authn/keycloak/15_getting-started.md)'s `vault.*` values, before installing/upgrading Keycloak:
+
+```yaml
+# keycloak values.yaml
+vault:
+  enabled: true
+  secretStoreRef:
+    name: my-secret-store
+    kind: SecretStore
+  data:
+    - secretKey: keycloak-config-cli-client-secret
+      remoteRef:
+        key: secret/keycloak/keycloak-config-cli
+        property: clientSecret
+```
+
+This provisions a `keycloak-vault-secrets` Secret, mounted into the Keycloak pod, from which Keycloak's file-based Vault provider resolves `${vault.keycloak-config-cli-client-secret}` at realm-import time.
+
+:::info
+Without an External Secrets `SecretStore`, you can create the same Secret directly, as long as `vault.enabled: true` and the key name matches:
+```bash
+kubectl create secret generic keycloak-vault-secrets \
+  --namespace keycloak \
+  --from-literal=keycloak-config-cli-client-secret="$(openssl rand -hex 32)"
+```
+:::
+
+:::note
+This applies to Keycloak instances deployed via the [Keycloak chart](/requirements/installation-guidelines/shared-services/authn/keycloak/15_getting-started.md). For a customer-managed Keycloak instance, the `keycloak-config-cli` client must instead be created manually — see [Customer Keycloak via CLI](/requirements/installation-guidelines/shared-services/authn/federation-strategies/customer-keycloak-cli.md#step-11--create-the-keycloak-config-cli-service-account).
+:::
+
+Once the vault secret is in place, the **first** import of each realm must use `make import-admin-<realm>` (it creates that realm's `keycloak-config-cli` client). Every subsequent import of the **same** realm can then use `make import-<realm>`, with `KEYCLOAK_CLIENT_SECRET` set to the same vault secret value and `LOGIN_REALM` set to that realm's ID (`master`, `mia-platform`, or `mia-extensions`).
+
 Two import modes are available, depending on how `keycloak-config-cli` authenticates to Keycloak:
 
 - **`make import-<realm>`** — authenticates with a `client_credentials` grant against a service account client (typically `keycloak-config-cli`). Requires `KEYCLOAK_CLIENT_SECRET` and, for non-`master` realms, `LOGIN_REALM` set to the realm the service account client lives in.

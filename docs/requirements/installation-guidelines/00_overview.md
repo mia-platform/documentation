@@ -24,9 +24,9 @@ The following tools must be available on the operator's workstation before insta
 
 ## Installation map
 
-All components in the **shared services layer** must be operational before any product chart is installed.
+**Auth tooling** (Keycloak + Realm Management) must be operational before any product chart is installed: it provides the OIDC issuer URL required by every other component.
 
-Within the shared services layer, **Auth tooling** (Keycloak + Realm Management) must come first: it provides the OIDC issuer URL required by every other component. **Homepage & RBAC** follows: it provides the authorization service (`authtool-bff`) and the OPA-based access control layer that both Console and Catalog depend on.
+**Homepage & RBAC** is the recommended second step, ahead of the products, even though it is not a hard prerequisite: it exposes the `rbacManagement` authorization API (via `authzUrl`) that Console, Catalog, and AI Foundry can optionally call to enrich policy evaluation with product/permission context. Each product bundles its own `authtool-bff` instance for browser login and does not depend on the `services` chart for it.
 
 Once the shared services layer is running, **Console** and **Catalog** can be installed in parallel. AI Foundry depends on Catalog (shared agent backend and navigation links) and must be installed last.
 
@@ -38,7 +38,7 @@ Once the shared services layer is running, **Console** and **Catalog** can be in
 │       Keycloak  ──►  Realm Management                                │
 │                              │                                       │
 │                              ▼                                       │
-│  2 — Homepage & RBAC  (gateway + authorization layer)                │
+│  2 — Homepage & RBAC  (recommended, not required — authz API)          │
 └────────────────────────────────┬─────────────────────────────────────┘
                                  ▼
                     ┌────────────┴─────────────┐
