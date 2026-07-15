@@ -87,13 +87,13 @@ The ownership model changes according to the selected distribution type.
 
 `Shared responsibility` indicates areas where platform-level integration is provided by Mia-Platform, while infrastructure provisioning and/or day-2 operations remain in customer scope.
 
-The Mia Platform product suite in scope comprises three products (**Console**, **Catalog**, and **AI Foundry**) backed by a shared services layer. The shared services layer includes the **Auth tooling** (Keycloak and Realm Management) and the **Homepage & RBAC** component (platform gateway, session management, and authorization). Both are platform-level prerequisites provisioned by Mia Platform; they enable the suite but are not standalone business products.
+The Mia Platform product suite in scope comprises three products (**Console**, **Catalog**, and **AI Foundry**) backed by a shared services layer. The shared services layer includes the **Auth tooling** (Keycloak and Realm Management) and the **Homepage & RBAC** component (platform gateway, session management, and authorization). Both are platform-level components provisioned by Mia Platform; they enable the suite but are not standalone business products. **Auth tooling** is a hard prerequisite for every product; **Homepage & RBAC** is recommended as the next installation step, ahead of the products, even though no product hard-depends on it.
 
 ## Cross-Product Dependencies
 
 The **Auth tooling layer** (Keycloak and Realm Management) is the foundational prerequisite for the entire suite: every product requires a functioning Keycloak realm and OIDC issuer before it can be installed.
 
-The **shared services layer** must be fully operational before any product chart is installed. Within it, **Auth tooling** (Keycloak and Realm Management) provides the OIDC issuer required by all components. **Homepage & RBAC** follows: it provides the `authtool-bff` authorization service that Console and Catalog depend on.
+**Auth tooling** (Keycloak and Realm Management) must be fully operational before any product chart is installed: it provides the OIDC issuer required by all components. **Homepage & RBAC** is recommended as the second step, ahead of the products, even though it is not a hard prerequisite: it exposes the `rbacManagement` authorization API (via `authzUrl`) that Console, Catalog, and AI Foundry can optionally call to enrich policy evaluation with product/permission context. Each product bundles its own `authtool-bff` instance for browser login and does not depend on the `services` chart for it.
 
 Among the products, the installation order is:
 
