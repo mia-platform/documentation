@@ -30,8 +30,8 @@ The following tools must be available on the operator's workstation before insta
 
 Once the shared services layer is running, **Console** and **Catalog** can be installed in parallel. AI Foundry depends on Catalog (shared agent backend and navigation links) and must be installed last.
 
-:::tip Looking for a single-repo fast path?
-If you'd rather install the whole suite from one umbrella repository instead of assembling the wrapper repositories yourself, see the [On-Prem Quickstart](/requirements/installation-guidelines/02_on-prem-quickstart.md).
+:::tip Looking for a working reference example?
+If you'd like to see the whole suite running end-to-end before planning your own installation, see the [On-Prem Quickstart](/requirements/installation-guidelines/02_on-prem-quickstart.md): a local reference implementation you can use as a blueprint.
 :::
 
 ```
