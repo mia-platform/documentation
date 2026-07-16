@@ -13,10 +13,6 @@ This guide walks through installing the `services` chart to deploy the Mia Platf
 - [Helm](https://helm.sh/docs/helm/helm_install/) v3
 - A running **Keycloak** instance with a configured realm and a registered OIDC client for `authtool-bff`. See the [Keycloak installation guide](/requirements/installation-guidelines/shared-services/authn/keycloak/15_getting-started.md).
 
-:::caution Pin image tags before installing in production
-The chart's default `values.yaml` ships some components (`accessControl`, `homepageWebsite`, `rbacManagement`) with mutable tags (e.g. `latest`, `latest-nocache`). Always override these with an explicit, pinned version in your own `values.yaml` before installing in any non-throwaway environment.
-:::
-
 ## Required information
 
 | Information | Example |
