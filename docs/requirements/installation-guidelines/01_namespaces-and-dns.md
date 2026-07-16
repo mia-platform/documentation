@@ -2,7 +2,6 @@
 id: namespaces-and-dns
 title: Namespace and DNS Layout
 sidebar_label: Namespace & DNS Layout
-sidebar_position: 0.5
 ---
 
 # Namespace and DNS Layout
