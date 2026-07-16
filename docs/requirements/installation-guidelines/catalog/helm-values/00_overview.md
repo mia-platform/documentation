@@ -283,7 +283,7 @@ The Model Context Protocol server. Exposes the Catalog API as an MCP tool for AI
 The document parsing service. Converts uploaded documents into structured content for AI agent context.
 
 :::caution Resource requirements
-`doclingService` pulls a **4.4 GB** image and loads PyTorch models at startup. Default resource allocation is `500m–2000m` CPU and `2Gi–4Gi` memory. Disable it in lightweight environments where document ingestion is not needed.
+`doclingService` pulls a **4.4 GB** image and loads PyTorch models at startup. Default resource allocation is `1–4` CPU and `1Gi–6Gi` memory. Disable it in lightweight environments where document ingestion is not needed.
 :::
 
 | Key | Type | Default | Description |
