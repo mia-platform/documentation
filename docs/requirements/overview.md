@@ -194,3 +194,5 @@ Compatibility matrix:
 ## Next Step
 
 Continue with the [Installation Guidelines](/requirements/installation-guidelines/00_overview.md) to access the full product-by-product documentation tree.
+
+If you'd rather install the whole suite from a single umbrella repository instead of assembling the per-product wrapper repositories yourself, see the [On-Prem Quickstart](/requirements/installation-guidelines/02_on-prem-quickstart.md).
