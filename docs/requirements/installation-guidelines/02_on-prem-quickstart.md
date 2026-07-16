@@ -13,31 +13,32 @@ Mia-Platform maintains `on-prem-charts`, a repository that packages every produc
 
 ## What it is
 
-`on-prem-charts` is **not** a single umbrella chart with one shared `values.yaml`. It's a repository that bundles, under `charts/<product>/`, one small wrapper chart per component — the same pattern used today by the per-product `*-deployment` repositories — each with its **own** `Chart.yaml` (declaring the real product chart as a Helm dependency) and its **own** `values.yaml`:
+`on-prem-charts` is **not** a single umbrella chart with one shared `values.yaml`. It's a repository that bundles, under `charts/<product>/`, one small wrapper chart per component — each with its **own** `Chart.yaml` (declaring the real product chart as a Helm dependency) and its **own** `values.yaml`:
 
-| Order | Wrapper folder | Chart dependency | Purpose |
-|---|---|---|---|
-| 1 | `charts/keycloak` | `keycloak-operator` | Auth tooling — Keycloak instance |
-| 2 | `charts/keycloak-realms` | `keycloak-realm-management` | Auth tooling — realm/client provisioning |
-| 3 | `charts/services` | `services` | Homepage & RBAC management |
-| 4 | `charts/catalog` | `catalog` | Context Catalog product |
-| 5 | `charts/ai-foundry` | `ai-foundry` | AI Foundry product |
-| 6 | `charts/console` | `mia-console` | Console product |
+| Order | Component | Wrapper folder |
+|---|---|---|
+| 1 | Keycloak | `charts/keycloak` |
+| 2 | Keycloak Realms | `charts/keycloak-realms` |
+| 3 | Services (Homepage & RBAC) | `charts/services` |
+| 4 | Catalog | `charts/catalog` |
+| 5 | AI Foundry | `charts/ai-foundry` |
+| 6 | Console | `charts/console` |
 
-What the repository adds on top is a single **root `Makefile`** that includes a `tools.mk` per component and exposes one target per step (`010_keycloak`, `020_keycloak_realms`, `030_home`, `040_catalog`, `050_ai_foundry`, `060_console`). Each target runs `helm upgrade --install` against the corresponding `charts/<product>/values.yaml` (plus any local secrets file), in the right dependency order, against the local cluster — giving you an end-to-end working example of the whole suite before you replicate the same approach on your own infrastructure.
+A root `Makefile` orchestrates the installation of every component in dependency order, wrapping `helm upgrade --install` for each `charts/<product>/` folder against its `values.yaml` (plus any local secrets file). This does **not** replace the per-product documentation: every dependency is the exact same chart described in the [Installation Guidelines](/requirements/installation-guidelines/00_overview.md); for the configuration, secrets, and values of a specific chart, use its dedicated section in these Installation Guidelines.
 
-This does **not** replace the per-product documentation: every dependency is the exact same chart described in the [Installation Guidelines](/requirements/installation-guidelines/00_overview.md), and the `values.yaml` of each `charts/<product>/` folder mirrors the same information (Keycloak realm, secrets, PostgreSQL/Kafka/Redis connection details, etc.) documented in each product's Getting Started guide. For the details of a specific chart, refer to its dedicated section in these Installation Guidelines.
+## What this repository is *not*
+
+The repository also ships local-cluster provisioning tooling (a `hacks/` folder and dedicated `Makefile` targets) to stand up a throwaway `kind` cluster. That tooling is **not** part of the product suite — it only stands in for infrastructure you are expected to already have in your real environment. See the repository's own `docs/` folder (linked below) for the full detail, including which default settings are dev-only and must be reconsidered before production.
 
 ## Prerequisites and installation procedure
 
-`on-prem-charts` ships its own `docs/` folder, kept in sync with the Makefile and the chart wrappers in the same repository. Refer to it for the up-to-date prerequisites and the step-by-step procedure to run it locally (cloning the repo, configuring the `values.yaml` of each component, and running the ordered `make` targets), rather than to a copy of those steps here — this avoids two sources of truth drifting apart as the repository evolves.
+`on-prem-charts` ships its own `docs/` folder, kept in sync with the Makefile and the chart wrappers in the same repository. Refer to it for the up-to-date prerequisites and the step-by-step procedure (cloning the repo, configuring the `values.yaml` of each component, and running the ordered `make` targets), rather than to a copy of those steps here — this avoids two sources of truth drifting apart as the repository evolves.
 
-## When to use this
+## When to use this vs. the per-product wrapper repositories
 
-| Use case | Why |
+| Approach | Best for |
 |---|---|
-| **Learning / evaluating the suite** | Spin up the whole product suite on a local cluster in a few `make` commands, without provisioning any real infrastructure. |
-| **Planning an on-premise installation** | Use the repository's structure, chart ordering, and `values.yaml` files as a blueprint: replicate the same approach against your real cluster and infrastructure, adapting values, secrets, and resource sizing to your environment. |
-| **Production self-hosted rollout** | Use the per-product `*-deployment` wrapper repositories instead, which are designed for multi-environment GitOps workflows with per-environment values files and independent release cadence. |
+| `on-prem-charts` | Learning/evaluating the suite end-to-end on a local cluster, or as a blueprint to plan your own on-premise installation. |
+| Per-product `*-deployment` wrapper repositories | Production self-hosted rollouts: multi-environment GitOps workflows, each product released independently with its own per-environment values files and release cadence. |
 
 Both approaches install the exact same underlying charts — `on-prem-charts` is a reference and starting point, not a substitute for a properly configured production deployment.
