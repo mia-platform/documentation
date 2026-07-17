@@ -1,4 +1,5 @@
 ---
+id: managed-keycloak
 title: Managed Keycloak
 sidebar_label: Managed Keycloak
 sidebar_position: 1

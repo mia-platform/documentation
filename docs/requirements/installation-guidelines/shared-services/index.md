@@ -1,4 +1,5 @@
 ---
+id: index
 title: Shared services & tools
 sidebar_label: Shared services & tools
 ---
