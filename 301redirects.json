@@ -5522,9 +5522,5 @@
   "/docs/products/context-catalog/(.*)": {
     "destination": "/docs/products/catalog/$1",
     "addedOn": "2026-07-08"
-  },
-  "/docs/requirements/(.*)": {
-    "destination": "/docs/requirements/installation-guidelines/console/$1",
-    "addedOn": "2026-07-08"
   }
 }
