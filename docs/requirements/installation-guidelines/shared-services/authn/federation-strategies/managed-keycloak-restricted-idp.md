@@ -1,4 +1,5 @@
 ---
+id: managed-keycloak-restricted-idp
 title: "Managed Keycloak: Restricted Customer IdP"
 sidebar_label: Restricted Customer IdP
 sidebar_position: 3

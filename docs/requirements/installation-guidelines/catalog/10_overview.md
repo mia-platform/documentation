@@ -1,4 +1,5 @@
 ---
+id: overview
 title: Catalog Overview
 sidebar_label: Overview
 ---

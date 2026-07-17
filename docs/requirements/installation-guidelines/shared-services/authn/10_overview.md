@@ -1,4 +1,5 @@
 ---
+id: overview
 title: Authentication Overview
 sidebar_label: Overview
 ---

@@ -1,4 +1,5 @@
 ---
+id: federation-strategies
 title: Federation Strategies
 sidebar_label: Federation Strategies
 ---

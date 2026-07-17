@@ -1,4 +1,5 @@
 ---
+id: customer-keycloak-cli
 title: Customer Keycloak via CLI
 sidebar_label: Customer Keycloak via CLI
 sidebar_position: 2
