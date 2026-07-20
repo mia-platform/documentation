@@ -39,16 +39,34 @@ Each source page lists the **data types** it exposes inside the mapping context 
 `ibdm` writes into the Catalog over HTTP, using a client-credentials pair provisioned in the Catalog App.
 
 1. **Register the connector in the Catalog App.** Open **Configuration → Connectors → Add connector**. You will be asked for a `Name`, an optional `Title` and `Description`, a `Client ID`, and a `Provider` / `Category` for UI filtering (see the [Connectors section](/products/catalog/usage/catalog-app.md#connectors) of the Catalog App reference). The Catalog App creates a *Connector* item in the catalog and surfaces a credentials pair you will use to authenticate `ibdm`.
-2. **Configure the destination on `ibdm`.** Set the following environment variables before launching `ibdm`:
+2. **Configure the destination on `ibdm`.** The endpoint is always required:
 
    | Variable | Description |
    | :------- | :---------- |
    | `MIA_CATALOG_ENDPOINT` | The Catalog ingestion endpoint, surfaced in the Catalog App connector form. |
+
+   `ibdm` then authenticates to the Catalog with **one of two** mechanisms.
+
+   **Client-credentials (client secret).** The default flow, using the credentials pair provisioned in step 1:
+
+   | Variable | Description |
+   | :------- | :---------- |
    | `MIA_CATALOG_CLIENT_ID` | Client ID provisioned for this connector. |
    | `MIA_CATALOG_CLIENT_SECRET` | Client Secret provisioned for this connector. |
    | `MIA_CATALOG_AUTH_ENDPOINT` *(optional)* | Override of the OAuth token endpoint. Defaults to `<host of MIA_CATALOG_ENDPOINT>/oauth/token`. |
 
-   Every item written through this credential pair is associated to the *Connector* item created in step 1, so you can always tell which connector ingested a given entity (visible in the **Connector items** tab of the Connector detail page).
+   **Private-key JWT (RFC 7523).** As an alternative to the client secret, `ibdm` can authenticate via private-key JWT client authentication. Set `MIA_CATALOG_PRIVATE_KEY_PATH` (together with `MIA_CATALOG_CLIENT_ID`) *instead of* `MIA_CATALOG_CLIENT_SECRET`. When you do, you must also configure at least one of `MIA_CATALOG_ISSUER`, `MIA_CATALOG_ISSUER_METADATA`, or `MIA_CATALOG_TOKEN_ENDPOINT`:
+
+   | Variable | Description |
+   | :------- | :---------- |
+   | `MIA_CATALOG_PRIVATE_KEY_PATH` | Path to a PEM-encoded private key file, used with `MIA_CATALOG_CLIENT_ID` to authenticate via private-key JWT instead of a client secret. |
+   | `MIA_CATALOG_ISSUER` | OIDC issuer URL used as both the discovery base and the expected issuer; the discovery document is looked up relative to this value. |
+   | `MIA_CATALOG_ISSUER_METADATA` *(optional)* | Custom URL for the OIDC discovery document used to resolve the token endpoint. Defaults to a lookup relative to `MIA_CATALOG_ISSUER`. |
+   | `MIA_CATALOG_TOKEN_ENDPOINT` *(optional)* | Custom token endpoint. When set, OIDC discovery is skipped entirely and this endpoint is used directly. |
+   | `MIA_CATALOG_CUSTOM_SCOPE` *(optional)* | Custom scope requested during the token exchange. When unset, no scope is sent. |
+   | `OIDC_DISCOVERY_PATH` *(optional)* | Well-known path suffix joined to `MIA_CATALOG_ISSUER` to fetch the OIDC discovery document. Defaults to `.well-known/openid-configuration`; has no effect when `MIA_CATALOG_ISSUER_METADATA` or `MIA_CATALOG_TOKEN_ENDPOINT` is set. |
+
+   Every item written through this connector is associated to the *Connector* item created in step 1, so you can always tell which connector ingested a given entity (visible in the **Connector items** tab of the Connector detail page).
 3. **Configure the source.** Set the source-specific environment variables documented in the page for that source.
 4. **Launch.** Run either `ibdm sync <source> --mapping-file <path>` or `ibdm run <source> --mapping-file <path>`.
 
@@ -64,7 +82,7 @@ Running `ibdm` with `--local-output` redirects results to stdout instead of push
 | [GitHub](/products/catalog/connectors/github.md) | `sync`, `run` (webhooks) | Repositories, workflow runs, access-token requests, workflow dispatches |
 | [GitLab](/products/catalog/connectors/gitlab.md) | `sync`, `run` (webhooks) | Projects, pipelines, access tokens |
 | [Google Cloud](/products/catalog/connectors/google-cloud.md) | `sync` (Cloud Asset API), `run` (PubSub) | Cloud resources |
-| [Mia-Platform Console](/products/catalog/connectors/mia-platform-console.md) | `sync`, `run` (webhooks) | Projects, revisions, services |
+| [Mia-Platform Console](/products/catalog/connectors/mia-platform-console.md) | `sync`, `run` (webhooks) | Projects, revisions, services, clusters |
 | [Sonatype Nexus](/products/catalog/connectors/nexus.md) | `sync`, `run` (webhooks) | Docker images |
 | [Sysdig Secure](/products/catalog/connectors/sysdig.md) | `sync` (SysQL), `run` (webhooks) | Vulnerabilities |
 
