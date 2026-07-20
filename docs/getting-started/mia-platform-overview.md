@@ -74,7 +74,7 @@ Transforming invisible infrastructure into a governed, scalable ecosystem is cru
 Main components are:
 
 * [**Item Types Infra/DevOps**](/products/catalog/basic-concepts/20_item-types.md)**:** A specialized library bringing complex infrastructure assets under unified catalog governance.  
-* **Cloud & DevOps Connectors:** Automated integrations with major providers (e.g. [Azure](/products/catalog/connectors/azure.md), [Google Cloud](/products/catalog/connectors/google-cloud.md), [GitHub](/products/catalog/connectors/github.md), [GitLab](/products/catalog/connectors/gitlab.md)) that actively pull resources into the platform, ensuring live tracking alongside application assets.  
+* **Cloud & DevOps Connectors:** Automated integrations with major providers (e.g. [Azure](/requirements/installation-guidelines/catalog/connectors/azure.md), [Google Cloud](/requirements/installation-guidelines/catalog/connectors/google-cloud.md), [GitHub](/requirements/installation-guidelines/catalog/connectors/github.md), [GitLab](/requirements/installation-guidelines/catalog/connectors/gitlab.md)) that actively pull resources into the platform, ensuring live tracking alongside application assets.  
 * **Engineering Intelligence:** A governance section within the Catalog, related to [Scorecards](/products/catalog/basic-concepts/40_scorecards.md) and [Campaigns](/products/catalog/basic-concepts/50_campaigns.md). They aggregate data into the catalog to offer leadership clear visibility into platform adoption, delivery metrics, and custom insights. See the Scorecards tutorial to get started.
 
 #### 3\. Data (Data Teams)

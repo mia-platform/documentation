@@ -6,7 +6,7 @@ sidebar_label: Nexus
 
 # Sonatype Nexus Connector
 
-The Nexus connector ingests Docker image components from a [Sonatype Nexus Repository Manager](https://help.sonatype.com/en/automation.html#rest-api) instance into the Catalog. It runs through the [`ibdm`](/products/catalog/connectors/10_overview.md) binary in one of two modes:
+The Nexus connector ingests Docker image components from a [Sonatype Nexus Repository Manager](https://help.sonatype.com/en/automation.html#rest-api) instance into the Catalog. It runs through the [`ibdm`](/requirements/installation-guidelines/catalog/connectors/00_overview.md) binary in one of two modes:
 
 - **Sync** — pull-based: queries the Nexus REST API and exits.
 - **Run** — push-based: exposes a webhook endpoint that receives Nexus repository component events.
@@ -77,4 +77,4 @@ ibdm sync nexus --mapping-file docs/examples/nexus/mappings/
 
 ## See also
 
-- [Connectors Overview](/products/catalog/connectors/10_overview.md)
+- [Connectors Overview](/requirements/installation-guidelines/catalog/connectors/00_overview.md)

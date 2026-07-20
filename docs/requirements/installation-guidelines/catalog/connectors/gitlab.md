@@ -6,7 +6,7 @@ sidebar_label: GitLab
 
 # GitLab Connector
 
-The GitLab connector ingests data from a GitLab instance into the Catalog. It runs through the [`ibdm`](/products/catalog/connectors/10_overview.md) binary in one of two modes:
+The GitLab connector ingests data from a GitLab instance into the Catalog. It runs through the [`ibdm`](/requirements/installation-guidelines/catalog/connectors/00_overview.md) binary in one of two modes:
 
 - **Sync** — pull-based: queries the GitLab REST API and exits.
 - **Run** — push-based: exposes a webhook endpoint that receives GitLab events.
@@ -83,4 +83,4 @@ ibdm sync gitlab --mapping-file docs/examples/gitlab/mappings/
 
 ## See also
 
-- [Connectors Overview](/products/catalog/connectors/10_overview.md)
+- [Connectors Overview](/requirements/installation-guidelines/catalog/connectors/00_overview.md)

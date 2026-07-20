@@ -6,7 +6,7 @@ sidebar_label: Azure
 
 # Microsoft Azure Connector
 
-The Microsoft Azure connector ingests cloud resources from an Azure subscription into the Catalog. It runs through the [`ibdm`](/products/catalog/connectors/10_overview.md) binary in one of two modes:
+The Microsoft Azure connector ingests cloud resources from an Azure subscription into the Catalog. It runs through the [`ibdm`](/requirements/installation-guidelines/catalog/connectors/00_overview.md) binary in one of two modes:
 
 - **Sync** — pull-based: enumerates resources via the [Azure Resource Graph](https://learn.microsoft.com/en-us/azure/governance/resource-graph/) APIs and exits.
 - **Run** — push-based: subscribes to Azure subscription events through Azure EventHub and reacts in near real time.
@@ -51,5 +51,5 @@ Each resource type declared in the mapping file must also declare an `apiVersion
 
 ## See also
 
-- [Connectors Overview](/products/catalog/connectors/10_overview.md)
-- [Google Cloud Connector](/products/catalog/connectors/google-cloud.md) — sibling source for GCP.
+- [Connectors Overview](/requirements/installation-guidelines/catalog/connectors/00_overview.md)
+- [Google Cloud Connector](/requirements/installation-guidelines/catalog/connectors/google-cloud.md) — sibling source for GCP.
