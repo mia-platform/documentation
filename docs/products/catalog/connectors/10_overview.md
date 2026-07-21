@@ -77,6 +77,10 @@ The shape of the items a connector produces isn't fixed by the connector itself:
 
 The mapping-file format and the full setup are covered in the configuration reference.
 
+## Authenticating a connector
+
+Each connector authenticates to the Catalog as a **service account**, registered separately from the *Connector* item you create in the Catalog App — see [Connectors configuration & installation](/requirements/installation-guidelines/catalog/connectors/00_overview.md#wiring-ibdm-to-the-catalog) for the full setup.
+
 ## Where to go next
 
 - [Connectors configuration & installation](/requirements/installation-guidelines/catalog/connectors/00_overview.md) — how to deploy `ibdm`, wire it to the Catalog, and write mapping files, plus the per-source configuration references.

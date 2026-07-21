@@ -47,7 +47,7 @@ Creating an ITD provisions a brand-new REST endpoint at `/{group}/{version}/item
 From **Items → Create item**, pick the type you just defined, and fill in:
 
 - [metadata](/products/catalog/basic-concepts/10_items.md#metadata): [`title`](/products/catalog/basic-concepts/10_items.md#title), [`name`](/products/catalog/basic-concepts/10_items.md#name), [`description`](/products/catalog/basic-concepts/10_items.md#description), [`tags`](/products/catalog/basic-concepts/10_items.md#tags), [owner](/products/catalog/basic-concepts/10_items.md#ownership-and-followers)
-- [`spec`](/products/catalog/basic-concepts/10_items.md#required-fields) (the type-specific payload validated against the ITD's [schema](/products/catalog/basic-concepts/20_item-types.md#the-validation-schema)). 
+- [`spec`](/products/catalog/basic-concepts/10_items.md#required-fields) (the type-specific payload validated against the ITD's [schema](/products/catalog/basic-concepts/20_item-types.md#the-validation-schema)).
 
 The wizard validates the `spec` against the ITD schema as you type.
 
@@ -78,12 +78,14 @@ In short, Mia-Platform connectors:
 
 The high-level setup is:
 
-1. **Register the connector in the Catalog App.** Open **Configuration → Connectors → Add connector** to create a *Connector* item and give it a Client ID — every item it later syncs in will be attributed to this ID (see [Connectors section](/products/catalog/usage/catalog-app.md#connectors) of the Catalog App reference). The matching Client Secret is not set here; obtain it from your platform administrator or identity provider as a separate M2M credential.
-2. **Configure `ibdm`.** Set `MIA_CATALOG_ENDPOINT`, `MIA_CATALOG_CLIENT_ID` (matching the Client ID from step 1), and `MIA_CATALOG_CLIENT_SECRET` for the destination, plus the source-specific variables documented on each connector page.
-3. **Add a mapping file.** Reference mappings are provided in the [`ibdm` repository examples](https://github.com/mia-platform/ibdm/tree/main/docs/examples); you can use them as-is or customize them.
-4. **Launch `ibdm`.** Either `ibdm sync <source> --mapping-file mapping.yaml` for a one-off pull, or `ibdm run <source> --mapping-file mapping.yaml` to start the event-stream integration.
-5. **Inspect what came in.** Open the connector's detail page in the Catalog App and switch to the **Imported items** tab to browse the items it has synchronized.
-6. **Wire compliance on top.** Point your [Evaluation Criteria](/products/catalog/basic-concepts/30_evaluation-criteria.md), [Scorecards](/products/catalog/basic-concepts/40_scorecards.md), and [Campaigns](/products/catalog/basic-concepts/50_campaigns.md) at the ingested items just like at hand-created items.
+1. **Register a matching service account.** The Client Secret (or key pair, for `private_key_jwt`) is not set in the Catalog App — a platform Super Admin registers it separately, with the *same* Client ID, as a **service account** in Platform Administration. See [Registering a service account](/products/mia-platform-suite/rbac_management.md#registering-a-service-account).
+
+2. **Register the connector in the Catalog App.** Open **Configuration → Connectors → Add connector** to create a *Connector* item and give it a Client ID — every item it later syncs in will be attributed to this ID (see [Connectors section](/products/catalog/usage/catalog-app.md#connectors) of the Catalog App reference). This step is only about attribution/labeling; it does not create any credential.
+3. **Configure `ibdm`.** Set `MIA_CATALOG_ENDPOINT`, `MIA_CATALOG_CLIENT_ID` (matching the Client ID from step 1), and `MIA_CATALOG_CLIENT_SECRET` for the destination, plus the source-specific variables documented on each connector page.
+4. **Add a mapping file.** Reference mappings are provided in the [`ibdm` repository examples](https://github.com/mia-platform/ibdm/tree/main/docs/examples); you can use them as-is or customize them.
+5. **Launch `ibdm`.** Either `ibdm sync <source> --mapping-file mapping.yaml` for a one-off pull, or `ibdm run <source> --mapping-file mapping.yaml` to start the event-stream integration.
+6. **Inspect what came in.** Open the connector's detail page in the Catalog App and switch to the **Imported items** tab to browse the items it has synchronized.
+7. **Wire compliance on top.** Point your [Evaluation Criteria](/products/catalog/basic-concepts/30_evaluation-criteria.md), [Scorecards](/products/catalog/basic-concepts/40_scorecards.md), and [Campaigns](/products/catalog/basic-concepts/50_campaigns.md) at the ingested items just like at hand-created items.
 
 The available sources and the upstream system each one targets are listed in the [Connectors Overview](/products/catalog/connectors/10_overview.md).
 
