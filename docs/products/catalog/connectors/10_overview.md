@@ -21,10 +21,10 @@ Connectors are powered by an open-source (AGPL-3.0) engine called **`ibdm`** (In
 
 Each connector supports one or both of two complementary ingestion styles:
 
-| Style | Command | What it does |
-| :---- | :------ | :----------- |
-| **Sync** (pull) | `ibdm sync <source>` | Enumerates the supported entities currently in the upstream system in one pass via the source's REST APIs and exits. Run it manually or on a schedule. |
-| **Run** (push) | `ibdm run <source>` | Starts a long-running process that reacts to events pushed by the source (inbound webhooks, message-queue subscriptions, or similar mechanisms) and updates the Catalog in near real time. |
+| Style | What it does |
+| :---- | :----------- |
+| **Pull** | Enumerates the supported entities currently in the upstream system in one pass via the source's REST APIs and exits. Run it manually or on a schedule. |
+| **Push** | Starts a long-running process that reacts to events pushed by the source (inbound webhooks, message-queue subscriptions, or similar mechanisms) and updates the Catalog in near real time. |
 
 Not every source supports every mode — see the per-source pages below for details.
 
