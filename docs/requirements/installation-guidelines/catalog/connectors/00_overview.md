@@ -36,10 +36,11 @@ Each source page lists the **data types** it exposes inside the mapping context 
 
 ## Wiring `ibdm` to the Catalog
 
-`ibdm` writes into the Catalog over HTTP, using a client-credentials pair provisioned in the Catalog App.
+`ibdm` writes into the Catalog over HTTP, authenticating with a Client ID that must be registered in **two separate places**: a *Connector* item in the Catalog App, used purely for attribution/labeling, and a matching **service account** in Platform Administration, which is where the actual credential (a client secret or a key pair) is minted.
 
-1. **Register the connector in the Catalog App.** Open **Configuration → Connectors → Add connector**. You will be asked for a `Name`, an optional `Title` and `Description`, a `Client ID`, and a `Provider` / `Category` for UI filtering (see the [Connectors section](/products/catalog/usage/catalog-app.md#connectors) of the Catalog App reference). The Catalog App creates a *Connector* item in the catalog and surfaces a credentials pair you will use to authenticate `ibdm`.
-2. **Configure the destination on `ibdm`.** The endpoint is always required:
+1. **Register the connector in the Catalog App.** Open **Configuration → Connectors → Add connector**. You will be asked for a `Name`, an optional `Title` and `Description`, a `Client ID`, and a `Provider` / `Category` for UI filtering (see the [Connectors section](/products/catalog/usage/catalog-app.md#connectors) of the Catalog App reference). This only creates the *Connector* item used to attribute ingested items — it does **not** generate any credential.
+2. **Register a matching service account.** A Super Admin registers a service account with the *same* Client ID through Platform Administration, choosing either a client secret or an RSA key pair (for `private_key_jwt`) as its credential — see [Registering a service account](/products/mia-platform-suite/rbac_management.md#registering-a-service-account). This is the actual credential `ibdm` will authenticate with.
+3. **Configure the destination on `ibdm`.** The endpoint is always required:
 
    | Variable | Description |
    | :------- | :---------- |
@@ -67,10 +68,14 @@ Each source page lists the **data types** it exposes inside the mapping context 
    | `OIDC_DISCOVERY_PATH` *(optional)* | Well-known path suffix joined to `MIA_CATALOG_ISSUER` to fetch the OIDC discovery document. Defaults to `.well-known/openid-configuration`; has no effect when `MIA_CATALOG_ISSUER_METADATA` or `MIA_CATALOG_TOKEN_ENDPOINT` is set. |
 
    Every item written through this connector is associated to the *Connector* item created in step 1, so you can always tell which connector ingested a given entity (visible in the **Connector items** tab of the Connector detail page).
-3. **Configure the source.** Set the source-specific environment variables documented in the page for that source.
-4. **Launch.** Run either `ibdm sync <source> --mapping-file <path>` or `ibdm run <source> --mapping-file <path>`.
+4. **Configure the source.** Set the source-specific environment variables documented in the page for that source.
+5. **Launch.** Run either `ibdm sync <source> --mapping-file <path>` or `ibdm run <source> --mapping-file <path>`.
 
 Running `ibdm` with `--local-output` redirects results to stdout instead of pushing to the Catalog — useful for validating a mapping file before going live.
+
+:::info
+The credentials above are only for pushing items into the Catalog. If your `ibdm` deployment also needs to call other RBAC-protected Mia Platform APIs directly, register it as a **service account** instead — see [Registering a service account](/products/mia-platform-suite/rbac_management.md#registering-a-service-account).
+:::
 
 ## Available sources
 

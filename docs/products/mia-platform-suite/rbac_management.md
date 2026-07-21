@@ -90,6 +90,7 @@ Alice's effective permissions are the combination of these two groups' roles. Fr
 * **Roles**: creation, modification, deletion, consultation.
 * **Tenant**: creation and edit of tenants, also at the individual organization level.
 * **Configuration**: reading and updating an organization's settings.
+* **Service accounts**: registration and deletion — see [Registering a service account](#registering-a-service-account) below.
 
 ## Permission matrix
 
@@ -146,9 +147,71 @@ In this v15 release, Catalog RBAC management has the following constraints:
 Across all sections of the Administration area, it is possible to open a detail view for individual entities:
 
 * **User detail**: shows which roles, permissions, and groups are assigned to that user.
-* **Service account detail**: shows the service account's name and associated client ID. Service accounts cannot be created or deleted from this UI, since they are entirely managed via API.
+* **Service account detail**: shows the service account's name and associated client ID. Service accounts cannot be created or deleted from this UI, since they are entirely managed via API — see [Registering a service account](#registering-a-service-account).
 * **Group detail**: shows the group's members and the roles/permissions the group grants.
 * **Role detail**: shows the role's definition and the users/groups it is assigned to.
+
+## Registering a service account
+
+Service accounts are the non-human identities that let external tools and pipelines authenticate against Mia Platform's RBAC-protected APIs — for example the [`ibdm` connector engine](/products/catalog/connectors/10_overview.md) used by the Catalog, or your own CI/CD automation. Unlike users and groups, they cannot be created from the Administration UI: a **Super Admin** must register them by calling the RBAC service's API directly.
+
+### 1. Reach the API
+
+The registration endpoint is reachable through the api-portal published alongside your Mia Platform Suite instance — typically at `<homepage-url>/documentations/api-portal/` (for example `https://home.<your-domain>/documentations/api-portal/` in a self-hosted deployment). Only a Super Admin can complete the registration.
+
+### 2. Generate a key pair
+
+Service accounts authenticate using the `private_key_jwt` method, so you first need an RSA key pair: a private key kept by the client (`ibdm`, in this example) to sign its authentication assertions, and a public key whose material is registered with the platform.
+
+```sh
+openssl genrsa -out ./private.key 4096
+openssl rsa -in private.key -pubout -outform PEM -out public.pem
+```
+
+### 3. Extract the key modulus
+
+The registration payload expects the public key as a JWK, so extract its base64url-encoded modulus (`n`):
+
+```sh
+openssl rsa -pubin -in public.pem -noout -modulus \
+  | sed 's/^Modulus=//' \
+  | xxd -r -p \
+  | openssl base64 -A \
+  | tr '+/' '-_' | tr -d '=' ; echo
+```
+
+### 4. Compute the key's `kid`
+
+The JWK also needs a key ID (`kid`), computed as the RFC 7638 thumbprint of the public key:
+
+```sh
+# your private key
+KEY=/path/to/your/private.key
+
+# base64url (no padding) of raw bytes read from hex on stdin
+b64url() { xxd -r -p | openssl base64 -A | tr '+/' '-_' | tr -d '='; }
+
+# n: modulus hex, drop "Modulus=" prefix, trim any leading 00 byte(s) (RFC 7638 minimal big-endian)
+n_hex=$(openssl rsa -in "$KEY" -noout -modulus | sed 's/^Modulus=//' | sed 's/^\(00\)*//')
+
+# e: public exponent hex, even-length
+e_hex=$(openssl rsa -in "$KEY" -noout -text | awk -F'[()]' '/publicExponent/{print $2}' | sed 's/^0x//')
+[ $(( ${#e_hex} % 2 )) -eq 1 ] && e_hex="0$e_hex"
+
+n_b64=$(printf '%s' "$n_hex" | b64url)
+e_b64=$(printf '%s' "$e_hex" | b64url)
+
+# RFC 7638 canonical JSON -> SHA-256 -> base64url = kid
+printf '{"e":"%s","kty":"RSA","n":"%s"}' "$e_b64" "$n_b64" \
+  | openssl dgst -sha256 -binary \
+  | openssl base64 -A | tr '+/' '-_' | tr -d '=' ; echo
+```
+
+### 5. Register the service account
+
+From the api-portal, call `POST /api/service-accounts/register`, providing the service account's identifier together with the JWK (`kty`, `n`, `e`, `kid`) derived in the steps above. Once registered, the client can authenticate to any RBAC-protected API using `private_key_jwt`, signing its assertions with the private key generated in step 2.
+
+To remove a service account later, call `DELETE /api/service-accounts/{client_id}` the same way.
 
 ## Advantages of adoption
 
