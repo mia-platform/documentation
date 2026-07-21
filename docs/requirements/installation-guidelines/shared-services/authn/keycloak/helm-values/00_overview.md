@@ -131,7 +131,7 @@ Configuration for the Keycloak custom resource managed by the operator.
 | `keycloak.version` | string | `"26.6.4"` | Keycloak version. Used by the operator to validate image compatibility. |
 | `keycloak.instances` | int | `1` | Number of Keycloak replicas (StatefulSet). Use `2` or more for HA. |
 | `keycloak.image.repository` | string | `"nexus.mia-platform.eu/platform/auth/keycloak"` | Keycloak image repository. |
-| `keycloak.image.tag` | string | `"0.3.1-26.6.4-postgres"` | Keycloak image tag. The custom Mia Platform image includes PostgreSQL JDBC driver, OTEL agent, and Vault integration. |
+| `keycloak.image.tag` | string | `"0.3.2-26.6.4-postgres"` | Keycloak image tag. The custom Mia Platform image includes PostgreSQL JDBC driver, OTEL agent, and Vault integration. |
 | `keycloak.imagePullSecrets` | list | `~` | Image pull secrets for the Keycloak pods. |
 
 ### Bootstrap admin
