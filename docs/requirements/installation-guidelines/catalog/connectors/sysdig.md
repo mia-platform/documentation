@@ -6,7 +6,7 @@ sidebar_label: Sysdig
 
 # Sysdig Secure Connector
 
-The Sysdig connector ingests container-image vulnerability data from [Sysdig Secure](https://sysdig.com/) into the Catalog. It runs through the [`ibdm`](/products/catalog/connectors/10_overview.md) binary in one of two modes:
+The Sysdig connector ingests container-image vulnerability data from [Sysdig Secure](https://sysdig.com/) into the Catalog. It runs through the [`ibdm`](/requirements/installation-guidelines/catalog/connectors/00_overview.md) binary in one of two modes:
 
 - **Sync** — pull-based: queries the [Sysdig SysQL API](https://docs.sysdig.com/en/sysdig-secure/sysql/) for all image vulnerabilities and exits.
 - **Run** — push-based: exposes a webhook endpoint that receives pipeline scan failure notifications, calls the Sysdig Vulnerability API to retrieve the full result, and forwards each vulnerability to the Catalog.
@@ -83,10 +83,10 @@ The event timestamp is derived from the notification's `timestamp` field, interp
 The shape of `.vuln` differs between the two modes — they are **not** the same:
 
 - **Sync** — `.vuln` is the raw, unmodified vulnerability object as returned by the SysQL `RETURN img, vuln` query, in whatever nested shape the Sysdig API returns.
-- **Webhook** — `.vuln` is flattened into a fixed set of fields before being emitted: `name`, `severity`, `cvssScore`, `cvssSource`, `cvssVector`, `cvssVersion`, `publicationDate`, `solutionDate`, `exploitable`, `fixedInVersion`.
+- **Webhook** — `.vuln` is a fixed subset built from the Vulnerability API response, limited to: `name`, `severity`, `cvssScore`, `cvssSource`, `cvssVector`, `cvssVersion`, `publicationDate`, `solutionDate`, `exploitable`, `fixedInVersion`. Nested API fields (e.g. `severity.value`, `cvssScore.value.score`) are flattened to these scalar keys so that templates referencing the common fields work in both modes.
 
-In both modes, `.img.imageReference` is the container image pull string (e.g. `registry.example.com/app:v1.0.0`).
+In both modes the fields are accessed as flat scalars (e.g. `{{ .vuln.severity }}`, `{{ .vuln.cvssScore }}`), and `.img.imageReference` is the container image pull string (e.g. `registry.example.com/app:v1.0.0`).
 
 ## See also
 
-- [Connectors Overview](/products/catalog/connectors/10_overview.md)
+- [Connectors Installation Overview](/requirements/installation-guidelines/catalog/connectors/00_overview.md)

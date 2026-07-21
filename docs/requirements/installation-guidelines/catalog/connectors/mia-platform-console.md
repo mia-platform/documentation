@@ -6,7 +6,7 @@ sidebar_label: Mia-Platform Console
 
 # Mia-Platform Console Connector
 
-The Mia-Platform Console connector ingests data from a Mia-Platform Console instance into the Catalog. It runs through the [`ibdm`](/products/catalog/connectors/10_overview.md) binary in one of two modes:
+The Mia-Platform Console connector ingests data from a Mia-Platform Console instance into the Catalog. It runs through the [`ibdm`](/requirements/installation-guidelines/catalog/connectors/00_overview.md) binary in one of two modes:
 
 - **Sync** — pull-based: queries the Console APIs and exits.
 - **Run** — push-based: exposes a webhook endpoint that receives events from the Console.
@@ -65,4 +65,4 @@ The operation (upsert vs delete) is inferred from the event name itself: any eve
 
 ## See also
 
-- [Connectors Overview](/products/catalog/connectors/10_overview.md)
+- [Connectors Installation Overview](/requirements/installation-guidelines/catalog/connectors/00_overview.md)
