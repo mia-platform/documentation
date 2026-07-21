@@ -436,7 +436,7 @@ Click **Add connector** to open a modal. Provide:
 - **Client ID** — unique identifier used to tag all items ingested by this connector.
 - **Provider** and **Category** (optional) — used for filtering and display.
 
-This only creates the *Connector* item used for attribution — it does not generate any credential. To actually authenticate the connector, register a service account with the same Client ID — see [Registering a service account](/products/mia-platform-suite/rbac_management.md#registering-a-service-account).
+This only creates the *Connector* item used for attribution — it does not generate any credential nor deploy the connector. To actually authenticate the connector, register a service account with the same Client ID — see [Registering a service account](/products/mia-platform-suite/rbac_management.md#registering-a-service-account).
 
 #### View a connector
 
