@@ -157,7 +157,7 @@ Service accounts are the non-human identities that let external tools and pipeli
 
 ### 1. Reach the API
 
-The registration endpoint is reachable through the api-portal published alongside your Mia Platform Suite instance — typically at `<homepage-url>/documentations/api-portal/` (for example `https://home.<your-domain>/documentations/api-portal/` in a self-hosted deployment). Only a Super Admin can complete the registration.
+The registration endpoint is reachable through the api-portal published alongside your Mia Platform Suite instance — typically at `<homepage-url>/documentations/api-portal/` (for example `https://home.your-domain.com/documentations/api-portal/` in a self-hosted deployment). Only a Super Admin can complete the registration.
 
 ### 2. Generate a key pair
 
