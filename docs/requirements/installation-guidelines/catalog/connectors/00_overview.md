@@ -1,10 +1,10 @@
 ---
 id: connectors-installation-overview
-title: Connectors Overview
-sidebar_label: Overview
+title: Installation Overview
+sidebar_label: Installation Overview
 ---
 
-# Connectors Overview
+# Installation Overview
 
 This guide covers how to deploy **`ibdm`** — the engine that powers the Catalog's connectors — wire it to the Catalog, and configure each source. For what connectors are and when to use them, see the [Connectors Overview](/products/catalog/connectors/10_overview.md) first.
 

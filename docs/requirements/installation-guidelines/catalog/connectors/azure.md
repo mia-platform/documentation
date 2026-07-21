@@ -51,5 +51,5 @@ Each resource type declared in the mapping file must also declare an `apiVersion
 
 ## See also
 
-- [Connectors Overview](/requirements/installation-guidelines/catalog/connectors/00_overview.md)
+- [Connectors Installation Overview](/requirements/installation-guidelines/catalog/connectors/00_overview.md)
 - [Google Cloud Connector](/requirements/installation-guidelines/catalog/connectors/google-cloud.md) — sibling source for GCP.

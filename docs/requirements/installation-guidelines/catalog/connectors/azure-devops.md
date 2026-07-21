@@ -49,4 +49,4 @@ Subscribed webhook events:
 
 ## See also
 
-- [Connectors Overview](/requirements/installation-guidelines/catalog/connectors/00_overview.md)
+- [Connectors Installation Overview](/requirements/installation-guidelines/catalog/connectors/00_overview.md)

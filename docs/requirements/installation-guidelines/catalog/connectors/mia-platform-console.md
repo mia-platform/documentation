@@ -65,4 +65,4 @@ The operation (upsert vs delete) is inferred from the event name itself: any eve
 
 ## See also
 
-- [Connectors Overview](/requirements/installation-guidelines/catalog/connectors/00_overview.md)
+- [Connectors Installation Overview](/requirements/installation-guidelines/catalog/connectors/00_overview.md)

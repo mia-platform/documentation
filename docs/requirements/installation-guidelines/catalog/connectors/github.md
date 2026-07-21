@@ -82,5 +82,5 @@ If the languages call fails, the repository item is still emitted without `repos
 
 ## See also
 
-- [Connectors Overview](/requirements/installation-guidelines/catalog/connectors/00_overview.md)
+- [Connectors Installation Overview](/requirements/installation-guidelines/catalog/connectors/00_overview.md)
 - [GitLab Connector](/requirements/installation-guidelines/catalog/connectors/gitlab.md), [Bitbucket Connector](/requirements/installation-guidelines/catalog/connectors/bitbucket.md) — sibling source-code hosting connectors.

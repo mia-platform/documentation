@@ -33,5 +33,5 @@ The source authenticates through [Application Default Credentials (ADC)](https:/
 
 ## See also
 
-- [Connectors Overview](/requirements/installation-guidelines/catalog/connectors/00_overview.md)
+- [Connectors Installation Overview](/requirements/installation-guidelines/catalog/connectors/00_overview.md)
 - [Azure Connector](/requirements/installation-guidelines/catalog/connectors/azure.md) — sibling cloud source.
