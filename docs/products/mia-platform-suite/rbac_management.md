@@ -234,6 +234,61 @@ From the api-portal, call `POST /api/service-accounts/register`, providing the s
 
 To remove a service account later, call `DELETE /api/service-accounts/{client_id}` the same way.
 
+## Requesting an access token
+
+A registered service account has no password or client secret: it proves its identity by signing a JWT with the private key generated in [step 2](#2-generate-a-key-pair) above. This signed JWT (the *client assertion*) is presented, together with a `client_credentials` grant, to the environment's Identity Provider (Keycloak) token endpoint, which verifies the signature against the public key registered via the JWK's `kid` and, if valid, issues an access token.
+
+### 1. Build the client assertion
+
+The client assertion is a `RS256`-signed JWT (RFC 7523) with the following claims:
+
+| Claim | Value |
+| :---- | :---- |
+| `iss` | the service account's `client_id` |
+| `sub` | the service account's `client_id` |
+| `aud` | the token endpoint URL (see below) |
+| `jti` | a unique request identifier (e.g. a UUID), preventing replay attacks |
+| `iat` | the current timestamp |
+| `exp` | a short expiry, e.g. `iat + 300` seconds |
+
+The JWT header must carry `alg: RS256` and `kid: <the kid registered in step 4>` — the `kid` must exactly match the one in the registered JWKS, otherwise the token endpoint cannot locate the public key to verify the signature.
+
+### 2. Call the token endpoint
+
+The token endpoint is the environment's Identity Provider (Keycloak), under the relevant realm:
+
+```text
+https://<AUTH_HOST>/realms/<AUTH_REALM>/protocol/openid-connect/token
+```
+
+```sh
+curl -X POST "https://<AUTH_HOST>/realms/<AUTH_REALM>/protocol/openid-connect/token" \
+  -H "Content-Type: application/x-www-form-urlencoded" \
+  --data-urlencode "grant_type=client_credentials" \
+  --data-urlencode "client_id=<client_id>" \
+  --data-urlencode "client_assertion_type=urn:ietf:params:oauth:client-assertion-type:jwt-bearer" \
+  --data-urlencode "client_assertion=<the signed JWT above>" \
+  --data-urlencode "scope=mia:catalog"
+```
+
+The requested `scope` must match the product(s) whose APIs the token is meant to call (e.g. `mia:catalog`, or `mia:ai-foundry`, in addition to any product-specific requirement — see each product's API documentation for the exact scopes it expects).
+
+:::info
+**On the Mia-Platform PaaS**, the `organization:*` scope must also be included in every token request, in addition to the product-specific `mia:*` scopes (e.g. `scope=mia:catalog organization:*`). Without it, the PaaS token endpoint will not issue a usable token.
+:::
+
+A successful response looks like:
+
+```json
+{
+  "access_token": "eyJ...",
+  "token_type": "Bearer",
+  "expires_in": 300
+}
+```
+
+Use the resulting `access_token` in the `Authorization: Bearer <access_token>` header of every API call. Once it expires (`expires_in`), repeat the token request.
+
 ## Advantages of adoption
 
 The integration of RBAC ensures high standards of security and efficiency:
