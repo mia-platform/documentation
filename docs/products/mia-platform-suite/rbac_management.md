@@ -268,7 +268,7 @@ curl -X POST "https://<AUTH_HOST>/realms/<AUTH_REALM>/protocol/openid-connect/to
   --data-urlencode "client_id=<client_id>" \
   --data-urlencode "client_assertion_type=urn:ietf:params:oauth:client-assertion-type:jwt-bearer" \
   --data-urlencode "client_assertion=<the signed JWT above>" \
-  --data-urlencode "scope=mia:catalog"
+  --data-urlencode "scope=<mia-product-scope>"
 ```
 
 The requested `scope` must match the product(s) whose APIs the token is meant to call (e.g. `mia:catalog`, or `mia:ai-foundry`, in addition to any product-specific requirement — see each product's API documentation for the exact scopes it expects).
