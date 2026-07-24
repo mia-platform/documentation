@@ -13,7 +13,7 @@ By using the *Mia-Platform Console SSO (SSO)* you empower your extensions with t
 In this page you can find out how this feature works and how you can enable it for your extensions.
 
 :::warning Migrating from an earlier version
-If you already configured Console SSO for an extension on a Console version prior to v15, you need to take the following actions after the upgrade:
+If you already configured Console SSO for an extension on a Console **version prior to v15**, you need to take the following actions after the upgrade:
 
 - Open the extension detail page, disable the **Console SSO** toggle, save, then re-enable it and save again. This is required because, starting from v15, enabling Console SSO now registers the extension as a client within the `extensibility` Keycloak realm, and the *Console SSO* card now shows additional fields (such as the client's `clientId`).
 - Double check and re-save the **Callback URL**: make sure it's still an exact match of the URL your extension exposes, since it is now validated as a client redirect URI.
