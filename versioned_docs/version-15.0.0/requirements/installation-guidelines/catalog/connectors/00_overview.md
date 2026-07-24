@@ -1,0 +1,128 @@
+---
+id: connectors-installation-overview
+title: Installation Overview
+sidebar_label: Installation Overview
+---
+
+# Installation Overview
+
+This guide covers how to deploy **`ibdm`** — the engine that powers the Catalog's connectors — wire it to the Catalog, and configure each source. For what connectors are and when to use them, see the [Connectors Overview](/products/catalog/connectors/10_overview.md) first.
+
+`ibdm` (International Berthing and Docking Mechanism) is open-source software (AGPL-3.0) hosted at [github.com/mia-platform/ibdm](https://github.com/mia-platform/ibdm). The single deployable binary can be configured as one of nine **sources**, each talking to a specific upstream system and pushing the resulting data into the Catalog as items.
+
+## How a connector works
+
+For every source, `ibdm` exposes two complementary modes:
+
+| Mode | Command | Behavior |
+| :--- | :------ | :------- |
+| **Sync** (pull) | `ibdm sync <source> --mapping-file <path>` | Performs a one-off enumeration via the source's REST APIs and exits. Run it manually or on a schedule. |
+| **Run** (push) | `ibdm run <source> --mapping-file <path>` | Starts a long-running process that reacts to events pushed by the source (inbound webhooks, message-queue subscriptions, or similar mechanisms) and updates the Catalog in near real time. |
+
+Not every source supports every mode — see the per-source pages below for details.
+
+There is no built-in "incremental sync" loop: incremental behavior is achieved by combining periodic `sync` runs with event-driven `run` mode.
+
+## Mappings
+
+`ibdm` does not hard-code the shape of the data it produces. Every source emits raw upstream payloads, which are then transformed into Catalog items through **mapping files** passed via `--mapping-file`. A mapping file is a YAML document with [Go templates](https://pkg.go.dev/text/template) that produce:
+
+- an **`identifier`** template that resolves to the item's `metadata.name` — must be 1–253 characters, using only lowercase alphanumeric characters, `-`, and `.`, starting and ending with an alphanumeric character;
+- a **`metadata`** block with the allowed metadata fields (`annotations`, `creationTimestamp`, `description`, `labels`, `links`, `name`, `tags`, `title`, `uid`);
+- a **`spec`** block with the typed payload of the item;
+- optional **`extra`** templates that produce additional items per mapping — typically `Relationship` objects to wire the ingested entity to others.
+
+Each source page lists the **data types** it exposes inside the mapping context (e.g. for GitHub: `repository`, `workflow_run`, …). You declare in the mapping which data types you want to materialize, and `ibdm` does the rest.
+
+## Wiring `ibdm` to the Catalog
+
+`ibdm` writes into the Catalog over HTTP, authenticating with a Client ID that must be registered in **two separate places**: a *Connector* item in the Catalog App, used purely for attribution/labeling, and a matching **service account** in Platform Administration, which is where the actual credential (a client secret or a key pair) is minted.
+
+1. **Register a matching service account.** A Super Admin registers a service account with the *same* Client ID through Platform Administration, choosing either a client secret or an RSA key pair (for `private_key_jwt`) as its credential — see [Registering a service account](/products/mia-platform-suite/rbac_management.md#registering-a-service-account). This is the actual credential `ibdm` will authenticate with. In the case of `ibdm` wired to the catalog the needed scopes are `"scope": "service_account mia:catalog"`.
+2. **Add Item Ingestor role to the matching service account.** Open [Administration Section](/products/mia-platform-suite/rbac_management.md#how-it-works-in-practice) find the created service account and add the needed role `Item Ingestor`.
+3. **Register the connector in the Catalog App.** Open **Configuration → Connectors → Add connector**. You will be asked for a `Name`, an optional `Title` and `Description`, a `Client ID`, and a `Provider` / `Category` for UI filtering (see the [Connectors section](/products/catalog/usage/catalog-app.md#connectors) of the Catalog App reference). This only creates the *Connector* item used to attribute ingested items — it does **not** generate any credential.
+4. **Configure the destination on `ibdm`.** The endpoint is always required:
+
+   | Variable | Description |
+   | :------- | :---------- |
+   | `MIA_CATALOG_ENDPOINT` | The Catalog ingestion endpoint, surfaced in the Catalog App connector form. |
+
+   `ibdm` then authenticates to the Catalog with **one of two** mechanisms.
+
+   **Client-credentials (client secret).** The default flow, using the credentials pair provisioned in step 1:
+
+   | Variable | Description |
+   | :------- | :---------- |
+   | `MIA_CATALOG_CLIENT_ID` | Client ID provisioned for this connector. |
+   | `MIA_CATALOG_CLIENT_SECRET` | Client Secret provisioned for this connector. |
+   | `MIA_CATALOG_AUTH_ENDPOINT` *(optional)* | Override of the OAuth token endpoint. Defaults to `<host of MIA_CATALOG_ENDPOINT>/oauth/token`. |
+
+   **Private-key JWT (RFC 7523).** As an alternative to the client secret, `ibdm` can authenticate via private-key JWT client authentication. Set `MIA_CATALOG_PRIVATE_KEY_PATH` (together with `MIA_CATALOG_CLIENT_ID`) *instead of* `MIA_CATALOG_CLIENT_SECRET`. When you do, you must also configure at least one of `MIA_CATALOG_ISSUER`, `MIA_CATALOG_ISSUER_METADATA`, or `MIA_CATALOG_TOKEN_ENDPOINT`:
+
+   | Variable | Description |
+   | :------- | :---------- |
+   | `MIA_CATALOG_PRIVATE_KEY_PATH` | Path to a PEM-encoded private key file, used with `MIA_CATALOG_CLIENT_ID` to authenticate via private-key JWT instead of a client secret. |
+   | `MIA_CATALOG_ISSUER` | OIDC issuer URL used as both the discovery base and the expected issuer; the discovery document is looked up relative to this value. |
+   | `MIA_CATALOG_ISSUER_METADATA` *(optional)* | Custom URL for the OIDC discovery document used to resolve the token endpoint. Defaults to a lookup relative to `MIA_CATALOG_ISSUER`. |
+   | `MIA_CATALOG_TOKEN_ENDPOINT` *(optional)* | Custom token endpoint. When set, OIDC discovery is skipped entirely and this endpoint is used directly. |
+   | `MIA_CATALOG_CUSTOM_SCOPE` *(optional)* | Custom scope requested during the token exchange. When unset, no scope is sent. |
+   | `OIDC_DISCOVERY_PATH` *(optional)* | Well-known path suffix joined to `MIA_CATALOG_ISSUER` to fetch the OIDC discovery document. Defaults to `.well-known/openid-configuration`; has no effect when `MIA_CATALOG_ISSUER_METADATA` or `MIA_CATALOG_TOKEN_ENDPOINT` is set. |
+
+   Every item written through this connector is associated to the *Connector* item created in step 1, so you can always tell which connector ingested a given entity (visible in the **Connector items** tab of the Connector detail page).
+5. **Configure the source.** Set the source-specific environment variables documented in the page for that source.
+6. **Launch.** Run either `ibdm sync <source> --mapping-file <path>` or `ibdm run <source> --mapping-file <path>`.
+
+Running `ibdm` with `--local-output` redirects results to stdout instead of pushing to the Catalog — useful for validating a mapping file before going live.
+
+:::info
+The credentials above are only for pushing items into the Catalog. If your `ibdm` deployment also needs to call other RBAC-protected Mia Platform APIs directly, register it as a **service account** instead — see [Registering a service account](/products/mia-platform-suite/rbac_management.md#registering-a-service-account).
+:::
+
+## Available sources
+
+| Source | Modes | Typical entities |
+| :----- | :---- | :--------------- |
+| [Microsoft Azure](/requirements/installation-guidelines/catalog/connectors/azure.md) | `sync` (Resource Graph), `run` (EventHub) | Cloud resources (compute, networking, storage, …) |
+| [Microsoft Azure DevOps](/requirements/installation-guidelines/catalog/connectors/azure-devops.md) | `sync`, `run` (webhooks) | Repositories, teams |
+| [Bitbucket](/requirements/installation-guidelines/catalog/connectors/bitbucket.md) | `sync`, `run` (webhooks) | Repositories, pipelines |
+| [GitHub](/requirements/installation-guidelines/catalog/connectors/github.md) | `sync`, `run` (webhooks) | Repositories, workflow runs, access-token requests, workflow dispatches |
+| [GitLab](/requirements/installation-guidelines/catalog/connectors/gitlab.md) | `sync`, `run` (webhooks) | Projects, pipelines, access tokens |
+| [Google Cloud](/requirements/installation-guidelines/catalog/connectors/google-cloud.md) | `sync` (Cloud Asset API), `run` (PubSub) | Cloud resources |
+| [Mia-Platform Console](/requirements/installation-guidelines/catalog/connectors/mia-platform-console.md) | `sync`, `run` (webhooks) | Projects, revisions, services, clusters |
+| [Sonatype Nexus](/requirements/installation-guidelines/catalog/connectors/nexus.md) | `sync`, `run` (webhooks) | Docker images |
+| [Sysdig Secure](/requirements/installation-guidelines/catalog/connectors/sysdig.md) | `sync` (SysQL), `run` (webhooks) | Vulnerabilities |
+
+## Installation
+
+The recommended way to deploy `ibdm` in production is as a **Docker container**. Official images are published to both GitHub Container Registry and Docker Hub:
+
+- `ghcr.io/mia-platform/ibdm`
+- `docker.io/miaplatform/ibdm`
+
+A typical deployment passes the source-specific and destination environment variables to the container and runs the appropriate `ibdm sync <source>` or `ibdm run <source>` command, mounting the mapping files at the path passed via `--mapping-file`. For example:
+
+```sh
+docker run --rm \
+  -e MIA_CATALOG_ENDPOINT=... \
+  -e MIA_CATALOG_CLIENT_ID=... \
+  -e MIA_CATALOG_CLIENT_SECRET=... \
+  -e GITHUB_TOKEN=... \
+  -e GITHUB_ORG=my-org \
+  -v "$PWD/mappings:/mappings:ro" \
+  ghcr.io/mia-platform/ibdm:latest \
+  ibdm sync github --mapping-file /mappings
+```
+
+For local development and ad-hoc usage you can also install the binary directly from source:
+
+```sh
+go install github.com/mia-platform/ibdm@main
+```
+
+See the [`ibdm` installation guide](https://github.com/mia-platform/ibdm/blob/main/docs/how-to/010_installation.md) for the full list of installation options.
+
+## See also
+
+- [Items](/products/catalog/basic-concepts/10_items.md) — the shape of the entities produced by `ibdm`.
+- [Item Types](/products/catalog/basic-concepts/20_item-types.md) — how to register custom kinds the connector can populate.
+- [Catalog App → Connectors](/products/catalog/usage/catalog-app.md#connectors) — how to create and inspect a connector record from the UI.
