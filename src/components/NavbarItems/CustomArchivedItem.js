@@ -106,11 +106,7 @@ export default function CustomVersionsDropdown({
 
       if (isCanary) {
         itemLabel = <CanaryTag label={'14.x.x'} />
-      } else if (versionsMap.current === version.name) {
-        itemLabel = <ProdTag label={label} />
-      } else if (versionsMap.next === version.name) {
-        itemLabel = <NextTag label={label} />
-      } 
+      }
 
       return {
         label: itemLabel,

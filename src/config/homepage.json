@@ -10,13 +10,13 @@
     "buttons": [
       {
         "label": "View v15 documentation",
-        "link": "https://v15.docs.mia-platform.eu",
+        "link": "https://docs.mia-platform.eu",
         "primary": true,
         "target": "_self"
       }
     ],
     "description": "Ready to master the vibe?",
-    "title": "Mia Platform v15 is now available in preview!"
+    "title": "Mia Platform v15 is now available!"
   },
   "featureGrid": [
     {

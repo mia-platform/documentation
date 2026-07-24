@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from "prop-types";
-import SearchBar from "@theme/SearchBar";
 import {useColorMode} from '@docusaurus/theme-common';
 import './HomePageComponent.css';
 
@@ -113,7 +112,7 @@ const HomepageHeader = ({data}) => {
                     <p className="hero-subtitle">{data.subtitle}</p>
                     <p className="hero-description">{data.description}</p>
                     <div className="hero-search-bar-container">
-                        <div className="hero-search-bar-wrapper">
+                        {/* <div className="hero-search-bar-wrapper">
                             <SearchBar
                                 avoidKeyboardShortcuts
                                 customStyle={{
@@ -126,7 +125,7 @@ const HomepageHeader = ({data}) => {
                                     })
                                 }}
                             />
-                        </div>
+                        </div> */}
                     </div>
                 </div>
             </div>

@@ -28,17 +28,10 @@ const config = {
     image: "img/documentation-link-preview.png",
     announcementBar: {
         id: 'archived',
-        content: 'Mia-Platform v15 is now available in preview. Please, check the <a target="_blank" rel="noopener noreferrer" href="https://v15.docs.mia-platform.eu/">v15 documentation</a> for up-to-date information.',
+        content: 'This documentation refers to Console version 14, which is currently archived. Please, check the <a target="_blank" rel="noopener noreferrer" href="https://docs.mia-platform.eu/">current version</a> for up-to-date information.',
         backgroundColor: '#def2ff',
         textColor: '#193c47',
         isCloseable: false,
-    },
-    algolia: {
-      placeholder: "Search for terms, features and more...",
-      apiKey: "602a752c6342891e2488bea38b0d9292",
-      appId: "58NJDUVYVW",
-      indexName: "mia-platform-docs",
-      contextualSearch: true,
     },
     colorMode: {
       // "light" | "dark"
@@ -174,9 +167,9 @@ const config = {
           dropdownItemsBefore: [
             {
               type: 'html',
-              value: '<b style="margin-left: 8px; font-size: 14px;">Preview</b>',
+              value: '<b style="margin-left: 8px; font-size: 14px;">Next versions</b>',
             },
-            { label: '15.0.0', href: 'https://v15.docs.mia-platform.eu' },
+            { label: '15.x', href: 'https://docs.mia-platform.eu' },
             {
               type: 'html',
               value: '<hr style="margin: 4px 0;">',
