@@ -31,6 +31,15 @@ yarn add @mia-platform-internal/authtool-client-js
 
 React bindings require `react` and `react-dom` as peer dependencies (v18 or v19).
 
+## Multi-Client Note
+
+The client library is **client-ID agnostic** — it does not append `?client_id=...` to BFF
+requests. In a [multi-client setup](/products/console/project-configuration/auth-flow/configuration.mdx#multi-client-configuration),
+the `client_id` query parameter must be injected at the infrastructure layer (e.g., an Envoy Lua
+filter or an API gateway rewrite rule) before requests reach the BFF. Each frontend application
+should be routed through a proxy configuration that appends the correct `client_id` for its
+registered OAuth client.
+
 ## Core Usage (Framework-Agnostic)
 
 The library exposes an `init` function that creates a `UserManager` — the single object
