@@ -66,9 +66,10 @@
           ]
         },
         {
-          "title": "New configuration merge experience enabled by default",
+          "title": "Console SSO for extensions now backed by Keycloak",
           "description": [
-            "The new configuration merge experience is now **enabled by default** for all Console Projects. The previous experience can be restored on a per-project basis by disabling this setting from the Feature Preview section of your Project."
+            "Starting from this release, enabling **Console SSO** for an extension registers it as a client within the `extensibility` [Keycloak](/docs/requirements/installation-guidelines/shared-services/authn/overview) realm, and the *Console SSO* card in the extension detail page now shows additional fields, such as the client's `clientId`.",
+            "If you already configured Console SSO for an extension on a Console version prior to v15, after upgrading you need to disable and re-enable the **Console SSO** toggle, and re-save the **Callback URL**. See the [Console SSO documentation](/docs/products/console/console-extensibility/extension-sso) for the full list of migration steps."
           ]
         }
       ],
