@@ -36,9 +36,9 @@ Each source page lists the **data types** it exposes inside the mapping context 
 
 ## Wiring `ibdm` to the Catalog
 
-`ibdm` writes into the Catalog over HTTP, authenticating with a Client ID that must be registered in **two separate places**: a *Connector* item in the Catalog App, used purely for attribution/labeling, and a matching **service account** in Platform Administration, which is where the actual credential (a client secret or a key pair) is minted.
+`ibdm` writes into the Catalog over HTTP, authenticating with a Client ID that must be registered in **two separate places**: a *Connector* item in the Catalog App, used purely for attribution/labeling, and a matching **service account** in Platform Administration, which is where the actual credential (an RSA key pair) is minted.
 
-1. **Register a matching service account.** A Super Admin registers a service account with the *same* Client ID through Platform Administration, choosing either a client secret or an RSA key pair (for `private_key_jwt`) as its credential — see [Registering a service account](/products/mia-platform-suite/rbac_management.md#registering-a-service-account). This is the actual credential `ibdm` will authenticate with. In the case of `ibdm` wired to the catalog the needed scopes are `"scope": "service_account mia:catalog"`.
+1. **Register a matching service account.** A Super Admin registers a service account with the *same* Client ID through Platform Administration, providing an RSA key pair (for `private_key_jwt`) as its credential — see [Registering a service account](/products/mia-platform-suite/rbac_management.md#registering-a-service-account). This is the actual credential `ibdm` will authenticate with. In the case of `ibdm` wired to the catalog the needed scopes are `"scope": "service_account mia:catalog"`.
 2. **Add Item Ingestor role to the matching service account.** Open [Administration Section](/products/mia-platform-suite/rbac_management.md#how-it-works-in-practice) find the created service account and add the needed role `Item Ingestor`.
 3. **Register the connector in the Catalog App.** Open **Configuration → Connectors → Add connector**. You will be asked for a `Name`, an optional `Title` and `Description`, a `Client ID`, and a `Provider` / `Category` for UI filtering (see the [Connectors section](/products/catalog/usage/catalog-app.md#connectors) of the Catalog App reference). This only creates the *Connector* item used to attribute ingested items — it does **not** generate any credential.
 4. **Configure the destination on `ibdm`.** The endpoint is always required:
@@ -47,21 +47,14 @@ Each source page lists the **data types** it exposes inside the mapping context 
    | :------- | :---------- |
    | `MIA_CATALOG_ENDPOINT` | The Catalog ingestion endpoint, surfaced in the Catalog App connector form. |
 
-   `ibdm` then authenticates to the Catalog with **one of two** mechanisms.
+   `ibdm` itself supports two generic authentication mechanisms (client-credentials with a client secret, or private-key JWT), but **when wiring to the Catalog only private-key JWT is supported**: Catalog service accounts are registered with an RSA key pair (see step 1) and have no client secret, so `MIA_CATALOG_CLIENT_SECRET`/`MIA_CATALOG_AUTH_ENDPOINT` cannot be used against the Catalog target — those variables only apply when pointing `ibdm` at a different, client-secret-based OAuth server.
 
-   **Client-credentials (client secret).** The default flow, using the credentials pair provisioned in step 1:
+   Set `MIA_CATALOG_PRIVATE_KEY_PATH` together with `MIA_CATALOG_CLIENT_ID`. You must also configure at least one of `MIA_CATALOG_ISSUER`, `MIA_CATALOG_ISSUER_METADATA`, or `MIA_CATALOG_TOKEN_ENDPOINT`:
 
    | Variable | Description |
    | :------- | :---------- |
    | `MIA_CATALOG_CLIENT_ID` | Client ID provisioned for this connector. |
-   | `MIA_CATALOG_CLIENT_SECRET` | Client Secret provisioned for this connector. |
-   | `MIA_CATALOG_AUTH_ENDPOINT` *(optional)* | Override of the OAuth token endpoint. Defaults to `<host of MIA_CATALOG_ENDPOINT>/oauth/token`. |
-
-   **Private-key JWT (RFC 7523).** As an alternative to the client secret, `ibdm` can authenticate via private-key JWT client authentication. Set `MIA_CATALOG_PRIVATE_KEY_PATH` (together with `MIA_CATALOG_CLIENT_ID`) *instead of* `MIA_CATALOG_CLIENT_SECRET`. When you do, you must also configure at least one of `MIA_CATALOG_ISSUER`, `MIA_CATALOG_ISSUER_METADATA`, or `MIA_CATALOG_TOKEN_ENDPOINT`:
-
-   | Variable | Description |
-   | :------- | :---------- |
-   | `MIA_CATALOG_PRIVATE_KEY_PATH` | Path to a PEM-encoded private key file, used with `MIA_CATALOG_CLIENT_ID` to authenticate via private-key JWT instead of a client secret. |
+   | `MIA_CATALOG_PRIVATE_KEY_PATH` | Path to a PEM-encoded private key file, used with `MIA_CATALOG_CLIENT_ID` to authenticate via private-key JWT. |
    | `MIA_CATALOG_ISSUER` | OIDC issuer URL used as both the discovery base and the expected issuer; the discovery document is looked up relative to this value. |
    | `MIA_CATALOG_ISSUER_METADATA` *(optional)* | Custom URL for the OIDC discovery document used to resolve the token endpoint. Defaults to a lookup relative to `MIA_CATALOG_ISSUER`. |
    | `MIA_CATALOG_TOKEN_ENDPOINT` *(optional)* | Custom token endpoint. When set, OIDC discovery is skipped entirely and this endpoint is used directly. |

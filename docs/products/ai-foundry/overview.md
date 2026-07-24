@@ -72,6 +72,10 @@ Tools and skills are attachable to agents from the catalog.
 Register external [Model Context Protocol](https://modelcontextprotocol.io/) servers to expand the tool ecosystem available to your agents.
 Each registered server is stored as a catalog resource and its tools are included in the available tools list.
 
+### Programmatic access
+
+The AI Foundry ADK BE APIs can be called machine-to-machine using a **service account**, registered through Platform Administration — see [Registering a service account](/products/mia-platform-suite/rbac_management.md#registering-a-service-account) and [Requesting an access token](/products/mia-platform-suite/rbac_management.md#requesting-an-access-token). Unlike Catalog, calling the AI Foundry ADK BE APIs requires the token to be requested with **all three** scopes together — `mia:catalog`, `mia:ai-foundry`, and `mia:authz` — requesting `mia:ai-foundry` alone is not sufficient.
+
 ## IDE and tooling integration
 
 You can download the following AI assets to work from your workstation:
