@@ -157,7 +157,7 @@ If your project includes [Helm chart configurations](/products/console/api-conso
 :::
 
 :::caution
-In case you want to rollback to the previews CI/CD pipelines, you can use instead the **deploy/unified-deploy-job.yml**, that does not include support for Helm chart configuration files deployment with Kustomize.
+In case you want to rollback to the previous CI/CD pipelines, you can use instead the **deploy/unified-deploy-job.yml**, that does not include support for Helm chart configuration files deployment with Kustomize.
 :::
 
 

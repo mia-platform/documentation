@@ -157,7 +157,7 @@ If your project includes [Helm chart configurations](/products/console/api-conso
 :::
 
 :::caution
-In case you want to rollback to the previews CI/CD pipelines, you can use instead the **deploy/unified-deploy-job.yml**, that does not include support for Helm chart configuration files deployment with Kustomize.
+In case you want to rollback to the previous CI/CD pipelines, you can use instead the **deploy/unified-deploy-job.yml**, that does not include support for Helm chart configuration files deployment with Kustomize.
 :::
 
 When the Console commits chart configurations, it writes the chart files under `environments/<ENV>/charts/<chart-name>/` inside the configuration repository, alongside a `kustomization.yaml` that references each chart via the `helmCharts` directive:
