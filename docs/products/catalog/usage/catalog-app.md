@@ -54,7 +54,7 @@ Items are presented in a paginated table that loads more entries as you scroll. 
 Click **Create item** to open a guided three-step wizard:
 
 1. **Item Type** — choose an Item Type Definition (the kind of item you want to create).
-2. **Metadata** — provide a title, name, description, tags, and optionally an owner (a User or Team).
+2. **Metadata** — provide a title, name, description, tags, and optionally an owner (an email address).
 3. **Specification** — fill in the item's `spec` as a JSON document, guided by the schema defined in the selected Item Type Definition.
 
 ### View an item
@@ -75,8 +75,8 @@ Clicking an item opens its detail page, which is organized into tabs:
 
 From the detail page you can also:
 
-- **Edit metadata** — from the actions menu, update the title, description, tags, and owner (a User or Team). For Connector-kind items, you can also update the icon.
-- **Manage followers** — from the **Overview** tab (not the actions menu), add or remove users following this item.
+- **Edit metadata** — from the actions menu, update the title, description, tags, and owner (an email address). For Connector-kind items, you can also update the icon.
+- **Manage followers** — from the **Overview** tab (not the actions menu), add or remove the email addresses following this item.
 - **View manifest** — inspect the full raw manifest of the item in a modal, and download it as a JSON file.
 - **Delete** — permanently remove the item from the catalog.
 
