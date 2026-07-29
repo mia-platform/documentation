@@ -65,7 +65,7 @@ See [Items](/products/catalog/basic-concepts/10_items.md#tags-labels-annotations
 
 ## Owner and follower
 
-An **owner** is a User or Team responsible for an item, modeled as a built-in `ownership` relationship. A **follower** is any User who wants to receive compliance notifications about an item, modeled as a built-in `follow` relationship. Both relationships are surfaced in the UI and queried like any other relationship. See [Items](/products/catalog/basic-concepts/10_items.md#ownership-and-followers).
+An **owner** is the email address responsible for an item, stored in `metadata.owner`. A **follower** is any email address that wants to receive compliance notifications about an item, stored in `metadata.followers`. Neither is modeled as a relationship, so neither is navigable in the relationship graph — a future migration to first-class User items is planned. See [Items](/products/catalog/basic-concepts/10_items.md#ownership-and-followers).
 
 ## View
 
