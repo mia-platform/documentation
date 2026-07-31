@@ -14,7 +14,38 @@ From version `v14.3.1` of the Mia Platform Console, it is possible to connect to
 
 This will simplify the usage of the MCP Server in your client, by connecting to the latest stable version.
 
-You can add it to your favorite AI Client that supports MCP servers (like VS Code, Gemini CLI, Claude Desktop and others) by creating a new configuration and using the following endpoint: `https://console.cloud.mia-platform.eu/console-mcp-server/mcp`.
+You can add it to your favorite AI Client that supports MCP servers (like VS Code, Gemini CLI, Claude Desktop and others) by creating a new configuration and using the following endpoint: `https://console.cloud.mia-platform.eu/mcp`.
+
+### VS Code
+
+You can use the command `MCP: Add Server` to add the remote Console MCP Server to your list of servers. The type of MCP is _HTTP (HTTP or Server-Sent Events)_, and the URL is `https://console.cloud.mia-platform.eu/mcp`. The first access will prompt you authentication to the Console, and you will be able to use all the tools and prompts of the official Mia-Platform Console MCP Server.
+
+:::info
+The JSON structure of the configuration is the following:
+
+```json
+{
+  "servers": {
+    ...
+    "mia-platform-console": {
+      "type": "http",
+      "url": "https://console.cloud.mia-platform.eu/mcp"
+    }
+  }
+}
+```
+
+:::
+
+### Claude Code
+
+From CLI, you can run the following command to add the remote Console MCP Server to your list of servers:
+
+```bash
+claude mcp add --transport console https://console.cloud.mia-platform.eu/mcp
+```
+
+A message will inform you that the server has been added to your list of servers. Running Claude will inform you that authentication is necessary to use the Console MCP Server.
 
 ## Using Docker
 
@@ -26,7 +57,7 @@ You can add it to your favorite AI Client that supports MCP servers (like VS Cod
 4. Login to Mia-Platform. You have two options:
   - (a) *Service Account* - [Create a Mia-Platform Service Account] with `Client Secret Basic` authorization mode (the only one supported at this time) the `Client Secret Basic` one. In that case you can access to just one company at a time.
   - (b) *User Authentication* - Assuming you have a valid Mia Platform account, you can simply omit the information about the service account and - at the MCP startup - your client will ask you to open for you a webpage where you can execute the login.
-    
+
 :::note
 Authentication to the Console MCP Server via OAuth2 flow is available from the v1.2.0 of the Console MPC Server, and replaces the possibility to use the access token locally stored in [`miactl`][miactl].
 :::
