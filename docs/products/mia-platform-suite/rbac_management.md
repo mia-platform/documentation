@@ -52,6 +52,8 @@ Below is the specific behavior for each product.
 
 For Console, roles and permissions are chosen from a **fixed, predefined list**, they cannot be customized or extended. Admins can assign these predefined roles to users, service accounts, or groups.
 
+Console tenants and the tenants of the new products do not interact with each other: they are managed independently, and RBAC roles assigned in one cannot be managed from the Administration page of the other.
+
 See organization's detail at [Manage users](/products/console/identity-and-access-management/manage-users.md).
 
 ### AI Foundry
@@ -136,7 +138,7 @@ Access legend:
 
 In this v15 release, Catalog RBAC management has the following constraints:
 
-- **Roles**: cannot be created, modified, or deleted. The available roles are fixed and correspond to those defined in the [Permission Matrix](#permission-matrix) above.
+- **Roles**: cannot be created, modified, or deleted via UX. The available roles are fixed and correspond to those defined in the [Permission Matrix](#permission-matrix) above.
 - **Groups**: can be created. Groups are the only entity that admins can define in this version, to combine users under a shared set of role assignments.
 - **Users**: cannot be created. Users can only be **assigned** to existing roles and groups.
 - **Permissions**: not yet customizable in this phase permissions are tied to roles as defined in the matrix and cannot be edited individually.
@@ -290,13 +292,39 @@ A successful response looks like:
 
 Use the resulting `access_token` in the `Authorization: Bearer <access_token>` header of every API call. Once it expires (`expires_in`), repeat the token request.
 
-## Advantages of adoption
+## FAQ
 
-The integration of RBAC ensures high standards of security and efficiency:
+### Who is the Organization Admin and how is this role acquired?
 
-- **Reusability**: use of predefined policy templates to accelerate the setup of organizational roles.
-- **Configuration integrity**: drastic reduction of manual errors thanks to centralized governance.
-- **Least privilege**: technical guarantee that each principal accesses only the minimum set of necessary resources.
-- **Operational efficiency**: reduction of management times by eliminating the need for custom configurations on individual APIs.
+- **PaaS**: the Super Admin is designated via Keycloak (during installation but also afterwards). Organization Admin permissions can instead be assigned at a later stage via the front-end, from the Administration panel, but only after the organization has already been created.
+- **On-Premise**: the Super Admin is appointed at the creation of the organization in Keycloak. Only one organization is possible, so the Super Admin and the Organization Admin roles coincide.
 
-Overall, the RBAC model provides a scalable, secure, and maintainable authorization framework, enabling fine-grained access control while simplifying administrative operations across the platform.
+### How and where are tenants managed?
+
+Currently, tenant management (creation and modification, but not deletion) occurs via the API Portal, and only Super Admins and Org Admins can perform these actions.
+
+### How are new users added, and who is authorized to do so?
+
+- **Keycloak Admin** — adds users to the organization (via their personal Keycloak console).
+- **Org Admin** — adds users to a tenant (via API Portal).
+
+### Is it possible to add users, groups, or roles in "bulk" mode to speed up onboarding?
+
+At the moment, bulk user addition is not supported.
+
+### How does the user offboarding procedure work?
+
+From the interface, the Organization Admin can delete a user directly from the user management page in the organization's dedicated Keycloak instance.
+
+### How does combined permission assignment work when a user belongs to multiple groups?
+
+A user's effective permissions are the union of all roles granted by each group they belong to. For example, if a user belongs to Group A (with Role X) and Group B (with Role Y), they will have both Role X and Role Y — see the [practical example of Alice Parker](#practical-example-of-granularity-and-access-management) above. Role assignment follows a deny-by-default model, meaning permissions must be explicitly granted: nothing is accessible by default.
+
+### How is a service account registered?
+
+It cannot be created from the Administration interface. A Super Admin must call the dedicated API — see [Registering a service account](#registering-a-service-account) above.
+
+### Tenants of new products vs. Console: what is the difference, and how do they interact?
+
+Currently, tenants from new products and Console tenants do not interact with each other. The same limitation applies to RBAC roles: they cannot be managed from the Administration page on the home page for one from the other. See [Accessing the Administration section](#accessing-the-administration-section) above for more details.
+
