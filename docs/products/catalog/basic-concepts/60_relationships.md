@@ -6,7 +6,11 @@ sidebar_label: Relationships
 
 # Relationships
 
-A **relationship** is a typed, directed link between a *source* item and a *target* item. Relationships form a graph layered on top of the catalog's items: they let you traverse from a service to its owners, from a deployment to the environment it targets, from a vulnerability to the artifacts it affects, and so on.
+A **relationship** is a typed, directed link between a *source* item and a *target* item. Relationships form a graph layered on top of the catalog's items: they let you traverse from a deployment to the environment it targets, from a vulnerability to the artifacts it affects, and so on.
+
+:::note
+Item ownership and followers (see [Items](/products/catalog/basic-concepts/10_items.md#ownership-and-followers)) are **not** modeled as relationships: they are plain email fields on the item. They used to be built-in relationship types (`ownership.mia-platform.eu` and `follow.mia-platform.eu`) navigable in this graph, and are expected to return here once owners/followers are resolved to first-class User items.
+:::
 
 The catalog models relationships with three built-in kinds:
 
@@ -44,11 +48,11 @@ A `RelationshipConstraint` declares which item kinds may legitimately participat
 apiVersion: mia-platform.eu/v1alpha1
 kind: RelationshipConstraint
 metadata:
-  name: ownership-team-owns-service
+  name: part-of-service-in-domain
 spec:
-  relationshipTypeRef: urn:mia-platform-catalog:mia-platform.eu:v1alpha1:RelationshipType:ownership.mia-platform.eu
-  sourceType: urn:mia-platform-catalog:mia-platform.eu:v1:Team
-  targetType: urn:mia-platform-catalog:mia-platform.eu:v1:Service
+  relationshipTypeRef: urn:mia-platform-catalog:mia-platform.eu:v1alpha1:RelationshipType:part-of.mia-platform.eu
+  sourceType: urn:mia-platform-catalog:mia-platform.eu:v1:Service
+  targetType: urn:mia-platform-catalog:mia-platform.eu:v1:Domain
 ```
 
 Required fields:
@@ -71,11 +75,11 @@ A `Relationship` is the actual edge: it pairs a source item URN with a target it
 apiVersion: mia-platform.eu/v1alpha1
 kind: Relationship
 metadata:
-  name: api-gateway-owned-by-platform-team
+  name: api-gateway-part-of-platform-domain
 spec:
-  typeRef: urn:mia-platform-catalog:mia-platform.eu:v1alpha1:RelationshipType:ownership.mia-platform.eu
-  sourceRef: urn:mia-platform-catalog:mia-platform.eu:v1:Team:platform-team
-  targetRef: urn:mia-platform-catalog:console.mia-platform.eu:v1:Service:api-gateway
+  typeRef: urn:mia-platform-catalog:mia-platform.eu:v1alpha1:RelationshipType:part-of.mia-platform.eu
+  sourceRef: urn:mia-platform-catalog:console.mia-platform.eu:v1:Service:api-gateway
+  targetRef: urn:mia-platform-catalog:mia-platform.eu:v1:Domain:platform-domain
 ```
 
 Required fields:
@@ -93,7 +97,7 @@ When a `Relationship` is created or updated, the catalog validates only the **UR
 Once relationships exist, you can navigate them through:
 
 - the **Relationships** tab of any item in the [Catalog App](/products/catalog/usage/catalog-app.md), as a table or as a visual graph;
-- the `related` operator of the Catalog [Query Language](/products/catalog/basic-concepts/70_query-language.md), to express queries such as *"all services owned by team X"* or *"all items affected by vulnerability Y"*.
+- the `related` operator of the Catalog [Query Language](/products/catalog/basic-concepts/70_query-language.md), to express queries such as *"all services part of domain X"* or *"all items affected by vulnerability Y"*.
 
 ## See also
 

@@ -91,17 +91,21 @@ The `related` operator selects items that are connected to a given item through 
 - `as` declares the role the *matched item* plays in the relationship: `source` means "match items that are the source of a relationship pointing to `where.ref`"; `target` means "match items that are the target of a relationship coming from `where.ref`".
 - `where.ref` is the URN of the *other* endpoint.
 
-For example, *"all items owned by the team `platform-team`"* — i.e. items that are the *target* of an `ownership` relationship whose source is `platform-team`:
+For example, *"all services part of the `platform-domain` domain"* — i.e. items that are the *source* of a `part-of` relationship whose target is `platform-domain`:
 
 ```json
 {
   "related": {
-    "type": "urn:mia-platform-catalog:mia-platform.eu:v1alpha1:RelationshipType:ownership.mia-platform.eu",
-    "as":   "target",
-    "where": { "ref": "urn:mia-platform-catalog:mia-platform.eu:v1:Team:platform-team" }
+    "type": "urn:mia-platform-catalog:mia-platform.eu:v1alpha1:RelationshipType:part-of.mia-platform.eu",
+    "as":   "source",
+    "where": { "ref": "urn:mia-platform-catalog:mia-platform.eu:v1:Domain:platform-domain" }
   }
 }
 ```
+
+:::note
+Ownership is not modeled as a relationship type — it's a plain `metadata.owner` email field on the item (see [Items](/products/catalog/basic-concepts/10_items.md#ownership-and-followers)), so filter on it directly (e.g. `{ "metadata.owner": { "eq": "..." } }`) instead of `related`.
+:::
 
 ## Example: complex query
 

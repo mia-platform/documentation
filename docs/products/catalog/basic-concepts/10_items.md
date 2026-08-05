@@ -146,7 +146,7 @@ customFields:
 resourceVersion: 1
 ```
 
-Each key in `customFields` corresponds to the `spec.key` of a separate `CustomField` catalog entity (kind `CustomField`, family `custom-fields`, group `mia-platform.eu/v1alpha1`). The `CustomField` declares:
+Each key in `customFields` corresponds to the `spec.key` of a separate `CustomField` catalog entity (kind `CustomField`, family `custom-fields`, group `mia-platform.eu/v1alpha1`). Custom fields are only manageable through the [Catalog API](/products/catalog/usage/catalog-api.md) — declaring a `CustomField` and setting values on items — the Catalog App does not currently expose any UI for them. The `CustomField` declares:
 
 - **`spec.key`** — the unique key used in items' `customFields` map. May be plain (e.g. `sensitivity`) or prefixed (e.g. `runtime/java-version`).
 - **`spec.schema`** — a JSON Schema (Draft 2020-12) that validates the value of the field on items.
@@ -201,10 +201,14 @@ Because the lifecycle of `CustomField` entities is independent from the items th
 
 ## Ownership and followers
 
-Two relationships are central to the way the catalog associates people with items. Both Users and Teams are themselves first-class items in the catalog (built-in kinds under the `mia-platform.eu` group), so the relationships below are just ordinary Relationship objects between items, there is no special "principal" concept.
+Two fields are central to the way the catalog associates people with items.
 
-- **Owner.** Every item can have an *owner*, which is either a User or a Team. Ownership is modeled as a built-in relationship of type `ownership.mia-platform.eu` between the item and the User/Team. The Catalog App exposes ownership as a first-class field on the item form, but on the wire it is just a Relationship object — see [Relationships](/products/catalog/basic-concepts/60_relationships.md).
-- **Follower.** Any user can additionally *follow* an item to be notified about compliance events that involve it. Following is modeled as a built-in relationship of type `follow.mia-platform.eu` between the User and the item. Owners are implicitly considered followers.
+- **Owner.** Every item can have an *owner*, identified by an email address stored in `metadata.owner`. The Catalog App exposes ownership as a first-class field on the item form.
+- **Follower.** Any number of people can additionally *follow* an item to be notified about compliance events that involve it, identified by the email addresses stored in `metadata.followers`. Owners are implicitly considered followers.
+
+:::note
+Owner and follower are plain email fields, not relationships, so they are not navigable in the [relationship graph](/products/catalog/basic-concepts/60_relationships.md). The plan is to eventually resolve these emails to first-class User items and surface them in the relationship graph.
+:::
 
 ## Primary key and Item URN
 

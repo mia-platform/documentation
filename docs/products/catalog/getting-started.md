@@ -55,7 +55,7 @@ You can do the same thing via API by sending a `POST` request to the resource pa
 
 ## 4. Connect items with a relationship
 
-Open the detail page of an item, jump to the **Relationships** tab, and link it to another item using one of the [built-in relationship types](/products/catalog/basic-concepts/60_relationships.md#built-in-relationship-types) (e.g. `ownership`, `part-of`, `dependency`) or one you have defined yourself. From now on, you can navigate that connection from either endpoint, both in the table view and in the graph view.
+Open the detail page of an item, jump to the **Relationships** tab, and link it to another item using one of the [built-in relationship types](/products/catalog/basic-concepts/60_relationships.md#built-in-relationship-types) (e.g. `part-of`, `dependency`) or one you have defined yourself. From now on, you can navigate that connection from either endpoint, both in the table view and in the graph view.
 
 ## 5. Run a compliance check
 
