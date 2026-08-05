@@ -22,6 +22,7 @@ Mia-Platform's RBAC system is a centralized service designed for granular access
 - **Input schema** — a JSON Schema file in the *schemas/* directory that defines the structure of *input.rbac*, used for validating and type-checking policy inputs.
 - **Super Admin** — a global administrative role (*...authz:Super Admin*) with full privileges to manage the entire platform.
 - **Organization Admin** — an administrative role (*...organization-Super Admin:\<org\>*) with full privileges limited to a specific organization.
+- **Keycloak Admin** — an identity-management role, distinct from Super Admin/Organization Admin, that manages users at the organization level directly from the organization's dedicated Keycloak console (e.g., adding or removing users from the organization).
 - **Scope** — defines the extent of a permission: it can be global ('/') or restricted to a specific path (e.g., */\<slug\>*).
 - **Decision helper** — a function (*helpers.decision(input)* in *authz/helpers/acl_context.rego*) that evaluates policies and generates the final decision, attaching the *x-mia-acl-context* header.
 - **Allowed resource actions** — a list of URN permissions assigned to a principal's role within *input.rbac.roles[]*.
@@ -50,6 +51,8 @@ Below is the specific behavior for each product.
 ### Console
 
 For Console, roles and permissions are chosen from a **fixed, predefined list**, they cannot be customized or extended. Admins can assign these predefined roles to users, service accounts, or groups.
+
+Console tenants and the tenants of the new products do not interact with each other: they are managed independently, and RBAC roles assigned in one cannot be managed from the Administration page of the other.
 
 See organization's detail at [Manage users](/products/console/identity-and-access-management/manage-users.md).
 
@@ -233,6 +236,42 @@ From the api-portal, call `POST /api/service-accounts/register`, providing the s
 ```
 
 To remove a service account later, call `DELETE /api/service-accounts/{client_id}` the same way.
+
+## Frequently asked questions
+
+### Who is the Organization Admin and how is this role acquired?
+
+- **PaaS**: the Super Admin is designated via Keycloak (during installation but also afterwards). Organization Admin permissions can instead be assigned at a later stage via the front-end, from the Administration panel, but only after the organization has already been created.
+- **On-Premise**: the Super Admin is appointed at the creation of the organization in Keycloak. Only one organization is possible, so the Super Admin and the Organization Admin roles coincide.
+
+### How and where are tenants managed?
+
+Currently, tenant management (creation and modification, but not deletion) occurs via the API Portal, and only Super Admins and Org Admins can perform these actions.
+
+### How are new users added, and who is authorized to do so?
+
+- **Keycloak Admin** — adds users to the organization (via their personal Keycloak console).
+- **Org Admin** — adds users to a tenant (via API Portal).
+
+### Is it possible to add users, groups, or roles in "bulk" mode to speed up onboarding?
+
+At the moment, bulk user addition is not supported.
+
+### How does the user offboarding procedure work?
+
+From the interface, the Organization Admin can delete a user directly from the user management page in the organization's dedicated Keycloak instance.
+
+### How does combined permission assignment work when a user belongs to multiple groups?
+
+A user's effective permissions are the union of all roles granted by each group they belong to. For example, if a user belongs to Group A (with Role X) and Group B (with Role Y), they will have both Role X and Role Y — see the [practical example of Alice Parker](#practical-example-of-granularity-and-access-management) above. Role assignment follows a deny-by-default model, meaning permissions must be explicitly granted: nothing is accessible by default.
+
+### How is a service account registered?
+
+It cannot be created from the Administration interface. A Super Admin must call the dedicated API — see [Registering a service account](#registering-a-service-account) above.
+
+### Tenants of new products vs. Console: what is the difference, and how do they interact?
+
+Currently, tenants from new products and Console tenants do not interact with each other. The same limitation applies to RBAC roles: they cannot be managed from the Administration page on the home page for one from the other. See [Accessing the Administration section](#accessing-the-administration-section) above for more details.
 
 ## Advantages of adoption
 
