@@ -5495,6 +5495,18 @@
     "destination": "/docs/products/console/api-console/advanced-section/",
     "addedOn": "2025-11-26"
   },
+  "/docs/products/console/project-configuration/infrastructure-project": {
+    "destination": "/docs/products/console/project-configuration",
+    "addedOn": "2026-08-06"
+  },
+  "/docs/products/console/tutorials/infrastructure-project/create-project-configuration": {
+    "destination": "/docs/products/console/project-configuration",
+    "addedOn": "2026-08-06"
+  },
+  "/docs/products/console/tutorials/infrastructure-project/visualize-infrastructure-project-components-runtime-data-in-console": {
+    "destination": "/docs/runtime-components/plugins/integration-connector-agent/10_overview",
+    "addedOn": "2026-08-06"
+  },
   "/docs/products/fast_data/fast_data_engine_v2/(.*)": {
     "destination": "/docs/products/fast_data_v2/$1",
     "addedOn": "2026-01-07"

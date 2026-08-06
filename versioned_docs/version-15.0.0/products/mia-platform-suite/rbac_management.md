@@ -22,6 +22,7 @@ Mia-Platform's RBAC system is a centralized service designed for granular access
 - **Input schema** — a JSON Schema file in the *schemas/* directory that defines the structure of *input.rbac*, used for validating and type-checking policy inputs.
 - **Super Admin** — a global administrative role (*...authz:Super Admin*) with full privileges to manage the entire platform.
 - **Organization Admin** — an administrative role (*...organization-Super Admin:\<org\>*) with full privileges limited to a specific organization.
+- **Tenant Admin** — an administrative role with full privileges limited to a specific tenant.
 - **Keycloak Admin** — an identity-management role, distinct from Super Admin/Organization Admin, that manages users at the organization level directly from the organization's dedicated Keycloak console (e.g., adding or removing users from the organization).
 - **Scope** — defines the extent of a permission: it can be global ('/') or restricted to a specific path (e.g., */\<slug\>*).
 - **Decision helper** — a function (*helpers.decision(input)* in *authz/helpers/acl_context.rego*) that evaluates policies and generates the final decision, attaching the *x-mia-acl-context* header.
@@ -88,10 +89,10 @@ Alice's effective permissions are the combination of these two groups' roles. Fr
 ## What can be managed via API
 
 - **Groups**: creation, modification, deletion; member management; role assignment to the group.
-- **Users**: creation, modification, deletion, consultation.
+- **Users**: creation, invitation, modification, deletion, consultation.
 - **Roles**: creation, modification, deletion, consultation.
 - **Tenant**: creation and edit of tenants, also at the individual organization level.
-- **Configuration**: reading and updating an organization's settings.
+- **Configuration**: reading and updating tenant's settings.
 - **Service accounts**: registration and deletion — see [Registering a service account](#registering-a-service-account) below.
 
 ## Permission matrix
@@ -138,7 +139,7 @@ Access legend:
 
 In this v15 release, Catalog RBAC management has the following constraints:
 
-- **Roles**: cannot be created, modified, or deleted. The available roles are fixed and correspond to those defined in the [Permission Matrix](#permission-matrix) above.
+- **Roles**: cannot be created, modified, or deleted via UX. The available roles are fixed and correspond to those defined in the [Permission Matrix](#permission-matrix) above.
 - **Groups**: can be created. Groups are the only entity that admins can define in this version, to combine users under a shared set of role assignments.
 - **Users**: cannot be created. Users can only be **assigned** to existing roles and groups.
 - **Permissions**: not yet customizable in this phase — permissions are tied to roles as defined in the matrix and cannot be edited individually.
@@ -159,7 +160,7 @@ Service accounts are the non-human identities that let external tools and pipeli
 
 ### 1. Reach the API
 
-The registration endpoint is reachable through the api-portal published alongside your Mia Platform Suite Home instance — typically at `<homepage-url>/documentations/api-portal/`. Only a Super Admin can complete the registration.
+The registration endpoint is reachable through the api-portal published alongside your Mia-Platform Suite Home instance — typically at `<homepage-url>/documentations/api-portal/`. Only a Super Admin can complete the registration of users in tenant by using this tool.
 
 ### 2. Generate a key pair
 
@@ -237,7 +238,62 @@ From the api-portal, call `POST /api/service-accounts/register`, providing the s
 
 To remove a service account later, call `DELETE /api/service-accounts/{client_id}` the same way.
 
-## Frequently asked questions
+## Requesting an access token
+
+A registered service account has no password or client secret: it proves its identity by signing a JWT with the private key generated in [step 2](#2-generate-a-key-pair) above. This signed JWT (the *client assertion*) is presented, together with a `client_credentials` grant, to the environment's Identity Provider (Keycloak) token endpoint, which verifies the signature against the public key registered via the JWK's `kid` and, if valid, issues an access token.
+
+### 1. Build the client assertion
+
+The client assertion is a `RS256`-signed JWT (RFC 7523) with the following claims:
+
+| Claim | Value |
+| :---- | :---- |
+| `iss` | the service account's `client_id` |
+| `sub` | the service account's `client_id` |
+| `aud` | the token endpoint URL (see below) |
+| `jti` | a unique request identifier (e.g. a UUID), preventing replay attacks |
+| `iat` | the current timestamp |
+| `exp` | a short expiry, e.g. `iat + 300` seconds |
+
+The JWT header must carry `alg: RS256` and `kid: <the kid registered in step 4>` — the `kid` must exactly match the one in the registered JWKS, otherwise the token endpoint cannot locate the public key to verify the signature.
+
+### 2. Call the token endpoint
+
+The token endpoint is the environment's Identity Provider (Keycloak), under the relevant realm:
+
+```text
+https://<AUTH_HOST>/realms/<AUTH_REALM>/protocol/openid-connect/token
+```
+
+```sh
+curl -X POST "https://<AUTH_HOST>/realms/<AUTH_REALM>/protocol/openid-connect/token" \
+  -H "Content-Type: application/x-www-form-urlencoded" \
+  --data-urlencode "grant_type=client_credentials" \
+  --data-urlencode "client_id=<client_id>" \
+  --data-urlencode "client_assertion_type=urn:ietf:params:oauth:client-assertion-type:jwt-bearer" \
+  --data-urlencode "client_assertion=<the signed JWT above>" \
+  --data-urlencode "scope=<mia-product-scope>"
+```
+
+The requested `scope` must match the product(s) whose APIs the token is meant to call (e.g. `mia:catalog`, or `mia:ai-foundry`, in addition to any product-specific requirement — see each product's API documentation for the exact scopes it expects).
+
+:::info
+**On the Mia-Platform PaaS**, the `organization:*` scope must also be included in every token request, in addition to the product-specific `mia:*` scopes (e.g. `scope=mia:catalog organization:*`). Without it, the PaaS token endpoint will not issue a usable token.
+:::
+
+A successful response looks like:
+
+```json
+{
+  "access_token": "eyJ...",
+  "token_type": "Bearer",
+  "expires_in": 300
+}
+```
+
+Use the resulting `access_token` in the `Authorization: Bearer <access_token>` header of every API call. Once it expires (`expires_in`), repeat the token request.
+
+## FAQ
 
 ### Who is the Organization Admin and how is this role acquired?
 
@@ -273,13 +329,3 @@ It cannot be created from the Administration interface. A Super Admin must call 
 
 Currently, tenants from new products and Console tenants do not interact with each other. The same limitation applies to RBAC roles: they cannot be managed from the Administration page on the home page for one from the other. See [Accessing the Administration section](#accessing-the-administration-section) above for more details.
 
-## Advantages of adoption
-
-The integration of RBAC ensures high standards of security and efficiency:
-
-- **Reusability**: use of predefined policy templates to accelerate the setup of organizational roles.
-- **Configuration integrity**: drastic reduction of manual errors thanks to centralized governance.
-- **Least privilege**: technical guarantee that each principal accesses only the minimum set of necessary resources.
-- **Operational efficiency**: reduction of management times by eliminating the need for custom configurations on individual APIs.
-
-Overall, the RBAC model provides a scalable, secure, and maintainable authorization framework, enabling fine-grained access control while simplifying administrative operations across the platform.

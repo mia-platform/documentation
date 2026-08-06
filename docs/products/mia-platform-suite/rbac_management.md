@@ -23,6 +23,7 @@ Mia-Platform's RBAC system is a centralized service designed for granular access
 - **Super Admin** — a global administrative role (*...authz:Super Admin*) with full privileges to manage the entire platform.
 - **Organization Admin** — an administrative role (*...organization-Super Admin:\<org\>*) with full privileges limited to a specific organization.
 - **Tenant Admin** — an administrative role with full privileges limited to a specific tenant.
+- **Keycloak Admin** — an identity-management role, distinct from Super Admin/Organization Admin, that manages users at the organization level directly from the organization's dedicated Keycloak console (e.g., adding or removing users from the organization).
 - **Scope** — defines the extent of a permission: it can be global ('/') or restricted to a specific path (e.g., */\<slug\>*).
 - **Decision helper** — a function (*helpers.decision(input)* in *authz/helpers/acl_context.rego*) that evaluates policies and generates the final decision, attaching the *x-mia-acl-context* header.
 - **Allowed resource actions** — a list of URN permissions assigned to a principal's role within *input.rbac.roles[]*.
@@ -141,7 +142,7 @@ In this v15 release, Catalog RBAC management has the following constraints:
 - **Roles**: cannot be created, modified, or deleted via UX. The available roles are fixed and correspond to those defined in the [Permission Matrix](#permission-matrix) above.
 - **Groups**: can be created. Groups are the only entity that admins can define in this version, to combine users under a shared set of role assignments.
 - **Users**: cannot be created. Users can only be **assigned** to existing roles and groups.
-- **Permissions**: not yet customizable in this phase permissions are tied to roles as defined in the matrix and cannot be edited individually.
+- **Permissions**: not yet customizable in this phase — permissions are tied to roles as defined in the matrix and cannot be edited individually.
 - **Group scope**: the only scope that can currently be assigned to a group is the **entire tenant**; scoping a group to a specific path or sub-resource is not yet available.
 
 ## Detail views

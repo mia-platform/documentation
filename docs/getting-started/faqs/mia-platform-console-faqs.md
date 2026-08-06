@@ -47,10 +47,6 @@ In the top-right corner of the Design area, click on the branch/revision name to
 From the branch/revision management popover in the Design area, you can select "Merge from another branch". This will open a diff editor where you can compare the configurations of the source and target branches/revisions side-by-side. You can review all changes, resolve conflicts by editing the configuration directly, and then confirm the merge. The merged configuration must then be saved.
 [Discover more](/products/console/api-console/api-design/merge_collaboration.md)
 
-#### What are Infrastructure Projects?
-Infrastructure Projects are a specialized project type designed for Operations teams and **platform engineers** to manage infrastructure using **Infrastructure as Code** (IaC) principles. Instead of managing applications, these projects manage infrastructure components like cloud resources (e.g., using **Terraform**) or Kubernetes operators. They support a two-phase deployment process (`plan` and `apply`) to ensure changes are reviewed before execution, providing better control over infrastructure provisioning.
-[Discover more](/products/console/project-configuration/infrastructure-project.md)
-
 #### How can I delete a Project?
 You can delete a Project from the **Project Settings -> Advanced** tab. Clicking the "Delete Project" button will open a confirmation modal where you must type the project's name to confirm. This action is irreversible and will remove the project from the Console, with options to also delete associated namespaces and archive the Git repository.
 [Discover more](/products/console/project-configuration/delete-a-project.md)
@@ -221,7 +217,7 @@ Yes. You can configure a **Jenkins** instance as a **CI/CD Tool Provider** at th
 [Discover more](/products/console/deploy/pipeline-based/configure-jenkins.md)
 
 #### How does the Console support different cloud providers like AWS, GCP, and Azure?
-Mia-Platform Console is cloud-agnostic. It interacts with any CNCF-compliant Kubernetes cluster, regardless of the underlying provider (**aws cloud computing**, **google cloud run**, etc.). You can connect clusters from GKE, EKS, or AKS. For other integrations, it supports specific providers like **aws secrets manager** or **azure key vault**. Features like **Infrastructure Projects** can manage cloud-specific resources like **aws s3** buckets or **aws fargate** services using **Terraform**.
+Mia-Platform Console is cloud-agnostic. It interacts with any CNCF-compliant Kubernetes cluster, regardless of the underlying provider (**aws cloud computing**, **google cloud run**, etc.). You can connect clusters from GKE, EKS, or AKS. For other integrations, it supports specific providers like **aws secrets manager** or **azure key vault**. Cloud-specific resources like **aws s3** buckets or **aws fargate** services can be described as [Infrastructure Resources](/products/console/software-catalog/items-manifest/infrastructure-resource.md) in the Software Catalog and managed with **Terraform**.
 [Discover more](/products/console/company-configuration/clusters-management/overview.md)
 
 #### What are Webhooks and how can I use them?

@@ -68,21 +68,6 @@
           ]
         },
         {
-          "collapsed": true,
-          "type": "category",
-          "label": "Infrastructure Project",
-          "items": [
-            {
-              "id": "products/console/tutorials/infrastructure-project/create-project-configuration",
-              "type": "doc"
-            },
-            {
-              "id": "products/console/tutorials/infrastructure-project/visualize-infrastructure-project-components-runtime-data-in-console",
-              "type": "doc"
-            }
-          ]
-        },
-        {
           "id": "products/console/tutorials/configure-new-company",
           "type": "doc"
         },
@@ -354,10 +339,6 @@
       "items": [
         {
           "id": "products/console/project-configuration/application-project",
-          "type": "doc"
-        },
-        {
-          "id": "products/console/project-configuration/infrastructure-project",
           "type": "doc"
         },
         {

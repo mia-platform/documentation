@@ -44,7 +44,7 @@ To follow this tutorial, you'll need:
 
 
 The first step is to configure the **Integration Connector Agent**.
-For detailed instructions on how to set up the agent and configure scraping for different cloud providers, follow the [official service documentation](/runtime-components/plugins/integration-connector-agent/10_overview.md) and this [tutorial](/products/console/tutorials/infrastructure-project/visualize-infrastructure-project-components-runtime-data-in-console.mdx).
+For detailed instructions on how to set up the agent and configure scraping for different cloud providers, follow the [official service documentation](/runtime-components/plugins/integration-connector-agent/10_overview.md).
 
 For the purpose of our tutorial, we will configure the **Integration Connector Agent** to interact with an *Azure subscription* and scrape information from **Azure Cloud** and **Azure DevOps**.
 
@@ -74,7 +74,7 @@ Finally, you will also need:
 All of this information will be saved as secret variables within your Console project.
 
 Once you have gathered this data and saved it as secret variables in the project, you can proceed with initializing the **Integration Connector Agent** service from the Marketplace and configuring it.
-For the initial setup and basic configuration, please refer to this [documentation](/products/console/tutorials/infrastructure-project/visualize-infrastructure-project-components-runtime-data-in-console.mdx).
+For the initial setup and basic configuration, please refer to the [Integration Connector Agent documentation](/runtime-components/plugins/integration-connector-agent/10_overview.md).
 
 For this tutorial, you will need to configure the `config.json` ConfigMap as follows:
 
