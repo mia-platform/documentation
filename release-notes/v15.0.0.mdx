@@ -95,19 +95,11 @@ To learn more about the features available in the new Charts section of the Desi
 
 ## Infrastructure Projects Deprecation
 
-:::danger
+:::caution
 **Infrastructure Projects are deprecated as of v15.0.0 and can no longer be used.**
+The feature never left its [BETA stage](/release-notes/info/version_policy#feature-preview-and-beta) and has now been discontinued.
+Starting from v15.0.0 it is no longer possible to create new Infrastructure Projects.
 :::
-
-**Infrastructure Projects** — the dedicated Project type introduced in v14 to provision and manage infrastructure following the *Infrastructure as Code* (IaC) paradigm — are deprecated with this release. The feature never left its [BETA stage](/release-notes/info/version_policy#feature-preview-and-beta) and has now been discontinued.
-
-Starting from v15.0.0:
-
-* it is no longer possible to create new Infrastructure Projects;
-* existing Infrastructure Projects can no longer be used to manage infrastructure components or to run `plan` and `apply` deployments;
-* the related documentation pages have been removed.
-
-If you are currently relying on Infrastructure Projects, please contact your Mia-Platform referent to evaluate the most suitable alternative for your infrastructure provisioning workflows.
 
 :::note
 This deprecation only affects the **Infrastructure Project** type. [Infrastructure Resources](/docs/products/console/software-catalog/items-manifest/infrastructure-resource) in the Software Catalog and the infrastructure management capabilities of Application Projects are not impacted.
