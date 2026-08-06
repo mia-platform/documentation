@@ -14,8 +14,7 @@ import SchemaViewer from "../snippets/schema_viewer.mdx";
 Infrastructure Component Runtime are available starting from the v14 of the Mia-Platform Console.
 :::
 
-Infrastructure Component Runtime items are meant to be used in the context of an [Infrastructure Project](/products/console/project-configuration/infrastructure-project.md)
-to be able to collect [runtime data](/products/console/project-configuration/infrastructure-project.md#runtime-visibility) for visualization within Console.
+Infrastructure Component Runtime items are meant to collect runtime data of the infrastructure components deployed by your pipelines, for visualization within Console.
 
 To [create or edit](/products/console/software-catalog/items-management/overview.md) an infrastructure Component Runtime item, you need to provide a [manifest](/products/console/software-catalog/items-manifest/overview.md), whose `resources` property should adhere to the following JSON schema.
 

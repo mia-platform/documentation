@@ -40,10 +40,6 @@ The configuration process may vary slightly for other providers or cluster types
 
 The first step is to connect a Kubernetes cluster. This cluster will be the runtime environment where your applications are deployed and managed. The platform does not create a new cluster but connects to an **existing and pre-configured one** under your management.
 
-:::info
-The Console also allows you to create new infrastructure, including clusters, through the [**Infrastructure Project**](/products/console/project-configuration/infrastructure-project.md) feature. However, for the purpose of this onboarding tutorial, we will assume that a pre-configured cluster already exists.
-:::
-
 ### Connect a new cluster
 
 Inside your Company, navigate to **Infrastructure** > **Clusters** and click **New cluster connection**.
