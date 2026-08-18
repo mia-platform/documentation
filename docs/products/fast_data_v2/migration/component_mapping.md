@@ -27,8 +27,8 @@ This page provides a detailed mapping of every Fast Data v1 artifact to its v2 e
 | `customers-aggregation/aggregation.json` | Post-aggregation Stream Processor `index.js` | Manual conversion — see [Aggregation Logic](#aggregation-logic-svc--post-aggregation-sp) |
 | `customers-configuration/singleViewKey.json` | Farm Data consumer key (`head` node in graph) | The projection with no incoming edges is the root |
 | `event-store-config/eventStoreConfig.json` | Removed — Farm Data handles this internally | Not needed |
-| `projectionChangesSchema.json` | Removed | Farm Data graph replaces this routing logic |
-| `kafkaProjectionUpdates.json` | Removed | pr-update topics are no longer generated |
+| `projectionChangesSchema.json` | Removed | Farm Data graph replaces this routing logic — including any [Strategies](/products/fast_data/configuration/strategies.md) referenced via `__fromFile__`, whose "which Single View does this change affect" logic is now implicit in the graph topology |
+| `kafkaProjectionUpdates.json` | Removed | pr-update topics are no longer generated — review for custom [Strategies](/products/fast_data/configuration/strategies.md) (`MANUAL_STRATEGIES_FOLDER`) before deleting, especially the `type`-based routing used for [parallel SVC](/products/fast_data/faq/parallel_svc.md), which has no direct v2 equivalent |
 | `control-plane-config/config.json` (gRPC settings) | Removed | Control Plane v2 uses a different connection model |
 | `operator-configuration/configuration.json` | Removed | Control Plane v2 does not use the operator pattern |
 
@@ -85,6 +85,17 @@ This reduces configuration time and the risk of misconfiguration.
 | `FAST_DATA_PR_*_PR_UPDATE_TOPIC` | pr-update topics are eliminated |
 | `CONTROL_PLANE_URL` | Control Plane v2 does not use an operator URL |
 | `CONTROL_PLANE_CONFIG_PATH`, `CONTROL_PLANE_BINDINGS_PATH` | Removed from all services |
+
+## Endpoints
+
+Console [endpoints](/products/console/handbooks/endpoints.mdx) of type **Fast Data Projection** or **Fast Data Single View** hook a route directly to a v1 Projection or Single View. Neither endpoint type applies to v2: Projected Tables and Single Views are just MongoDB collections written by Kango, so they are exposed the same way any other collection is.
+
+| v1 Endpoint type | v2 Equivalent |
+|---|---|
+| **Fast Data Projection** | `custom` endpoint routed to `crud-service`, using the same `basePath` |
+| **Fast Data Single View** | `custom` endpoint routed to `crud-service`, using the same `basePath` |
+
+**Conversion:** for each endpoint of one of these two types, set `type` to `custom`, `service` to `crud-service`, `port` to `80`, and `pathRewrite` to the endpoint's previous internal path. The public-facing `basePath` does not need to change.
 
 ---
 

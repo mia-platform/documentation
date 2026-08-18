@@ -429,4 +429,4 @@ export default function process({ key, payload }) {
 | **Remove** | 6 | `management-projection-storer`, `menu-projection-storer`, `users-projection-storer`, `single-view-trigger-generator`, `customers-single-view-creator`, `fast-data-control-plane-operator` |
 | **Unchanged** | 4+ | `api-gateway`, `api-portal`, `swagger-aggregator`, `crud-service`, all business microservices |
 
-The net result is a reduction of 6 legacy services and the elimination of all Purger Jobs and pr-update topics, in exchange for a modular, independently scalable v2 pipeline with up to 10× better aggregation throughput.
+The net result is a reduction of 6 legacy services and the elimination of all pr-update topics, in exchange for a modular, independently scalable v2 pipeline with up to 10× better aggregation throughput.

@@ -401,6 +401,10 @@ Use the same template as in [Step 4](#step-4--create-kango-for-projected-tables-
 | `collection` | Same Single View collection name used in v1 |
 | `primaryKey` | The Single View identifier field (from `singleViewKey.json` in v1) |
 
+:::tip Update Console endpoints
+If the v1 Single View (or any of its source Projections) was exposed through a **Fast Data Single View** or **Fast Data Projection** Console endpoint, convert it to a `custom` endpoint routed to `crud-service` — see [Component Mapping — Endpoints](/products/fast_data_v2/migration/component_mapping#endpoints). Neither special endpoint type exists for v2 collections.
+:::
+
 ---
 
 ## Step 9 — Upgrade Control Plane
