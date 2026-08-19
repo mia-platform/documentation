@@ -41,7 +41,7 @@ In order for the service to correctly start up, please ensure the following prop
 |:----:|:----:|:-----------:|:-------:|:--------:|
 | `enabled`         | boolean | If set to `true`, the Mia-Assistant will be enabled               | `false` | ❌ |
 | `keys`            | object  | The configuration for the API Keys and Credentials for specified Models          |         | ✅ |
-| `llm`             | object  | The configuration of the related LLM used under the hood          |         | ✅ |
+| `llms`            | object  | The configuration of the related LLM used under the hood          |         | ✅ |
 | `embeddings`      | object  | The configuration of the related Embeddings used under the hood   |         | ❌ |
 
 ### LLM and Embeddings Model Configuration
