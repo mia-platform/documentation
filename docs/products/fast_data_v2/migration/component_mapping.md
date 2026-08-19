@@ -67,6 +67,10 @@ These suffixes (`.pre`, `.aggregated`, `.internal-updates`, `.product`) are **na
 | `FAST_DATA_PR_*_INGESTION_TOPIC` | Stream Processor consumer topics (unchanged) |
 | `LOG_LEVEL` | All services |
 
+:::tip Consider upgrading Kafka/MongoDB credentials to file-based secret resolution
+"Retained" here means the same **variable interpolation** pattern (`{{KAFKA_BROKERS}}`, etc.) keeps working in v2 unchanged — it does not mean it's the best option available. Since every Kafka/Mongo connection block in Stream Processor, Kango, and Farm Data is being rewritten anyway during migration, it's a natural point to switch these credentials to [file-based secret resolution](/products/fast_data_v2/secrets_resolution.md#file-reference) instead, reading them from a mounted Console Secret rather than a plain-text environment variable.
+:::
+
 ### Deprecated
 
 :::tip Reduced configuration complexity in v2
@@ -287,6 +291,20 @@ The v1 ER Schema (`erSchema.json`) defines relationships between projections usi
 The HEAD node (aggregation root) is the projection that appears as the source of `oneToMany: true` relationships and has **no incoming edges** from other projections when the full graph is built. Practically, it is the projection whose primary key is used as the Single View identifier. In v1, this is also the projection referenced as root in `projectionChangesSchema.json`.
 :::
 
+#### Farm Data fed by another Single View
+
+The conversion rules above assume every node in the graph is a raw Projection. In more advanced v1 setups, a Single View can instead depend on **another Single View's already-aggregated output** — for example, a `sv_customers` view that embeds data produced by an independent `sv_region` pipeline. This is a common real-world pattern, not an edge case: it shows up whenever one business entity's Single View is defined partly in terms of another entity's Single View, rather than only in terms of raw Systems of Record.
+
+Farm Data itself does not distinguish between the two cases — a `consumers.config` entry is just "a Kafka topic to join in", regardless of what produced it. What changes is which topic that node's consumer subscribes to:
+
+| Node identified in the ER Schema / `erSchema.json` | Consumer `topic` in the Farm Data `config.json` |
+|---|---|
+| A raw Projection | `<namespace>.<projection-name>.pre` (Stream Processor output) |
+| Another Single View, with a post-aggregation SP | `<namespace>.<other-single-view-name>.product` |
+| Another Single View, without a post-aggregation SP | `<namespace>.<other-single-view-name>.aggregated` |
+
+To tell the two apart while inventorying a Single View's dependencies, check the node's name against your list of **Single Views**, not only against your list of Projections. Since this introduces a dependency between two Single Views' pipelines, the one being depended upon must be deployed and validated first — see the [deployment ordering note in Migration Steps](/products/fast_data_v2/migration/migration_steps#step-10--incremental-deploy-and-validation).
+
 ---
 
 ### Aggregation Logic (SVC → Post-aggregation SP)
@@ -353,6 +371,53 @@ The post-aggregation SP can technically be skipped if downstream consumers (CRUD
 
 **In practice, when migrating from v1, the post-aggregation SP is almost always required.** Existing applications are built against the Single View schema defined in `aggregation.json`, and changing that schema would break every consumer. Skipping the SP is only realistic for greenfield v2 projects where the SV schema can be designed around the raw Farm Data format from the start.
 :::
+
+#### Beyond the basic example: patterns found in real `aggregation.json` files
+
+The example above shows one dependency per join block, cleanly nested. Non-trivial v1 projects frequently use three other patterns — all still convertible, but not by directly copying the shape of the basic example.
+
+**Multiple dependencies in one join block.** A join block's `dependencies` map isn't always limited to the single projection referenced by its own `joinDependency`; it can list several. In that case, treat every dependency in the block as its own node reachable from the anchor projection, and add a corresponding graph edge for each — not just for the one matching `joinDependency`.
+
+```json
+"SUBSCRIPTIONS": {
+  "joinDependency": "pr_subscriptions",
+  "dependencies": {
+    "pr_subscriptions": { "type": "projection", "on": "cust_to_subs" },
+    "pr_addresses":     { "type": "projection", "on": "subs_to_addr" }
+  },
+  "mapping": { "id": "pr_subscriptions.ID" }
+}
+```
+Here `pr_addresses` also needs a graph edge from the anchor projection, even though only `pr_subscriptions` is named as the `joinDependency` and referenced in `mapping`.
+
+**Sibling dependencies referenced by dot-notation, without their own join block.** A `mapping` field can reference a dependency declared directly alongside the anchor (e.g., another entry under the same `SV_CONFIG.dependencies` map) using plain `depName.field` notation, with no nested join block of its own:
+
+```json
+"SV_CONFIG": {
+  "dependencies": {
+    "pr_customer": { "type": "projection", "on": "_identifier" },
+    "pr_orders":   { "type": "projection", "on": "pr_customer__to__pr_orders_0" }
+  },
+  "mapping": {
+    "idCustomer":  "pr_customer.ID_USER",
+    "lastOrderId": "pr_orders.ID_ORDER"
+  }
+}
+```
+`pr_orders` here is a full sibling dependency of `pr_customer`, not a nested field of it — it still needs its own graph edge using the join condition named in its `on` value, resolved the same way as any other `outgoing` relationship in the ER Schema.
+
+**`aliasOf`.** A dependency can alias another projection under a different local name within one join block:
+
+```json
+"PENDING_ORDER": {
+  "joinDependency": "PENDING_ORDER_ALIAS",
+  "dependencies": {
+    "PENDING_ORDER_ALIAS": { "type": "projection", "on": "cust_to_pending", "aliasOf": "pr_orders" }
+  },
+  "mapping": { "id": "PENDING_ORDER_ALIAS.ID" }
+}
+```
+The graph node to create is the **real, aliased projection** (`pr_orders` here), not the alias name (`PENDING_ORDER_ALIAS`). This pattern typically shows up when a Single View needs to join the same projection twice under different conditions (e.g., a customer's "last order" and "pending order") — Farm Data graphs don't support joining the same projection twice under one node, so each aliased use needs to be modeled and reviewed by hand rather than mechanically converted.
 
 ---
 

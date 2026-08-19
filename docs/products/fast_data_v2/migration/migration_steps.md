@@ -46,6 +46,10 @@ Before writing any v2 configuration, produce a complete inventory of your curren
 In many v1 projects, a single `erSchema.json` describes all entity relationships globally, even when different SVCs use only a subset of those entities. As you inventory each Single View, explicitly map which projections it actually uses — not all projections in the ER schema. This subset is what goes into the corresponding Farm Data DAG. Projections present in the ER schema but not reachable from a given SV's HEAD node are **irrelevant** to that Farm Data instance.
 :::
 
+:::warning A node reachable from the HEAD may actually be another Single View, not a Projection
+In more advanced v1 setups, a Single View's aggregation can depend on another Single View's **already-aggregated** output rather than on a raw Projection — for example, a `sv_customers` view that embeds data produced by an independent `sv_region` pipeline. When inventorying the nodes reachable from the HEAD, check each one against your list of Single Views, not only against your list of Projections: the distinction changes which Kafka topic that Farm Data instance must subscribe to in v2 (a Projection's `.pre` topic vs. another Single View's `.aggregated`/`.product` topic), and it introduces a **deployment ordering dependency** between the two Single Views. See [Component Mapping — Farm Data fed by another Single View](/products/fast_data_v2/migration/component_mapping#farm-data-fed-by-another-single-view).
+:::
+
 **Produce a summary table** like this for each Projection. This table is your working reference for the rest of the migration: each row corresponds to one Stream Processor + Kango pair to create in Steps 3–4, and the columns map directly to fields in `config.json` and `index.js`.
 
 | SoR | Projection | PK fields | Ingestion topic | Cast functions (non-string) | Source adapter |
@@ -142,9 +146,22 @@ For each Projection in your inventory, create a new service of type **Stream Pro
   },
   "processor": {
     "type": "javascript"
+  },
+  "controlPlane": {
+    "grpcAddress": "http://control-plane:50051",
+    "resumeAfterMs": 15000,
+    "onCreate": "pause"
   }
 }
 ```
+
+:::tip Add the `controlPlane` block from the start, even before Control Plane v2 exists
+Every Stream Processor / Kango / Farm Data instance you deploy in Steps 3, 4, and 6 should already include the `controlPlane` block shown above, even though Control Plane v2 itself is only deployed in [Step 9](#step-9--upgrade-control-plane). A workload that can't reach `control-plane` yet simply keeps running normally — but adding the block later means going back and editing every `config.json` you already deployed. `onCreate: "pause"` is what keeps a freshly-created workload from consuming data until you explicitly resume it from the Control Plane UI, which is the safety net the [incremental deploy strategy](#step-10--incremental-deploy-and-validation) relies on. See [Workloads Configuration](/products/fast_data_v2/runtime_management/application_configuration#workloads-configuration) for the full set of options.
+:::
+
+:::tip Consider file-based secrets instead of `{{...}}` interpolation
+The `bootstrap.servers`, `sasl.username`, and `sasl.password` values above use plain variable interpolation, mirroring the v1 pattern — this works, but stores credentials in plain text inside the ConfigMap. Since migration already changes how every service connects to Kafka/MongoDB, it is a natural point to switch to [file-based secret resolution](/products/fast_data_v2/secrets_resolution.md#file-reference) instead: the same fields become `{ "type": "file", "path": "/run/secrets/<secret-name>/<key>" }`, reading the credential from a mounted Console Secret rather than an environment variable. This applies to every Stream Processor, Kango, and Farm Data `config.json` in this guide.
+:::
 
 ### `index.js` base template (debezium source adapter)
 
@@ -267,6 +284,11 @@ For each Projection, create a **Kango** service that persists the normalized str
     "database": "{{MONGODB_NAME}}",
     "collection": "<mongodb-collection-name>",
     "primaryKey": ["<pk-field-1>", "<pk-field-2>"]
+  },
+  "controlPlane": {
+    "grpcAddress": "http://control-plane:50051",
+    "resumeAfterMs": 15000,
+    "onCreate": "pause"
   }
 }
 ```
@@ -276,6 +298,10 @@ For each Projection, create a **Kango** service that persists the normalized str
 | `topic` | `<namespace>.<projection-name>.pre` (output of the corresponding SP) |
 | `collection` | Same collection name used by v1 (no rename needed) |
 | `primaryKey` | Fields from `primaryKeys` in the v1 PS config |
+
+:::tip
+See the [`controlPlane` tip in Step 3](#step-3--create-stream-processors-one-per-projection) — it applies here too, and to the Farm Data template in Step 6.
+:::
 
 ---
 
@@ -292,6 +318,10 @@ Including projections that are not needed by the Single View causes Farm Data to
 For each Single View that has an ER Schema, apply the conversion rules described in [Component Mapping — ER Schema → Farm Data Graph](/products/fast_data_v2/migration/component_mapping#er-schema--farm-data-graph).
 
 The resulting graph is used in the Farm Data `config.json`.
+
+:::note Real-world `aggregation.json` files are often more complex than the basic example
+If the Single View was built with the "Low Code" SVC and its `aggregation.json` has join blocks with more than one dependency, dependencies referenced by dot-notation without their own join block, or `aliasOf` references, see [Component Mapping — Aggregation Logic](/products/fast_data_v2/migration/component_mapping#aggregation-logic-svc--post-aggregation-sp) for how each of these maps to a Farm Data graph edge.
+:::
 
 **To identify the HEAD node:** it is the projection whose primary key equals the Single View identifier (from `singleViewKey.json`). In the ER Schema, it is typically the projection with the most `oneToMany: true` outgoing relationships and no `oneToMany: false` references pointing to an external projection.
 
@@ -363,12 +393,21 @@ For each Single View, create a **Farm Data** service.
       "connectionName": "mongo",
       "database": "{{MONGODB_NAME}}"
     }
+  },
+  "controlPlane": {
+    "grpcAddress": "http://control-plane:50051",
+    "resumeAfterMs": 15000,
+    "onCreate": "pause"
   }
 }
 ```
 
 :::note Consumer group.id
 All consumers within the same Farm Data instance for a given Single View share the **same `group.id`**. Farm Data manages per-topic offsets internally. Use a unique group ID per Farm Data service (i.e., per Single View).
+:::
+
+:::tip A consumer's `topic` doesn't have to be a Projection's `.pre` topic
+Farm Data treats every entry under `consumers.config` as "a Kafka topic to join in", regardless of what produced it. If one of the nodes identified in Step 5 is actually another Single View (see the warning in [Step 1](#step-1--inventory-the-v1-pipeline)), point that consumer's `topic` at the other Single View's `.aggregated` topic (or `.product`, if it has its own post-aggregation SP) instead of a `.pre` topic — everything else about the consumer entry stays the same. Make sure that other Single View's pipeline is deployed and validated first, since this Farm Data instance depends on it being populated.
 :::
 
 ---
@@ -412,13 +451,21 @@ If the v1 Single View (or any of its source Projections) was exposed through a *
 Replace `fast-data-control-plane-operator` with the v2 Control Plane (Piper):
 
 1. **Remove** the `fast-data-control-plane-operator` service
-2. **Add** `control-plane` service (image: `nexus.mia-platform.eu/data-fabric/piper:latest-mongodb`)
+2. **Add** `control-plane` service (image: `nexus.mia-platform.eu/data-fabric/piper:latest-mongodb`) — set its **static replicas to 1**, it does not support running with more
 3. **Add** `control-plane-frontend` service (image: `nexus.mia-platform.eu/data-fabric/piper-frontend:latest`)
-4. **Add endpoints**: `/` → `control-plane-frontend`, `/api` → `control-plane`
+4. **Add endpoints**: one for the UI, one for the API — see the basePath note below before assuming `/` and `/api` are free
 5. **Configure** env vars: `MONGODB_URL`, `MONGODB_DATABASE_NAME`
 6. **Remove** `CONTROL_PLANE_CONFIG_PATH`, `CONTROL_PLANE_BINDINGS_PATH` env vars and all related ConfigMaps from every service
+7. **Grant RBAC permissions** to the `control-plane` service account (a `Role` + `RoleBinding` granting `get/list/watch` on `configmaps` and `deployments`) — without this, Control Plane cannot discover any Fast Data workload in the namespace and the Frontend pipeline view stays empty, with no error surfaced in the UI itself
 
-See the [Control Plane Application Configuration](/products/fast_data_v2/runtime_management/application_configuration) documentation for the full Control Plane v2 configuration.
+See the [Control Plane Application Configuration](/products/fast_data_v2/runtime_management/application_configuration) documentation for the full Control Plane v2 configuration, including the exact RBAC manifests to commit and the permissions the *deployer* itself needs to apply them.
+
+:::warning Choosing endpoint basePaths when adding Control Plane to an existing project
+The reference setup uses `/` for the frontend and `/api` for the API, which assumes both paths are free — true for a project created specifically to host Fast Data Control Plane, but rarely true when adding v2 to an **existing** project that already serves its own frontend/API at those paths. If you need different basePaths instead (e.g. `/control-plane` and `/control-plane/api`), two details are easy to miss:
+
+- The API endpoint's `pathRewrite` must still resolve to `/api` internally — rewrite `/control-plane/api` to `/api`, **not** to `/`. Piper's own REST server is fixed at that prefix (`servers.rest.apiPrefix` in the `piper-configuration` ConfigMap), so stripping it entirely sends requests Piper's router doesn't recognize.
+- The Control Plane Frontend reads its own API base path from a small static configuration file (the `control-plane-frontend-static` ConfigMap, key `api.control-plane`). Update it to match whatever public basePath you chose for the API endpoint — otherwise the UI loads but every API call from it fails silently.
+:::
 
 ---
 
@@ -445,6 +492,14 @@ Before validating the migrated pipeline, ensure you have handled the initial loa
 v1 PS/RTU and v2 SP+Kango can coexist on the same Kafka ingestion topic using different consumer group IDs. This allows you to run them in parallel and compare outputs before cutting over.
 :::
 
+:::warning Single Views that depend on another Single View must be deployed in dependency order
+If a Farm Data instance consumes another Single View's `.aggregated`/`.product` topic (see the tip in [Step 6](#step-6--create-farm-data-one-per-single-view)), that other Single View's own pipeline — Farm Data, Kango, and any post-aggregation SP — must be deployed and validated through step 6 above **before** this one is deployed. Treat it as if it were an earlier SoR in the recommended order, even though it isn't one.
+:::
+
+:::tip An additional safety net: deploy with 0 static replicas first
+`onCreate: "pause"` (from the `controlPlane` block) stops a workload from consuming data once it starts running, but the pod is still scheduled and connects to Kafka/MongoDB. For extra safety while still reviewing a freshly-written `config.json`, you can deploy each new v2 service with **0 static replicas** and only scale it to 1 once its configuration has been reviewed. `control-plane` and `control-plane-frontend` are the exception — they need to be running for their pause/resume UI to be usable in the first place.
+:::
+
 ---
 
 ## Step 11 — Decommission v1 Services
@@ -456,6 +511,10 @@ After full validation, remove the following v1 components:
 - All `*-single-view-trigger-generator` services
 - All `*-single-view-creator` services
 - `fast-data-control-plane-operator`
+
+:::caution Verify ownership before deleting by name pattern
+The ConfigMap names below are naming **conventions**, not guarantees. A project can happen to have an unrelated custom service whose own ConfigMap coincidentally matches one of these patterns — `*-configuration` in particular is common enough to collide with a completely unrelated service. Before deleting any ConfigMap, confirm it is actually referenced only by a v1 Fast Data service you are removing, and not still used by anything else in the project.
+:::
 
 **ConfigMaps to delete:**
 - `*-configuration/config.json` (PS/RTU configs)
@@ -480,34 +539,36 @@ After full validation, remove the following v1 components:
 
 ### Pre-migration
 - [ ] Produce full inventory (SoRs, Projections, Single Views, ER Schemas, cast functions)
+- [ ] For each Single View, check whether any node reachable from the HEAD is actually another Single View rather than a Projection — note the resulting cross-SV deployment order
 - [ ] Verify CDC ingestion topics are accessible from the new deployment namespace
 - [ ] Take a MongoDB snapshot (backup) of all projection and Single View collections
 - [ ] Create all new Kafka topics (e.g. `.pre`, `.aggregated`, `.internal-updates`, `.product`)
 
 ### Per Projection
-- [ ] Create Stream Processor `config.json` (consumer = ingestion topic, producer = `.pre` topic)
+- [ ] Create Stream Processor `config.json` (consumer = ingestion topic, producer = `.pre` topic, include the `controlPlane` block)
 - [ ] Write `index.js` with source adapter normalization and field casts
-- [ ] Deploy Stream Processor service
-- [ ] Create Kango `config.json` (consumer = `.pre` topic, persistence = MongoDB collection)
-- [ ] Deploy Kango service
+- [ ] Deploy Stream Processor service (optionally with 0 static replicas until reviewed)
+- [ ] Create Kango `config.json` (consumer = `.pre` topic, persistence = MongoDB collection, include the `controlPlane` block)
+- [ ] Deploy Kango service (optionally with 0 static replicas until reviewed)
 - [ ] Validate: document count and sample comparison with v1 projection collection
 
 ### Per Single View
 - [ ] Convert ER Schema to Farm Data graph
-- [ ] Create Farm Data `config.json` with all projection consumers and the graph
-- [ ] Deploy Farm Data service
+- [ ] Create Farm Data `config.json` with all consumers (Projection `.pre` topics, or another Single View's `.aggregated`/`.product` topic where applicable), the graph, and the `controlPlane` block
+- [ ] Deploy Farm Data service (optionally with 0 static replicas until reviewed) — if it depends on another Single View, deploy that one first
 - [ ] If needed: create and deploy post-aggregation Stream Processor
 - [ ] Create Kango `config.json` for Single View output
 - [ ] Deploy Kango service
 - [ ] Validate: document count and structure comparison with v1 Single View collection
 
 ### Control Plane v2
-- [ ] Deploy `control-plane` and `control-plane-frontend` services
-- [ ] Add `/` and `/api` endpoints
+- [ ] Deploy `control-plane` (1 static replica) and `control-plane-frontend` services
+- [ ] Grant RBAC permissions (Role + RoleBinding) to the `control-plane` service account
+- [ ] Add UI and API endpoints — confirm `/` and `/api` are actually free, or choose different basePaths and update the API `pathRewrite` and the frontend's static `api.control-plane` path accordingly
 - [ ] Verify Control Plane UI is accessible and shows the pipeline
 
 ### Decommission
 - [ ] Remove all v1 Fast Data services
-- [ ] Delete obsolete ConfigMaps
+- [ ] Delete obsolete ConfigMaps — verify each one is not still referenced by an unrelated surviving service before deleting by name pattern
 - [ ] Remove deprecated environment variables
 - [ ] (Optional) Delete obsolete Kafka topics

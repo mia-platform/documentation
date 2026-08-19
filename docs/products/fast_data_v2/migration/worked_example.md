@@ -126,9 +126,16 @@ One SP per projection. All three SoRs use debezium, so all SPs share the same `i
       "compression.type": "snappy"
     }
   },
-  "processor": { "type": "javascript" }
+  "processor": { "type": "javascript" },
+  "controlPlane": {
+    "grpcAddress": "http://control-plane:50051",
+    "resumeAfterMs": 15000,
+    "onCreate": "pause"
+  }
 }
 ```
+
+Every other Stream Processor, Kango, and Farm Data `config.json` in this example includes the same `controlPlane` block (omitted from the remaining snippets below for brevity) — see [Migration Steps — Step 3](/products/fast_data_v2/migration/migration_steps#step-3--create-stream-processors-one-per-projection) for why it's added from the start, even before Control Plane v2 itself is deployed in Step 9.
 
 For the other 9 SPs, replace `topic` (consumer) and `topic` (producer) accordingly:
 
@@ -317,6 +324,11 @@ function transformFields(record) {
       "connectionName": "mongo",
       "database": "{{MONGODB_NAME}}"
     }
+  },
+  "controlPlane": {
+    "grpcAddress": "http://control-plane:50051",
+    "resumeAfterMs": 15000,
+    "onCreate": "pause"
   }
 }
 ```
@@ -411,6 +423,11 @@ export default function process({ key, payload }) {
     "database": "{{MONGODB_NAME}}",
     "collection": "sv_customers",
     "primaryKey": ["idCustomer"]
+  },
+  "controlPlane": {
+    "grpcAddress": "http://control-plane:50051",
+    "resumeAfterMs": 15000,
+    "onCreate": "pause"
   }
 }
 ```
