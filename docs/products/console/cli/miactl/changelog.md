@@ -1,15 +1,24 @@
----
-id: changelog
-title: Changelog
-sidebar_label: CHANGELOG
----
+# Changelog
 
 All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [v0.24.0] - 2026-04-27
+## [v0.25.1] - 2026-08-19
+
+### Removed
+
+- obsolete Console version checks (v14.0.0/v14.1.0) from Catalog and Item Type Definition commands, superseded by the minimum required Console version v15.0.0
+
+## [v0.25.0] - 2026-07-10
+
+### Added
+
+- support automatic OIDC endpoint discovery via OAuth2 Protected Resource Metadata ([RFC 9728](https://datatracker.ietf.org/doc/html/rfc9728)) when available, with fallback to the Mia-Platform browser login flow
+
+
+## [v0.24.0] - 2026-04-28
 
 ### Added
 
@@ -60,7 +69,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Removed
 
-- removed `miactl deploy ENVIRONMENT` deprecated command, use `miactl deploy trigger` instead that is available since 0.15.x
+- removed `miactl deploy ENVIRONMENT` deprecated command, use `miactl deploy trigger` instead that
+	is available since 0.15.x
 
 ## [v0.21.2] - 2025-10-09
 
@@ -105,7 +115,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- added `project describe` command. It supports `--revision`, `--version` flags for enhanced workflow projects and `--branch`, `--tag` flags for standard workflow projects.
+- added `project describe` command. It supports `--revision`, `--version` flags for enhanced workflow projects and
+	`--branch`, `--tag` flags for standard workflow projects.
 - added `project apply` command. It supports `--revision` flag as only enhanced workflow is supported for project apply
 
 ## [v0.19.0] - 2025-06-18
@@ -208,7 +219,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### BREAKING
 
-- updated `extension apply` command to support new request body schema. The older version of miactl will not be compatible with the Console version upper or equal to 13.2.0.
+- updated `extension apply` command to support new request body schema. The older version of miactl will not be
+	compatible with the Console version upper or equal to 13.2.0.
 
 ## [v0.14.0] - 2024-07-25
 
@@ -343,8 +355,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - update go version to 1.21.4
 - update oauth2 to v0.15.0
 - update exp to v0.0.0-20231127185646-65229373498e
-- modified `miactl marketplace delete` command to accept either the `objectId` or a `companyId`-`itemId`-`version` tuple that identifies the item to be deleted.
-- modified `miactl marketplace get` command to accept either the `objectId` or a `companyId`-`itemId`-`version` tuple that identifies the item to be retrieved.
+- modified `miactl marketplace delete` command to accept either the `objectId` or a `companyId`-`itemId`-`version`
+	tuple that identifies the item to be deleted.
+- modified `miactl marketplace get` command to accept either the `objectId` or a `companyId`-`itemId`-`version` tuple
+	that identifies the item to be retrieved.
 
 ### Fixed
 
@@ -476,6 +490,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - create cli sdk
 - create cli renderer
 
+[v0.25.1]: https://github.com/mia-platform/miactl/compare/v0.25.0...v0.25.1
+[v0.25.0]: https://github.com/mia-platform/miactl/compare/v0.24.0...v0.25.0
 [v0.24.0]: https://github.com/mia-platform/miactl/compare/v0.23.0...v0.24.0
 [v0.23.0]: https://github.com/mia-platform/miactl/compare/v0.22.0...v0.23.0
 [v0.22.0]: https://github.com/mia-platform/miactl/compare/v0.21.2...v0.22.0
