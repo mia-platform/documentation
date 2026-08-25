@@ -16,17 +16,11 @@ RBAC is a cross-product capability, but the specific set of assignable roles/per
 Mia-Platform's RBAC system is a centralized service designed for granular access governance. The component exposes both a REST API (documented via OpenAPI) for CRUD operations on resources, and a high-performance gRPC service used by authorization components (e.g., external authorization sidecars) to resolve a principal's context. The system intercepts requests in real time, evaluates whether the principal has the required permissions for the requested action, and then forwards authorized requests to the target service.
 
 ### Core concepts
-
-- **Policy package** — a Rego module containing the rules (allow rules) that determine if an action is permitted.
-- **actions.json** — a configuration file that maps HTTP paths and methods to specific policy rules, used by the Access Control system to evaluate incoming requests.
-- **Input schema** — a JSON Schema file in the *schemas/* directory that defines the structure of *input.rbac*, used for validating and type-checking policy inputs.
-- **Super Admin** — a global administrative role (*...authz:Super Admin*) with full privileges to manage the entire platform.
-- **Organization Admin** — an administrative role (*...organization-Super Admin:\<org\>*) with full privileges limited to a specific organization.
+- **Super Admin** — a global administrative role (*...authz:Super Admin*) with full privileges to manage the entire suite. In on-prem installation, Super Admin and Organization Admin are the same person.
+- **Organization Admin** — an administrative role (*...organization-Super Admin:\<org\>*) with full privileges limited to a specific organization (e.g. add users, tenants or service accounts)
 - **Tenant Admin** — an administrative role with full privileges limited to a specific tenant.
 - **Keycloak Admin** — an identity-management role, distinct from Super Admin/Organization Admin, that manages users at the organization level directly from the organization's dedicated Keycloak console (e.g., adding or removing users from the organization).
 - **Scope** — defines the extent of a permission: it can be global ('/') or restricted to a specific path (e.g., */\<slug\>*).
-- **Decision helper** — a function (*helpers.decision(input)* in *authz/helpers/acl_context.rego*) that evaluates policies and generates the final decision, attaching the *x-mia-acl-context* header.
-- **Allowed resource actions** — a list of URN permissions assigned to a principal's role within *input.rbac.roles[]*.
 
 ## Architecture and integrations
 
@@ -57,13 +51,31 @@ Console tenants and the tenants of the new products do not interact with each ot
 
 See organization's detail at [Manage users](/products/console/identity-and-access-management/manage-users.md).
 
-### AI Foundry
+### Catalog & AI Foundry
 
-Like Catalog, AI Foundry supports a potentially unbounded set of roles, permissions, and groups, with maximum granularity for defining fine-grained access to AI Foundry resources.
+Catalog and AI Foundry support a potentially unbounded set of roles, permissions, and groups, with maximum granularity for defining fine-grained access to resources.
+
+For **Catalog** in particular, when adding a permission to a role, the admin must enanche granularity of the pre-configured roles, choosing between two kinds of permissions:
+
+- **General permissions** — cover generic capabilities such as item type definition management and other non item-specific actions. These are picked by clicking on a **static, predefined list** of possible permissions (available also for AI Foundy).
+- **Item-level permissions** — cover specific actions on items, such as viewing, editing, or executing them. Clicking this option opens a **side panel** where the admin specifies the **group**, **version**, **family**, and **operation** the permission applies to. Based on these selections, the UI automatically composes the correct **permission formula**, which is then assigned to the role (and, from there, to the users or groups holding that role).
+
+### Organization-wide user visibility
+
+An **Organization Admin** now has access to a dedicated view listing every user across the organization, which tenant(s) each user belongs to, and which role(s) they hold in each. From this view, the Organization Admin can also **invite new users to the organization**. This gives organization admins a single place to audit access across all tenants, instead of checking each tenant's Administration section individually.
+
+A **Tenant Admin**, by contrast, does not see this organization-wide view or invite users to the organization: they can only **add users to their tenant**, and only users who have already been invited to (and accepted into) the organization.
+
+From the organization-wide view, clicking on a specific tenant opens that **tenant's detail**, where the admin manages the tenant's users, service accounts, and roles/permissions.
 
 ## How to assign roles and permissions
 
 - The administrator **assigns** roles to users, service accounts, or groups, optionally limiting their validity to a specific scope. In practice, this means creating a group, adding members to it, and assigning one or more roles to that group.
+- Both **Organization Admins** and **Tenant Admins** can assign **broad roles** (the predefined, coarse-grained roles from the [Permission Matrix](#permission-matrix)).
+- Only the **Organization Admin** can assign **granular roles**. Granular role assignment is available:
+  - For **Catalog**, with the widest granularity: permissions can be scoped to specific groups and users through **filter expressions** (formulas combining fields and logical operators).
+  - For **AI Foundry**, with a narrower degree of granularity compared to Catalog — see [AI Foundry](#ai-foundry) above.
+  - **Console** is unaffected by this change and keeps its fixed, predefined role list (see [Console](#console) above).
 
 ![Users](img/groups_ad.png)
 
@@ -135,15 +147,23 @@ Access legend:
 | **Connections/Apps & Plugins** | R/W | R | R | - | - |
 | **Data download** | R | R | R | - | - |
 
-## Current limitations (v15.0.0)
+## Inviting users
+
+Users can now be invited directly from the Administration UI, without going through the RBAC API or provisioning them manually in Keycloak.
+
+- An **Organization Admin** sends the invitation from the Suite's user management screen.
+- The invited user receives an email invitation and must accept it **within 7 days** to become a member of the organization.
+- Until accepted, the user appears in the Administration UI with a **Pending** status; once accepted, their status changes to **Active Users**.
+- From the **Pending** section, the admin can see which users have not yet accepted their invitation, and can **revoke** an invitation at any time (e.g. if it was sent by mistake or expires unused).
+- Only after the invitation is accepted by email can an admin assign roles, permissions, and group memberships to that user.
+
+## Current limitations (v15.1.0)
 
 In this v15 release, Catalog RBAC management has the following constraints:
 
-- **Roles**: cannot be created, modified, or deleted via UX. The available roles are fixed and correspond to those defined in the [Permission Matrix](#permission-matrix) above.
-- **Groups**: can be created. Groups are the only entity that admins can define in this version, to combine users under a shared set of role assignments.
-- **Users**: cannot be created. Users can only be **assigned** to existing roles and groups.
-- **Permissions**: not yet customizable in this phase — permissions are tied to roles as defined in the matrix and cannot be edited individually.
 - **Group scope**: the only scope that can currently be assigned to a group is the **entire tenant**; scoping a group to a specific path or sub-resource is not yet available.
+- **Tenant creation**: it's  possible to create tenants only from API portal
+- **Tenant and user deletetion**: it's not possible to delete tenants or users from UI 
 
 ## Detail views
 
@@ -300,14 +320,10 @@ Use the resulting `access_token` in the `Authorization: Bearer <access_token>` h
 - **PaaS**: the Super Admin is designated via Keycloak (during installation but also afterwards). Organization Admin permissions can instead be assigned at a later stage via the front-end, from the Administration panel, but only after the organization has already been created.
 - **On-Premise**: the Super Admin is appointed at the creation of the organization in Keycloak. Only one organization is possible, so the Super Admin and the Organization Admin roles coincide.
 
-### How and where are tenants managed?
-
-Currently, tenant management (creation and modification, but not deletion) occurs via the API Portal, and only Super Admins and Org Admins can perform these actions.
-
 ### How are new users added, and who is authorized to do so?
-
-- **Keycloak Admin** — adds users to the organization (via their personal Keycloak console).
-- **Org Admin** — adds users to a tenant (via API Portal).
+- **Keycloak Admin/Organization Admin** — adds/invites users to the organization (via their personal Keycloak console, or via the organization-wide users view — see [Organization-wide user visibility](#organization-wide-user-visibility) above).
+- **Organization Admin** — adds users to a tenant.
+- **Tenant Admin** — can add users to their tenant, but only among users already invited to (and accepted into) the organization.
 
 ### Is it possible to add users, groups, or roles in "bulk" mode to speed up onboarding?
 
