@@ -6,7 +6,7 @@ sidebar_label: Azure
 
 # Microsoft Azure Connector
 
-The Microsoft Azure connector ingests cloud resources from an Azure subscription into the Catalog. It runs through the [`ibdm`](/requirements/installation-guidelines/catalog/connectors/00_overview.md) binary in one of two modes:
+The Microsoft Azure connector ingests cloud resources from an Azure subscription into the Catalog. It now also maps **Azure API Management (APIM)** instances and **Azure Notification Hub** resources (namespaces and individual hubs, linked via a relationship) into the Catalog, alongside the resource types already supported; the mapping for **Azure Function** resources has also been reworked. It runs through the [`ibdm`](/requirements/installation-guidelines/catalog/connectors/00_overview.md) binary in one of two modes:
 
 - **Sync** — pull-based: enumerates resources via the [Azure Resource Graph](https://learn.microsoft.com/en-us/azure/governance/resource-graph/) APIs and exits.
 - **Run** — push-based: subscribes to Azure subscription events through Azure EventHub and reacts in near real time.
