@@ -8,7 +8,8 @@ export default {
       "link": {"type": "doc", "id": "v15-overview"},
       "items": [
         {"id": "versions", "type": "doc"},
-         {"id": "v15.0.0", "type": "doc", "label": "v15.0.0"},
+        {"id": "v15.1.0", "type": "doc", "label": "v15.1.0"},
+        {"id": "v15.0.0", "type": "doc", "label": "v15.0.0"},
       ]
     },
     {

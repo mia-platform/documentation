@@ -1,0 +1,160 @@
+---
+id: v15.1.0
+title: Version 15.1.0 Release Notes
+image: "img/release-note-link-preview.png"
+---
+
+import Accordion from '@site/src/components/Accordion/index.js';
+import dataAccordion from '@site/src/config/release-notes/release-note-v15-1-0.json';
+
+_TBD_
+
+## Suite Home
+
+## Catalog
+
+## AI Foundry
+
+## Console
+
+## Other New Features, Improvements and Bug Fixes
+
+<Accordion data={dataAccordion} />
+
+## How to update
+
+To run Mia-Platform v15.1.0, the following Helm chart versions must be installed on your cluster. For the complete installation sequence and per-product upgrade guides, see the [Installation Guidelines](/docs/requirements/installation-guidelines/overview).
+
+### Helm chart versions
+
+| Product | Helm Chart | Version | Upgrade guide |
+|---|---|---|---|
+| **Auth — Keycloak** | `keycloak-operator` | `vX.X.X` | [How to upgrade](/docs/requirements/installation-guidelines/shared-services/authn/keycloak/how-to-upgrade) |
+| **Auth — Realm Management** | `keycloak-realm-management` | `vX.X.X` | [How to upgrade](/docs/requirements/installation-guidelines/shared-services/authn/keycloak-realm-management/how-to-upgrade) |
+| **Homepage & RBAC** | `services` | `vX.X.X` | [How to upgrade](/docs/requirements/installation-guidelines/shared-services/services/how-to-upgrade) |
+| **Catalog** | `catalog` | `vX.X.X` | [How to upgrade](/docs/requirements/installation-guidelines/catalog/how-to-upgrade) |
+| **AI Foundry** | `ai-foundry` | `vX.X.X` | [How to upgrade](/docs/requirements/installation-guidelines/ai-foundry/how-to-upgrade) |
+| **Console** | `console` | `vX.X.X` | [How to upgrade](/docs/requirements/installation-guidelines/console/self-hosted/how-to-upgrade) |
+
+### Bill of materials
+
+Click on each chart to expand its full image list.
+
+<details>
+<summary><strong>keycloak-operator vX.X.X</strong></summary>
+
+| Image repository | Version |
+|---|:---:|
+| nexus.mia-platform.eu/platform/auth/keycloak | vX.X.X |
+| quay.io/keycloak/keycloak-operator | vX.X.X |
+
+</details>
+
+<details>
+<summary><strong>keycloak-realm-management vX.X.X</strong></summary>
+
+| Image repository | Version |
+|---|:---:|
+| docker.io/adorsys/keycloak-config-cli | vX.X.X |
+
+</details>
+
+<details>
+<summary><strong>services vX.X.X</strong></summary>
+
+| Image repository | Version |
+|---|:---:|
+| docker.io/redis | vX.X.X |
+| nexus.mia-platform.eu/ai-foundry/adk-be-app | vX.X.X |
+| nexus.mia-platform.eu/cache/envoyproxy/envoy | vX.X.X |
+| nexus.mia-platform.eu/core/swagger-aggregator | vX.X.X |
+| nexus.mia-platform.eu/platform/auth/access-control/ext-authz | vX.X.X |
+| nexus.mia-platform.eu/platform/auth/authtool/authtool-bff | vX.X.X |
+| nexus.mia-platform.eu/platform/services/homepage | vX.X.X |
+| nexus.mia-platform.eu/platform/services/rbac-management | vX.X.X |
+| quay.io/docling-project/docling-serve-cpu | vX.X.X |
+
+</details>
+
+<details>
+<summary><strong>catalog vX.X.X</strong></summary>
+
+| Image repository | Version |
+|---|:---:|
+| docker.io/redis | vX.X.X |
+| nexus.mia-platform.eu/ai-foundry/adk-be-app | vX.X.X |
+| nexus.mia-platform.eu/cache/envoyproxy/envoy | vX.X.X |
+| nexus.mia-platform.eu/catalog/catalog-engine | vX.X.X |
+| nexus.mia-platform.eu/catalog/catalog-mcp-server | vX.X.X |
+| nexus.mia-platform.eu/catalog/catalog-website | vX.X.X |
+| nexus.mia-platform.eu/catalog/items-consumer | vX.X.X |
+| nexus.mia-platform.eu/catalog/items-producer | vX.X.X |
+| nexus.mia-platform.eu/core/swagger-aggregator | vX.X.X |
+| nexus.mia-platform.eu/data-fabric/stream-processor | vX.X.X |
+| nexus.mia-platform.eu/p4samd/core/policy-engine | vX.X.X |
+| nexus.mia-platform.eu/platform/auth/access-control/ext-authz | vX.X.X |
+| nexus.mia-platform.eu/platform/auth/authtool/authtool-bff | vX.X.X |
+| nexus.mia-platform.eu/plugins/smtp-mail-notification-service | vX.X.X |
+| quay.io/docling-project/docling-serve-cpu | vX.X.X |
+
+</details>
+
+<details>
+<summary><strong>ai-foundry vX.X.X</strong></summary>
+
+| Image repository | Version |
+|---|:---:|
+| docker.io/redis | vX.X.X |
+| nexus.mia-platform.eu/ai-foundry/adk-be-app | vX.X.X |
+| nexus.mia-platform.eu/ai-foundry/ai-foundry-bff | vX.X.X |
+| nexus.mia-platform.eu/ai-foundry/ai-foundry-website | vX.X.X |
+| nexus.mia-platform.eu/cache/envoyproxy/envoy | vX.X.X |
+| nexus.mia-platform.eu/platform/auth/access-control/ext-authz | vX.X.X |
+| nexus.mia-platform.eu/platform/auth/authtool/authtool-bff | vX.X.X |
+| quay.io/docling-project/docling-serve-cpu | vX.X.X |
+
+</details>
+
+<details>
+<summary><strong>console vX.X.X</strong></summary>
+
+| Image repository                                                               |  Version  |
+|--------------------------------------------------------------------------------|:---------:|
+| docker.io/envoyproxy/ratelimit                                                 | vX.X.X    |
+| nexus.mia-platform.eu/back-kit/mfe-toolkit-on-prem                             | vX.X.X    |
+| nexus.mia-platform.eu/cache/envoyproxy/envoy                                   | vX.X.X    |
+| nexus.mia-platform.eu/console/aggregated-website                               | vX.X.X    |
+| nexus.mia-platform.eu/console/backend                                          | vX.X.X    |
+| nexus.mia-platform.eu/console/catalog-service                                  | vX.X.X    |
+| nexus.mia-platform.eu/console/deploy-service                                   | vX.X.X    |
+| nexus.mia-platform.eu/console/environments-variables                           | vX.X.X    |
+| nexus.mia-platform.eu/console/events-manager                                   | vX.X.X    |
+| nexus.mia-platform.eu/console/extensibility-manager                            | vX.X.X    |
+| nexus.mia-platform.eu/console/favorites-service                                | vX.X.X    |
+| nexus.mia-platform.eu/console/feature-toggle-service                           | vX.X.X    |
+| nexus.mia-platform.eu/console/kubernetes-service                               | vX.X.X    |
+| nexus.mia-platform.eu/console/mcp-server                                       | vX.X.X    |
+| nexus.mia-platform.eu/console/mia-assistant                                    | vX.X.X    |
+| nexus.mia-platform.eu/console/mia-craft-bff                                    | vX.X.X    |
+| nexus.mia-platform.eu/console/notification-provider                            | vX.X.X    |
+| nexus.mia-platform.eu/console/project-service                                  | vX.X.X    |
+| nexus.mia-platform.eu/console/rbac-manager-bff                                 | vX.X.X    |
+| nexus.mia-platform.eu/console/scripts/bindings-cleaner                         | vX.X.X    |
+| nexus.mia-platform.eu/console/scripts/configuration-history-cleaner            | vX.X.X    |
+| nexus.mia-platform.eu/console/scripts/marketplace-sync                         | vX.X.X    |
+| nexus.mia-platform.eu/console/scripts/mia-assistant-embeddings-importer        | vX.X.X    |
+| nexus.mia-platform.eu/console/scripts/software-catalog-sync                    | vX.X.X    |
+| nexus.mia-platform.eu/console/scripts/version-upgrader                         | vX.X.X    |
+| nexus.mia-platform.eu/console/tenant-overview                                  | vX.X.X    |
+| nexus.mia-platform.eu/core/authorization-service                               | vX.X.X    |
+| nexus.mia-platform.eu/core/client-credentials                                  | vX.X.X    |
+| nexus.mia-platform.eu/core/crud-service                                        | vX.X.X    |
+| nexus.mia-platform.eu/core/proxy-manager                                       | vX.X.X    |
+| nexus.mia-platform.eu/core/swagger-aggregator                                  | vX.X.X    |
+| nexus.mia-platform.eu/microlc/middleware                                       | vX.X.X    |
+| nexus.mia-platform.eu/plugins/files-service                                    | vX.X.X    |
+| nexus.mia-platform.eu/plugins/ses-mail-notification-service                    | vX.X.X    |
+| nexus.mia-platform.eu/platform/auth/authtool/authtool-bff                      | vX.X.X    |
+| nexus.mia-platform.eu/rond-authz/rond                                          | vX.X.X    |
+
+</details>
