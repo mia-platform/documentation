@@ -13,7 +13,7 @@
             "The new version `v0.8.1` of the _Stream Processor_ is available!",
             "This release improves resiliency: when none of the configured Kafka brokers are reachable, the service is now marked as **not ready**, so it stops receiving traffic until the connection is restored, avoiding failed processing attempts.",
             "The same fix has also been backported to `v0.7.3`.",
-            "Check the service [changelog](/docs/products/fast_data_v2/stream_processor/changelog) for the full list of changes."
+            "Check the service [changelog](/docs/15.1.0/products/fast_data_v2/stream_processor/changelog) for the full list of changes."
           ]
         }
       ],
@@ -56,7 +56,7 @@
           "description": [
             "The new version `v0.3.1` of the _Job Runner_ is available!",
             "This release updates the bundled MySQL, PostgreSQL, and Oracle database drivers.",
-            "For more information about the [Data Catalog Application](/docs/products/data_catalog/overview_data_catalog) and the latest service versions, check out the [compatibility matrix](/docs/products/data_catalog/data_catalog_compatibility_matrix)."
+            "For more information about the [Data Catalog Application](/docs/15.1.0/products/data_catalog/overview_data_catalog) and the latest service versions, check out the [compatibility matrix](/docs/15.1.0/products/data_catalog/data_catalog_compatibility_matrix)."
           ]
         }
       ],
