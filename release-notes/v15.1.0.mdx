@@ -10,14 +10,30 @@ import dataAccordion from '@site/src/config/release-notes/release-note-v15-1-0.j
 _Aug 27th, 2026_
 
 :::info
-Mia-Platform v15.1.0 is currently in **Preview** and will be generally available on **12th September**.
+Mia-Platform v15.1.0 is currently in **Preview** and will be generally available on **19th September**.
 :::
 
 ## Suite Home
 
-## Catalog
+### Platform Administration
 
-## AI Foundry
+The ability to configure permissions directly from the UI has been extended.
+
+* **Organization admins** now have access to a dedicated view showing every user in the organization, along with the tenants they belong to and their roles within each.
+* Both **Organization admins** and **Tenant admins** can assign a user's roles for each tenant. Roles can be predefined, general or item level: **Catalog** supports maximum granularity of item level permissions, while **AI Foundry** currently offers only general static role assignment.
+* On Catalog, granular permissions can still be assigned to different groups and users through configuration.
+
+Inviting users to a tenant is now also possible directly from the UI. Previously, the Organization admin or the tenant's Super Admin had to create users through the API Portal.
+
+* Organization admins can now invite users directly from the Suite; invited users receive an email invitation they must accept to set up their account.
+* The UI now shows the invitation status: **pending** or **accepted**.
+* Once accepted, roles, permissions, and groups can be assigned to the user.
+
+### Tenant and Service Account creation
+
+* Added the ability to create a **Tenant** directly from the top of the left sidebar.
+* **Service Account** creation remains available in its dedicated "Service Account" section.
+
 
 ## Other New Features, Improvements and Bug Fixes
 

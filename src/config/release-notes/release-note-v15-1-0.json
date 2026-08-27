@@ -69,8 +69,38 @@
     "defaultOpen": false,
     "type": "versions",
     "items": {
-      "newFeatures": [],
-      "improvements": []
+      "newFeatures": [
+        {
+          "title": "Campaign notification reminders",
+          "description": [
+            "Campaign notification settings have been extended: you can now set a **reminder X days before a campaign ends**, sent to the owners and followers of both the campaign and its related items."
+          ]
+        }
+      ],
+      "improvements": [
+        {
+          "title": "Campaigns and Scorecard",
+          "description": [
+            "Campaigns can now be **edited** after they have been configured.",
+            "The table view now shows additional metadata for each campaign, including its **owner** and **creation date**.",
+            "On the Scorecard, you can now view and drill into the rules that an item did not pass."
+          ]
+        },
+        {
+          "title": "Views and Filters",
+          "description": [
+            "Improved view creation: after applying a filter to items, you can now save that filter directly as a **view**."
+          ]
+        },
+        {
+          "title": "Azure connector",
+          "description": [
+            "Added support for the **Azure connector**, with a remapped **Azure Function** resource and improved support for **Azure API Management (APIM)** and **Azure Notification Hub** as new resource types mapped by the Azure connector.",
+            "Improved and fixed issues in the **Catalog MCP Server**."
+          ]
+        }
+      ],
+      "bugFixes": []
     }
   },
   {
