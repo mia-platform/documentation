@@ -64,8 +64,8 @@
     }
   },
   {
-    "title": "Context Catalog",
-    "icon": "context-catalog",
+    "title": "Catalog",
+    "icon": "catalog",
     "defaultOpen": false,
     "type": "versions",
     "items": {
@@ -101,16 +101,6 @@
         }
       ],
       "bugFixes": []
-    }
-  },
-  {
-    "title": "AI Foundry",
-    "icon": "ai-foundry",
-    "defaultOpen": false,
-    "type": "versions",
-    "items": {
-      "newFeatures": [],
-      "improvements": []
     }
   }
 ]
