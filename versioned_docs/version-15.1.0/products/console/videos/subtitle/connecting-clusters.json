@@ -1,0 +1,35 @@
+{
+  "videoId": "jX8SCUctjGw",
+  "subtitles": [
+    {
+      "startTimeString": "00:00:01,040",
+      "endTimeString": "00:00:10,000 ",
+      "text": "Hi everyone and welcome to the Mia-Platform tutorials! Today we're going to see how you can add a cluster connection with existing clusters in the Mia-Platform Console."
+    },
+    {
+      "startTimeString": "00:00:10,000",
+      "endTimeString": "00:00:33,000 ",
+      "text": "To begin with, we're in the Experiment section of the Mia-Platform Console. Let's go ahead and click on \"Clusters\". Here you can see the existing clusters that already exist in your project and you can see how to add a cluster connection. As you can see we have two existing clusters, a noprod and an rke. If you click on the arrow here, you'll be able to see all of the information about them."
+    },
+    {
+      "startTimeString": "00:00:33,000",
+      "endTimeString": "00:00:50,000 ",
+      "text": "Let's go ahead and add a cluster connection. So as you can see we have multiple Cloud providers for you to create a new cluster connection: we have GCP, AWS, Azure, Oracle Cloud, and you can also use any other Cloud Provider."
+    },
+    {
+      "startTimeString": "00:00:50,000",
+      "endTimeString": "00:01:01,000 ",
+      "text": "For this example, let's go ahead and use GCP. As you can see there are four available runtime services: GKE, Autopilot, Kubernetes and OpenShift."
+    },
+    {
+      "startTimeString": "00:01:01,000",
+      "endTimeString": "00:01:57,000 ",
+      "text": "For this example, let's go ahead and use Kubernetes. This is your new cluster, which is provided by GCP with Kurnetes as the runtime service. For the example, let's go ahead and put in a cluster ID. Then let's put in an a URL and then we insert the geographics. For this example, let's just put in the UK. Then you can add a description. Let's go ahead and click on \"Next\". Then you add your service account token: for this example I'm just adding a dummy text. In this stage you can add a Certificate authority or a Proxy. To add them you simply click on \"Add\" and put in the Certificate authority. You can do the same for the proxy. Once you're happy with this you can go ahead and click on \"Add cluster\" and with this your new cluster connection will be complete."
+    },
+    {
+      "startTimeString": "00:01:57,000",
+      "endTimeString": "00:02:09,000 ",
+      "text": "Thank you for watching and as usual, if you have any questions feel free to reach out to us via email or book a demo on our website!"
+    }
+  ]
+}
