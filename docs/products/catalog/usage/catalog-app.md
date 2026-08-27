@@ -97,6 +97,8 @@ Click **Create view** at the bottom of the Items section in the sidebar. You wil
   - **Operators**: equals, not equals, matches, exists (for tags: contains / not contains).
   - **Combinator**: match **All conditions** (AND) or **Any condition** (OR).
 
+A view can also be created starting from an **active filter** on the item list: after applying one or more filter conditions to the items view, use **Save as view** to persist that filter as a new view without re-entering the conditions manually.
+
 ### Browse a view
 
 ![Catalog App View items list](../img/catalog_view_details.png)
@@ -213,7 +215,7 @@ Clicking a scorecard opens its detail page, organized into five sections:
 
 | Section | Content |
 | :------ | :------ |
-| **Overview** | Table of evaluated items showing the achieved level and per-criterion pass/fail result. Searchable and filterable by name or level. Click any row to open a side panel with the full per-criterion breakdown for that item. |
+| **Overview** | Table of evaluated items showing the achieved level and per-criterion pass/fail result. Searchable and filterable by name or level. Click any row to open a side panel with the full per-criterion breakdown for that item, including the individual criteria the item did not pass. |
 | **Evaluation Criteria** | All rules in the scorecard, grouped by level. Expand any rule to inspect its condition expression and target item types. |
 | **Evaluations** | History of all evaluation runs with status, date, and item count. Click a past run to drill into its full per-item results, with the same filtering and drill-down available as in the Overview. |
 | **Campaigns** | Campaigns that reference this scorecard, with their progress and timeline. |
@@ -250,13 +252,13 @@ A **campaign** is a time-boxed compliance drive: it bundles a set of goals (eval
 The campaigns page supports two display modes, switchable from the toolbar:
 
 - **Grid** (default) — card view showing each campaign's overall progress percentage, items evaluated, and time left.
-- **List** — table view with the same statistics as columns (Name, Progress, Items evaluated, Time left, Tags).
+- **List** — table view with the same statistics as columns (Name, Progress, Items evaluated, Time left, Tags), plus the campaign **owner** and **creation date**.
 
 In both modes you can:
 
 - **Search** by title or name.
 - **Filter** by title and tags.
-- **Customize columns** (list mode) to show or hide Name, Progress, Items evaluated, Time left, and Tags.
+- **Customize columns** (list mode) to show or hide Name, Progress, Items evaluated, Time left, Owner, Creation date, and Tags.
 
 #### Create a campaign
 

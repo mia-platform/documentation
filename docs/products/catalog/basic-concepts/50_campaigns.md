@@ -60,12 +60,22 @@ Compliance campaigns run asynchronously over days or weeks, evaluating catalog i
 
 * **Notification configuration**: when creating a campaign, a user can also configure its notifications: which events trigger them, who receives them, and how often periodic reports are sent.
 
+### Reminder before campaign end
+
+In addition to the `start` and `end` lifecycle events, a campaign's notification policy now supports a configurable **reminder**: a notification sent a set number of days before `endTime`, to prompt owners and followers to close out any pending items before the deadline.
+
+When configuring notifications for a campaign, users can set:
+
+- **Reminder offset** — the number of days before `endTime` at which the reminder is sent.
+- **Recipient groups** for the reminder event, chosen among `campaignOwners`, `campaignFollowers`, `itemOwners`, `itemFollowers` (see [Core concepts](#core-concepts)). Item owners and followers are reached through the email associated with the item's `owner`/`follower` fields — items themselves are never notification recipients.
+
 ### How configuration works
 
 * A user creates a campaign; default notification settings are initialized.
 * The user customizes events, recipient groups, and report frequency.
 * The policy is persisted as part of the `Campaign` resource.
-* The Campaign Details page displays the persisted configuration, read-only.
+* The Campaign Details page displays the persisted configuration.
+* Existing notification settings can be edited after the campaign has been created, from the Campaign Details page.
 
 ![Campaign Notification Settings](../img/catalog_campaign_notification_settings.png)
 
