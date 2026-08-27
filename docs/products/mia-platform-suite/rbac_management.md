@@ -61,7 +61,7 @@ See organization's detail at [Manage users](/products/console/identity-and-acces
 
 Like Catalog, AI Foundry supports a potentially unbounded set of roles, permissions, and groups, with maximum granularity for defining fine-grained access to AI Foundry resources.
 
-## How it works, in practice
+## How to assign roles and permissions
 
 - The administrator **assigns** roles to users, service accounts, or groups, optionally limiting their validity to a specific scope. In practice, this means creating a group, adding members to it, and assigning one or more roles to that group.
 
