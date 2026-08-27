@@ -7,15 +7,17 @@ image: "img/release-note-link-preview.png"
 import Accordion from '@site/src/components/Accordion/index.js';
 import dataAccordion from '@site/src/config/release-notes/release-note-v15-1-0.json';
 
-_TBD_
+_Aug 27th, 2026_
+
+:::info
+Mia-Platform v15.1.0 is currently in **Preview** and will be generally available on **12th September**.
+:::
 
 ## Suite Home
 
 ## Catalog
 
 ## AI Foundry
-
-## Console
 
 ## Other New Features, Improvements and Bug Fixes
 
@@ -29,33 +31,33 @@ To run Mia-Platform v15.1.0, the following Helm chart versions must be installed
 
 | Product | Helm Chart | Version | Upgrade guide |
 |---|---|---|---|
-| **Auth — Keycloak** | `keycloak-operator` | `vX.X.X` | [How to upgrade](/docs/requirements/installation-guidelines/shared-services/authn/keycloak/how-to-upgrade) |
-| **Auth — Realm Management** | `keycloak-realm-management` | `vX.X.X` | [How to upgrade](/docs/requirements/installation-guidelines/shared-services/authn/keycloak-realm-management/how-to-upgrade) |
+| **Auth — Keycloak** | `keycloak-operator` | `v0.5.5` | [How to upgrade](/docs/requirements/installation-guidelines/shared-services/authn/keycloak/how-to-upgrade) |
+| **Auth — Realm Management** | `keycloak-realm-management` | `v0.1.35` | [How to upgrade](/docs/requirements/installation-guidelines/shared-services/authn/keycloak-realm-management/how-to-upgrade) |
 | **Homepage & RBAC** | `services` | `vX.X.X` | [How to upgrade](/docs/requirements/installation-guidelines/shared-services/services/how-to-upgrade) |
 | **Catalog** | `catalog` | `vX.X.X` | [How to upgrade](/docs/requirements/installation-guidelines/catalog/how-to-upgrade) |
 | **AI Foundry** | `ai-foundry` | `vX.X.X` | [How to upgrade](/docs/requirements/installation-guidelines/ai-foundry/how-to-upgrade) |
-| **Console** | `console` | `vX.X.X` | [How to upgrade](/docs/requirements/installation-guidelines/console/self-hosted/how-to-upgrade) |
+| **Console** | `console` | `v15.1.0-beta.0` | [How to upgrade](/docs/requirements/installation-guidelines/console/self-hosted/how-to-upgrade) |
 
 ### Bill of materials
 
 Click on each chart to expand its full image list.
 
 <details>
-<summary><strong>keycloak-operator vX.X.X</strong></summary>
+<summary><strong>keycloak-operator v0.5.5</strong></summary>
 
 | Image repository | Version |
 |---|:---:|
-| nexus.mia-platform.eu/platform/auth/keycloak | vX.X.X |
-| quay.io/keycloak/keycloak-operator | vX.X.X |
+| nexus.mia-platform.eu/platform/auth/keycloak | 0.3.2-26.6.4-postgres |
+| quay.io/keycloak/keycloak-operator | 26.6.4 |
 
 </details>
 
 <details>
-<summary><strong>keycloak-realm-management vX.X.X</strong></summary>
+<summary><strong>keycloak-realm-management v0.1.35</strong></summary>
 
 | Image repository | Version |
 |---|:---:|
-| docker.io/adorsys/keycloak-config-cli | vX.X.X |
+| docker.io/adorsys/keycloak-config-cli | latest-26.5.4 |
 
 </details>
 
@@ -116,45 +118,45 @@ Click on each chart to expand its full image list.
 </details>
 
 <details>
-<summary><strong>console vX.X.X</strong></summary>
+<summary><strong>console v15.1.0-beta.0</strong></summary>
 
 | Image repository                                                               |  Version  |
 |--------------------------------------------------------------------------------|:---------:|
-| docker.io/envoyproxy/ratelimit                                                 | vX.X.X    |
-| nexus.mia-platform.eu/back-kit/mfe-toolkit-on-prem                             | vX.X.X    |
-| nexus.mia-platform.eu/cache/envoyproxy/envoy                                   | vX.X.X    |
-| nexus.mia-platform.eu/console/aggregated-website                               | vX.X.X    |
-| nexus.mia-platform.eu/console/backend                                          | vX.X.X    |
-| nexus.mia-platform.eu/console/catalog-service                                  | vX.X.X    |
-| nexus.mia-platform.eu/console/deploy-service                                   | vX.X.X    |
-| nexus.mia-platform.eu/console/environments-variables                           | vX.X.X    |
-| nexus.mia-platform.eu/console/events-manager                                   | vX.X.X    |
-| nexus.mia-platform.eu/console/extensibility-manager                            | vX.X.X    |
-| nexus.mia-platform.eu/console/favorites-service                                | vX.X.X    |
-| nexus.mia-platform.eu/console/feature-toggle-service                           | vX.X.X    |
-| nexus.mia-platform.eu/console/kubernetes-service                               | vX.X.X    |
-| nexus.mia-platform.eu/console/mcp-server                                       | vX.X.X    |
-| nexus.mia-platform.eu/console/mia-assistant                                    | vX.X.X    |
-| nexus.mia-platform.eu/console/mia-craft-bff                                    | vX.X.X    |
-| nexus.mia-platform.eu/console/notification-provider                            | vX.X.X    |
-| nexus.mia-platform.eu/console/project-service                                  | vX.X.X    |
-| nexus.mia-platform.eu/console/rbac-manager-bff                                 | vX.X.X    |
-| nexus.mia-platform.eu/console/scripts/bindings-cleaner                         | vX.X.X    |
-| nexus.mia-platform.eu/console/scripts/configuration-history-cleaner            | vX.X.X    |
-| nexus.mia-platform.eu/console/scripts/marketplace-sync                         | vX.X.X    |
-| nexus.mia-platform.eu/console/scripts/mia-assistant-embeddings-importer        | vX.X.X    |
-| nexus.mia-platform.eu/console/scripts/software-catalog-sync                    | vX.X.X    |
-| nexus.mia-platform.eu/console/scripts/version-upgrader                         | vX.X.X    |
-| nexus.mia-platform.eu/console/tenant-overview                                  | vX.X.X    |
-| nexus.mia-platform.eu/core/authorization-service                               | vX.X.X    |
-| nexus.mia-platform.eu/core/client-credentials                                  | vX.X.X    |
-| nexus.mia-platform.eu/core/crud-service                                        | vX.X.X    |
-| nexus.mia-platform.eu/core/proxy-manager                                       | vX.X.X    |
-| nexus.mia-platform.eu/core/swagger-aggregator                                  | vX.X.X    |
-| nexus.mia-platform.eu/microlc/middleware                                       | vX.X.X    |
-| nexus.mia-platform.eu/plugins/files-service                                    | vX.X.X    |
-| nexus.mia-platform.eu/plugins/ses-mail-notification-service                    | vX.X.X    |
-| nexus.mia-platform.eu/platform/auth/authtool/authtool-bff                      | vX.X.X    |
-| nexus.mia-platform.eu/rond-authz/rond                                          | vX.X.X    |
+| docker.io/envoyproxy/ratelimit                                                 | 19f2079f  |
+| nexus.mia-platform.eu/back-kit/mfe-toolkit-on-prem                             |  1.3.13   |
+| nexus.mia-platform.eu/cache/envoyproxy/envoy                                   |  v1.32.1  |
+| nexus.mia-platform.eu/console/aggregated-website                               |   1.6.2   |
+| nexus.mia-platform.eu/console/backend                                          |  33.2.2   |
+| nexus.mia-platform.eu/console/catalog-service                                  |   1.7.2   |
+| nexus.mia-platform.eu/console/deploy-service                                   |   8.4.0   |
+| nexus.mia-platform.eu/console/environments-variables                           |   3.6.1   |
+| nexus.mia-platform.eu/console/events-manager                                   |   1.5.0   |
+| nexus.mia-platform.eu/console/extensibility-manager                            |   3.0.0   |
+| nexus.mia-platform.eu/console/favorites-service                                |   2.3.1   |
+| nexus.mia-platform.eu/console/feature-toggle-service                           |   1.3.7   |
+| nexus.mia-platform.eu/console/kubernetes-service                               |   8.4.6   |
+| nexus.mia-platform.eu/console/mcp-server                                       |   1.3.0   |
+| nexus.mia-platform.eu/console/mia-assistant                                    |   2.0.0   |
+| nexus.mia-platform.eu/console/mia-craft-bff                                    |   1.2.5   |
+| nexus.mia-platform.eu/console/notification-provider                            |   2.2.5   |
+| nexus.mia-platform.eu/console/project-service                                  |   2.1.0   |
+| nexus.mia-platform.eu/console/rbac-manager-bff                                 |   2.1.2   |
+| nexus.mia-platform.eu/console/scripts/bindings-cleaner                         |   1.2.2   |
+| nexus.mia-platform.eu/console/scripts/configuration-history-cleaner            |   0.4.1   |
+| nexus.mia-platform.eu/console/scripts/marketplace-sync                         |  10.11.0  |
+| nexus.mia-platform.eu/console/scripts/mia-assistant-embeddings-importer        | 15.1.0-text-embedding-3-large |
+| nexus.mia-platform.eu/console/scripts/software-catalog-sync                    |  0.7.27   |
+| nexus.mia-platform.eu/console/scripts/version-upgrader                         |  11.2.0   |
+| nexus.mia-platform.eu/console/tenant-overview                                  |   4.2.1   |
+| nexus.mia-platform.eu/core/authorization-service                               |   2.4.3   |
+| nexus.mia-platform.eu/core/client-credentials                                  |   3.4.1   |
+| nexus.mia-platform.eu/core/crud-service                                        |  6.10.3   |
+| nexus.mia-platform.eu/core/proxy-manager                                       |   3.5.0   |
+| nexus.mia-platform.eu/core/swagger-aggregator                                  |   3.9.6   |
+| nexus.mia-platform.eu/microlc/middleware                                       |   3.4.0   |
+| nexus.mia-platform.eu/platform/auth/authtool/authtool-bff                      |   0.5.2   |
+| nexus.mia-platform.eu/plugins/files-service                                    |  2.10.5   |
+| nexus.mia-platform.eu/plugins/ses-mail-notification-service                    |   3.5.0   |
+| nexus.mia-platform.eu/rond-authz/rond                                          |  1.14.2   |
 
 </details>

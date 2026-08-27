@@ -10,7 +10,7 @@ import Changelog from '@site/src/components/Changelog';
 <Changelog>
 
 ## [v15.1.0](/release-notes/v15.1.0.mdx)
-*TBD*
+*Aug 27th, 2026*
 
 [Read the release notes](/release-notes/v15.1.0.mdx)
 

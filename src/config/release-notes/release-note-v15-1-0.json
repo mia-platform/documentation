@@ -1,12 +1,66 @@
 [
   {
+    "title": "Fast Data",
+    "icon": "fast-data",
+    "defaultOpen": false,
+    "type": "versions",
+    "items": {
+      "newFeatures": [],
+      "improvements": [
+        {
+          "title": "Stream Processor v0.8.1",
+          "description": [
+            "The new version `v0.8.1` of the _Stream Processor_ is available!",
+            "This release improves resiliency: when none of the configured Kafka brokers are reachable, the service is now marked as **not ready**, so it stops receiving traffic until the connection is restored, avoiding failed processing attempts.",
+            "The same fix has also been backported to `v0.7.3`.",
+            "Check the service [changelog](/docs/products/fast_data_v2/stream_processor/changelog) for the full list of changes."
+          ]
+        }
+      ],
+      "bugFixes": []
+    }
+  },
+  {
     "title": "Console",
     "icon": "console",
     "defaultOpen": false,
     "type": "versions",
     "items": {
       "newFeatures": [],
-      "improvements": []
+      "improvements": [
+        {
+          "title": "Helm builtin values in editor hover",
+          "description": [
+            "The chart editor in the Design Area **Charts** section now shows the value of **Helm builtin objects** (such as `.Release`, `.Chart`, and `.Files`) when you hover over them in your templates, making it easier to write and review Helm charts."
+          ]
+        }
+      ],
+      "bugFixes": [
+        "Fixed an issue in the MCP server where fetching a project's configuration by **version** returned an almost empty result, while fetching the same data by **revision** worked correctly. Configuration retrieved by version now includes the full set of expected data.",
+        "Fixed an issue where rolling back a deployment could fail with a _Reference already exists_ error in repositories with more than 100 tags. Deployment rollback now correctly detects existing tags regardless of how many tags the repository has.",
+        "Fixed an issue where the Design section failed to open when the last commit was authored by someone whose first or last name contained non-ASCII characters (for example, accented letters).",
+        "Fixed an issue where the Mongo CRUD section could break when a project's CRUD Service version was missing; this case is now handled correctly."
+      ]
+    }
+  },
+  {
+    "title": "Data Catalog",
+    "icon": "data-catalog",
+    "defaultOpen": false,
+    "type": "versions",
+    "items": {
+      "newFeatures": [],
+      "improvements": [
+        {
+          "title": "Job Runner v0.3.1",
+          "description": [
+            "The new version `v0.3.1` of the _Job Runner_ is available!",
+            "This release updates the bundled MySQL, PostgreSQL, and Oracle database drivers.",
+            "For more information about the [Data Catalog Application](/docs/products/data_catalog/overview_data_catalog) and the latest service versions, check out the [compatibility matrix](/docs/products/data_catalog/data_catalog_compatibility_matrix)."
+          ]
+        }
+      ],
+      "bugFixes": []
     }
   },
   {
