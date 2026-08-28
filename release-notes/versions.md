@@ -13,7 +13,7 @@ import Changelog from '@site/src/components/Changelog';
 *Aug 27th, 2026*
 
 Mia-Platform v15.1.0 is currently in **Preview** and builds on v15 with improvements across the Suite and Catalog:
-- **Suite Home**: Platform Administration now supports configuring permissions and inviting users directly from the UI, plus creating **Tenants** from the sidebar.
+- **Suite Home**: Platform Administration now supports configuring permissions and inviting users directly from the UI, plus assigning **item-level** granular permissions to roles.
 - **Catalog**: campaign reminders and editing, Scorecard rule drill-down, saving filters as views, and a new **Azure connector**.
 - Additional improvements and bug fixes across **Fast Data**, **Console**, and **Data Catalog**.
 
