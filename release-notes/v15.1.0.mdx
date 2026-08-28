@@ -45,9 +45,9 @@ To run Mia-Platform v15.1.0, the following Helm chart versions must be installed
 |---|---|---|---|
 | **Auth — Keycloak** | `keycloak-operator` | `v0.5.5` | [How to upgrade](/docs/requirements/installation-guidelines/shared-services/authn/keycloak/how-to-upgrade) |
 | **Auth — Realm Management** | `keycloak-realm-management` | `v0.1.35` | [How to upgrade](/docs/requirements/installation-guidelines/shared-services/authn/keycloak-realm-management/how-to-upgrade) |
-| **Homepage & RBAC** | `services` | `vX.X.X` | [How to upgrade](/docs/requirements/installation-guidelines/shared-services/services/how-to-upgrade) |
-| **Catalog** | `catalog` | `vX.X.X` | [How to upgrade](/docs/requirements/installation-guidelines/catalog/how-to-upgrade) |
-| **AI Foundry** | `ai-foundry` | `vX.X.X` | [How to upgrade](/docs/requirements/installation-guidelines/ai-foundry/how-to-upgrade) |
+| **Homepage & RBAC** | `services` | `v0.3.9` | [How to upgrade](/docs/requirements/installation-guidelines/shared-services/services/how-to-upgrade) |
+| **Catalog** | `catalog` | `v0.3.41` | [How to upgrade](/docs/requirements/installation-guidelines/catalog/how-to-upgrade) |
+| **AI Foundry** | `ai-foundry` | `v0.4.82` | [How to upgrade](/docs/requirements/installation-guidelines/ai-foundry/how-to-upgrade) |
 | **Console** | `console` | `v15.1.0-beta.0` | [How to upgrade](/docs/requirements/installation-guidelines/console/self-hosted/how-to-upgrade) |
 
 ### Bill of materials
@@ -74,58 +74,60 @@ Click on each chart to expand its full image list.
 </details>
 
 <details>
-<summary><strong>services vX.X.X</strong></summary>
+<summary><strong>services v0.3.9</strong></summary>
 
 | Image repository | Version |
 |---|:---:|
-| docker.io/redis | vX.X.X |
-| nexus.mia-platform.eu/ai-foundry/adk-be-app | vX.X.X |
-| nexus.mia-platform.eu/cache/envoyproxy/envoy | vX.X.X |
-| nexus.mia-platform.eu/core/swagger-aggregator | vX.X.X |
-| nexus.mia-platform.eu/platform/auth/access-control/ext-authz | vX.X.X |
-| nexus.mia-platform.eu/platform/auth/authtool/authtool-bff | vX.X.X |
-| nexus.mia-platform.eu/platform/services/homepage | vX.X.X |
-| nexus.mia-platform.eu/platform/services/rbac-management | vX.X.X |
-| quay.io/docling-project/docling-serve-cpu | vX.X.X |
+| docker.io/redis | 8.4.0 |
+| nexus.mia-platform.eu/ai-foundry/adk-be-app | 0.7.3 |
+| nexus.mia-platform.eu/cache/envoyproxy/envoy | v1.36.2 |
+| nexus.mia-platform.eu/core/swagger-aggregator | 3.9.4 |
+| nexus.mia-platform.eu/platform/auth/access-control/ext-authz | 0.2.2-nocache |
+| nexus.mia-platform.eu/platform/auth/authtool/authtool-bff | 0.5.2 |
+| nexus.mia-platform.eu/platform/services/homepage | 0.4.2 |
+| nexus.mia-platform.eu/platform/services/rbac-management | 0.3.0 |
+| quay.io/docling-project/docling-serve-cpu | v1.24.0 |
+| docker.io/alpine/psql | 18.4 |
+| docker.io/curlimages/curl | 8.11.1 |
 
 </details>
 
 <details>
-<summary><strong>catalog vX.X.X</strong></summary>
+<summary><strong>catalog v0.3.41</strong></summary>
 
 | Image repository | Version |
 |---|:---:|
-| docker.io/redis | vX.X.X |
-| nexus.mia-platform.eu/ai-foundry/adk-be-app | vX.X.X |
-| nexus.mia-platform.eu/cache/envoyproxy/envoy | vX.X.X |
-| nexus.mia-platform.eu/catalog/catalog-engine | vX.X.X |
-| nexus.mia-platform.eu/catalog/catalog-mcp-server | vX.X.X |
-| nexus.mia-platform.eu/catalog/catalog-website | vX.X.X |
-| nexus.mia-platform.eu/catalog/items-consumer | vX.X.X |
-| nexus.mia-platform.eu/catalog/items-producer | vX.X.X |
-| nexus.mia-platform.eu/core/swagger-aggregator | vX.X.X |
-| nexus.mia-platform.eu/data-fabric/stream-processor | vX.X.X |
-| nexus.mia-platform.eu/p4samd/core/policy-engine | vX.X.X |
+| docker.io/redis | 8.4.0 |
+| nexus.mia-platform.eu/ai-foundry/adk-be-app | 0.7.3 |
+| nexus.mia-platform.eu/cache/envoyproxy/envoy | v1.36.2 |
+| nexus.mia-platform.eu/catalog/catalog-engine | 0.8.0 |
+| nexus.mia-platform.eu/catalog/catalog-mcp-server | 0.2.3 |
+| nexus.mia-platform.eu/catalog/catalog-website | 0.4.1 |
+| nexus.mia-platform.eu/catalog/items-consumer | 0.2.0 |
+| nexus.mia-platform.eu/catalog/items-producer | 0.2.0 |
+| nexus.mia-platform.eu/core/swagger-aggregator | 3.9.4 |
+| nexus.mia-platform.eu/data-fabric/stream-processor | 0.8.1-postgres |
+| nexus.mia-platform.eu/p4samd/core/policy-engine | v0.9.0 |
 | nexus.mia-platform.eu/platform/auth/access-control/ext-authz | vX.X.X |
-| nexus.mia-platform.eu/platform/auth/authtool/authtool-bff | vX.X.X |
-| nexus.mia-platform.eu/plugins/smtp-mail-notification-service | vX.X.X |
-| quay.io/docling-project/docling-serve-cpu | vX.X.X |
+| nexus.mia-platform.eu/platform/auth/authtool/authtool-bff | 0.5.2 |
+| nexus.mia-platform.eu/plugins/smtp-mail-notification-service | 3.5.1 |
+| quay.io/docling-project/docling-serve-cpu | v1.24.0@sha256:3848073769721b92c17f34e29e06c3cc32d8bfb45cd1ad5c608219eb1d5bcb51 |
 
 </details>
 
 <details>
-<summary><strong>ai-foundry vX.X.X</strong></summary>
+<summary><strong>ai-foundry v0.4.82</strong></summary>
 
 | Image repository | Version |
 |---|:---:|
-| docker.io/redis | vX.X.X |
-| nexus.mia-platform.eu/ai-foundry/adk-be-app | vX.X.X |
-| nexus.mia-platform.eu/ai-foundry/ai-foundry-bff | vX.X.X |
-| nexus.mia-platform.eu/ai-foundry/ai-foundry-website | vX.X.X |
-| nexus.mia-platform.eu/cache/envoyproxy/envoy | vX.X.X |
-| nexus.mia-platform.eu/platform/auth/access-control/ext-authz | vX.X.X |
-| nexus.mia-platform.eu/platform/auth/authtool/authtool-bff | vX.X.X |
-| quay.io/docling-project/docling-serve-cpu | vX.X.X |
+| docker.io/redis | 8.4.0 |
+| nexus.mia-platform.eu/ai-foundry/adk-be-app | 0.7.3 |
+| nexus.mia-platform.eu/ai-foundry/ai-foundry-bff | 0.3.4 |
+| nexus.mia-platform.eu/ai-foundry/ai-foundry-website | 0.7.5 |
+| nexus.mia-platform.eu/cache/envoyproxy/envoy | v1.36.2 |
+| nexus.mia-platform.eu/platform/auth/access-control/ext-authz | 0.2.2-nocache |
+| nexus.mia-platform.eu/platform/auth/authtool/authtool-bff | 0.5.2 |
+| quay.io/docling-project/docling-serve-cpu | v1.24.0 |
 
 </details>
 
