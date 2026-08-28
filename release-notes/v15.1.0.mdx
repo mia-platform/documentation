@@ -17,23 +17,19 @@ Mia-Platform v15.1.0 is currently in **Preview** and will be generally available
 
 ### Platform Administration
 
-The ability to configure permissions directly from the UI has been extended.
+User and permission management is now available directly from the Suite UI.
 
-* **Organization admins** now have access to a dedicated view showing every user in the organization, along with the tenants they belong to and their roles within each.
-* Both **Organization admins** and **Tenant admins** can assign a user's roles for each tenant. Roles can be predefined, general or item level: **Catalog** supports maximum granularity of item level permissions, while **AI Foundry** currently offers only general static role assignment.
-* On Catalog, granular permissions can still be assigned to different groups and users through configuration.
+* Organization admins can view organization users, their tenants, and assigned roles.
+* Organization admins and Tenant admins can assign tenant-level roles to users.
+* Catalog supports granular, item-level permissions for users and groups, while AI Foundry currently supports general static roles.
+* Service Accounts can now be created directly from the Service Account section in the Suite.
 
-Inviting users to a tenant is now also possible directly from the UI. Previously, the Organization admin or the tenant's Super Admin had to create users through the API Portal.
+### User Invitations
 
-* Organization admins can now invite users directly from the Suite; invited users receive an email invitation they must accept to set up their account.
-* The UI now shows the invitation status: **pending** or **accepted**.
-* Once accepted, roles, permissions, and groups can be assigned to the user.
+Users can now be invited to tenants directly from the Suite.
 
-### Tenant and Service Account creation
-
-* Added the ability to create a **Tenant** directly from the top of the left sidebar.
-* **Service Account** creation remains available in its dedicated "Service Account" section.
-
+* Organization admins can send invitations and track their status (Pending or Accepted).
+* Once accepted, users can be assigned roles, permissions, and groups.
 
 ## Other New Features, Improvements and Bug Fixes
 
