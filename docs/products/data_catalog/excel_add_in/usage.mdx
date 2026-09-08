@@ -40,7 +40,10 @@ Once imported, each row that represents an asset contains various metadata field
 **Editable Fields** (Values in these columns cannot be modified):
 - `description` - Asset description
 - `tags` - Asset tags
+- `relatedTerms` - [Business Glossary terms](/products/data_catalog/frontend/data_catalog_business_glossary.mdx) associated to the asset, as a comma-separated list of `<Term type>/<Term>` pairs
 - Custom properties (`customProp1`, `customProp2`, etc.) - Each custom property configured in the Data Catalog appears as a separate column in the worksheet, maintaining its specific data type as defined in the Data Catalog. For more information about custom properties, see the Custom Properties documentation.
+
+![Assets pulled with their related Business Glossary terms](../img/excel_pull_assets_related_terms.png)
 
 ### Asset Navigation
 
@@ -93,6 +96,8 @@ Once the rows have been chosen, you can also select which metadata to synchroniz
 
 ![Pre-push](../img/pre-push.png)
 
+`relatedTerms` is selectable among these columns as well, allowing to synchronize back to the Data Catalog the Business Glossary terms associated to the selected assets.
+
 ### Validation Process
 
 Once the Push Assets action is triggered from the proper button, the add-in begins a pre-push validation process that ensures data integrity before synchronization. The system performs structure validation by verifying column names and formats, checking for required asset identifiers, and validating custom property types and values to ensure compatibility with the Data Catalog schema.
@@ -112,6 +117,50 @@ The Error Logs Sheet documents all errors encountered during synchronization and
 
 **Backup Sheet**:
 The Backup Sheet contains the original state of assets before synchronization, serving as a valuable reference for comparison and rollback purposes if needed. This sheet helps users identify what changes were made during the synchronization process.
+
+## Business Glossary Terms
+
+Similarly to data assets, [Business Glossary](/products/data_catalog/frontend/data_catalog_business_glossary.mdx) terms can be pulled into, enriched within, and pushed back from an Excel worksheet, using the same **Pull metadata** ribbon group.
+
+![Data Catalog Excel ribbon](../img/excel_glossary_ribbon.png)
+
+### Pull Business Glossary Terms
+
+Click the **Select Terms** button to open a panel listing the terms defined in the glossary, searchable by name; each entry also shows its Term Type. Select one or more terms and click **Pull terms** to import them into the worksheet.
+
+![Select terms panel](../img/excel_pull_terms_panel.png)
+
+#### Terms Worksheet Structure
+
+Once imported, each row represents a term and contains the following editable columns:
+
+- `Term type` - the term's [Term Type](/products/data_catalog/frontend/data_catalog_business_glossary.mdx#create-a-term)
+- `Term` - the term's name
+- `Description` - the term's description
+- `Tags` - the term's tags
+- `Mark for delete` - checkbox column; ticking it will delete the term from the Data Catalog on the next push
+- `Related terms` - comma-separated list of related terms, each expressed as `<Term type>/<Term>`
+- Custom properties (`CP1`, `CP2`, etc.) - each custom property applicable to Terms appears as a separate column, maintaining its specific data type as defined in the Data Catalog
+
+![Terms pulled into the worksheet](../img/excel_pull_terms_result.png)
+
+:::caution
+A term is uniquely identified by the combination of `Term type` and `Term`. As a consequence, modifying either of these two fields on an already pulled row before pushing will **not** rename the existing term: it will instead result in the creation of a brand new one. To rename an existing term, use the [Data Catalog UI](/products/data_catalog/frontend/data_catalog_business_glossary.mdx#edit-a-term) instead.
+:::
+
+### Push Business Glossary Terms
+
+Once terms have been enriched, the **Push Metadata** button starts the same [Validation Process](#validation-process) and [Synchronization](#synchronization) flow already described for assets. The **Push metadata** panel lets you choose which columns to synchronize, including `Related terms`.
+
+![Push metadata column selection for terms](../img/excel_push_terms_column_selection.png)
+
+![Terms worksheet ready to be pushed](../img/excel_push_terms_worksheet.png)
+
+![Push metadata result](../img/excel_push_terms_result.png)
+
+:::info
+During a single push, new terms are created first, terms marked via `Mark for delete` are deleted next, and finally the remaining rows are updated. This fixed order (create, then delete, then update) ensures that, should an error occur on a specific row, the outcome remains consistent for every other row.
+:::
 
 ## Working with CSV Exports
 
@@ -162,3 +211,7 @@ You can reorder rows, but avoid leaving gaps
 **Invalid Format**:
 - Cell format does not comply with expected data type
 - Solution: Adjust cell format to match custom property requirements
+
+**Term Treated as New**:
+- Occurs when `Term type` or `Term` of an already pulled row is modified before pushing, since these two fields together uniquely identify a term
+- Solution: To rename an existing term, use the Data Catalog UI instead; only edit the other columns from Excel

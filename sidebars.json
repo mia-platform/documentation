@@ -1652,6 +1652,10 @@
           "type": "doc"
         },
         {
+          "id": "products/data_catalog/frontend/data_catalog_business_glossary",
+          "type": "doc"
+        },
+        {
           "id": "products/data_catalog/frontend/data_lineage",
           "type": "doc"
         },
