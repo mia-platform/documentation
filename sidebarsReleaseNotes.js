@@ -9,6 +9,7 @@ export default {
       "items": [
         {"id": "versions", "type": "doc"},
         {"id": "v15.1.0", "type": "doc", "label": "v15.1.0"},
+        {"id": "v15.0.1", "type": "doc", "label": "v15.0.1"},
         {"id": "v15.0.0", "type": "doc", "label": "v15.0.0"},
       ]
     },
