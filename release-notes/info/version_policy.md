@@ -21,7 +21,8 @@ Mia-Platform guarantees **security patches** for the two preceding versions to t
 
 Release | Release Date |  End of Life Date
 -------| -------|-------
-v14 (current)| May 2025 | End of 2026
+v15 (current)| July 2026 | End of 2027
+v14| May 2025 | End of 2026
 v13| May 2024 | End of 2025
 v12| November 2023 | May 2025
 v11| May 2023 | End of 2024

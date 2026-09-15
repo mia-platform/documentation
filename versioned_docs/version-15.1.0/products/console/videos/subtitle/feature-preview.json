@@ -1,0 +1,90 @@
+{
+  "videoId": "ULg5Uk_xV54",
+  "subtitles": [
+    {
+      "startTimeString": "00:00:04,170",
+      "endTimeString": "00:00:06,606 ",
+      "text": "Hello and welcome to the Mia-Platform Video Pills."
+    },
+    {
+      "startTimeString": "00:00:06,806",
+      "endTimeString": "00:00:11,444 ",
+      "text": "In this video, we will see how to enable preview of new features on the Mia-Platform Console."
+    },
+    {
+      "startTimeString": "00:00:11,444",
+      "endTimeString": "00:00:19,719 ",
+      "text": "This will give you the opportunity to test the functionality of new products, understand how they fit into your software's lifecycle, and immediately give feedback to improve it."
+    },
+    {
+      "startTimeString": "00:00:19,953",
+      "endTimeString": "00:00:22,922 ",
+      "text": "Starting from the design area, we notice our default sidebar."
+    },
+    {
+      "startTimeString": "00:00:23,590",
+      "endTimeString": "00:00:30,864 ",
+      "text": "To activate the feature preview function, go to the top-right navigation bar and click on your profile icon, a dropdown menu is displayed."
+    },
+    {
+      "startTimeString": "00:00:31,498",
+      "endTimeString": "00:00:33,066 ",
+      "text": "By clicking on feature preview."
+    },
+    {
+      "startTimeString": "00:00:33,066",
+      "endTimeString": "00:00:35,068 ",
+      "text": "a pop up is displayed."
+    },
+    {
+      "startTimeString": "00:00:35,068",
+      "endTimeString": "00:00:38,038 ",
+      "text": "Inside is a list of all the features you can preview and activate."
+    },
+    {
+      "startTimeString": "00:00:38,471",
+      "endTimeString": "00:00:41,541 ",
+      "text": "In this video, you will only see one: the “Dynamic Sidebar”."
+    },
+    {
+      "startTimeString": "00:00:42,242",
+      "endTimeString": "00:00:46,880 ",
+      "text": "Each feature will have a short description of the benefits and functionality it is intended to enable."
+    },
+    {
+      "startTimeString": "00:00:48,148",
+      "endTimeString": "00:00:54,254 ",
+      "text": "In addition, you will have the opportunity to give your feedback by clicking the button that will open Mia-Platform Github Discussions."
+    },
+    {
+      "startTimeString": "00:00:55,422",
+      "endTimeString": "00:00:59,259 ",
+      "text": "Clicking on the toggle you enable the feature."
+    },
+    {
+      "startTimeString": "00:01:00,326",
+      "endTimeString": "00:01:03,263 ",
+      "text": "If you refresh the page, you can see the new \"More Feature\" tab."
+    },
+    {
+      "startTimeString": "00:01:04,497",
+      "endTimeString": "00:01:07,767 ",
+      "text": "In this case, the default sidebar is switched to a different display mode."
+    },
+    {
+      "startTimeString": "00:01:08,501",
+      "endTimeString": "00:01:13,406 ",
+      "text": "Remember that enabled functions are only active for the user, triggering them not for the whole platform."
+    },
+    {
+      "startTimeString": "00:01:14,741",
+      "endTimeString": "00:01:16,142 ",
+      "text": "To disable the new function."
+    },
+    {
+      "startTimeString": "00:01:16,142",
+      "endTimeString": "00:01:17,477 ",
+      "text": "Simply deactivate it."
+    }
+  ]
+}

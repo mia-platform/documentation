@@ -1,0 +1,13 @@
+[
+  {
+    "title": "Homepage & RBAC",
+    "icon": "services",
+    "defaultOpen": true,
+    "type": "versions",
+    "items": {
+      "bugFixes": [
+        "Fixed an issue where brand-new on-prem installations would not receive built-in roles in their default tenant."
+      ]
+    }
+  }
+]
