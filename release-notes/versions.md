@@ -11,7 +11,7 @@ import Changelog from '@site/src/components/Changelog';
 
 ## [v15.1.0](/release-notes/v15.1.0.mdx)
 
-*Aug 27th, 2026*
+*Sep 17th, 2026*
 
 Mia-Platform v15.1.0 is currently in **Preview** and builds on v15 with improvements across the Suite and Catalog:
 
