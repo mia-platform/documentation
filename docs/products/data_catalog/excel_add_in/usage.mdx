@@ -162,6 +162,14 @@ Once terms have been enriched, the **Push Metadata** button starts the same [Val
 During a single push, new terms are created first, terms marked via `Mark for delete` are deleted next, and finally the remaining rows are updated. This fixed order (create, then delete, then update) ensures that, should an error occur on a specific row, the outcome remains consistent for every other row.
 :::
 
+#### Tips on Worksheet Arrangement
+
+Given that the term relations are always bidirectional, some worksheet arrangements are handled correctly by the push even though they might look inconsistent at first glance:
+
+- **Referencing a term before its own creation row**: if a term listed further down the worksheet (e.g. row 10) is already referenced in the `Related terms` column of a term listed higher up (e.g. row 3), the push still succeeds. Since new terms are created first, every new term referenced anywhere in the worksheet already exists by the time relations are applied.
+- **Declaring a relation on only one side**: if term `A`'s `Related terms` value includes `B`, but `B`'s own row does not list `A` back, this is not an error and nothing needs to be fixed. Relations between terms are always bidirectional: after the push, pulling the terms again will show `A` among `B`'s related terms as well, even though it was never explicitly set on `B`'s row.
+- **Deleting a term that is still referenced elsewhere in the worksheet**: if term `A` is marked via `Mark for delete`, and another row in the same worksheet (term `B`) lists `A` as a related term, the push still succeeds. `A` is deleted before the remaining rows are updated, and it is automatically removed from `B`'s related terms as well, without requiring `B`'s row to be changed.
+
 ## Working with CSV Exports
 
 The add-in is fully compatible with CSV files previously exported from the Data Catalog see Export documentation.
