@@ -55,9 +55,9 @@ See organization's detail at [Manage users](/products/console/identity-and-acces
 
 Catalog and AI Foundry support a potentially unbounded set of roles, permissions, and groups, with maximum granularity for defining fine-grained access to resources.
 
-For **Catalog** in particular, when adding a permission to a role, the admin must enanche granularity of the pre-configured roles, choosing between two kinds of permissions:
+For **Catalog** in particular, when adding a permission to a role, the admin must enhance granularity of the pre-configured roles, choosing between two kinds of permissions:
 
-- **General permissions** — cover generic capabilities such as item type definition management and other non item-specific actions. These are picked by clicking on a **static, predefined list** of possible permissions (available also for AI Foundy).
+- **General permissions** — cover generic capabilities such as item type definition management and other non item-specific actions. These are picked by clicking on a **static, predefined list** of possible permissions (available also for AI Foundry).
 - **Item-level permissions** — cover specific actions on items, such as viewing, editing, or executing them. Clicking this option opens a **side panel** where the admin specifies the **group**, **version**, **family**, and **operation** the permission applies to. Based on these selections, the UI automatically composes the correct **permission formula**, which is then assigned to the role (and, from there, to the users or groups holding that role).
 
 ![Item-level permissions](img/item_level_permissions.png)
