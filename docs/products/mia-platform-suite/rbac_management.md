@@ -78,7 +78,7 @@ Users can be invited directly from the Administration UI, without going through 
 
 ![Invite user](img/invite_user.png)
 
-- An **Organization Admin** invites a user to the organization from the organization-wide user management screen, entering the invitee's email, the tenant to add them to, and, optionally, the **group** they should belong to — assigning the group at invitation time, rather than as a separate step afterwards.
+- An **Organization Admin** invites a user to the organization from the organization-wide user management screen, entering the invitee's email, the tenant to add them to, and, optionally, the **role** they should be assigned — assigning it at invitation time, rather than as a separate step afterwards. *(Before v15.2, this optional assignment was a group rather than a role — see [UX improvements (v15.2)](#ux-improvements-v152) above.)*
 - A **Tenant Admin** can add users to their own tenant, but only among users who have already been invited to (and accepted into) the organization by an Organization Admin.
 - The invited user receives an email invitation and must accept it **within 7 days** to become a member of the organization.
 
@@ -90,8 +90,8 @@ Users can be invited directly from the Administration UI, without going through 
 
 ## How to assign roles and permissions
 
-- The administrator **assigns** roles to users, service accounts, or groups, optionally limiting their validity to a specific scope. In practice, this means creating a group, adding members to it, and assigning one or more roles to that group.
-- Multiple roles can be assigned to a group in **bulk mode**, rather than one at a time, speeding up the setup of a new group.
+- The administrator **assigns** roles directly to users or service accounts, optionally limiting their validity to a specific scope. As of **v15.2**, the permission tree in the Administration UI is focused exclusively on **Roles**: group management has been removed (see [UX improvements (v15.2)](#ux-improvements-v152) above).
+- Multiple roles can be assigned in **bulk mode**, rather than one at a time, speeding up onboarding.
 - Both **Organization Admins** and **Tenant Admins** can assign **broad roles** (the predefined, coarse-grained roles from the [Permission Matrix](#permission-matrix)).
 - Only the **Organization Admin** can assign **granular roles**. Granular role assignment is available:
   - For **Catalog**, with the widest granularity: permissions can be scoped to specific groups and users through **filter expressions** (formulas combining fields and logical operators).
@@ -105,23 +105,22 @@ Users can be invited directly from the Administration UI, without going through 
 
 ## Practical example of granularity and access management
 
-The system lets you combine permissions from multiple **Group Memberships**, so a user's effective access is simply the union of everything granted by every group they belong to.
+The system lets you combine permissions from multiple **roles**, so a user's effective access is simply the union of everything granted by every role assigned to them.
 
 Take **Alice Parker** as an example:
-
 ![Users](img/user_example.png)
 
-Alice belongs to two groups, each contributing a different set of permissions:
+Alice belonged to two groups, each contributing a different set of permissions:
 
-- **Group "Platform Engineers"** — grants the *Viewer* role on **Catalog** and **AI Foundry**, letting her view items and their configuration.
-- **Group "Software Engineers | Catalog"** — grants the *Item Editor* and *Item Type Definition Editor* roles on **Catalog**, letting her create, delete, and edit items and item type definitions.
+- **Group "Platform Engineers"** — granted the *Viewer* role on **Catalog** and **AI Foundry**, letting her view items and their configuration.
+- **Group "Software Engineers | Catalog"** — granted the *Item Editor* and *Item Type Definition Editor* roles on **Catalog**, letting her create, delete, and edit items and item type definitions.
 
-Alice's effective permissions are the combination of these two groups' roles. From the users overview, an admin can open her profile at any time to see the full, resulting list of permissions.
+Alice's effective permissions were the combination of these two groups' roles. From the users overview, an admin can open her profile at any time to see the full, resulting list of permissions.
 
 ## What can be managed via API
 
-- **Groups**: creation, modification, deletion; member management; role assignment to the group.
 - **Users**: creation, invitation, modification, deletion, consultation.
+- **Groups**: creation, modification, deletion; member management; role assignment to the group.
 - **Roles**: creation, modification, deletion, consultation.
 - **Tenant**: creation and edit of tenants, also at the individual organization level.
 - **Configuration**: reading and updating tenant's settings.
@@ -139,7 +138,44 @@ Access legend:
 - **W (Write)**: write access. Allows creating, modifying, and deleting resources, as well as updating their configuration. For example, the user can create a new configuration, modify an existing setting, or delete an item.
 - **E (Execute)**: execute access. Allows executing operations such as launching campaigns, running evaluations, or initiating automated processes. For example, the user can launch a campaign, perform an evaluation, or set up a scorecard.
 
-### Permission matrix for Catalog
+
+## Complete role mapping (v15.2)
+
+The tables below list every role currently assignable in the Administration Platform, grouped by the product (scope) they apply to.
+
+### Catalog roles
+
+| Role | Description and permissions |
+| :---- | :---- |
+| **Admin** | Full access to all Catalog resources. |
+| **Governance Manager** | Full access to the Governance section; read-only access to all other Catalog resources. |
+| **Items Type Definitions Editor** | Read/write access to Item Type Definitions. |
+| **Items Editor** | Read/write access to Catalog Items; read-only access to Item Type Definitions. |
+| **Items Ingestor** | Write access for ingesting Catalog Items. |
+| **Viewer** | Read-only access to all Catalog resources. |
+| **Catalog Auditor** | Access to audit logs, plus read-only access to all Catalog resources. |
+
+The **Item Ingestor** role is intended for **service accounts**, not human users: it grants the write access needed to create and update items and their relationships, without exposing governance or type-definition capabilities. It is the role typically assigned to the [`ibdm` connector engine](/products/catalog/connectors/10_overview.md) or to other connectors that sync external sources into the Catalog — see [Registering a service account](#registering-a-service-account) below.
+
+### AI Foundry roles
+
+| Role | Description and permissions |
+| :---- | :---- |
+| **Viewer** | Read access to all AI Foundry sections (items, agentic workflows, guardrails, models, deployment) and to their own observability data; write access limited to their own memory entries. |
+| **Editor** | All Viewer permissions, plus write access to non-reserved catalog items and guardrails. Excludes administration and creation of agentic workflows. |
+| **Admin** | All Editor permissions, plus write access to reserved items, models, MCP servers/tools, and AI Gateway administration; read access to API Credentials and agentic workflows. |
+| **Chatbot Usage** | Playground usage: read access to agents and model/playbook listings, executing agent turns, and managing their own sessions, artifacts, memory entries, and MCP consents. |
+| **Observability** | Read access to observability and tracing data for all users. Must be assigned in combination with another role. |
+| **Workflow Manager** | Read/write access to agentic workflow definitions and their executions, plus the API Credentials used by workflow steps; read access to related catalog items. |
+| **Workflow Trigger** | Management, creation, and rotation of the secret keys associated with a workflow's public webhook triggers. |
+
+### Authorization roles
+
+| Role | Description and permissions |
+| :---- | :---- |
+| **Administration tenant admin** | Administrator of a specific tenant, with full access to all resources within that tenant. |
+
+<!-- ### Permission matrix for Catalog
 
 | Functional Area | Operational Detail | Super Admin | Admin | Viewer | Item Editor | ITD Editor | Item Publisher | Governor | Item Ingestor |
 | :---- | :---- | :---- | :---- | :---- | :---- | :---- | :---- | :---- | :---- |
@@ -148,7 +184,6 @@ Access legend:
 | **Configuration** | Configuration of relationships and connectors for items | **R/W** | **R/W** | **R** | **R/W** | **R** | - | **R** | **R/W** |
 | **ITD** | Modification of type definitions | **R/W** | **R/W** | **R** | **R** | **R/W** | - | **R** | **R** |
 
-The **Item Ingestor** role is intended for **service accounts**, not human users: it grants the write access needed to create and update items and their relationships, without exposing governance or type-definition capabilities. It is the role typically assigned to the [`ibdm` connector engine](/products/catalog/connectors/10_overview.md) or to other connectors that sync external sources into the Catalog — see [Registering a service account](#registering-a-service-account) below.
 
 ### Permission matrix for AI Foundry
 
@@ -167,9 +202,9 @@ The **Item Ingestor** role is intended for **service accounts**, not human users
 | **AI Traces** | R (personal data) | R (personal data) | R (personal data) | R (all data) | - |
 | **Connections (except Apps)** | R | R | R | - | - |
 | **Connections/Apps & Plugins** | R/W | R | R | - | - |
-| **Data download** | R | R | R | - | - |
+| **Data download** | R | R | R | - | - | -->
 
-## Current limitations (v15.1.0)
+## Current limitations (v15.2.0)
 
 In this v15 release, Catalog RBAC management has the following constraints:
 
@@ -183,7 +218,7 @@ Across all sections of the Administration area, it is possible to open a detail 
 
 - **User detail**: shows which roles, permissions, and groups are assigned to that user.
 - **Service account detail**: shows the service account's name and associated client ID. Service accounts can be created from this UI by an Organization Admin, but not deleted — deletion is only possible via API, see [Registering a service account](#registering-a-service-account).
-- **Group detail**: shows the group's members and the roles/permissions the group grants.
+- **Group detail**: shows the group's members and the roles/permissions the group grants. *(Legacy, pre-v15.2 model — see [UX improvements (v15.2)](#ux-improvements-v152) above.)*
 - **Role detail**: shows the role's definition and the users/groups it is assigned to.
 
 ## Registering a service account
@@ -333,7 +368,7 @@ Use the resulting `access_token` in the `Authorization: Bearer <access_token>` h
 - **On-Premise**: the Super Admin is appointed at the creation of the organization in Keycloak. Only one organization is possible, so the Super Admin and the Organization Admin roles coincide.
 
 ### How are new users added, and who is authorized to do so?
-- **Keycloak Admin/Organization Admin** — adds/invites users to the organization (via their personal Keycloak console, or via the organization-wide users view — see [Organization-wide user visibility](#organization-wide-user-visibility) above).
+- **Keycloak Admin/Organization Admin** — adds/invites users to the organization (via their personal Keycloak, or via the organization-wide users view — see [Organization-wide user visibility](#organization-wide-user-visibility) above).
 - **Organization Admin** — adds users to a tenant.
 - **Tenant Admin** — can add users to their tenant, but only among users already invited to (and accepted into) the organization.
 
