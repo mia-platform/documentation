@@ -153,7 +153,7 @@ The tables below list every role currently assignable in the Administration Plat
 | **Items Editor** | Read/write access to Catalog Items; read-only access to Item Type Definitions. |
 | **Items Ingestor** | Write access for ingesting Catalog Items. |
 | **Viewer** | Read-only access to all Catalog resources. |
-| **Catalog Auditor** | Access to audit logs, plus read-only access to all Catalog resources. |
+| **Auditor** | Access to audit logs, plus read-only access to all Catalog resources. |
 
 The **Item Ingestor** role is intended for **service accounts**, not human users: it grants the write access needed to create and update items and their relationships, without exposing governance or type-definition capabilities. It is the role typically assigned to the [`ibdm` connector engine](/products/catalog/connectors/10_overview.md) or to other connectors that sync external sources into the Catalog — see [Registering a service account](#registering-a-service-account) below.
 
