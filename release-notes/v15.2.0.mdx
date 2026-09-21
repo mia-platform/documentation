@@ -28,6 +28,20 @@ To enable the glossary, update your Data Catalog Application services to the ver
 Once the new versions of Data Catalog Application have been deployed, run the fabric-admin cronjob `v0.5.7` to propertly setup the business glossary feature.
 :::
 
+## Catalog
+
+### Item Versioning
+
+Items now have a **History** section that tracks their full revision history, lets you promote a revision to a named version, compare any two states with a line-by-line diff, and roll back when needed — see the official [Item Versioning documentation](/docs/next/products/catalog/basic-concepts/item-history) to discover all the available features.
+
+### Audit Logs
+
+Items now have an **Audit Logs** section, both tenant-wide and per Item Type, that lets Auditors review every action performed on the Catalog for security and compliance purposes — see the official [Audit Logs documentation](/docs/next/products/catalog/basic-concepts/audit-logs) to discover all the available features.
+
+### Webhooks
+
+Item Types now support **Webhooks**, notifying an external service whenever one of their items is created, updated, or deleted, removing the need for external systems to poll the Catalog for changes — see the official [Webhooks documentation](/docs/next/products/catalog/basic-concepts/webhooks) to discover all the available features.
+
 ## Other New Features, Improvements and Bug Fixes
 
 <Accordion data={dataAccordion} />

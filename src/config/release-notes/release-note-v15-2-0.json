@@ -24,8 +24,34 @@
     "defaultOpen": false,
     "type": "versions",
     "items": {
-      "newFeatures": [],
-      "improvements": [],
+      "newFeatures": [
+        {
+          "title": "Custom Fields",
+          "description": [
+            "Items can now be enriched with **Custom Fields**: typed, validated metadata that extends an Item Type without modifying its native schema — ideal for business or governance attributes that aren't covered out of the box. See the [Custom Fields documentation](/docs/next/products/catalog/basic-concepts/custom-fields) for the full workflow."
+          ]
+        }
+      ],
+      "improvements": [
+        {
+          "title": "Clearer `ibdm`-to-Catalog wiring guidance",
+          "description": [
+            "The [connector installation guidelines](/docs/requirements/installation-guidelines/catalog/connectors/00_overview) now clarify `MIA_CATALOG_ENDPOINT`'s expected shape, when `MIA_CATALOG_CUSTOM_SCOPE` needs to be set, and the exact scopes required on-prem vs. on the Mia-Platform PaaS."
+          ]
+        },
+        {
+          "title": "Role-based permission management",
+          "description": [
+            "Improved the [Administration](/docs/next/products/mia-platform-suite/rbac-management) UX for Organization Admins and Tenant Admins."
+          ]
+        },
+        {
+          "title": "User Profile page",
+          "description": [
+            "Every user now has a [Profile page](/docs/next/products/mia-platform-suite/rbac-management#profile) listing their tenants, groups, and effective roles."
+          ]
+        }
+      ],
       "bugFixes": []
     }
   },

@@ -13,7 +13,11 @@ import Changelog from '@site/src/components/Changelog';
 
 *Sep 21st, 2026*
 
-Mia-Platform v15.2.0 introduces the **Business Glossary** in Data Catalog: a shared, business-friendly vocabulary that lets you define terms and link them to the data assets in order to bridge the gap between business language and technical metadata.
+Mia-Platform v15.2.0 includes improvements across all Mia-Platform Suite, in particular:
+
+- **Data Catalog**: the new **Business Glossary**, a shared, business-friendly vocabulary that lets you define terms and link them to the data assets, bridging the gap between business language and technical metadata.
+- **Catalog**: full **Item Versioning** with revision history and rollback, tenant-wide and per-Item-Type **Audit Logs**, outbound **Webhooks** on item changes, and typed **Custom Fields** to extend items without touching their schema.
+- Additional improvements and bug fixes across **Homepage & RBAC** and **Console**.
 
 [Read the release notes](/release-notes/v15.2.0.mdx)
 

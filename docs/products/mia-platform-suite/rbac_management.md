@@ -186,6 +186,13 @@ The **Item Ingestor** role is intended for **service accounts**, not human users
 | :---- | :---- |
 | **Administration tenant admin** | Administrator of a specific tenant, with full access to all resources within that tenant. |
 
+## UX improvements (v15.2)
+
+The Administration UI introduces two changes as of v15.2:
+
+- **Role-based permission management** — the permission tree is now focused exclusively on **Roles**: group management has been removed, and roles are assigned directly to users and service accounts (including at invitation time, and in bulk).
+- **Tenant and service account creation from the UI** — an Organization Admin can now create tenants and service accounts directly from the Administration UI, rather than only via API (deletion of either still requires the API — see [Current limitations](#current-limitations-v1520) below).
+
 <!-- ### Permission matrix for Catalog
 
 | Functional Area | Operational Detail | Super Admin | Admin | Viewer | Item Editor | ITD Editor | Item Publisher | Governor | Item Ingestor |
