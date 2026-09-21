@@ -40,6 +40,7 @@ Once imported, each row that represents an asset contains various metadata field
 **Editable Fields** (Values in these columns cannot be modified):
 - `description` - Asset description
 - `tags` - Asset tags
+- `relatedTerms` - [Business Glossary terms](/products/data_catalog/frontend/data_catalog_business_glossary.mdx) associated to the asset, as a comma-separated list of `<Term type>/<Term>` pairs
 - Custom properties (`customProp1`, `customProp2`, etc.) - Each custom property configured in the Data Catalog appears as a separate column in the worksheet, maintaining its specific data type as defined in the Data Catalog. For more information about custom properties, see the Custom Properties documentation.
 
 ### Asset Navigation
@@ -65,16 +66,16 @@ Once navigating in the Pull Assets page, it is possible to click on an element o
 
 ## Paste URL
 
-For advanced use cases, you can import assets based on Data Catalog search URLs:
+For advanced use cases, you can import assets, or [Business Glossary terms](#business-glossary-terms), based on Data Catalog search URLs:
 
-1. Perform an advanced search in the Data Catalog interface
+1. Perform an advanced search in the Data Catalog interface, either among assets or among [Terms](/products/data_catalog/frontend/data_catalog_business_glossary.mdx#terms-list-and-search)
 2. Copy the URL from your browser
 3. Paste the URL in the **Paste URL** section of the add-in
-4. Click **Pull** to import all assets matching that search criteria
+4. Click **Pull** to import all assets or terms matching that search criteria
 
 ![Paste URL](../img/paste_url.png)
 
-This feature is particularly useful for importing assets with specific metadata, tags, or other advanced search conditions.
+This feature is particularly useful for importing assets or terms with specific metadata, tags, or other advanced search conditions.
 
 ## Push Assets Metadata
 
@@ -92,6 +93,8 @@ The **Push Assets** functionality synchronizes your enriched metadata back to th
 Once the rows have been chosen, you can also select which metadata to synchronize back to the Catalog. The column selection feature allows you to choose which metadata columns will be synchronized, with hidden columns in Excel being automatically unchecked. You have the flexibility to manually deselect any columns you want to exclude from the synchronization process.
 
 ![Pre-push](../img/pre-push.png)
+
+`relatedTerms` is selectable among these columns as well, allowing to synchronize back to the Data Catalog the Business Glossary terms associated to the selected assets.
 
 ### Validation Process
 
@@ -112,6 +115,56 @@ The Error Logs Sheet documents all errors encountered during synchronization and
 
 **Backup Sheet**:
 The Backup Sheet contains the original state of assets before synchronization, serving as a valuable reference for comparison and rollback purposes if needed. This sheet helps users identify what changes were made during the synchronization process.
+
+## Business Glossary Terms
+
+Similarly to data assets, [Business Glossary](/products/data_catalog/frontend/data_catalog_business_glossary.mdx) terms can be pulled into, enriched within, and pushed back from an Excel worksheet, using the same **Pull metadata** ribbon group.
+
+![Data Catalog Excel ribbon](../img/excel_glossary_ribbon.png)
+
+### Pull Business Glossary Terms
+
+Click the **Select Terms** button to open a panel listing the terms defined in the glossary, searchable by name; each entry also shows its Term Type. Select one or more terms and click **Pull terms** to import them into the worksheet. Alternatively, terms matching an advanced search performed in the Data Catalog interface can be imported via [Paste URL](#paste-url).
+
+![Select terms panel](../img/excel_pull_terms_panel.png)
+
+#### Terms Worksheet Structure
+
+Once imported, each row represents a term and contains the following editable columns:
+
+- `Term type` - the term's [Term Type](/products/data_catalog/frontend/data_catalog_business_glossary.mdx#term-types)
+- `Term` - the term's name
+- `Description` - the term's description
+- `Tags` - the term's tags
+- `Mark for delete` - checkbox column; ticking it will delete the term from the Data Catalog on the next push
+- `Related terms` - comma-separated list of related terms, each expressed as `<Term type>/<Term>`
+- Custom properties (`CP1`, `CP2`, etc.) - each custom property applicable to Terms appears as a separate column, maintaining its specific data type as defined in the Data Catalog
+
+![Terms pulled into the worksheet](../img/excel_pull_terms_result.png)
+
+:::caution
+A term is uniquely identified by the combination of `Term type` and `Term`. As a consequence, modifying either of these two fields on an already pulled row before pushing will **not** rename the existing term: it will instead result in the creation of a brand new one. To rename an existing term, use the [Data Catalog UI](/products/data_catalog/frontend/data_catalog_business_glossary.mdx#edit-a-term) instead.
+:::
+
+### Push Business Glossary Terms
+
+Once terms have been enriched, the **Push Metadata** button starts the same [Validation Process](#validation-process) and [Synchronization](#synchronization) flow already described for assets. The **Push metadata** panel lets you choose which columns to synchronize, including `Related terms`.
+
+![Terms worksheet ready to be pushed](../img/excel_push_terms_worksheet.png)
+
+![Push metadata result](../img/excel_push_terms_result.png)
+
+:::info
+During a single push, new terms are created first, terms marked via `Mark for delete` are deleted next, and finally the remaining rows are updated. This fixed order (create, then delete, then update) ensures that, should an error occur on a specific row, the outcome remains consistent for every other row.
+:::
+
+#### Tips on Worksheet Arrangement
+
+Given that the term relations are always bidirectional, some worksheet arrangements are handled correctly by the push even though they might look inconsistent at first glance:
+
+- **Referencing a term before its own creation row**: if a term listed further down the worksheet (e.g. row 10) is already referenced in the `Related terms` column of a term listed higher up (e.g. row 3), the push still succeeds. Since new terms are created first, every new term referenced anywhere in the worksheet already exists by the time relations are applied.
+- **Declaring a relation on only one side**: if term `A`'s `Related terms` value includes `B`, but `B`'s own row does not list `A` back, this is not an error and nothing needs to be fixed. Relations between terms are always bidirectional: after the push, pulling the terms again will show `A` among `B`'s related terms as well, even though it was never explicitly set on `B`'s row.
+- **Deleting a term that is still referenced elsewhere in the worksheet**: if term `A` is marked via `Mark for delete`, and another row in the same worksheet (term `B`) lists `A` as a related term, the push still succeeds. `A` is deleted before the remaining rows are updated, and it is automatically removed from `B`'s related terms as well, without requiring `B`'s row to be changed.
 
 ## Working with CSV Exports
 
@@ -162,3 +215,7 @@ You can reorder rows, but avoid leaving gaps
 **Invalid Format**:
 - Cell format does not comply with expected data type
 - Solution: Adjust cell format to match custom property requirements
+
+**Term Treated as New**:
+- Occurs when `Term type` or `Term` of an already pulled row is modified before pushing, since these two fields together uniquely identify a term
+- Solution: To rename an existing term, use the Data Catalog UI instead; only edit the other columns from Excel

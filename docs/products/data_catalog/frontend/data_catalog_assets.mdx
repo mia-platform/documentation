@@ -71,7 +71,7 @@ Finally, at the bottom of Data Catalog homepage, the **Last Viewed** section sho
 ### SoR detail page
 
 The SoR detail page shows the following two tabs:
-* **General**, that shows a first **Details** section with asset details about name, provider info, number of contained tables, tags and description of the asset. Moreover, below the Details, there is the **Custom Properties** section, where user can choose among the available custom properties for performing metadata enrichment. This topic is described in details in the [metadata enrichment](#metadata-enrichment) documentation section.
+* **General**, that shows a first **Details** section with asset details about name, provider info, number of contained tables, tags and description of the asset. Moreover, below the Details, there is the **Custom Properties** section, where user can choose among the available custom properties for performing metadata enrichment. This topic is described in details in the [metadata enrichment](#metadata-enrichment) documentation section. Below it, the **Related terms** card allows to associate this asset to one or more Business Glossary terms; see the [Business Glossary](/products/data_catalog/frontend/data_catalog_business_glossary.mdx) documentation to learn more about what a term is and how this association works.
 * **Tables**, that shows the list of tables that belong to that SoR. By clicking on one element of the list, user enters that table detail page.
 * **Lineage**, that shows a high-level lineage canvas displaying how a specific SoR is related to other SoRs. For more information about the SoRs-level lineage, visit the [related documentation](/products/data_catalog/frontend/data_lineage.mdx#system-of-record-level-lineage).
 
@@ -84,7 +84,7 @@ In case of a **Virtual SoR** detail page, the provider info is not available, be
 ### Table detail page
 
 The Table detail page shows the following two tabs:
-* **General**, that shows a first **Details** section with asset details about namespace, number of table columns, tags and description of the asset. The namespace identifies the context in which the table is stored. It depends on the [provider](/products/data_catalog/frontend/data_catalog_connections.mdx#connection-providers). Moreover, below the Details, there is the **Custom Properties** section, where user can choose among the available custom properties for performing metadata enrichment. This topic is described in details in the [metadata enrichment](#metadata-enrichment) documentation section.
+* **General**, that shows a first **Details** section with asset details about namespace, number of table columns, tags and description of the asset. The namespace identifies the context in which the table is stored. It depends on the [provider](/products/data_catalog/frontend/data_catalog_connections.mdx#connection-providers). Moreover, below the Details, there is the **Custom Properties** section, where user can choose among the available custom properties for performing metadata enrichment. This topic is described in details in the [metadata enrichment](#metadata-enrichment) documentation section. Below it, the **Related terms** card allows to associate this asset to one or more Business Glossary terms; see the [Business Glossary](/products/data_catalog/frontend/data_catalog_business_glossary.mdx) documentation to learn more about what a term is and how this association works.
 * **Columns**, that shows the list of tables that belong to that SoR. By clicking on one element of the list, user enters that table detail page.
 * **Lineage**, that shows the lineage canvas displaying how a specific table is related to other tables. From this tab, it is also possible to explore the **Upstream and Downstream Column Lineage** for that specific table, gaining a granular, field-level view of how individual columns are related across connected tables. For more information about the Table-level lineage and the Column Lineage feature, visit the [related documentation](/products/data_catalog/frontend/data_lineage.mdx#table-level-lineage).
 
@@ -96,7 +96,7 @@ In case of a **Virtual Table** detail page, the Columns tab it is not present. T
 
 ### Column detail page
 
-The Column detail page shows a first **Details** section with asset details such as namespace, tags, description of the asset, and many other retrieved info. Moreover, below the Details, there is the **Custom Properties** section, where user can choose among the available custom properties for performing metadata enrichment. This topic is described in details in the [metadata enrichment](#metadata-enrichment) documentation section.
+The Column detail page shows a first **Details** section with asset details such as namespace, tags, description of the asset, and many other retrieved info. Moreover, below the Details, there is the **Custom Properties** section, where user can choose among the available custom properties for performing metadata enrichment. This topic is described in details in the [metadata enrichment](#metadata-enrichment) documentation section. Below it, the **Related terms** card allows to associate this asset to one or more Business Glossary terms; see the [Business Glossary](/products/data_catalog/frontend/data_catalog_business_glossary.mdx) documentation to learn more about what a term is and how this association works.
 
 ![Details of a column page](./../img/column_details_page.png)
 
@@ -107,7 +107,7 @@ One of the core features of Mia-Platform Data Catalog is the full management of 
 ![Custom properties management page](./../img/custom_properties_management_page.png)
 
 By accessing the Custom Properties area, users with enough permissions can define and manage properties that can be associated to assets in order to perform metadata enrichment.  
-A custom property can be associated to one or more asset type (SoR, Table, Column).  
+A custom property can be associated to one or more asset type (SoR, Table, Column), as well as to Business Glossary Terms; see the [Business Glossary](/products/data_catalog/frontend/data_catalog_business_glossary.mdx) documentation to learn more about what a term is.  
 There are different types of custom properties supported:
 * Text
 * Integer

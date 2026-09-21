@@ -17,6 +17,7 @@ The tutorial will cover the following key areas:
 - Guidance on establishing connections to data sources, with specific examples for OracleDB and Mia-Platform Fast Data v1, including the process of metadata scraping.
 - A detailed explanation of Data Lineage: its definition, significance, and how it functions within the platform.
 - An overview of how data lineage is visualized and how virtual elements can be created to enrich lineage information.
+- An introduction to the Business Glossary, and how it bridges business language and technical metadata.
 
 Upon completion of this tutorial, users will obtain a solid knowledge of the Data Catalog's core features and will be prepared to perform initial setup and basic operations. While this guide aims to be comprehensive in its coverage of fundamental aspects, it is important to recognize that it provides a starting point. For the most detailed, up-to-date information, and advanced configurations, users should read the [official documentation](/products/data_catalog/overview.mdx). This approach ensures users feel empowered to begin their journey with the Data Catalog, while also being aware of resources for more specialized requirements.
 
@@ -34,6 +35,7 @@ At its core, the Data Catalog provides significant benefits for Data Governance 
 - **Access Control**: Customizable data classification levels and user permissions
 - **Data Lineage**: Tracks data flow and transformations (detailed in [Section 5](#what-is-data-lineage-and-how-does-it-work))
 - **Connections Management**: Manages external data source integrations (covered in [Section 4](#creating-a-new-connection-oracle-database-and-fast-data))
+- **Business Glossary**: Provides a shared business vocabulary linked to data assets (introduced in [Section 6](#business-glossary-a-shared-business-vocabulary))
 
 ### Architecture Overview
 
@@ -273,6 +275,14 @@ Key aspects of metadata enrichment include:
 We invite you to read the [Data Catalog Asset Discovery documentation](/products/data_catalog/frontend/data_catalog_assets.mdx) to learn how to navigate assets, apply custom properties, use bulk actions, perform advanced searches. Moreover, you can take a look at [this guided video tutorial](https://youtu.be/sfMxhWrHwmw?si=fGymSvTVi_TaTlZz).
 :::
 
+## Business Glossary: A Shared Business Vocabulary
+
+Alongside technical metadata, the Data Catalog offers a [Business Glossary](/products/data_catalog/frontend/data_catalog_business_glossary.mdx): a semantic layer where **Terms** describe business concepts, metrics, or definitions (e.g. `Churn Rate`, `GDPR`) and can be linked to the data assets that implement them.
+
+Each term is classified by a [Term Type](/products/data_catalog/frontend/data_catalog_business_glossary.mdx#term-types) (e.g. Business Term, Process, Acronym), selectable from existing types or created on the fly; a term is uniquely identified by the combination of its Name and Term Type, as explained in [Term Uniqueness](/products/data_catalog/frontend/data_catalog_business_glossary.mdx#term-uniqueness).
+
+From the **Terms** tab, users can [create](/products/data_catalog/frontend/data_catalog_business_glossary.mdx#create-a-term), [edit](/products/data_catalog/frontend/data_catalog_business_glossary.mdx#edit-a-term), and [delete](/products/data_catalog/frontend/data_catalog_business_glossary.mdx#delete-a-term) terms, link related terms to each other, enrich them with [custom properties](/products/data_catalog/frontend/data_catalog_business_glossary.mdx#custom-properties-for-terms), and [associate them to data assets](/products/data_catalog/frontend/data_catalog_business_glossary.mdx#associating-terms-to-data-assets), closing the gap between business language and technical metadata. Terms can also be pulled from and pushed to the glossary via the [Excel Add-in](/products/data_catalog/excel_add_in/usage.mdx#business-glossary-terms).
+
 ## What is Data Lineage and How Does It Work?
 
 [Data Lineage](/products/data_catalog/frontend/data_lineage.mdx) allows you to understand, document, and visualize data as it flows from its origin to its destination across various systems and transformations. It essentially provides a map of the data's journey, tracking the origin and flow of data through systems to help understand how data are transformed and used through various business processes. Data lineage seeks to answer critical questions such as: Where does this data come from? What changes or transformations has it undergone? And where is it ultimately used or stored?
@@ -323,6 +333,6 @@ By incorporating these user-defined elements, organizations can ensure the linea
 
 The Mia-Platform Data Catalog emerges as a pivotal tool for organizations aiming to harness the full potential of their data assets. This tutorial has navigated through its core functionalities, from understanding its fundamental purpose as a centralized metadata repository to exploring its advanced capabilities in data lineage.
 
-The journey covered the initial setup and configuration within the Mia-Platform Console, the process of establishing connections to diverse data sources, and the critical role of metadata scraping in populating the catalog. A significant focus has even placed on data lineage: its definition, operational mechanics, visualization at different levels (Table-level and SoR-level), and the usage of virtual elements to capture a complete and accurate data journey.
+The journey covered the initial setup and configuration within the Mia-Platform Console, the process of establishing connections to diverse data sources, and the critical role of metadata scraping in populating the catalog. It also introduced the Business Glossary as a means of bridging business language and technical metadata. A significant focus has even placed on data lineage: its definition, operational mechanics, visualization at different levels (Table-level and SoR-level), and the usage of virtual elements to capture a complete and accurate data journey.
 
 For further in-depth information, specific use-case implementations, and advanced configuration options, users are encouraged to consult the [official documentation](/products/data_catalog/overview.mdx). 
