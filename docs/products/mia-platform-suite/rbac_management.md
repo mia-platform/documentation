@@ -115,7 +115,18 @@ Alice belonged to two groups, each contributing a different set of permissions:
 - **Group "Platform Engineers"** — granted the *Viewer* role on **Catalog** and **AI Foundry**, letting her view items and their configuration.
 - **Group "Software Engineers | Catalog"** — granted the *Item Editor* and *Item Type Definition Editor* roles on **Catalog**, letting her create, delete, and edit items and item type definitions.
 
-Alice's effective permissions were the combination of these two groups' roles. From the users overview, an admin can open her profile at any time to see the full, resulting list of permissions.
+Alice's effective permissions were the combination of these two groups' roles. From the users overview, an admin can open her profile at any time to see the full, resulting list of permissions, just click on a user menu with links to Profile.
+
+## Profile
+
+Each user's **Profile** page shows their identity, tenant memberships, and — most relevantly for RBAC — every role they have, tenant and group memberships included, 
+
+- **Header** and **Details** — name, email, and user ID.
+- **Tenants** — every tenant the user belongs to (name and description).
+- **Groups** — the groups the user is a member of, with the tenant each membership applies to; filterable by tenant.
+- **Roles** — every role assigned to the user, with the product it applies to, its tenant, its scope (e.g. "Entire tenant"), and its **source**: manually assigned to the user, or inherited from a group membership (with the group named). Filterable by tenant and product.
+
+This is the place to check a user's *effective* permissions — including those inherited from groups, like in the [Alice Parker example](#practical-example-of-granularity-and-access-management) above — without having to reconstruct them by hand.
 
 ## What can be managed via API
 
