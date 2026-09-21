@@ -43,8 +43,6 @@ Once imported, each row that represents an asset contains various metadata field
 - `relatedTerms` - [Business Glossary terms](/products/data_catalog/frontend/data_catalog_business_glossary.mdx) associated to the asset, as a comma-separated list of `<Term type>/<Term>` pairs
 - Custom properties (`customProp1`, `customProp2`, etc.) - Each custom property configured in the Data Catalog appears as a separate column in the worksheet, maintaining its specific data type as defined in the Data Catalog. For more information about custom properties, see the Custom Properties documentation.
 
-![Assets pulled with their related Business Glossary terms](../img/excel_pull_assets_related_terms.png)
-
 ### Asset Navigation
 
 Once navigating in the Pull Assets page, it is possible to click on an element of the search list in order to enter its detail page.
@@ -68,16 +66,16 @@ Once navigating in the Pull Assets page, it is possible to click on an element o
 
 ## Paste URL
 
-For advanced use cases, you can import assets based on Data Catalog search URLs:
+For advanced use cases, you can import assets, or [Business Glossary terms](#business-glossary-terms), based on Data Catalog search URLs:
 
-1. Perform an advanced search in the Data Catalog interface
+1. Perform an advanced search in the Data Catalog interface, either among assets or among [Terms](/products/data_catalog/frontend/data_catalog_business_glossary.mdx#terms-list-and-search)
 2. Copy the URL from your browser
 3. Paste the URL in the **Paste URL** section of the add-in
-4. Click **Pull** to import all assets matching that search criteria
+4. Click **Pull** to import all assets or terms matching that search criteria
 
 ![Paste URL](../img/paste_url.png)
 
-This feature is particularly useful for importing assets with specific metadata, tags, or other advanced search conditions.
+This feature is particularly useful for importing assets or terms with specific metadata, tags, or other advanced search conditions.
 
 ## Push Assets Metadata
 
@@ -126,7 +124,7 @@ Similarly to data assets, [Business Glossary](/products/data_catalog/frontend/da
 
 ### Pull Business Glossary Terms
 
-Click the **Select Terms** button to open a panel listing the terms defined in the glossary, searchable by name; each entry also shows its Term Type. Select one or more terms and click **Pull terms** to import them into the worksheet.
+Click the **Select Terms** button to open a panel listing the terms defined in the glossary, searchable by name; each entry also shows its Term Type. Select one or more terms and click **Pull terms** to import them into the worksheet. Alternatively, terms matching an advanced search performed in the Data Catalog interface can be imported via [Paste URL](#paste-url).
 
 ![Select terms panel](../img/excel_pull_terms_panel.png)
 
@@ -151,8 +149,6 @@ A term is uniquely identified by the combination of `Term type` and `Term`. As a
 ### Push Business Glossary Terms
 
 Once terms have been enriched, the **Push Metadata** button starts the same [Validation Process](#validation-process) and [Synchronization](#synchronization) flow already described for assets. The **Push metadata** panel lets you choose which columns to synchronize, including `Related terms`.
-
-![Push metadata column selection for terms](../img/excel_push_terms_column_selection.png)
 
 ![Terms worksheet ready to be pushed](../img/excel_push_terms_worksheet.png)
 
