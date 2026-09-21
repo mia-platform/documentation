@@ -45,7 +45,7 @@ Each source page lists the **data types** it exposes inside the mapping context 
 
    | Variable | Description |
    | :------- | :---------- |
-   | `MIA_CATALOG_ENDPOINT` | The Catalog ingestion endpoint, surfaced in the Catalog App connector form. |
+   | `MIA_CATALOG_ENDPOINT` | The Catalog ingestion endpoint, surfaced in the Catalog App connector form. This refers to the publish API of the catalog architecture that typically has this shape [BASE_CATALOG_URL]/api/publish/[SERVICE_ACCOUNT_CLIENT_ID]. |
 
    `ibdm` itself supports two generic authentication mechanisms (client-credentials with a client secret, or private-key JWT), but **when wiring to the Catalog only private-key JWT is supported**: Catalog service accounts are registered with an RSA key pair (see step 1) and have no client secret, so `MIA_CATALOG_CLIENT_SECRET`/`MIA_CATALOG_AUTH_ENDPOINT` cannot be used against the Catalog target — those variables only apply when pointing `ibdm` at a different, client-secret-based OAuth server.
 
@@ -58,7 +58,7 @@ Each source page lists the **data types** it exposes inside the mapping context 
    | `MIA_CATALOG_ISSUER` | OIDC issuer URL used as both the discovery base and the expected issuer; the discovery document is looked up relative to this value. |
    | `MIA_CATALOG_ISSUER_METADATA` *(optional)* | Custom URL for the OIDC discovery document used to resolve the token endpoint. Defaults to a lookup relative to `MIA_CATALOG_ISSUER`. |
    | `MIA_CATALOG_TOKEN_ENDPOINT` *(optional)* | Custom token endpoint. When set, OIDC discovery is skipped entirely and this endpoint is used directly. |
-   | `MIA_CATALOG_CUSTOM_SCOPE` *(optional)* | Custom scope requested during the token exchange. When unset, no scope is sent. |
+   | `MIA_CATALOG_CUSTOM_SCOPE` *(optional)* | Scope requested during the token exchange. When unset, no scope is sent. `ibdm` correctly considers this optional to stay general, but in the context of catalog wiring it is needed to configure it (see). |
    | `OIDC_DISCOVERY_PATH` *(optional)* | Well-known path suffix joined to `MIA_CATALOG_ISSUER` to fetch the OIDC discovery document. Defaults to `.well-known/openid-configuration`; has no effect when `MIA_CATALOG_ISSUER_METADATA` or `MIA_CATALOG_TOKEN_ENDPOINT` is set. |
 
    Every item written through this connector is associated to the *Connector* item created in step 1, so you can always tell which connector ingested a given entity (visible in the **Connector items** tab of the Connector detail page).
@@ -69,6 +69,10 @@ Running `ibdm` with `--local-output` redirects results to stdout instead of push
 
 :::info
 The credentials above are only for pushing items into the Catalog. If your `ibdm` deployment also needs to call other RBAC-protected Mia Platform APIs directly, register it as a **service account** instead — see [Registering a service account](/products/mia-platform-suite/rbac_management.md#registering-a-service-account).
+
+**On the On-Prem installations**, the scope must comprehend `service_account` and the product-specific scope of the catalog that is `mia:catalog` (e.g. `scope=service_account mia:catalog`).
+
+**On the Mia-Platform PaaS**, the `organization:*` scope must also be included in every token request, in addition to `service_account` and the product-specific scope of the catalog that is `mia:catalog` (e.g. `scope=service_account mia:catalog organization:*`). Without it, the PaaS token endpoint will not issue a usable token.
 :::
 
 ## Available sources
