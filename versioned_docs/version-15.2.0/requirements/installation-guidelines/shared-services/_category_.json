@@ -1,0 +1,8 @@
+{
+  "label": "Shared services & tools",
+  "position": 3,
+  "link": {
+    "type": "doc",
+    "id": "requirements/installation-guidelines/shared-services/index"
+  }
+}
