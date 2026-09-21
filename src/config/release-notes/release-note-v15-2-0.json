@@ -1,0 +1,61 @@
+[
+  {
+    "title": "Data Catalog",
+    "icon": "data-catalog",
+    "defaultOpen": false,
+    "type": "versions",
+    "items": {
+      "newFeatures": [
+        {
+          "title": "Excel Add-in v0.4.0",
+          "description": [
+            "The new version `v0.4.0` of the _Excel Add-in_ is available, and it supports the new **Business Glossary**: terms can now be pulled, enriched, and pushed from an Excel worksheet.",
+            "Check the [changelog](/docs/next/products/data_catalog/excel_add_in/changelog) for the full list of changes."
+          ]
+        }
+      ],
+      "improvements": [],
+      "bugFixes": []
+    }
+  },
+  {
+    "title": "Catalog",
+    "icon": "catalog",
+    "defaultOpen": false,
+    "type": "versions",
+    "items": {
+      "newFeatures": [],
+      "improvements": [],
+      "bugFixes": []
+    }
+  },
+  {
+    "title": "AI Foundry",
+    "icon": "ai-foundry",
+    "defaultOpen": false,
+    "type": "versions",
+    "items": {
+      "newFeatures": [],
+      "improvements": [],
+      "bugFixes": []
+    }
+  },
+  {
+    "title": "Console",
+    "icon": "console",
+    "defaultOpen": false,
+    "type": "versions",
+    "items": {
+      "newFeatures": [],
+      "improvements": [
+        {
+          "title": "Improved yaml schema validation for Helm charts",
+          "description": [
+            "The chart editor of Charts section in Design Area now validates `values.yaml` live against each chart's schema using the official `monaco-yaml` engine — including subchart dependencies from `Chart.yaml` — replacing the previous custom validation logic."
+          ]
+        }
+      ],
+      "bugFixes": []
+    }
+  }
+]

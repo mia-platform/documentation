@@ -9,6 +9,14 @@ import Changelog from '@site/src/components/Changelog';
 
 <Changelog>
 
+## [v15.2.0](/release-notes/v15.2.0.mdx)
+
+*Sep 21st, 2026*
+
+Mia-Platform v15.2.0 introduces the **Business Glossary** in Data Catalog: a shared, business-friendly vocabulary that lets you define terms and link them to the data assets in order to bridge the gap between business language and technical metadata.
+
+[Read the release notes](/release-notes/v15.2.0.mdx)
+
 ## [v15.1.0](/release-notes/v15.1.0.mdx)
 
 *Sep 17th, 2026*
