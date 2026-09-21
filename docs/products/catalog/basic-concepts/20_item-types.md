@@ -179,8 +179,18 @@ GET /stable.example.com/v1/items/dockerimages?field=spec.registry=nexus.mia-plat
 
 Without the corresponding `selectableFields` entry, the same query is rejected.
 
+## Per-type settings
+
+Some behaviors are configured on the ITD itself, and therefore apply to every item of that type:
+
+- **[Item Versioning](/products/catalog/basic-concepts/65_item-history.md)** — enable or disable revision/version history for the type, and set how many revisions to keep and how many versions can be stored.
+- **[Audit Logs](/products/catalog/basic-concepts/68_audit-logs.md)** — audit settings for the type determine which of its actions are tracked in the tenant-wide audit log.
+- **[Webhooks](/products/catalog/basic-concepts/62_webhooks.md)** — a webhook registered on an ITD fires for every item of that type on the configured create/update/delete events.
+
 ## See also
 
 - [Items](/products/catalog/basic-concepts/10_items.md): the objects whose shape an ITD constrains.
 - [Query Language](/products/catalog/basic-concepts/70_query-language.md): how `selectableFields` enables filtering and sorting on `spec`.
+- [Custom Fields](/products/catalog/basic-concepts/61_custom-fields.md): typed metadata that extends items of one or more types without touching the ITD's `spec` schema.
+- [Item Versioning](/products/catalog/basic-concepts/65_item-history.md), [Audit Logs](/products/catalog/basic-concepts/68_audit-logs.md), and [Webhooks](/products/catalog/basic-concepts/62_webhooks.md): per-type settings described above.
 - [Catalog API](/products/catalog/usage/catalog-api.md): the REST endpoints an ITD exposes once registered.

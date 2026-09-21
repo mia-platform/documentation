@@ -40,7 +40,7 @@ Every item manifest must declare:
 - **`kind`**: the high-level type of the object (e.g. `Service`).
 - **`metadata`**: type-agnostic data that helps identify and describe the object (see below).
 - **`spec`**: the type-specific data describing the state of the object. Its precise shape depends on the `apiVersion` + `kind` combination.
-- **`resourceVersion`**: the internal version of the object. It is opaque to clients and must be passed back unmodified on update, patch, and conditional delete.
+- **`resourceVersion`**: the internal version of the object. It is opaque to clients and must be passed back unmodified on update, patch, and conditional delete. Don't confuse it with the user-facing revision/version history described in [Item Versioning](/products/catalog/basic-concepts/65_item-history.md).
 
 The pair `(apiVersion, kind)` must be enough for a parser to interpret the rest of the data, so it must be unique within an organization.
 
@@ -146,7 +146,7 @@ customFields:
 resourceVersion: 1
 ```
 
-Each key in `customFields` corresponds to the `spec.key` of a separate `CustomField` catalog entity (kind `CustomField`, family `custom-fields`, group `mia-platform.eu/v1alpha1`). Custom fields are only manageable through the [Catalog API](/products/catalog/usage/catalog-api.md) — declaring a `CustomField` and setting values on items — the Catalog App does not currently expose any UI for them. The `CustomField` declares:
+Each key in `customFields` corresponds to the `spec.key` of a separate `CustomField` catalog entity (kind `CustomField`, family `custom-fields`, group `mia-platform.eu/v1alpha1`). Custom fields can be declared and managed through the [Catalog API](/products/catalog/usage/catalog-api.md), or through the dedicated **Custom Fields** UI in the Catalog App — see [Custom Fields](/products/catalog/basic-concepts/61_custom-fields.md) for the UI-driven workflow. The `CustomField` declares:
 
 - **`spec.key`** — the unique key used in items' `customFields` map. May be plain (e.g. `sensitivity`) or prefixed (e.g. `runtime/java-version`).
 - **`spec.schema`** — a JSON Schema (Draft 2020-12) that validates the value of the field on items.
@@ -251,8 +251,21 @@ Every Catalog API request is actually scoped by two identifiers, not one: the or
 
 Items can be connected to one another through **relationships**: typed, directed links between a *source* and a *target* item. The catalog provides three built-in kinds (`RelationshipType`, `RelationshipConstraint`, and `Relationship`) that together model, govern, and record connections. See [Relationships](/products/catalog/basic-concepts/60_relationships.md) for the full model, the built-in relationship types, and examples.
 
+## Tracking changes to an item
+
+Two features let you follow what happens to an item over time and react to it:
+
+- [Item Versioning](/products/catalog/basic-concepts/65_item-history.md) — browse an item's revision history, promote a revision to a named version, compare versions, and roll back.
+- [Audit Logs](/products/catalog/basic-concepts/68_audit-logs.md) — a tenant-wide log of who did what to which item (and other catalog resources), for security and compliance purposes.
+
+Additionally, [Webhooks](/products/catalog/basic-concepts/62_webhooks.md) can be registered on an item type to notify an external service whenever one of its items is created, updated, or deleted.
+
 ## See also
 
 - [Item Types](/products/catalog/basic-concepts/20_item-types.md): the schemas that an item's `spec` must respect.
 - [Relationships](/products/catalog/basic-concepts/60_relationships.md): how items reference one another, including ownership and follow.
+- [Custom Fields](/products/catalog/basic-concepts/61_custom-fields.md): the UI-driven way to declare and manage `customFields`.
+- [Item Versioning](/products/catalog/basic-concepts/65_item-history.md): revision history, named versions, comparison, and rollback.
+- [Audit Logs](/products/catalog/basic-concepts/68_audit-logs.md): the tenant-wide log of actions performed on items and other catalog resources.
+- [Webhooks](/products/catalog/basic-concepts/62_webhooks.md): notifying external services on item create/update/delete.
 - [Catalog App](/products/catalog/usage/catalog-app.md): where items are browsed, edited, and tagged in the UI.
