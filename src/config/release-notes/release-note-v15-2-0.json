@@ -57,5 +57,33 @@
       ],
       "bugFixes": []
     }
+  },
+  {
+    "title": "Runtime Components",
+    "icon": "runtime-components",
+    "defaultOpen": false,
+    "type": "versions",
+    "items": {
+      "newFeatures": [],
+      "improvements": [
+        {
+          "title": "Authentication Service v3.14.0",
+          "description": [
+            "The new version `v3.14.0` of the _Authentication Service_ is available!",
+            "This release adds **TLS encryption management** in the Redis Sentinel configuration.",
+            "Check the [changelog](/docs/next/runtime-components/plugins/authentication-service/changelog) for the full list of changes."
+          ]
+        },
+        {
+          "title": "Client Credentials v3.5.0",
+          "description": [
+            "The new version `v3.5.0` of the _Client Credentials_ service is available!",
+            "This release adds **TLS encryption management** in the Redis Sentinel configuration.",
+            "Check the [changelog](/docs/next/runtime-components/plugins/client-credentials/changelog) for the full list of changes."
+          ]
+        }
+      ],
+      "bugFixes": []
+    }
   }
 ]
