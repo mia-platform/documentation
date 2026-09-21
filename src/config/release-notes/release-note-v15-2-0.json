@@ -61,7 +61,14 @@
     "defaultOpen": false,
     "type": "versions",
     "items": {
-      "newFeatures": [],
+      "newFeatures": [
+        {
+          "title": "AI Gateway & MCP Gateway",
+          "description": [
+            "AI Foundry becomes a governed control plane for models and AI tools: the **AI Gateway** is a single proxy for LLM traffic with cost tracking, caching, guardrails/policies, and observability, while **MCP Federation** unifies multiple MCP servers behind one Foundry-governed endpoint with a federated registry and centralized discovery."
+          ]
+        }
+      ],
       "improvements": [],
       "bugFixes": []
     }

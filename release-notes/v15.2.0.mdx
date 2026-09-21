@@ -42,6 +42,24 @@ Items now have an **Audit Logs** section, both tenant-wide and per Item Type, th
 
 Item Types now support **Webhooks**, notifying an external service whenever one of their items is created, updated, or deleted, removing the need for external systems to poll the Catalog for changes — see the official [Webhooks documentation](/docs/next/products/catalog/basic-concepts/webhooks) to discover all the available features.
 
+## AI Foundry
+
+### Agentic Workflow Orchestration
+
+A new workflow engine lets you orchestrate multi-step, event-triggered processes: an item state change, a detected vulnerability, or an external webhook can kick off a workflow that enriches context, invokes specialized agents, performs remediation actions, and notifies or routes to the right team, up to an automatically opened pull request. Each run is fully traceable, with automatic halting if a governance gate fails.
+
+### Multi-agent Support
+
+Playbooks now support true multi-agent systems on the Agentic Flow canvas: sequential pipelines, parallel fan-out/fan-in, and supervisor/orchestrator patterns with dynamic routing and hand-off between agents, reusing existing tools, skills, MCP servers, and prompts as building blocks.
+
+### Playbook Memory Management
+
+Playbooks gain a memory layer: per-user memory (short-term and long-term, persisted across runs) and team-shared memory governed by RBAC, so multi-agent runs can share context and teams build on past runs. Only available within the Mia-Platform ecosystem, not for Playbooks run locally from VS Code or Claude Code.
+
+### Observability improvements
+
+AI Traces now surface richer **token usage** data per run, for finer-grained cost and consumption analysis alongside the existing trace details.
+
 ## Other New Features, Improvements and Bug Fixes
 
 <Accordion data={dataAccordion} />
