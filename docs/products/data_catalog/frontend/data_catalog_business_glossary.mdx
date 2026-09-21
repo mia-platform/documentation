@@ -36,12 +36,36 @@ Each applied filter is shown as a removable chip below the filter bar; the `Clea
 
 ![Advanced search on Terms](./../img/glossary_terms_search_filters.png)
 
+## Term Types
+
+Every term is assigned a **Term Type**, which classifies the term much like assigning it to a class or category - for example a *Business Term*, a *Process*, an *Acronym*, a *KPI*, or any other classification meaningful to the organization. Term Types are entirely user-defined: there is no predefined taxonomy shipped with the Business Glossary, so each organization is free to model whichever set of Term Types best represents how it wants to organize its business vocabulary.
+
+A Term Type can be introduced in two ways, both from the same searchable dropdown available when [creating](#create-a-term) or [editing](#edit-a-term) a term:
+
+* by selecting a Term Type that has already been defined for another term in the glossary;
+* by typing a value that doesn't match any existing Term Type: a `Create new: <value>` option appears, allowing a brand new Term Type to be introduced on the fly, without leaving the term creation/edit form.
+
+Once introduced, a Term Type is immediately available for selection on any other term: it is not exclusive to the term that first defined it, but shared across the whole glossary.
+
+:::info
+There is currently no dedicated page to list, rename, or delete Term Types: they only exist as long as at least one term references them, and the searchable dropdown on term creation/edit is their only management surface.
+:::
+
+### Term Uniqueness
+
+Within the Business Glossary, a term is uniquely identified by the combination of its **Name** and its **Term Type**. As a consequence:
+
+* two terms can share the same Name, as long as they are assigned different Term Types (e.g. a term named `Client` typed as *Business Term* and another term named `Client` typed as *Acronym* can coexist);
+* two terms cannot share both the same Name and the same Term Type.
+
+This constraint is enforced whenever a term is created or edited; see [Edit a Term](#edit-a-term) for how renaming a term or changing its Term Type affects the places where it is referenced.
+
 ## Create a Term
 
 By clicking the `Create Item` button, a modal lets the user define a new term:
 
 * **Name** (required): the term title;
-* **Type** (required): a searchable dropdown listing the Term Types already defined in the glossary. If none of the existing Term Types matches what has been typed, a `Create new: <value>` option appears, allowing to define a brand new Term Type on the fly, without leaving the creation form;
+* **Type** (required): the [Term Type](#term-types) assigned to the term, selected or created on the fly from the searchable dropdown;
 * **Description** (optional): a free text description of the term.
 
 <div style={{display: 'flex', justifyContent: 'center'}}>
@@ -51,10 +75,6 @@ By clicking the `Create Item` button, a modal lets the user define a new term:
 
   </div>
 </div>
-
-:::info
-There is currently no dedicated page to list, rename, or delete Term Types: once introduced, a new Term Type immediately becomes available for selection when creating or editing any other term.
-:::
 
 ## Term Details Navigation
 
@@ -93,7 +113,7 @@ The **Assets** tab shows the **All assets** section, listing every data asset (S
 Users with enough permissions can edit a term's **Name**, **Type**, **Tags** and **Description** directly inline, from the Details card described in the [General tab](#general) of the term detail page.
 
 :::info
-A term is uniquely identified within the glossary by the combination of its **Name** and its **Term Type**. Renaming a term and/or changing its Term Type is automatically reflected wherever that term is referenced: on every other term listing it among its [Related terms](#related-terms), and on every data asset it has been [associated](#associating-terms-to-data-assets) to.
+As described in [Term Uniqueness](#term-uniqueness), a term is uniquely identified within the glossary by the combination of its **Name** and its **Term Type**. Renaming a term and/or changing its Term Type is automatically reflected wherever that term is referenced: on every other term listing it among its [Related terms](#related-terms), and on every data asset it has been [associated](#associating-terms-to-data-assets) to.
 :::
 
 ## Delete a Term
