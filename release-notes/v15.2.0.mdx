@@ -21,10 +21,10 @@ The Data Catalog now includes a **Business Glossary** that lets you define terms
 
 ![Business Glossary](./img/glossary_terms_list.png)
 
-To discover all the available features, visit the official [Business Glossary documentation](/docs/next/products/data_catalog/frontend/data_catalog_business_glossary).  
+To discover all the available features, visit the official [Business Glossary documentation](/docs/15.2.0/products/data_catalog/frontend/data_catalog_business_glossary).  
 
 :::info
-To enable the glossary, update your Data Catalog Application services to the versions listed in the [compatibility matrix](/docs/next/products/data_catalog/data_catalog_compatibility_matrix#service-latest-versions).  
+To enable the glossary, update your Data Catalog Application services to the versions listed in the [compatibility matrix](/docs/15.2.0/products/data_catalog/data_catalog_compatibility_matrix#service-latest-versions).  
 Once the new versions of Data Catalog Application have been deployed, run the fabric-admin cronjob `v0.5.7` to propertly setup the business glossary feature.
 :::
 
@@ -32,15 +32,15 @@ Once the new versions of Data Catalog Application have been deployed, run the fa
 
 ### Item Versioning
 
-Items now have a **History** section that tracks their full revision history, lets you promote a revision to a named version, compare any two states with a line-by-line diff, and roll back when needed — see the official [Item Versioning documentation](/docs/next/products/catalog/basic-concepts/item-history) to discover all the available features.
+Items now have a **History** section that tracks their full revision history, lets you promote a revision to a named version, compare any two states with a line-by-line diff, and roll back when needed — see the official [Item Versioning documentation](/docs/15.2.0/products/catalog/basic-concepts/item-history) to discover all the available features.
 
 ### Audit Logs
 
-Items now have an **Audit Logs** section, both tenant-wide and per Item Type, that lets Auditors review every action performed on the Catalog for security and compliance purposes — see the official [Audit Logs documentation](/docs/next/products/catalog/basic-concepts/audit-logs) to discover all the available features.
+Items now have an **Audit Logs** section, both tenant-wide and per Item Type, that lets Auditors review every action performed on the Catalog for security and compliance purposes — see the official [Audit Logs documentation](/docs/15.2.0/products/catalog/basic-concepts/audit-logs) to discover all the available features.
 
 ### Webhooks
 
-Item Types now support **Webhooks**, notifying an external service whenever one of their items is created, updated, or deleted, removing the need for external systems to poll the Catalog for changes — see the official [Webhooks documentation](/docs/next/products/catalog/basic-concepts/webhooks) to discover all the available features.
+Item Types now support **Webhooks**, notifying an external service whenever one of their items is created, updated, or deleted, removing the need for external systems to poll the Catalog for changes — see the official [Webhooks documentation](/docs/15.2.0/products/catalog/basic-concepts/webhooks) to discover all the available features.
 
 ## AI Foundry
 
@@ -66,19 +66,19 @@ AI Traces now surface richer **token usage** data per run, for finer-grained cos
 
 ## How to update
 
-To run Mia-Platform v15.2.0, the following Helm chart versions must be installed on your cluster. For the complete installation sequence and per-product upgrade guides, see the [Installation Guidelines](/docs/requirements/installation-guidelines/overview).
+To run Mia-Platform v15.2.0, the following Helm chart versions must be installed on your cluster. For the complete installation sequence and per-product upgrade guides, see the [Installation Guidelines](/docs/15.2.0/requirements/installation-guidelines/overview).
 
 ### Helm chart versions
 
 | Product | Helm Chart | Version | Upgrade guide |
 |---|---|---|---|
-| **Auth — Keycloak** | `keycloak-operator` | `v0.6.1` | [How to upgrade](/docs/requirements/installation-guidelines/shared-services/authn/keycloak/how-to-upgrade) |
-| **Auth — Realm Management** | `keycloak-realm-management` | `v0.1.35` | [How to upgrade](/docs/requirements/installation-guidelines/shared-services/authn/keycloak-realm-management/how-to-upgrade) |
-| **Homepage & RBAC** | `services` | `v0.3.22` | [How to upgrade](/docs/requirements/installation-guidelines/shared-services/services/how-to-upgrade) |
-| **Catalog** | `catalog` | `v0.3.55` | [How to upgrade](/docs/requirements/installation-guidelines/catalog/how-to-upgrade) |
-| **AI Foundry** | `ai-foundry` | `v0.5.0-beta.4` | [How to upgrade](/docs/requirements/installation-guidelines/ai-foundry/how-to-upgrade) |
+| **Auth — Keycloak** | `keycloak-operator` | `v0.6.1` | [How to upgrade](/docs/15.2.0/requirements/installation-guidelines/shared-services/authn/keycloak/how-to-upgrade) |
+| **Auth — Realm Management** | `keycloak-realm-management` | `v0.1.35` | [How to upgrade](/docs/15.2.0/requirements/installation-guidelines/shared-services/authn/keycloak-realm-management/how-to-upgrade) |
+| **Homepage & RBAC** | `services` | `v0.3.22` | [How to upgrade](/docs/15.2.0/requirements/installation-guidelines/shared-services/services/how-to-upgrade) |
+| **Catalog** | `catalog` | `v0.3.55` | [How to upgrade](/docs/15.2.0/requirements/installation-guidelines/catalog/how-to-upgrade) |
+| **AI Foundry** | `ai-foundry` | `v0.5.0-beta.4` | [How to upgrade](/docs/15.2.0/requirements/installation-guidelines/ai-foundry/how-to-upgrade) |
 | **AI Services** | `ai-services` | `v0.1.0-beta.2` | _Coming soon_ |
-| **Console** | `console` | `v15.2.0-beta.0` | [How to upgrade](/docs/requirements/installation-guidelines/console/self-hosted/how-to-upgrade) |
+| **Console** | `console` | `v15.2.0-beta.0` | [How to upgrade](/docs/15.2.0/requirements/installation-guidelines/console/self-hosted/how-to-upgrade) |
 
 ### Bill of materials
 
