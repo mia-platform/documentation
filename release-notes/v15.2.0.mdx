@@ -13,21 +13,6 @@ _Sep 21st, 2026_
 Mia-Platform v15.2.0 **Fall Release** is **now in Preview** and will be generally available on November 12!
 :::
 
-## Data Catalog
-
-### Business Glossary
-
-The Data Catalog now includes a **Business Glossary** that lets you define terms describing business concepts, metrics, or definitions, and link them to the data assets, bridging the gap between business language and technical metadata.
-
-![Business Glossary](./img/glossary_terms_list.png)
-
-To discover all the available features, visit the official [Business Glossary documentation](/docs/15.2.0/products/data_catalog/frontend/data_catalog_business_glossary).  
-
-:::info
-To enable the glossary, update your Data Catalog Application services to the versions listed in the [compatibility matrix](/docs/15.2.0/products/data_catalog/data_catalog_compatibility_matrix#service-latest-versions).  
-Once the new versions of Data Catalog Application have been deployed, run the fabric-admin cronjob `v0.5.7` to propertly setup the business glossary feature.
-:::
-
 ## Catalog
 
 ### Item Versioning
@@ -59,6 +44,21 @@ Playbooks gain a memory layer: per-user memory (short-term and long-term, persis
 ### Observability improvements
 
 AI Traces now surface richer **token usage** data per run, for finer-grained cost and consumption analysis alongside the existing trace details.
+
+## Data Catalog
+
+### Business Glossary
+
+The Data Catalog now includes a **Business Glossary** that lets you define terms describing business concepts, metrics, or definitions, and link them to the data assets, bridging the gap between business language and technical metadata.
+
+![Business Glossary](./img/glossary_terms_list.png)
+
+To discover all the available features, visit the official [Business Glossary documentation](/docs/15.2.0/products/data_catalog/frontend/data_catalog_business_glossary).  
+
+:::info
+To enable the glossary, update your Data Catalog Application services to the versions listed in the [compatibility matrix](/docs/15.2.0/products/data_catalog/data_catalog_compatibility_matrix#service-latest-versions).  
+Once the new versions of Data Catalog Application have been deployed, run the fabric-admin cronjob `v0.5.7` to propertly setup the business glossary feature.
+:::
 
 ## Other New Features, Improvements and Bug Fixes
 
