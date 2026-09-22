@@ -33,6 +33,8 @@ Item Types now support **Webhooks**, notifying an external service whenever one 
 
 A new workflow engine lets you orchestrate multi-step, event-triggered processes: an item state change, a detected vulnerability, or an external webhook can kick off a workflow that enriches context, invokes specialized agents, performs remediation actions, and notifies or routes to the right team, up to an automatically opened pull request. Each run is fully traceable, with automatic halting if a governance gate fails.
 
+![Guardrail](./img/ai_foundry_guardrail.png)
+
 ### Multi-agent Support
 
 Playbooks now support true multi-agent systems on the Agentic Flow canvas: sequential pipelines, parallel fan-out/fan-in, and supervisor/orchestrator patterns with dynamic routing and hand-off between agents, reusing existing tools, skills, MCP servers, and prompts as building blocks.
@@ -40,6 +42,8 @@ Playbooks now support true multi-agent systems on the Agentic Flow canvas: seque
 ### Playbook Memory Management
 
 Playbooks gain a memory layer: per-user memory (short-term and long-term, persisted across runs) and team-shared memory governed by RBAC, so multi-agent runs can share context and teams build on past runs. Only available within the Mia-Platform ecosystem, not for Playbooks run locally from VS Code or Claude Code.
+
+![Playbook Memory](./img/ai_foundry_memory.png)
 
 ### Observability improvements
 
