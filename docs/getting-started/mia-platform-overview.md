@@ -36,7 +36,7 @@ Key features include:
 
 To bridge the AI trust gap, enterprises must move beyond non-deterministic, black-box executions. The [**AI Foundry**](/products/ai-foundry/overview.md) is the necessary governance layer acting as a strict intermediary between user requests and AI actions. It ensures AI agents deliver predictable, **reproducible outcomes** that align perfectly with comprehensive enterprise standards and compliance.
 
-This framework operates through [**AI Playbooks**](/products/ai-foundry/basic-concepts/60_playbook.md): pre-configured, reproducible templates that package specific [agent](/products/ai-foundry/basic-concepts/10_agent.md) instructions, specialized [skills](/products/ai-foundry/basic-concepts/50_skill.md), memory configurations, compliance policies, and curated AI [tools](/products/ai-foundry/basic-concepts/40_tool.md) tailored to the technology stack and to a given objective.
+This framework operates through [**AI Playbooks**](/products/ai-foundry/basic-concepts/21_playbook.md): pre-configured, reproducible templates that package specific [agent](/products/ai-foundry/basic-concepts/20_agent.md) instructions, specialized [skills](/products/ai-foundry/basic-concepts/12_skill.md), memory configurations, compliance policies, and curated AI [tools](/products/ai-foundry/basic-concepts/13_tool.md) tailored to the technology stack and to a given objective.
 
 ![AI Playbooks](./img/ai-playbooks.png)
 
