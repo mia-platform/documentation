@@ -51,3 +51,13 @@ However, it is recommended to not configure it and use its default value.
 - Producer metrics are automatically collected from `librdkafka` statistics
 - Queue metrics help monitor internal buffer utilization and detect potential bottlenecks
 - Error metrics track transmission and reception failures at the broker level
+
+## Grafana Dashboard
+
+Alongside the service, a Grafana dashboard is released, so that it is possible
+to set up a standardize manner to monitor the Mongezium CDC service. This dashboard
+can be found here, next to previous releases.
+
+| Name               | Version  | Link                                                                                                                 |
+|--------------------|----------|----------------------------------------------------------------------------------------------------------------------|
+| Mongezium Overview | `v1.0.0` | <a download target="_blank" href="/docs_files_to_download/data-fabric/dashboards/mongezium_v1.0.0.json">download</a> |

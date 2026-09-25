@@ -42,7 +42,7 @@ The JSON structure of the configuration is the following:
 From CLI, you can run the following command to add the remote Console MCP Server to your list of servers:
 
 ```bash
-claude mcp add --transport console https://console.cloud.mia-platform.eu/mcp
+claude mcp add --transport http console https://console.cloud.mia-platform.eu/mcp
 ```
 
 A message will inform you that the server has been added to your list of servers. Running Claude will inform you that authentication is necessary to use the Console MCP Server.
