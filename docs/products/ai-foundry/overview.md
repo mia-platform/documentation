@@ -128,10 +128,6 @@ Monitor how your agents, playbooks, and exported plugins behave in production fr
 - [**AI Resources**](/products/ai-foundry/observability/10_ai_resources.md): how the assets you publish perform and where they go. **Playbook Insights** turns usage into suggestions for improving your playbooks, and **Resource Downloads** records who exported which resource, and how.
 - [**AI Sessions**](/products/ai-foundry/observability/20_ai_sessions.md): individual executions. **Platform Sessions** shows every conversation with its event timeline, tokens, latency, and cost, and **Workflow Runs** is a live board of agentic workflow runs.
 - [**AI Providers**](/products/ai-foundry/observability/30_ai_providers.md): telemetry from the components that call models, including the AI Gateway and IDE clients. **AI Traces** follows single requests end to end, and **AI Metrics** tracks throughput, latency, tokens, and cost over time.
-- **AI Metrics**: installation-wide dashboards for model calls, latency, token usage, cost, and tool calls, broken down by model, playbook, agent, skill, client, and user.
-- **Playbook Insights**: usage signals for the playbooks you own and for your own usage, with an anonymity threshold that protects individual users.
-- **Resource Downloads**: a record of which AI assets were downloaded or exported, and through which connection.
-- **Workflow Runs**: a live board of agentic workflow runs, grouped into running, waiting for approval, and done.
 
 Every trace is tagged with its organization and tenant, and gateway calls carry playbook and service attribution, so cost and usage can always be traced back to their source. Users see their own traces by default; seeing all users' traces requires a dedicated permission.
 
@@ -162,7 +158,7 @@ You can download the following AI assets:
 All model traffic in AI Foundry flows through the **AI Gateway**, built on [LiteLLM](https://www.litellm.ai/). The gateway decides how a model is called and whose credential pays for it, while the catalog decides who can see it. From the **Administration** section you manage (see [AI security](/products/ai-foundry/administration/10_ai-security.md)):
 
 - **LLM Credentials**: provider API keys, stored encrypted on the gateway and shared by several models.
-- **Virtual Keys**: keys issued for a given purpose (for example, Claude Code, VS Code with GitHub Copilot, or a script or CI job). Each key is limited to a set of models, expires after a set time, and can have a budget in USD (reset every 30 days) and requests-per-minute and tokens-per-minute limits. A key is shown only once, when it is created.
+- **Virtual Keys**: keys issued for a given purpose (for example, Claude Code, VS Code with GitHub Copilot, or a script or CI job). Each key is limited to a set of models, expires after a set time, and can have a budget (reset every 30 days) and requests-per-minute and tokens-per-minute limits. A key is shown only once, when it is created.
 - **Teams**: groups of members with shared model access, a team budget, a default per-member budget, and rate limits. Each tenant also has its own team automatically.
 
 Each tenant chats through its own virtual key, and spend is tracked per tenant, so budgets and cost reports stay isolated between tenants.
