@@ -29,7 +29,7 @@ Flow provides a set of built-in integrations with third party tools and make the
 | Cloud storage      | Google Drive (read-only)                | List, search, fetch file content                         |
 | Platform           | Mia-Platform Console & Data Catalog     | Projects, services, lineage, catalog items               |
 
-In addition to the built-in connectors, you can register any number of **custom MCP servers**. Registration itself happens in [AI Foundry](/products/ai-foundry/basic-concepts/70_mcp-server.md): the **Add new MCP server** action on the **Connected Tools** page opens AI Foundry in a new tab, where you configure the server and its authentication. Once a server is registered, Flow loads it automatically and treats its tools like any other tools.
+In addition to the built-in connectors, you can register any number of **custom MCP servers**. Registration itself happens in [AI Foundry](/products/ai-foundry/basic-concepts/14_mcp-server.md): the **Add new MCP server** action on the **Connected Tools** page opens AI Foundry in a new tab, where you configure the server and its authentication. Once a server is registered, Flow loads it automatically and treats its tools like any other tools.
 
 ## The Connected Tools page
 

@@ -20,14 +20,14 @@ Every building block listed below is an [AI Foundry](/products/ai-foundry/overvi
 
 | Type | What it is | AI Foundry reference |
 |------|------------|----------------------|
-| **Agents** | A model + a tool selection + system instructions. The unit that actually answers your messages. | [Agent](/products/ai-foundry/basic-concepts/10_agent.md) |
-| **Tools** | A discrete, executable capability an agent can call: a REST request, a database query, or any operation exposed by an MCP Server. | [Tool](/products/ai-foundry/basic-concepts/40_tool.md) |
-| **MCP Server** | An external [Model Context Protocol (MCP)](https://modelcontextprotocol.io/docs/getting-started/intro) server. Its tools are discovered and become attachable to agents like any other tool. | [MCP Servers](/products/ai-foundry/basic-concepts/70_mcp-server.md) |
-| **Models** | LLM models available to agents. | [Model](/products/ai-foundry/basic-concepts/20_model.md) |
-| **Prompts** | Reusable system prompts that shape the agent's tone, role, or workflow. | [Prompt](/products/ai-foundry/basic-concepts/30_prompt.md) |
-| **Skills** | Reusable, named operations an agent can perform. Distinct from the tools exposed by [Connectors](/products/flow/basic-concepts/10_connected-tools.md). | [Skill](/products/ai-foundry/basic-concepts/50_skill.md) |
-| **Spec Templates** | SpecKit command templates: structured commands the agent can apply to a project. | [Spec Templates](/products/ai-foundry/basic-concepts/80_spec.md) |
-| **AI Playbooks** | Curated bundles of all of the above, applied as a single unit. | [Playbook](/products/ai-foundry/basic-concepts/60_playbook.md) |
+| **Agents** | A model + a tool selection + system instructions. The unit that actually answers your messages. | [Agent](/products/ai-foundry/basic-concepts/20_agent.md) |
+| **Tools** | A discrete, executable capability an agent can call: a REST request, a database query, or any operation exposed by an MCP Server. | [Tool](/products/ai-foundry/basic-concepts/13_tool.md) |
+| **MCP Server** | An external [Model Context Protocol (MCP)](https://modelcontextprotocol.io/docs/getting-started/intro) server. Its tools are discovered and become attachable to agents like any other tool. | [MCP Servers](/products/ai-foundry/basic-concepts/14_mcp-server.md) |
+| **Models** | LLM models available to agents. | [Model](/products/ai-foundry/basic-concepts/10_model.md) |
+| **Prompts** | Reusable system prompts that shape the agent's tone, role, or workflow. | [Prompt](/products/ai-foundry/basic-concepts/11_prompt.md) |
+| **Skills** | Reusable, named operations an agent can perform. Distinct from the tools exposed by [Connectors](/products/flow/basic-concepts/10_connected-tools.md). | [Skill](/products/ai-foundry/basic-concepts/12_skill.md) |
+| **Spec Templates** | SpecKit command templates: structured commands the agent can apply to a project. | [Spec Templates](/products/ai-foundry/basic-concepts/16_spec.md) |
+| **AI Playbooks** | Curated bundles of all of the above, applied as a single unit. | [Playbook](/products/ai-foundry/basic-concepts/21_playbook.md) |
 
 ## Agents
 
@@ -38,17 +38,17 @@ An agent has several components:
 - one or more tools;
 - one or more skills.
 
-**Tools** are discrete, executable capabilities an agent can call: a REST request, a database query, or any operation exposed by an [MCP Server](/products/ai-foundry/basic-concepts/70_mcp-server.md). Flow's built-in [connectors](/products/flow/basic-concepts/10_connected-tools.md) and any custom MCP server you register are both surfaced as tools this way, so an agent's tool selection is a pick from what those MCP servers (plus any built-in tools) expose.
+**Tools** are discrete, executable capabilities an agent can call: a REST request, a database query, or any operation exposed by an [MCP Server](/products/ai-foundry/basic-concepts/14_mcp-server.md). Flow's built-in [connectors](/products/flow/basic-concepts/10_connected-tools.md) and any custom MCP server you register are both surfaced as tools this way, so an agent's tool selection is a pick from what those MCP servers (plus any built-in tools) expose.
 
-**Skills** are reusable, named, higher-level operations an agent can perform — coarser-grained than a single tool call, and defined in [AI Foundry](/products/ai-foundry/basic-concepts/50_skill.md) as a distinct resource from tools.
+**Skills** are reusable, named, higher-level operations an agent can perform — coarser-grained than a single tool call, and defined in [AI Foundry](/products/ai-foundry/basic-concepts/12_skill.md) as a distinct resource from tools.
 
-Agents are defined in [AI Foundry](/products/ai-foundry/basic-concepts/10_agent.md); from Flow you pick which agent answers your conversation.
+Agents are defined in [AI Foundry](/products/ai-foundry/basic-concepts/20_agent.md); from Flow you pick which agent answers your conversation.
 
 Different agents are useful for different jobs: for example, a fast agent for quick edits and a slower reasoning agent for complex planning.
 
 ## AI Playbooks
 
-A **Playbook** is a named bundle of every artifact above and is the unit you usually apply to a conversation. Playbooks are authored in [AI Foundry](/products/ai-foundry/basic-concepts/60_playbook.md); inside Flow you pick one as a suggested chip when starting a conversation, or apply/change one mid-conversation from the active instructions picker in the chat compose bar:
+A **Playbook** is a named bundle of every artifact above and is the unit you usually apply to a conversation. Playbooks are authored in [AI Foundry](/products/ai-foundry/basic-concepts/21_playbook.md); inside Flow you pick one as a suggested chip when starting a conversation, or apply/change one mid-conversation from the active instructions picker in the chat compose bar:
 
 ```
 AI Playbook
