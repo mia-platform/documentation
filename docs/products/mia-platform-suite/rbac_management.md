@@ -115,7 +115,7 @@ Alice belonged to two groups, each contributing a different set of permissions:
 - **Group "Platform Engineers"** — granted the *Viewer* role on **Catalog** and **AI Foundry**, letting her view items and their configuration.
 - **Group "Software Engineers | Catalog"** — granted the *Item Editor* and *Item Type Definition Editor* roles on **Catalog**, letting her create, delete, and edit items and item type definitions.
 
-Alice's effective permissions were the combination of these two groups' roles. From the users overview, an admin can open her profile at any time — via the user menu, which links to **Profile** — to see the full, resulting list of permissions.
+Alice's effective permissions were the combination of these two groups' roles. From the users overview, an admin can open her profile at any time to see the full, resulting list of permissions, just click on a user menu with links to Profile.
 
 ## Profile
 
