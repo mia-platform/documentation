@@ -175,6 +175,8 @@ Each tenant chats through its own virtual key, and spend is tracked per tenant, 
 
 The AI Foundry ADK BE APIs can be called machine-to-machine using a **service account**, registered through Platform Administration — see [Registering a service account](/products/mia-platform-suite/rbac_management.md#registering-a-service-account) and [Requesting an access token](/products/mia-platform-suite/rbac_management.md#requesting-an-access-token). Unlike Catalog, calling the AI Foundry ADK BE APIs requires the token to be requested with **all three** scopes together — `mia:catalog`, `mia:ai-foundry`, and `mia:authz` — requesting `mia:ai-foundry` alone is not sufficient.
 
+The agents and playbooks you author in AI Foundry are executed by the **agent runtime** (`adk-be-app`), the agentic engine underneath the whole suite. You can install it on its own to use your agents from applications and systems that are not provided by Mia-Platform, calling its ADK APIs while the configuration stays in the Catalog. The runtime reads that configuration with its own service account, which needs only the `mia:catalog` scope. See [Runtime installation](/products/ai-foundry/administration/30_runtime-installation.md) to install it and connect it to your Catalog.
+
 ## Where to go next
 
 New to AI Foundry? Start with the Basic Concepts section:
@@ -193,6 +195,7 @@ New to AI Foundry? Start with the Basic Concepts section:
 - [Memory](/products/ai-foundry/basic-concepts/15_memory.md): long-term, per-person recall for agents.
 - [Guardrail](/products/ai-foundry/basic-concepts/17_guardrail.md): policies that allow, block, or modify model and MCP traffic.
 - [Spec Templates](/products/ai-foundry/basic-concepts/16_spec.md): structured reference documents for agents and playbooks.
+- [Runtime installation](/products/ai-foundry/administration/30_runtime-installation.md): install the agent runtime and connect it to the Catalog.
 - [AI Resources](/products/ai-foundry/observability/10_ai_resources.md): insights and distribution of the assets you publish.
 - [AI Sessions](/products/ai-foundry/observability/20_ai_sessions.md): conversations and agentic workflow runs.
 - [AI Providers](/products/ai-foundry/observability/30_ai_providers.md): traces and metrics from the services and clients that call models.
