@@ -11,6 +11,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 1.3.0 - 06-10-2026
+
+### Fixed
+
+- JWT payload decoding now uses base64url encoding instead of standard base64, fixing spurious "unable decoding JWT payload" errors for claim values containing multi-byte UTF-8 characters (e.g. accented letters)
+- `/verify` handler now refreshes the JWKS and retries when the cached keys can't verify the token (e.g. after a key rotation), instead of failing immediately
+
 ## 1.2.0 - 10-12-2024
 
 ### Changed

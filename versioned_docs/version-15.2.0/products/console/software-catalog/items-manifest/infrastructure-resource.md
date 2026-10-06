@@ -29,7 +29,7 @@ If you've upgraded to Console release `v13.3.0`, you can now view the status of 
 If you have upgraded the Console to version `v13.6.1`, you can now generate a dynamic form. This documentation serves as a guide for users to understand and effectively utilize the dynamic form fields generated from a JSON schema. By following the examples and descriptions provided, users can create forms that are both functional and user-friendly, ensuring a smooth data entry experience. 
 
 :::info
-In the next versions of the Console we want to add dynamic form generation also in the details section.
+Starting from Console `v15.2.0`, the dynamic form is available not only when creating the resource, but also in its details section: every edit is validated against the JSON schema of the selected item version. Check out how to [edit the resource with the form](/products/console/design-your-projects/custom-resources/custom-resources.md#edit-the-resource-with-the-form).
 :::
 
 The Frontend of the Console generate the Form using the roles below:
