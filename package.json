@@ -41,7 +41,7 @@
     "react": "^19.3.0",
     "react-dom": "^19.3.0",
     "react-youtube": "^10.1.0",
-    "semver": "^7.7.4",
+    "semver": "^7.8.5",
     "tsx": "^4.23.15",
     "typescript-eslint": "^8.71.0"
   },
