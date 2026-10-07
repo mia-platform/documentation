@@ -20,6 +20,7 @@ an instance of `Kafka2Rest` service.
 - `TOPICS_REST_CONFIG_PATH`: the path where is located the _kafka-topic_:_base-url_ configuration map
 - `PATH_PROCESSORS_PATH`: the path where is located the path processors Javascript file
 - `BODY_PROCESSORS_PATH`: the path where is located the request body processors Javascript file
+- `HEADER_PROCESSORS_PATH`: the path where is located the request header processors Javascript file
 - `VALIDATOR_PROCESSORS_PATH`: the path where is located the message validator processors Javascript file 
 - `KAFKA_CLIENT_ID`: the identifier which can be employed to recognize this service within Kafka environment
 - `KAFKA_GROUP_ID`: the consumer group identifier employed by the service to read messages from Kafka
@@ -43,17 +44,16 @@ Here is provided the JSON schema that defines the configuration for each topic
   "type": "object",
   "required": [
     "baseUrl",
-    "messageSchema",
     "pathProcessor",
     "bodyProcessor"
   ],
   "properties": {
     "authentication": {
-        "type": "string",
-        "enum": ["none", "basic", "privateKeyJwt"],
-        "default": "none",
-        "description": "specify (optionally) the way the service should request a token to the client credentials to authenticate the request to the target url"
-      },
+      "type": "string",
+      "enum": ["none", "basic", "privateKeyJwt"],
+      "default": "none",
+      "description": "specify (optionally) the way the service should request a token to the client credentials to authenticate the request to the target url"
+    },
     "baseUrl": {
       "type": "string",
       "description": "the target base url onto which requests should be performed. This MUST terminate with a /"
@@ -69,6 +69,10 @@ Here is provided the JSON schema that defines the configuration for each topic
     "bodyProcessor": {
       "type": "string",
       "description": "the name of a body processor to be employed to generate the request body - selected from one of the available in bodyProcessors file"
+    },
+    "headerProcessor": {
+      "type": "string",
+      "description": "the name of a header processor to be employed to generate the request headers - selected from one of the available in headerProcessors file"
     },
     "validatorProcessor": {
       "type": "string",
