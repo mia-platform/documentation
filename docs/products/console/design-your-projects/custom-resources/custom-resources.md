@@ -67,9 +67,11 @@ In that case, when selecting the Infrastructure Resource to create, you will see
 
 In this case, you can only modify the *name* of the Infrastructure Resource: the *kind* and the *apiVersion* fields are managed by the versioned marketplace item, so you cannot modify them manually, neither during the creation nor the update.
 
+If the selected version of the Marketplace item defines a JSON schema, a form generated from it is shown during the creation, so that you can fill in the resource fields and have them validated before adding the resource to your project. See how to [define the JSON schema](/products/console/software-catalog/items-manifest/infrastructure-resource.md#generate-dynamic-form-to-customize-validation) of an Infrastructure Resource.
+
 ### Update an Infrastructure Resource
 
-Once you have created a Infrastructure Resource, it will be possible to update it. Click on the Infrastructure Resource you want to update in the sidebar, and you will see a YAML editor.
+Once you have created a Infrastructure Resource, it will be possible to update it. Click on the Infrastructure Resource you want to update in the sidebar, and you will see a YAML editor (or a form, if the resource has been created from a Marketplace item that defines a JSON schema, see [Edit the resource with the form](#edit-the-resource-with-the-form)).
 
 The Infrastructure Resource has some supported fields, other fields will be ignored. The supported fields are:
 
@@ -87,6 +89,16 @@ The Infrastructure Resource has some supported fields, other fields will be igno
 
 ![Update](./img/update-gateway-custom-resource.png)
 
+#### Edit the resource with the form
+
+If the Infrastructure Resource has been created from a Marketplace item whose version defines a JSON schema, the form generated from that schema is kept also after the resource has been added to the project. Every time you edit the resource, the form validates your changes against the rules of the JSON schema of the selected item version, not only at its first creation.
+
+You can always switch to the YAML editor if you need to work on the resource in a more advanced way. However, if the changes made in the YAML editor go beyond what is expected by the JSON schema of the item version, you will not be able to switch back to the form until the manifest complies with the schema again.
+
+:::info
+The validation against the JSON schema is performed on the frontend only.
+:::
+
 Infrastructure Resources created from Marketplace items can not have the `apiVersion` and the `kind` fields modified. Attempting to do so will result in an error badge shown in the UI, and the updates on the manifest will be ignored.
 
 Each version of the Infrastructure Resource defines specific values for these fields.
@@ -101,6 +113,7 @@ A small tag will also inform you which is the *latest* version of the plugin, th
 
 In case you need to update the `apiVersion` and the `kind` fields manually, completely changing the configuration of the Infrastructure Resource, you can do so by clicking the *Detach from Marketplace* button on the menu: this will detach the Custom Resource from the original Marketplace item, causing the resource to be fully editable.
 However, you will not be able to use the Marketplace versioning feature anymore, and you will not be notified by any update made by the Marketplace creator of that item.
+Moreover, since the resource is no longer bound to the JSON schema of the item version, the form will not be available anymore and you will be able to edit the resource only through the YAML editor.
 
 :::info
 A version labelled with *N/A* refers to a Marketplace item that did not include a version when it was created.

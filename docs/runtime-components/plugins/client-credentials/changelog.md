@@ -11,6 +11,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## 3.5.1 - 06-10-2026
+
+### Added
+
+- support for authenticating to Redis Sentinel with its own username/password, distinct from the Redis master's credentials, via `REDIS_SENTINEL_USERNAME`/`REDIS_SENTINEL_PASSWORD`
+
 ## 3.5.0 - 21-09-2026
 
 ### Added
