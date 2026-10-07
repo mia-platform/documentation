@@ -32,6 +32,9 @@ This year's headline news is the arrival of three brand-new components of Mia-Pl
 
 But the story doesn't end there — v15 is packed with a wealth of product updates across the entire platform, from column-level data lineage that unlocks end-to-end data traceability, to native Bitbucket Cloud support for teams using Atlassian's ecosystem, to the new Fast Data Control Plane v2 for governing real-time data pipelines at scale, and much more. Read on to discover everything that's new!
 
+## v15 Fall Release news
+**TODO**
+
 ### Catalog
 
 We are thrilled to welcome a brand-new component to the Mia-Platform Product Suite: **Catalog**!
@@ -46,20 +49,9 @@ Catalog ships with:
 - A built-in **compliance layer** — evaluation criteria, scorecards, and campaigns — to express and enforce organizational standards (security baselines, production-readiness, ownership, …) and drive time-bounded compliance programs with notifications.
 - A growing set of **connectors**, powered by the open-source [`ibdm`](https://github.com/mia-platform/ibdm) binary, that keep the catalog in sync with GitHub, GitLab, Bitbucket, Azure, Azure DevOps, Google Cloud, the Mia-Platform Console, and many other tools.
 - An **MCP server** that exposes the catalog to AI agents through the [Model Context Protocol](https://modelcontextprotocol.io/), making organizational context available to AI workflows out of the box.
+- AGGIUNGERE LE NOVITà
 
 Discover all the details in the [Catalog documentation](/docs/products/catalog/overview).
-
-### Flow
-
-Say hello to **Flow**, the newest component joining Mia-Platform!
-
-![Flow](./img/flow.png)
-
-Flow is an AI-driven development environment: you open it in the browser, describe what you want to build in natural language, and the assistant generates the code, renders it in a live preview inside the Canvas, and deploys it to a Mia-Platform project when you are ready.
-
-It connects to the tools your team already uses — GitHub, GitLab, Atlassian, Grafana, Mia-Platform Console, and any custom MCP server — and lets you manage reusable AI building blocks such as agents, skills, prompts, and playbooks directly from the interface.
-
-Discover all the details in the [Flow documentation](/docs/products/flow/overview).
 
 ### AI Foundry
 
@@ -74,10 +66,28 @@ AI Foundry is the new home for building, deploying, and governing AI-powered exp
 - Manage **Prompts** as first-class, versioned catalog assets that agents and playbooks can reference.
 - Register external **MCP Servers** to dynamically expand the tool surface available to agents.
 - Test everything in real time in the **AI Playground**, with streamed responses, inline tool calls, and exportable conversations.
+- AGGIUNGERE LE NEWS
 
 Discover all the details in the [AI Foundry documentation](/docs/products/ai-foundry/overview).
 
-### Data Catalog Column Lineage
+### Flow
+
+Say hello to **Flow**, the newest component joining Mia-Platform!
+
+![Flow](./img/flow.png)
+
+Flow is an AI-driven development environment: you open it in the browser, describe what you want to build in natural language, and the assistant generates the code, renders it in a live preview inside the Canvas, and deploys it to a Mia-Platform project when you are ready.
+
+It connects to the tools your team already uses — GitHub, GitLab, Atlassian, Grafana, Mia-Platform Console, and any custom MCP server — and lets you manage reusable AI building blocks such as agents, skills, prompts, and playbooks directly from the interface.
+
+:::info
+Flow is available only in private preview.
+:::
+
+Discover all the details in the [Flow documentation](/docs/products/flow/overview).
+
+### Data Catalog
+#### Data Catalog Column Lineage
 
 The **Data Catalog** now supports **Column Lineage**, enabling users to inspect and trace upstream and downstream column relationships for a more granular, end-to-end view of their data.
 
@@ -86,6 +96,10 @@ The **Data Catalog** now supports **Column Lineage**, enabling users to inspect 
 While Table-level and System-of-Record-level lineage give a structural picture of how data flows across tables and systems, Column Lineage goes deeper: for each Job connecting two tables, users can now document exactly **which columns feed into which**, and **what kind of transformation** ties them together.
 
 Discover all the details in the [Column Lineage documentation](/docs/products/data_catalog/frontend/data_lineage#column-lineage).
+
+#### Business Glossary
+We released in v15 Fall.
+TODO
 
 ### Fast Data Control Plane v2
 
@@ -97,7 +111,8 @@ It provides a general overview of all Fast Data v2 pipelines running in your env
 
 Discover all the capabilities and benefits of Fast Data Control Plane v2 in the [official documentation](/docs/products/fast_data_v2/runtime_management/overview).
 
-### Bitbucket Cloud Support in Console
+### Console
+#### Bitbucket Cloud Support in Console
 
 Console now supports **Bitbucket Cloud** as both a **Git Provider** and a **CI/CD Tool**, enabling teams that rely on Bitbucket to fully integrate their project workflows, from repository provisioning to pipeline execution.
 
@@ -107,7 +122,7 @@ Configuring Bitbucket Cloud as a Git Provider allows users to set up Console Pro
 
 Discover how to configure Bitbucket Cloud as a Git Provider and set up Bitbucket Pipelines in the [Configure a Provider](/docs/products/console/company-configuration/providers/management) and [Configure Bitbucket Pipelines](/docs/products/console/deploy/pipeline-based/configure-bitbucket-pipelines) documentation pages.
 
-### Helm Charts Design and Deploy with Kustomize
+#### Helm Charts Design and Deploy with Kustomize
 
 The Console Design Area now includes a dedicated **Charts** section for Console Projects using the Enhanced Workflow.
 
@@ -119,7 +134,7 @@ At deploy time, the Console generates the chart output and the pipeline applies 
 
 Discover all the details in the [Helm Chart documentation](/docs/products/console/api-console/api-design/charts).
 
-### New Interface for Configuration Merge
+#### New Interface for Configuration Merge
 
 A **new interface for merging configurations** has been introduced in the Console Design Area.
 
@@ -130,12 +145,4 @@ The new interface aims at improving DevX in comparing and merging configurations
 When working with branched revisions in the Design Area, users can now take advantage of a redesigned merge interface that provides a clearer, more intuitive diff view of the changes between revisions, making it easier to compare and merge configurations with confidence.
 
 To try it, go to the **Feature Preview** section inside your **Project settings** and activate it!
-
-## Mia-Platform v15 Fall Update
-
-### Catalog Item Versioning
-
-### Agentic Workflows in AI Foundry
-
-### Business Glossary
 
