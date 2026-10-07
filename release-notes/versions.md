@@ -9,6 +9,19 @@ import Changelog from '@site/src/components/Changelog';
 
 <Changelog>
 
+## [v15.2.0](/release-notes/v15.2.0.mdx)
+
+*Sep 21st, 2026*
+
+Mia-Platform v15.2.0 includes improvements across all Mia-Platform Suite, in particular:
+
+- **Data Catalog**: the new **Business Glossary**, a shared, business-friendly vocabulary that lets you define terms and link them to the data assets, bridging the gap between business language and technical metadata.
+- **Catalog**: full **Item Versioning** with revision history and rollback, tenant-wide and per-Item-Type **Audit Logs**, outbound **Webhooks** on item changes, and typed **Custom Fields** to extend items without touching their schema.
+- **AI Foundry**: a new **Agentic Workflow Orchestration** engine to automate multi-step, event-triggered processes, **multi-agent** support on the Agentic Flow canvas with sequential and parallel agent patterns, per-user and team-shared **Playbook Memory**, and richer **token usage** data in AI Traces.
+- Additional improvements and bug fixes across **Homepage & RBAC** and **Console**.
+
+[Read the release notes](/release-notes/v15.2.0.mdx)
+
 ## [v15.1.0](/release-notes/v15.1.0.mdx)
 
 *Sep 17th, 2026*

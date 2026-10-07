@@ -1,21 +1,15 @@
 const js = require("@eslint/js");
 const pluginReact = require("eslint-plugin-react");
-const babelParser = require("@babel/eslint-parser");
 
-/** @type {import("eslint").Linter.FlatConfig[]} */
+/** @type {import("eslint").Linter.Config[]} */
 module.exports = [
     js.configs.recommended,
     {
         files: ["**/*.js", "**/*.jsx"],
         languageOptions: {
-            parser: babelParser,
+            ecmaVersion: "latest",
+            sourceType: "module",
             parserOptions: {
-                requireConfigFile: false,
-                babelOptions: {
-                    presets: ["@babel/preset-react"]
-                },
-                ecmaVersion: "latest",
-                sourceType: "module",
                 ecmaFeatures: {
                     jsx: true
                 }
@@ -32,7 +26,7 @@ module.exports = [
             react: pluginReact
         },
         settings: {
-            react: {version: "detect"}
+            react: {version: "19"}
         },
         rules: {
             "no-console": "error",

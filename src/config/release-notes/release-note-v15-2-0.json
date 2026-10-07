@@ -1,0 +1,142 @@
+[
+  {
+    "title": "Data Catalog",
+    "icon": "data-catalog",
+    "defaultOpen": false,
+    "type": "versions",
+    "items": {
+      "newFeatures": [
+        {
+          "title": "Excel Add-in v0.4.0",
+          "description": [
+            "The new version `v0.4.0` of the _Excel Add-in_ is available, and it supports the new **Business Glossary**: terms can now be pulled, enriched, and pushed from an Excel worksheet.",
+            "Check the [changelog](/docs/15.2.0/products/data_catalog/excel_add_in/changelog) for the full list of changes."
+          ]
+        }
+      ],
+      "improvements": [],
+      "bugFixes": []
+    }
+  },
+  {
+    "title": "Catalog",
+    "icon": "catalog",
+    "defaultOpen": false,
+    "type": "versions",
+    "items": {
+      "newFeatures": [
+        {
+          "title": "Custom Fields",
+          "description": [
+            "Items can now be enriched with **Custom Fields**: typed, validated metadata that extends an Item Type without modifying its native schema — ideal for business or governance attributes that aren't covered out of the box. See the [Custom Fields documentation](/docs/15.2.0/products/catalog/basic-concepts/custom-fields) for the full workflow."
+          ]
+        }
+      ],
+      "improvements": [
+        {
+          "title": "Clearer `ibdm`-to-Catalog wiring guidance",
+          "description": [
+            "The [connector installation guidelines](15.2.0/requirements/installation-guidelines/catalog/connectors/00_overview) now clarify `MIA_CATALOG_ENDPOINT`'s expected shape, when `MIA_CATALOG_CUSTOM_SCOPE` needs to be set, and the exact scopes required on-prem vs. on the Mia-Platform PaaS."
+          ]
+        },
+        {
+          "title": "Role-based permission management",
+          "description": [
+            "Improved the [Administration](/docs/15.2.0/products/mia-platform-suite/rbac-management) UX for Organization Admins and Tenant Admins."
+          ]
+        },
+        {
+          "title": "User Profile page",
+          "description": [
+            "Every user now has a [Profile page](/docs/15.2.0/products/mia-platform-suite/rbac-management#profile) listing their tenants, groups, and effective roles."
+          ]
+        }
+      ],
+      "bugFixes": []
+    }
+  },
+  {
+    "title": "AI Foundry",
+    "icon": "ai-foundry",
+    "defaultOpen": false,
+    "type": "versions",
+    "items": {
+      "newFeatures": [
+        {
+          "title": "AI Gateway & MCP Gateway",
+          "description": [
+            "AI Foundry becomes a governed control plane for models and AI tools: the **AI Gateway** is a single proxy for LLM traffic with cost tracking, caching, guardrails/policies, and observability, while **MCP Federation** unifies multiple MCP servers behind one Foundry-governed endpoint with a federated registry and centralized discovery."
+          ]
+        }
+      ],
+      "improvements": [],
+      "bugFixes": []
+    }
+  },
+  {
+    "title": "Console",
+    "icon": "console",
+    "defaultOpen": false,
+    "type": "versions",
+    "items": {
+      "newFeatures": [],
+      "improvements": [
+        {
+          "title": "Improved yaml schema validation for Helm charts",
+          "description": [
+            "The chart editor of Charts section in Design Area now validates `values.yaml` live against each chart's schema using the official `monaco-yaml` engine — including subchart dependencies from `Chart.yaml` — replacing the previous custom validation logic."
+          ]
+        },
+        {
+          "title": "Form-based editing for Infrastructure Resources",
+          "description": [
+            "Infrastructure Resources created from a Marketplace item that defines a JSON schema now keep their **form** after creation: the JSON schema of the selected item version is applied to validate the resource not only when it is first added, but also on every subsequent edit.",
+            "You can still switch to the YAML editor for more advanced changes; if the manifest no longer matches the JSON schema of the item version, switching back to the form is disabled. Once a resource is detached from the Marketplace, only the YAML editor is available.",
+            "Check the [Infrastructure Resources documentation](/docs/15.2.0/products/console/design-your-projects/custom-resources/custom-resources#update-an-infrastructure-resource) for more details."
+          ]
+        }
+      ],
+      "bugFixes": []
+    }
+  },
+  {
+    "title": "Runtime Components",
+    "icon": "runtime-components",
+    "defaultOpen": false,
+    "type": "versions",
+    "items": {
+      "newFeatures": [],
+      "improvements": [
+        {
+          "title": "Authentication Service v3.14.2",
+          "description": [
+            "The new version `v3.14.2` of the _Authentication Service_ is available!",
+            "This release adds **TLS encryption management** in the Redis Sentinel configuration.",
+            "It also fixes the `/userinfo` response, which again always includes the `groups` field, restoring the pre-3.13.0 contract.",
+            "Check the [changelog](/docs/15.2.0/runtime-components/plugins/authentication-service/changelog) for the full list of changes."
+          ]
+        },
+        {
+          "title": "Client Credentials v3.5.1",
+          "description": [
+            "The new version `v3.5.1` of the _Client Credentials_ service is available!",
+            "This release adds **TLS encryption management** in the Redis Sentinel configuration.",
+            "It also adds support for authenticating to **Redis Sentinel** with its own username and password, distinct from the Redis master's credentials, via the `REDIS_SENTINEL_USERNAME` and `REDIS_SENTINEL_PASSWORD` environment variables.",
+            "Check the [changelog](/docs/15.2.0/runtime-components/plugins/client-credentials/changelog) for the full list of changes."
+          ]
+        }
+      ],
+      "bugFixes": [
+        {
+          "title": "JWT Token Validator v1.3.0",
+          "description": [
+            "The new version `v1.3.0` of the _JWT Token Validator_ is available!",
+            "JWT payload decoding now uses base64url encoding, fixing spurious `unable decoding JWT payload` errors for claim values containing multi-byte UTF-8 characters (e.g. accented letters).",
+            "The `/verify` handler now refreshes the JWKS and retries when the cached keys can't verify the token (e.g. after a key rotation), instead of failing immediately.",
+            "Check the [changelog](/docs/15.2.0/runtime-components/plugins/jwt-token-validator/changelog) for the full list of changes."
+          ]
+        }
+      ]
+    }
+  }
+]
