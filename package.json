@@ -50,7 +50,7 @@
     "@babel/eslint-parser": "^8.0.6",
     "@eslint/js": "^10.0.1",
     "@swc/core": "^1.16.2",
-    "eslint": "^10.11.0",
+    "eslint": "^10.12.0",
     "eslint-plugin-react": "7.37.5",
     "front-matter": "^4.0.2",
     "git-list-updated": "^1.2.1",
