@@ -16,10 +16,13 @@ RBAC is a cross-product capability, but the specific set of assignable roles/per
 Mia-Platform's RBAC system is a centralized service designed for granular access governance. The component exposes both a REST API (documented via OpenAPI) for CRUD operations on resources, and a high-performance gRPC service used by authorization components (e.g., external authorization sidecars) to resolve a principal's context. The system intercepts requests in real time, evaluates whether the principal has the required permissions for the requested action, and then forwards authorized requests to the target service.
 
 ### Core concepts
-- **Super Admin** — a global administrative role (*...authz:Super Admin*) with full privileges to manage the entire suite. In on-prem installation, Super Admin and Organization Admin are the same person.
-- **Organization Admin** — an administrative role (*...organization-Super Admin:\<org\>*) with full privileges limited to a specific organization (e.g. add users, tenants or service accounts)
+
+- **Policy package** — a Rego module containing the rules (allow rules) that determine if an action is permitted.
+- **actions.json** — a configuration file that maps HTTP paths and methods to specific policy rules, used by the Access Control system to evaluate incoming requests.
+- **Input schema** — a JSON Schema file in the *schemas/* directory that defines the structure of *input.rbac*, used for validating and type-checking policy inputs.
+- **Super Admin** — a global administrative role (*...authz:Super Admin*) with full privileges to manage the entire platform.
+- **Organization Admin** — an administrative role (*...organization-Super Admin:\<org\>*) with full privileges limited to a specific organization.
 - **Tenant Admin** — an administrative role with full privileges limited to a specific tenant.
-- **Keycloak Admin** — an identity-management role, distinct from Super Admin/Organization Admin, that manages users at the organization level directly from the organization's dedicated Keycloak console (e.g., adding or removing users from the organization).
 - **Scope** — defines the extent of a permission: it can be global ('/') or restricted to a specific path (e.g., */\<slug\>*).
 
 ## Architecture and integrations
@@ -132,6 +135,7 @@ This is the place to check a user's *effective* permissions — including those 
 
 - **Users**: creation, invitation, modification, deletion, consultation.
 - **Groups**: creation, modification, deletion; member management; role assignment to the group.
+- **Users**: creation, invitation, modification, deletion, consultation.
 - **Roles**: creation, modification, deletion, consultation.
 - **Tenant**: creation and edit of tenants, also at the individual organization level.
 - **Configuration**: reading and updating tenant's settings.
@@ -226,6 +230,10 @@ The Administration UI introduces two changes as of v15.2:
 
 In this v15 release, Catalog RBAC management has the following constraints:
 
+- **Roles**: cannot be created, modified, or deleted. The available roles are fixed and correspond to those defined in the [Permission Matrix](#permission-matrix) above.
+- **Groups**: can be created. Groups are the only entity that admins can define in this version, to combine users under a shared set of role assignments.
+- **Users**: cannot be created. Users can only be **assigned** to existing roles and groups.
+- **Permissions**: not yet customizable in this phase permissions are tied to roles as defined in the matrix and cannot be edited individually.
 - **Group scope**: the only scope that can currently be assigned to a group is the **entire tenant**; scoping a group to a specific path or sub-resource is not yet available.
 - **Tenant creation and deletion**: an **Organization Admin** can create tenants directly from the Administration UI, but tenants can never be deleted from there — not even by an Organization Admin.
 - **Service account creation and deletion**: an **Organization Admin** can create service accounts from the Administration UI, but deleting a service account is not possible from there — it must be done via API, see [Registering a service account](#registering-a-service-account) below.
