@@ -19,7 +19,8 @@ let redirectPaths = Object.keys(linkFile).reduce((redirects, sourceLink) => {
 }, {});
 
 const createRedirects = (path) => {
-  const redirectPath = redirectPaths[path];
+  // Paths arrive with a trailing slash (trailingSlash: true); 301redirects.json destinations are written without it
+  const redirectPath = redirectPaths[path.replace(/\/$/, "")];
 
   if (redirectPath) return [redirectPath];
 

@@ -13,7 +13,7 @@ The risks displayed in the table originate from **Jira**, where they are created
 ## 1. **Table**  
 
 - **Title**: A brief description of the identified risk and a link to the Jira Issue represented by its Key.  
-- **Suggestions**: The number of suggestions related to the risk. Visit [Insight & Suggestions](./insight_and_suggestions) 
+- **Suggestions**: The number of suggestions related to the risk. Visit [Insight & Suggestions](./insight_and_suggestions.md) 
 - **Probability**: A numerical value indicating the likelihood of the risk occurring.  
 - **Severity**: A numerical value representing the potential impact of the risk.  
 - **Risk Level**: A classification based on probability and severity. [Levels](#levels)
@@ -37,9 +37,9 @@ The drawer shows risk related information into three tabs:
    - **Mitigation severity**: A number indicating how much the **RCM** mitigates severity.
 
 **Traceability**: Shows the linked issues of the risk grouped by:
-   - **[Software Items](./software_items)**
+   - **[Software Items](./software_items.md)**
    - **Risk Control Measures**
-   - **[Changes](./changes)**
+   - **[Changes](./changes.md)**
 
 **Suggestions**: Shows related suggestions of the risk.
 
