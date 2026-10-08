@@ -35,7 +35,10 @@ Using the `*_CONNECTION_STRING` variables is the preferred approach: it lets you
 
 ## Authentication
 
-The source uses the [`DefaultAzureCredential` chain](https://learn.microsoft.com/en-gb/azure/developer/go/sdk/authentication/credential-chains#defaultazurecredential-overview), so you can pick the login method that best fits your deployment (managed identity, service principal via environment variables, Azure CLI, …). The principal must have read permissions on the resources you intend to import. When `*_CONNECTION_STRING` is not used, the same chain authenticates against EventHub and the Storage Account.
+The source uses the [`DefaultAzureCredential` chain](https://learn.microsoft.com/en-gb/azure/developer/go/sdk/authentication/credential-chains#defaultazurecredential-overview), so you can setup your preferred method of login.  
+This authentication will be used for reading data from the REST APIs so it will need the read permissions on the resources you want to import.
+Both `sync` and `run` modes use APIs to fetch the full resource, for this reason an authentication method of choice is always needed.
+When `*_CONNECTION_STRING` is not used, the same chain authenticates against EventHub and the Storage Account.
 
 ## Setting up Run mode
 
