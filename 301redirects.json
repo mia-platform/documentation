@@ -1,4 +1,16 @@
 {
+  "/docs/products/ai-foundry/basic-concepts/app": {
+    "destination": "/docs/products/ai-foundry/connections/apps-plugins",
+    "addedOn": "2026-09-25"
+  },
+  "/docs/products/ai-foundry/observability/playbook-sessions": {
+    "destination": "/docs/products/ai-foundry/observability/ai-sessions",
+    "addedOn": "2026-09-25"
+  },
+  "/docs/products/ai-foundry/observability/ai-traces": {
+    "destination": "/docs/products/ai-foundry/observability/ai-providers",
+    "addedOn": "2026-09-25"
+  },
   "/docs/getting-started/mia-platform-suite": {
     "destination": "/docs/products/mia-platform-suite/mia-platform-suite",
     "addedOn": "2026-07-14"
