@@ -1,0 +1,105 @@
+---
+id: changelog
+title: CHANGELOG
+sidebar_label: CHANGELOG
+---
+
+
+
+All notable changes to this project will be documented in this file.
+
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
+and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+## [1.7.1] 2024-10-25
+
+### Fixed
+
+- Replace newline escape sequences (`\n`, `\n\r`, `\r` and `\r\n`) with `<br/>` tag in HTML email messages
+
+## [1.7.0] 2024-05-23
+
+- Update Node.js to v20 (LTS)
+
+### Added
+
+- Add custom helper to format values according to locale
+- Add DEFAULT_LOCALE environment variable
+
+## [1.6.0] 2023-11-22
+
+### Changed
+
+- The POST /send endpoint now supports the new field **emailSender** to overwrite the sender set in the service config.
+
+## [1.5.0] 2023-09-25
+
+### Added
+- Added the API POST /saga/send that accepts a [Flow Manager](/runtime-components/plugins/flow-manager-service/10_overview.md) command as input body.
+- Add support for custom metadata to push notifications using pushData template field
+
+## [1.4.0] 2023-08-31
+
+### Added
+
+- The API POST /send now accepts the new field **emailCarbonCopies** for adding email addresses as carbon copies (CC). 
+- The API POST /send now accepts the new field **emailBlindCarbonCopies** for adding email addresses as blind carbon copies (BCC). 
+
+## [1.3.0] 2023-06-26
+
+- Upgrade to Node.js v18
+
+### Added
+
+- Added [handlebars-helpers](https://github.com/helpers/handlebars-helpers) library for advanced message interpolation.
+
+### Fixed
+
+- Fixed documentation links
+
+## [1.2.1] 2023-03-07
+
+### Changed
+
+- Configurable android action added via `androidIntentAction`.
+
+## [1.2.0] 2023-01-18
+
+### BREAKING CHANGES
+
+#### CRUD collections
+
+The `message_templates` CRUD collection schema has changed as follows:
+- `emailAttachments` (**changed**): update type from `array of string` to `array of object`
+
+### Changed
+
+- Support template attachments: now con be sent a communication with both a message and template attachments.
+
+## [1.1.0] 2022-11-25
+
+### Added
+
+- Logs added to channels and crud.
+- Added voice channel to messaging service, exploiting Kaleyra outbound calls service.
+
+## [1.0.3] 2022-06-20
+
+### Fixed
+
+- Fixed the POST /send response that contained `failures` array elements even if emails were delivered correctly to end users.
+
+## [1.0.2] 2022-05-26
+
+### Fixed
+
+- Fixed a bug as described in [#4](https://git.tools.mia-platform.eu/platform/plugins/messaging-service/-/issues/4) to allow Kafka messages to be sent correctly.
+- Fixed an issue occurring when omitting the environment variables `KAFKA_CONNECTION_TIMEOUT` and `KAFKA_AUTHENTICATION_TIMEOUT` as described in [#3](https://git.tools.mia-platform.eu/platform/plugins/messaging-service/-/issues/3).
+
+## [1.0.1] 2022-03-29
+
+- Fix to POST /send for emails with attachments.
+
+## [1.0.0] 2021-10-08
+
+- First release

@@ -9,7 +9,7 @@ sidebar_label: Platform Administration
 This page describes the roles, permissions, and groups model for the whole Mia-Platform Suite.
 RBAC is a cross-product capability, but the specific set of assignable roles/permissions, and the level of granularity, is defined independently for each product (see [Accessing the Administration section](#accessing-the-administration-section) below).
 
-![Users](img/users.png)
+![Tenants](img/tenants_list.png)
 
 ## Technical introduction
 
@@ -24,8 +24,6 @@ Mia-Platform's RBAC system is a centralized service designed for granular access
 - **Organization Admin** — an administrative role (*...organization-Super Admin:\<org\>*) with full privileges limited to a specific organization.
 - **Tenant Admin** — an administrative role with full privileges limited to a specific tenant.
 - **Scope** — defines the extent of a permission: it can be global ('/') or restricted to a specific path (e.g., */\<slug\>*).
-- **Decision helper** — a function (*helpers.decision(input)* in *authz/helpers/acl_context.rego*) that evaluates policies and generates the final decision, attaching the *x-mia-acl-context* header.
-- **Allowed resource actions** — a list of URN permissions assigned to a principal's role within *input.rbac.roles[]*.
 
 ## Architecture and integrations
 
@@ -52,15 +50,55 @@ Below is the specific behavior for each product.
 
 For Console, roles and permissions are chosen from a **fixed, predefined list**, they cannot be customized or extended. Admins can assign these predefined roles to users, service accounts, or groups.
 
+Console tenants and the tenants of the new products do not interact with each other: they are managed independently, and RBAC roles assigned in one cannot be managed from the Administration page of the other.
+
 See organization's detail at [Manage users](/products/console/identity-and-access-management/manage-users.md).
 
-### AI Foundry
+### Catalog & AI Foundry
 
-Like Catalog, AI Foundry supports a potentially unbounded set of roles, permissions, and groups, with maximum granularity for defining fine-grained access to AI Foundry resources.
+Catalog and AI Foundry support a potentially unbounded set of roles, permissions, and groups, with maximum granularity for defining fine-grained access to resources.
 
-## How it works, in practice
+For **Catalog** in particular, when adding a permission to a role, the admin must enhance granularity of the pre-configured roles, choosing between two kinds of permissions:
 
-- The administrator **assigns** roles to users, service accounts, or groups, optionally limiting their validity to a specific scope. In practice, this means creating a group, adding members to it, and assigning one or more roles to that group.
+- **General permissions** — cover generic capabilities such as item type definition management and other non item-specific actions. These are picked by clicking on a **static, predefined list** of possible permissions (available also for AI Foundry).
+- **Item-level permissions** — cover specific actions on items, such as viewing, editing, or executing them. Clicking this option opens a **side panel** where the admin specifies the **group**, **version**, **family**, and **operation** the permission applies to. Based on these selections, the UI automatically composes the correct **permission formula**, which is then assigned to the role (and, from there, to the users or groups holding that role).
+
+![Item-level permissions](img/item_level_permissions.png)
+
+In the panel above, each item-level permission is expressed as a formula (e.g. `*:*:*:write`) and can be either an **Allow** rule, granting the operation, or an **Exclude** rule, carving out a more specific exception from a broader allow rule (e.g. allowing write access on all resources while excluding delete on a specific item type, group, and API version).
+
+### Organization-wide user visibility
+
+An **Organization Admin** now has access to a dedicated view listing every user across the organization, which tenant(s) each user belongs to, and which role(s) they hold in each. This gives organization admins a single place to audit access across all tenants, instead of checking each tenant's Administration section individually.
+
+A **Tenant Admin**, by contrast, does not see this organization-wide view: they can only see and manage the users of their own tenant.
+
+From the organization-wide view, clicking on a specific tenant opens that **tenant's detail**, where the admin manages the tenant's users, service accounts, and roles/permissions.
+
+## Inviting users
+
+Users can be invited directly from the Administration UI, without going through the RBAC API or provisioning them manually in Keycloak. Onboarding a user is a two-step process: first they are invited to the **organization**, then they are added to one or more **tenants**.
+
+![Invite user](img/invite_user.png)
+
+- An **Organization Admin** invites a user to the organization from the organization-wide user management screen, entering the invitee's email, the tenant to add them to, and, optionally, the **role** they should be assigned — assigning it at invitation time, rather than as a separate step afterwards. *(Before v15.2, this optional assignment was a group rather than a role — see [UX improvements (v15.2)](#ux-improvements-v152) above.)*
+- A **Tenant Admin** can add users to their own tenant, but only among users who have already been invited to (and accepted into) the organization by an Organization Admin.
+- The invited user receives an email invitation and must accept it **within 7 days** to become a member of the organization.
+
+![Organization-wide users view](img/users_list.png)
+
+- Until accepted, the user appears in the Administration UI with a **Pending** status; once accepted, their status changes to **Active**.
+- From the **Pending** section, the admin can see which users have not yet accepted their invitation, and can **revoke** an invitation at any time (e.g. if it was sent by mistake or expires unused).
+- Only after the invitation is accepted can an admin assign roles, permissions, and group memberships to that user.
+
+## How to assign roles and permissions
+
+- The administrator **assigns** roles directly to users or service accounts, optionally limiting their validity to a specific scope. As of **v15.2**, the permission tree in the Administration UI is focused exclusively on **Roles**: group management has been removed (see [UX improvements (v15.2)](#ux-improvements-v152) above).
+- Multiple roles can be assigned in **bulk mode**, rather than one at a time, speeding up onboarding.
+- Both **Organization Admins** and **Tenant Admins** can assign **broad roles** (the predefined, coarse-grained roles from the [Permission Matrix](#permission-matrix)).
+- Only the **Organization Admin** can assign **granular roles**. Granular role assignment is available:
+  - For **Catalog**, with the widest granularity: permissions can be scoped to specific groups and users through **filter expressions** (formulas combining fields and logical operators).
+  - For **AI Foundry**, with a narrower degree of granularity compared to Catalog — see [AI Foundry](#ai-foundry) above.
 
 ![Users](img/groups_ad.png)
 
@@ -70,21 +108,32 @@ Like Catalog, AI Foundry supports a potentially unbounded set of roles, permissi
 
 ## Practical example of granularity and access management
 
-The system lets you combine permissions from multiple **Group Memberships**, so a user's effective access is simply the union of everything granted by every group they belong to.
+The system lets you combine permissions from multiple **roles**, so a user's effective access is simply the union of everything granted by every role assigned to them.
 
 Take **Alice Parker** as an example:
-
 ![Users](img/user_example.png)
 
-Alice belongs to two groups, each contributing a different set of permissions:
+Alice belonged to two groups, each contributing a different set of permissions:
 
-- **Group "Platform Engineers"** — grants the *Viewer* role on **Catalog** and **AI Foundry**, letting her view items and their configuration.
-- **Group "Software Engineers | Catalog"** — grants the *Item Editor* and *Item Type Definition Editor* roles on **Catalog**, letting her create, delete, and edit items and item type definitions.
+- **Group "Platform Engineers"** — granted the *Viewer* role on **Catalog** and **AI Foundry**, letting her view items and their configuration.
+- **Group "Software Engineers | Catalog"** — granted the *Item Editor* and *Item Type Definition Editor* roles on **Catalog**, letting her create, delete, and edit items and item type definitions.
 
-Alice's effective permissions are the combination of these two groups' roles. From the users overview, an admin can open her profile at any time to see the full, resulting list of permissions.
+Alice's effective permissions were the combination of these two groups' roles. From the users overview, an admin can open her profile at any time to see the full, resulting list of permissions, just click on a user menu with links to Profile.
+
+## Profile
+
+Each user's **Profile** page shows their identity, tenant memberships, and — most relevantly for RBAC — every role they have, tenant and group memberships included, 
+
+- **Header** and **Details** — name, email, and user ID.
+- **Tenants** — every tenant the user belongs to (name and description).
+- **Groups** — the groups the user is a member of, with the tenant each membership applies to; filterable by tenant.
+- **Roles** — every role assigned to the user, with the product it applies to, its tenant, its scope (e.g. "Entire tenant"), and its **source**: manually assigned to the user, or inherited from a group membership (with the group named). Filterable by tenant and product.
+
+This is the place to check a user's *effective* permissions — including those inherited from groups, like in the [Alice Parker example](#practical-example-of-granularity-and-access-management) above — without having to reconstruct them by hand.
 
 ## What can be managed via API
 
+- **Users**: creation, invitation, modification, deletion, consultation.
 - **Groups**: creation, modification, deletion; member management; role assignment to the group.
 - **Users**: creation, invitation, modification, deletion, consultation.
 - **Roles**: creation, modification, deletion, consultation.
@@ -104,14 +153,59 @@ Access legend:
 - **W (Write)**: write access. Allows creating, modifying, and deleting resources, as well as updating their configuration. For example, the user can create a new configuration, modify an existing setting, or delete an item.
 - **E (Execute)**: execute access. Allows executing operations such as launching campaigns, running evaluations, or initiating automated processes. For example, the user can launch a campaign, perform an evaluation, or set up a scorecard.
 
-### Permission matrix for Catalog
 
-| Functional Area | Operational Detail | Super Admin | Admin | Viewer | Item Editor | ITD Editor | Item Publisher | Governor |
-| :---- | :---- | :---- | :---- | :---- | :---- | :---- | :---- | :---- |
-| **Items** | Management, creation, modification, and deletion of items | **R/W** | **R/W** | **R** | **R/W** | **R** | **W**| **R** |
-| **Governance** | Definition of control rules (scorecards and campaigns) | **R/W/E** | **R/W/E** | **R** | **R/W** | **R** | - | **R/W/E** |
-| **Configuration** | Configuration of relationships and connectors for items | **R/W** | **R/W** | **R** | **R/W** | **R** | - | **R** |
-| **ITD** | Modification of type definitions | **R/W** | **R/W** | **R** | **R** | **R/W** | - | **R** |
+## Complete role mapping (v15.2)
+
+The tables below list every role currently assignable in the Administration Platform, grouped by the product (scope) they apply to.
+
+### Catalog roles
+
+| Role | Description and permissions |
+| :---- | :---- |
+| **Admin** | Full access to all Catalog resources. |
+| **Governance Manager** | Full access to the Governance section; read-only access to all other Catalog resources. |
+| **Items Type Definitions Editor** | Read/write access to Item Type Definitions. |
+| **Items Editor** | Read/write access to Catalog Items; read-only access to Item Type Definitions. |
+| **Items Ingestor** | Write access for ingesting Catalog Items. |
+| **Viewer** | Read-only access to all Catalog resources. |
+| **Auditor** | Access to audit logs, plus read-only access to all Catalog resources. |
+
+The **Item Ingestor** role is intended for **service accounts**, not human users: it grants the write access needed to create and update items and their relationships, without exposing governance or type-definition capabilities. It is the role typically assigned to the [`ibdm` connector engine](/products/catalog/connectors/10_overview.md) or to other connectors that sync external sources into the Catalog — see [Registering a service account](#registering-a-service-account) below.
+
+### AI Foundry roles
+
+| Role | Description and permissions |
+| :---- | :---- |
+| **Viewer** | Read access to all AI Foundry sections (items, agentic workflows, guardrails, models, deployment) and to their own observability data; write access limited to their own memory entries. |
+| **Editor** | All Viewer permissions, plus write access to non-reserved catalog items and guardrails. Excludes administration and creation of agentic workflows. |
+| **Admin** | All Editor permissions, plus write access to reserved items, models, MCP servers/tools, and AI Gateway administration; read access to API Credentials and agentic workflows. |
+| **Chatbot Usage** | Playground usage: read access to agents and model/playbook listings, executing agent turns, and managing their own sessions, artifacts, memory entries, and MCP consents. |
+| **Observability** | Read access to observability and tracing data for all users. Must be assigned in combination with another role. |
+| **Workflow Manager** | Read/write access to agentic workflow definitions and their executions, plus the API Credentials used by workflow steps; read access to related catalog items. |
+| **Workflow Trigger** | Management, creation, and rotation of the secret keys associated with a workflow's public webhook triggers. |
+
+### Authorization roles
+
+| Role | Description and permissions |
+| :---- | :---- |
+| **Administration tenant admin** | Administrator of a specific tenant, with full access to all resources within that tenant. |
+
+## UX improvements (v15.2)
+
+The Administration UI introduces two changes as of v15.2:
+
+- **Role-based permission management** — the permission tree is now focused exclusively on **Roles**: group management has been removed, and roles are assigned directly to users and service accounts (including at invitation time, and in bulk).
+- **Tenant and service account creation from the UI** — an Organization Admin can now create tenants and service accounts directly from the Administration UI, rather than only via API (deletion of either still requires the API — see [Current limitations](#current-limitations-v1520) below).
+
+<!-- ### Permission matrix for Catalog
+
+| Functional Area | Operational Detail | Super Admin | Admin | Viewer | Item Editor | ITD Editor | Item Publisher | Governor | Item Ingestor |
+| :---- | :---- | :---- | :---- | :---- | :---- | :---- | :---- | :---- | :---- |
+| **Items** | Management, creation, modification, and deletion of items | **R/W** | **R/W** | **R** | **R/W** | **R** | **W**| **R** | **R/W** |
+| **Governance** | Definition of control rules (scorecards and campaigns) | **R/W/E** | **R/W/E** | **R** | **R/W** | **R** | - | **R/W/E** | - |
+| **Configuration** | Configuration of relationships and connectors for items | **R/W** | **R/W** | **R** | **R/W** | **R** | - | **R** | **R/W** |
+| **ITD** | Modification of type definitions | **R/W** | **R/W** | **R** | **R** | **R/W** | - | **R** | **R** |
+
 
 ### Permission matrix for AI Foundry
 
@@ -130,9 +224,9 @@ Access legend:
 | **AI Traces** | R (personal data) | R (personal data) | R (personal data) | R (all data) | - |
 | **Connections (except Apps)** | R | R | R | - | - |
 | **Connections/Apps & Plugins** | R/W | R | R | - | - |
-| **Data download** | R | R | R | - | - |
+| **Data download** | R | R | R | - | - | -->
 
-## Current limitations (v15.0.0)
+## Current limitations (v15.2.0)
 
 In this v15 release, Catalog RBAC management has the following constraints:
 
@@ -141,19 +235,21 @@ In this v15 release, Catalog RBAC management has the following constraints:
 - **Users**: cannot be created. Users can only be **assigned** to existing roles and groups.
 - **Permissions**: not yet customizable in this phase permissions are tied to roles as defined in the matrix and cannot be edited individually.
 - **Group scope**: the only scope that can currently be assigned to a group is the **entire tenant**; scoping a group to a specific path or sub-resource is not yet available.
+- **Tenant creation and deletion**: an **Organization Admin** can create tenants directly from the Administration UI, but tenants can never be deleted from there — not even by an Organization Admin.
+- **Service account creation and deletion**: an **Organization Admin** can create service accounts from the Administration UI, but deleting a service account is not possible from there — it must be done via API, see [Registering a service account](#registering-a-service-account) below.
 
 ## Detail views
 
 Across all sections of the Administration area, it is possible to open a detail view for individual entities:
 
 - **User detail**: shows which roles, permissions, and groups are assigned to that user.
-- **Service account detail**: shows the service account's name and associated client ID. Service accounts cannot be created or deleted from this UI, since they are entirely managed via API — see [Registering a service account](#registering-a-service-account).
-- **Group detail**: shows the group's members and the roles/permissions the group grants.
+- **Service account detail**: shows the service account's name and associated client ID. Service accounts can be created from this UI by an Organization Admin, but not deleted — deletion is only possible via API, see [Registering a service account](#registering-a-service-account).
+- **Group detail**: shows the group's members and the roles/permissions the group grants. *(Legacy, pre-v15.2 model — see [UX improvements (v15.2)](#ux-improvements-v152) above.)*
 - **Role detail**: shows the role's definition and the users/groups it is assigned to.
 
 ## Registering a service account
 
-Service accounts are the non-human identities that let external tools and pipelines authenticate against Mia Platform's RBAC-protected APIs — for example the [`ibdm` connector engine](/products/catalog/connectors/10_overview.md) used by the Catalog, or your own CI/CD automation. Unlike users and groups, they cannot be created from the Administration UI: a **Super Admin** must register them by calling the RBAC service's API directly.
+Service accounts are the non-human identities that let external tools and pipelines authenticate against Mia Platform's RBAC-protected APIs — for example the [`ibdm` connector engine](/products/catalog/connectors/10_overview.md) used by the Catalog, or your own CI/CD automation. An **Organization Admin** can create a service account directly from the Administration UI; however, deletion is only possible via API, and the full key-pair setup described below is required regardless of how the service account was created, since it cannot be configured from the UI.
 
 ### 1. Reach the API
 
@@ -290,13 +386,35 @@ A successful response looks like:
 
 Use the resulting `access_token` in the `Authorization: Bearer <access_token>` header of every API call. Once it expires (`expires_in`), repeat the token request.
 
-## Advantages of adoption
+## FAQ
 
-The integration of RBAC ensures high standards of security and efficiency:
+### Who is the Organization Admin and how is this role acquired?
 
-- **Reusability**: use of predefined policy templates to accelerate the setup of organizational roles.
-- **Configuration integrity**: drastic reduction of manual errors thanks to centralized governance.
-- **Least privilege**: technical guarantee that each principal accesses only the minimum set of necessary resources.
-- **Operational efficiency**: reduction of management times by eliminating the need for custom configurations on individual APIs.
+- **PaaS**: the Super Admin is designated via Keycloak (during installation but also afterwards). Organization Admin permissions can instead be assigned at a later stage via the front-end, from the Administration panel, but only after the organization has already been created.
+- **On-Premise**: the Super Admin is appointed at the creation of the organization in Keycloak. Only one organization is possible, so the Super Admin and the Organization Admin roles coincide.
 
-Overall, the RBAC model provides a scalable, secure, and maintainable authorization framework, enabling fine-grained access control while simplifying administrative operations across the platform.
+### How are new users added, and who is authorized to do so?
+- **Keycloak Admin/Organization Admin** — adds/invites users to the organization (via their personal Keycloak, or via the organization-wide users view — see [Organization-wide user visibility](#organization-wide-user-visibility) above).
+- **Organization Admin** — adds users to a tenant.
+- **Tenant Admin** — can add users to their tenant, but only among users already invited to (and accepted into) the organization.
+
+### Is it possible to add users, groups, or roles in "bulk" mode to speed up onboarding?
+
+Roles can be assigned to a group in bulk mode — see [How to assign roles and permissions](#how-to-assign-roles-and-permissions) above. Bulk user addition, however, is not supported yet.
+
+### How does the user offboarding procedure work?
+
+From the interface, the Organization Admin can delete a user directly from the user management page in the organization's dedicated Keycloak instance.
+
+### How does combined permission assignment work when a user belongs to multiple groups?
+
+A user's effective permissions are the union of all roles granted by each group they belong to. For example, if a user belongs to Group A (with Role X) and Group B (with Role Y), they will have both Role X and Role Y — see the [practical example of Alice Parker](#practical-example-of-granularity-and-access-management) above. Role assignment follows a deny-by-default model, meaning permissions must be explicitly granted: nothing is accessible by default.
+
+### How is a service account registered?
+
+An Organization Admin can create it from the Administration UI, or a Super Admin can register it by calling the dedicated API — see [Registering a service account](#registering-a-service-account) above.
+
+### Tenants of new products vs. Console: what is the difference, and how do they interact?
+
+Currently, tenants from new products and Console tenants do not interact with each other. The same limitation applies to RBAC roles: they cannot be managed from the Administration page on the home page for one from the other. See [Accessing the Administration section](#accessing-the-administration-section) above for more details.
+

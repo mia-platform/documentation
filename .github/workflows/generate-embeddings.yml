@@ -4,14 +4,15 @@ on:
   push:
     tags:
       - "v*"
-  workflow_dispatch:
 
 jobs:
   generate-embeddings:
     runs-on: ubuntu-latest
-    env:
-      DOCUMENTATION_VERSION: ${{ github.event_name == 'push' && github.ref_name || '' }}
     steps:
+      - name: Compute console version
+        id: version
+        run: echo "value=${GITHUB_REF_NAME#v}" >> "$GITHUB_OUTPUT"
+
       - uses: eic/trigger-gitlab-ci@v3
         with:
           url: https://git.tools.mia-platform.eu
@@ -19,5 +20,6 @@ jobs:
           token: ${{ secrets.MIA_ASSISTANT_GITLAB_TOKEN }}
           variables: |
             GENERATE_EMBEDDINGS=true
-            DOCUMENTATION_VERSION=${{ env.DOCUMENTATION_VERSION }}
+            CONSOLE_VERSION=${{ steps.version.outputs.value }}
+            EMBEDDINGS_MODEL=text-embedding-3-large
           ref_name: master

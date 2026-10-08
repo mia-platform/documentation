@@ -1,12 +1,16 @@
 .ganttContainer {
     --gantt-passed-bg: #e0e0e0;
     --gantt-passed-text: #616161;
+    --gantt-passed-border: #d0d0d0;
     --gantt-current-bg: #e6f4ff;
     --gantt-current-text: #0958d9;
+    --gantt-current-border: #bae0ff;
     --gantt-preview-bg: #f9f0ff;
     --gantt-preview-text: #722ed1;
+    --gantt-preview-border: #efdbff;
     --gantt-future-bg: #ffffff;
     --gantt-future-text: #595959;
+    --gantt-future-border: #e8e8e8;
     overflow-x: auto;
     padding: 1rem 0;
     border: 1px solid var(--ifm-color-emphasis-200);
@@ -17,12 +21,16 @@
 html[data-theme='dark'] .ganttContainer {
     --gantt-passed-bg: #636363;
     --gantt-passed-text: #e5e5e5;
+    --gantt-passed-border: #787878;
     --gantt-current-bg: #e6f4ff;
     --gantt-current-text: #0958d9;
+    --gantt-current-border: #bae0ff;
     --gantt-preview-bg: #f9f0ff;
     --gantt-preview-text: #722ed1;
+    --gantt-preview-border: #efdbff;
     --gantt-future-bg: #24344f;
     --gantt-future-text: #dbe9ff;
+    --gantt-future-border: #35496f;
 }
 
 .ganttTable {
@@ -126,6 +134,7 @@ html[data-theme='dark'] .ganttContainer {
     justify-content: center;
     min-height: 30px;
     padding: 0.2rem 0.35rem;
+    border: 1px solid transparent;
     border-radius: 4px;
     font-weight: bold;
     font-size: 0.8rem;
@@ -138,21 +147,25 @@ html[data-theme='dark'] .ganttContainer {
 .passed {
     background-color: var(--gantt-passed-bg);
     color: var(--gantt-passed-text);
+    border-color: var(--gantt-passed-border);
 }
 
 .current {
     background-color: var(--gantt-current-bg);
     color: var(--gantt-current-text);
+    border-color: var(--gantt-current-border);
 }
 
 .preview {
     background-color: var(--gantt-preview-bg);
     color: var(--gantt-preview-text);
+    border-color: var(--gantt-preview-border);
 }
 
 .future {
     background-color: var(--gantt-future-bg);
     color: var(--gantt-future-text);
+    border-color: var(--gantt-future-border);
 }
 
 .legend {
@@ -174,21 +187,25 @@ html[data-theme='dark'] .ganttContainer {
     width: 12px;
     height: 12px;
     border-radius: 3px;
-    border: 1px solid color-mix(in srgb, var(--ifm-color-emphasis-900) 20%, transparent);
+    border: 1px solid transparent;
 }
 
 .passedLegend {
     background-color: var(--gantt-passed-bg);
+    border-color: var(--gantt-passed-border);
 }
 
 .previewLegend {
     background-color: var(--gantt-preview-bg);
+    border-color: var(--gantt-preview-border);
 }
 
 .currentLegend {
     background-color: var(--gantt-current-bg);
+    border-color: var(--gantt-current-border);
 }
 
 .futureLegend {
     background-color: var(--gantt-future-bg);
+    border-color: var(--gantt-future-border);
 }
