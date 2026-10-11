@@ -50,4 +50,8 @@ helm upgrade --install services . \
 
 ## Version-specific notes
 
+### From 0.2.65 to 0.2.65-hotfix.0 (Mia-Platform v15.0.0 to v15.0.1)
+
+No manual action required: install the new chart version.
+
 No breaking changes have been introduced yet. This section will be updated whenever a major release requires migration steps.
