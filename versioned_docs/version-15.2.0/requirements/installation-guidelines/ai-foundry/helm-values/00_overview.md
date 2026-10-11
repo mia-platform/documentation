@@ -15,6 +15,7 @@ This page describes all configurable values for the `ai-foundry` chart. See `val
 | `url` | string | `""` | ✅ | Full public URL where AI Foundry is exposed (e.g. `https://ai-foundry.your-domain.com`). Used to configure OIDC redirect URIs, CORS, and routing. |
 | `environment` | string | `""` | ✅ | Logical environment name (e.g. `production`, `development`). Used for labelling and environment-specific behaviour. |
 | `isPaaS` | boolean | `false` | ❌ | Set to `true` for Mia Platform PaaS deployments. |
+| `namespacePrefix` | string | `""` | ❌ | When set, prefixed (as `<namespacePrefix>-<name>`) to the names of the resources created by the chart, including Services, the `IngressRoute`, the image pull secret referenced by `global.imagePullSecret.name` and the TLS secret set in `ingressRoute.tls.secretName`. |
 | `catalogUrl` | string | `""` | ❌ | Full URL of the Mia Platform Catalog instance. Used by `aiFoundryBff` (and, via the ADK backend, `adkBeApp`) to call the Catalog API using a token-exchange client. |
 | `catalogClientId` | string | `""` | ❌ | OIDC client ID used to identify the Catalog API audience for the token-exchange flow (e.g. `catalog-api`). |
 | `authzUrl` | string | `""` | ❌ | URL of an external Authorization API (e.g. the `services` chart's `apiGateway`, routed to `rbacManagement`). Used by `aiFoundryBff` and, when `accessControl.config.externalContext.enabled: true`, by `accessControl` itself. |
@@ -26,6 +27,7 @@ This page describes all configurable values for the `ai-foundry` chart. See `val
 | Key | Type | Default | Required | Description |
 |---|---|---|---|---|
 | `ingressRoute.enabled` | boolean | `false` | ❌ | Create a Traefik `IngressRoute` resource. |
+| `ingressRoute.name` | string | `default-ingress` | ❌ | Name of the `IngressRoute` resource. Prefixed with `namespacePrefix` when set. |
 | `ingressRoute.host` | string | `""` | ❌ | Hostname for the IngressRoute. Defaults to the host part of `url` when empty. |
 | `ingressRoute.entryPoints` | array | `["websecure"]` | ❌ | Traefik entry points to attach the route to. |
 | `ingressRoute.middlewares` | array | `[]` | ❌ | Additional Traefik middleware references (e.g. IP filtering, rate limiting). |
@@ -206,6 +208,7 @@ The AI Foundry frontend application. The `config.links` section configures all c
 | `aiFoundryWebsite.config.links.vscodeDocsHref` | string |  | URL of the VS Code agent customization docs. |
 | `aiFoundryWebsite.config.links.vscodeMonitoringDocsHref` | string |  | URL of the VS Code agent monitoring docs. |
 | `aiFoundryWebsite.config.links.kiroDocsHref` | string |  | URL of the Kiro IDE docs. |
+| `aiFoundryWebsite.config.oauth.scopes` | string |  | OAuth scopes requested by the git credential helper setup shown in the integration pages. When unset, derived from `isPaaS`: `openid offline_access` on-premises, `openid offline_access organization:*` on PaaS. Set it explicitly only for a realm that needs different scopes. |
 | `aiFoundryWebsite.config.otelServices` | array | `["copilot-chat","claude-code","mia-ai-foundry","mia-flow"]` | List of service names displayed in the OTEL traces view. |
 | `aiFoundryWebsite.env.BASE_PATH` | string | `"/website/"` | Base path at which the website is served. |
 

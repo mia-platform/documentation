@@ -13,11 +13,11 @@ This guide walks through installing the `catalog` chart to deploy the Mia Platfo
 - [kubectl](https://kubernetes.io/docs/tasks/tools/)
 - [Helm](https://helm.sh/docs/helm/helm_install/) v3
 - A running **Keycloak** instance with a configured realm and a registered OIDC client for `authtool-bff`. See the [Keycloak installation guide](/requirements/installation-guidelines/shared-services/authn/keycloak/15_getting-started.md).
+- A `catalog-engine` OIDC client in the same realm, used by `catalogEngine` to sync Catalog permissions to the authorization API (`catalogEngine.config.authzServiceAuthorization`, enabled by default). The [Realm Management](/requirements/installation-guidelines/shared-services/authn/keycloak-realm-management/15_getting-started.md) chart creates it (from version `0.1.31`, with `products.catalog: true`) as a `private_key_jwt` client that reads its keys from `<Catalog URL>/.well-known/jwks.json`, with the `mia:authz` and `mia:authz-roles` default scopes and a service account.
 - An external **PostgreSQL** database (v14+) for `catalogEngine`.
-- A **Kafka** cluster. Three deployment options are supported:
-  1. An existing **external** broker (Kafka, Confluent, MSK, etc.), connected via `catalogKafkaContext`.
-  2. An **embedded** Kafka cluster, deployed by the chart via the Strimzi Operator, which the chart also installs (`kafka.enabled: true`, `kafka.operator.enabled: true`).
-  3. An **embedded** Kafka cluster deployed by the chart, but reusing a **Strimzi Operator already installed cluster-wide** (`kafka.enabled: true`, `kafka.operator.enabled: false`) — no need to install a second operator instance.
+- A **Kafka** cluster. Two deployment options are supported:
+  1. An existing **external** broker (Kafka, Confluent, MSK, a cluster managed by a Strimzi operator, etc.), connected via `catalogKafkaContext` and the `kafka-keys` Secret.
+  2. An **embedded** Kafka cluster, deployed by the chart in the Catalog namespace with plain Kubernetes resources, without any operator (`catalogKafkaContext.embedded.enabled: true`). It requires a StorageClass able to provision a `ReadWriteOnce` volume per Kafka node.
 
 ## Required information
 
@@ -28,6 +28,7 @@ This guide walks through installing the `catalog` chart to deploy the Mia Platfo
 | Keycloak realm issuer URL | `https://keycloak.your-domain.com/realms/my-realm` |
 | OIDC client ID for `authtool-bff` (website) | `catalog-website-bff` |
 | OIDC client ID for `authtool-bff` (token exchange) | `catalog-token-exchange` |
+| OIDC client ID for `catalogEngine` (permissions sync) | `catalog-engine` |
 | PostgreSQL connection string for catalogEngine | `postgresql://user:pass@host:5432/catalog` |
 | PostgreSQL connection string for itemsCompressor | `postgresql://user:pass@host:5432/catalog` |
 | Kafka bootstrap servers (if external) | `kafka.your-domain.com:9092` |
@@ -79,16 +80,19 @@ Alternatively, set `secrets.accessControlKeys.enabled: true` and provide `secret
 
 ## Step 3: Create the catalog-engine secret
 
-The `catalogEngine` requires a PostgreSQL connection string:
+The `catalogEngine` requires a PostgreSQL connection string and, when `catalogEngine.config.authzServiceAuthorization.enabled: true` (default), the credentials of the `catalog-engine` OIDC client:
 
 ```bash
 kubectl create secret generic catalog-engine-keys \
   --namespace catalog \
-  --from-literal=postgresConnectionString="postgresql://user:pass@host:5432/catalog"
+  --from-literal=postgres-connection-string="postgresql://user:pass@host:5432/catalog" \
+  --from-file=key.pem=catalog-engine-private.key
 ```
 
+`key.pem` is the PEM private key of the `catalog-engine` client. Use `client-secret` instead of `key.pem` when `catalogEngine.config.authzServiceAuthorization.tokenAuthMethod` is not `private_key_jwt`.
+
 :::info
-Alternatively, set `secrets.catalogEngineKeys.enabled: true` and provide `secrets.catalogEngineKeys.postgresConnectionString` inline.
+Alternatively, set `secrets.catalogEngineKeys.enabled: true` and provide `secrets.catalogEngineKeys.postgresConnectionString` and `secrets.catalogEngineKeys.privateKey` (or `.clientSecret`) inline.
 :::
 
 ## Step 4: Create the items-compressor secret
@@ -107,7 +111,7 @@ Alternatively, set `secrets.itemsCompressorKeys.enabled: true` and provide `secr
 
 ## Step 5: Create the Kafka secret (external Kafka only)
 
-Skip this step if you are using the **embedded Kafka** (`kafka.enabled: true`, `kafka.operator.enabled: true`).
+Skip this step if you are using the **embedded Kafka** (`catalogKafkaContext.embedded.enabled: true`): the chart fills in the `kafka-keys` Secret itself, and `secrets.kafkaKeys.enabled: true` cannot be combined with it.
 
 For an external Kafka cluster with SASL authentication:
 
@@ -190,19 +194,13 @@ authtoolBff:
 # authzUrl: "https://home.your-domain.com"
 
 # Kafka event pipeline
-# Option A — embedded Kafka via Strimzi
-kafka:
-  enabled: true
-  operator:
-    # Set to true to also let the chart install the Strimzi operator.
-    # Set to false if a Strimzi operator is already installed cluster-wide:
-    # the chart will only create the Kafka custom resource, reconciled by
-    # that existing operator.
-    enabled: false
-  node:
+# Option A: embedded Kafka, deployed in the Catalog namespace without any operator
+catalogKafkaContext:
+  embedded:
+    enabled: true
     replicas: 1
 
-# Option B — external Kafka (comment out the block above and use this)
+# Option B: external Kafka (comment out the block above and use this)
 # catalogKafkaContext:
 #   connectionConfig:
 #     useBootstrapServers: true
@@ -232,6 +230,8 @@ adkBeApp:
   enabled: false
 ```
 :::
+
+If you set `namespacePrefix`, the chart prepends it (as `<namespacePrefix>-<name>`) to the names of its microservice resources, including the Secrets of the previous steps (for example `<namespacePrefix>-catalog-engine-keys`) and the image pull secret: when you create these Secrets yourself, use the prefixed names. The `kafka-keys` Secret is not prefixed.
 
 See the [Helm Values reference](/requirements/installation-guidelines/catalog/helm-values/00_overview.md) for the full list of available options.
 
