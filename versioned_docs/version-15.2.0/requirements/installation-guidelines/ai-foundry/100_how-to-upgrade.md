@@ -61,5 +61,3 @@ Also note:
 - The new optional `namespacePrefix` value (default empty) adds a `<namespacePrefix>-` prefix to the names of all the resources the chart creates, including the image pull Secret and the TLS Secret set in `ingressRoute.tls.secretName`. Secrets that you create yourself must then use the prefixed names. Setting it on an existing installation renames its resources.
 - The name of the Traefik IngressRoute can be set with `ingressRoute.name`. The default is `default-ingress`, the previous name.
 - `aiFoundryWebsite.config.oauth.scopes` sets the OAuth scopes shown in the git-credential-oauth setup snippet of the AI Foundry website. When it is not set, the chart uses `openid offline_access` with `isPaaS: false`.
-
-No version-specific migration steps required yet.

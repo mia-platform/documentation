@@ -61,5 +61,3 @@ Also note:
 - To turn off the permissions sync, set `catalogEngine.config.authzServiceAuthorization.enabled: false`. The client and the credential of the steps above are then not needed.
 - With `catalogKafkaContext.embedded.enabled: true` (default `false`) the chart deploys its own Kafka cluster in the Catalog namespace, without an operator or CRDs. It needs a StorageClass that can provision one ReadWriteOnce volume per Kafka node, and it cannot be combined with `secrets.kafkaKeys.enabled: true`.
 - The new optional `namespacePrefix` value (default empty) adds a `<namespacePrefix>-` prefix to the names of all the resources the chart creates, including the image pull Secret and the TLS Secret set in `ingressRoute.tls.secretName`. Secrets that you create yourself must then use the prefixed names. Setting it on an existing installation renames its resources.
-
-No version-specific migration steps required yet.
