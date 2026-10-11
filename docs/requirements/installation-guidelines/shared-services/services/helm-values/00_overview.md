@@ -14,12 +14,14 @@ This page describes all configurable values for the `services` chart. See `value
 |---|---|---|---|---|
 | `url` | string | `""` | ✅ | Full public URL where the homepage is exposed (e.g. `https://home.your-domain.com`). Used to configure OIDC redirect URIs and routing. |
 | `isPaaS` | boolean | `false` | ❌ | Set to `true` for Mia Platform PaaS deployments. Enables PaaS-specific routing and features. |
+| `namespacePrefix` | string | `""` | ❌ | When set, prefixed (as `<namespacePrefix>-<name>`) to the names of the resources created by the chart, including the `rbac-management-keys` Secret, the image pull secret referenced by `global.imagePullSecret.name` and the TLS secret set in `ingressRoute.tls.secretName`. |
 
 ## IngressRoute (Traefik)
 
 | Key | Type | Default | Required | Description |
 |---|---|---|---|---|
 | `ingressRoute.enabled` | boolean | `false` | ❌ | Create a Traefik `IngressRoute` resource for the homepage. |
+| `ingressRoute.name` | string | `default-ingress` | ❌ | Name of the `IngressRoute` resource. Prefixed with `namespacePrefix` when set. |
 | `ingressRoute.entryPoints` | array | `["websecure"]` | ❌ | Traefik entry points to attach the route to. |
 | `ingressRoute.middlewares` | array | `[]` | ❌ | Additional Traefik middleware references (e.g. IP filtering, rate limiting). |
 | `ingressRoute.tlsEnabled` | boolean | `false` | ❌ | Add a `tls` block to the `IngressRoute` spec. |
@@ -65,7 +67,7 @@ The chart can similarly manage the `rbacManagement` PostgreSQL connection string
 
 | Key | Type | Default | Required | Description |
 |---|---|---|---|---|
-| `secrets.rbacManagementKeys.enabled` | boolean | `false` | ❌ | When `true`, the chart creates a `Secret` named `rbac-management-keys` from the value below. |
+| `secrets.rbacManagementKeys.enabled` | boolean | `false` | ❌ | When `true`, the chart creates a `Secret` named `rbac-management-keys` (`<namespacePrefix>-rbac-management-keys` when `namespacePrefix` is set) from the value below. |
 | `secrets.rbacManagementKeys.postgresConnectionString` | string | `""` | ❌ | Full PostgreSQL connection string (e.g. `postgresql://user:password@host:5432/database`), mounted into the `rbacManagement` pod. |
 
 ## Global image settings

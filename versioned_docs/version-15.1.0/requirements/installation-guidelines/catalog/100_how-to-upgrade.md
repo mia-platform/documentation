@@ -51,4 +51,15 @@ helm upgrade catalog . \
 
 ## Version-specific upgrade notes
 
+### From 0.3.28 to 0.3.42-0 (Mia-Platform v15.0.1 to v15.1.0)
+
+1. Catalog Engine now syncs Catalog permissions to the Authz service with the `catalog-engine` Keycloak client. Upgrade the `keycloak-realm-management` chart to `0.1.35` first: with `products.catalog: true` it creates this client. If you do not manage the realm with that chart, create a confidential client `catalog-engine` with service accounts enabled, the "Signed JWT" client authenticator with the JWKS URL `<catalog url>/.well-known/jwks.json`, the default client scopes `mia:authz` and `mia:authz-roles`, and the `authz-api` client role `urn:mia-platform-internal:role:authz:permissions:writer` assigned to its service account user.
+2. Add the client credential to the `catalog-engine-keys` Secret. With the default `catalogEngine.config.authzServiceAuthorization.tokenAuthMethod: private_key_jwt`, add a PEM-encoded private key under the `key.pem` key. With any other `tokenAuthMethod`, add the client secret under the `client-secret` key. If the chart creates the Secret (`secrets.catalogEngineKeys.enabled: true`), set `secrets.catalogEngineKeys.privateKey` or `secrets.catalogEngineKeys.clientSecret` instead.
+
+Also note:
+
+- To turn off the permissions sync, set `catalogEngine.config.authzServiceAuthorization.enabled: false`. The client and the credential of the steps above are then not needed.
+- With `catalogKafkaContext.embedded.enabled: true` (default `false`) the chart deploys its own Kafka cluster in the Catalog namespace, without an operator or CRDs. It needs a StorageClass that can provision one ReadWriteOnce volume per Kafka node, and it cannot be combined with `secrets.kafkaKeys.enabled: true`.
+- The new optional `namespacePrefix` value (default empty) adds a `<namespacePrefix>-` prefix to the names of all the resources the chart creates, including the image pull Secret and the TLS Secret set in `ingressRoute.tls.secretName`. Secrets that you create yourself must then use the prefixed names. Setting it on an existing installation renames its resources.
+
 No version-specific migration steps required yet.

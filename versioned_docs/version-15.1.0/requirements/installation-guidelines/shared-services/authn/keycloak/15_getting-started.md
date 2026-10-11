@@ -20,14 +20,19 @@ keycloak-operator/
 │   └── keycloakrealmimports.k8s.keycloak.org.yaml
 └── templates/
     ├── _helpers.tpl              # name, fullname, labels, serviceaccount helpers
-    ├── keycloak.yaml             # Keycloak CR (k8s.keycloak.org/v2beta1)
-    ├── realmimport.yaml          # KeycloakRealmImport CRs (iterates realms[])
+    ├── keycloak.yaml             # Keycloak CR (k8s.keycloak.org/v2beta1), mode: operator
+    ├── realmimport.yaml          # KeycloakRealmImport CRs (iterates realms[]), mode: operator
+    ├── theme.yaml                # ConfigMap for keycloak.themeCustomization assets
     ├── admin-ingress.yaml        # Ingress for the admin hostname
     ├── keystore.yaml             # ExternalSecret for the PKCS12 keystore
     ├── NOTES.txt
     ├── grafana/
     │   ├── configmap-dashboard-keycloak.yaml
     │   └── configmap-dashboard-postgres.yaml
+    ├── keycloak/                 # rendered only with mode: manual
+    │   ├── service.yaml
+    │   ├── servicemonitor.yaml
+    │   └── statefulset.yaml
     └── operator/
         ├── clusterrole.yaml
         ├── deployment.yaml
@@ -141,6 +146,8 @@ helm upgrade --install keycloak . \
 ```
 
 Helm installs the CRDs first, then creates the operator `Deployment`, followed by the `Keycloak` CR. The operator reconciles the CR and provisions the Keycloak `StatefulSet`.
+
+With `mode: manual`, no operator is deployed: the chart creates the Keycloak `StatefulSet` and `Service` directly. See [Deployment mode](/requirements/installation-guidelines/shared-services/authn/keycloak/10_overview.md#deployment-mode).
 
 ## Step 4: Verify
 

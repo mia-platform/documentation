@@ -65,6 +65,8 @@ As an Embedding model, you can choose one of the following supported types:
 
 The `embeddings` key is an object, since you can configure only one embedding model in use.
 
+The embedding model authenticates with the same API key used by the LLMs of the same provider: `keys.azureLlmApiKey` when `embeddings.type` is `azure`, and `keys.openaiLlmApiKey` when `embeddings.type` is `openai`. A dedicated `embeddings.apiKey` key is not supported. The `embeddings.type` key must always be set explicitly: if it is omitted, no API key is passed to the embedding model.
+
 :::info
 The embeddings are available only with the `text-embedding-3-large` embedding model provided by OpenAI, and available via OpenAI API or Azure AI Foundry. If you don't have access to either service, the RAG technique could not work, and the Mia-Assistant cannot rely on the Documentation for helping carrying tasks on projects.
 :::
@@ -113,7 +115,6 @@ mia-console:
       embeddings:
         # Azure embedding model configuration example
         type: azure
-        apiKey: embeddings-apiKey
         apiVersion: 2025-01-01-preview
         deploymentName: text-embedding-3-large
         name: text-embedding-3-large
@@ -128,6 +129,8 @@ on how to do this is shown in the following sub-paragraphs.
 
 :::info
 OpenAI is the default AI Provider for both LLMs and embedding models. If `type` key is omitted, it automatically defaults to `openai`.
+
+For the embedding model, however, always set `type: openai` explicitly, otherwise the API key in `keys.openaiLlmApiKey` is not passed to it.
 :::
 
 Azure models require to be deployed via Azure AI Foundry. You have to set the name of the model in the `name` key, and you can add `displayName` for a more readable name of the model to be shown in Mia-Assistant (defaults to the `name` value).
@@ -181,7 +184,6 @@ mia-console:
         # ...
       embeddings:
         type: azure
-        apiKey: embeddings-apiKey
         apiVersion: 2025-01-01-preview
         deploymentName: text-embedding-3-large
         name: text-embedding-3-large

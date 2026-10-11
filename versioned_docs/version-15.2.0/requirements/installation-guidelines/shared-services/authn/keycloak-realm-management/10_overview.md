@@ -14,9 +14,9 @@ The chart renders and applies the following Keycloak realm resources:
 
 - **Realm settings**: display name, login theme, password policies, brute-force protection, session timeouts.
 - **Roles**: realm-level and client-level roles used by Mia Platform products for authorization.
-- **Groups**: global groups scoped by product (e.g. `realm/admin`, `realm/reporter`). Groups carry realm-management client roles, enabling fine-grained admin delegation.
+- **Groups**: global groups scoped by product (e.g. `realm/admin`, `realm/reporter`). Groups carry realm-management client roles, enabling fine-grained admin delegation. Product groups are created only for enabled products: `products/console/guest` with `products.console` and `products/authz/superadmin` with `products.authz`.
 - **Client scopes**: OIDC scopes and protocol mappers that control what appears in access tokens.
-- **OIDC clients**: one client per Mia Platform product (Console, Catalog, AI Foundry, Homepage & RBAC). Each client is conditionally included via `products.*` values.
+- **OIDC clients**: a set of clients for each Mia Platform product (Console, Catalog, AI Foundry, Flow, Authorization), including service account clients such as `catalog-engine` and `flow-access-control`. Each product's clients are conditionally included via `products.*` values.
 - **Identity providers**: external IdPs federated via OIDC. Supports multiple IdPs per realm (one per customer organization / email domain).
 - **Identity provider mappers**: attribute and role mappers that transform incoming IdP claims into Mia Platform user attributes and roles.
 - **Authentication flows**: custom flows extending Keycloak's defaults.
@@ -158,4 +158,4 @@ themes:
 
 The text displayed on the login page title is derived from the `realmName` value, which the chart uses as the realm's `displayName`.
 
-> Logo, colours, and fonts are compiled into the theme at Docker image build time. They are not configurable via chart values.
+> Logo, colours, and fonts are compiled into the theme at Docker image build time. They are not configurable via this chart's values. Logo, favicon, and other image assets can be overridden in the [Keycloak chart](/requirements/installation-guidelines/shared-services/authn/keycloak/10_overview.md#custom-mia-platform-image) with `keycloak.themeCustomization`.

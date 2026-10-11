@@ -55,11 +55,13 @@ The Catalog also exposes its API via the **Model Context Protocol (MCP)**, makin
   adkBeApp ──► Google Cloud (Vertex AI / ADK)
 ```
 
-The Envoy gateway validates JWT tokens on every request and checks RBAC policies via `accessControl`. Envoy merges the JWKS published by `authtoolBff` and `accessControl` so that tokens issued to either OIDC client validate correctly. The `catalogEngine` is the authoritative store for all catalog data. The Kafka pipeline provides an event-driven path for bulk item ingestion and synchronization.
+The Envoy gateway validates JWT tokens on every request and checks RBAC policies via `accessControl`. Envoy merges the JWKS published by `authtoolBff`, `accessControl` and `catalogEngine` so that tokens issued to any of these OIDC clients validate correctly. The `catalogEngine` is the authoritative store for all catalog data. The Kafka pipeline provides an event-driven path for bulk item ingestion and synchronization.
 
 ## Authorization context integration
 
 `accessControl` can enrich its policy evaluation with an **external authorization context** fetched from a remote authorization API, configured via `authzUrl` (typically the `services` chart's `apiGateway`, routed to the `rbacManagement` service). When enabled, `accessControl` authenticates to that API as its own OIDC client (`accessControl.config.externalContext.authorization`, backed by the `secrets.accessControlKeys` Secret).
+
+`catalogEngine` syncs Catalog permissions to the same authorization API (`authzUrl`), authenticating as its own OIDC client `catalog-engine` (`catalogEngine.config.authzServiceAuthorization`, enabled by default, backed by the `secrets.catalogEngineKeys` Secret). The `catalog-engine` client must exist in the Keycloak realm: the Realm Management chart creates it when the Catalog product is enabled.
 
 Separately, `authtoolBff` supports a **token-exchange client** (`authtoolBff.config.clients.exchange`) that exchanges the user's website session token for a token with the `authz-api` audience and `mia:authz` scope, used by the frontend to call authorization APIs directly on the user's behalf.
 
@@ -72,9 +74,10 @@ Separately, `authtoolBff` supports a **token-exchange client** (`authtoolBff.con
 | **Console** | The Console generates and publishes catalog items via the `itemsProducer` / Kafka pipeline. Catalog items reflect Console-managed projects and components. | `catalogKafkaContext.*` |
 | **Services (Homepage)** | The Catalog website is linked from the Mia Platform homepage deployed by the `services` chart. The homepage uses the Catalog as the primary navigation hub. | `url` |
 | **PostgreSQL** | `catalogEngine` stores all catalog items in PostgreSQL. `adkBeApp` also connects to PostgreSQL for agent state, and `itemsCompressor` uses a dedicated schema as its deduplication cache. | `secrets.catalogEngineKeys`, `secrets.adkBeAppKeys`, `secrets.itemsCompressorKeys` |
-| **Kafka** | The items pipeline uses two Kafka topics (`catalog-events.input`, `catalog-events.output`). Can be deployed embedded (Strimzi Operator) or connected to an external cluster. | `kafka.*`, `secrets.kafkaKeys`, `catalogKafkaContext.*` |
+| **Kafka** | The items pipeline uses two Kafka topics (`catalog-events.input`, `catalog-events.output`). Can be deployed embedded in the Catalog namespace (plain Kubernetes resources, no operator) or connected to an external cluster. | `catalogKafkaContext.embedded.*`, `secrets.kafkaKeys`, `catalogKafkaContext.*` |
 | **Redis** | Used by `authtoolBff` for session token storage and by `policyEngine` for policy caching. | `cache.*`, `policyEngine.config.redisKeyNamespace` |
 | **Services (RBAC management)** | `accessControl` can call an external authorization API (e.g. the `services` chart's `rbacManagement` component, via its `apiGateway`) to enrich policy evaluation with product/permission context. | `authzUrl`, `accessControl.config.externalContext.*`, `secrets.accessControlKeys` |
+| **Authorization API (permissions sync)** | `catalogEngine` syncs Catalog permissions to the authorization API configured via `authzUrl`, authenticating as the `catalog-engine` Keycloak client (created by the Realm Management chart from version `0.1.31`). | `authzUrl`, `catalogEngine.config.authzServiceAuthorization.*`, `secrets.catalogEngineKeys` |
 | **MCP-compatible AI tools** | `mcpServer` exposes the Catalog API via the Model Context Protocol. Compatible with Claude Code, GitHub Copilot, VS Code agents, and Kiro IDE. | `mcpServer.*` |
 
 Refer to the following installation guides to set up the required dependencies before installing the Catalog:
