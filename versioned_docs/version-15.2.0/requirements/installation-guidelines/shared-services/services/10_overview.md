@@ -53,6 +53,19 @@ The `services` chart connects to an **external Keycloak instance**. You need to 
 
 Refer to the [Keycloak installation guide](/requirements/installation-guidelines/shared-services/authn/keycloak/15_getting-started.md) and the [Realm Management guide](/requirements/installation-guidelines/shared-services/authn/keycloak-realm-management/15_getting-started.md) to set up your Keycloak instance and configure the realm.
 
+## SCIM endpoints
+
+Starting from Mia-Platform v15.2.0, the API gateway exposes the SCIM 2.0 endpoints served by `rbacManagement`, used by external Identity Providers to provision users and groups automatically — see [Automatic Provisioning via SCIM](/products/mia-platform-suite/scim_provisioning.md).
+
+| Path | Authorization |
+|---|---|
+| `/api/scim/v2/tenants/<tenant>/ServiceProviderConfig`, `/ResourceTypes`, `/Schemas` | Public (SCIM discovery). |
+| `/api/scim/v2/tenants/<tenant>/Users` and `/Users/<id>` | Requires the `urn:mia-platform-internal:role:authz:provisioning:users` role. |
+| `/api/scim/v2/tenants/<tenant>/Groups` and `/Groups/<id>` | Requires the `urn:mia-platform-internal:role:authz:provisioning:groups` role. |
+| `/api/audit/scim/events` | Requires the Super Admin role. Lists the SCIM events received by the platform. |
+
+The provisioning roles are held by the `scim-client` service account created by the [Realm Management chart](/requirements/installation-guidelines/shared-services/authn/keycloak-realm-management/10_overview.md#scim-provisioning-client). No additional value of the `services` chart is required to enable the SCIM endpoints.
+
 ## Deployment models
 
 | Model | When to use |

@@ -64,6 +64,14 @@ To enable the glossary, update your Data Catalog Application services to the ver
 Once the new versions of Data Catalog Application have been deployed, run the fabric-admin cronjob `v0.5.7` to propertly setup the business glossary feature.
 :::
 
+## Platform Administration
+
+### Automatic provisioning of users and groups via SCIM
+
+Users and groups of a tenant can now be **provisioned automatically** by any Identity Provider that supports outbound **SCIM 2.0** provisioning, such as Microsoft Entra ID or Okta. The Identity Provider keeps users, groups, and group memberships in sync with its own directory, including user deactivation and group removal, while roles keep being assigned to the synchronized groups from the Administration section: SCIM never reads or writes role assignments.
+
+See the official [Automatic Provisioning via SCIM documentation](/docs/15.2.0/products/mia-platform-suite/scim-provisioning) for how the synchronization works and how to configure your Identity Provider. On-premise installations need the `scim-client` secret to be provisioned in the Keycloak vault, as described in the [Keycloak Realm Management documentation](/docs/15.2.0/requirements/installation-guidelines/shared-services/authn/keycloak-realm-management/overview#scim-provisioning-client).
+
 ## Other New Features, Improvements and Bug Fixes
 
 <Accordion data={dataAccordion} />

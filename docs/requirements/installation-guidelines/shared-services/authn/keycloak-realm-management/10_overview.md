@@ -58,6 +58,35 @@ Each federated IdP is configured with:
 
 When organizations are enabled (Keycloak ≥ 25.0.0), each organization owns one or more verified email domains and is linked to one or more identity providers. When a user enters their email at login, Keycloak matches the domain to the organization and redirects to the associated IdP, no manual IdP selection is needed by the user.
 
+## SCIM provisioning client
+
+Starting from Mia-Platform v15.2.0, users and groups of a tenant can be provisioned automatically by any Identity Provider acting as a SCIM 2.0 client — see [Automatic Provisioning via SCIM](/products/mia-platform-suite/scim_provisioning.md) for the functional overview and the IdP setup.
+
+The IdP authenticates against the SCIM endpoint with the OAuth 2.0 Client Credentials grant, using a dedicated client of the `mia-platform` realm. When `products.authz: true`, the chart creates:
+
+| Resource | Details |
+|---|---|
+| **`scim-client`** client | Confidential client with service accounts enabled and no interactive flows. Authenticates with a **client secret**, resolved from the Keycloak vault as `${vault.scim-client-secret}`. |
+| **`service-account-scim-client`** service account | Holds the `authz-api` client roles `urn:mia-platform-internal:role:authz:provisioning:users` and `urn:mia-platform-internal:role:authz:provisioning:groups`, the only roles accepted by the SCIM endpoints exposed by the [Services chart](/requirements/installation-guidelines/shared-services/services/10_overview.md#scim-endpoints). |
+
+The vault entry backing the client secret must exist **before** the import of the `mia-platform` realm, otherwise Keycloak cannot resolve the secret. Provision it through the [Keycloak chart](/requirements/installation-guidelines/shared-services/authn/keycloak/helm-values/00_overview.md#vault-integration-vault)'s `vault.*` values; since Keycloak's file vault resolves keys in the `<realm>_<secretname>` format, the key is `mia-platform_scim-client-secret`:
+
+```yaml
+# keycloak values.yaml
+vault:
+  enabled: true
+  secretStoreRef:
+    name: my-secret-store
+    kind: SecretStore
+  data:
+    - secretKey: mia-platform_scim-client-secret
+      remoteRef:
+        key: secret/keycloak/scim-client
+        property: clientSecret
+```
+
+Share the client ID (`scim-client`), the client secret, and the token endpoint of the `mia-platform` realm (`https://<KEYCLOAK_HOST>/realms/mia-platform/protocol/openid-connect/token`) with the administrators who configure the SCIM application in the Identity Provider.
+
 ## Component templates
 
 The chart splits each realm into numbered component files inside `templates/`:
