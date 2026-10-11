@@ -56,78 +56,25 @@ Starting from this release, Mia-Suite products can also be deployed all within t
 
 No manual action required: install the new chart version.
 
-Also note:
-
-- The new top-level `mode` value controls how Keycloak runs. The default, `operator`, keeps the current behaviour. With `mode: manual` the chart deploys Keycloak as a StatefulSet without the Keycloak Operator: only one instance is allowed, the `realms` entries are ignored, and the Keycloak Service is named `<release fullname>-service` instead of `keycloak-service`.
-- You can override the logo, the favicon and the other image assets of the built-in Keycloak theme with `keycloak.themeCustomization`, which is disabled by default.
-- The `realms` value is no longer required by the chart schema.
-
 #### Auth — Realm Management: from 0.1.28 to 0.1.35
 
 No manual action required: install the new chart version.
 
-Also note:
-
-- With `products.console: true`, the chart now creates the `urn:mia-platform-internal:role:console:guest` client role on `console-api`, maps it to the `mia:console` client scope, and creates the `products/console/guest` group also when `options.isPaaS` is `false`. Check that these realm objects fit your access model.
-- The `products/authz/superadmin` group is now created only when `products.authz` is `true`. Groups use the `no-delete` import policy, so a group created by an earlier version stays in Keycloak but is no longer managed by the chart.
-- With `products.catalog: true`, the chart creates the `catalog-engine` service account client and its service account user, with the `urn:mia-platform-internal:role:authz:permissions:writer` role on `authz-api`. Catalog uses this client to sync its permissions (see the Catalog upgrade notes). The client reads its keys from `<urls.catalog>/.well-known/jwks.json`, so `urls.catalog` must point to the public Catalog URL.
-- With `products.flow: true`, the chart creates the `flow-access-control` service account client and its service account user.
-- The Mia Flow clients now offer the optional client scope `mia:authz` instead of `mia:ai-foundry`.
-- With `options.cimd: true`, the Claude Code client also accepts the redirect URI `https://claude.ai/api/mcp/auth_callback`.
-
 #### Homepage & RBAC: from 0.2.65-hotfix.0 to 0.3.16
 
-1. If you enabled `hooks.seedData` and set `hooks.seedData.secretName`, remove that value: the chart no longer reads it. The seed job now always reads the PostgreSQL connection string from the `rbac-management-keys` Secret, under the key set in `hooks.seedData.secretKey` (default `postgres-connection-string`). Before you upgrade, make sure that Secret contains the connection string under that key.
-
-Also note:
-
-- The new optional `namespacePrefix` value (default empty) adds a `<namespacePrefix>-` prefix to the names of all the resources the chart creates, including the `rbac-management-keys` Secret, the image pull Secret set in `global.imagePullSecret.name` and the TLS Secret set in `ingressRoute.tls.secretName`. Secrets that you create yourself must then use the prefixed names. Setting it on an existing installation renames its resources.
-- The name of the Traefik IngressRoute can be set with `ingressRoute.name`. The default is `default-ingress`, the previous name.
-- The hook resources have new names: for example, the Secret `postgres-db-check-credentials` is now `postgres-db-connectivity-credentials`. Jobs left behind under the old names by an earlier failed hook are not cleaned up by Helm: delete them by hand.
+Manual action required before you install the new chart version. See the [Homepage & RBAC upgrade guide](/docs/requirements/installation-guidelines/shared-services/services/how-to-upgrade#from-0265-hotfix0-to-0316-mia-platform-v1501-to-v1510) for the steps.
 
 #### Catalog: from 0.3.28 to 0.3.42-0
 
-1. Catalog Engine now syncs Catalog permissions to the Authz service with the `catalog-engine` Keycloak client. Upgrade the `keycloak-realm-management` chart to `0.1.35` first: with `products.catalog: true` it creates this client. If you do not manage the realm with that chart, create a confidential client `catalog-engine` with service accounts enabled, the "Signed JWT" client authenticator with the JWKS URL `<catalog url>/.well-known/jwks.json`, the default client scopes `mia:authz` and `mia:authz-roles`, and the `authz-api` client role `urn:mia-platform-internal:role:authz:permissions:writer` assigned to its service account user.
-2. Add the client credential to the `catalog-engine-keys` Secret. With the default `catalogEngine.config.authzServiceAuthorization.tokenAuthMethod: private_key_jwt`, add a PEM-encoded private key under the `key.pem` key. With any other `tokenAuthMethod`, add the client secret under the `client-secret` key. If the chart creates the Secret (`secrets.catalogEngineKeys.enabled: true`), set `secrets.catalogEngineKeys.privateKey` or `secrets.catalogEngineKeys.clientSecret` instead.
-
-Also note:
-
-- To turn off the permissions sync, set `catalogEngine.config.authzServiceAuthorization.enabled: false`. The client and the credential of the steps above are then not needed.
-- With `catalogKafkaContext.embedded.enabled: true` (default `false`) the chart deploys its own Kafka cluster in the Catalog namespace, without an operator or CRDs. It needs a StorageClass that can provision one ReadWriteOnce volume per Kafka node, and it cannot be combined with `secrets.kafkaKeys.enabled: true`.
-- The new optional `namespacePrefix` value (default empty) adds a `<namespacePrefix>-` prefix to the names of all the resources the chart creates, including the image pull Secret and the TLS Secret set in `ingressRoute.tls.secretName`. Secrets that you create yourself must then use the prefixed names. Setting it on an existing installation renames its resources.
+Manual action required before you install the new chart version. See the [Catalog upgrade guide](/docs/requirements/installation-guidelines/catalog/how-to-upgrade#from-0328-to-0342-0-mia-platform-v1501-to-v1510) for the steps.
 
 #### AI Foundry: from 0.4.79 to 0.4.83-0
 
 No manual action required: install the new chart version.
 
-Also note:
-
-- The new optional `namespacePrefix` value (default empty) adds a `<namespacePrefix>-` prefix to the names of all the resources the chart creates, including the image pull Secret and the TLS Secret set in `ingressRoute.tls.secretName`. Secrets that you create yourself must then use the prefixed names. Setting it on an existing installation renames its resources.
-- The name of the Traefik IngressRoute can be set with `ingressRoute.name`. The default is `default-ingress`, the previous name.
-- `aiFoundryWebsite.config.oauth.scopes` sets the OAuth scopes shown in the git-credential-oauth setup snippet of the AI Foundry website. When it is not set, the chart uses `openid offline_access` with `isPaaS: false`.
-
 #### Console: from 15.0.15-3 to 15.1.0
 
-1. If you configured Mia Assistant embeddings, remove `configurations.assistant.embeddings.apiKey`: the chart no longer reads it. The embeddings model now uses the API key of the LLM provider of the same type: set `configurations.assistant.keys.azureLlmApiKey` when `embeddings.type` is `azure`, or `configurations.assistant.keys.openaiLlmApiKey` when it is `openai`.
-
-   ```diff
-   configurations:
-     assistant:
-       keys:
-   +     azureLlmApiKey: "azure-apiKey"
-       embeddings:
-         type: "azure"
-   -     apiKey: "embeddings-apiKey"
-   ```
-
-2. If you configured embeddings, set `configurations.assistant.embeddings.type` explicitly to `openai` or `azure`: without it, the chart passes no API key to the embeddings model.
-3. If you set `configurations.additionalCABundle`, make sure it also contains the public certificate authorities your services need. The bundle is now also mounted in the `api-gateway`, where it replaces the system trust store, and the `api-gateway` uses it to validate the TLS connection to Keycloak.
-
-Also note:
-
-- `configurations.assistant.keys.github` is no longer used and can be removed.
-- Mia Assistant is now deployed as soon as `configurations.assistant.enabled` is `true`, even without `llms` or `embeddings`.
-- The new optional `configurations.trustedOrigins` list adds origins to the trusted origins of the authentication session, in addition to `consoleUrl` and `cmsUrl`.
+Manual action required before you install the new chart version. See the [Console upgrade guide](/docs/requirements/installation-guidelines/console/self-hosted/how-to-upgrade#from-15015-3-to-1510-mia-platform-v1501-to-v1510) for the steps.
 
 ### Bill of materials
 
