@@ -1886,45 +1886,43 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@chevrotain/cst-dts-gen@npm:11.1.2":
-  version: 11.1.2
-  resolution: "@chevrotain/cst-dts-gen@npm:11.1.2"
+"@chevrotain/cst-dts-gen@npm:13.2.0":
+  version: 13.2.0
+  resolution: "@chevrotain/cst-dts-gen@npm:13.2.0"
   dependencies:
-    "@chevrotain/gast": 11.1.2
-    "@chevrotain/types": 11.1.2
-    lodash-es: 4.17.23
-  checksum: fb09d03de5a8c0339cfbdcb5487f244f332fe4bf4362911712e292594f73b50b7d1157d74674a8835d0225f57050fa8b359ea3e775a45ddb071ba5c321664a0f
+    "@chevrotain/gast": 13.2.0
+    "@chevrotain/types": 13.2.0
+  checksum: cf7d2e8349ef72e43c7c9914e3f9600fd5f0d2f9b2bf5e3e7975ebb0266d544197008766d4e85fa8bb992b5f4af9f61d217e404c1b2039a281ad7f5d750c3e24
   languageName: node
   linkType: hard
 
-"@chevrotain/gast@npm:11.1.2":
-  version: 11.1.2
-  resolution: "@chevrotain/gast@npm:11.1.2"
+"@chevrotain/gast@npm:13.2.0":
+  version: 13.2.0
+  resolution: "@chevrotain/gast@npm:13.2.0"
   dependencies:
-    "@chevrotain/types": 11.1.2
-    lodash-es: 4.17.23
-  checksum: 62e9869886deb86e4b6f8379c3d289918605a61cfd1f837a1c31591f813fecda4f718d403f1791c177e291602e01a62390e20bf95a54f5e90170e7fbf5fe7cbb
+    "@chevrotain/types": 13.2.0
+  checksum: 1a87d658111f16c118cc19108e69b3292dfda5af1e2ed1b8450d49a11e3771b246fa2d2d6b41ca3d1185b157c07397619eb7e9a8373ef49f65b0ebe9f70dc5b2
   languageName: node
   linkType: hard
 
-"@chevrotain/regexp-to-ast@npm:11.1.2":
-  version: 11.1.2
-  resolution: "@chevrotain/regexp-to-ast@npm:11.1.2"
-  checksum: ddf9c8b5cd2f390f154642aa9eafbd968a3ee3c2573ac47285e002ed4561191ed7acebd9481b1492359e4d7a6c7a00e073f7f7a1a4c844042b9456e07daabaa7
+"@chevrotain/regexp-to-ast@npm:13.2.0":
+  version: 13.2.0
+  resolution: "@chevrotain/regexp-to-ast@npm:13.2.0"
+  checksum: 1ad83c234f642f265932a229f64ba44d6707f0adc0a7ca9a208c6849fef8168233d8db31dd369e6e5ff69b421fbd54a1493d447505eec42470be68ec214ae88c
   languageName: node
   linkType: hard
 
-"@chevrotain/types@npm:11.1.2, @chevrotain/types@npm:~11.1.2":
-  version: 11.1.2
-  resolution: "@chevrotain/types@npm:11.1.2"
-  checksum: 4c948b8559c94329bae5fa5b087e20ebfbac3fa73ff32ee7e3752716ab565da1c9efc2103eb1dbee2bf492d68231d4386836283f0bb7cca63f4185788808af70
+"@chevrotain/types@npm:13.2.0, @chevrotain/types@npm:~13.2.0":
+  version: 13.2.0
+  resolution: "@chevrotain/types@npm:13.2.0"
+  checksum: 48ad333f21fb3209374a8cdd4ef1d586c961b5cb0d3d215e80f8be0c8f9aa8f836f28811ac7455079b2cbc90fcfd72fd9d5b592174fc962d717c84340413fdb0
   languageName: node
   linkType: hard
 
-"@chevrotain/utils@npm:11.1.2":
-  version: 11.1.2
-  resolution: "@chevrotain/utils@npm:11.1.2"
-  checksum: 88f2a75ec80d4a8b0ebaf53d99214f69c797ffa3895003a5ac61624dfcb412e753327edb5203cd3bae02d824843b374ba74e821273d133b183f34ac7d0cfe629
+"@chevrotain/utils@npm:13.2.0":
+  version: 13.2.0
+  resolution: "@chevrotain/utils@npm:13.2.0"
+  checksum: e73b4a5d07ac67cc99fb18113ad2f0cf7d61d74e5ba7e2105e39a63f122a2a86173c64ff28857be88b10881cba1c09b5e4f013f1c3be6a3cd0c55ceb10502d6f
   languageName: node
   linkType: hard
 
@@ -4364,12 +4362,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@mermaid-js/parser@npm:^2.0.0":
-  version: 2.0.0
-  resolution: "@mermaid-js/parser@npm:2.0.0"
+"@mermaid-js/parser@npm:^2.0.1":
+  version: 2.0.1
+  resolution: "@mermaid-js/parser@npm:2.0.1"
   dependencies:
-    "@chevrotain/types": ~11.1.2
-  checksum: 9a7f535026d56a7ef490dee94ed764a90c8a8effbecca22094fab9ff36fb35cc2dd5ed1c16bdb36048c175acad9d706296677f07845881673db69084d0876e31
+    "@chevrotain/types": ~13.2.0
+  checksum: 36aae1ce194a8db0b57eac6470bc0ed1b07483efb823e4add2d6aac902cabc1c2ef8ef2ef89ad9c8cb5fc72e95e3561e6bce9337db3195eaed408be1834ed21e
   languageName: node
   linkType: hard
 
@@ -7000,17 +6998,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"chevrotain@npm:~11.1.2":
-  version: 11.1.2
-  resolution: "chevrotain@npm:11.1.2"
+"chevrotain@npm:~13.2.0":
+  version: 13.2.0
+  resolution: "chevrotain@npm:13.2.0"
   dependencies:
-    "@chevrotain/cst-dts-gen": 11.1.2
-    "@chevrotain/gast": 11.1.2
-    "@chevrotain/regexp-to-ast": 11.1.2
-    "@chevrotain/types": 11.1.2
-    "@chevrotain/utils": 11.1.2
-    lodash-es: 4.17.23
-  checksum: 9b5f1abe42db8af0e772e85b74ff730367741cd0dbead6a4cef9cc65fe6023ed891daf3a32a8d65b91a367b652b57a23fb222185851a25c9bdb6172ed1d9874d
+    "@chevrotain/cst-dts-gen": 13.2.0
+    "@chevrotain/gast": 13.2.0
+    "@chevrotain/regexp-to-ast": 13.2.0
+    "@chevrotain/types": 13.2.0
+    "@chevrotain/utils": 13.2.0
+  checksum: f604674335c194c561833595c8af52c5d6de845ec70974cad77e0bc5b8ce4d630859c2778b55477c90ea27f83b9a147cbda06afdf45f06c036043b84251428c5
   languageName: node
   linkType: hard
 
@@ -11984,13 +11981,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"lodash-es@npm:4.17.23":
-  version: 4.17.23
-  resolution: "lodash-es@npm:4.17.23"
-  checksum: b1bd1d141bbde8ffc72978e34b364065675806b0ca42ab99477d247fb2ae795faeed81db9283bf18ae1f096c2b6611ec0589e0503fa9724bf82e3dce947bad69
-  languageName: node
-  linkType: hard
-
 "lodash-es@npm:^4.17.21":
   version: 4.18.1
   resolution: "lodash-es@npm:4.18.1"
@@ -12483,16 +12473,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"mermaid@npm:^12.0.0":
-  version: 12.0.0
-  resolution: "mermaid@npm:12.0.0"
+"mermaid@npm:^12.1.0":
+  version: 12.1.0
+  resolution: "mermaid@npm:12.1.0"
   dependencies:
     "@braintree/sanitize-url": ^7.1.2
     "@iconify/utils": ^3.0.2
-    "@mermaid-js/parser": ^2.0.0
+    "@mermaid-js/parser": ^2.0.1
     "@types/d3": ^7.4.3
     "@upsetjs/venn.js": ^2.0.0
-    chevrotain: ~11.1.2
+    chevrotain: ~13.2.0
     cytoscape: ^3.34.0
     cytoscape-cose-bilkent: ^4.1.0
     cytoscape-fcose: ^2.2.0
@@ -12510,7 +12500,7 @@ __metadata:
     stylis: ^4.3.6
     ts-dedent: ^2.2.0
     uuid: ^11.1.0 || ^12 || ^13 || ^14.0.0
-  checksum: 5c7dd9f277c95cd03788d7bc181e50fbe353656eaf0b333aeddc8c3a301117a7de5661e7a6d8f977322024bdd34835369b27e00ee7fc1ad64ec6ffd3e487d61b
+  checksum: a6e6f33a62b71221b3c4b11ec6a4a4aff22758686035ed9a9cc18035fc63de8029d378619b94eae849aa30c47d08145ceef5dac66335e5e9788120bd86b91787
   languageName: node
   linkType: hard
 
@@ -13795,7 +13785,7 @@ __metadata:
     globals: ^17.13.0
     klaw: ^4.1.0
     medium-zoom: ^1.0.8
-    mermaid: ^12.0.0
+    mermaid: ^12.1.0
     prism-react-renderer: ^2.3.0
     prop-types: ^15.8.1
     react: ^19.3.0
