@@ -13786,8 +13786,8 @@ __metadata:
     "@mdx-js/react": ^3.0.0
     "@swc/core": ^1.16.13
     clsx: ^2.1.1
-    eslint: ^10.12.0
     cspell: ^10.3.6
+    eslint: ^10.12.0
     eslint-plugin-react: 7.37.5
     front-matter: ^4.0.2
     git-list-updated: ^1.2.1
