@@ -37,6 +37,29 @@ The Chart version follows [semver](https://semver.org/) policy so any breaking c
 
 ## Console v15 - version upgrades
 
+### From 15.0.15-3 to 15.1.0 (Mia-Platform v15.0.1 to v15.1.0)
+
+1. If you configured Mia Assistant embeddings, remove `configurations.assistant.embeddings.apiKey`: the chart no longer reads it. The embeddings model now uses the API key of the LLM provider of the same type: set `configurations.assistant.keys.azureLlmApiKey` when `embeddings.type` is `azure`, or `configurations.assistant.keys.openaiLlmApiKey` when it is `openai`.
+
+   ```diff
+   configurations:
+     assistant:
+       keys:
+   +     azureLlmApiKey: "azure-apiKey"
+       embeddings:
+         type: "azure"
+   -     apiKey: "embeddings-apiKey"
+   ```
+
+2. If you configured embeddings, set `configurations.assistant.embeddings.type` explicitly to `openai` or `azure`: without it, the chart passes no API key to the embeddings model.
+3. If you set `configurations.additionalCABundle`, make sure it also contains the public certificate authorities your services need. The bundle is now also mounted in the `api-gateway`, where it replaces the system trust store, and the `api-gateway` uses it to validate the TLS connection to Keycloak.
+
+Also note:
+
+- `configurations.assistant.keys.github` is no longer used and can be removed.
+- Mia Assistant is now deployed as soon as `configurations.assistant.enabled` is `true`, even without `llms` or `embeddings`.
+- The new optional `configurations.trustedOrigins` list adds origins to the trusted origins of the authentication session, in addition to `consoleUrl` and `cmsUrl`.
+
 ### Upgrade from last Console v14 to v15.0.0
 
 Console v15 introduces a **breaking change** in the authentication architecture: the OAuth2-based provider configuration is replaced by a direct integration with **Keycloak**. The `authenticationService` is replaced by the new `authtool-bff` service.

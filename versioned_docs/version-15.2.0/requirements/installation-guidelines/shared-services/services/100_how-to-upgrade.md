@@ -50,4 +50,18 @@ helm upgrade --install services . \
 
 ## Version-specific notes
 
+### From 0.2.65-hotfix.0 to 0.3.16 (Mia-Platform v15.0.1 to v15.1.0)
+
+1. If you enabled `hooks.seedData` and set `hooks.seedData.secretName`, remove that value: the chart no longer reads it. The seed job now always reads the PostgreSQL connection string from the `rbac-management-keys` Secret, under the key set in `hooks.seedData.secretKey` (default `postgres-connection-string`). Before you upgrade, make sure that Secret contains the connection string under that key.
+
+Also note:
+
+- The new optional `namespacePrefix` value (default empty) adds a `<namespacePrefix>-` prefix to the names of all the resources the chart creates, including the `rbac-management-keys` Secret, the image pull Secret set in `global.imagePullSecret.name` and the TLS Secret set in `ingressRoute.tls.secretName`. Secrets that you create yourself must then use the prefixed names. Setting it on an existing installation renames its resources.
+- The name of the Traefik IngressRoute can be set with `ingressRoute.name`. The default is `default-ingress`, the previous name.
+- The hook resources have new names: for example, the Secret `postgres-db-check-credentials` is now `postgres-db-connectivity-credentials`. Jobs left behind under the old names by an earlier failed hook are not cleaned up by Helm: delete them by hand.
+
+### From 0.2.65 to 0.2.65-hotfix.0 (Mia-Platform v15.0.0 to v15.0.1)
+
+No manual action required: install the new chart version.
+
 No breaking changes have been introduced yet. This section will be updated whenever a major release requires migration steps.

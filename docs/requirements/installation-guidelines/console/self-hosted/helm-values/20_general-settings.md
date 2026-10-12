@@ -22,6 +22,7 @@ If you want to fine tune resources for specific services the proper documentatio
 | :------------------------: | :-----: | :----------------------------: | :-----: | :------: |
 |     `configurations.consoleUrl`     | string |                                                       The URL where the console will be exposed                                                       |         |    ❌     |
 |       `configurations.cmsUrl`       | string |                                                     The URL where the console CMS will be exposed                                                     |         |    ❌     |
+|     `configurations.trustedOrigins`     | array | Additional origins trusted by the `authtool-bff` session, besides `configurations.consoleUrl` and `configurations.cmsUrl` | `[]` |    ✅     |
 
 ### Docker and runtime specific configurations
 
@@ -67,6 +68,8 @@ If you want to fine tune resources for specific services the proper documentatio
 ### Self-Signed CA Bundles
 
 If your Self-Hosted Console needs to interact with third party servers (e.g. MongoDB) with a self signed certificate you can provide the certification authority key material with the `additionalCABundle` configuration.
+
+The bundle is also used by `api-gateway`, where it is mounted over `/etc/ssl/certs/ca-certificates.crt` and replaces the system trust store of the container. For this reason, the bundle must contain also the public certification authorities needed to reach external services, in addition to your self-signed ones.
 
 ## Service account management configuration
 

@@ -89,6 +89,19 @@ All imports are safe to run in any order and any number of times, the `no-delete
 
 ## Chart version migration notes
 
+### From 0.1.28 to 0.1.35 (Mia-Platform v15.0.1 to v15.1.0)
+
+No manual action required: install the new chart version.
+
+Also note:
+
+- With `products.console: true`, the chart now creates the `urn:mia-platform-internal:role:console:guest` client role on `console-api`, maps it to the `mia:console` client scope, and creates the `products/console/guest` group also when `options.isPaaS` is `false`. Check that these realm objects fit your access model.
+- The `products/authz/superadmin` group is now created only when `products.authz` is `true`. Groups use the `no-delete` import policy, so a group created by an earlier version stays in Keycloak but is no longer managed by the chart.
+- With `products.catalog: true`, the chart creates the `catalog-engine` service account client and its service account user, with the `urn:mia-platform-internal:role:authz:permissions:writer` role on `authz-api`. Catalog uses this client to sync its permissions (see the Catalog upgrade notes). The client reads its keys from `<urls.catalog>/.well-known/jwks.json`, so `urls.catalog` must point to the public Catalog URL.
+- With `products.flow: true`, the chart creates the `flow-access-control` service account client and its service account user.
+- The Mia Flow clients now offer the optional client scope `mia:authz` instead of `mia:ai-foundry`.
+- With `options.cimd: true`, the Claude Code client also accepts the redirect URI `https://claude.ai/api/mcp/auth_callback`.
+
 This chart is at its initial release (`v0.x`). No prior chart versions exist, so there are no migration notes at this time.
 
 Future releases that require user action, such as renamed values, removed fields, or changed default behaviors, will include step-by-step migration instructions in this section. Always review the chart `CHANGELOG.md` before upgrading.

@@ -14,6 +14,7 @@ This page describes all configurable values for the `catalog` chart. See `values
 |---|---|---|---|---|
 | `url` | string | `~` | ✅ | Full public URL where the Catalog is exposed (e.g. `https://catalog.your-domain.com`). Used for OIDC redirect URIs, CORS, and routing. |
 | `isPaaS` | boolean | `false` | ❌ | Set to `true` for Mia Platform PaaS deployments. |
+| `namespacePrefix` | string | `""` | ❌ | Optional prefix prepended as `<namespacePrefix>-<name>` to the names of the chart microservice resources (including their `<service>-keys` Secrets, such as `catalog-engine-keys`), to the image pull secret name, to the `IngressRoute` name and to `ingressRoute.tls.secretName`. Leave empty when the Catalog is installed in a dedicated namespace. |
 | `environment` | string | `""` | ❌ | Logical environment name. One of `local`, `development`, `experimental`, `lts`, `preproduction`, `preview`, `demo`. |
 | `authzUrl` | string | `~` | ❌ | URL of an external authorization API used by `accessControl` to enrich policy evaluation with external context (e.g. the `services` chart's `apiGateway`, routed to `rbacManagement`). Required when `accessControl.config.externalContext.enabled: true`. |
 
@@ -42,29 +43,46 @@ This page describes all configurable values for the `catalog` chart. See `values
 
 ## Kafka
 
-The Catalog uses Kafka for its item event pipeline. You can deploy an embedded Kafka cluster (via Strimzi Operator) or connect to an external one.
+The Catalog uses Kafka for its item event pipeline. You can connect to an external Kafka cluster (default) or let the chart deploy an embedded one in the Catalog namespace.
 
 ### Embedded Kafka
 
+When `catalogKafkaContext.embedded.enabled: true`, the chart deploys a Kafka cluster in the Catalog namespace with plain Kubernetes resources (a StatefulSet of KRaft nodes with combined broker and controller roles, its Services, a ConfigMap and a topics Job), without any operator or CustomResourceDefinition. It requires a StorageClass able to provision one `ReadWriteOnce` volume per node.
+
+The chart fills in the `kafka-keys` Secret with the address of the embedded cluster, the SASL settings of `catalogKafkaContext.connectionConfig` are ignored (the listener is PLAINTEXT) and the pre-install Kafka connectivity hook is skipped.
+
+:::caution
+`catalogKafkaContext.embedded.enabled` and `secrets.kafkaKeys.enabled` are mutually exclusive: enabling both aborts the release. A Kafka cluster managed elsewhere (for example by a Strimzi operator) must be configured as an external cluster.
+:::
+
 | Key | Type | Default | Description |
 |---|---|---|---|
-| `kafka.enabled` | boolean | `false` | Deploy an embedded Kafka cluster managed by Strimzi. |
-| `kafka.operator.enabled` | boolean | `false` | Deploy the Strimzi Kafka Operator in the same namespace. Set to `false` if the operator is already installed cluster-wide. |
-| `kafka.ui.enabled` | boolean | `false` | Deploy the Kafbat UI for Kafka cluster management. |
-| `kafka.version` | string | `"4.1.0"` | Kafka version to deploy. |
-| `kafka.metadataVersion` | string | `"4.0-IV3"` | Kafka metadata version (KRaft mode). |
-| `kafka.config.logRetentionHours` | integer | `48` | Log retention duration in hours. |
-| `kafka.node.replicas` | integer | `1` | Number of Kafka nodes (broker + controller combined in KRaft mode). |
-| `kafka.node.storage.size` | string | `"20Gi"` | Persistent volume size per node. |
-| `kafka.node.storage.storageClass` | string | `"standard"` | Storage class for Kafka PVCs. |
-| `kafka.topics` | array | see below | List of topics to auto-create on cluster initialization. |
+| `catalogKafkaContext.embedded.enabled` | boolean | `false` | Deploy the embedded Kafka cluster in the Catalog namespace. |
+| `catalogKafkaContext.embedded.clusterName` | string | `"catalog-kafka"` | Base name of every embedded Kafka resource. |
+| `catalogKafkaContext.embedded.clusterId` | string | `"catalogEmbeddedKafka01"` | KRaft cluster id shared by every node: a 22 character base64url string. Must not change once the volumes are formatted. |
+| `catalogKafkaContext.embedded.replicas` | integer | `1` | Number of KRaft nodes. The replication factor of every topic is derived from it, capped at 3. |
+| `catalogKafkaContext.embedded.logLevel` | string | `"info"` | Kafka log level. |
+| `catalogKafkaContext.embedded.image.registry` | string | `"docker.io"` | Kafka image registry. |
+| `catalogKafkaContext.embedded.image.repository` | string | `"apache/kafka"` | Kafka image repository. |
+| `catalogKafkaContext.embedded.image.tag` | string | `"4.2.0"` | Kafka image tag. |
+| `catalogKafkaContext.embedded.image.pullPolicy` | string | `"IfNotPresent"` | Kafka image pull policy. |
+| `catalogKafkaContext.embedded.heap.min` | string | `"256m"` | Initial heap size of the Kafka JVM (`-Xms`). |
+| `catalogKafkaContext.embedded.heap.max` | string | `"512m"` | Maximum heap size of the Kafka JVM (`-Xmx`). Keep it well below `resources.limits.memory`. |
+| `catalogKafkaContext.embedded.storage.size` | string | `"20Gi"` | Persistent volume size per node. |
+| `catalogKafkaContext.embedded.storage.class` | string | `""` | StorageClass of the Kafka volumes. Empty means the cluster default StorageClass. |
+| `catalogKafkaContext.embedded.resources` | object | requests `200m` CPU / `512Mi` memory, limits `500m` CPU / `1Gi` memory | Resources of each Kafka node. |
+| `catalogKafkaContext.embedded.topics.partitions` | integer | `3` | Number of partitions of each topic in `catalogKafkaContext.topics`. |
+| `catalogKafkaContext.embedded.topics.retentionMs` | integer | `172800000` | Retention of each topic in milliseconds, also used as the broker default retention. |
+| `serviceAccounts.kafka.enabled` | boolean | `true` | Create a ServiceAccount for the embedded Kafka nodes. |
 
-Default topics created:
+The topics in `catalogKafkaContext.topics` are created by a post-install/post-upgrade hook Job:
 
-| Topic | Partitions |
-|---|---|
-| `catalog-events.input` | 3 |
-| `catalog-events.output` | 3 |
+| Key | Type | Default | Description |
+|---|---|---|---|
+| `hooks.embeddedKafkaTopics.enabled` | boolean | `true` | Create the topics on the embedded Kafka cluster. Used only when `catalogKafkaContext.embedded.enabled: true`. |
+| `hooks.embeddedKafkaTopics.backoffLimit` | integer | `2` | Number of retries of the hook Job. |
+| `hooks.embeddedKafkaTopics.timeoutSeconds` | integer | `600` | Timeout of the hook Job in seconds. |
+| `hooks.embeddedKafkaTopics.readyTimeoutSeconds` | integer | `480` | Time in seconds the hook waits for a Kafka broker to be ready. |
 
 ### Kafka context (shared by items pipeline)
 
@@ -107,6 +125,8 @@ tokenEncKey=$(openssl rand -hex 32)
 |---|---|---|---|
 | `secrets.catalogEngineKeys.enabled` | boolean | `false` | When `true`, the chart creates a Secret named `catalog-engine-keys`. |
 | `secrets.catalogEngineKeys.postgresConnectionString` | string | `""` | PostgreSQL connection string for the catalog database (e.g. `postgresql://user:pass@host:5432/catalog`). |
+| `secrets.catalogEngineKeys.privateKey` | string | `""` | PEM private key of the `catalog-engine` OIDC client, stored as `key.pem`. Used when `catalogEngine.config.authzServiceAuthorization.enabled: true` and its `tokenAuthMethod` is `private_key_jwt`. |
+| `secrets.catalogEngineKeys.clientSecret` | string | `""` | Client secret of the `catalog-engine` OIDC client, stored as `client-secret`. Used when `catalogEngine.config.authzServiceAuthorization.enabled: true` and its `tokenAuthMethod` is `client_secret_post` or `client_secret_basic`. |
 
 ### adk-be-app keys
 
@@ -165,7 +185,7 @@ Used only when `accessControl.config.externalContext.enabled: true`: `accessCont
 
 ## Service accounts
 
-Each microservice gets its own dedicated `ServiceAccount`, created by default. Applies to: `accessControl`, `adkBeApp`, `apiGateway`, `authtoolBff`, `cache`, `catalogEngine`, `catalogWebsite`, `doclingService`, `itemsCompressor`, `itemsConsumer`, `itemsProducer`, `mcpServer`, `policyEngine`, `swaggerAggregator`.
+Each microservice gets its own dedicated `ServiceAccount`, created by default. Applies to: `accessControl`, `adkBeApp`, `apiGateway`, `authtoolBff`, `cache`, `catalogEngine`, `catalogWebsite`, `doclingService`, `itemsCompressor`, `itemsConsumer`, `itemsProducer`, `kafka` (embedded Kafka nodes), `mcpServer`, `policyEngine`, `swaggerAggregator`.
 
 | Key | Type | Default | Description |
 |---|---|---|---|
@@ -197,11 +217,14 @@ All microservices share the following configurable fields:
 
 ## catalogEngine
 
-The core Catalog REST API. Serves all catalog data from PostgreSQL.
+The core Catalog REST API. Serves all catalog data from PostgreSQL. It syncs Catalog permissions to the authorization API configured via `authzUrl`, authenticating as its own OIDC client (`catalog-engine`) with the credentials of the `catalog-engine-keys` Secret (see [catalog-engine keys](#catalog-engine-keys)).
 
 | Key | Type | Default | Description |
 |---|---|---|---|
 | `catalogEngine.config.persistence.config.maxConnections` | integer | `10` | Maximum number of PostgreSQL connections in the pool. |
+| `catalogEngine.config.authzServiceAuthorization.enabled` | boolean | `true` | Authenticate to the authorization API as an OIDC client to sync Catalog permissions. |
+| `catalogEngine.config.authzServiceAuthorization.clientId` | string | `"catalog-engine"` | OIDC client ID registered in Keycloak for `catalogEngine`. |
+| `catalogEngine.config.authzServiceAuthorization.tokenAuthMethod` | string | `"private_key_jwt"` | Token endpoint authentication method. Options: `private_key_jwt`, `client_secret_post`, `client_secret_basic`. |
 
 ## accessControl
 

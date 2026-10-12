@@ -40,11 +40,11 @@ Controls which Mia Platform product OIDC clients are created in the realm. Setti
 
 | Key | Type | Default | Description |
 |---|---|---|---|
-| `products.console` | bool | `false` | Create the OIDC client and scopes for **Mia Platform Console** (Homepage & RBAC included). |
-| `products.catalog` | bool | `false` | Create the OIDC client and scopes for **Context Catalog**. |
+| `products.console` | bool | `false` | Create the OIDC client and scopes for **Mia Platform Console** (Homepage & RBAC included). Also creates the Console guest client role, its mapping to the `mia:console` and `mia:console-cms` scopes, and the `products/console/guest` group. |
+| `products.catalog` | bool | `false` | Create the OIDC client and scopes for **Context Catalog**, including the `catalog-engine` service account client. |
 | `products.aiFoundry` | bool | `false` | Create the OIDC client and scopes for **AI Foundry**. |
-| `products.flow` | bool | `false` | Create the OIDC client and scopes for **Mia Flow**. |
-| `products.authz` | bool | `false` | Create the OIDC client and scopes for the Authorization service. |
+| `products.flow` | bool | `false` | Create the OIDC client and scopes for **Mia Flow**, including the `flow-access-control` service account client. |
+| `products.authz` | bool | `false` | Create the OIDC client and scopes for the Authorization service. Also creates the `products/authz/superadmin` group. |
 
 When a product is enabled, the corresponding `urls.*` value must be set.
 

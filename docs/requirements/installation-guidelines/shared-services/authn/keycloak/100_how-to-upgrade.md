@@ -54,6 +54,16 @@ Plan a maintenance window for minor and major upgrades.
 
 ## Chart version migration notes
 
+### From 0.5.4 to 0.6.1 (Mia-Platform v15.0.1 to v15.1.0)
+
+No manual action required: install the new chart version.
+
+Also note:
+
+- The new top-level `mode` value controls how Keycloak runs. The default, `operator`, keeps the current behaviour. With `mode: manual` the chart deploys Keycloak as a StatefulSet without the Keycloak Operator: only one instance is allowed, the `realms` entries are ignored, and the Keycloak Service is named `<release fullname>-service` instead of `keycloak-service`.
+- You can override the logo, the favicon and the other image assets of the built-in Keycloak theme with `keycloak.themeCustomization`, which is disabled by default.
+- The `realms` value is no longer required by the chart schema.
+
 This chart is at its initial release (`v0.x`). No prior chart versions exist, so there are no migration notes at this time.
 
 Future releases that require user action will include step-by-step migration instructions in this section, along with the minimum Helm and operator versions required. Always review the chart `CHANGELOG.md` before upgrading.

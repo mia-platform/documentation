@@ -19,6 +19,22 @@ The `keycloak-operator` Helm chart deploys a Keycloak instance on Kubernetes usi
 | **Service** | `ClusterIP` service exposing the Keycloak HTTP port. |
 | **Ingress / IngressRoute** | Optional. Standard Kubernetes `Ingress` or Traefik `IngressRoute` for public and admin hostnames: mutually exclusive. |
 | **ExternalSecrets** | Optional. `ExternalSecret` resources that sync Vault-backed secrets and PKCS12 keystores from a remote secret store into Kubernetes secrets, via the External Secrets Operator. |
+| **Theme ConfigMap** | Optional. `ConfigMap` holding image assets (e.g. logo, favicon) that override the ones of a theme baked into the image, when `keycloak.themeCustomization.enabled: true`. |
+
+The components above refer to the default `operator` mode. See [Deployment mode](#deployment-mode) for the `manual` alternative.
+
+## Deployment mode
+
+The top-level `mode` value selects how Keycloak is run:
+
+| `mode` | Behaviour |
+|---|---|
+| `operator` (default) | The Keycloak Operator reconciles the `Keycloak` CR into a `StatefulSet`. Realms listed in `realms` are rendered as `KeycloakRealmImport` resources. The Ingress resources target the `keycloak-service` Service. |
+| `manual` | The chart renders the Keycloak `StatefulSet` and `Service` directly, plus a `ServiceMonitor` when `keycloak.serviceMonitor.enabled: true`. The Keycloak Operator resources and the `Keycloak` CR are not created, even if `operator.enabled: true`. The `realms` list is ignored. The Service is named `<release fullname>-service`. |
+
+:::warning
+`mode: manual` supports a single Keycloak instance only: rendering fails if `keycloak.instances` is greater than `1`, because no cluster discovery is configured for the manually rendered `StatefulSet`.
+:::
 
 ## Custom Mia Platform image
 
@@ -29,7 +45,7 @@ The chart uses a Mia Platform pre-built image (`nexus.mia-platform.eu/platform/a
 - **OpenTelemetry**: distributed traces, metrics, and structured logs exportable to any OTEL Collector.
 - **File vault** (`KC_VAULT=file`): Keycloak resolves `${vault.<name>}` placeholders from mounted secrets, enabling credential injection without environment variables.
 - **SCIM 2.0** (`KC_FEATURE_SCIM_API`): built-in user provisioning endpoint for automated user lifecycle management.
-- **Keycloakify login themes**: two pre-built React-based login UI themes are included (`mia-platform-keycloak-ui` and `mia-care-keycloak-ui`). Logo, colours, and fonts are compiled into the image at build time and are not configurable via chart values; the active theme is selected per realm via the [Realm Management chart](/requirements/installation-guidelines/shared-services/authn/keycloak-realm-management/10_overview.md#login-theme).
+- **Keycloakify login themes**: two pre-built React-based login UI themes are included (`mia-platform-keycloak-ui` and `mia-care-keycloak-ui`). Colours and fonts are compiled into the image at build time and are not configurable via chart values, while logo, favicon, and other image assets can be overridden with `keycloak.themeCustomization` (see the [Helm Values reference](/requirements/installation-guidelines/shared-services/authn/keycloak/helm-values/00_overview.md#theme-customization-keycloakthemecustomization)); the active theme is selected per realm via the [Realm Management chart](/requirements/installation-guidelines/shared-services/authn/keycloak-realm-management/10_overview.md#login-theme).
 
 The image tag format is `<appVersion>-<keycloakVersion>-postgres` (e.g. `0.3.2-26.6.4-postgres`).
 
@@ -57,7 +73,7 @@ The Keycloak CR defaults to `update.strategy: Auto`. The operator evaluates whet
 | Kubernetes | **yes** | ≥ 1.28 recommended |
 | PostgreSQL | **yes** (external for production) | `postgres.enabled: true` deploys a single-instance Bitnami PostgreSQL for development and testing only |
 | External Secrets Operator | when `vault.enabled: true` or `keystore.enabled: true` | Must be installed and configured separately; the chart does not deploy ESO or its CRDs |
-| Prometheus Operator | no | `ServiceMonitor` resources are created by the Keycloak Operator automatically when `serviceMonitor.enabled: true` |
+| Prometheus Operator | no | `ServiceMonitor` resources are created by the Keycloak Operator automatically when `serviceMonitor.enabled: true`. With `mode: manual`, the chart renders the `ServiceMonitor` itself, so the `ServiceMonitor` CRD must be installed or `keycloak.serviceMonitor.enabled` set to `false` |
 | Traefik | no | Required only when using `ingressRoute.enabled: true` |
 
 ## Secrets required before installation

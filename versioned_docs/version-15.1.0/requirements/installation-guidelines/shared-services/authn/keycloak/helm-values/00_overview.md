@@ -12,6 +12,12 @@ This page documents all configurable values for the `keycloak-operator` Helm cha
 For a minimal working configuration, see the [Getting Started guide](/requirements/installation-guidelines/shared-services/authn/keycloak/15_getting-started.md). For a production HA example, see `ci/prod-ha-example.yaml` in the chart repository.
 :::
 
+## Deployment mode (`mode`)
+
+| Key | Type | Default | Description |
+|---|---|---|---|
+| `mode` | string | `"operator"` | How Keycloak is run. `operator`: the Keycloak Operator reconciles a `Keycloak` CR and `realms` imports are supported. `manual`: the chart renders the Keycloak `StatefulSet` and `Service` directly; the operator is not deployed even if `operator.enabled: true`, only one instance is supported (`keycloak.instances` must be `1`), and `realms` is ignored. See [Deployment mode](/requirements/installation-guidelines/shared-services/authn/keycloak/10_overview.md#deployment-mode). |
+
 ## imagePullSecrets
 
 | Key | Type | Default | Description |
@@ -98,7 +104,7 @@ Configuration for the Keycloak Operator Deployment that manages the Keycloak CR.
 
 | Key | Type | Default | Description |
 |---|---|---|---|
-| `operator.enabled` | bool | `true` | Deploy the Keycloak Operator. |
+| `operator.enabled` | bool | `true` | Deploy the Keycloak Operator. Ignored when `mode: manual`. |
 | `operator.replicaCount` | int | `1` | Number of operator replicas. |
 | `operator.image.repository` | string | `"quay.io/keycloak/keycloak-operator"` | Operator image repository. |
 | `operator.image.tag` | string | `"26.6.4"` | Operator image tag. **Bump independently from `keycloak.image.tag`** to avoid unnecessary operator restarts during Keycloak rolling updates. |
@@ -129,7 +135,7 @@ Configuration for the Keycloak custom resource managed by the operator.
 | `keycloak.enabled` | bool | `true` | Deploy the Keycloak CR. Set to `false` to deploy only the operator. |
 | `keycloak.name` | string | `"keycloak"` | Name of the Keycloak CR and the resulting StatefulSet. Changing this after installation creates a new CR and abandons the old StatefulSet. |
 | `keycloak.version` | string | `"26.6.4"` | Keycloak version. Used by the operator to validate image compatibility. |
-| `keycloak.instances` | int | `1` | Number of Keycloak replicas (StatefulSet). Use `2` or more for HA. |
+| `keycloak.instances` | int | `1` | Number of Keycloak replicas (StatefulSet). Use `2` or more for HA. Must be `1` when `mode: manual`. |
 | `keycloak.image.repository` | string | `"nexus.mia-platform.eu/platform/auth/keycloak"` | Keycloak image repository. |
 | `keycloak.image.tag` | string | `"0.3.2-26.6.4-postgres"` | Keycloak image tag. The custom Mia Platform image includes PostgreSQL JDBC driver, OTEL agent, and Vault integration. |
 | `keycloak.imagePullSecrets` | list | `~` | Image pull secrets for the Keycloak pods. |
@@ -253,6 +259,8 @@ The chart supports two mutually exclusive ingress approaches: **Kubernetes Ingre
 | `keycloak.startupProbe.periodSeconds` | int | `~` | Interval between startup probe checks. |
 | `keycloak.networkPolicy` | object | `~` | Pass-through `NetworkPolicy` spec managed by the operator for the Keycloak pods. |
 
+With `mode: manual`, the chart always renders liveness, readiness, and startup probes on the management port (`/health/live`, `/health/ready`, `/health/started`). When the probe values are unset, it uses `failureThreshold: 3` and `periodSeconds: 10` for liveness and readiness, and `failureThreshold: 600` and `periodSeconds: 1` for startup.
+
 **Example: HA with PDB and topology spread:**
 
 ```yaml
@@ -307,15 +315,42 @@ keycloak:
 | `keycloak.proxy.headers` | string | `"xforwarded"` | Proxy headers mode: `xforwarded` or `forwarded`. Required when running behind a load balancer. |
 | `keycloak.transaction.xaEnabled` | bool | `false` | Enable XA transactions. Disable when the database does not support XA (e.g. PgBouncer in transaction mode). |
 | `keycloak.cache` | object | `{}` | Keycloak Infinispan cache configuration. |
-| `keycloak.truststores` | object | `{}` | Trust store configuration for outbound TLS (e.g. LDAP, identity providers). |
+| `keycloak.truststores` | object | `{}` | Trust store configuration for outbound TLS (e.g. LDAP, identity providers). With `mode: manual`, each entry references a `configMap` or a `secret` by `name` and is mounted under `/opt/keycloak/truststores/<entry name>`. |
 | `keycloak.unsupported` | object | `{}` | Unsupported `podTemplate` overrides for direct pod spec patching. |
 | `keycloak.startOptimized` | bool | `true` | Use the optimized start mode (pre-built image). Set to `false` when using a non-optimized image. |
+
+### Theme customization (`keycloak.themeCustomization`)
+
+Overrides image assets of a theme baked into the Keycloak image without rebuilding it. The chart renders the assets into a ConfigMap and mounts each file over `/opt/keycloak/themes/<themeName>/<themeType>/resources/dist/img/<file>`, leaving the other theme assets visible. Changing an asset rolls the Keycloak pods.
+
+| Key | Type | Default | Description |
+|---|---|---|---|
+| `keycloak.themeCustomization.enabled` | bool | `false` | Enable the theme asset override. |
+| `keycloak.themeCustomization.themeName` | string | `"mia-platform-keycloak-ui"` | Theme directory under `/opt/keycloak/themes`. Must match a theme that exists in the image. |
+| `keycloak.themeCustomization.themeTypes` | list | `["login", "account"]` | Theme areas to override (`login`, `account`, `admin`, `email`). |
+| `keycloak.themeCustomization.images` | object | `{}` | Text assets (e.g. svg, css): file name to file content. |
+| `keycloak.themeCustomization.imagesBase64` | object | `{}` | Binary assets (e.g. png, ico): file name to base64-encoded content. |
+
+```yaml
+keycloak:
+  themeCustomization:
+    enabled: true
+    themeName: mia-platform-keycloak-ui
+    themeTypes:
+      - login
+      - account
+    images:
+      logo.svg: |
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">...</svg>
+    imagesBase64:
+      favicon.ico: <BASE64_CONTENT>
+```
 
 ## Realm imports (`realms`)
 
 | Key | Type | Default | Description |
 |---|---|---|---|
-| `realms` | list | `[]` | List of `KeycloakRealmImport` CR definitions. Iterate this list to create realm import resources. In most deployments, realms are managed via the `keycloak-realm-management` chart instead. |
+| `realms` | list | `[]` | List of `KeycloakRealmImport` CR definitions. Iterate this list to create realm import resources. In most deployments, realms are managed via the `keycloak-realm-management` chart instead. Ignored when `mode: manual`. |
 
 ## Complete production example
 
