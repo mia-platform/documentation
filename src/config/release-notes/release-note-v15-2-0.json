@@ -46,27 +46,9 @@
       ],
       "improvements": [
         {
-          "title": "Clearer `ibdm`-to-Catalog wiring guidance",
-          "description": [
-            "The [connector installation guidelines](15.2.0/requirements/installation-guidelines/catalog/connectors/00_overview) now clarify `MIA_CATALOG_ENDPOINT`'s expected shape, when `MIA_CATALOG_CUSTOM_SCOPE` needs to be set, and the exact scopes required on-prem vs. on the Mia-Platform PaaS."
-          ]
-        },
-        {
-          "title": "Role-based permission management",
-          "description": [
-            "Improved the [Administration](/docs/15.2.0/products/mia-platform-suite/rbac-management) UX for Organization Admins and Tenant Admins."
-          ]
-        },
-        {
           "title": "User Profile page",
           "description": [
             "Every user now has a [Profile page](/docs/15.2.0/products/mia-platform-suite/rbac-management#profile) listing their tenants, groups, and effective roles."
-          ]
-        },
-        {
-          "title": "Copy the Catalog MCP configuration",
-          "description": [
-            "The configuration of the Catalog MCP Server for VS Code and Claude Code can now be copied directly from the left sidebar of the Catalog App. See the [Catalog MCP Server documentation](/docs/15.2.0/products/catalog/usage/catalog-mcp)."
           ]
         }
       ],
@@ -87,12 +69,6 @@
           ]
         },
         {
-          "title": "Clone and managed resources",
-          "description": [
-            "The main resources, such as playbooks, agents, and skills, can now be cloned. Resources provisioned with the installation, including the system playbooks and agents, are locked and can only be cloned. See the [AI Foundry overview](/docs/15.2.0/products/ai-foundry/overview#key-concepts)."
-          ]
-        },
-        {
           "title": "Playbook assistant",
           "description": [
             "A new assistant helps you create a playbook starting from a template to fill in with your use case. See the [Playbook documentation](/docs/15.2.0/products/ai-foundry/basic-concepts/playbook#playbook-assistant)."
@@ -102,12 +78,6 @@
           "title": "MCP prompts and resources",
           "description": [
             "MCP servers can now expose **prompts** and **resources** to agents, in addition to tools. See the [MCP Server documentation](/docs/15.2.0/products/ai-foundry/basic-concepts/mcp-server#prompts-and-resources)."
-          ]
-        },
-        {
-          "title": "Reasoning effort and new models",
-          "description": [
-            "Models now support a configurable **reasoning effort**, and the `claude-haiku-5-5` model is available. See the [Model documentation](/docs/15.2.0/products/ai-foundry/basic-concepts/model#reasoning-effort)."
           ]
         }
       ],
@@ -134,12 +104,6 @@
           "title": "Editor productivity",
           "description": [
             "Modals and drawers can be confirmed with **⌘/Ctrl+Enter**, and the Agentic Workflow editor autocompletes interpolation fields (`inputs`, `steps`)."
-          ]
-        },
-        {
-          "title": "Copy MCP server and CLI setup",
-          "description": [
-            "The setup instructions for the AI Foundry MCP server and CLI can now be copied from the left sidebar. See [Third-party integrations](/docs/15.2.0/products/ai-foundry/connections/third-party-integrations#connect-the-ai-foundry-mcp-server-and-cli)."
           ]
         }
       ],
