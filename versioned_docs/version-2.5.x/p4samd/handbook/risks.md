@@ -15,7 +15,7 @@ The risks displayed in the table originate from the integrated ALM, where they a
 ## Table  
 
 - **Title**: A brief description of the identified risk and a link to the Jira Issue represented by its Key.  
-- **Suggestions**: The number of suggestions related to the risk. Visit [Insight & Suggestions](./insight_and_suggestions) 
+- **Suggestions**: The number of suggestions related to the risk. Visit [Insight & Suggestions](./insight_and_suggestions.md) 
 - **Probability**: A numerical value indicating the likelihood of the risk occurring.  
 - **Severity**: A numerical value representing the potential impact of the risk.  
 - **Status**: the status of the risk (to do, accepted, etc.)
@@ -58,9 +58,9 @@ Beyond the information displayed in the table, this tab shows:
 
 This tab shows the linked issues of the risk grouped by:
 
-- **[Software Items](./software_items)**
+- **[Software Items](./software_items.md)**
 - **Risk Control Measures**
-- **[Changes](./changes)**
+- **[Changes](./changes.md)**
 
 ### Suggestions
 

@@ -6,7 +6,8 @@ const createEditUrl = require("./createEditUrl");
 const config = {
   title: "Mia-Care P4SaMD Handbook",
   tagline: "The compliance governance platform for Software as a Medical Device development",
-  url: "https://mia-care.github.com",
+  url: "https://docs.mia-care.io",
+  trailingSlash: true,
   baseUrl: "/",
   onBrokenLinks: "throw",
   onBrokenAnchors: 'warn',
@@ -116,15 +117,15 @@ const config = {
             },
             {
               label: "About",
-              href: "https://mia-care.io/about-us/",
+              href: "https://mia-care.io/about-us",
             },
             {
               label: "Blog",
-              href: "https://mia-care.io/blog/",
+              href: "https://mia-care.io/resources/blog",
             },
             {
               label: "Newsroom",
-              href: "https://mia-care.io/newsroom/",
+              href: "https://mia-care.io/newsroom",
             },
             {
               label: "Privacy Policy",

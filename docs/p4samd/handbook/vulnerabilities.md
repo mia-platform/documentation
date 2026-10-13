@@ -57,7 +57,7 @@ This tab shows the linked issues, grouped by:
 
 - **[Software Items](./software_items.md)**
 - **[Risks](./risks.md)**
-- **[RCM](./requirements)** 
+- **[RCM](./requirements.mdx)** 
 
 ---
 

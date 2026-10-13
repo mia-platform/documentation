@@ -1,14 +1,15 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
+import PropTypes from 'prop-types';
 import styles from './styles.module.css';
-import { BadgeIcons, resolveAreaIcon } from './icons';
+import {BadgeIcons, resolveAreaIcon} from './icons';
 
 const BADGE_CONFIG = [
-  { key: 'newFeatures', label: 'New Feature', heading: 'New Features', className: styles.badgeNewFeature, Icon: BadgeIcons.newFeature },
-  { key: 'improvements', label: 'Improvement', heading: 'Improvements', className: styles.badgeImprovement, Icon: BadgeIcons.improvement },
-  { key: 'bugFixes', label: 'Bug fix', heading: 'Bug fixes', className: styles.badgeBugFix, Icon: BadgeIcons.bugFix },
+  {key: 'newFeatures', label: 'New Feature', heading: 'New Features', className: styles.badgeNewFeature, Icon: BadgeIcons.newFeature},
+  {key: 'improvements', label: 'Improvement', heading: 'Improvements', className: styles.badgeImprovement, Icon: BadgeIcons.improvement},
+  {key: 'bugFixes', label: 'Bug fix', heading: 'Bug fixes', className: styles.badgeBugFix, Icon: BadgeIcons.bugFix},
 ];
 
-function Badge({ count, label, className, Icon }) {
+function Badge({count, label, className, Icon}) {
   if (!count) return null;
   return (
     <span className={`${styles.badge} ${className}`}>
@@ -18,8 +19,21 @@ function Badge({ count, label, className, Icon }) {
     </span>
   );
 }
+Badge.propTypes = {
+  Icon: PropTypes.elementType,
+  className: PropTypes.string,
+  count: PropTypes.number,
+  label: PropTypes.string,
+};
 
-function AreaRow({ area }) {
+const areaShape = PropTypes.shape({
+  name: PropTypes.string.isRequired,
+  newFeatures: PropTypes.arrayOf(PropTypes.node),
+  improvements: PropTypes.arrayOf(PropTypes.node),
+  bugFixes: PropTypes.arrayOf(PropTypes.node),
+});
+
+function AreaRow({area}) {
   const [open, setOpen] = useState(false);
   const Icon = resolveAreaIcon(area.name);
   const groups = BADGE_CONFIG.map((cfg) => ({
@@ -30,10 +44,10 @@ function AreaRow({ area }) {
   return (
     <div className={`${styles.areaRow} ${open ? styles.areaRowOpen : ''}`}>
       <button
-        type="button"
-        className={styles.areaHeader}
         aria-expanded={open}
+        className={styles.areaHeader}
         onClick={() => setOpen((v) => !v)}
+        type="button"
       >
         <span className={styles.areaIconWrap}>
           <Icon className={styles.areaIcon} />
@@ -41,11 +55,11 @@ function AreaRow({ area }) {
         <span className={styles.areaName}>{area.name}</span>
         <span className={styles.badgeRow}>
           {groups.map((g) => (
-            <Badge key={g.key} count={g.items.length} label={g.label} className={g.className} Icon={g.Icon} />
+            <Badge Icon={g.Icon} className={g.className} count={g.items.length} key={g.key} label={g.label} />
           ))}
         </span>
-        <span className={styles.chevron} aria-hidden="true">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+        <span aria-hidden="true" className={styles.chevron}>
+          <svg fill="none" height="14" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.2" viewBox="0 0 24 24" width="14">
             <path d="M6 9l6 6 6-6" />
           </svg>
         </span>
@@ -53,7 +67,7 @@ function AreaRow({ area }) {
       {open && (
         <div className={styles.areaBody}>
           {groups.map((g) => (
-            <div key={g.key} className={styles.group}>
+            <div className={styles.group} key={g.key}>
               <h5 className={styles.groupHeading}>{g.heading}</h5>
               <ul className={styles.groupList}>
                 {g.items.map((item, i) => (
@@ -67,6 +81,9 @@ function AreaRow({ area }) {
     </div>
   );
 }
+AreaRow.propTypes = {
+  area: areaShape.isRequired,
+};
 
 /**
  * ReleaseNoteAccordion: groups a release's changes by functional area.
@@ -79,15 +96,18 @@ function AreaRow({ area }) {
  *   { name: "System Design", newFeatures: ["..."], improvements: ["..."], bugFixes: ["..."] },
  * ]} />
  */
-export default function ReleaseNoteAccordion({ areas }) {
+export default function ReleaseNoteAccordion({areas}) {
   if (!areas || areas.length === 0) return null;
   return (
     <div className={styles.wrapper}>
       {areas.map((area) => (
-        <AreaRow key={area.name} area={area} />
+        <AreaRow area={area} key={area.name} />
       ))}
     </div>
   );
 }
+ReleaseNoteAccordion.propTypes = {
+  areas: PropTypes.arrayOf(areaShape),
+};
 
-export { ReleaseNoteAccordion };
+export {ReleaseNoteAccordion};

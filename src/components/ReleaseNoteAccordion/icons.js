@@ -21,10 +21,10 @@ const base = {
 export const AreaIcons = {
   systemDesign: (props) => (
     <svg {...base} {...props}>
-      <rect x="3" y="3" width="7" height="7" rx="1.2" />
-      <rect x="14" y="3" width="7" height="7" rx="1.2" />
-      <rect x="3" y="14" width="7" height="7" rx="1.2" />
-      <rect x="14" y="14" width="7" height="7" rx="1.2" />
+      <rect height="7" rx="1.2" width="7" x="3" y="3" />
+      <rect height="7" rx="1.2" width="7" x="14" y="3" />
+      <rect height="7" rx="1.2" width="7" x="3" y="14" />
+      <rect height="7" rx="1.2" width="7" x="14" y="14" />
     </svg>
   ),
   sbom: (props) => (
@@ -43,7 +43,7 @@ export const AreaIcons = {
   ),
   requirements: (props) => (
     <svg {...base} {...props}>
-      <rect x="6" y="3" width="12" height="18" rx="1.5" />
+      <rect height="18" rx="1.5" width="12" x="6" y="3" />
       <path d="M9 3V2h6v1" />
       <path d="M9 9h6" />
       <path d="M9 13h6" />
@@ -90,7 +90,7 @@ export const AreaIcons = {
   ),
   security: (props) => (
     <svg {...base} {...props}>
-      <rect x="5" y="11" width="14" height="9" rx="1.5" />
+      <rect height="9" rx="1.5" width="14" x="5" y="11" />
       <path d="M8 11V7a4 4 0 018 0v4" />
       <path d="M12 15v2" />
     </svg>
@@ -112,9 +112,9 @@ export const AreaIcons = {
   ),
   platformInfrastructure: (props) => (
     <svg {...base} {...props}>
-      <rect x="4" y="4" width="16" height="5" rx="1.2" />
-      <rect x="4" y="10.5" width="16" height="5" rx="1.2" />
-      <rect x="4" y="17" width="16" height="3.5" rx="1.2" />
+      <rect height="5" rx="1.2" width="16" x="4" y="4" />
+      <rect height="5" rx="1.2" width="16" x="4" y="10.5" />
+      <rect height="3.5" rx="1.2" width="16" x="4" y="17" />
       <path d="M7.5 6.5h.01" />
       <path d="M7.5 13h.01" />
     </svg>
@@ -126,8 +126,8 @@ export const AreaIcons = {
   ),
   aiEvaluations: (props) => (
     <svg {...base} {...props}>
-      <rect x="8" y="8" width="8" height="8" rx="1.2" />
-      <rect x="3" y="3" width="18" height="18" rx="2" />
+      <rect height="8" rx="1.2" width="8" x="8" y="8" />
+      <rect height="18" rx="2" width="18" x="3" y="3" />
       <path d="M9 3V1M15 3V1M9 23v-2M15 23v-2M3 9H1M3 15H1M23 9h-2M23 15h-2" />
     </svg>
   ),
@@ -142,20 +142,20 @@ export const AreaIcons = {
 // via currentColor so they inherit each badge's text color.
 export const BadgeIcons = {
   newFeature: (props) => (
-    <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" {...props}>
+    <svg fill="currentColor" height="12" viewBox="0 0 24 24" width="12" {...props}>
       <path d="M12 2l2.6 6.6L21 11l-6.4 2.4L12 20l-2.6-6.6L3 11l6.4-2.4L12 2z" />
     </svg>
   ),
   improvement: (props) => (
     <svg
-      width="12"
-      height="12"
-      viewBox="0 0 24 24"
       fill="none"
+      height="12"
       stroke="currentColor"
-      strokeWidth="2.2"
       strokeLinecap="round"
       strokeLinejoin="round"
+      strokeWidth="2.2"
+      viewBox="0 0 24 24"
+      width="12"
       {...props}
     >
       <path d="M4 17l6-6 4 4 6-8" />
@@ -164,17 +164,17 @@ export const BadgeIcons = {
   ),
   bugFix: (props) => (
     <svg
-      width="12"
-      height="12"
-      viewBox="0 0 24 24"
       fill="none"
+      height="12"
       stroke="currentColor"
-      strokeWidth="2"
       strokeLinecap="round"
       strokeLinejoin="round"
+      strokeWidth="2"
+      viewBox="0 0 24 24"
+      width="12"
       {...props}
     >
-      <rect x="8" y="8" width="8" height="10" rx="4" />
+      <rect height="10" rx="4" width="8" x="8" y="8" />
       <path d="M12 8V6" />
       <path d="M9 10L6 8M15 10l3-2M9 14H5M19 14h-4M9 17l-2.5 2M15 17l2.5 2" />
     </svg>

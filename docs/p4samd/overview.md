@@ -76,6 +76,6 @@ All three deployment models provide the same feature set.
 
 ## Next Steps
 
-- [Get started with P4SaMD →](./handbook/getting-started)
-- [Read the FAQ →](./faq)
-- [See what's new in v3 →](./release-notes/v3.0)
+- [Get started with P4SaMD →](./handbook/getting_started.mdx)
+- [Read the FAQ →](./faq.mdx)
+- [See what's new in v3 →](./release-notes/v3.0.mdx)
