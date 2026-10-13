@@ -148,7 +148,7 @@ Rather than downloading assets one at a time, you can wire your editor's plugin 
 - **Plugin marketplace**: playbooks are published as plugins, with their agents, skills, and prompts (as slash commands), through a marketplace file or a Git repository your editor can subscribe to.
 - **Per-IDE packages**: download assets as ZIP files in the format expected by each tool.
 - **Gateway access**: point the tool at the AI Gateway with a virtual key, so its model traffic is governed by the same budgets.
-- **MCP server and CLI**: copy the setup instructions for the AI Foundry MCP server and CLI from the left sidebar and paste them in your editor or terminal.
+- **MCP server and CLI**: copy the setup instructions for the AI Foundry MCP server and CLI from the right sidebar and paste them in your editor or terminal.
 - **Telemetry**: exported plugins are stamped with attributes that let their usage appear in AI Foundry observability.
 
 You can download the following AI assets:
