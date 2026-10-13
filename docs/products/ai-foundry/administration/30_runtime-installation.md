@@ -208,7 +208,7 @@ The service reads, in order of precedence, the **environment variables**, then t
 
 | Variable          | Default   | Notes                                                                                                                                                                                         |
 | ----------------- | --------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `DATABASE_URL`    | *(empty)* | The asyncpg connection string. The service does not start without it.                                                                                                                         |
+| `DATABASE_URL`    | *(empty)* | The `asyncpg` connection string. The service does not start without it.                                                                                                                       |
 | `CATALOG_API_URL` | *(empty)* | The Catalog URL. **This variable is what turns Catalog mode on**: leave it empty and agents and playbooks are read from the PostgreSQL tables instead.                                         |
 
 ### Catalog and multi-tenancy
