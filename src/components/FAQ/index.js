@@ -53,6 +53,22 @@ const FAQ_DATA = [
         q: "How does P4SaMD support Artificial Intelligence features in medical software?",
         a: "P4SaMD includes an AI Validation module for medical software that incorporates machine learning and AI components. The module addresses requirements under the EU AI Act, FDA Good Machine Learning Practices (GMLP), and Predetermined Change Control Plans (PCCP). It manages training datasets, model versions, and performance metrics, and automates assessments of substantial modifications when AI models are updated. The Smart Insight (Whisper) module uses AI to evaluate project artifacts against regulatory rules, identify quality issues in requirements, and highlight gaps in test coverage. An administrator can enable or disable AI-powered features per organization.",
       },
+      {
+        q: "How does Mia-Care P4SaMD handle my data when using AI features?",
+        a: "Mia-Care does not provide any AI foundation models. You connect your own models to P4SaMD, so your data is processed only by the AI provider you choose and under the terms you have agreed with that provider.",
+      },
+      {
+        q: "Does P4SaMD mask sensitive data before sending it to my LLM?",
+        a: "No. At the moment there is no masking step that prevents sensitive data from being sent to your LLM. Since the LLM is yours and Mia-Care does not supply any LLM as part of the subscription, data privacy is governed by your own provider agreements and configuration.",
+      },
+      {
+        q: "Does Mia-Care P4SaMD provide any control over AI costs?",
+        a: "Not by default. P4SaMD can, however, leverage an AI Gateway that gates requests to AI models, so you can enforce guardrails and manage costs. This is a custom configuration available for Dedicated SaaS and self-hosted deployments. The most secure way to control costs is to set appropriate limits on your AI provider account.",
+      },
+      {
+        q: "How are the AI agents and capabilities provided by Mia-Care validated?",
+        a: "Validation datasets are executed at every release, and the results must meet a defined performance level. Regulatory experts contribute both to the definition of the validation sets and to the judgement of the validation results. For further information about AI documentation, please contact Mia-Care.",
+      },
     ],
   },
   {
