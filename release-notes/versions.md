@@ -34,6 +34,12 @@ Mia-Platform v15.1.0 includes improvements across all Mia-Platform Suite, in par
 
 [Read the release notes](/release-notes/v15.1.0.mdx)
 
+## [v15.0.2](/release-notes/v15.0.2.mdx)
+
+*Oct 13th, 2026*
+
+[Read the release notes](/release-notes/v15.0.2.mdx)
+
 ## [v15.0.1](/release-notes/v15.0.1.mdx)
 
 *Sep 8th, 2026*

@@ -54,7 +54,7 @@ Plan a maintenance window for minor and major upgrades.
 
 ## Chart version migration notes
 
-### From 0.5.4 to 0.6.1 (Mia-Platform v15.0.1 to v15.1.0)
+### From 0.5.4 to 0.6.1 (Mia-Platform v15.0.2 to v15.1.0)
 
 No manual action required: install the new chart version.
 

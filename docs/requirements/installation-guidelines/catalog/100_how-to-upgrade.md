@@ -51,7 +51,7 @@ helm upgrade catalog . \
 
 ## Version-specific upgrade notes
 
-### From 0.3.28 to 0.3.42-0 (Mia-Platform v15.0.1 to v15.1.0)
+### From 0.3.28 to 0.3.42-0 (Mia-Platform v15.0.2 to v15.1.0)
 
 1. Catalog Engine now syncs Catalog permissions to the Authz service with the `catalog-engine` Keycloak client. Upgrade the `keycloak-realm-management` chart to `0.1.35` first: with `products.catalog: true` it creates this client. If you do not manage the realm with that chart, create a confidential client `catalog-engine` with service accounts enabled, the "Signed JWT" client authenticator with the JWKS URL `<catalog url>/.well-known/jwks.json`, the default client scopes `mia:authz` and `mia:authz-roles`, and the `authz-api` client role `urn:mia-platform-internal:role:authz:permissions:writer` assigned to its service account user.
 2. Add the client credential to the `catalog-engine-keys` Secret. With the default `catalogEngine.config.authzServiceAuthorization.tokenAuthMethod: private_key_jwt`, add a PEM-encoded private key under the `key.pem` key. With any other `tokenAuthMethod`, add the client secret under the `client-secret` key. If the chart creates the Secret (`secrets.catalogEngineKeys.enabled: true`), set `secrets.catalogEngineKeys.privateKey` or `secrets.catalogEngineKeys.clientSecret` instead.
