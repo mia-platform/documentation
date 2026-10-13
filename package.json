@@ -11,7 +11,7 @@
     "deploy": "docusaurus deploy",
     "serve": "docusaurus serve",
     "lint": "eslint --ext js .",
-    "spellcheck": "npx cspell './docs/**'",
+    "spellcheck": "cspell --no-progress --show-suggestions './docs/**'",
     "release-note": "node ./new-release-note.js",
     "check-content": "npm run validate-links && node ./check-content.js",
     "validate-links": "node ./scripts/validate-links.js",
@@ -58,6 +58,9 @@
     "globals": "^17.13.0",
     "prop-types": "^15.8.1",
     "semver-utils": "^1.1.4"
+  },
+  "engines": {
+    "node": ">=24"
   },
   "packageManager": "yarn@3.5.1",
   "resolutions": {

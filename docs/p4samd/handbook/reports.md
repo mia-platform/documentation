@@ -246,6 +246,7 @@ The **Verbale di Collaudo** contains the outcome of the acceptance testing activ
 
 The template is in Italian. The report contains:
 
+<!-- cspell:disable -->
 - **Template di riferimento**: name and revision of the template used;
 - **Nome Progetto**: name of the project;
 - **Società richiedente**:
@@ -266,6 +267,7 @@ The template is in Italian. The report contains:
   - **Attività successive**: agreement details for AMS service;
 - **Firme**: Mia-Care Project Manager and Client Manager;
 - **Document generation info**: user who generated the document and timestamp.
+<!-- cspell:enable -->
 
 ## Traceability Matrix
 
