@@ -18,7 +18,7 @@ Besides the common metadata (`Title`, `Description`, and optional `Tags`), a mod
 
 | Field            | Type    | Required | Description                                                                                                                                                                                                                                  |
 | ---------------- | ------- | -------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `type`           | string  | Yes      | The provider-qualified model string, for example `vertex_ai/gemini-2.5-pro` or `claude-sonnet-4-5`. Set through the **Model Name** field of the creation form.                                                                               |
+| `type`           | string  | Yes      | The provider-qualified model string, for example `vertex_ai/gemini-2.5-pro`, `claude-sonnet-5-5`, or `claude-haiku-5-5`. Set through the **Model Name** field of the creation form.                                                                               |
 | `provider`       | string  | Yes      | Human-readable provider label shown in the model list and in Observability filters. It is derived automatically from the selected provider, so you never type it.                                                                          |
 | `upstreamModel`  | string  | No       | The provider-prefixed model the gateway actually calls. Defaults to `type`.                                                                                                                                                                  |
 | `mode`           | string  | No       | What kind of model this is: `chat` (the gateway default), `embedding`, `rerank`, `image_generation`, `audio_transcription`, `audio_speech`, `moderation`, or `responses`. It decides how the gateway tests the model and what it offers it for. |
@@ -45,6 +45,10 @@ The creation form is a three-step wizard: **Overview**, **Configuration**, and *
 3. **Advanced**: optional gateway parameters and the model's **Runtime Arguments**.
 
 Before a model is saved, the gateway places one real test call to the provider. If you did not enter any credential, or the provider refuses the test, a dialog lets you go back and fix the credential or choose **Create without testing**, for example when the gateway pays for the model through a subscription or a key in its own environment.
+
+## Reasoning effort
+
+For models that support extended reasoning, you can set the **reasoning effort**: how much the model thinks before answering. A higher effort can improve the quality of answers to complex tasks, at the cost of more tokens and latency; a lower effort is faster and cheaper.
 
 ## Credentials
 

@@ -77,8 +77,12 @@ Instead of catalog agents, a playbook can contain a single **Built-in Agent** no
 The **Playbook Builder** is a three-step wizard:
 
 1. **Overview**: set **Title**, **Name**, **Description**, and **Tags**. The **Configuration** section holds the [Mia Flow](/products/flow/overview.md) integration: **Enable on Mia Flow**, and, when enabled, **Show on Home** and **Launch Mode** (`Chat`, `Code`, or `Both`).
-2. **Agentic Flow Builder**: drag agents, the Built-in Agent, and flow controllers from the palette onto the canvas, draw edges between them, and configure each node. A **Builder**/**JSON** toggle replaces the canvas with a full-spec JSON editor, useful for bulk edits or for copying playbooks across environments.
+2. **Agent Graph Builder**: drag agents, the Built-in Agent, and flow controllers from the palette onto the canvas, draw edges between them, and configure each node. A **Builder**/**JSON** toggle replaces the canvas with a full-spec JSON editor, useful for bulk edits or for copying playbooks across environments.
 3. **Playbook Resources**: attach **Prompts**, **Skills**, and **Spec Templates** using multi-select pickers.
+
+### Playbook assistant
+
+Instead of starting from an empty playbook, you can use the **playbook assistant**. When you click its button, the assistant opens with a template to fill in with your use case, and helps you turn it into a playbook.
 
 ## See also
 

@@ -90,6 +90,10 @@ Adding an MCP server's tools to the catalog is a guided flow started from **Disc
 
 Once registered, these tools behave like any other Tool resource: they are selectable in the agent creation form's tool picker, and at runtime AI Foundry routes calls to them through the AI Gateway to the MCP server.
 
+## Prompts and resources
+
+Besides tools, an MCP server can expose **prompts** and **resources**. AI Foundry makes them available to agents together with the server's tools. To expose resources, turn on **Expose MCP Resources** in the **Advanced** step.
+
 ## See also
 
 - [Tool](/products/ai-foundry/basic-concepts/13_tool.md): individual tools, including those sourced from MCP servers.

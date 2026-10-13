@@ -38,6 +38,14 @@ Scorecards are catalog items governed by an Item Type Definition under the `comp
 - can be related to the items they target via the catalog's relationship system,
 - are versioned through `resourceVersion` like any other object.
 
+## Templates
+
+You can save a scorecard as a **template** and reuse it later. Templates are shared with all the users of the tenant, so a scorecard defined once can be reused by anyone in the tenant.
+
+To create a template, select **Start from scratch** wherever you create a governance object (rules, scorecards, or campaigns), define it, and save it as a template. You can create as many templates as you need.
+
+Templates cannot be edited or deleted. When you use a template, you can change its parameters for that specific use without affecting the template itself.
+
 ## How a scorecard is evaluated
 
 A scorecard refresh is, internally, a fan-out of [rule evaluations](/products/catalog/basic-concepts/30_evaluation-criteria.md):

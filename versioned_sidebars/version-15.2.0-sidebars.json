@@ -1943,6 +1943,10 @@
     {
       "id": "products/mia-platform-suite/rbac-management",
       "type": "doc"
+    },
+    {
+      "id": "products/mia-platform-suite/scim-provisioning",
+      "type": "doc"
     }
   ],
   "catalog": [

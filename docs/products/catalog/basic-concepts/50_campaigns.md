@@ -29,6 +29,14 @@ The mental model:
 - A **scorecard** is the *standing* compliance ladder for a scope: it answers "where do we sit today?" continuously.
 - A **campaign** is the *time-bounded* push to move that scope up the ladder by a deadline.
 
+## Templates
+
+You can save a campaign as a **template** and reuse it later. Templates are shared with all the users of the tenant, so a campaign defined once can be reused by anyone in the tenant.
+
+To create a template, select **Start from scratch** wherever you create a governance object (rules, scorecards, or campaigns), define it, and save it as a template. You can create as many templates as you need.
+
+Templates cannot be edited or deleted. When you use a template, you can change its parameters for that specific use without affecting the template itself.
+
 ## Evaluation
 
 Every configured rule is evaluated against the target item set (the same flow used by a standalone rule run, see [Evaluation Criteria](/products/catalog/basic-concepts/30_evaluation-criteria.md)). Results are stored on the `Campaign` item and exposed both via the [Catalog API](/products/catalog/usage/catalog-api.md) and in the Catalog App.

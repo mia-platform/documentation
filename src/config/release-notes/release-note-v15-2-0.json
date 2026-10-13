@@ -30,25 +30,31 @@
           "description": [
             "Items can now be enriched with **Custom Fields**: typed, validated metadata that extends an Item Type without modifying its native schema — ideal for business or governance attributes that aren't covered out of the box. See the [Custom Fields documentation](/docs/15.2.0/products/catalog/basic-concepts/custom-fields) for the full workflow."
           ]
+        },
+        {
+          "title": "LLM Description for Item Types",
+          "description": [
+            "Item Type Definitions can now carry an **LLM Description**, a natural-language description written for AI agents and LLMs that explains what the items of the type represent and how to use their fields. See the [Item Types documentation](/docs/15.2.0/products/catalog/basic-concepts/item-types#llm-description)."
+          ]
+        },
+        {
+          "title": "Governance templates",
+          "description": [
+            "Rules, scorecards, and campaigns can now be saved as **templates** shared with all the users of the tenant. Templates cannot be edited or deleted, but their parameters can be changed every time they are used. See [Rules](/docs/15.2.0/products/catalog/basic-concepts/evaluation-criteria#templates), [Scorecards](/docs/15.2.0/products/catalog/basic-concepts/scorecards#templates), and [Campaigns](/docs/15.2.0/products/catalog/basic-concepts/campaigns#templates)."
+          ]
         }
       ],
       "improvements": [
         {
-          "title": "Clearer `ibdm`-to-Catalog wiring guidance",
-          "description": [
-            "The [connector installation guidelines](15.2.0/requirements/installation-guidelines/catalog/connectors/00_overview) now clarify `MIA_CATALOG_ENDPOINT`'s expected shape, when `MIA_CATALOG_CUSTOM_SCOPE` needs to be set, and the exact scopes required on-prem vs. on the Mia-Platform PaaS."
-          ]
-        },
-        {
-          "title": "Role-based permission management",
-          "description": [
-            "Improved the [Administration](/docs/15.2.0/products/mia-platform-suite/rbac-management) UX for Organization Admins and Tenant Admins."
-          ]
-        },
-        {
           "title": "User Profile page",
           "description": [
             "Every user now has a [Profile page](/docs/15.2.0/products/mia-platform-suite/rbac-management#profile) listing their tenants, groups, and effective roles."
+          ]
+        },
+        {
+          "title": "Catalog MCP configuration",
+          "description": [
+            "The configuration of the Catalog MCP Server for VS Code and Claude Code can now be copied directly from the left sidebar of the Catalog App. See the [Catalog MCP Server documentation](/docs/15.2.0/products/catalog/usage/catalog-mcp)."
           ]
         }
       ],
@@ -67,9 +73,34 @@
           "description": [
             "AI Foundry becomes a governed control plane for models and AI tools: the **AI Gateway** is a single proxy for LLM traffic with cost tracking, caching, guardrails/policies, and observability, while **MCP Federation** unifies multiple MCP servers behind one Foundry-governed endpoint with a federated registry and centralized discovery."
           ]
+        },
+        {
+          "title": "Playbook assistant",
+          "description": [
+            "A new assistant helps you create a playbook starting from a template to fill in with your use case. See the [Playbook documentation](/docs/15.2.0/products/ai-foundry/basic-concepts/playbook#playbook-assistant)."
+          ]
+        },
+        {
+          "title": "MCP prompts and resources",
+          "description": [
+            "MCP servers can now expose **prompts** and **resources** to agents, in addition to tools. See the [MCP Server documentation](/docs/15.2.0/products/ai-foundry/basic-concepts/mcp-server#prompts-and-resources)."
+          ]
         }
       ],
-      "improvements": [],
+      "improvements": [
+        {
+          "title": "Mia AI Runtime and app built-in tools",
+          "description": [
+            "Internal tools such as `web_search` are now provided by the **Mia AI Runtime** and must be enabled explicitly on each agent. Built-in tools of Claude Code, VS Code, and JetBrains are also available. See the [Tool documentation](/docs/15.2.0/products/ai-foundry/basic-concepts/tool)."
+          ]
+        },
+        {
+          "title": "MCP server and CLI setup",
+          "description": [
+            "The setup instructions for the AI Foundry MCP server and CLI can now be copied from the left sidebar. See [Third-party integrations](/docs/15.2.0/products/ai-foundry/connections/third-party-integrations#connect-the-ai-foundry-mcp-server-and-cli)."
+          ]
+        }
+      ],
       "bugFixes": []
     }
   },
@@ -92,7 +123,7 @@
           "description": [
             "Infrastructure Resources created from a Marketplace item that defines a JSON schema now keep their **form** after creation: the JSON schema of the selected item version is applied to validate the resource not only when it is first added, but also on every subsequent edit.",
             "You can still switch to the YAML editor for more advanced changes; if the manifest no longer matches the JSON schema of the item version, switching back to the form is disabled. Once a resource is detached from the Marketplace, only the YAML editor is available.",
-            "Check the [Infrastructure Resources documentation](/docs/15.2.0/products/console/design-your-projects/custom-resources/custom-resources#update-an-infrastructure-resource) for more details."
+            "Check the [Infrastructure Resources documentation](/docs/15.2.0/products/console/design-your-projects/custom-resources/#update-an-infrastructure-resource) for more details."
           ]
         }
       ],

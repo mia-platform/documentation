@@ -179,6 +179,12 @@ GET /stable.example.com/v1/items/dockerimages?field=spec.registry=nexus.mia-plat
 
 Without the corresponding `selectableFields` entry, the same query is rejected.
 
+## LLM Description
+
+Each ITD can carry an **LLM Description**: a natural-language description of the item type written for AI agents and Large Language Models rather than for human readers. It explains what items of that type represent, what their main `spec` fields mean, and how they relate to other types in the catalog.
+
+AI clients, such as those connected through the [Catalog MCP Server](/products/catalog/usage/catalog-mcp.md), use the LLM Description as context when they search, read, or create items of the type. A clear and specific LLM Description helps them pick the right type and fill in its fields correctly.
+
 ## Per-type settings
 
 Some behaviors are configured on the ITD itself, and therefore apply to every item of that type:
