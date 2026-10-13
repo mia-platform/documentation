@@ -74,6 +74,10 @@ The **Observability** tab of the Claude Code, VS Code, and JetBrains pages expla
 
 The configuration also stamps the telemetry with your user, organization, and tenant, so it is attributed to the right tenant and can be found in the observability pages. Sensitive attributes are removed when the telemetry is received.
 
+## Connect the AI Foundry MCP server and CLI
+
+You can also connect your tool to the AI Foundry **MCP server** and install the AI Foundry **CLI**. Select the corresponding entry in the left sidebar of AI Foundry and copy the instructions shown for your tool, for example **VS Code** or **Claude Code**. The instructions are already filled in with the address of your installation and your organization and tenant, so you only need to paste them in your editor or terminal.
+
 ## See also
 
 - [Manual download](/products/ai-foundry/connections/30_manual-download.md): download individual resources as ZIP archives.

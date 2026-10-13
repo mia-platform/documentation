@@ -24,6 +24,14 @@ https://<catalog-hostname>/mcp
 
 You can add it to your MCP client as an HTTP server, authenticating via browser with your Mia-Platform account.
 
+### Copy the configuration from the Catalog App
+
+The quickest way to connect is from the Catalog App: select **MCP** in the left sidebar and copy the instructions for your client, **VS Code** or **Claude Code**. The instructions are already filled in with the address of your installation and your organization and tenant, so you only need to paste them in your editor.
+
+Alternatively, you can configure the client manually as described below.
+
+### Configure the client manually
+
 The Catalog MPC Server **works for one single specific tenant at a time**, meaning that you need to set the tenant when registering the server on you MCP client.
 
 :::tip
