@@ -50,6 +50,12 @@
           "description": [
             "Every user now has a [Profile page](/docs/15.2.0/products/mia-platform-suite/rbac-management#profile) listing their tenants, groups, and effective roles."
           ]
+        },
+        {
+          "title": "Catalog MCP configuration",
+          "description": [
+            "The configuration of the Catalog MCP Server for VS Code and Claude Code can now be copied directly from the left sidebar of the Catalog App. See the [Catalog MCP Server documentation](/docs/15.2.0/products/catalog/usage/catalog-mcp)."
+          ]
         }
       ],
       "bugFixes": []
@@ -104,6 +110,12 @@
           "title": "Editor productivity",
           "description": [
             "Modals and drawers can be confirmed with **⌘/Ctrl+Enter**, and the Agentic Workflow editor autocompletes interpolation fields (`inputs`, `steps`)."
+          ]
+        },
+        {
+          "title": "MCP server and CLI setup",
+          "description": [
+            "The setup instructions for the AI Foundry MCP server and CLI can now be copied from the left sidebar. See [Third-party integrations](/docs/15.2.0/products/ai-foundry/connections/third-party-integrations#connect-the-ai-foundry-mcp-server-and-cli)."
           ]
         }
       ],
