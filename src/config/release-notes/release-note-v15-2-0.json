@@ -95,24 +95,6 @@
           ]
         },
         {
-          "title": "Ownership aligned with Catalog RBAC",
-          "description": [
-            "The owner of a resource is now the principal ID used by the Catalog RBAC."
-          ]
-        },
-        {
-          "title": "Agent Graph",
-          "description": [
-            "The **Agentic Flow** step of the Playbook Builder has been renamed **Agent Graph**."
-          ]
-        },
-        {
-          "title": "Editor productivity",
-          "description": [
-            "Modals and drawers can be confirmed with **⌘/Ctrl+Enter**, and the Agentic Workflow editor autocompletes interpolation fields (`inputs`, `steps`)."
-          ]
-        },
-        {
           "title": "MCP server and CLI setup",
           "description": [
             "The setup instructions for the AI Foundry MCP server and CLI can now be copied from the left sidebar. See [Third-party integrations](/docs/15.2.0/products/ai-foundry/connections/third-party-integrations#connect-the-ai-foundry-mcp-server-and-cli)."
@@ -141,7 +123,7 @@
           "description": [
             "Infrastructure Resources created from a Marketplace item that defines a JSON schema now keep their **form** after creation: the JSON schema of the selected item version is applied to validate the resource not only when it is first added, but also on every subsequent edit.",
             "You can still switch to the YAML editor for more advanced changes; if the manifest no longer matches the JSON schema of the item version, switching back to the form is disabled. Once a resource is detached from the Marketplace, only the YAML editor is available.",
-            "Check the [Infrastructure Resources documentation](/docs/15.2.0/products/console/design-your-projects/custom-resources/custom-resources#update-an-infrastructure-resource) for more details."
+            "Check the [Infrastructure Resources documentation](/docs/15.2.0/products/console/design-your-projects/custom-resources/#update-an-infrastructure-resource) for more details."
           ]
         }
       ],
