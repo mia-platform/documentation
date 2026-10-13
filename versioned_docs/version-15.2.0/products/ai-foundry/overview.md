@@ -24,11 +24,11 @@ The resources fall into three groups: the **building blocks** that define what a
 
 Building blocks are the reusable assets that agents are made of. You manage them from the **Building Blocks** section of the sidebar, where each type has a list page, a guided creation form, and a JSON editor for the underlying spec.
 
-- **Model**: an LLM configuration, routed through the AI Gateway, that wraps a provider model and its runtime parameters. Provider credentials are stored encrypted on the AI Gateway and are never shown again after they are saved; a single [LLM Credential](#administration-and-security) can be shared by several models.
+- **Model**: an LLM configuration, routed through the AI Gateway, that wraps a provider model and its runtime parameters. Provider credentials are stored encrypted on the AI Gateway and are never shown again after they are saved; a single [LLM Credential](#administration-and-security) can be shared by several models. For models that support it, you can also set the reasoning effort.
 - **Prompt**: a reusable prompt template that agents and playbooks can reference, also exposed as a slash command. Prompts are authored in Markdown with a live preview pane and can be tagged for discoverability.
 - **Skill**: a reusable, higher-level capability that packages instructions, templates, scripts, and assets, and can be attached to agents or playbooks.
-- **Tool**: an executable function or integration that an agent can invoke. The tool browser lists all tools available in the system, grouped by category, including those discovered from MCP servers.
-- **MCP Server**: an external [Model Context Protocol](https://modelcontextprotocol.io/) server that exposes tools and resources to agents. Once registered, its tools are included in the available tools list.
+- **Tool**: an executable function or integration that an agent can invoke. The tool browser lists all tools available in the system, grouped by category, including those discovered from MCP servers. Runtime tools such as `web_search` are provided by the Mia AI Runtime and are enabled explicitly on each agent.
+- **MCP Server**: an external [Model Context Protocol](https://modelcontextprotocol.io/) server that exposes tools, prompts, and resources to agents. Once registered, its tools are included in the available tools list.
 - **Spec Template**: a structured or free-form specification document that playbooks inject into Spec-Driven Development phases.
 - **App**: an application or plugin (for example, an IDE assistant) that built-in tools belong to.
 - **Memory** and **Guardrail**: described in the sections below.
@@ -102,7 +102,7 @@ The **Playbook Builder** is a three-step wizard for designing multi-agent flows:
 2. **Agent Graph**: a drag-and-drop canvas where agent nodes are connected with edges; each edge makes the target a sub-agent the source can hand off to. In addition to regular and built-in agent nodes, you can add flow controllers for **sequential**, **parallel**, and **loop** (with configurable max iterations) execution patterns.
 3. **Resources**: attach playbook-level prompts, skills, and spec templates using multi-select pickers.
 
-Playbooks can also be authored as raw JSON using the built-in Monaco editor.
+Playbooks can also be authored as raw JSON using the built-in Monaco editor, or created with the **playbook assistant**, which starts from a template to fill in with your use case.
 
 #### Agentic Workflows
 
@@ -148,6 +148,7 @@ Rather than downloading assets one at a time, you can wire your editor's plugin 
 - **Plugin marketplace**: playbooks are published as plugins, with their agents, skills, and prompts (as slash commands), through a marketplace file or a Git repository your editor can subscribe to.
 - **Per-IDE packages**: download assets as ZIP files in the format expected by each tool.
 - **Gateway access**: point the tool at the AI Gateway with a virtual key, so its model traffic is governed by the same budgets.
+- **MCP server and CLI**: copy the setup instructions for the AI Foundry MCP server and CLI from the left sidebar and paste them in your editor or terminal.
 - **Telemetry**: exported plugins are stamped with attributes that let their usage appear in AI Foundry observability.
 
 You can download the following AI assets:

@@ -25,7 +25,7 @@ The **Catalog** is Mia-Platform's system to record, classify, and connect any en
 - Query and filter items via a [REST API](/products/catalog/usage/catalog-api.md) using labels, fields, or a Catalog-specific query language.
 - Ingest data automatically from external systems through dedicated [connectors](/products/catalog/connectors/10_overview.md).
 - Save a filtered slice of the catalog as a **view** so your team can bookmark and revisit the items it cares about most (see [Catalog App](/products/catalog/usage/catalog-app.md#views)).
-- Govern compliance by attaching rules, scorecards, and campaigns to your items (see [Campaigns](/products/catalog/basic-concepts/50_campaigns.md), [Evaluation Criteria](/products/catalog/basic-concepts/30_evaluation-criteria.md), [Scorecards](/products/catalog/basic-concepts/40_scorecards.md)).
+- Govern compliance by attaching rules, scorecards, and campaigns to your items and reusing them across the tenant as templates (see [Campaigns](/products/catalog/basic-concepts/50_campaigns.md), [Evaluation Criteria](/products/catalog/basic-concepts/30_evaluation-criteria.md), [Scorecards](/products/catalog/basic-concepts/40_scorecards.md)).
 - Browse and curate everything from the [Catalog App](/products/catalog/usage/catalog-app.md).
 
 ## Where to go next
