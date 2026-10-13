@@ -108,8 +108,12 @@ For agent nodes, `ref` is the **Name** of the agent in the catalog. The order of
 
 1. Create the agents you designed from **Orchestration** > **Agents**.
 2. Open **Orchestration** > **Playbooks** and click **New Playbook**. The **Create Playbook** wizard opens.
+
+   :::tip
+   To get started faster, use the playbook assistant instead: it opens with a template to fill in with your use case and helps you build the playbook from it.
+   :::
 3. In **Overview**, fill in **Title** (the **Name** is derived from it and cannot be changed after the playbook is created), **Description**, and **Tags**. To expose the playbook in [Mia Flow](/products/flow/overview.md), turn on **Enable on Mia Flow** in the **Configuration** section and set **Show on Home** and **Launch Mode**. Click **Next →**.
-4. In **Agentic Flow Builder**, build the flow on the canvas:
+4. In **Agent Graph Builder**, build the flow on the canvas:
    1. Add agents from the palette. Use the search box to find them; each agent can appear only once in a flow.
    2. Add controllers from **Flow Controllers**. Each controller asks for a **Title**, a **Name**, and a **Description**; a **Loop** also asks for **Rounds (max iterations)** and **Exit when (optional)**.
    3. Drag from the bottom handle of a node to the node it should run or hand off to.
@@ -119,7 +123,7 @@ For agent nodes, `ref` is the **Name** of the agent in the catalog. The order of
 
 ### Builder and JSON mode
 
-The **Builder**/**JSON** toggle on the **Agentic Flow Builder** step, and the **Form**/**JSON** toggle on **Playbook Resources**, switch to a JSON editor of the whole spec. Use JSON mode to paste a flow such as the example above, to make bulk edits, or to copy a playbook between environments. The playbook cannot be saved while the JSON is invalid.
+The **Builder**/**JSON** toggle on the **Agent Graph Builder** step, and the **Form**/**JSON** toggle on **Playbook Resources**, switch to a JSON editor of the whole spec. Use JSON mode to paste a flow such as the example above, to make bulk edits, or to copy a playbook between environments. The playbook cannot be saved while the JSON is invalid.
 
 :::caution
 If the flow has no agent, the builder shows **No agent in the flow** and offers **Add Built-in Agent**. A Built-in Agent cannot be combined with catalog agents or flow controllers, so remove it before building a multi-agent flow.

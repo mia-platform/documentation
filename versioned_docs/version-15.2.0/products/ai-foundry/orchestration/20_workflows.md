@@ -55,6 +55,8 @@ Step fields are templated with `{{ ... }}` placeholders:
 - `{{ steps.<id>.error }}` reads the error message of an earlier step that failed, which is useful in a step on an `onError` branch.
 - `{{ run.workflowId }}` reads the id of the current run.
 
+While you edit a workflow, the editor autocompletes interpolation fields: type `{{` to get suggestions for the declared `inputs` and for the outputs of earlier `steps`.
+
 Templating is substitution only. A placeholder that names something absent resolves to an empty value instead of failing the run, and a placeholder that fills an entire field keeps its type. See [Templating](/products/ai-foundry/basic-concepts/22_workflow.md#templating).
 
 Each step type exposes the following output fields:

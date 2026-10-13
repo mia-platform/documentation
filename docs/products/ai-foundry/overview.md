@@ -12,7 +12,11 @@ sidebar_label: Overview
 
 ## Key Concepts
 
-AI Foundry organizes AI assets as **catalog resources**. Each resource shares common metadata (name, title, description, tags, labels, and timestamps), is scoped to your tenant, and can be versioned, searched, and reused across teams. Resources shipped with the installation are shared with every tenant and are read-only.
+AI Foundry organizes AI assets as **catalog resources**. Each resource shares common metadata (name, title, description, tags, labels, and timestamps), is scoped to your tenant, and can be versioned, searched, and reused across teams.
+
+- **Owner.** The owner of a resource is the principal ID used by the Catalog RBAC, so who can manage a resource follows the same rules as the rest of the Catalog.
+- **Clone.** The main resources, such as playbooks, agents, and skills, can be cloned from their detail page. A clone is a new, independent resource that you own and can edit freely.
+- **Managed resources.** Resources shipped with the installation (seeded) are shared with every tenant and are locked: they cannot be edited or deleted, only cloned. This includes the **system playbooks and agents** that AI Foundry uses internally (`session-namer`, `memory-extractor`, `followup-suggester`, `compaction-summarizer`, `feedback-summarizer`, and `insights`), which are provisioned like any other resource.
 
 The resources fall into three groups: the **building blocks** that define what an agent knows and can do, the **orchestration** resources that combine them into executable flows, and the **gateway** resources that govern how models are called.
 
@@ -70,11 +74,15 @@ Administrators manage a set of resources that govern access to models through th
 
 ## Features
 
+### Keyboard shortcut
+
+In every modal and drawer, except deletion confirmations, press **⌘+Enter** (macOS) or **Ctrl+Enter** (Windows and Linux) to confirm or save without reaching for the button.
+
 ### AI Playground
 
 ![AI Foundry Playground](img/ai_foundry_playground.png)
 
-The **AI Playground** provides a live chat interface for testing playbooks in real time. Select a playbook, configure per-agent model overrides, and chat with the configured agentic flow. The playground streams responses, visualizes tool calls, "thinking" steps, and hand-offs between agents inline, and lets you enable or disable individual tools and skills on the fly. It also supports slash-prompt auto-completion from the prompts associated with the selected playbook, file attachments, session history, and export of the conversation to PDF or Markdown.
+The **AI Playground** provides a live chat interface for testing playbooks in real time. Select a playbook, configure per-agent model overrides, and chat with the configured agent graph. The playground streams responses, visualizes tool calls, "thinking" steps, and hand-offs between agents inline, and lets you enable or disable individual tools and skills on the fly. It also supports slash-prompt auto-completion from the prompts associated with the selected playbook, file attachments, session history, and export of the conversation to PDF or Markdown.
 
 ### Orchestration
 
@@ -91,7 +99,7 @@ Create and configure agents by selecting a model, writing system instructions in
 The **Playbook Builder** is a three-step wizard for designing multi-agent flows:
 
 1. **Overview**: set the playbook's name, title, and description, and optionally enable and configure its [Mia Flow](/products/flow/overview.md) integration (show-on-home toggle, launch mode).
-2. **Agentic Flow**: a drag-and-drop canvas where agent nodes are connected with edges; each edge makes the target a sub-agent the source can hand off to. In addition to regular and built-in agent nodes, you can add flow controllers for **sequential**, **parallel**, and **loop** (with configurable max iterations) execution patterns.
+2. **Agent Graph**: a drag-and-drop canvas where agent nodes are connected with edges; each edge makes the target a sub-agent the source can hand off to. In addition to regular and built-in agent nodes, you can add flow controllers for **sequential**, **parallel**, and **loop** (with configurable max iterations) execution patterns.
 3. **Resources**: attach playbook-level prompts, skills, and spec templates using multi-select pickers.
 
 Playbooks can also be authored as raw JSON using the built-in Monaco editor.
