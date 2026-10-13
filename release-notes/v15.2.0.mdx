@@ -86,8 +86,8 @@ To run Mia-Platform v15.2.0, the following Helm chart versions must be installed
 |---|---|---|---|
 | **Auth — Keycloak** | `keycloak-operator` | `v0.6.1` | [How to upgrade](/docs/15.2.0/requirements/installation-guidelines/shared-services/authn/keycloak/how-to-upgrade) |
 | **Auth — Realm Management** | `keycloak-realm-management` | `v0.1.35` | [How to upgrade](/docs/15.2.0/requirements/installation-guidelines/shared-services/authn/keycloak-realm-management/how-to-upgrade) |
-| **Homepage & RBAC** | `services` | `v0.4.3` | [How to upgrade](/docs/15.2.0/requirements/installation-guidelines/shared-services/services/how-to-upgrade) |
-| **Catalog** | `catalog` | `v0.4.1` | [How to upgrade](/docs/15.2.0/requirements/installation-guidelines/catalog/how-to-upgrade) |
+| **Homepage & RBAC** | `services` | `v0.4.6` | [How to upgrade](/docs/15.2.0/requirements/installation-guidelines/shared-services/services/how-to-upgrade) |
+| **Catalog** | `catalog` | `v0.4.4` | [How to upgrade](/docs/15.2.0/requirements/installation-guidelines/catalog/how-to-upgrade) |
 | **AI Foundry** | `ai-foundry` | `v0.5.0-beta.23` | [How to upgrade](/docs/15.2.0/requirements/installation-guidelines/ai-foundry/how-to-upgrade) |
 | **AI Services** | `ai-services` | `v0.1.0-beta.11` | _Coming soon_ |
 | **Console** | `console` | `v15.2.0-beta.3` | [How to upgrade](/docs/15.2.0/requirements/installation-guidelines/console/self-hosted/how-to-upgrade) |
@@ -116,17 +116,17 @@ Click on each chart to expand its full image list.
 </details>
 
 <details>
-<summary><strong>services v0.4.3</strong></summary>
+<summary><strong>services v0.4.6</strong></summary>
 
 | Image repository | Version |
 |---|:---:|
 | docker.io/redis | 8.4.0 |
-| nexus.mia-platform.eu/ai-foundry/adk-be-app | 0.8.3 |
+| nexus.mia-platform.eu/ai-foundry/adk-be-app | 0.8.5 |
 | nexus.mia-platform.eu/cache/envoyproxy/envoy | v1.36.2 |
 | nexus.mia-platform.eu/core/swagger-aggregator | 3.9.4 |
-| nexus.mia-platform.eu/platform/auth/access-control/ext-authz | 0.2.2-nocache |
+| nexus.mia-platform.eu/platform/auth/access-control/ext-authz | 0.3.0-nocache |
 | nexus.mia-platform.eu/platform/auth/authtool/authtool-bff | 0.5.2 |
-| nexus.mia-platform.eu/platform/services/homepage | 0.5.1 |
+| nexus.mia-platform.eu/platform/services/homepage | 0.6.1 |
 | nexus.mia-platform.eu/platform/services/rbac-management | 0.4.2 |
 | docker.io/alpine/psql | 18.4 |
 | docker.io/curlimages/curl | 8.11.1 |
@@ -134,17 +134,17 @@ Click on each chart to expand its full image list.
 </details>
 
 <details>
-<summary><strong>catalog v0.4.1</strong></summary>
+<summary><strong>catalog v0.4.4</strong></summary>
 
 | Image repository | Version |
 |---|:---:|
 | docker.io/apache/kafka | 4.2.0 |
 | docker.io/redis | 8.4.0 |
-| nexus.mia-platform.eu/ai-foundry/adk-be-app | 0.8.3 |
+| nexus.mia-platform.eu/ai-foundry/adk-be-app | 0.8.5 |
 | nexus.mia-platform.eu/cache/envoyproxy/envoy | v1.36.2 |
-| nexus.mia-platform.eu/catalog/catalog-engine | 0.9.5 |
+| nexus.mia-platform.eu/catalog/catalog-engine | 0.9.6 |
 | nexus.mia-platform.eu/catalog/catalog-mcp-server | 0.2.3 |
-| nexus.mia-platform.eu/catalog/catalog-website | 0.5.5 |
+| nexus.mia-platform.eu/catalog/catalog-website | 0.6.0 |
 | nexus.mia-platform.eu/catalog/items-consumer | 0.2.0 |
 | nexus.mia-platform.eu/catalog/items-producer | 0.2.0 |
 | nexus.mia-platform.eu/core/swagger-aggregator | 3.9.4 |
