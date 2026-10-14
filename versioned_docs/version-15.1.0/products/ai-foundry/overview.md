@@ -76,6 +76,8 @@ Each registered server is stored as a catalog resource and its tools are include
 
 The AI Foundry ADK BE APIs can be called machine-to-machine using a **service account**, registered through Platform Administration — see [Registering a service account](/products/mia-platform-suite/rbac_management.md#registering-a-service-account) and [Requesting an access token](/products/mia-platform-suite/rbac_management.md#requesting-an-access-token). Unlike Catalog, calling the AI Foundry ADK BE APIs requires the token to be requested with **all three** scopes together — `mia:catalog`, `mia:ai-foundry`, and `mia:authz` — requesting `mia:ai-foundry` alone is not sufficient.
 
+The agents and playbooks you author in AI Foundry are executed by the **agent runtime** (`adk-be-app`), the agentic engine underneath the whole suite. You can install it on its own to use your agents from applications and systems that are not provided by Mia-Platform, calling its ADK APIs while the configuration stays in the Catalog. The runtime reads that configuration with its own service account, which needs only the `mia:catalog` scope. See [Runtime installation](/products/ai-foundry/administration/30_runtime-installation.md) to install it and connect it to your Catalog.
+
 ## IDE and tooling integration
 
 You can download the following AI assets to work from your workstation:
@@ -103,5 +105,6 @@ New to AI Foundry? Start with the Basic Concepts section:
 - [Playbook](/products/ai-foundry/basic-concepts/60_playbook.md): multi-step agentic workflows.
 - [MCP Server](/products/ai-foundry/basic-concepts/70_mcp-server.md): Model Context Protocol server integrations.
 - [Spec Templates](/products/ai-foundry/basic-concepts/80_spec.md): structured reference documents for agents and playbooks.
+- [Runtime installation](/products/ai-foundry/administration/30_runtime-installation.md): install the agent runtime and connect it to the Catalog.
 - [Playbook Sessions](/products/ai-foundry/observability/10_playbook_sessions.md): session-level monitoring and analytics for playbook and agent runs.
 - [AI Traces](/products/ai-foundry/observability/20_ai_traces.md): distributed tracing across AI Foundry services.
