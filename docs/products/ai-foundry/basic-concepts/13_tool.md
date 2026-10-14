@@ -10,7 +10,7 @@ A **Tool** is a catalog resource that describes a discrete, executable capabilit
 
 A tool has one of two sources:
 
-- **Built-in** tools are implemented inside the AI Foundry runtime and belong to an [App](/products/ai-foundry/connections/10_apps-plugins.md).
+- **Built-in** tools belong to an [App](/products/ai-foundry/connections/10_apps-plugins.md). They include the tools of the **Mia AI Runtime**, such as `web_search`, and the built-in tools of client applications such as **Claude Code**, **VS Code**, and **JetBrains**.
 - **MCP Server** tools are exposed by a registered [MCP Server](/products/ai-foundry/basic-concepts/14_mcp-server.md). You rarely create them by hand: from the MCP server's detail page, **Discover Tools** lists the tools the server exposes and adds the ones you select to the Catalog.
 
 ![AI Foundry Tools](../img/ai_foundry_tools.png)
@@ -46,6 +46,10 @@ Avoid vague names or descriptions: the LLM uses them to reason about when a tool
 In the agent form, the tool picker lists every registered tool in two sections, **Applications' Tools** and **MCP Server's Tools**, grouped by App or MCP server and then by category. You can select tools one by one or a whole group at once.
 
 In the **AI Playground** you can enable or disable individual tools for a live session without modifying the agent. This is useful for debugging unexpected tool calls.
+
+### Mia AI Runtime tools
+
+The internal tools of the runtime, such as `web_search`, are provided by the **Mia AI Runtime** App. They are not available to every agent by default: enable them explicitly on each agent that needs them, by selecting them in the agent's tool picker.
 
 ### Tools added by the platform
 

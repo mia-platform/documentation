@@ -43,6 +43,14 @@ Rules are themselves catalog items, governed by an Item Type Definition under th
 
 Treating rules as catalog items means they are versioned, queryable, and referenceable like any other entity, and they can be related to the items they evaluate through the catalog's relationship system.
 
+## Templates
+
+You can save a rule as a **template** and reuse it later. Templates are shared with all the users of the tenant, so a rule defined once can be reused by anyone in the tenant.
+
+To create a template, select **Start from scratch** wherever you create a governance object (rules, scorecards, or campaigns), define it, and save it as a template. You can create as many templates as you need.
+
+Templates cannot be edited or deleted. When you use a template, you can change its parameters for that specific use without affecting the template itself.
+
 ## Triggers
 
 A rule evaluation can be triggered by:

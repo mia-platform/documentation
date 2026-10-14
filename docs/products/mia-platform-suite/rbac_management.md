@@ -16,10 +16,13 @@ RBAC is a cross-product capability, but the specific set of assignable roles/per
 Mia-Platform's RBAC system is a centralized service designed for granular access governance. The component exposes both a REST API (documented via OpenAPI) for CRUD operations on resources, and a high-performance gRPC service used by authorization components (e.g., external authorization sidecars) to resolve a principal's context. The system intercepts requests in real time, evaluates whether the principal has the required permissions for the requested action, and then forwards authorized requests to the target service.
 
 ### Core concepts
-- **Super Admin** — a global administrative role (*...authz:Super Admin*) with full privileges to manage the entire suite. In on-prem installation, Super Admin and Organization Admin are the same person.
-- **Organization Admin** — an administrative role (*...organization-Super Admin:\<org\>*) with full privileges limited to a specific organization (e.g. add users, tenants or service accounts)
+
+- **Policy package** — a Rego module containing the rules (allow rules) that determine if an action is permitted.
+- **actions.json** — a configuration file that maps HTTP paths and methods to specific policy rules, used by the Access Control system to evaluate incoming requests.
+- **Input schema** — a JSON Schema file in the *schemas/* directory that defines the structure of *input.rbac*, used for validating and type-checking policy inputs.
+- **Super Admin** — a global administrative role (*...authz:Super Admin*) with full privileges to manage the entire platform.
+- **Organization Admin** — an administrative role (*...organization-Super Admin:\<org\>*) with full privileges limited to a specific organization.
 - **Tenant Admin** — an administrative role with full privileges limited to a specific tenant.
-- **Keycloak Admin** — an identity-management role, distinct from Super Admin/Organization Admin, that manages users at the organization level directly from the organization's dedicated Keycloak console (e.g., adding or removing users from the organization).
 - **Scope** — defines the extent of a permission: it can be global ('/') or restricted to a specific path (e.g., */\<slug\>*).
 
 ## Architecture and integrations
@@ -88,9 +91,16 @@ Users can be invited directly from the Administration UI, without going through 
 - From the **Pending** section, the admin can see which users have not yet accepted their invitation, and can **revoke** an invitation at any time (e.g. if it was sent by mistake or expires unused).
 - Only after the invitation is accepted can an admin assign roles, permissions, and group memberships to that user.
 
+## Automatic provisioning via SCIM
+
+As an alternative to inviting users manually, users and groups of a tenant can be **provisioned automatically** by any Identity Provider that supports outbound **SCIM 2.0** provisioning (e.g. Microsoft Entra ID, Okta). The IdP keeps users, groups, and group memberships of the tenant in sync with its own directory, while roles keep being assigned to the synchronized groups from the Administration section: SCIM never reads or writes role assignments.
+
+See [Automatic Provisioning via SCIM](/products/mia-platform-suite/scim_provisioning.md) for how the synchronization works and how to configure it.
+
 ## How to assign roles and permissions
 
-- The administrator **assigns** roles directly to users or service accounts, optionally limiting their validity to a specific scope. As of **v15.2**, the permission tree in the Administration UI is focused exclusively on **Roles**: group management has been removed (see [UX improvements (v15.2)](#ux-improvements-v152) above).
+- The administrator **assigns** roles to users, service accounts, or **user groups**, optionally limiting their validity to a specific scope. As of **v15.2**, the permission tree in the Administration UI is focused exclusively on **Roles**: permissions are bundled into roles, and groups are no longer used to bundle permissions (see [UX improvements (v15.2)](#ux-improvements-v152) below).
+- **User groups** are still available: a group is a collection of users that can be assigned one or more roles, and its members inherit them. Groups can be created and managed manually from the Administration UI, or [provisioned automatically via SCIM](#automatic-provisioning-via-scim), mirroring 1:1 the groups defined in your Identity Provider.
 - Multiple roles can be assigned in **bulk mode**, rather than one at a time, speeding up onboarding.
 - Both **Organization Admins** and **Tenant Admins** can assign **broad roles** (the predefined, coarse-grained roles from the [Permission Matrix](#permission-matrix)).
 - Only the **Organization Admin** can assign **granular roles**. Granular role assignment is available:
@@ -132,6 +142,7 @@ This is the place to check a user's *effective* permissions — including those 
 
 - **Users**: creation, invitation, modification, deletion, consultation.
 - **Groups**: creation, modification, deletion; member management; role assignment to the group.
+- **Users**: creation, invitation, modification, deletion, consultation.
 - **Roles**: creation, modification, deletion, consultation.
 - **Tenant**: creation and edit of tenants, also at the individual organization level.
 - **Configuration**: reading and updating tenant's settings.
@@ -190,7 +201,7 @@ The **Item Ingestor** role is intended for **service accounts**, not human users
 
 The Administration UI introduces two changes as of v15.2:
 
-- **Role-based permission management** — the permission tree is now focused exclusively on **Roles**: group management has been removed, and roles are assigned directly to users and service accounts (including at invitation time, and in bulk).
+- **Role-based permission management** — the permission tree is now focused exclusively on **Roles**: permissions are bundled into roles rather than into groups, and roles can be assigned directly to users and service accounts (including at invitation time, and in bulk). User groups remain available as collections of users to which roles are assigned — see [How to assign roles and permissions](#how-to-assign-roles-and-permissions).
 - **Tenant and service account creation from the UI** — an Organization Admin can now create tenants and service accounts directly from the Administration UI, rather than only via API (deletion of either still requires the API — see [Current limitations](#current-limitations-v1520) below).
 
 <!-- ### Permission matrix for Catalog
@@ -226,6 +237,10 @@ The Administration UI introduces two changes as of v15.2:
 
 In this v15 release, Catalog RBAC management has the following constraints:
 
+- **Roles**: cannot be created, modified, or deleted. The available roles are fixed and correspond to those defined in the [Permission Matrix](#permission-matrix) above.
+- **Groups**: can be created. Groups are the only entity that admins can define in this version, to combine users under a shared set of role assignments.
+- **Users**: cannot be created. Users can only be **assigned** to existing roles and groups.
+- **Permissions**: not yet customizable in this phase permissions are tied to roles as defined in the matrix and cannot be edited individually.
 - **Group scope**: the only scope that can currently be assigned to a group is the **entire tenant**; scoping a group to a specific path or sub-resource is not yet available.
 - **Tenant creation and deletion**: an **Organization Admin** can create tenants directly from the Administration UI, but tenants can never be deleted from there — not even by an Organization Admin.
 - **Service account creation and deletion**: an **Organization Admin** can create service accounts from the Administration UI, but deleting a service account is not possible from there — it must be done via API, see [Registering a service account](#registering-a-service-account) below.
@@ -236,7 +251,7 @@ Across all sections of the Administration area, it is possible to open a detail 
 
 - **User detail**: shows which roles, permissions, and groups are assigned to that user.
 - **Service account detail**: shows the service account's name and associated client ID. Service accounts can be created from this UI by an Organization Admin, but not deleted — deletion is only possible via API, see [Registering a service account](#registering-a-service-account).
-- **Group detail**: shows the group's members and the roles/permissions the group grants. *(Legacy, pre-v15.2 model — see [UX improvements (v15.2)](#ux-improvements-v152) above.)*
+- **Group detail**: shows the group's members and the roles assigned to the group. For groups [provisioned via SCIM](#automatic-provisioning-via-scim), members are managed by the Identity Provider, while roles are assigned from here.
 - **Role detail**: shows the role's definition and the users/groups it is assigned to.
 
 ## Registering a service account
@@ -389,14 +404,15 @@ Use the resulting `access_token` in the `Authorization: Bearer <access_token>` h
 - **Keycloak Admin/Organization Admin** — adds/invites users to the organization (via their personal Keycloak, or via the organization-wide users view — see [Organization-wide user visibility](#organization-wide-user-visibility) above).
 - **Organization Admin** — adds users to a tenant.
 - **Tenant Admin** — can add users to their tenant, but only among users already invited to (and accepted into) the organization.
+- **Identity Provider (via SCIM)** — when automatic provisioning is configured, users and groups are created and kept in sync by the IdP — see [Automatic provisioning via SCIM](#automatic-provisioning-via-scim) above.
 
 ### Is it possible to add users, groups, or roles in "bulk" mode to speed up onboarding?
 
-Roles can be assigned to a group in bulk mode — see [How to assign roles and permissions](#how-to-assign-roles-and-permissions) above. Bulk user addition, however, is not supported yet.
+Roles can be assigned to a group in bulk mode — see [How to assign roles and permissions](#how-to-assign-roles-and-permissions) above. Bulk user addition from the Administration UI is not supported yet; to onboard many users at once, configure [automatic provisioning via SCIM](/products/mia-platform-suite/scim_provisioning.md) from your Identity Provider.
 
 ### How does the user offboarding procedure work?
 
-From the interface, the Organization Admin can delete a user directly from the user management page in the organization's dedicated Keycloak instance.
+From the interface, the Organization Admin can delete a user directly from the user management page in the organization's dedicated Keycloak instance. For users provisioned via SCIM, offboarding is driven by the Identity Provider: deactivating or deleting the user there revokes their permissions on Mia-Platform automatically — see [Deprovisioning](/products/mia-platform-suite/scim_provisioning.md#deprovisioning).
 
 ### How does combined permission assignment work when a user belongs to multiple groups?
 

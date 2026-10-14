@@ -12,7 +12,11 @@ sidebar_label: Overview
 
 ## Key Concepts
 
-AI Foundry organizes AI assets as **catalog resources**. Each resource shares common metadata (name, title, description, tags, labels, and timestamps), is scoped to your tenant, and can be versioned, searched, and reused across teams. Resources shipped with the installation are shared with every tenant and are read-only.
+AI Foundry organizes AI assets as **catalog resources**. Each resource shares common metadata (name, title, description, tags, labels, and timestamps), is scoped to your tenant, and can be versioned, searched, and reused across teams.
+
+- **Owner.** The owner of a resource is the principal ID used by the Catalog RBAC, so who can manage a resource follows the same rules as the rest of the Catalog.
+- **Clone.** The main resources, such as playbooks, agents, and skills, can be cloned from their detail page. A clone is a new, independent resource that you own and can edit freely.
+- **Managed resources.** Resources shipped with the installation (seeded) are shared with every tenant and are locked: they cannot be edited or deleted, only cloned. This includes the **system playbooks and agents** that AI Foundry uses internally (`session-namer`, `memory-extractor`, `followup-suggester`, `compaction-summarizer`, `feedback-summarizer`, and `insights`), which are provisioned like any other resource.
 
 The resources fall into three groups: the **building blocks** that define what an agent knows and can do, the **orchestration** resources that combine them into executable flows, and the **gateway** resources that govern how models are called.
 
@@ -20,11 +24,11 @@ The resources fall into three groups: the **building blocks** that define what a
 
 Building blocks are the reusable assets that agents are made of. You manage them from the **Building Blocks** section of the sidebar, where each type has a list page, a guided creation form, and a JSON editor for the underlying spec.
 
-- **Model**: an LLM configuration, routed through the AI Gateway, that wraps a provider model and its runtime parameters. Provider credentials are stored encrypted on the AI Gateway and are never shown again after they are saved; a single [LLM Credential](#administration-and-security) can be shared by several models.
+- **Model**: an LLM configuration, routed through the AI Gateway, that wraps a provider model and its runtime parameters. Provider credentials are stored encrypted on the AI Gateway and are never shown again after they are saved; a single [LLM Credential](#administration-and-security) can be shared by several models. For models that support it, you can also set the reasoning effort.
 - **Prompt**: a reusable prompt template that agents and playbooks can reference, also exposed as a slash command. Prompts are authored in Markdown with a live preview pane and can be tagged for discoverability.
 - **Skill**: a reusable, higher-level capability that packages instructions, templates, scripts, and assets, and can be attached to agents or playbooks.
-- **Tool**: an executable function or integration that an agent can invoke. The tool browser lists all tools available in the system, grouped by category, including those discovered from MCP servers.
-- **MCP Server**: an external [Model Context Protocol](https://modelcontextprotocol.io/) server that exposes tools and resources to agents. Once registered, its tools are included in the available tools list.
+- **Tool**: an executable function or integration that an agent can invoke. The tool browser lists all tools available in the system, grouped by category, including those discovered from MCP servers. Runtime tools such as `web_search` are provided by the Mia AI Runtime and are enabled explicitly on each agent.
+- **MCP Server**: an external [Model Context Protocol](https://modelcontextprotocol.io/) server that exposes tools, prompts, and resources to agents. Once registered, its tools are included in the available tools list.
 - **Spec Template**: a structured or free-form specification document that playbooks inject into Spec-Driven Development phases.
 - **App**: an application or plugin (for example, an IDE assistant) that built-in tools belong to.
 - **Memory** and **Guardrail**: described in the sections below.
@@ -70,11 +74,15 @@ Administrators manage a set of resources that govern access to models through th
 
 ## Features
 
+### Keyboard shortcut
+
+In every modal and drawer, except deletion confirmations, press **⌘+Enter** (macOS) or **Ctrl+Enter** (Windows and Linux) to confirm or save without reaching for the button.
+
 ### AI Playground
 
 ![AI Foundry Playground](img/ai_foundry_playground.png)
 
-The **AI Playground** provides a live chat interface for testing playbooks in real time. Select a playbook, configure per-agent model overrides, and chat with the configured agentic flow. The playground streams responses, visualizes tool calls, "thinking" steps, and hand-offs between agents inline, and lets you enable or disable individual tools and skills on the fly. It also supports slash-prompt auto-completion from the prompts associated with the selected playbook, file attachments, session history, and export of the conversation to PDF or Markdown.
+The **AI Playground** provides a live chat interface for testing playbooks in real time. Select a playbook, configure per-agent model overrides, and chat with the configured agent graph. The playground streams responses, visualizes tool calls, "thinking" steps, and hand-offs between agents inline, and lets you enable or disable individual tools and skills on the fly. It also supports slash-prompt auto-completion from the prompts associated with the selected playbook, file attachments, session history, and export of the conversation to PDF or Markdown.
 
 ### Orchestration
 
@@ -91,10 +99,10 @@ Create and configure agents by selecting a model, writing system instructions in
 The **Playbook Builder** is a three-step wizard for designing multi-agent flows:
 
 1. **Overview**: set the playbook's name, title, and description, and optionally enable and configure its [Mia Flow](/products/flow/overview.md) integration (show-on-home toggle, launch mode).
-2. **Agentic Flow**: a drag-and-drop canvas where agent nodes are connected with edges; each edge makes the target a sub-agent the source can hand off to. In addition to regular and built-in agent nodes, you can add flow controllers for **sequential**, **parallel**, and **loop** (with configurable max iterations) execution patterns.
+2. **Agent Graph**: a drag-and-drop canvas where agent nodes are connected with edges; each edge makes the target a sub-agent the source can hand off to. In addition to regular and built-in agent nodes, you can add flow controllers for **sequential**, **parallel**, and **loop** (with configurable max iterations) execution patterns.
 3. **Resources**: attach playbook-level prompts, skills, and spec templates using multi-select pickers.
 
-Playbooks can also be authored as raw JSON using the built-in Monaco editor.
+Playbooks can also be authored as raw JSON using the built-in Monaco editor, or created with the **playbook assistant**, which starts from a template to fill in with your use case.
 
 #### Agentic Workflows
 
@@ -140,6 +148,7 @@ Rather than downloading assets one at a time, you can wire your editor's plugin 
 - **Plugin marketplace**: playbooks are published as plugins, with their agents, skills, and prompts (as slash commands), through a marketplace file or a Git repository your editor can subscribe to.
 - **Per-IDE packages**: download assets as ZIP files in the format expected by each tool.
 - **Gateway access**: point the tool at the AI Gateway with a virtual key, so its model traffic is governed by the same budgets.
+- **MCP server and CLI**: copy the setup instructions for the AI Foundry MCP server and CLI from the right sidebar and paste them in your editor or terminal.
 - **Telemetry**: exported plugins are stamped with attributes that let their usage appear in AI Foundry observability.
 
 You can download the following AI assets:
@@ -175,6 +184,8 @@ Each tenant chats through its own virtual key, and spend is tracked per tenant, 
 
 The AI Foundry ADK BE APIs can be called machine-to-machine using a **service account**, registered through Platform Administration — see [Registering a service account](/products/mia-platform-suite/rbac_management.md#registering-a-service-account) and [Requesting an access token](/products/mia-platform-suite/rbac_management.md#requesting-an-access-token). Unlike Catalog, calling the AI Foundry ADK BE APIs requires the token to be requested with **all three** scopes together — `mia:catalog`, `mia:ai-foundry`, and `mia:authz` — requesting `mia:ai-foundry` alone is not sufficient.
 
+The agents and playbooks you author in AI Foundry are executed by the **agent runtime** (`adk-be-app`), the agentic engine underneath the whole suite. You can install it on its own to use your agents from applications and systems that are not provided by Mia-Platform, calling its ADK APIs while the configuration stays in the Catalog. The runtime reads that configuration with its own service account, which needs only the `mia:catalog` scope. See [Runtime installation](/products/ai-foundry/administration/30_runtime-installation.md) to install it and connect it to your Catalog.
+
 ## Where to go next
 
 New to AI Foundry? Start with the Basic Concepts section:
@@ -193,6 +204,7 @@ New to AI Foundry? Start with the Basic Concepts section:
 - [Memory](/products/ai-foundry/basic-concepts/15_memory.md): long-term, per-person recall for agents.
 - [Guardrail](/products/ai-foundry/basic-concepts/17_guardrail.md): policies that allow, block, or modify model and MCP traffic.
 - [Spec Templates](/products/ai-foundry/basic-concepts/16_spec.md): structured reference documents for agents and playbooks.
+- [Runtime installation](/products/ai-foundry/administration/30_runtime-installation.md): install the agent runtime and connect it to the Catalog.
 - [AI Resources](/products/ai-foundry/observability/10_ai_resources.md): insights and distribution of the assets you publish.
 - [AI Sessions](/products/ai-foundry/observability/20_ai_sessions.md): conversations and agentic workflow runs.
 - [AI Providers](/products/ai-foundry/observability/30_ai_providers.md): traces and metrics from the services and clients that call models.

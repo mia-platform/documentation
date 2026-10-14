@@ -212,7 +212,7 @@ Now you will wire the two agents together into a sequential pipeline using the *
    | **Name**         | `customer-support-pipeline`                            |
    | **Description**  | Triages a customer message and drafts a polished reply |
 
-3. Click **Next** to proceed to the **Agentic Flow** step.
+3. Click **Next** to proceed to the **Agent Graph** step.
 
 4. On the canvas:
    - Drag the **`Customer Triage Agent`** node from the palette onto the canvas.
