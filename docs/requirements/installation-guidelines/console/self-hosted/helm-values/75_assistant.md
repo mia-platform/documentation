@@ -74,6 +74,7 @@ The embeddings are available only with the `text-embedding-3-large` embedding mo
 :::info
 You can omit the `embeddings` key if you don't want the support of the Mia-Platform Documentation
 in the Mia-Assistant and use it only as a general purpose knowledge with the capabilities of the MCP Server.
+In this case the `embeddings-importer` job is not run, so the `assistant-documents` collection is not populated.
 :::
 
 Here an example to configure Mia-Assistant with different LLM providers:

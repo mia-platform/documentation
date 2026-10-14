@@ -37,6 +37,10 @@ The Chart version follows [semver](https://semver.org/) policy so any breaking c
 
 ## Console v15 - version upgrades
 
+### From 15.1.0 to 15.1.0-2 (Mia-Platform v15.1.0 to v15.1.1)
+
+No manual action required: install the new chart version.
+
 ### From 15.0.15-10 to 15.1.0 (Mia-Platform v15.0.2 to v15.1.0)
 
 1. If you configured Mia Assistant embeddings, remove `configurations.assistant.embeddings.apiKey`: the chart no longer reads it. The embeddings model now uses the API key of the LLM provider of the same type: set `configurations.assistant.keys.azureLlmApiKey` when `embeddings.type` is `azure`, or `configurations.assistant.keys.openaiLlmApiKey` when it is `openai`.
