@@ -16,7 +16,7 @@ The chart renders and applies the following Keycloak realm resources:
 - **Roles**: realm-level and client-level roles used by Mia Platform products for authorization.
 - **Groups**: global groups scoped by product (e.g. `realm/admin`, `realm/reporter`). Groups carry realm-management client roles, enabling fine-grained admin delegation. Product groups are created only for enabled products: `products/console/guest` with `products.console` and `products/authz/superadmin` with `products.authz`.
 - **Client scopes**: OIDC scopes and protocol mappers that control what appears in access tokens.
-- **OIDC clients**: a set of clients for each Mia Platform product (Console, Catalog, AI Foundry, Flow, Authorization), including service account clients such as `catalog-engine` and `flow-access-control`. Each product's clients are conditionally included via `products.*` values.
+- **OIDC clients**: a set of clients for each Mia Platform product (Console, Catalog, AI Foundry, AI Services, Flow, Authorization), including service account clients such as `catalog-engine` and `flow-access-control`. Each product's clients are conditionally included via `products.*` values.
 - **Identity providers**: external IdPs federated via OIDC. Supports multiple IdPs per realm (one per customer organization / email domain).
 - **Identity provider mappers**: attribute and role mappers that transform incoming IdP claims into Mia Platform user attributes and roles.
 - **Authentication flows**: custom flows extending Keycloak's defaults.
@@ -119,6 +119,7 @@ templates/
 │   ├── 320-clients-catalog.yaml   # products.catalog
 │   ├── 325-clients-flow.yaml      # products.flow
 │   ├── 330-clients-console.yaml   # products.console
+│   ├── 335-clients-ai-services.yaml # products.aiServices
 │   ├── 400-roles.yaml
 │   ├── 450-client-scope-mappings.yaml
 │   ├── 500-groups.yaml

@@ -22,6 +22,8 @@ This guide walks through installing the `services` chart to deploy the Mia Platf
 | Keycloak realm issuer URL | `https://keycloak.your-domain.com/realms/my-realm` |
 | OIDC client ID for `authtool-bff` | `homepage-bff` |
 | Private container registry credentials | Nexus username and password |
+| Catalog API gateway URL, used by `adkBeApp` | `http://api-gateway.catalog.svc.cluster.local:8080` |
+| AI Services public URL, used by `adkBeApp` (unless the AI gateway is disabled) | `https://<ai-services host>` |
 
 ## Step 1: Create the authtool-bff secret
 
@@ -78,7 +80,7 @@ kubectl create secret docker-registry nexus-pull-secret \
 ```
 
 :::info
-Alternatively, set `global.imagePullSecret.enabled: true` and provide `global.imageCredentials.registry`/`username`/`password`/`email` in your `values.yaml`; the chart will create the `kubernetes.io/dockerconfigjson` Secret automatically and reference it on every pod. This is convenient for CI/CD pipelines, where `username`/`password` are typically injected at deploy time via `--set` rather than committed to a values file.
+Alternatively, set `global.imagePullSecret.name` and provide all of `global.imageCredentials.registry`/`username`/`password`/`email` in your `values.yaml`; the chart creates the `kubernetes.io/dockerconfigjson` Secret only when all of them are set. In both cases, set `global.imagePullSecret.enabled: true` so that every pod references the Secret. This is convenient for CI/CD pipelines, where `username`/`password` are typically injected at deploy time via `--set` rather than committed to a values file.
 :::
 
 ## Step 4: Prepare a values file
@@ -109,18 +111,35 @@ authtoolBff:
   tokenAuthMethod: "private_key_jwt"
   config:
     clientId: "homepage-bff"
+    # Token exchange client, required while adkBeApp is enabled
+    exchangeClientId: "authz-token-exchange"
+
+# Keycloak client alias of AI Services, required with the AI gateway
+aiServicesClientId: "ai-services-api"
+
+# ADK Backend App (enabled by default)
+adkBeApp:
+  config:
+    # Required: the Catalog API gateway
+    catalogApiUrl: "http://api-gateway.catalog.svc.cluster.local:8080"
+    # Required while aiGatewayEnabled is true (default)
+    litellmProxyApiBase: "https://<ai-services host>/litellm/"
+    secretStoreBaseUrl: "https://<ai-services host>"
 
 # Image pull secret
 global:
   imagePullSecret:
     enabled: true
     name: nexus-pull-secret
+  # Omit imageCredentials if you created the Secret manually in Step 3
   imageCredentials:
     registry: "nexus.mia-platform.eu"
     username: "<USERNAME>"
     password: "<PASSWORD>"
     email: "operations@your-domain.com"
 ```
+
+If you do not use the AI Services LiteLLM gateway, set `adkBeApp.config.aiGatewayEnabled: false` instead of providing `litellmProxyApiBase`, `secretStoreBaseUrl` and `aiServicesClientId`. If you do not need the ADK Backend App at the Homepage level, set `adkBeApp.enabled: false` and omit the whole `adkBeApp` block. The chart fails to render if the required `adkBeApp` values are missing.
 
 See the [Helm Values reference](/requirements/installation-guidelines/shared-services/services/helm-values/00_overview.md) for the full list of available options.
 
@@ -154,6 +173,7 @@ Expected output:
 ```
 NAME                               READY   STATUS    RESTARTS   AGE
 access-control-xxxx                1/1     Running   0          1m
+adk-be-app-xxxx                    1/1     Running   0          1m
 api-gateway-xxxx                   1/1     Running   0          1m
 authtool-bff-xxxx                  1/1     Running   0          1m
 cache-xxxx                         1/1     Running   0          1m
@@ -197,6 +217,13 @@ services:
   authtoolBff:
     config:
       clientId: "homepage-bff"
+      exchangeClientId: "authz-token-exchange"
+  aiServicesClientId: "ai-services-api"
+  adkBeApp:
+    config:
+      catalogApiUrl: "http://api-gateway.catalog.svc.cluster.local:8080"
+      litellmProxyApiBase: "https://<ai-services host>/litellm/"
+      secretStoreBaseUrl: "https://<ai-services host>"
 ```
 
 4. Deploy:

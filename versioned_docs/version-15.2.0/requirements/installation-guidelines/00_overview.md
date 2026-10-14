@@ -29,7 +29,7 @@ The following tools must be available on the operator's workstation before insta
 
 **Homepage & RBAC** is the recommended second step, ahead of the products, even though it is not a hard prerequisite: it exposes the `rbacManagement` authorization API (via `authzUrl`) that Console, Catalog, and AI Foundry can optionally call to enrich policy evaluation with product/permission context. Each product bundles its own `authtool-bff` instance for browser login and does not depend on the `services` chart for it.
 
-Once the shared services layer is running, **Console** and **Catalog** can be installed in parallel. AI Foundry depends on Catalog (shared agent backend and navigation links) and must be installed last.
+Once the shared services layer is running, **Console**, **Catalog** and **AI Services** can be installed in parallel. AI Services provides the AI gateway, the workflow engine, document conversion and the memory service used by the other products. AI Foundry depends on Catalog (shared agent backend and navigation links) and on AI Services, and must be installed last.
 
 :::tip Looking for a working reference example?
 If you'd like to see the whole suite running end-to-end before planning your own installation, see the [On-Prem Quickstart](/requirements/installation-guidelines/02_on-prem-quickstart.md): a local reference implementation you can use as a blueprint.
@@ -46,16 +46,18 @@ If you'd like to see the whole suite running end-to-end before planning your own
 │  2 — Homepage & RBAC  (recommended, not required — authz API)          │
 └────────────────────────────────┬─────────────────────────────────────┘
                                  ▼
-                    ┌────────────┴─────────────┐
-                    ▼                          ▼
-         ┌──────────────────┐         ┌──────────────────┐
-         │  3 — Console     │         │  3 — Catalog     │
-         └──────────────────┘         └────────┬─────────┘
-                                               ▼
-                                   ┌────────────────────────┐
-                                   │  4 — AI Foundry        │
-                                   │  (requires Catalog)    │
-                                   └────────────────────────┘
+               ┌─────────────────┼─────────────────┐
+               ▼                 ▼                 ▼
+     ┌──────────────────┐ ┌──────────────────┐ ┌──────────────────┐
+     │  3: Console      │ │  3: Catalog      │ │  3: AI Services  │
+     └──────────────────┘ └────────┬─────────┘ └────────┬─────────┘
+                                   └─────────┬──────────┘
+                                             ▼
+                              ┌──────────────────────────────┐
+                              │  4: AI Foundry               │
+                              │  (requires Catalog and       │
+                              │   AI Services)               │
+                              └──────────────────────────────┘
 ```
 ## Component index
 
@@ -78,3 +80,4 @@ If this is your first self-hosted Mia Platform installation, read the [Authentic
 | **Console** | `console` | [Overview](/requirements/installation-guidelines/console/infrastructure_overview.md) · [Getting Started](/requirements/installation-guidelines/console/self-hosted/15_getting-started.md) |
 | **Catalog** | `catalog` | [Overview](/requirements/installation-guidelines/catalog/10_overview.md) · [Getting Started](/requirements/installation-guidelines/catalog/15_getting-started.md) |
 | **AI Foundry** | `ai-foundry` | [Overview](/requirements/installation-guidelines/ai-foundry/10_overview.md) · [Getting Started](/requirements/installation-guidelines/ai-foundry/15_getting-started.md) |
+| **AI Services** | `ai-services` | [Overview](/requirements/installation-guidelines/ai-services/10_overview.md) · [Getting Started](/requirements/installation-guidelines/ai-services/15_getting-started.md) |

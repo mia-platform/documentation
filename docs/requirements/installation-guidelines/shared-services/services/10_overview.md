@@ -20,9 +20,10 @@ Every user who accesses the Mia Platform interface is routed through this stack:
 | **cache** | `redis` | Redis instance used by `authtool-bff` to store and encrypt session tokens. |
 | **homepageWebsite** | `console/homepage` | Mia Platform homepage frontend application, served at the configured `url`. |
 | **rbacManagement** | `platform/services/rbac-management` | RBAC administration API (REST + gRPC). Manages roles, permissions, and product access backed by an external PostgreSQL database. Routed through the `apiGateway` alongside the other services. |
-| **adkBeApp** | *(optional)* `ai-foundry/adk-be-app` | ADK Backend App. The same AI agent orchestration component used by Catalog and AI Foundry; can be disabled via `adkBeApp.enabled: false` if not needed at the Homepage level. |
-| **doclingService** | *(optional)* `docling-project/docling-serve-cpu` | Document parsing service, shared with Catalog/AI Foundry. CPU-intensive; disable via `doclingService.enabled: false` in lightweight environments. |
+| **adkBeApp** | `ai-foundry/adk-be-app` | ADK Backend App. The same AI agent orchestration component used by Catalog and AI Foundry. Enabled by default: it reads its agents from the Catalog (`adkBeApp.config.catalogApiUrl` is required) and, by default, calls the models through the [AI Services](/requirements/installation-guidelines/ai-services/10_overview.md) LiteLLM gateway. Can be disabled via `adkBeApp.enabled: false` if not needed at the Homepage level. |
 | **swaggerAggregator** | `core/swagger-aggregator` | *(Optional, disabled by default.)* Aggregates OpenAPI specs from projects and exposes them in a unified API portal. |
+
+The chart no longer deploys a Docling service. Document parsing for chat attachments is provided by [AI Services](/requirements/installation-guidelines/ai-services/10_overview.md): set `apiGateway.docling.url` to route `/api/docling/` to it.
 
 ## Architecture overview
 

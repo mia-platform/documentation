@@ -41,14 +41,21 @@ realmName: Mia Platform
 
 urls:
   keycloak: https://keycloak.example.com
+  authz: https://home.example.com
   console: https://console.example.com
   catalog: https://catalog.example.com
   aiFoundry: https://ai-foundry.example.com
+  # Optional: required only with products.aiServices
+  aiServices: https://ai-services.example.com
 
 products:
+  # Required by aiFoundry, together with catalog
+  authz: true
   console: true
   catalog: true
   aiFoundry: true
+  # Optional: creates the AI Services clients
+  aiServices: true
 
 identityProviders:
   - alias: corporate-sso
@@ -112,6 +119,13 @@ vault:
 ```
 
 This provisions a `keycloak-vault-secrets` Secret, mounted into the Keycloak pod, from which Keycloak's file-based Vault provider resolves `${vault.keycloak-config-cli-client-secret}` at realm-import time.
+
+Depending on the enabled products, the import of the `mia-platform` realm also expects the following vault entries, in the `<realmId>_<secretname>` format:
+
+| Vault entry | Required with |
+|---|---|
+| `<realmId>_scim-client-secret` | `products.authz: true` (see [SCIM provisioning client](/requirements/installation-guidelines/shared-services/authn/keycloak-realm-management/10_overview.md#scim-provisioning-client)) |
+| `<realmId>_ai-services-temporal-ui-client-secret` | `products.aiServices: true` |
 
 :::info
 Without an External Secrets `SecretStore`, you can create the same Secret directly, as long as `vault.enabled: true` and the key name matches:

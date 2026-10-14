@@ -6,7 +6,9 @@ sidebar_label: Overview
 
 # Helm Values: ai-foundry chart
 
-This page describes all configurable values for the `ai-foundry` chart. See `values.yaml` for defaults.
+This page describes the main configurable values for the `ai-foundry` chart. See the chart `values.yaml` for the defaults and for the advanced keys of each service not listed here.
+
+The chart validates the values at render time and refuses to render a configuration that would fail at runtime; the error message names the setting to fix.
 
 ## URL and environment
 
@@ -16,11 +18,14 @@ This page describes all configurable values for the `ai-foundry` chart. See `val
 | `environment` | string | `""` | ✅ | Logical environment name (e.g. `production`, `development`). Used for labelling and environment-specific behaviour. |
 | `isPaaS` | boolean | `false` | ❌ | Set to `true` for Mia Platform PaaS deployments. |
 | `namespacePrefix` | string | `""` | ❌ | When set, prefixed (as `<namespacePrefix>-<name>`) to the names of the resources created by the chart, including Services, the `IngressRoute`, the image pull secret referenced by `global.imagePullSecret.name` and the TLS secret set in `ingressRoute.tls.secretName`. |
-| `catalogUrl` | string | `""` | ❌ | Full URL of the Mia Platform Catalog instance. Used by `aiFoundryBff` (and, via the ADK backend, `adkBeApp`) to call the Catalog API using a token-exchange client. |
+| `catalogUrl` | string | `""` | ❌ | Full URL of the Mia Platform Catalog instance. Used by `aiFoundryBff` (and, via the ADK backend, `adkBeApp`) to call the Catalog API using a token-exchange client. When empty, the items are stored in PostgreSQL and served by `aiFoundryBe`, which must then be enabled. |
 | `catalogClientId` | string | `""` | ❌ | OIDC client ID used to identify the Catalog API audience for the token-exchange flow (e.g. `catalog-api`). |
 | `authzUrl` | string | `""` | ❌ | URL of an external Authorization API (e.g. the `services` chart's `apiGateway`, routed to `rbacManagement`). Used by `aiFoundryBff` and, when `accessControl.config.externalContext.enabled: true`, by `accessControl` itself. |
 | `authzClientId` | string | `""` | ❌ | OIDC client ID used to identify the Authz API audience for the token-exchange flow (e.g. `authz-api`). |
-| `authtoolBffUrl` | string | `""` | ❌ | Base URL of `authtool-bff`, used to route token-exchange calls through it for cross-cluster calls. Leave empty to forward the caller's JWT verbatim to `authzUrl`/`catalogUrl` instead (same-cluster pass-through mode). |
+| `authtoolBffUrl` | string | `""` | ❌ | Base URL of `authtool-bff`, used to route token-exchange calls through it for cross-cluster calls. Leave empty to forward the caller's JWT verbatim to `authzUrl`/`catalogUrl` instead (same-cluster pass-through mode). Needed, together with `aiServicesClientId`, to call AI Services. |
+| `aiServicesClientId` | string | `""` | ❌ | `authtool-bff` exchange alias for the AI Services audience: set it to `ai-services-api` (the alias of the `exchangeAiServices` client). Used for the memory service, the Docling route and the metrics store of AI Services; when empty the caller's token is forwarded unchanged, which the AI Services gateway refuses. |
+| `aiServicesSecretStoreUrl` | string | `""` | ❌ | Public URL of AI Services in front of its central secret store, used to keep the tenants' AI gateway keys there. Requires `authtoolBffUrl` and `aiServicesClientId`. Empty keeps every credential in this release's `secretStoreService`. |
+| `systemAgentModel` | string | `""` | ❌ | Model of the seeded system playbooks (session namer, follow-ups, compaction, memory extraction). Must be served by the AI gateway. Empty keeps the default of the seed. |
 
 ## IngressRoute (Traefik)
 
@@ -55,7 +60,7 @@ The chart can manage secret creation inline. When `enabled: false` (default), th
 
 ### authtool-bff keys
 
-`authtool-bff` runs three OIDC clients: `website` (browser login/logout), `exchangeCatalog` (token exchange for the Catalog API), and `exchangeAuthz` (token exchange for the Authz API). Each has its own key material.
+`authtool-bff` runs four OIDC clients: `website` (browser login/logout), `exchangeCatalog` (token exchange for the Catalog API), `exchangeAuthz` (token exchange for the Authz API), and `exchangeAiServices` (token exchange for AI Services). Each has its own key material, and every declared client needs it or `authtool-bff` fails at startup: to drop a client, set it to `null` under `authtoolBff.config.clients`. In a self-managed `authtool-bff-keys` Secret, each client has a `<client>-key.pem` entry (`private_key_jwt`) or a `<client>-client-secret` entry, plus `cookie-secret.key` and `redis-token-enc.key`.
 
 | Key | Type | Default | Description |
 |---|---|---|---|
@@ -68,6 +73,8 @@ The chart can manage secret creation inline. When `enabled: false` (default), th
 | `secrets.authtoolBffKeys.exchangeCatalog.clientSecret` | string | `""` | OIDC client secret for the Catalog token-exchange client. |
 | `secrets.authtoolBffKeys.exchangeAuthz.privateKey` | string | `""` | RSA private key for the Authz token-exchange client. |
 | `secrets.authtoolBffKeys.exchangeAuthz.clientSecret` | string | `""` | OIDC client secret for the Authz token-exchange client. |
+| `secrets.authtoolBffKeys.exchangeAiServices.privateKey` | string | `""` | RSA private key for the AI Services token-exchange client. |
+| `secrets.authtoolBffKeys.exchangeAiServices.clientSecret` | string | `""` | OIDC client secret for the AI Services token-exchange client. |
 
 :::tip Key generation
 ```bash
@@ -93,18 +100,64 @@ Used only when `accessControl.config.externalContext.enabled: true`: `accessCont
 | Key | Type | Default | Description |
 |---|---|---|---|
 | `secrets.adkBeAppKeys.enabled` | boolean | `false` | When `true`, the chart creates a Secret named `adk-be-app-keys` from the values below. |
-| `secrets.adkBeAppKeys.googleApplicationCredentials` | string | `""` | Full JSON content of the GCP service account key file (not base64 encoded; the chart handles encoding). |
 | `secrets.adkBeAppKeys.postgresConnectionString` | string | `""` | PostgreSQL connection string used by the ADK backend (e.g. `postgresql://user:pass@host:5432/dbname`). |
 | `secrets.adkBeAppKeys.otelExporterOtlpHeaders` | string | `""` | OTLP authentication headers for the ADK backend (e.g. `Authorization=Bearer <token>`). |
-| `secrets.adkBeAppKeys.tempoAuthHeader` | string | `""` | Bearer token for `adkBeApp` to send traces directly to Tempo (used when `adkBeApp.config.tempoBaseUrl` is set). |
+| `secrets.adkBeAppKeys.litellmProxyApiKey` | string | `""` | Key for the LiteLLM AI gateway, when the gateway requires one. Without it, `adkBeApp` reads each tenant's own gateway key from the secret store. |
+| `secrets.adkBeAppKeys.langfuseAuthHeader` | string | `""` | Authorization header for the Langfuse read API, used with `adkBeApp.config.langfuseBaseUrl`. |
+| `secrets.adkBeAppKeys.prometheusAuthHeader` | string | `""` | Authorization header for the metrics store, used with `adkBeApp.config.prometheusBaseUrl`. |
 
-### ai-foundry-bff keys
+The chart no longer creates an `ai-foundry-bff-keys` Secret: `aiFoundryBff` reads no credential.
 
-Unlike the other secrets above, this Secret is **always created by the chart** whenever `aiFoundryBff.enabled: true` — there is no `enabled` gate.
+### ai-foundry-be keys
 
-| Key | Type | Description |
-|---|---|---|
-| `secrets.aiFoundryBffKeys.tempoAuthHeader` | string | Bearer token for authenticating to the Tempo backend (e.g. `Bearer <token>`). |
+Required while `aiFoundryBe.enabled: true`, unless an `ai-foundry-be-keys` Secret already exists. Also used by `aiFoundryProvisioner`.
+
+| Key | Type | Default | Description |
+|---|---|---|---|
+| `secrets.aiFoundryBeKeys.enabled` | boolean | `false` | When `true`, the chart creates a Secret named `ai-foundry-be-keys` from the values below. |
+| `secrets.aiFoundryBeKeys.postgresConnectionString` | string | `""` | PostgreSQL connection string. Must reach the same database as `secrets.adkBeAppKeys.postgresConnectionString`. |
+| `secrets.aiFoundryBeKeys.langfuseAuthHeader` | string | `""` | Langfuse read credential (e.g. `Basic <base64 of public-key:secret-key>`). Required when `aiFoundryBe.config.langfuseBaseUrl` is set. |
+| `secrets.aiFoundryBeKeys.prometheusAuthHeader` | string | `""` | Authorization header for the metrics store. When empty, the caller's token exchanged through `aiServicesClientId` is used. |
+| `secrets.aiFoundryBeKeys.litellmAdminKey` | string | `""` | LiteLLM admin key. Required when `aiFoundryBe.config.litellmBaseUrl` is set. |
+| `secrets.aiFoundryBeKeys.mcpConsentKeySecret` | string | `""` | Read together with `litellmAdminKey` when `aiFoundryBe.config.litellmBaseUrl` is set. |
+
+### ai-foundry-workflows keys
+
+Required while `aiFoundryWorkflows.enabled: true`, unless an `ai-foundry-workflows-keys` Secret already exists.
+
+| Key | Type | Default | Description |
+|---|---|---|---|
+| `secrets.aiFoundryWorkflowsKeys.enabled` | boolean | `false` | When `true`, the chart creates a Secret named `ai-foundry-workflows-keys`. |
+| `secrets.aiFoundryWorkflowsKeys.postgresConnectionString` | string | `""` | PostgreSQL connection string. Must reach the same database as `adkBeAppKeys` and `aiFoundryBeKeys`. |
+
+### secret-store-service keys
+
+Required while `secretStoreService.enabled: true` with the default `approle` auth method, unless a `secret-store-service-keys` Secret already exists.
+
+| Key | Type | Default | Description |
+|---|---|---|---|
+| `secrets.secretStoreServiceKeys.enabled` | boolean | `false` | When `true`, the chart creates a Secret named `secret-store-service-keys`. |
+| `secrets.secretStoreServiceKeys.storeRoleId` | string | `""` | AppRole `role-id` for OpenBao: the pair declared in the AI Services values (`secrets.openbaoKeys.approle`). |
+| `secrets.secretStoreServiceKeys.storeSecretId` | string | `""` | AppRole `secret-id` for OpenBao. Both values are required. |
+
+### workspace-service keys
+
+Required while `workspaceService.enabled: true`, unless a `workspace-service-keys` Secret already exists.
+
+| Key | Type | Default | Description |
+|---|---|---|---|
+| `secrets.workspaceServiceKeys.enabled` | boolean | `false` | When `true`, the chart creates a Secret named `workspace-service-keys`. |
+| `secrets.workspaceServiceKeys.postgresConnectionString` | string | `""` | PostgreSQL connection string of a database of its own: the service creates the `workspaces` table at startup, so the role needs create rights on it. |
+
+### ai-foundry-provisioner keys
+
+Required only when `aiFoundryProvisioner.enabled: true` and `catalogUrl` is set, unless an `ai-foundry-provisioner-keys` Secret already exists.
+
+| Key | Type | Default | Description |
+|---|---|---|---|
+| `secrets.aiFoundryProvisionerKeys.enabled` | boolean | `false` | When `true`, the chart creates a Secret named `ai-foundry-provisioner-keys`. |
+| `secrets.aiFoundryProvisionerKeys.privateKey` | string | `""` | Private key of the `ai-foundry-provisioner` Keycloak client. Requires `aiFoundryProvisioner.serve.enabled: true` or `aiFoundryProvisioner.keyPublishedExternally: true`. |
+| `secrets.aiFoundryProvisionerKeys.clientSecret` | string | `""` | Client secret of the `ai-foundry-provisioner` Keycloak client, as an alternative to `privateKey`. |
 
 ## Global image settings
 
@@ -112,8 +165,8 @@ Unlike the other secrets above, this Secret is **always created by the chart** w
 |---|---|---|---|
 | `global.labels` | object | `{}` | Additional labels added to all resources. |
 | `global.annotations` | object | `{}` | Additional annotations added to all resources. |
-| `global.imagePullSecret.enabled` | boolean | `false` | When `true`, the chart creates a `kubernetes.io/dockerconfigjson` Secret from `global.imageCredentials` and references it on every pod. |
-| `global.imagePullSecret.name` | string | `""` | Name of the image pull secret. Must match an existing Secret when `enabled: false`, or is created by the chart when `enabled: true`. |
+| `global.imagePullSecret.enabled` | boolean | `false` | When `true`, every pod references the image pull secret named in `global.imagePullSecret.name`. It does not control the creation of the Secret. |
+| `global.imagePullSecret.name` | string | `""` | Name of the image pull secret. The chart creates a `kubernetes.io/dockerconfigjson` Secret with this name only when `name` and all of `global.imageCredentials.registry`, `username`, `password` and `email` are set; otherwise the Secret must already exist. |
 | `global.imageCredentials.registry` | string | `""` | Container registry hostname. Also used as the fallback registry for any microservice image that does not set its own `image.registry`. |
 | `global.imageCredentials.username` | string | `""` | Registry username. Typically injected at deploy time via `--set` rather than committed to a values file. |
 | `global.imageCredentials.password` | string | `""` | Registry password/token. Typically injected at deploy time via `--set`. |
@@ -121,7 +174,7 @@ Unlike the other secrets above, this Secret is **always created by the chart** w
 
 ## Service accounts
 
-Each microservice gets its own dedicated `ServiceAccount`, created by default. Applies to: `accessControl`, `adkBeApp`, `aiFoundryBff`, `aiFoundryWebsite`, `apiGateway`, `authtoolBff`, `cache`, `doclingService`.
+Each microservice gets its own dedicated `ServiceAccount`, created by default. Applies to: `accessControl`, `adkBeApp`, `aiFoundryBe`, `aiFoundryBff`, `aiFoundryWebsite`, `aiFoundryMcp`, `aiFoundryWorkflows`, `apiGateway`, `authtoolBff`, `cache`, `redis`, `secretStoreService`, `workspaceService`. Remove `serviceAccounts.doclingService` from existing values.
 
 | Key | Type | Default | Description |
 |---|---|---|---|
@@ -160,30 +213,77 @@ OPA-based ext-authz service. Enforces RBAC policies on every request forwarded b
 | `accessControl.config.externalContext.authorization.enabled` | boolean | `true` | Authenticate to the external authorization API as an OIDC client. |
 | `accessControl.config.externalContext.authorization.clientId` | string | `"ai-foundry-access-control"` | OIDC client ID registered in Keycloak for `accessControl`. |
 | `accessControl.config.externalContext.authorization.tokenAuthMethod` | string | `"private_key_jwt"` | Token endpoint authentication method. Options: `private_key_jwt`, `client_secret_post`, `client_secret_basic`. |
-| `accessControl.config.externalContext.authorization.credentialsName` | string | `""` | Optional override for the credentials file name mounted from `secrets.accessControlKeys`. |
 
 ## adkBeApp
 
-The ADK Backend App orchestrates AI agents using Google Cloud ADK and Vertex AI.
+The ADK Backend App orchestrates AI agents using Google ADK and calls the models through the LiteLLM AI gateway of AI Services.
 
 | Key | Type | Default | Description |
 |---|---|---|---|
-| `adkBeApp.config.googleCloudProject` | string | `""` | GCP project ID where Vertex AI agents are deployed. |
-| `adkBeApp.config.googleCloudLocation` | string | `""` | GCP region (e.g. `europe-west1`). |
-| `adkBeApp.config.googleGenaiUseVertexai` | boolean | `false` | Set to `true` to use Vertex AI as the GenAI backend. When `false`, the Google AI Studio API is used. |
+| `adkBeApp.config.aiGatewayEnabled` | boolean | `true` | Call the models through the AI gateway. Set to `false` to call them directly. |
+| `adkBeApp.config.litellmProxyApiBase` | string | `""` | **Required** while `aiGatewayEnabled` is `true`: URL of the LiteLLM gateway of AI Services (e.g. `https://<ai-services host>/litellm/`). |
+| `adkBeApp.config.agentMemoryBaseUrl` | string | `""` | URL of the AI Services gateway in front of the memory service. Empty disables agent memory. |
+| `adkBeApp.config.langfuseBaseUrl` | string | `""` | Langfuse read API, for the trace agent tools. Credential in `secrets.adkBeAppKeys.langfuseAuthHeader`. |
+| `adkBeApp.config.prometheusBaseUrl` | string | `""` | Prometheus-compatible metrics API, for the metrics agent tool. |
 | `adkBeApp.config.agentReloadInterval` | string | `"300"` | Interval in seconds at which the ADK backend reloads agent definitions. |
-| `adkBeApp.config.tempoBaseUrl` | string | `""` | Base URL of a Tempo instance for `adkBeApp` to ship traces to directly, authenticated via `secrets.adkBeAppKeys.tempoAuthHeader`. |
 | `adkBeApp.config.foundryIntrospectionTools` | boolean | `false` | Enable introspection tools that expose AI Foundry's own agent/tool definitions to agents. |
 | `adkBeApp.config.allowPrivateNetworkMcp` | boolean | `false` | Allow the ADK backend to reach MCP servers on private/internal network addresses. |
 
 ## aiFoundryBff
 
-The AI Foundry BFF provides the backend API to the website and collects agent traces in Tempo.
+The AI Foundry BFF provides the backend API to the website. It requires `aiFoundryBe`, which serves the observability read APIs.
 
 | Key | Type | Default | Description |
 |---|---|---|---|
-| `aiFoundryBff.config.tempoBaseUrl` | string | `""` | Base URL of the Tempo instance used for agent trace queries (e.g. `https://tempo.your-domain.com`). |
-| `aiFoundryBff.config.tempoAllowedServices` | string | `"copilot-chat,claude-code,mia-ai-foundry,mia-flow"` | Comma-separated list of service names whose traces are surfaced in the AI Foundry UI. |
+| `aiFoundryBff.config.memoryBaseUrl` | string | `""` | URL of the AI Services gateway in front of the memory service (same value as `adkBeApp.config.agentMemoryBaseUrl`). Empty disables the memory routes. |
+| `aiFoundryBff.config.secretStoreBaseUrl` | string | `""` | Secret store used to write credentials. Empty defaults to this release's `secretStoreService`. |
+
+## aiFoundryBe
+
+PostgreSQL-backed implementation of the Catalog item API and read API for the observability screens. Enabled by default; its credential is in `secrets.aiFoundryBeKeys`.
+
+| Key | Type | Default | Description |
+|---|---|---|---|
+| `aiFoundryBe.enabled` | boolean | `true` | Deploy `ai-foundry-be`. Required when `catalogUrl` is empty or `aiFoundryBff` is enabled. |
+| `aiFoundryBe.config.langfuseBaseUrl` | string | `""` | Langfuse read API of AI Services. Requires `secrets.aiFoundryBeKeys.langfuseAuthHeader`. Empty disables the trace screens. |
+| `aiFoundryBe.config.prometheusBaseUrl` | string | `""` | Prometheus-compatible metrics API of AI Services. Empty disables the metrics screens. |
+| `aiFoundryBe.config.litellmBaseUrl` | string | `""` | Admin API of the LiteLLM gateway. Requires `secrets.aiFoundryBeKeys.litellmAdminKey`, `authorizationServer.issuer` and `apiGateway.authorizationServer.audiences`. |
+
+## aiFoundryWorkflows
+
+The Agentic Workflows engine: a REST API and a Temporal worker. Temporal is provided by AI Services.
+
+| Key | Type | Default | Description |
+|---|---|---|---|
+| `aiFoundryWorkflows.enabled` | boolean | `true` | Deploy the workflows engine. Set to `false` to skip the feature. |
+| `aiFoundryWorkflows.config.temporalAddress` | string | `""` | `host:port` of the Temporal gRPC frontend of AI Services (e.g. `temporal-frontend.<ai-services namespace>.svc.cluster.local:7233`). Empty makes every workflow route answer `503`. |
+| `aiFoundryWorkflows.config.temporalNamespace` | string | `""` | **Required** while enabled: a Temporal namespace (not a Kubernetes one) declared in `temporal.namespaces` of the AI Services values. |
+| `aiFoundryWorkflows.config.temporalTaskQueue` | string | `"agentic-workflows"` | Default Temporal task queue. |
+| `aiFoundryWorkflows.config.adkBaseUrl` | string | `""` | Runtime that runs `agent` steps. Empty defaults to this release's `adkBeApp`. |
+
+The database credential is in `secrets.aiFoundryWorkflowsKeys`.
+
+## aiFoundryMcp
+
+MCP server over the Catalog and Agentic Workflows, served at `{url}/foundry/mcp`. Enabled by default, with no required configuration.
+
+| Key | Type | Default | Description |
+|---|---|---|---|
+| `aiFoundryMcp.enabled` | boolean | `true` | Deploy the MCP server. |
+| `aiFoundryMcp.config.gatewayBaseUrl` | string | `""` | AI Foundry edge the server calls. Empty defaults to the in-cluster `api-gateway` Service. |
+
+## aiFoundryProvisioner
+
+A `post-install`/`post-upgrade` hook Job that seeds and migrates the AI Foundry resources of every tenant. The release fails if the Job fails. It needs the `ai-foundry-be` database credential. When `catalogUrl` is set it also needs the `ai-foundry-provisioner` Keycloak client (created by the [Realm Management chart](/requirements/installation-guidelines/shared-services/authn/keycloak-realm-management/15_getting-started.md) `0.1.47` or later with `products.aiFoundry: true`), its credential in `secrets.aiFoundryProvisionerKeys`, `authzUrl` and `authorizationServer.issuer`.
+
+| Key | Type | Default | Description |
+|---|---|---|---|
+| `aiFoundryProvisioner.enabled` | boolean | `true` | Run the hook Job. Set to `false` to skip it. |
+| `aiFoundryProvisioner.dryRun` | boolean | `false` | Report what would change without writing. Recommended for the first run. |
+| `aiFoundryProvisioner.clientId` | string | `""` | Client ID of the `ai-foundry-provisioner` service account. Required when `catalogUrl` is set. |
+| `aiFoundryProvisioner.keyId` | string | `""` | `kid` of the client key, when it has one. |
+| `aiFoundryProvisioner.serve.enabled` | boolean | `false` | Run the workload that publishes the client public key at `/.well-known/ai-foundry-provisioner/jwks.json`. Required with a private key, unless `keyPublishedExternally` is `true`. |
+| `aiFoundryProvisioner.keyPublishedExternally` | boolean | `false` | Set when the public key is registered directly in Keycloak instead of fetched from the JWKS URL. |
 
 ## aiFoundryWebsite
 
@@ -209,7 +309,7 @@ The AI Foundry frontend application. The `config.links` section configures all c
 | `aiFoundryWebsite.config.links.vscodeMonitoringDocsHref` | string |  | URL of the VS Code agent monitoring docs. |
 | `aiFoundryWebsite.config.links.kiroDocsHref` | string |  | URL of the Kiro IDE docs. |
 | `aiFoundryWebsite.config.oauth.scopes` | string |  | OAuth scopes requested by the git credential helper setup shown in the integration pages. When unset, derived from `isPaaS`: `openid offline_access` on-premises, `openid offline_access organization:*` on PaaS. Set it explicitly only for a realm that needs different scopes. |
-| `aiFoundryWebsite.config.otelServices` | array | `["copilot-chat","claude-code","mia-ai-foundry","mia-flow"]` | List of service names displayed in the OTEL traces view. |
+| `aiFoundryWebsite.config.otelServices` | array | `["copilot-chat","claude-code","mia-ai-foundry","litellm","mia-flow","adk-be-app"]` | List of service names displayed in the OTEL traces view. |
 | `aiFoundryWebsite.env.BASE_PATH` | string | `"/website/"` | Base path at which the website is served. |
 
 ## apiGateway
@@ -222,24 +322,28 @@ The Envoy API gateway. Validates JWTs and routes traffic to backend services.
 | `apiGateway.authorizationServer.name` | string | `""` | Name of the OIDC authorization server cluster in Envoy's configuration (used for JWKS resolution). |
 | `apiGateway.authorizationServer.audiences` | array | `["ai-foundry-api"]` | Expected JWT audiences. Tokens not containing at least one of these audiences are rejected. |
 | `apiGateway.maxBodyBytes` | integer | `10485760` | Maximum allowed request body size in bytes (default: 10 MiB). |
+| `apiGateway.docling.url` | string | `""` | Docling route of AI Services (e.g. `https://<ai-services host>/api/docling/`). The gateway routes `/api/docling/` there, exchanging the caller's token through `aiServicesClientId`. Empty leaves the route absent. |
+| `apiGateway.docling.maxBodyBytes` | integer | `33554432` | Maximum request body size in bytes on the Docling route. |
 
 ## authtoolBff
 
-The OIDC Backend-for-Frontend. Manages session lifecycle and the PKCE login/logout flow. Configures three OIDC clients: `website` (browser login/logout), `exchangeCatalog` (token exchange for the Catalog API, aliased `catalog-api`), and `exchangeAuthz` (token exchange for the Authz API, aliased `authz-api`).
+The OIDC Backend-for-Frontend. Manages session lifecycle and the PKCE login/logout flow. Configures four OIDC clients: `website` (browser login/logout), `exchangeCatalog` (token exchange for the Catalog API, aliased `catalog-api`), `exchangeAuthz` (token exchange for the Authz API, aliased `authz-api`), and `exchangeAiServices` (token exchange for AI Services, aliased `ai-services-api`). Set a client to `null` to remove it; if you do not use AI Services, set `authtoolBff.config.clients.exchangeAiServices: null` and leave `aiServicesClientId` empty.
 
 | Key | Type | Default | Description |
 |---|---|---|---|
 | `authtoolBff.config.clients.website.clientId` | string | `"ai-foundry-website-bff"` | OIDC client ID registered in Keycloak for the browser login/logout flow. |
 | `authtoolBff.config.clients.website.tokenAuthMethod` | string | `"private_key_jwt"` | Token endpoint authentication method for the website client. Options: `private_key_jwt`, `client_secret_post`, `client_secret_basic`. |
-| `authtoolBff.config.clients.website.credentialsName` | string | `""` | Optional override for the credentials file name mounted from `secrets.authtoolBffKeys.website`. |
 | `authtoolBff.config.clients.exchangeCatalog.clientId` | string | `"ai-foundry-token-exchange"` | OIDC client ID used for the Catalog token-exchange grant. |
 | `authtoolBff.config.clients.exchangeCatalog.clientAlias` | string | `"catalog-api"` | Alias under which the exchanged Catalog token is issued. |
 | `authtoolBff.config.clients.exchangeCatalog.tokenAuthMethod` | string | `"private_key_jwt"` | Token endpoint authentication method for the Catalog exchange client. |
 | `authtoolBff.config.clients.exchangeAuthz.clientId` | string | `"ai-foundry-token-exchange"` | OIDC client ID used for the Authz token-exchange grant. |
 | `authtoolBff.config.clients.exchangeAuthz.clientAlias` | string | `"authz-api"` | Alias under which the exchanged Authz token is issued. |
 | `authtoolBff.config.clients.exchangeAuthz.tokenAuthMethod` | string | `"private_key_jwt"` | Token endpoint authentication method for the Authz exchange client. |
+| `authtoolBff.config.clients.exchangeAiServices.clientId` | string | `"ai-foundry-token-exchange"` | OIDC client ID used for the AI Services token-exchange grant. |
+| `authtoolBff.config.clients.exchangeAiServices.clientAlias` | string | `"ai-services-api"` | Alias under which the exchanged AI Services token is issued. |
+| `authtoolBff.config.clients.exchangeAiServices.tokenAuthMethod` | string | `"private_key_jwt"` | Token endpoint authentication method for the AI Services exchange client. |
 | `authtoolBff.config.disableAccessTokenEncryption` | boolean | `false` | Disable encryption of the access token stored in Redis. Leave `false` unless required for debugging. |
-| `authtoolBff.config.userClaims` | array | `[]` | Additional JWT claims to propagate as user context within the session. |
+| `authtoolBff.config.userClaims` | array | `["name","email","sub"]` | Additional JWT claims to propagate as user context within the session. |
 | `authtoolBff.config.authorizationCache` | object | `{}` | Pass-through cache connection config, used when `cache.enabled: false`. |
 
 ## cache
@@ -250,14 +354,33 @@ Redis instance used by `authtoolBff` to store encrypted session tokens.
 |---|---|---|---|
 | `cache.config.maxMemory` | string | `"192mb"` | Maximum memory allocated to Redis. When reached, Redis evicts keys using the `allkeys-lru` policy. |
 
-## doclingService
+## redis
 
-The Docling document conversion service. It parses uploaded documents (PDF, DOCX, etc.) for use as AI agent context.
-
-:::caution Resource requirements
-`doclingService` is CPU-intensive (requests: 500m CPU / 1 GiB memory; limits: 1000m CPU / 2 GiB memory). It is disabled by default in lightweight environments (`preproduction`, `experimental`). Enable it only when document parsing is required.
-:::
+Shared application Redis of the AI Foundry services, used as a cache (persistence is off). Enabled by default.
 
 | Key | Type | Default | Description |
 |---|---|---|---|
-| `doclingService.enabled` | boolean | `true` | Enable or disable the Docling service. Set to `false` to reduce resource consumption when document ingestion is not needed. |
+| `redis.enabled` | boolean | `true` | Deploy the shared Redis. |
+| `redis.config.maxMemory` | string | `"128mb"` | Maximum memory allocated to Redis. |
+
+## secretStoreService
+
+Credential store in front of OpenBao or Vault (with AI Services, its OpenBao), holding the credentials configured in AI Foundry. Enabled by default.
+
+| Key | Type | Default | Description |
+|---|---|---|---|
+| `secretStoreService.enabled` | boolean | `true` | Deploy the secret store service. |
+| `secretStoreService.config.storeAddr` | string | `""` | **Required** while enabled: address of OpenBao or Vault (with AI Services, `http://openbao.<ai-services namespace>.svc.cluster.local:8200`). |
+| `secretStoreService.config.auth.method` | string | `"approle"` | `approle` uses the pair in `secrets.secretStoreServiceKeys`; `jwt` logs in with the pod ServiceAccount and needs a store whose JWT mount trusts the cluster OIDC issuer. |
+| `secretStoreService.config.auth.jwt.role` | string | `""` | Store role bound to this namespace's ServiceAccount. Required with `auth.method: jwt`. |
+
+## workspaceService
+
+Ephemeral filesystem shared by the steps of a workflow run: a control plane plus one runner pod per workspace. Enabled by default; its database credential is in `secrets.workspaceServiceKeys`.
+
+| Key | Type | Default | Description |
+|---|---|---|---|
+| `workspaceService.enabled` | boolean | `true` | Deploy the workspace service. Set to `false` to skip the feature. |
+| `workspaceService.config.runnerBackend` | string | `"kubernetes"` | Runner backend. Must be `kubernetes` in a cluster. |
+| `workspaceService.config.runnerNamespace` | string | `""` | Namespace where runner pods are created. Empty means the release namespace; another namespace must exist before install. |
+| `workspaceService.config.allowArbitraryCommands` | boolean | `false` | Let runners execute commands from the cloned repository. Requires `runnerNodeSelector` or `runnerRuntimeClassName`. |
