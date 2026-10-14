@@ -37,6 +37,14 @@ The Chart version follows [semver](https://semver.org/) policy so any breaking c
 
 ## Console v15 - version upgrades
 
+### From 15.0.15-3 to 15.0.15-10 (Mia-Platform v15.0.1 to v15.0.2)
+
+1. If you set `configurations.additionalCABundle`, make sure it also contains the public certificate authorities your services need. The bundle is now also mounted in the `api-gateway`, where it replaces the system trust store, and the `api-gateway` uses it to validate the TLS connection to Keycloak.
+
+Also note:
+
+- The new optional `configurations.trustedOrigins` list adds origins to the trusted origins of the authentication session, in addition to `consoleUrl` and `cmsUrl`.
+
 ### Upgrade from last Console v14 to v15.0.0
 
 Console v15 introduces a **breaking change** in the authentication architecture: the OAuth2-based provider configuration is replaced by a direct integration with **Keycloak**. The `authenticationService` is replaced by the new `authtool-bff` service.

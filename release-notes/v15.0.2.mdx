@@ -1,0 +1,78 @@
+---
+id: v15.0.2
+title: Version 15.0.2 Release Notes
+image: "img/release-note-link-preview.png"
+---
+
+import Accordion from '@site/src/components/Accordion/index.js';
+import dataAccordion from '@site/src/config/release-notes/release-note-v15-0-2.json';
+
+_Oct 13th, 2026_
+
+## Other New Features, Improvements and Bug Fixes
+
+<Accordion data={dataAccordion} />
+
+## How to update
+
+To move from Mia-Platform v15.0.1 to v15.0.2, update the Helm charts listed below. Products not listed here stay on the chart versions of the previous release notes. For the complete installation sequence, see the [Installation Guidelines](/docs/requirements/installation-guidelines/overview).
+
+### Helm chart versions
+
+| Product | Helm Chart | Version | Upgrade guide |
+|---|---|---|---|
+| **Console** | `console` | `15.0.15-10` | [How to upgrade](/docs/requirements/installation-guidelines/console/self-hosted/how-to-upgrade) |
+
+### Upgrade notes
+
+#### Console: from 15.0.15-3 to 15.0.15-10
+
+Manual action required before you install the new chart version. See the [Console upgrade guide](/docs/requirements/installation-guidelines/console/self-hosted/how-to-upgrade#from-15015-3-to-15015-10-mia-platform-v1501-to-v1502) for the steps.
+
+### Bill of materials
+
+Click on each chart to expand its full image list.
+
+<details>
+<summary><strong>console v15.0.15-10</strong></summary>
+
+| Image repository | Version |
+|---|:---:|
+| docker.io/envoyproxy/ratelimit | 19f2079f |
+| nexus.mia-platform.eu/back-kit/mfe-toolkit-on-prem | 1.3.13 |
+| nexus.mia-platform.eu/cache/envoyproxy/envoy | v1.32.1 |
+| nexus.mia-platform.eu/console/aggregated-website | 1.6.1-1 |
+| nexus.mia-platform.eu/console/backend | 33.2.1 |
+| nexus.mia-platform.eu/console/catalog-service | 1.7.2 |
+| nexus.mia-platform.eu/console/deploy-service | 8.4.0 |
+| nexus.mia-platform.eu/console/environments-variables | 3.6.1 |
+| nexus.mia-platform.eu/console/events-manager | 1.5.0 |
+| nexus.mia-platform.eu/console/extensibility-manager | 3.0.0 |
+| nexus.mia-platform.eu/console/favorites-service | 2.3.1 |
+| nexus.mia-platform.eu/console/feature-toggle-service | 1.3.7 |
+| nexus.mia-platform.eu/console/kubernetes-service | 8.4.6 |
+| nexus.mia-platform.eu/console/mcp-server | 1.2.1 |
+| nexus.mia-platform.eu/console/mia-assistant | 1.4.0 |
+| nexus.mia-platform.eu/console/mia-craft-bff | 1.2.5 |
+| nexus.mia-platform.eu/console/notification-provider | 2.2.5 |
+| nexus.mia-platform.eu/console/project-service | 2.1.0 |
+| nexus.mia-platform.eu/console/rbac-manager-bff | 2.1.2 |
+| nexus.mia-platform.eu/console/scripts/bindings-cleaner | 1.2.2 |
+| nexus.mia-platform.eu/console/scripts/configuration-history-cleaner | 0.4.1 |
+| nexus.mia-platform.eu/console/scripts/marketplace-sync | 10.11.0 |
+| nexus.mia-platform.eu/console/scripts/mia-assistant-embeddings-importer | 15.0.2-text-embedding-3-large |
+| nexus.mia-platform.eu/console/scripts/software-catalog-sync | 0.7.25 |
+| nexus.mia-platform.eu/console/scripts/version-upgrader | 11.1.8 |
+| nexus.mia-platform.eu/console/tenant-overview | 4.2.1 |
+| nexus.mia-platform.eu/core/authorization-service | 2.4.3 |
+| nexus.mia-platform.eu/core/client-credentials | 3.4.1 |
+| nexus.mia-platform.eu/core/crud-service | 6.10.3 |
+| nexus.mia-platform.eu/core/proxy-manager | 3.5.0 |
+| nexus.mia-platform.eu/core/swagger-aggregator | 3.9.6 |
+| nexus.mia-platform.eu/microlc/middleware | 3.4.0 |
+| nexus.mia-platform.eu/platform/auth/authtool/authtool-bff | 0.5.2 |
+| nexus.mia-platform.eu/plugins/files-service | 2.10.5 |
+| nexus.mia-platform.eu/plugins/ses-mail-notification-service | 3.5.0 |
+| nexus.mia-platform.eu/rond-authz/rond | 1.14.2 |
+
+</details>

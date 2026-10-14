@@ -89,7 +89,7 @@ All imports are safe to run in any order and any number of times, the `no-delete
 
 ## Chart version migration notes
 
-### From 0.1.28 to 0.1.35 (Mia-Platform v15.0.1 to v15.1.0)
+### From 0.1.28 to 0.1.35 (Mia-Platform v15.0.2 to v15.1.0)
 
 No manual action required: install the new chart version.
 

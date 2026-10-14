@@ -50,7 +50,7 @@ helm upgrade --install services . \
 
 ## Version-specific notes
 
-### From 0.2.65-hotfix.0 to 0.3.16 (Mia-Platform v15.0.1 to v15.1.0)
+### From 0.2.65-hotfix.0 to 0.3.16 (Mia-Platform v15.0.2 to v15.1.0)
 
 1. If you enabled `hooks.seedData` and set `hooks.seedData.secretName`, remove that value: the chart no longer reads it. The seed job now always reads the PostgreSQL connection string from the `rbac-management-keys` Secret, under the key set in `hooks.seedData.secretKey` (default `postgres-connection-string`). Before you upgrade, make sure that Secret contains the connection string under that key.
 

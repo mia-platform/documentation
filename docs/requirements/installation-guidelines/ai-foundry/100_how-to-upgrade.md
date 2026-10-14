@@ -52,7 +52,7 @@ helm upgrade ai-foundry . \
 
 ## Version-specific upgrade notes
 
-### From 0.4.79 to 0.4.83-0 (Mia-Platform v15.0.1 to v15.1.0)
+### From 0.4.79 to 0.4.83-0 (Mia-Platform v15.0.2 to v15.1.0)
 
 No manual action required: install the new chart version.
 
