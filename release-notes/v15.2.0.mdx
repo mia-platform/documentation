@@ -68,7 +68,7 @@ Once the new versions of Data Catalog Application have been deployed, run the fa
 
 ### Automatic provisioning of users and groups via SCIM
 
-Users and groups of a tenant can now be **provisioned automatically** by any Identity Provider that supports outbound **SCIM 2.0** provisioning, such as Microsoft Entra ID or Okta. The Identity Provider keeps users, groups, and group memberships in sync with its own directory, including user deactivation and group removal, while roles keep being assigned to the synchronized groups from the Administration section: SCIM never reads or writes role assignments.
+Users and groups of a tenant can now be **provisioned automatically** by any Identity Provider that supports outbound **SCIM 2.0** provisioning, such as Microsoft Entra ID or Okta. The Identity Provider keeps users, groups, and group memberships in sync with its own directory, including user deactivation and group removal, while roles and permissions keep being assigned to the synchronized groups from the Administration section.
 
 See the official [Automatic Provisioning via SCIM documentation](/docs/15.2.0/products/mia-platform-suite/scim-provisioning) for how the synchronization works and how to configure your Identity Provider. On-premise installations need the `scim-client` secret to be provisioned in the Keycloak vault, as described in the [Keycloak Realm Management documentation](/docs/15.2.0/requirements/installation-guidelines/shared-services/authn/keycloak-realm-management/overview#scim-provisioning-client).
 
