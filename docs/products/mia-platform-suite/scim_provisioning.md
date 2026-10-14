@@ -16,10 +16,10 @@ Automatic provisioning via SCIM is available starting from Mia-Platform **v15.2.
 
 Without SCIM, users and groups of a tenant are created and managed manually from the Administration section: an admin invites users, organizes them into groups, and assigns roles to groups and users.
 
-With SCIM, the management of **identities** (users, groups, and group memberships) moves to your Identity Provider, while the management of **roles** stays entirely in Mia-Platform Administration:
+With SCIM, the management of **identities** (users, groups, and group memberships) moves to your Identity Provider, while the management of **roles and permissions** stays entirely in Mia-Platform Administration:
 
 - **SCIM synchronizes identities.** Users and groups assigned to the SCIM application configured in your IdP are pushed to Mia-Platform, and every subsequent change (new members, removed members, deactivated users, deleted groups) is propagated automatically.
-- **Administration remains the only source of truth for RBAC.** Your IdP does not know, and does not send, anything about Mia-Platform roles. Roles (predefined or custom) are assigned to the synchronized groups from the Administration section, exactly as for any other group.
+- **Administration manages RBAC policies.** Your IdP does not know, and does not send, anything about Mia-Platform roles. Roles (predefined or custom) are assigned to the synchronized groups from the Administration section, exactly as for any other group.
 
 :::info Provisioning is tenant scoped
 **One SCIM application in the IdP = one Mia-Platform tenant.** Every tenant that needs automatic provisioning has its own SCIM application, pointing to its own tenant endpoint. As a result, the tenant is kept in sync, for users and groups, with the state of the corresponding SCIM application in your IdP.
@@ -124,7 +124,7 @@ The following steps describe the setup in a generic way. Names of menus and fiel
 
 ### 1. Prepare Mia-Platform
 
-1. Verify that the target tenant exists and that every custom role you need has already been created.
+1. Verify that the target tenant exists.
 2. Verify with your platform operator that the `scim-client` is configured and get its client secret.
 3. Take note of the [connection parameters](#connection-parameters) for the target tenant.
 
@@ -196,6 +196,12 @@ When a group managed via SCIM is deleted in the IdP, or unassigned from the SCIM
 
 ## Coexistence with manual management in Administration
 
-- **Roles**: since roles are never part of the SCIM payload, a role assigned in Administration to a synchronized group is **never overwritten or modified** by a provisioning cycle. It lives exclusively in Administration and can be changed at any time, with no risk of being realigned by the IdP.
-- **Identities** (user and group names, group memberships, active/disabled status) are instead **owned by the IdP**. From Administration, it is not possible to add members to a SCIM-managed group: the change would be overwritten by the next provisioning event, which reconciles the group with the state in the IdP.
-- **Manual groups**: you can still create other groups manually (not managed by SCIM) in the Administration section of the tenant, and add users to them to grant additional roles and permissions.
+The table below summarizes what is owned by the IdP through SCIM and what remains managed in Administration.
+
+| Element | SCIM-managed | Not SCIM-managed |
+| :---- | :---- | :---- |
+| **User and group names** | ✅ Synchronized from the IdP | ❌ Managed in Administration |
+| **Active/disabled status of users** | ✅ Synchronized from the IdP | ❌ Managed in Administration |
+| **Members of a group** | ✅ Synchronized from the IdP. They cannot be changed from Administration: any change would be overwritten by the next provisioning event | ❌ Managed in Administration |
+| **Roles assigned to a group** | ❌ Managed in Administration | ✅ Assigned and changed only in Administration, never overwritten by a provisioning cycle |
+| **Manual groups and their members** | ❌ Managed in Administration | ✅ Created and managed in Administration, to grant additional roles and permissions |
