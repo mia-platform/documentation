@@ -38,6 +38,8 @@ Mia-Platform v15.1.0 includes improvements across all Mia-Platform Suite, in par
 
 *Oct 13th, 2026*
 
+Mia-Platform v15.0.2 introduces form-based editing in the **Console** for Infrastructure Resources created from Marketplace items that define a JSON schema: the form and its validation are now available on every edit, not only at creation.
+
 [Read the release notes](/release-notes/v15.0.2.mdx)
 
 ## [v15.0.1](/release-notes/v15.0.1.mdx)

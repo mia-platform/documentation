@@ -1,1 +1,22 @@
-[]
+[
+  {
+    "title": "Console",
+    "icon": "console",
+    "defaultOpen": true,
+    "type": "versions",
+    "items": {
+      "newFeatures": [],
+      "improvements": [
+        {
+          "title": "Form-based editing for Infrastructure Resources",
+          "description": [
+            "Infrastructure Resources created from a Marketplace item that defines a JSON schema now keep their **form** after creation: the JSON schema of the selected item version is applied to validate the resource not only when it is first added, but also on every subsequent edit.",
+            "You can still switch to the YAML editor for more advanced changes; if the manifest no longer matches the JSON schema of the item version, switching back to the form is disabled. Once a resource is detached from the Marketplace, only the YAML editor is available.",
+            "Check the [Infrastructure Resources documentation](/docs/15.0.2/products/console/design-your-projects/custom-resources/#update-an-infrastructure-resource) for more details."
+          ]
+        }
+      ],
+      "bugFixes": []
+    }
+  }
+]
