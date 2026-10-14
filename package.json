@@ -46,7 +46,7 @@
     "typescript-eslint": "^8.71.1"
   },
   "devDependencies": {
-    "@babel/eslint-parser": "^7.29.9",
+    "@babel/eslint-parser": "^8.0.7",
     "@docusaurus/module-type-aliases": "^3.10.2",
     "@docusaurus/types": "3.10.2",
     "@eslint/js": "^10",
