@@ -203,11 +203,11 @@ Because the lifecycle of `CustomField` entities is independent from the items th
 
 Two fields are central to the way the catalog associates people with items.
 
-- **Owner.** Every item can have an *owner*, identified by an email address stored in `metadata.owner`. The Catalog App exposes ownership as a first-class field on the item form.
+- **Owner.** Every item can have an *owner*, stored in `metadata.owner` as a reference to a Mia-Platform user (`{type: "principal", ref: <user ID>}`) or as an email address (`{type: "email", ref: <email>}`). The Catalog App shows the owner as a user and exposes ownership as a first-class field on the item form.
 - **Follower.** Any number of people can additionally *follow* an item to be notified about compliance events that involve it, identified by the email addresses stored in `metadata.followers`. Owners are implicitly considered followers.
 
 :::note
-Owner and follower are plain email fields, not relationships, so they are not navigable in the [relationship graph](/products/catalog/basic-concepts/60_relationships.md). The plan is to eventually resolve these emails to first-class User items and surface them in the relationship graph.
+Owner and follower are fields, not relationships, so they are not navigable in the [relationship graph](/products/catalog/basic-concepts/60_relationships.md).
 :::
 
 ## Primary key and Item URN
