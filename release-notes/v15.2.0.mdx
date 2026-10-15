@@ -87,8 +87,8 @@ To move from Mia-Platform v15.1.1 to v15.2.0, update the Helm charts listed belo
 | **Auth — Realm Management** | `keycloak-realm-management` | `0.1.47` | [How to upgrade](/docs/15.2.0/requirements/installation-guidelines/shared-services/authn/keycloak-realm-management/how-to-upgrade) |
 | **Homepage & RBAC** | `services` | `0.4.6` | [How to upgrade](/docs/15.2.0/requirements/installation-guidelines/shared-services/services/how-to-upgrade) |
 | **Catalog** | `catalog` | `0.4.4` | [How to upgrade](/docs/15.2.0/requirements/installation-guidelines/catalog/how-to-upgrade) |
-| **AI Foundry** | `ai-foundry` | `0.5.0-beta.23` | [How to upgrade](/docs/15.2.0/requirements/installation-guidelines/ai-foundry/how-to-upgrade) |
-| **AI Services** | `ai-services` | `0.1.0-beta.11` | [How to upgrade](/docs/15.2.0/requirements/installation-guidelines/ai-services/how-to-upgrade) |
+| **AI Foundry** | `ai-foundry` | `0.5.0-preview.0` | [How to upgrade](/docs/15.2.0/requirements/installation-guidelines/ai-foundry/how-to-upgrade) |
+| **AI Services** | `ai-services` | `0.1.0-preview.0` | [How to upgrade](/docs/15.2.0/requirements/installation-guidelines/ai-services/how-to-upgrade) |
 | **Console** | `console` | `15.2.0-beta.3` | [How to upgrade](/docs/15.2.0/requirements/installation-guidelines/console/self-hosted/how-to-upgrade) |
 
 ### Upgrade notes
@@ -105,11 +105,11 @@ Manual action required before you install the new chart version. See the [Homepa
 
 Manual action required before you install the new chart version. See the [Catalog upgrade guide](/docs/15.2.0/requirements/installation-guidelines/catalog/how-to-upgrade#from-0342-0-to-044-mia-platform-v1511-to-v1520) for the steps.
 
-#### AI Foundry: from 0.4.83-0 to 0.5.0-beta.23
+#### AI Foundry: from 0.4.83-0 to 0.5.0-preview.0
 
-Manual action required before you install the new chart version. See the [AI Foundry upgrade guide](/docs/15.2.0/requirements/installation-guidelines/ai-foundry/how-to-upgrade#from-0483-0-to-050-beta23-mia-platform-v1511-to-v1520) for the steps.
+Manual action required before you install the new chart version. See the [AI Foundry upgrade guide](/docs/15.2.0/requirements/installation-guidelines/ai-foundry/how-to-upgrade#from-0483-0-to-050-preview-0-mia-platform-v1511-to-v1520) for the steps.
 
-#### AI Services: first release, 0.1.0-beta.11
+#### AI Services: first release, 0.1.0-preview.0
 
 No manual action required: install the new chart version.
 
@@ -173,18 +173,18 @@ Click on each chart to expand its full image list.
 </details>
 
 <details>
-<summary><strong>ai-foundry v0.5.0-beta.23</strong></summary>
+<summary><strong>ai-foundry v0.5.0-preview.0</strong></summary>
 
 | Image repository | Version |
 |---|:---:|
 | docker.io/redis | 8.4.0 |
-| nexus.mia-platform.eu/ai-foundry/adk-be-app | 0.8.5 |
-| nexus.mia-platform.eu/ai-foundry/ai-foundry-be | 0.1.3 |
+| nexus.mia-platform.eu/ai-foundry/adk-be-app | 0.8.6 |
+| nexus.mia-platform.eu/ai-foundry/ai-foundry-be | 0.1.5 |
 | nexus.mia-platform.eu/ai-foundry/ai-foundry-bff | 0.4.3 |
 | nexus.mia-platform.eu/ai-foundry/ai-foundry-mcp-server | 0.1.1 |
-| nexus.mia-platform.eu/ai-foundry/ai-foundry-provisioner | 0.1.2 |
-| nexus.mia-platform.eu/ai-foundry/ai-foundry-website | 0.8.6 |
-| nexus.mia-platform.eu/ai-foundry/ai-foundry-workflows | 0.1.2 |
+| nexus.mia-platform.eu/ai-foundry/ai-foundry-provisioner | 0.1.3 |
+| nexus.mia-platform.eu/ai-foundry/ai-foundry-website | 0.8.7 |
+| nexus.mia-platform.eu/ai-foundry/ai-foundry-workflows | 0.1.3 |
 | nexus.mia-platform.eu/ai-resources/secret-store-service | 0.1.1 |
 | nexus.mia-platform.eu/ai-resources/workspace-service | 0.1.1 |
 | nexus.mia-platform.eu/cache/envoyproxy/envoy | v1.36.2 |
@@ -194,7 +194,7 @@ Click on each chart to expand its full image list.
 </details>
 
 <details>
-<summary><strong>ai-services v0.1.0-beta.11</strong></summary>
+<summary><strong>ai-services v0.1.0-preview.0</strong></summary>
 
 | Image repository | Version |
 |---|:---:|
