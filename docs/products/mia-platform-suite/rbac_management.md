@@ -75,6 +75,8 @@ A **Tenant Admin**, by contrast, does not see this organization-wide view: they 
 
 From the organization-wide view, clicking on a specific tenant opens that **tenant's detail**, where the admin manages the tenant's users, service accounts, and roles/permissions.
 
+![Organization-wide service accounts view](img/org_service_accounts.png)
+
 ## Inviting users
 
 Users can be invited directly from the Administration UI, without going through the RBAC API or provisioning them manually in Keycloak. Onboarding a user is a two-step process: first they are invited to the **organization**, then they are added to one or more **tenants**.
@@ -83,6 +85,9 @@ Users can be invited directly from the Administration UI, without going through 
 
 - An **Organization Admin** invites a user to the organization from the organization-wide user management screen, entering the invitee's email, the tenant to add them to, and, optionally, the **role** they should be assigned — assigning it at invitation time, rather than as a separate step afterwards. *(Before v15.2, this optional assignment was a group rather than a role — see [UX improvements (v15.2)](#ux-improvements-v152) above.)*
 - A **Tenant Admin** can add users to their own tenant, but only among users who have already been invited to (and accepted into) the organization by an Organization Admin.
+![Tenant users view](img/tenant_users.png)
+
+- Users can be added in **bulk mode**: an Organization Admin can invite several users to the organization at once, and an admin can add several users to a tenant at once, rather than one at a time.
 - The invited user receives an email invitation and must accept it **within 7 days** to become a member of the organization.
 
 ![Organization-wide users view](img/users_list.png)
@@ -101,13 +106,17 @@ See [Automatic Provisioning via SCIM](/products/mia-platform-suite/scim_provisio
 
 - The administrator **assigns** roles to users, service accounts, or **user groups**, optionally limiting their validity to a specific scope. As of **v15.2**, the permission tree in the Administration UI is focused exclusively on **Roles**: permissions are bundled into roles, and groups are no longer used to bundle permissions (see [UX improvements (v15.2)](#ux-improvements-v152) below).
 - **User groups** are still available: a group is a collection of users that can be assigned one or more roles, and its members inherit them. Groups can be created and managed manually from the Administration UI, or [provisioned automatically via SCIM](#automatic-provisioning-via-scim), mirroring 1:1 the groups defined in your Identity Provider.
+- **Pre-configured groups**: when a new tenant is created, it already comes with a set of permission groups, each with its role assignments: **Admins**, **DevOps**, **AI Managers**, and **AI Developer**. They are listed in the **Built-in** tab of the tenant's **Groups** page, while the groups you create are listed in the **Custom** tab. Admins can add users to these groups straight away, without defining groups and role assignments from scratch.
+- **Built-in and custom roles**: the tenant's **Roles** page lists the **Built-in** roles, which cannot be modified or deleted, and the **Custom** roles. Admins can create custom roles with **New role**, and modify or delete them at any time.
 - Multiple roles can be assigned in **bulk mode**, rather than one at a time, speeding up onboarding.
 - Both **Organization Admins** and **Tenant Admins** can assign **broad roles** (the predefined, coarse-grained roles from the [Permission Matrix](#permission-matrix)).
 - Only the **Organization Admin** can assign **granular roles**. Granular role assignment is available:
   - For **Catalog**, with the widest granularity: permissions can be scoped to specific groups and users through **filter expressions** (formulas combining fields and logical operators).
   - For **AI Foundry**, with a narrower degree of granularity compared to Catalog — see [AI Foundry](#ai-foundry) above.
 
-![Users](img/groups_ad.png)
+![Built-in groups](img/groups_builtin.png)
+
+![Built-in roles](img/roles_builtin.png)
 
 - When a user or a service attempts to perform an action on the platform (e.g., creating a new role, modifying an organization's configuration), the system:
   - automatically retrieves the roles and permissions associated with the requester;
@@ -237,8 +246,8 @@ The Administration UI introduces two changes as of v15.2:
 
 In this v15 release, Catalog RBAC management has the following constraints:
 
-- **Roles**: cannot be created, modified, or deleted. The available roles are fixed and correspond to those defined in the [Permission Matrix](#permission-matrix) above.
-- **Groups**: can be created. Groups are the only entity that admins can define in this version, to combine users under a shared set of role assignments.
+- **Roles**: built-in roles cannot be modified or deleted and correspond to those defined in the [Permission Matrix](#permission-matrix) above. Custom roles can be created, modified, and deleted.
+- **Groups**: can be created, to combine users under a shared set of role assignments. Built-in groups are created with every new tenant.
 - **Users**: cannot be created. Users can only be **assigned** to existing roles and groups.
 - **Permissions**: not yet customizable in this phase permissions are tied to roles as defined in the matrix and cannot be edited individually.
 - **Group scope**: the only scope that can currently be assigned to a group is the **entire tenant**; scoping a group to a specific path or sub-resource is not yet available.
@@ -408,7 +417,7 @@ Use the resulting `access_token` in the `Authorization: Bearer <access_token>` h
 
 ### Is it possible to add users, groups, or roles in "bulk" mode to speed up onboarding?
 
-Roles can be assigned to a group in bulk mode — see [How to assign roles and permissions](#how-to-assign-roles-and-permissions) above. Bulk user addition from the Administration UI is not supported yet; to onboard many users at once, configure [automatic provisioning via SCIM](/products/mia-platform-suite/scim_provisioning.md) from your Identity Provider.
+Roles can be assigned to a group in bulk mode — see [How to assign roles and permissions](#how-to-assign-roles-and-permissions) above. Users can also be added in bulk mode, both when inviting them to the organization and when adding them to a tenant — see [Inviting users](#inviting-users). To keep users and groups in sync with your Identity Provider, configure [automatic provisioning via SCIM](/products/mia-platform-suite/scim_provisioning.md).
 
 ### How does the user offboarding procedure work?
 
