@@ -28,6 +28,6 @@ The Homepage & RBAC section covers the `services` Helm chart, which deploys the 
 - **authtool-bff**: the OIDC Backend-for-Frontend that manages browser sessions and PKCE flows with Keycloak.
 - **Mia Platform homepage** frontend.
 
-This layer must be running before installing Console or Catalog, both of which depend on `authtool-bff` for session management and on `access-control` for request authorization.
+This layer must be running before installing Console, Catalog, AI Services, and AI Foundry: they rely on its `rbacManagement` authorization API and on `access-control` for request authorization. The `authtool-bff` deployed here serves the homepage; each product bundles its own `authtool-bff` instance for browser login.
 
 [Go to Homepage & RBAC →](/requirements/installation-guidelines/shared-services/services/10_overview.md)
