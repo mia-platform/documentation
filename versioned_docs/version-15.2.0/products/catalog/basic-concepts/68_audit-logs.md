@@ -24,7 +24,7 @@ For each event, the following columns are shown:
 
 ## Available actions
 
-A filter icon above the table opens a panel to narrow down the list by **Time range** (a "From → To" date range), **Editor** (the user who performed the action), **Action** (from a wide, granular list, e.g. *Count item types, List item types, Read item type, Create or update item type, Update item type history settings, Update item type audit settings, Delete item type, Read webhooks, Delete item, Read item OpenAPI, List item revisions, Read item revision, List item versions, Create item version, Count item versions, Read item version, Read/Update tenant settings*, and other governance/item-related actions), and **Result** (**Success** or **Error**).
+A filter icon above the table opens a panel to narrow down the list by **Time range** (a "From → To" date range), **Editor** (the user who performed the action), **Action** (from a wide, granular list, e.g. *Count item types, List item types, Read item type, Create or update item type, Update item type history settings, Update item type audit settings, Delete item type, Read webhooks, Delete item, Read item OpenAPI, List item revisions, Read item revision, List item versions, Create item version, Count item versions, Read item version, Read/Update tenant settings*, and other governance/item-related actions), and **Outcome** (**Success** or **Error**).
 
 Next to the filter icon, a download icon lets you export the log — optionally filtered — for sharing or external archiving, and a button with a lock icon lets you **disable audit log recording**. This action is global: it turns off audit logging for **every Item Type** in the tenant at once, and — being this disruptive — it's reserved for users with adequate privileges. For finer-grained control over a single Item Type without affecting the others, see [Enabling read tracking](#enabling-read-tracking) below — note that it only lets you turn *read* tracking on or off for that type; write operations remain tracked regardless.
 
@@ -36,7 +36,7 @@ An administrator wants to check who changed the tenant settings in the last week
 1. Open the filter panel.
 2. Set the **Time range** to the last 7 days.
 3. Select **Action = Update tenant settings**.
-4. *(Optional)* Select **Result = Error** to isolate only the failed attempts.
+4. *(Optional)* Select **Outcome = Error** to isolate only the failed attempts.
 5. Review the results and, if needed, export them to share with the compliance team.
 
 ## Notes

@@ -12,11 +12,11 @@ This tutorial demonstrates how to use the Catalog to monitor compliance of softw
 
 ACME Inc. requires all Java services running across multiple cloud platforms to use a company-approved and actively maintained Java runtime. This process ensures external dependencies are maintained and mitigates supply-chain attacks.
 
-## Step 1: Define the Item Type Definition (ITD)
+## Step 1: Define the Item Type
 
-Under the `Configuration` > `Create Item Types` section, add a new Item Type Definition (ITD) to incorporate the required Java runtime details into the Catalog.
+Under `Configuration` > `Item Types`, click **Create item type** and add a new Item Type to incorporate the required Java runtime details into the Catalog.
 
-The validation schema should define two fields for the Java runtime `version` (e.g., 11, 19, 25) and `vendor` (e.g., Oracle JDK, Oracle OpenJDK, Amazon Corretto).
+The validation schema should define two fields for the Java runtime `version` (e.g., 11, 17, 21) and `vendor` (e.g., Oracle JDK, Oracle OpenJDK, Amazon Corretto).
 
 ```json
 {
@@ -42,14 +42,13 @@ The validation schema should define two fields for the Java runtime `version` (e
 
 :::tip
 
-You can also use annotations or labels to store relevant metadata instead of a custom ITD and connector 
-and customize your CI/CD pipelines to enrich your Catalog items using the [Catalog API](/products/catalog/usage/catalog-api.md#update).
+You can also use annotations or labels to store relevant metadata instead of a custom Item Type and connector, and customize your CI/CD pipelines to enrich your Catalog items using the [Catalog API](/products/catalog/usage/catalog-api.md#create--update).
 
 :::
 
 ## Step 2: Define ACME Services (Items)
 
-Under the `Items` > `All Items` section, add three new items based on the ITD created previously with the following specifications:
+Under the `Items` > `All Items` section, add three new items based on the Item Type created previously with the following specifications:
 
 - **ACME Admin Web Portal:** Oracle JDK (Approved 🟢), Java 25 (Maintained 🟢).
 
@@ -83,12 +82,12 @@ Under the `Items` > `All Items` section, add three new items based on the ITD cr
 
 ## Step 3: Create View
 
-Under the `Items` > `Create new view`, create a new view called **ACME Services** with the following filters:
+Under `Items`, click **Create view** and create a new view called **ACME Services** with the following filters:
 
 - **API Version**: `acme.eu/v1`
 - **Type**: `Service`
 
-This view targets the `Service` items based on the previously created ITD.
+This view targets the `Service` items based on the previously created Item Type.
 
 ![Catalog ACME Services View](img/catalog_tutorial_view.png)
 

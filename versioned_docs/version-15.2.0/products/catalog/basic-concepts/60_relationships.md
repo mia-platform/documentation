@@ -9,7 +9,7 @@ sidebar_label: Relationships
 A **relationship** is a typed, directed link between a *source* item and a *target* item. Relationships form a graph layered on top of the catalog's items: they let you traverse from a deployment to the environment it targets, from a vulnerability to the artifacts it affects, and so on.
 
 :::note
-Item ownership and followers (see [Items](/products/catalog/basic-concepts/10_items.md#ownership-and-followers)) are **not** modeled as relationships: they are plain email fields on the item. They used to be built-in relationship types (`ownership.mia-platform.eu` and `follow.mia-platform.eu`) navigable in this graph, and are expected to return here once owners/followers are resolved to first-class User items.
+Item ownership and followers (see [Items](/products/catalog/basic-concepts/10_items.md#ownership-and-followers)) are **not** modeled as relationships: they are fields on the item (the owner is a Mia-Platform user or an email address, followers are email addresses), so they are not navigable in this graph.
 :::
 
 The catalog models relationships with three built-in kinds:

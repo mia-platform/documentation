@@ -66,11 +66,6 @@
     "type": "roadmap",
     "items": {
       "newFeatures": [
-         {
-          "title": "Items Versioning",
-          "description": ["Support for versioning of Catalog items, allowing users to track changes over time."],
-          "tags": ["Catalog"]
-        },
         {
           "title": "Items Lifecycle",
           "description": ["Manage the full lifecycle of Catalog items — from creation to deprecation — with defined states and transitions that ensure governance and traceability across the organization."],

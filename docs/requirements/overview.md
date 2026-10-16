@@ -87,13 +87,13 @@ The ownership model changes according to the selected distribution type.
 
 `Shared responsibility` indicates areas where platform-level integration is provided by Mia-Platform, while infrastructure provisioning and/or day-2 operations remain in customer scope.
 
-The Mia Platform product suite in scope comprises three products (**Console**, **Catalog**, and **AI Foundry**) backed by a shared services layer. The shared services layer includes the **Auth tooling** (Keycloak and Realm Management) and the **Homepage & RBAC** component (platform gateway, session management, and authorization). Both are platform-level components provisioned by Mia Platform; they enable the suite but are not standalone business products. **Auth tooling** is a hard prerequisite for every product; **Homepage & RBAC** is recommended as the next installation step, ahead of the products, even though no product hard-depends on it.
+The Mia Platform product suite in scope comprises three products (**Console**, **Catalog**, and **AI Foundry**) backed by a shared services layer. The shared services layer includes the **Auth tooling** (Keycloak and Realm Management) and the **Homepage & RBAC** component (platform gateway, session management, and authorization). Both are platform-level components provisioned by Mia Platform; they enable the suite but are not standalone business products. Both are prerequisites for every product: **Auth tooling** is installed first, followed by **Homepage & RBAC**, and only then the products.
 
 ## Cross-Product Dependencies
 
 The **Auth tooling layer** (Keycloak and Realm Management) is the foundational prerequisite for the entire suite: every product requires a functioning Keycloak realm and OIDC issuer before it can be installed.
 
-**Auth tooling** (Keycloak and Realm Management) must be fully operational before any product chart is installed: it provides the OIDC issuer required by all components. **Homepage & RBAC** is recommended as the second step, ahead of the products, even though it is not a hard prerequisite: it exposes the `rbacManagement` authorization API (via `authzUrl`) that Console, Catalog, and AI Foundry can optionally call to enrich policy evaluation with product/permission context. Each product bundles its own `authtool-bff` instance for browser login and does not depend on the `services` chart for it.
+**Auth tooling** (Keycloak and Realm Management) must be fully operational before any product chart is installed: it provides the OIDC issuer required by all components. **Homepage & RBAC** is also a prerequisite and must be installed right after the Auth tooling, before any product: it exposes the `rbacManagement` authorization API (via `authzUrl`) that Console, Catalog, and AI Foundry rely on to manage users, tenants, roles, and permissions, so without it the products cannot be used. Each product bundles its own `authtool-bff` instance for browser login and does not depend on the `services` chart for it.
 
 Among the products, the installation order is:
 
@@ -114,7 +114,6 @@ The following table highlights the main shared dependencies across products.
 | MongoDB | ❌ | ❌ | ❌ | ✅ |
 | Redis | ✅ | ✅ | ✅ | ✅ |
 | Kafka | ❌ | ✅ | ❌ | ❌ |
-| Google Cloud / Vertex AI | ✅ | ✅ | ✅ | ✅ optional |
 
 :::info
 The provisioning and management of these tools depends on what distribution model has been chosen (see paragraph above).
@@ -178,13 +177,13 @@ Compatibility matrix:
 | CI/CD tool | Currently compatible only with GitLab, GitHub Actions (SaaS), and Azure Pipelines |
 
 
-### Foundry
+### AI Foundry
 
 | Dependency | Version |
 | --- | --- |
 | Keycloak | >= 26.2 |
 | Redis | >= 8.4 |
-| PostgreSQL | >= 16 |
+| PostgreSQL | >= 15 |
 | LLM API key / Service Account | N/A |
 | Kubernetes | >= 1.34 |
 | Mia-Platform Catalog | V2 |

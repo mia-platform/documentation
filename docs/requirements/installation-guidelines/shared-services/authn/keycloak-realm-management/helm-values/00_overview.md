@@ -42,9 +42,10 @@ Controls which Mia Platform product OIDC clients are created in the realm. Setti
 |---|---|---|---|
 | `products.console` | bool | `false` | Create the OIDC client and scopes for **Mia Platform Console** (Homepage & RBAC included). Also creates the Console guest client role, its mapping to the `mia:console` and `mia:console-cms` scopes, and the `products/console/guest` group. |
 | `products.catalog` | bool | `false` | Create the OIDC client and scopes for **Context Catalog**, including the `catalog-engine` service account client. |
-| `products.aiFoundry` | bool | `false` | Create the OIDC client and scopes for **AI Foundry**. |
+| `products.aiFoundry` | bool | `false` | Create the OIDC client and scopes for **AI Foundry**, including the `ai-foundry-provisioner` service account client and the `ai-foundry-cli` client. Requires `products.authz` and `products.catalog` to be enabled as well. |
 | `products.flow` | bool | `false` | Create the OIDC client and scopes for **Mia Flow**, including the `flow-access-control` service account client. |
-| `products.authz` | bool | `false` | Create the OIDC client and scopes for the Authorization service. Also creates the `products/authz/superadmin` group. |
+| `products.authz` | bool | `false` | Create the OIDC client and scopes for the Authorization service, including the `authz-token-exchange` client and the `scim-client` service account client. Also creates the `products/authz/superadmin` group. |
+| `products.aiServices` | bool | `false` | Create the OIDC clients and scopes for **AI Services**: `ai-services-api`, `ai-services-access-control`, `ai-services-temporal-ui` and `ai-services-mcp-gateway`. Also adds the `mia:ai-services` scope to the token exchange clients. |
 
 When a product is enabled, the corresponding `urls.*` value must be set.
 
@@ -61,6 +62,7 @@ Base URLs used to compute OIDC redirect URIs, post-logout redirect URIs, and COR
 | `urls.aiFoundry` | string | `""` | AI Foundry URL. Required when `products.aiFoundry: true`. |
 | `urls.flow` | string | `""` | Mia Flow URL. Required when `products.flow: true`. |
 | `urls.authz` | string | `""` | Authorization service URL. Required when `products.authz: true`. |
+| `urls.aiServices` | string | `""` | Public AI Services URL. Required when `products.aiServices: true`. Must match the URL configured in the [AI Services](/requirements/installation-guidelines/shared-services/ai-services/10_overview.md) chart. |
 
 ## Platform options (`options`)
 

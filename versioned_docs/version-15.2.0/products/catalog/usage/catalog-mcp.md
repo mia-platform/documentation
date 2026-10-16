@@ -32,13 +32,13 @@ Alternatively, you can configure the client manually as described below.
 
 ### Configure the client manually
 
-The Catalog MPC Server **works for one single specific tenant at a time**, meaning that you need to set the tenant when registering the server on you MCP client.
+The Catalog MCP Server **works for one single specific tenant at a time**, meaning that you need to set the tenant when registering the server on your MCP client.
 
 :::tip
-If you belong to a single tenant, you can avoid specifing it on the client, since the system will automatically infer it at every call.
+If you belong to a single tenant, you can avoid specifying it on the client, since the system will automatically infer it at every call.
 :::
 
-The tenant needs to be passed with an header (consult your client documentation for details on how to pass headers in MCP Server registrations). The header key is `x-mia-acl-context` while the value is a stringified JSON with the following fields:
+The tenant needs to be passed with a header (consult your client documentation for details on how to pass headers in MCP Server registrations). The header key is `x-mia-acl-context` while the value is a stringified JSON with the following fields:
 
 ```json
 {
@@ -48,10 +48,10 @@ The tenant needs to be passed with an header (consult your client documentation 
 ```
 
 :::tip
-If you want to work with multiple tenant, register multiple instances of the MCP Server giving a different header to each of them.
+If you want to work with multiple tenants, register multiple instances of the MCP Server giving a different header to each of them.
 :::
 
-Each MCP client has its own way to add MCP Server, so we encourage you to check your client's documentation. It follows a couple of examples for some of the most used clients.
+Each MCP client has its own way to add an MCP Server, so we encourage you to check your client's documentation. Here are a couple of examples for some of the most used clients.
 
 **Visual Studio Code.**
 
@@ -71,7 +71,7 @@ Add the following snippet to your `mcp.json` file:
 }
 ```
 
-**Claude Desktop.**
+**Claude Code.**
 
 Run the following CLI command:
 

@@ -10,7 +10,7 @@ import dataAccordion from '@site/src/config/release-notes/release-note-v15-2-0.j
 _Oct 15th, 2026_
 
 :::info
-Mia-Platform v15.2.0 **Fall Release** is **now in Preview** and will be generally available on November 19!
+Mia-Platform v15.2.0 **Fall Release** is **now in Preview** and will be generally available on November 19th!
 :::
 
 ## Catalog
@@ -21,7 +21,7 @@ Items now have a **History** section that tracks their full revision history, le
 
 ### Audit Logs
 
-Items now have an **Audit Logs** section, both tenant-wide and per Item Type, that lets Auditors review every action performed on the Catalog for security and compliance purposes — see the official [Audit Logs documentation](/docs/15.2.0/products/catalog/basic-concepts/audit-logs) to discover all the available features.
+The Catalog now has **Audit Logs**, available tenant-wide under **Activity > Audit Logs** and on each Item Type, that lets Auditors review every action performed on the Catalog for security and compliance purposes — see the official [Audit Logs documentation](/docs/15.2.0/products/catalog/basic-concepts/audit-logs) to discover all the available features.
 
 ### Webhooks
 
@@ -78,21 +78,40 @@ See the official [Automatic Provisioning via SCIM documentation](/docs/15.2.0/pr
 
 ## How to update
 
-To run Mia-Platform v15.2.0, the following Helm chart versions must be installed on your cluster. For the complete installation sequence and per-product upgrade guides, see the [Installation Guidelines](/docs/15.2.0/requirements/installation-guidelines/overview).
+To move from Mia-Platform v15.1.1 to v15.2.0, update the Helm charts listed below. Products not listed here stay on the chart versions of the previous release notes. For the complete installation sequence, see the [Installation Guidelines](/docs/15.2.0/requirements/installation-guidelines/overview).
 
 ### Helm chart versions
 
 | Product | Helm Chart | Version | Upgrade guide |
 |---|---|---|---|
-| **Auth — Keycloak** | `keycloak-operator` | `v0.6.1` | [How to upgrade](/docs/15.2.0/requirements/installation-guidelines/shared-services/authn/keycloak/how-to-upgrade) |
-| **Auth — Realm Management** | `keycloak-realm-management` | `v0.1.35` | [How to upgrade](/docs/15.2.0/requirements/installation-guidelines/shared-services/authn/keycloak-realm-management/how-to-upgrade) |
-| **Homepage & RBAC** | `services` | `v0.4.6` | [How to upgrade](/docs/15.2.0/requirements/installation-guidelines/shared-services/services/how-to-upgrade) |
-| **Catalog** | `catalog` | `v0.4.4` | [How to upgrade](/docs/15.2.0/requirements/installation-guidelines/catalog/how-to-upgrade) |
-| **AI Foundry** | `ai-foundry` | `v0.5.0-beta.23` | [How to upgrade](/docs/15.2.0/requirements/installation-guidelines/ai-foundry/how-to-upgrade) |
-| **AI Services** | `ai-services` | `v0.1.0-beta.11` | _Coming soon_ |
-| **Console** | `console` | `15.2.0-beta.3` | [How to upgrade](/docs/requirements/installation-guidelines/console/self-hosted/how-to-upgrade) |
+| **Auth — Realm Management** | `keycloak-realm-management` | `0.1.47` | [How to upgrade](/docs/15.2.0/requirements/installation-guidelines/shared-services/authn/keycloak-realm-management/how-to-upgrade) |
+| **Homepage & RBAC** | `services` | `0.4.6` | [How to upgrade](/docs/15.2.0/requirements/installation-guidelines/shared-services/services/how-to-upgrade) |
+| **Catalog** | `catalog` | `0.4.4` | [How to upgrade](/docs/15.2.0/requirements/installation-guidelines/catalog/how-to-upgrade) |
+| **AI Foundry** | `ai-foundry` | `0.5.0-preview.0` | [How to upgrade](/docs/15.2.0/requirements/installation-guidelines/ai-foundry/how-to-upgrade) |
+| **AI Services** | `ai-services` | `0.1.0-preview.0` | [How to upgrade](/docs/15.2.0/requirements/installation-guidelines/shared-services/ai-services/how-to-upgrade) |
+| **Console** | `mia-console` | `15.2.0-beta.3` | [How to upgrade](/docs/15.2.0/requirements/installation-guidelines/console/self-hosted/how-to-upgrade) |
 
 ### Upgrade notes
+
+#### Auth — Realm Management: from 0.1.35 to 0.1.47
+
+Manual action required before you install the new chart version. See the [Auth — Realm Management upgrade guide](/docs/15.2.0/requirements/installation-guidelines/shared-services/authn/keycloak-realm-management/how-to-upgrade#from-0135-to-0147-mia-platform-v1511-to-v1520) for the steps.
+
+#### Homepage & RBAC: from 0.3.16 to 0.4.6
+
+Manual action required before you install the new chart version. See the [Homepage & RBAC upgrade guide](/docs/15.2.0/requirements/installation-guidelines/shared-services/services/how-to-upgrade#from-0316-to-046-mia-platform-v1511-to-v1520) for the steps.
+
+#### Catalog: from 0.3.42-0 to 0.4.4
+
+Manual action required before you install the new chart version. See the [Catalog upgrade guide](/docs/15.2.0/requirements/installation-guidelines/catalog/how-to-upgrade#from-0342-0-to-044-mia-platform-v1511-to-v1520) for the steps.
+
+#### AI Foundry: from 0.4.83-0 to 0.5.0-preview.0
+
+Manual action required before you install the new chart version. See the [AI Foundry upgrade guide](/docs/15.2.0/requirements/installation-guidelines/ai-foundry/how-to-upgrade#from-0483-0-to-050-preview-0-mia-platform-v1511-to-v1520) for the steps.
+
+#### AI Services: first release, 0.1.0-preview.0
+
+No manual action required: install the new chart version.
 
 #### Console: from 15.1.0-2 to 15.2.0-beta.3
 
@@ -103,17 +122,7 @@ No manual action required: install the new chart version.
 Click on each chart to expand its full image list.
 
 <details>
-<summary><strong>keycloak-operator v0.6.1</strong></summary>
-
-| Image repository | Version |
-|---|:---:|
-| nexus.mia-platform.eu/platform/auth/keycloak | 0.3.2-26.6.4-postgres |
-| quay.io/keycloak/keycloak-operator | 26.6.4 |
-
-</details>
-
-<details>
-<summary><strong>keycloak-realm-management v0.1.35</strong></summary>
+<summary><strong>keycloak-realm-management v0.1.47</strong></summary>
 
 | Image repository | Version |
 |---|:---:|
@@ -147,6 +156,7 @@ Click on each chart to expand its full image list.
 | docker.io/apache/kafka | 4.2.0 |
 | docker.io/redis | 8.4.0 |
 | nexus.mia-platform.eu/ai-foundry/adk-be-app | 0.8.5 |
+| nexus.mia-platform.eu/ai-resources/secret-store-service | 0.1.1 |
 | nexus.mia-platform.eu/cache/envoyproxy/envoy | v1.36.2 |
 | nexus.mia-platform.eu/catalog/catalog-engine | 0.9.6 |
 | nexus.mia-platform.eu/catalog/catalog-mcp-server | 0.2.3 |
@@ -159,23 +169,22 @@ Click on each chart to expand its full image list.
 | nexus.mia-platform.eu/platform/auth/access-control/ext-authz | 0.2.2-nocache |
 | nexus.mia-platform.eu/platform/auth/authtool/authtool-bff | 0.5.2 |
 | nexus.mia-platform.eu/plugins/smtp-mail-notification-service | 3.5.1 |
-| nexus.mia-platform.eu/ai-resources/secret-store-service | 0.1.1 |
 
 </details>
 
 <details>
-<summary><strong>ai-foundry v0.5.0-beta.23</strong></summary>
+<summary><strong>ai-foundry v0.5.0-preview.0</strong></summary>
 
 | Image repository | Version |
 |---|:---:|
 | docker.io/redis | 8.4.0 |
-| nexus.mia-platform.eu/ai-foundry/adk-be-app | 0.8.5 |
-| nexus.mia-platform.eu/ai-foundry/ai-foundry-be | 0.1.3 |
+| nexus.mia-platform.eu/ai-foundry/adk-be-app | 0.8.6 |
+| nexus.mia-platform.eu/ai-foundry/ai-foundry-be | 0.1.5 |
 | nexus.mia-platform.eu/ai-foundry/ai-foundry-bff | 0.4.3 |
-| nexus.mia-platform.eu/ai-foundry/ai-foundry-provisioner | 0.1.2 |
-| nexus.mia-platform.eu/ai-foundry/ai-foundry-website | 0.8.6 |
-| nexus.mia-platform.eu/ai-foundry/ai-foundry-workflows | 0.1.2 |
 | nexus.mia-platform.eu/ai-foundry/ai-foundry-mcp-server | 0.1.1 |
+| nexus.mia-platform.eu/ai-foundry/ai-foundry-provisioner | 0.1.3 |
+| nexus.mia-platform.eu/ai-foundry/ai-foundry-website | 0.8.7 |
+| nexus.mia-platform.eu/ai-foundry/ai-foundry-workflows | 0.1.3 |
 | nexus.mia-platform.eu/ai-resources/secret-store-service | 0.1.1 |
 | nexus.mia-platform.eu/ai-resources/workspace-service | 0.1.1 |
 | nexus.mia-platform.eu/cache/envoyproxy/envoy | v1.36.2 |
@@ -185,7 +194,7 @@ Click on each chart to expand its full image list.
 </details>
 
 <details>
-<summary><strong>ai-services v0.1.0-beta.11</strong></summary>
+<summary><strong>ai-services v0.1.0-preview.0</strong></summary>
 
 | Image repository | Version |
 |---|:---:|
@@ -194,10 +203,10 @@ Click on each chart to expand its full image list.
 | docker.io/temporalio/server | 1.32.0 |
 | docker.io/temporalio/ui | 2.55.0 |
 | docker.litellm.ai/berriai/litellm | v1.103.1 |
+| nexus.mia-platform.eu/ai-resources/secret-store-service | 0.1.1 |
 | nexus.mia-platform.eu/ai-services/memory-service | 0.1.0 |
 | nexus.mia-platform.eu/cache/envoyproxy/envoy | v1.36.2 |
 | nexus.mia-platform.eu/platform/auth/access-control/ext-authz | 0.2.2-nocache |
-| nexus.mia-platform.eu/ai-resources/secret-store-service | 0.1.1 |
 | quay.io/docling-project/docling-serve-cpu | v1.36.0 |
 
 </details>
@@ -205,43 +214,43 @@ Click on each chart to expand its full image list.
 <details>
 <summary><strong>console v15.2.0-beta.3</strong></summary>
 
-| Image repository                                                        |  Version  |
-|-------------------------------------------------------------------------|:---------:|
-| docker.io/envoyproxy/ratelimit                                          |  19f2079f |
-| nexus.mia-platform.eu/back-kit/mfe-toolkit-on-prem                      |   1.3.13  |
-| nexus.mia-platform.eu/cache/envoyproxy/envoy                            |  v1.32.1  |
-| nexus.mia-platform.eu/console/aggregated-website                        |   1.6.4   |
-| nexus.mia-platform.eu/console/backend                                   |   33.2.2  |
-| nexus.mia-platform.eu/console/catalog-service                           |   1.7.2   |
-| nexus.mia-platform.eu/console/deploy-service                            |   8.4.0   |
-| nexus.mia-platform.eu/console/environments-variables                    |   3.6.1   |
-| nexus.mia-platform.eu/console/events-manager                            |   1.5.0   |
-| nexus.mia-platform.eu/console/extensibility-manager                     |   3.0.1   |
-| nexus.mia-platform.eu/console/favorites-service                         |   2.3.1   |
-| nexus.mia-platform.eu/console/feature-toggle-service                    |   1.3.7   |
-| nexus.mia-platform.eu/console/kubernetes-service                        |   8.4.6   |
-| nexus.mia-platform.eu/console/mcp-server                                |   1.3.0   |
-| nexus.mia-platform.eu/console/mia-assistant                             |   2.0.0   |
-| nexus.mia-platform.eu/console/mia-craft-bff                             |   1.2.5   |
-| nexus.mia-platform.eu/console/notification-provider                     |   2.2.5   |
-| nexus.mia-platform.eu/console/project-service                           |   2.1.0   |
-| nexus.mia-platform.eu/console/rbac-manager-bff                          |   2.1.2   |
-| nexus.mia-platform.eu/console/scripts/bindings-cleaner                  |   1.2.2   |
-| nexus.mia-platform.eu/console/scripts/configuration-history-cleaner     |   0.4.1   |
-| nexus.mia-platform.eu/console/scripts/marketplace-sync                  |  10.11.0  |
+| Image repository | Version |
+|---|:---:|
+| docker.io/envoyproxy/ratelimit | 19f2079f |
+| nexus.mia-platform.eu/back-kit/mfe-toolkit-on-prem | 1.3.13 |
+| nexus.mia-platform.eu/cache/envoyproxy/envoy | v1.32.1 |
+| nexus.mia-platform.eu/console/aggregated-website | 1.6.4 |
+| nexus.mia-platform.eu/console/backend | 33.2.2 |
+| nexus.mia-platform.eu/console/catalog-service | 1.7.2 |
+| nexus.mia-platform.eu/console/deploy-service | 8.4.0 |
+| nexus.mia-platform.eu/console/environments-variables | 3.6.1 |
+| nexus.mia-platform.eu/console/events-manager | 1.5.0 |
+| nexus.mia-platform.eu/console/extensibility-manager | 3.0.1 |
+| nexus.mia-platform.eu/console/favorites-service | 2.3.1 |
+| nexus.mia-platform.eu/console/feature-toggle-service | 1.3.7 |
+| nexus.mia-platform.eu/console/kubernetes-service | 8.4.6 |
+| nexus.mia-platform.eu/console/mcp-server | 1.3.0 |
+| nexus.mia-platform.eu/console/mia-assistant | 2.0.0 |
+| nexus.mia-platform.eu/console/mia-craft-bff | 1.2.5 |
+| nexus.mia-platform.eu/console/notification-provider | 2.2.5 |
+| nexus.mia-platform.eu/console/project-service | 2.1.0 |
+| nexus.mia-platform.eu/console/rbac-manager-bff | 2.1.2 |
+| nexus.mia-platform.eu/console/scripts/bindings-cleaner | 1.2.2 |
+| nexus.mia-platform.eu/console/scripts/configuration-history-cleaner | 0.4.1 |
+| nexus.mia-platform.eu/console/scripts/marketplace-sync | 10.11.0 |
 | nexus.mia-platform.eu/console/scripts/mia-assistant-embeddings-importer | 15.2.0-text-embedding-3-large |
-| nexus.mia-platform.eu/console/scripts/software-catalog-sync             |   0.7.29  |
-| nexus.mia-platform.eu/console/scripts/version-upgrader                  |   11.2.1  |
-| nexus.mia-platform.eu/console/tenant-overview                           |   4.2.1   |
-| nexus.mia-platform.eu/core/authorization-service                        |   2.4.3   |
-| nexus.mia-platform.eu/core/client-credentials                           |   3.4.1   |
-| nexus.mia-platform.eu/core/crud-service                                 |   6.10.3  |
-| nexus.mia-platform.eu/core/proxy-manager                                |   3.5.0   |
-| nexus.mia-platform.eu/core/swagger-aggregator                           |   3.9.6   |
-| nexus.mia-platform.eu/microlc/middleware                                |   3.4.0   |
-| nexus.mia-platform.eu/platform/auth/authtool/authtool-bff               |   0.5.2   |
-| nexus.mia-platform.eu/plugins/files-service                             |   2.10.5  |
-| nexus.mia-platform.eu/plugins/ses-mail-notification-service             |   3.5.0   |
-| nexus.mia-platform.eu/rond-authz/rond                                   |   1.14.2  |
+| nexus.mia-platform.eu/console/scripts/software-catalog-sync | 0.7.29 |
+| nexus.mia-platform.eu/console/scripts/version-upgrader | 11.2.1 |
+| nexus.mia-platform.eu/console/tenant-overview | 4.2.1 |
+| nexus.mia-platform.eu/core/authorization-service | 2.4.3 |
+| nexus.mia-platform.eu/core/client-credentials | 3.4.1 |
+| nexus.mia-platform.eu/core/crud-service | 6.10.3 |
+| nexus.mia-platform.eu/core/proxy-manager | 3.5.0 |
+| nexus.mia-platform.eu/core/swagger-aggregator | 3.9.6 |
+| nexus.mia-platform.eu/microlc/middleware | 3.4.0 |
+| nexus.mia-platform.eu/platform/auth/authtool/authtool-bff | 0.5.2 |
+| nexus.mia-platform.eu/plugins/files-service | 2.10.5 |
+| nexus.mia-platform.eu/plugins/ses-mail-notification-service | 3.5.0 |
+| nexus.mia-platform.eu/rond-authz/rond | 1.14.2 |
 
 </details>

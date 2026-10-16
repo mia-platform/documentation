@@ -13,9 +13,15 @@ This guide walks through installing the `ai-foundry` chart to deploy the AI Foun
 - [kubectl](https://kubernetes.io/docs/tasks/tools/)
 - [Helm](https://helm.sh/docs/helm/helm_install/) v3
 - A running **Keycloak** instance with a configured realm and a registered OIDC client for `authtool-bff`. See the [Keycloak installation guide](/requirements/installation-guidelines/shared-services/authn/keycloak/15_getting-started.md).
-- A **Google Cloud** project with the [Vertex AI API](https://cloud.google.com/vertex-ai/docs/start/introduction-unified-platform) enabled and a service account with `Vertex AI User` permissions.
-- An external **PostgreSQL** database (v14+) accessible from the cluster.
-- A **Tempo** instance (or compatible OpenTelemetry traces backend) for agent trace collection.
+- The Keycloak realm configured with the [Realm Management chart](/requirements/installation-guidelines/shared-services/authn/keycloak-realm-management/15_getting-started.md) `0.1.47` or later, with `products.aiFoundry: true` and `products.aiServices: true`.
+- [Homepage & RBAC](/requirements/installation-guidelines/shared-services/services/15_getting-started.md) installed. AI Foundry calls its authorization API (`authzUrl`) for users, tenants, roles and permissions.
+- [AI Services](/requirements/installation-guidelines/shared-services/ai-services/10_overview.md) installed in its own namespace. AI Foundry uses its LiteLLM AI gateway, Temporal, Docling and memory service.
+- An **OpenBao** instance for the `secretStoreService` credential store and, optionally, **Langfuse** and **Prometheus** for the trace and metric screens.
+- An external **PostgreSQL** server (v15+) accessible from the cluster, with one database shared by `adk-be-app`, `ai-foundry-be` and `ai-foundry-workflows`, and a separate database for `workspace-service`.
+
+:::info
+The installation of Langfuse, OpenBao and Prometheus is not covered by these guides yet: we are working to provide the documentation to install these components as well.
+:::
 
 ## Required information
 
@@ -26,13 +32,16 @@ This guide walks through installing the `ai-foundry` chart to deploy the AI Foun
 | Keycloak realm issuer URL | `https://keycloak.your-domain.com/realms/my-realm` |
 | OIDC client ID for `authtool-bff` (website) | `ai-foundry-website-bff` |
 | OIDC client ID for `authtool-bff` (token exchange) | `ai-foundry-token-exchange` |
-| GCP project ID | `my-gcp-project` |
-| GCP location | `europe-west1` |
-| GCP service account key (JSON) | `service-account.json` |
-| PostgreSQL connection string | `postgresql://user:pass@host:5432/ai_foundry` |
-| Tempo base URL | `https://tempo.your-domain.com` |
+| PostgreSQL connection string of `adk-be-app` (shared AI Foundry database, `asyncpg` driver) | `postgresql+asyncpg://user:pass@host:5432/ai_foundry` |
+| PostgreSQL connection string of `ai-foundry-be` and `ai-foundry-workflows` (same database) | `postgresql://user:pass@host:5432/ai_foundry` |
+| PostgreSQL connection string (workspace service database) | `postgresql://user:pass@host:5432/ai_workspace` |
+| LiteLLM AI gateway URL of AI Services | `https://<ai-services host>/litellm/` |
+| LiteLLM master key of AI Services (`secrets.litellmProxyKeys.masterKey` of the AI Services values) | `sk-...` |
+| Temporal frontend address and Temporal namespace of AI Services | `temporal-frontend.<ai-services namespace>.svc.cluster.local:7233`, a namespace from `temporal.namespaces` of the AI Services values |
+| OpenBao address and its AppRole `role-id`/`secret-id` | `https://openbao.your-domain.com` |
+| Docling route of AI Services (optional) | `https://<ai-services host>/api/docling/` |
 | Mia Platform Catalog URL | `https://catalog.your-domain.com` |
-| External Authorization API URL (optional, for `accessControl`/`aiFoundryBff`) | `https://home.your-domain.com` |
+| Authorization API URL of Homepage & RBAC (`authzUrl`) | `https://home.your-domain.com` |
 | Private container registry credentials | Nexus username and password |
 
 ## Step 1: Create the authtool-bff secret
@@ -40,10 +49,9 @@ This guide walks through installing the `ai-foundry` chart to deploy the AI Foun
 The `authtool-bff` service requires cryptographic key material for session management. Generate and create the secret in the target namespace:
 
 ```bash
-# Generate RSA private key (base64 encoded, no passphrase)
-ssh-keygen -t rsa -b 4096 -m PEM -f private.key -N "" > /dev/null
-privateKey=$(base64 < private.key)
-rm private.key private.key.pub
+# Generate the RSA private keys (no passphrase) of the website client and of the token-exchange client
+ssh-keygen -t rsa -b 4096 -m PEM -f website.key -N "" > /dev/null
+ssh-keygen -t rsa -b 4096 -m PEM -f token-exchange.key -N "" > /dev/null
 
 # Generate cookie secret and Redis token encryption key
 cookieSecret=$(openssl rand -hex 64)
@@ -51,16 +59,21 @@ tokenEncKey=$(openssl rand -hex 32)
 
 kubectl create secret generic authtool-bff-keys \
   --namespace ai-foundry \
-  --from-literal=privateKey="$privateKey" \
-  --from-literal=cookieSecret="$cookieSecret" \
-  --from-literal=tokenEncKey="$tokenEncKey"
+  --from-file=website-key.pem=website.key \
+  --from-file=exchangeCatalog-key.pem=token-exchange.key \
+  --from-file=exchangeAuthz-key.pem=token-exchange.key \
+  --from-file=exchangeAiServices-key.pem=token-exchange.key \
+  --from-literal=cookie-secret.key="$cookieSecret" \
+  --from-literal=redis-token-enc.key="$tokenEncKey"
 ```
+
+The Secret holds one `<client>-key.pem` entry for each client that uses `private_key_jwt`, or `<client>-client-secret` for a client that uses `client_secret_post` or `client_secret_basic`.
 
 :::info
 Alternatively, set `secrets.authtoolBffKeys.enabled: true` in your `values.yaml` and provide the values inline; the chart will create the Secret automatically. This is convenient for GitOps pipelines where secret values are injected at deploy time.
 :::
 
-`authtool-bff` is configured with three OIDC clients: `website` (the browser login/logout flow), `exchangeCatalog` (a token-exchange client aliased `catalog-api`), and `exchangeAuthz` (a token-exchange client aliased `authz-api`). Each client has its own key material, nested under `secrets.authtoolBffKeys.website.*` / `secrets.authtoolBffKeys.exchangeCatalog.*` / `secrets.authtoolBffKeys.exchangeAuthz.*`.
+`authtool-bff` is configured with four OIDC clients: `website` (the browser login/logout flow), `exchangeCatalog` (a token-exchange client aliased `catalog-api`), `exchangeAuthz` (a token-exchange client aliased `authz-api`), and `exchangeAiServices` (a token-exchange client aliased `ai-services-api`, used to call AI Services). Each client has its own key material, nested under `secrets.authtoolBffKeys.website.*` / `secrets.authtoolBffKeys.exchangeCatalog.*` / `secrets.authtoolBffKeys.exchangeAuthz.*` / `secrets.authtoolBffKeys.exchangeAiServices.*`. Every declared client needs its credential, otherwise `authtool-bff` fails at startup: if you do not use AI Services, set `authtoolBff.config.clients.exchangeAiServices: null` and leave `aiServicesClientId` empty.
 
 ## Step 2: Create the access-control secret
 
@@ -80,35 +93,63 @@ Alternatively, set `secrets.accessControlKeys.enabled: true` and provide `secret
 
 ## Step 3: Create the adk-be-app secret
 
-The `adkBeApp` requires Google Cloud credentials and a PostgreSQL connection string:
+The `adkBeApp` requires a PostgreSQL connection string:
 
 ```bash
 kubectl create secret generic adk-be-app-keys \
   --namespace ai-foundry \
-  --from-file=google-application-credentials.json=service-account.json \
-  --from-literal=postgresConnectionString="postgresql://user:pass@host:5432/ai_foundry" \
+  --from-literal=postgresConnectionString="postgresql+asyncpg://<user>:<password>@<host>:5432/<database>" \
   --from-literal=otelExporterOtlpHeaders=""
 ```
 
+`adk-be-app` connects with the `asyncpg` driver: its connection string must start with `postgresql+asyncpg://`.
+
+If your LiteLLM gateway requires a key, also add the `litellmProxyApiKey` entry and set `secrets.adkBeAppKeys.litellmProxyApiKey`.
+
 :::info
-Alternatively, set `secrets.adkBeAppKeys.enabled: true` in your `values.yaml`. The `googleApplicationCredentials` field must contain the full JSON content of the service account key file (not the path).
+Alternatively, set `secrets.adkBeAppKeys.enabled: true` in your `values.yaml` and provide `postgresConnectionString` (and the optional keys) inline.
 :::
 
-## Step 4: The ai-foundry-bff secret
+## Step 4: Create the secrets of the other services
 
-Unlike the other secrets above, the `ai-foundry-bff-keys` Secret is **always created by the chart** (there is no `secrets.aiFoundryBffKeys.enabled` gate) whenever `aiFoundryBff.enabled: true`. It only contains the Tempo bearer token:
+The chart refuses to render when an enabled service has no credential. Create the following Secrets, or set the matching `secrets.<name>.enabled: true` and provide the values inline. The chart no longer creates an `ai-foundry-bff-keys` Secret.
 
-```yaml
-secrets:
-  aiFoundryBffKeys:
-    tempoAuthHeader: "Bearer <TEMPO_TOKEN>"
+| Secret | Keys | Used by |
+|---|---|---|
+| `ai-foundry-be-keys` | `postgresConnectionString` (same database as `adk-be-app-keys`, but as `postgresql://` without the `+asyncpg` driver suffix); `litellmAdminKey` (the LiteLLM master key of AI Services) and `mcpConsentKeySecret` (a random secret, kept stable over time), both needed with `aiFoundryBe.config.litellmBaseUrl`; optional `langfuseAuthHeader`, `prometheusAuthHeader` | `aiFoundryBe`, `aiFoundryProvisioner` |
+| `ai-foundry-workflows-keys` | `postgresConnectionString` (same database as `adk-be-app-keys`; both `postgresql://` and `postgresql+asyncpg://` are accepted) | `aiFoundryWorkflows` |
+| `secret-store-service-keys` | `storeRoleId`, `storeSecretId` (the AppRole pair of your OpenBao) | `secretStoreService` with the default `approle` auth method |
+| `workspace-service-keys` | `postgresConnectionString` (a database of its own) | `workspaceService` |
+| `ai-foundry-provisioner-keys` | `privateKey` or `clientSecret` of the `ai-foundry-provisioner` Keycloak client | `aiFoundryProvisioner`, only when `catalogUrl` is set |
+
+```bash
+kubectl create secret generic ai-foundry-be-keys \
+  --namespace ai-foundry \
+  --from-literal=postgresConnectionString="postgresql://<user>:<password>@<host>:5432/<database>" \
+  --from-literal=litellmAdminKey="<LiteLLM master key of AI Services>" \
+  --from-literal=mcpConsentKeySecret="$(openssl rand -hex 32)"
+
+kubectl create secret generic ai-foundry-workflows-keys \
+  --namespace ai-foundry \
+  --from-literal=postgresConnectionString="postgresql://<user>:<password>@<host>:5432/<database>"
+
+kubectl create secret generic secret-store-service-keys \
+  --namespace ai-foundry \
+  --from-literal=storeRoleId="<OpenBao AppRole role-id>" \
+  --from-literal=storeSecretId="<OpenBao AppRole secret-id>"
+
+kubectl create secret generic workspace-service-keys \
+  --namespace ai-foundry \
+  --from-literal=postgresConnectionString="postgresql://<user>:<password>@<host>:5432/<workspace database>"
 ```
 
 :::tip
-This value is typically injected at deploy time (e.g. via `--set` or a SOPS-encrypted values file) rather than committed in plain text.
+To skip a feature instead, set `aiFoundryWorkflows.enabled: false` or `workspaceService.enabled: false`. With `secretStoreService.config.auth.method: jwt` (and `auth.jwt.role`), `secret-store-service-keys` is not needed.
 :::
 
 ## Step 5: Create the image pull secret
+
+Create the pull Secret yourself, or let the chart create it: the chart creates it only when `global.imagePullSecret.name` and all of `global.imageCredentials.registry`, `username`, `password` and `email` are set. `global.imagePullSecret.enabled: true` adds the reference to every pod in both cases. Run the command below only if you do not set the credentials in your values; otherwise skip it, because Helm cannot create a Secret that already exists outside the release.
 
 ```bash
 kubectl create secret docker-registry nexus-pull-secret \
@@ -133,14 +174,16 @@ environment: "production"
 catalogUrl: "https://catalog.your-domain.com"
 catalogClientId: "catalog-api"
 
-# Optional: URL and client ID of an external Authz API (e.g. the services chart's
-# api-gateway, routed to rbacManagement) used by aiFoundryBff and accessControl
-# authzUrl: "https://home.your-domain.com"
-# authzClientId: "authz-api"
+# Authorization API of Homepage & RBAC (the services chart's api-gateway, routed to
+# rbacManagement), used by aiFoundryBff, aiFoundryBe, accessControl and aiFoundryProvisioner
+authzUrl: "https://home.your-domain.com"
+authzClientId: "authz-api"
 
-# Optional: route token-exchange calls through authtool-bff for cross-cluster calls.
-# Leave empty to forward the caller's JWT verbatim to authzUrl/catalogUrl instead.
-# authtoolBffUrl: "http://authtool-bff"
+# authtool-bff base URL: the token exchange towards Catalog, Authz and AI Services
+# happens only when it is set. AI Services accepts only tokens exchanged for the
+# ai-services-api audience.
+authtoolBffUrl: "http://authtool-bff"
+aiServicesClientId: "ai-services-api"
 
 # Keycloak realm issuer URL
 authorizationServer:
@@ -152,19 +195,42 @@ ingressRoute:
   entryPoints:
     - websecure
 
-# ADK Backend App — Google Cloud configuration
+# ADK Backend App: LiteLLM AI gateway of AI Services
 adkBeApp:
   config:
-    googleCloudProject: "my-gcp-project"
-    googleCloudLocation: "europe-west1"
-    googleGenaiUseVertexai: true
+    litellmProxyApiBase: "https://<ai-services host>/litellm/"
 
-# AI Foundry BFF — Tempo observability backend
-aiFoundryBff:
+# ai-foundry-be: admin API of the same LiteLLM gateway, needed for the model
+# providers, the model catalogue and the spend screens (uses litellmAdminKey)
+aiFoundryBe:
   config:
-    tempoBaseUrl: "https://tempo.your-domain.com"
+    litellmBaseUrl: "https://<ai-services host>/litellm/"
 
-# authtool-bff OIDC clients: website (browser login) + two token-exchange clients
+# Agentic Workflows: Temporal of AI Services (or set aiFoundryWorkflows.enabled: false)
+aiFoundryWorkflows:
+  config:
+    temporalAddress: "temporal-frontend.<ai-services namespace>.svc.cluster.local:7233"
+    temporalNamespace: "<Temporal namespace from the AI Services values>"
+
+# Credential store in front of your OpenBao
+secretStoreService:
+  config:
+    storeAddr: "https://openbao.your-domain.com"
+
+# Migration hook Job: with catalogUrl set it needs the ai-foundry-provisioner
+# Keycloak client (see the Helm Values reference); disable it to skip the migration
+aiFoundryProvisioner:
+  enabled: false
+
+# Docling route of AI Services (optional: empty leaves /api/docling/ unrouted)
+apiGateway:
+  docling:
+    url: "https://<ai-services host>/api/docling/"
+
+# Secrets created in Steps 1 to 4 are referenced by name; to let the chart create
+# them, set secrets.<name>.enabled: true and provide the values inline.
+
+# authtool-bff OIDC clients: website (browser login) + three token-exchange clients
 authtoolBff:
   config:
     clients:
@@ -179,16 +245,12 @@ authtoolBff:
         clientId: "ai-foundry-token-exchange"
         clientAlias: "authz-api"
         tokenAuthMethod: "private_key_jwt"
+      exchangeAiServices:
+        clientId: "ai-foundry-token-exchange"
+        clientAlias: "ai-services-api"
+        tokenAuthMethod: "private_key_jwt"
 
-# Website links to other platform products
-aiFoundryWebsite:
-  config:
-    links:
-      consoleHref: "https://console.your-domain.com"
-      catalogHref: "https://catalog.your-domain.com"
-      homepageHref: "https://home.your-domain.com"
-
-# Image pull secret
+# Image pull secret: created by the chart only when name and all the imageCredentials are set
 global:
   imagePullSecret:
     enabled: true
@@ -199,6 +261,8 @@ global:
     password: "<PASSWORD>"
     email: "operations@your-domain.com"
 ```
+
+The links to the other Mia Platform products shown in the website menu (Homepage, Catalog, Console, Flow) are not set in the chart values: the website reads them from the product configuration of the organization, served by the authorization API of Homepage & RBAC (`authzUrl`).
 
 See the [Helm Values reference](/requirements/installation-guidelines/ai-foundry/helm-values/00_overview.md) for the full list of available options.
 
@@ -242,7 +306,8 @@ global:
   imageCredentials:
     registry: "nexus.mia-platform.eu"
     email: "operations@your-domain.com"
-    # username/password are typically injected at deploy time via --set
+    # username/password are typically injected at deploy time via --set;
+    # the chart creates the pull Secret only when all of them are set
 
 aiFoundry:
   url: "https://ai-foundry.your-domain.com"
@@ -250,6 +315,9 @@ aiFoundry:
 
   catalogUrl: "https://catalog.your-domain.com"
   catalogClientId: "catalog-api"
+
+  authzUrl: "https://home.your-domain.com"
+  authzClientId: "authz-api"
 
   authorizationServer:
     issuer: "https://keycloak.your-domain.com/realms/my-realm"
@@ -266,12 +334,42 @@ aiFoundry:
       enabled: true
     adkBeAppKeys:
       enabled: true
+    aiFoundryBeKeys:
+      enabled: true
+    aiFoundryWorkflowsKeys:
+      enabled: true
+    secretStoreServiceKeys:
+      enabled: true
+    workspaceServiceKeys:
+      enabled: true
+    # credential values are typically injected at deploy time
+
+  authtoolBffUrl: "http://authtool-bff"
+  aiServicesClientId: "ai-services-api"
 
   adkBeApp:
     config:
-      googleCloudProject: "my-gcp-project"
-      googleCloudLocation: "europe-west1"
-      googleGenaiUseVertexai: true
+      litellmProxyApiBase: "https://<ai-services host>/litellm/"
+
+  aiFoundryBe:
+    config:
+      litellmBaseUrl: "https://<ai-services host>/litellm/"
+
+  aiFoundryWorkflows:
+    config:
+      temporalAddress: "temporal-frontend.<ai-services namespace>.svc.cluster.local:7233"
+      temporalNamespace: "<Temporal namespace from the AI Services values>"
+
+  secretStoreService:
+    config:
+      storeAddr: "https://openbao.your-domain.com"
+
+  aiFoundryProvisioner:
+    enabled: false
+
+  apiGateway:
+    docling:
+      url: "https://<ai-services host>/api/docling/"
 
   authtoolBff:
     config:
@@ -286,6 +384,10 @@ aiFoundry:
         exchangeAuthz:
           clientId: "ai-foundry-token-exchange"
           clientAlias: "authz-api"
+          tokenAuthMethod: "private_key_jwt"
+        exchangeAiServices:
+          clientId: "ai-foundry-token-exchange"
+          clientAlias: "ai-services-api"
           tokenAuthMethod: "private_key_jwt"
 ```
 

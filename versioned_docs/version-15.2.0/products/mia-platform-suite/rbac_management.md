@@ -36,7 +36,7 @@ The architecture is designed to be decentralized, eliminating single points of f
 
 The RBAC Administration area is only visible to users who are **Admin of a tenant/organization**. When this condition is met, an **Administration** section becomes available from the gear icon in the bottom of the home page, where the admin can configure roles, permissions, and groups.
 
-Since RBAC is **cross-product**, the admin must first **select the product** they want to manage roles and permissions for:
+Since RBAC is **cross-product**, roles and permissions are always tied to a product: the admin chooses the **product** when creating a role, and can **filter** the lists of roles and permissions by product. The available roles depend on the product:
 
 - For **Catalog** and **AI Foundry**, the set of roles, permissions, and groups is potentially unbounded and offers **maximum granularity**.
 - For all **other products**, only a **fixed, predefined list** of roles/permissions is available to choose from.
@@ -80,6 +80,7 @@ Users can be invited directly from the Administration UI, without going through 
 
 - An **Organization Admin** invites a user to the organization from the organization-wide user management screen, entering the invitee's email, the tenant to add them to, and, optionally, the **role** they should be assigned — assigning it at invitation time, rather than as a separate step afterwards. *(Before v15.2, this optional assignment was a group rather than a role — see [UX improvements (v15.2)](#ux-improvements-v152) above.)*
 - A **Tenant Admin** can add users to their own tenant, but only among users who have already been invited to (and accepted into) the organization by an Organization Admin.
+- Users can be added in **bulk mode**: an Organization Admin can invite several users to the organization at once, and an admin can add several users to a tenant at once, rather than one at a time.
 - The invited user receives an email invitation and must accept it **within 7 days** to become a member of the organization.
 
 ![Organization-wide users view](img/users_list.png)
@@ -98,17 +99,20 @@ See [Automatic Provisioning via SCIM](/products/mia-platform-suite/scim_provisio
 
 - The administrator **assigns** roles to users, service accounts, or **user groups**, optionally limiting their validity to a specific scope. As of **v15.2**, the permission tree in the Administration UI is focused exclusively on **Roles**: permissions are bundled into roles, and groups are no longer used to bundle permissions (see [UX improvements (v15.2)](#ux-improvements-v152) below).
 - **User groups** are still available: a group is a collection of users that can be assigned one or more roles, and its members inherit them. Groups can be created and managed manually from the Administration UI, or [provisioned automatically via SCIM](#automatic-provisioning-via-scim), mirroring 1:1 the groups defined in your Identity Provider.
+- **Pre-configured groups**: when a new tenant is created, it already comes with a set of permission groups, each with its role assignments: **Admins**, **DevOps**, **AI Managers**, and **AI Developers**. They are listed in the **Built-in** tab of the tenant's **Groups** page, while the groups you create are listed in the **Custom** tab. Admins can add users to these groups straight away, without defining groups and role assignments from scratch.
+- **Built-in and custom roles**: the tenant's **Roles** page lists the **Built-in** roles, which cannot be modified or deleted, and the **Custom** roles. Admins can create custom roles with **New role**, and modify or delete them at any time.
 - Multiple roles can be assigned in **bulk mode**, rather than one at a time, speeding up onboarding.
 - Both **Organization Admins** and **Tenant Admins** can assign **broad roles** (the predefined, coarse-grained roles from the [Permission Matrix](#permission-matrix)).
 - Only the **Organization Admin** can assign **granular roles**. Granular role assignment is available:
   - For **Catalog**, with the widest granularity: permissions can be scoped to specific groups and users through **filter expressions** (formulas combining fields and logical operators).
-  - For **AI Foundry**, with a narrower degree of granularity compared to Catalog — see [AI Foundry](#ai-foundry) above.
-
-![Users](img/groups_ad.png)
-
+  - For **AI Foundry**, with a narrower degree of granularity compared to Catalog — see the [AI Foundry documentation](/products/ai-foundry/overview.md).
 - When a user or a service attempts to perform an action on the platform (e.g., creating a new role, modifying an organization's configuration), the system:
   - automatically retrieves the roles and permissions associated with the requester;
   - verifies, through authorization rules, if the requested action is permitted.
+
+![Built-in groups](img/groups_builtin.png)
+
+![Built-in roles](img/roles_builtin.png)
 
 ## Practical example of granularity and access management
 
@@ -117,12 +121,12 @@ The system lets you combine permissions from multiple **roles**, so a user's eff
 Take **Alice Parker** as an example:
 ![Users](img/user_example.png)
 
-Alice belonged to two groups, each contributing a different set of permissions:
+Alice belongs to two groups, each contributing a different set of permissions:
 
-- **Group "Platform Engineers"** — granted the *Viewer* role on **Catalog** and **AI Foundry**, letting her view items and their configuration.
-- **Group "Software Engineers | Catalog"** — granted the *Item Editor* and *Item Type Definition Editor* roles on **Catalog**, letting her create, delete, and edit items and item type definitions.
+- **Group "Platform Engineers"** — grants the *Viewer* role on **Catalog** and **AI Foundry**, letting her view items and their configuration.
+- **Group "Software Engineers | Catalog"** — grants the *Items Editor* and *Items Type Definitions Editor* roles on **Catalog**, letting her create, delete, and edit items and item type definitions.
 
-Alice's effective permissions were the combination of these two groups' roles. From the users overview, an admin can open her profile at any time to see the full, resulting list of permissions, just click on a user menu with links to Profile.
+Alice's effective permissions are the combination of these two groups' roles. To see the full, resulting list, an admin can open her [Profile](#profile) at any time from the user menu in the users overview.
 
 ## Profile
 
@@ -173,7 +177,7 @@ The tables below list every role currently assignable in the Administration Plat
 | **Viewer** | Read-only access to all Catalog resources. |
 | **Auditor** | Access to audit logs, plus read-only access to all Catalog resources. |
 
-The **Item Ingestor** role is intended for **service accounts**, not human users: it grants the write access needed to create and update items and their relationships, without exposing governance or type-definition capabilities. It is the role typically assigned to the [`ibdm` connector engine](/products/catalog/connectors/10_overview.md) or to other connectors that sync external sources into the Catalog — see [Registering a service account](#registering-a-service-account) below.
+The **Items Ingestor** role is intended for **service accounts**, not human users: it grants the write access needed to create and update items and their relationships, without exposing governance or type-definition capabilities. It is the role typically assigned to the [`ibdm` connector engine](/products/catalog/connectors/10_overview.md) or to other connectors that sync external sources into the Catalog — see [Registering a service account](#registering-a-service-account) below.
 
 ### AI Foundry roles
 
@@ -231,10 +235,10 @@ The Administration UI introduces two changes as of v15.2:
 
 ## Current limitations (v15.2.0)
 
-In this v15 release, Catalog RBAC management has the following constraints:
+In this v15 release, the Administration has the following constraints:
 
 - **Group scope**: the only scope that can currently be assigned to a group is the **entire tenant**; scoping a group to a specific path or sub-resource is not yet available.
-- **Tenant creation and deletion**: an **Organization Admin** can create tenants directly from the Administration UI, but tenants can never be deleted from there — not even by an Organization Admin.
+- **Tenant creation and deletion**: an **Organization Admin** can create tenants directly from the Administration UI, but tenants cannot be deleted from there: deletion is only possible via API.
 - **Service account creation and deletion**: an **Organization Admin** can create service accounts from the Administration UI, but deleting a service account is not possible from there — it must be done via API, see [Registering a service account](#registering-a-service-account) below.
 
 ## Detail views
@@ -252,7 +256,7 @@ Service accounts are the non-human identities that let external tools and pipeli
 
 ### 1. Reach the API
 
-The registration endpoint is reachable through the api-portal published alongside your Mia-Platform Suite Home instance — typically at `<homepage-url>/documentations/api-portal/`. Only a Super Admin can complete the registration of users in tenant by using this tool.
+The registration endpoint is reachable through the **Authorization API Portal**, published alongside your Mia-Platform Suite Home instance (typically at `<homepage-url>/documentations/api-portal/`), which exposes the APIs for the whole registration of users and service accounts. Only a Super Admin can register a service account with this tool.
 
 ### 2. Generate a key pair
 
@@ -304,7 +308,7 @@ printf '{"e":"%s","kty":"RSA","n":"%s"}' "$e_b64" "$n_b64" \
 
 ### 5. Register the service account
 
-From the api-portal, call `POST /api/service-accounts/register`, providing the service account's identifier together with the JWK (`kty`, `n`, `e`, `kid`) derived in the steps above. Once registered, the client can authenticate to any RBAC-protected API using `private_key_jwt`, signing its assertions with the private key generated in step 2.
+From the Authorization API Portal, call `POST /api/service-accounts/register`, providing the service account's identifier together with the JWK (`kty`, `n`, `e`, `kid`) derived in the steps above. Once registered, the client can authenticate to any RBAC-protected API using `private_key_jwt`, signing its assertions with the private key generated in step 2.
 
 #### Payload Shape - Example
 
@@ -400,11 +404,11 @@ Use the resulting `access_token` in the `Authorization: Bearer <access_token>` h
 
 ### Is it possible to add users, groups, or roles in "bulk" mode to speed up onboarding?
 
-Roles can be assigned to a group in bulk mode — see [How to assign roles and permissions](#how-to-assign-roles-and-permissions) above. Bulk user addition from the Administration UI is not supported yet; to onboard many users at once, configure [automatic provisioning via SCIM](/products/mia-platform-suite/scim_provisioning.md) from your Identity Provider.
+Roles can be assigned to a group in bulk mode — see [How to assign roles and permissions](#how-to-assign-roles-and-permissions) above. Users can also be added in bulk mode, both when inviting them to the organization and when adding them to a tenant — see [Inviting users](#inviting-users). To keep users and groups in sync with your Identity Provider, configure [automatic provisioning via SCIM](/products/mia-platform-suite/scim_provisioning.md).
 
 ### How does the user offboarding procedure work?
 
-From the interface, the Organization Admin can delete a user directly from the user management page in the organization's dedicated Keycloak instance. For users provisioned via SCIM, offboarding is driven by the Identity Provider: deactivating or deleting the user there revokes their permissions on Mia-Platform automatically — see [Deprovisioning](/products/mia-platform-suite/scim_provisioning.md#deprovisioning).
+Users cannot be removed from the Administration UI. The Organization Admin can delete a user from the user management page in the organization's dedicated Keycloak instance. For users provisioned via SCIM, offboarding is driven by the Identity Provider: deactivating or deleting the user there revokes their permissions on Mia-Platform automatically — see [Deprovisioning](/products/mia-platform-suite/scim_provisioning.md#deprovisioning).
 
 ### How does combined permission assignment work when a user belongs to multiple groups?
 

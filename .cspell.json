@@ -405,7 +405,9 @@
     "cimd",
     "SCIM",
     "Keycloakify",
-    "Infinispan"
+    "Infinispan",
+    "litellm",
+    "openbao"
   ],
   "dictionaries": [
     "softwareTerms",

@@ -32,7 +32,7 @@ Mia-Platform reserves the use of any group name ending in `mia-platform.eu`.
 
 ## Defining a custom Item Type
 
-Custom item types are added to an organization by creating an `ItemTypeDefinition` object. ITDs are themselves catalog objects, so they are created via the standard [Catalog API](/products/catalog/usage/catalog-api.md).
+Custom item types are added to a tenant by creating an `ItemTypeDefinition` object. ITDs are themselves catalog objects, so they are created via the standard [Catalog API](/products/catalog/usage/catalog-api.md).
 
 :::note
 All catalog resources, including the built-in ones, are defined through ItemTypeDefinitions. The only exception is the `ItemTypeDefinition` kind itself.
@@ -79,7 +79,7 @@ spec:
     kind: DockerImage
 ```
 
-Posting this ITD creates a new organization-scoped REST endpoint at:
+Posting this ITD creates a new tenant-scoped REST endpoint at:
 
 ```text
 /stable.example.com/v1/items/dockerimages/*

@@ -14,7 +14,7 @@ This guide walks through installing the `catalog` chart to deploy the Mia Platfo
 - [Helm](https://helm.sh/docs/helm/helm_install/) v3
 - A running **Keycloak** instance with a configured realm and a registered OIDC client for `authtool-bff`. See the [Keycloak installation guide](/requirements/installation-guidelines/shared-services/authn/keycloak/15_getting-started.md).
 - A `catalog-engine` OIDC client in the same realm, used by `catalogEngine` to sync Catalog permissions to the authorization API (`catalogEngine.config.authzServiceAuthorization`, enabled by default). The [Realm Management](/requirements/installation-guidelines/shared-services/authn/keycloak-realm-management/15_getting-started.md) chart creates it (from version `0.1.31`, with `products.catalog: true`) as a `private_key_jwt` client that reads its keys from `<Catalog URL>/.well-known/jwks.json`, with the `mia:authz` and `mia:authz-roles` default scopes and a service account.
-- An external **PostgreSQL** database (v14+) for `catalogEngine`.
+- An external **PostgreSQL** database (v15+) for `catalogEngine`.
 - A **Kafka** cluster. Two deployment options are supported:
   1. An existing **external** broker (Kafka, Confluent, MSK, a cluster managed by a Strimzi operator, etc.), connected via `catalogKafkaContext` and the `kafka-keys` Secret.
   2. An **embedded** Kafka cluster, deployed by the chart in the Catalog namespace with plain Kubernetes resources, without any operator (`catalogKafkaContext.embedded.enabled: true`). It requires a StorageClass able to provision a `ReadWriteOnce` volume per Kafka node.
@@ -34,6 +34,7 @@ This guide walks through installing the `catalog` chart to deploy the Mia Platfo
 | Kafka bootstrap servers (if external) | `kafka.your-domain.com:9092` |
 | External authorization API URL (optional, for `accessControl`) | `https://home.your-domain.com` |
 | Private container registry credentials | Nexus username and password |
+| AI Services public URL, used by `adkBeApp` and the `/api/docling/` route (unless disabled) | `https://<ai-services host>` |
 
 ## Step 1: Create the authtool-bff secret
 
@@ -189,6 +190,18 @@ authtoolBff:
         clientAlias: "authz-api"
         tokenAuthMethod: "private_key_jwt"
 
+# AI Services integration (see the note below to disable it)
+aiServicesClientId: "ai-services-api"
+adkBeApp:
+  config:
+    # Required while aiGatewayEnabled is true (default)
+    litellmProxyApiBase: "https://<ai-services host>/litellm/"
+    secretStoreBaseUrl: "https://<ai-services host>"
+apiGateway:
+  docling:
+    # Optional: AI Services Docling, served on /api/docling/
+    url: "https://<ai-services host>/api/docling/"
+
 # Optional: URL of an external authorization API (e.g. the services chart's api-gateway,
 # routed to rbacManagement) used by accessControl to enrich policy evaluation
 # authzUrl: "https://home.your-domain.com"
@@ -214,6 +227,8 @@ global:
   imagePullSecret:
     enabled: true
     name: nexus-pull-secret
+  # Omit imageCredentials if you created the Secret manually in Step 7: the chart
+  # creates it only when registry, username, password and email are all set
   imageCredentials:
     registry: "nexus.mia-platform.eu"
     username: "<USERNAME>"
@@ -221,11 +236,11 @@ global:
     email: "operations@your-domain.com"
 ```
 
+`adkBeApp` is enabled by default and, with the default `adkBeApp.config.aiGatewayEnabled: true`, the chart fails to render unless `litellmProxyApiBase` and `secretStoreBaseUrl` are set. If you do not use the AI Services LiteLLM gateway, set `adkBeApp.config.aiGatewayEnabled: false` instead. When `adkBeApp.config.catalogApiUrl` is empty, `adkBeApp` reads the agents through the release's own API gateway, so `apiGateway.enabled` must be `true`.
+
 :::tip
-To reduce resource usage in non-production environments, disable the most resource-intensive components:
+To reduce resource usage in non-production environments, disable the ADK Backend App:
 ```yaml
-doclingService:
-  enabled: false
 adkBeApp:
   enabled: false
 ```
@@ -252,10 +267,6 @@ helm install catalog mia-platform/catalog \
   --atomic \
   --timeout 10m
 ```
-
-:::caution
-The `doclingService` pulls a 4.4 GB image at first install. If the timeout is insufficient, increase it or pre-pull the image on the nodes.
-:::
 
 ## Step 10: Verify
 
@@ -314,6 +325,15 @@ catalog:
           clientId: "catalog-token-exchange"
           clientAlias: "authz-api"
           tokenAuthMethod: "private_key_jwt"
+
+  aiServicesClientId: "ai-services-api"
+  adkBeApp:
+    config:
+      litellmProxyApiBase: "https://<ai-services host>/litellm/"
+      secretStoreBaseUrl: "https://<ai-services host>"
+  apiGateway:
+    docling:
+      url: "https://<ai-services host>/api/docling/"
 ```
 
 Deploy with:

@@ -65,7 +65,7 @@ See [Items](/products/catalog/basic-concepts/10_items.md#tags-labels-annotations
 
 ## Owner and follower
 
-An **owner** is the email address responsible for an item, stored in `metadata.owner`. A **follower** is any email address that wants to receive compliance notifications about an item, stored in `metadata.followers`. Neither is modeled as a relationship, so neither is navigable in the relationship graph — a future migration to first-class User items is planned. See [Items](/products/catalog/basic-concepts/10_items.md#ownership-and-followers).
+An **owner** is the Mia-Platform user (or email address) responsible for an item, stored in `metadata.owner`. A **follower** is any email address that wants to receive compliance notifications about an item, stored in `metadata.followers`. Neither is modeled as a relationship, so neither is navigable in the relationship graph. See [Items](/products/catalog/basic-concepts/10_items.md#ownership-and-followers).
 
 ## View
 
@@ -77,7 +77,11 @@ A `spec` field declared on an [Item Type Definition](/products/catalog/basic-con
 
 ## Organization
 
-An **organization** is a hard isolation boundary in the catalog: each organization has its own database namespace, and resources of the same type must be unique within it. Every API request is actually scoped by two identifiers — the organization and the broader **tenant** it lives in — see [Scoping headers](/products/catalog/usage/catalog-api.md#scoping-headers).
+An **organization** groups one or more [tenants](#tenant). Every API request is scoped by two identifiers — the organization and the tenant within it — see [Scoping headers](/products/catalog/usage/catalog-api.md#scoping-headers).
+
+## Tenant
+
+A **tenant** is a hard isolation boundary in the catalog: each tenant belongs to an organization, has its own database namespace, and resources of the same type must be unique within it. See [Scoping headers](/products/catalog/usage/catalog-api.md#scoping-headers).
 
 ## URN (Item URN)
 

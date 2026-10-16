@@ -42,7 +42,7 @@ Every item manifest must declare:
 - **`spec`**: the type-specific data describing the state of the object. Its precise shape depends on the `apiVersion` + `kind` combination.
 - **`resourceVersion`**: the internal version of the object. It is opaque to clients and must be passed back unmodified on update, patch, and conditional delete. Don't confuse it with the user-facing revision/version history described in [Item Versioning](/products/catalog/basic-concepts/65_item-history.md).
 
-The pair `(apiVersion, kind)` must be enough for a parser to interpret the rest of the data, so it must be unique within an organization.
+The pair `(apiVersion, kind)` must be enough for a parser to interpret the rest of the data, so it must be unique within a tenant.
 
 :::caution
 Re-defining a core kind under a different API version is technically possible but strongly discouraged: it leads to confusion and misinterpretation.
@@ -203,11 +203,11 @@ Because the lifecycle of `CustomField` entities is independent from the items th
 
 Two fields are central to the way the catalog associates people with items.
 
-- **Owner.** Every item can have an *owner*, identified by an email address stored in `metadata.owner`. The Catalog App exposes ownership as a first-class field on the item form.
+- **Owner.** Every item can have an *owner*, stored in `metadata.owner` as a reference to a Mia-Platform user (`{type: "principal", ref: <user ID>}`) or as an email address (`{type: "email", ref: <email>}`). The Catalog App shows the owner as a user and exposes ownership as a first-class field on the item form.
 - **Follower.** Any number of people can additionally *follow* an item to be notified about compliance events that involve it, identified by the email addresses stored in `metadata.followers`. Owners are implicitly considered followers.
 
 :::note
-Owner and follower are plain email fields, not relationships, so they are not navigable in the [relationship graph](/products/catalog/basic-concepts/60_relationships.md). The plan is to eventually resolve these emails to first-class User items and surface them in the relationship graph.
+Owner and follower are fields, not relationships, so they are not navigable in the [relationship graph](/products/catalog/basic-concepts/60_relationships.md).
 :::
 
 ## Primary key and Item URN
@@ -241,11 +241,11 @@ urn:mia-platform-catalog:<group>:<version>:<kind>
 
 When a field of one item points to another item, use the URN format and a key ending in `Ref` (e.g. `sourceRef`). The catalog validates only the URN format: it does not check that the referenced object actually exists.
 
-## Organizations
+## Tenants and organizations
 
-Items live inside an **organization**, which is a hard isolation boundary with its own database namespace. Resources of the same type must be unique within an organization.
+Items live inside a **tenant**, which is a hard isolation boundary with its own database namespace. Resources of the same type must be unique within a tenant. A tenant belongs to an **organization**, which can contain several tenants.
 
-Every Catalog API request is actually scoped by two identifiers, not one: the organization, and the broader tenant it lives in (the Mia-Platform Console-level boundary). See [Scoping headers](/products/catalog/usage/catalog-api.md#scoping-headers) for how the two are carried on the wire and who is responsible for setting them.
+Every Catalog API request is therefore scoped by two identifiers: the organization, and the tenant within it. See [Scoping headers](/products/catalog/usage/catalog-api.md#scoping-headers) for how the two are carried on the wire and who is responsible for setting them.
 
 ## Relationships
 

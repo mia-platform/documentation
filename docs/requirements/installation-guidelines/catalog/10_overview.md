@@ -15,19 +15,21 @@ The Catalog also exposes its API via the **Model Context Protocol (MCP)**, makin
 | Component | Image | Description |
 |---|---|---|
 | **accessControl** | `platform/auth/access-control/ext-authz` | OPA-based ext-authz service. Enforces RBAC policies on every request forwarded by the API gateway. |
-| **adkBeApp** | `ai-foundry/adk-be-app` | ADK Backend App. Orchestrates AI agents using Google Cloud ADK and Vertex AI. The same image is shared with the AI Foundry chart. |
+| **adkBeApp** | `ai-foundry/adk-be-app` | ADK Backend App. Orchestrates AI agents using Google ADK. By default it reaches the models through the [AI Services](/requirements/installation-guidelines/shared-services/ai-services/10_overview.md) LiteLLM gateway. The same image is shared with the AI Foundry chart. |
 | **apiGateway** | `cache/envoyproxy/envoy` | Envoy reverse proxy. Routes all inbound traffic, validates JWTs, and delegates per-request authorization to `accessControl`. |
 | **authtoolBff** | `platform/auth/authtool/authtool-bff` | OIDC Backend-for-Frontend. Manages the PKCE login/logout flow with Keycloak and issues signed, encrypted session cookies to the browser. |
 | **cache** | `redis` | Redis instance used by `authtoolBff` for session storage and by `policyEngine` for policy caching. |
 | **catalogEngine** | `catalog/catalog-engine` | Core catalog REST API. Persists all catalog items in a PostgreSQL database. |
 | **catalogWebsite** | `catalog/catalog-website` | Frontend web application. Provides the Catalog UI served at `<url>/website/`. |
-| **doclingService** | `docling-project/docling-serve-cpu` | *(Optional, CPU-intensive.)* Document parsing service. Converts uploaded files (PDF, DOCX, etc.) into structured content for AI agent context. |
 | **itemsCompressor** | `data-fabric/stream-processor` | Kafka consumer. Reads raw item events, compresses/merges them, and writes the result back to Kafka. Uses a dedicated PostgreSQL schema as a deduplication cache. |
 | **itemsConsumer** | `catalog/items-consumer` | Kafka consumer. Processes catalog item events from Kafka and persists them to the catalog via `catalogEngine`. |
 | **itemsProducer** | `catalog/items-producer` | Kafka producer. Publishes catalog item lifecycle events (create, update, delete) to the `catalog-events.input` topic. |
 | **mcpServer** | `catalog/catalog-mcp-server` | Model Context Protocol server. Exposes the Catalog API as an MCP tool, making it directly queryable by AI coding assistants and agents. |
 | **policyEngine** | `p4samd/core/policy-engine` | Authorization policy evaluation engine. Evaluates access policies against catalog items, using Redis for caching and integrating with `catalogEngine`. |
+| **secretStoreService** | `ai-resources/secret-store-service` | *(Optional, disabled by default.)* Stores the webhook signing keys of `catalogEngine` in an external OpenBao/Vault, which is not deployed by the chart. |
 | **swaggerAggregator** | `core/swagger-aggregator` | *(Optional, disabled by default.)* Aggregates OpenAPI specs from platform projects and exposes a unified API portal. |
+
+The chart no longer deploys a Docling service. Document parsing is provided by [AI Services](/requirements/installation-guidelines/shared-services/ai-services/10_overview.md): set `apiGateway.docling.url` to route `/api/docling/` to it.
 
 ## Architecture overview
 
@@ -52,7 +54,7 @@ The Catalog also exposes its API via the **Model Context Protocol (MCP)**, makin
                     itemsCompressor ──► PostgreSQL (dedup cache)
   ──────────────────────────────────────────────────────────
 
-  adkBeApp ──► Google Cloud (Vertex AI / ADK)
+  adkBeApp ──► AI Services (LiteLLM gateway)
 ```
 
 The Envoy gateway validates JWT tokens on every request and checks RBAC policies via `accessControl`. Envoy merges the JWKS published by `authtoolBff`, `accessControl` and `catalogEngine` so that tokens issued to any of these OIDC clients validate correctly. The `catalogEngine` is the authoritative store for all catalog data. The Kafka pipeline provides an event-driven path for bulk item ingestion and synchronization.
@@ -70,6 +72,7 @@ Separately, `authtoolBff` supports a **token-exchange client** (`authtoolBff.con
 | Product / System | Integration | Configuration key |
 |---|---|---|
 | **Keycloak** | OIDC authentication. `authtoolBff` performs the PKCE flow; Envoy validates JWTs against the realm's JWKS. | `authorizationServer.issuer` |
+| **AI Services** | `adkBeApp` reaches the models through the AI Services LiteLLM gateway (unless `adkBeApp.config.aiGatewayEnabled: false`), and the API gateway routes `/api/docling/` to the AI Services Docling service. | `aiServicesClientId`, `adkBeApp.config.*`, `apiGateway.docling.*` |
 | **AI Foundry** | `adkBeApp` is the same component used in the AI Foundry chart. The `mcpServer` exposes the Catalog API to AI tools so that AI Foundry agents (and other AI assistants) can query catalog context directly. | `adkBeApp.*`, `mcpServer.*` |
 | **Console** | The Console generates and publishes catalog items via the `itemsProducer` / Kafka pipeline. Catalog items reflect Console-managed projects and components. | `catalogKafkaContext.*` |
 | **Services (Homepage)** | The Catalog website is linked from the Mia Platform homepage deployed by the `services` chart. The homepage uses the Catalog as the primary navigation hub. | `url` |

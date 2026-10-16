@@ -18,14 +18,14 @@ Otherwise, you can download the OpenAPI 3.1 specification in JSON format <a down
 
 ## Scoping headers
 
-Every request to the Catalog API must carry the `x-mia-acl-context` header, which scopes the request to an [organization](/products/catalog/basic-concepts/10_items.md#organizations) and the tenant it lives in.
+Every request to the Catalog API must carry the `x-mia-acl-context` header, which scopes the request to a [tenant](/products/catalog/basic-concepts/10_items.md#tenants-and-organizations) and the organization it belongs to.
 
 The header value is a URL-safe base64-encoded (no padding) JSON object with the following properties:
 
 | Property | Type | Meaning |
 | :------- | :--- | :------ |
-| `organization` | string | Identifier of the organization the request operates in. |
-| `tenant` | string | Slug of the tenant — the broader Mia-Platform Console-level boundary the organization lives in. |
+| `organization` | string | Identifier of the organization the tenant belongs to. |
+| `tenant` | string | Slug of the tenant the request operates in — the isolation boundary of the Catalog. |
 | `tenantName` | string, optional | Human-readable name of the tenant. |
 
 For example, the JSON payload before encoding might look like:

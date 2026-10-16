@@ -27,7 +27,7 @@ From the **Webhooks** tab, **Add webhook** opens a form to register a new webhoo
 
 - **Name** *(optional)* — a label to identify the webhook in the list.
 - **Payload URL** *(required)* — the external endpoint the `POST` request is sent to when the webhook fires.
-- **Secret** *(optional)* — used to sign the delivery. Without a secret, deliveries to this webhook are not signed.
+- **Secret** *(optional)* — used to sign the delivery. Without a secret, deliveries to this webhook are not signed. Signing keys are kept in an external OpenBao or Vault through the secret store service of the Catalog: if your installation does not enable it, creating or rotating a webhook with a secret fails (see the [Catalog installation guide](/requirements/installation-guidelines/catalog/helm-values/00_overview.md#secretstoreservice)).
 - **Description** *(optional)* — what the webhook is for.
 - **Which events would you like to trigger this webhook?** — `On create`, `On update`, and `On delete` can be enabled independently, so a webhook can respond to only the operations you care about.
 - **Enabled** — a toggle to activate the webhook immediately, or leave it registered but inactive.
