@@ -19,17 +19,11 @@ The **Catalog App** is the web interface that lets operators and platform users 
 
 ## Architecture
 
-The Catalog App is the entry point of a small set of cooperating services:
+The Catalog App is the web interface of the Catalog: for the services behind it and how they cooperate, see [Catalog Architecture](/products/catalog/architecture.md).
 
-| Component           | Role                                                                                                          |
-| :------------------ | :------------------------------------------------------------------------------------------------------------ |
-| **Catalog Website** | Web UI for the catalog. Lets users browse items, view rule evaluation results, and monitor campaign progress. |
-| **Catalog Engine**  | Core catalog backend. Stores and manages items and exposes the [Catalog API](/products/catalog/usage/catalog-api.md).          |
-| **Policy Engine**   | Stateless rule-evaluation engine that drives compliance evaluations.                                          |
+## Tenants
 
-## Organizations
-
-The Catalog App allows users to select the organization they want to explore in the Catalog App.
+The selector at the top of the sidebar lets users choose the tenant they want to explore in the Catalog App. Everything the app shows belongs to the selected tenant.
 
 ## Items
 
@@ -54,7 +48,7 @@ Items are presented in a paginated table that loads more entries as you scroll. 
 Click **Create item** to open a guided three-step wizard:
 
 1. **Item Type** — choose an Item Type Definition (the kind of item you want to create).
-2. **Metadata** — provide a title, name, description, tags, and optionally an owner (an email address).
+2. **Metadata** — provide a title, name, description, tags, and optionally an owner (a Mia-Platform user or an email address).
 3. **Specification** — fill in the item's `spec` as a JSON document, guided by the schema defined in the selected Item Type Definition.
 
 ### View an item
@@ -70,12 +64,13 @@ Clicking an item opens its detail page, which is organized into tabs:
 | **Relationships** | The full set of relationships to and from the item, viewable as a table or a visual graph. You can add, edit, and delete relationships from here. |
 | **Specifications** | The item's `spec` field, viewable in Tree or Code (raw JSON) format. Click **Edit** to open a modal where you can edit the raw spec JSON. |
 | **Metadata** | Manage annotations, labels, and links attached to the item (add, edit, and delete each). |
+| **History** | The item's revisions and named versions, which you can compare and restore — see [History and Item Versioning](/products/catalog/basic-concepts/65_item-history.md). |
 
 ### Edit an item
 
 From the detail page you can also:
 
-- **Edit metadata** — from the actions menu, update the title, description, tags, and owner (an email address). For Connector-kind items, you can also update the icon.
+- **Edit metadata** — from the actions menu, update the title, description, tags, and owner (a Mia-Platform user or an email address). For Connector-kind items, you can also update the icon.
 - **Manage followers** — from the **Overview** tab (not the actions menu), add or remove the email addresses following this item.
 - **View manifest** — inspect the full raw manifest of the item in a modal, and download it as a JSON file.
 - **Delete** — permanently remove the item from the catalog.
@@ -311,13 +306,13 @@ From the actions menu, click **Delete campaign** to permanently remove it.
 
 ### Item Types
 
-**Item Type Definitions (ITDs)** define the schema and API group for each kind of item the catalog can hold. Mia-Platform ships a set of built-in ITDs; you can also register custom ones.
+**Item Types** (Item Type Definitions, or ITDs, in the API) define the schema and API group for each kind of item the catalog can hold. Mia-Platform ships a set of built-in Item Types; you can also register custom ones.
 
 #### Browse item types
 
 ![Catalog App Item Type Definitions](../img/catalog_itds.png)
 
-The item types list shows all registered ITDs. From the list you can:
+The item types list shows all registered Item Types. From the list you can:
 
 - **Search** by name or title.
 - **Filter** by creation date, group, name, scope, and tags.
@@ -337,14 +332,16 @@ Click **Create item type** to open a two-step wizard:
 
 ![Catalog App Item Type Definition Details](../img/catalog_itds_view.png)
 
-Clicking an ITD opens its detail page, organized into four tabs:
+Clicking an Item Type opens its detail page, organized into tabs:
 
 | Tab | Content |
 | :-- | :------ |
-| **Overview** | Summary of the ITD: kind, group, scope, description, tags, and a shortcut to create a new item of this type. |
-| **Specifications** | Kind, plural, display plural names — editable for non-system ITDs. |
+| **Overview** | Summary of the Item Type: kind, group, scope, description, tags, and a shortcut to create a new item of this type. |
+| **Specifications** | Kind, plural, display plural names — editable for non-system Item Types. |
 | **Versions** | All defined versions with their served status, deprecation state, schema, and selectable fields. You can add new versions (from scratch or copying an existing one) and edit existing versions. |
 | **Metadata** | Annotations, labels, and links — add, edit, and delete each. |
+| **Webhooks** | The webhooks notifying external services when items of this type are created, updated, or deleted — see [Webhooks](/products/catalog/basic-concepts/62_webhooks.md). |
+| **Audit Log** | Every action performed on this Item Type and its items — see [Audit Logs](/products/catalog/basic-concepts/68_audit-logs.md). |
 
 #### Edit an item type
 
@@ -352,13 +349,13 @@ From the detail page you can:
 
 - **Edit metadata** — add or remove annotations, labels, and links.
 - **Edit tags** — add or remove tags.
-- **Edit names** — update kind, plural, and display plural (non-system ITDs only).
+- **Edit names** — update kind, plural, and display plural (non-system Item Types only).
 - **Manage versions** — create a new version or edit an existing one's schema, selectable fields, served status, and deprecation settings.
-- **View/download manifest** — inspect and download the full ITD manifest as JSON.
+- **View/download manifest** — inspect and download the full Item Type manifest as JSON.
 
 #### Delete an item type
 
-From the actions menu on the detail page, click **Delete** (disabled for system ITDs).
+From the actions menu on the detail page, click **Delete** (disabled for system Item Types).
 
 ---
 

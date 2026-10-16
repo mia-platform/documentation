@@ -6,7 +6,7 @@ sidebar_label: Overview
 
 # Catalog Overview
 
-The **Catalog** is Mia-Platform's system to record, classify, and connect any entity that lives in your organization, from software components and infrastructure resources to business artifacts and processes. It provides a unified, queryable model of your platform's "context" so that humans and automations can reason about what exists, how it relates, and whether it complies with the rules you care about.
+The **Catalog** is Mia-Platform's system to record, classify, and connect any entity that lives in your organization's tenants, from software components and infrastructure resources to business artifacts and processes. It provides a unified, queryable model of your platform's "context" so that humans and automations can reason about what exists, how it relates, and whether it complies with the rules you care about.
 
 ![Catalog Home Page](img/catalog_welcome.png)
 
@@ -16,7 +16,7 @@ The **Catalog** is Mia-Platform's system to record, classify, and connect any en
 - **Item Types.** Each item has a *type*. Items of the same type share a schema and form a *family*. Mia-Platform ships a set of default types and you can extend the catalog with your own through *Item Type Definitions* (ITDs).
 - **Objects and manifests.** Both items and ITDs are stored as *objects* with a predictable shape (`apiVersion`, `kind`, `metadata`, `spec`). Their JSON/YAML representation is called a *manifest*.
 - **Relationships.** Items can be connected through *typed, directed relationships*, modeled with the built-in `RelationshipType`, `RelationshipConstraint`, and `Relationship` kinds. Relationships form a graph that powers traversal, impact analysis, and discovery.
-- **Organizations.** The catalog is scoped by *organizations*: each organization is an isolated namespace whose resources are visible only within it.
+- **Tenants.** The catalog is scoped by *tenant*: an organization contains one or more tenants, and each tenant is an isolated namespace whose resources are visible only within it.
 
 ## What you can do with it
 

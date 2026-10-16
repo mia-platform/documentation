@@ -6,14 +6,14 @@ sidebar_label: Getting Started
 
 # Getting Started with the Catalog
 
-This page walks you through the very first interactions with the Catalog, from opening the Catalog App to your first item, first relationship and first compliance check. It assumes the catalog is already provisioned for your organization; if it is not, contact your platform administrator.
+This page walks you through the very first interactions with the Catalog, from opening the Catalog App to your first item, first relationship and first compliance check. It assumes the catalog is already provisioned for your tenant; if it is not, contact your platform administrator.
 
 ## Prerequisites
 
 To get started you need:
 
 - access to the [Catalog App](/products/catalog/usage/catalog-app.md) — the web UI is the easiest entry point;
-- an **organization** in which to operate (the catalog isolates everything per organization, see [Items](/products/catalog/basic-concepts/10_items.md#organizations));
+- a **tenant** in which to operate (the catalog isolates everything per tenant, see [Items](/products/catalog/basic-concepts/10_items.md#tenants-and-organizations));
 - optionally, credentials for the [Catalog API](/products/catalog/usage/catalog-api.md) if you plan to script ingestion or queries.
 
 ## 1. Explore what is already there
@@ -23,9 +23,11 @@ When you open the Catalog App you land on the **Homepage**: a dashboard that giv
 From the left sidebar, you can browse the following:
 
 - **Items** → filter by kind to see what already exists.
-- **Configuration → Item Types** to see which kinds are registered in your organization.
+- **Configuration → Item Types** to see which kinds are registered in your tenant.
 - **Configuration → Relationship Types** to see the connection types you can use to wire items together (see [Relationships](/products/catalog/basic-concepts/60_relationships.md)).
 - **Configuration → Connectors** to see if any external system is already feeding the catalog automatically (see step 6 below).
+- **Governance** to manage rules, scorecards, and campaigns (see step 5 below).
+- **Activity → Audit Logs** to review every action performed on the Catalog (see [Audit Logs](/products/catalog/basic-concepts/68_audit-logs.md)).
 
 ## 2. Create your first custom Item Type
 
@@ -34,7 +36,7 @@ Most useful catalogs start by introducing a few **custom item types** specific t
 From the Catalog App, go to **Configuration → Item Types → Create item type** and fill in:
 
 - **Group** — a DNS-like name your team owns, e.g. `stable.acme.com`.
-- **Scope** — `Organization` or `Project`, depending on whether items of this type should be visible catalog-wide or scoped to a single project.
+- **Scope** — `Organization`, the only value currently supported. Whatever the value, items are always isolated per tenant (projects exist only in Console).
 - **Kind** and **Plural** — e.g. `DockerImage` and `dockerimages`.
 - **Version name** — e.g. `v1`, following the `v<number>` (optionally `alpha<number>`/`beta<number>`) pattern.
 - **Validation Schema** — the OpenAPI-style JSON schema for the `spec` of the items (see [Item Types](/products/catalog/basic-concepts/20_item-types.md#the-validation-schema)).
@@ -55,7 +57,7 @@ You can do the same thing via API by sending a `POST` request to the resource pa
 
 ## 4. Connect items with a relationship
 
-Open the detail page of an item, jump to the **Relationships** tab, and link it to another item using one of the [built-in relationship types](/products/catalog/basic-concepts/60_relationships.md#built-in-relationship-types) (e.g. `part-of`, `dependency`) or one you have defined yourself. From now on, you can navigate that connection from either endpoint, both in the table view and in the graph view.
+Open the detail page of an item, jump to the **Relationships** tab, and link it to another item using one of the [built-in relationship types](/products/catalog/basic-concepts/60_relationships.md#relationshiptype) (e.g. `part-of`, `dependency`) or one you have defined yourself. From now on, you can navigate that connection from either endpoint, both in the table view and in the graph view.
 
 ## 5. Run a compliance check
 
