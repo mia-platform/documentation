@@ -43,7 +43,7 @@ If you'd like to see the whole suite running end-to-end before planning your own
 │       Keycloak  ──►  Realm Management                                │
 │                              │                                       │
 │                              ▼                                       │
-│  2 — Homepage & RBAC  (recommended, not required — authz API)          │
+│  2 — Homepage & RBAC  (prerequisite for all — authz API)             │
 └────────────────────────────────┬─────────────────────────────────────┘
                                  ▼
                ┌─────────────────┼─────────────────┐
