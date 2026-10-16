@@ -27,7 +27,7 @@ The following tools must be available on the operator's workstation before insta
 
 **Auth tooling** (Keycloak + Realm Management) must be operational before any product chart is installed: it provides the OIDC issuer URL required by every other component.
 
-**Homepage & RBAC** is the recommended second step, ahead of the products, even though it is not a hard prerequisite: it exposes the `rbacManagement` authorization API (via `authzUrl`) that Console, Catalog, and AI Foundry can optionally call to enrich policy evaluation with product/permission context. Each product bundles its own `authtool-bff` instance for browser login and does not depend on the `services` chart for it.
+**Homepage & RBAC** is also a prerequisite and must be installed right after the Auth tooling, before any product: it exposes the `rbacManagement` authorization API (via `authzUrl`) that Console, Catalog, and AI Foundry rely on to manage users, tenants, roles, and permissions, so without it the products cannot be used. Each product bundles its own `authtool-bff` instance for browser login and does not depend on the `services` chart for it.
 
 Once the shared services layer is running, **Console**, **Catalog** and **AI Services** can be installed in parallel. AI Services provides the AI gateway, the workflow engine, document conversion and the memory service used by the other products. AI Foundry depends on Catalog (shared agent backend and navigation links) and on AI Services, and must be installed last.
 
