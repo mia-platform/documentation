@@ -184,7 +184,7 @@ Compatibility matrix:
 | --- | --- |
 | Keycloak | >= 26.2 |
 | Redis | >= 8.4 |
-| PostgreSQL | >= 16 |
+| PostgreSQL | >= 15 |
 | LLM API key / Service Account | N/A |
 | Kubernetes | >= 1.34 |
 | Mia-Platform Catalog | V2 |

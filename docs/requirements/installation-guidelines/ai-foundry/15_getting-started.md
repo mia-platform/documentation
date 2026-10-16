@@ -15,7 +15,7 @@ This guide walks through installing the `ai-foundry` chart to deploy the AI Foun
 - A running **Keycloak** instance with a configured realm and a registered OIDC client for `authtool-bff`. See the [Keycloak installation guide](/requirements/installation-guidelines/shared-services/authn/keycloak/15_getting-started.md).
 - The Keycloak realm configured with the [Realm Management chart](/requirements/installation-guidelines/shared-services/authn/keycloak-realm-management/15_getting-started.md) `0.1.47` or later, with `products.aiFoundry: true` and `products.aiServices: true`.
 - [AI Services](/requirements/installation-guidelines/ai-services/10_overview.md) installed in its own namespace. AI Foundry uses its LiteLLM AI gateway, Temporal, Docling, memory service, Langfuse and Prometheus, and its OpenBao secret store.
-- An external **PostgreSQL** server (v14+) accessible from the cluster, with one database shared by `adk-be-app`, `ai-foundry-be` and `ai-foundry-workflows`, and a separate database for `workspace-service`.
+- An external **PostgreSQL** server (v15+) accessible from the cluster, with one database shared by `adk-be-app`, `ai-foundry-be` and `ai-foundry-workflows`, and a separate database for `workspace-service`.
 
 ## Required information
 

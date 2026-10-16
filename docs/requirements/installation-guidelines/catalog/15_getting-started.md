@@ -14,7 +14,7 @@ This guide walks through installing the `catalog` chart to deploy the Mia Platfo
 - [Helm](https://helm.sh/docs/helm/helm_install/) v3
 - A running **Keycloak** instance with a configured realm and a registered OIDC client for `authtool-bff`. See the [Keycloak installation guide](/requirements/installation-guidelines/shared-services/authn/keycloak/15_getting-started.md).
 - A `catalog-engine` OIDC client in the same realm, used by `catalogEngine` to sync Catalog permissions to the authorization API (`catalogEngine.config.authzServiceAuthorization`, enabled by default). The [Realm Management](/requirements/installation-guidelines/shared-services/authn/keycloak-realm-management/15_getting-started.md) chart creates it (from version `0.1.31`, with `products.catalog: true`) as a `private_key_jwt` client that reads its keys from `<Catalog URL>/.well-known/jwks.json`, with the `mia:authz` and `mia:authz-roles` default scopes and a service account.
-- An external **PostgreSQL** database (v14+) for `catalogEngine`.
+- An external **PostgreSQL** database (v15+) for `catalogEngine`.
 - A **Kafka** cluster. Two deployment options are supported:
   1. An existing **external** broker (Kafka, Confluent, MSK, a cluster managed by a Strimzi operator, etc.), connected via `catalogKafkaContext` and the `kafka-keys` Secret.
   2. An **embedded** Kafka cluster, deployed by the chart in the Catalog namespace with plain Kubernetes resources, without any operator (`catalogKafkaContext.embedded.enabled: true`). It requires a StorageClass able to provision a `ReadWriteOnce` volume per Kafka node.
