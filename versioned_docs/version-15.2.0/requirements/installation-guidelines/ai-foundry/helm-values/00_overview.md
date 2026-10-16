@@ -10,6 +10,10 @@ This page describes the main configurable values for the `ai-foundry` chart. See
 
 The chart validates the values at render time and refuses to render a configuration that would fail at runtime; the error message names the setting to fix.
 
+:::info
+The installation of Langfuse, OpenBao and Prometheus is not covered by these guides yet: we are working to provide the documentation to install these components as well.
+:::
+
 ## URL and environment
 
 | Key | Type | Default | Required | Description |
@@ -20,12 +24,12 @@ The chart validates the values at render time and refuses to render a configurat
 | `namespacePrefix` | string | `""` | ❌ | When set, prefixed (as `<namespacePrefix>-<name>`) to the names of the resources created by the chart, including Services, the `IngressRoute`, the image pull secret referenced by `global.imagePullSecret.name` and the TLS secret set in `ingressRoute.tls.secretName`. |
 | `catalogUrl` | string | `""` | ❌ | Full URL of the Mia Platform Catalog instance. Used by `aiFoundryBff` (and, via the ADK backend, `adkBeApp`) to call the Catalog API using a token-exchange client. When empty, the items are stored in PostgreSQL and served by `aiFoundryBe`, which must then be enabled. |
 | `catalogClientId` | string | `""` | ❌ | OIDC client ID used to identify the Catalog API audience for the token-exchange flow (e.g. `catalog-api`). |
-| `authzUrl` | string | `""` | ❌ | URL of an external Authorization API (e.g. the `services` chart's `apiGateway`, routed to `rbacManagement`). Used by `aiFoundryBff` and, when `accessControl.config.externalContext.enabled: true`, by `accessControl` itself. |
+| `authzUrl` | string | `""` | ✅ | URL of the authorization API of Homepage & RBAC (the `services` chart's `apiGateway`, routed to `rbacManagement`). Used by `aiFoundryBff`, `aiFoundryBe`, `aiFoundryProvisioner` and, when `rbacAuthzServiceUrl` is empty, by `accessControl`. |
 | `authzClientId` | string | `""` | ❌ | OIDC client ID used to identify the Authz API audience for the token-exchange flow (e.g. `authz-api`). |
-| `authtoolBffUrl` | string | `""` | ❌ | Base URL of `authtool-bff`, used to route token-exchange calls through it for cross-cluster calls. Leave empty to forward the caller's JWT verbatim to `authzUrl`/`catalogUrl` instead (same-cluster pass-through mode). Needed, together with `aiServicesClientId`, to call AI Services. |
-| `aiServicesClientId` | string | `""` | ❌ | `authtool-bff` exchange alias for the AI Services audience: set it to `ai-services-api` (the alias of the `exchangeAiServices` client). Used for the memory service, the Docling route and the metrics store of AI Services; when empty the caller's token is forwarded unchanged, which the AI Services gateway refuses. |
+| `authtoolBffUrl` | string | `""` | ✅ | Base URL of `authtool-bff` (e.g. `http://authtool-bff`). The services call it to exchange the caller's token for the audience of the Catalog, Authz and AI Services APIs: the exchange happens only when it is set. When empty, the caller's JWT is forwarded unchanged, which the AI Services gateway refuses. |
+| `aiServicesClientId` | string | `""` | ❌ | `authtool-bff` exchange alias for the AI Services audience: set it to `ai-services-api` (the alias of the `exchangeAiServices` client). Used for the calls to AI Services (memory service, Docling route, central secret store) and to the metrics store; when empty the caller's token is forwarded unchanged, which the AI Services gateway refuses. |
 | `aiServicesSecretStoreUrl` | string | `""` | ❌ | Public URL of AI Services in front of its central secret store, used to keep the tenants' AI gateway keys there. Requires `authtoolBffUrl` and `aiServicesClientId`. Empty keeps every credential in this release's `secretStoreService`. |
-| `systemAgentModel` | string | `""` | ❌ | Model of the seeded system playbooks (session namer, follow-ups, compaction, memory extraction). Must be served by the AI gateway. Empty keeps the default of the seed. |
+| `systemAgentModel` | string | `""` | ❌ | Model of the seeded system playbooks (session namer, follow-ups, feedback summaries, compaction, memory extraction, Insights narration). Replaces `adkBeApp.config.compactionSummarizerModel` and `sessionNamerModel`. Empty uses the default of the seed, `claude-haiku-5-5`. The model must be served by the AI gateway. |
 
 ## IngressRoute (Traefik)
 
@@ -118,8 +122,8 @@ Required while `aiFoundryBe.enabled: true`, unless an `ai-foundry-be-keys` Secre
 | `secrets.aiFoundryBeKeys.postgresConnectionString` | string | `""` | PostgreSQL connection string. Must reach the same database as `secrets.adkBeAppKeys.postgresConnectionString`. |
 | `secrets.aiFoundryBeKeys.langfuseAuthHeader` | string | `""` | Langfuse read credential (e.g. `Basic <base64 of public-key:secret-key>`). Required when `aiFoundryBe.config.langfuseBaseUrl` is set. |
 | `secrets.aiFoundryBeKeys.prometheusAuthHeader` | string | `""` | Authorization header for the metrics store. When empty, the caller's token exchanged through `aiServicesClientId` is used. |
-| `secrets.aiFoundryBeKeys.litellmAdminKey` | string | `""` | LiteLLM admin key. Required when `aiFoundryBe.config.litellmBaseUrl` is set. |
-| `secrets.aiFoundryBeKeys.mcpConsentKeySecret` | string | `""` | Read together with `litellmAdminKey` when `aiFoundryBe.config.litellmBaseUrl` is set. |
+| `secrets.aiFoundryBeKeys.litellmAdminKey` | string | `""` | LiteLLM admin key: the master key of the AI Services gateway (`secrets.litellmProxyKeys.masterKey` of the AI Services values). It mints virtual keys and reads every tenant's spend. Required when `aiFoundryBe.config.litellmBaseUrl` is set. |
+| `secrets.aiFoundryBeKeys.mcpConsentKeySecret` | string | `""` | Secret from which each person's durable gateway identity is derived. Read together with `litellmAdminKey` when `aiFoundryBe.config.litellmBaseUrl` is set. Use a random value (for example `openssl rand -hex 32`) and keep it stable: changing it gives every person a new identity. Empty falls back to short-lived keys. |
 
 ### ai-foundry-workflows keys
 
@@ -137,7 +141,7 @@ Required while `secretStoreService.enabled: true` with the default `approle` aut
 | Key | Type | Default | Description |
 |---|---|---|---|
 | `secrets.secretStoreServiceKeys.enabled` | boolean | `false` | When `true`, the chart creates a Secret named `secret-store-service-keys`. |
-| `secrets.secretStoreServiceKeys.storeRoleId` | string | `""` | AppRole `role-id` for OpenBao: the pair declared in the AI Services values (`secrets.openbaoKeys.approle`). |
+| `secrets.secretStoreServiceKeys.storeRoleId` | string | `""` | AppRole `role-id` for OpenBao. |
 | `secrets.secretStoreServiceKeys.storeSecretId` | string | `""` | AppRole `secret-id` for OpenBao. Both values are required. |
 
 ### workspace-service keys
@@ -235,8 +239,9 @@ The AI Foundry BFF provides the backend API to the website. It requires `aiFound
 
 | Key | Type | Default | Description |
 |---|---|---|---|
+| `aiFoundryBff.enabled` | boolean | `true` | Deploy the BFF. Requires `aiFoundryBe.enabled: true`: the chart refuses to render otherwise. |
 | `aiFoundryBff.config.memoryBaseUrl` | string | `""` | URL of the AI Services gateway in front of the memory service (same value as `adkBeApp.config.agentMemoryBaseUrl`). Empty disables the memory routes. |
-| `aiFoundryBff.config.secretStoreBaseUrl` | string | `""` | Secret store used to write credentials. Empty defaults to this release's `secretStoreService`. |
+| `aiFoundryBff.config.secretStoreBaseUrl` | string | `""` | Secret store used to write credentials. Empty defaults to this release's `secretStoreService`; with `secretStoreService` disabled it is required, otherwise the chart refuses to render. |
 
 ## aiFoundryBe
 
@@ -245,9 +250,9 @@ PostgreSQL-backed implementation of the Catalog item API and read API for the ob
 | Key | Type | Default | Description |
 |---|---|---|---|
 | `aiFoundryBe.enabled` | boolean | `true` | Deploy `ai-foundry-be`. Required when `catalogUrl` is empty or `aiFoundryBff` is enabled. |
-| `aiFoundryBe.config.langfuseBaseUrl` | string | `""` | Langfuse read API of AI Services. Requires `secrets.aiFoundryBeKeys.langfuseAuthHeader`. Empty disables the trace screens. |
-| `aiFoundryBe.config.prometheusBaseUrl` | string | `""` | Prometheus-compatible metrics API of AI Services. Empty disables the metrics screens. |
-| `aiFoundryBe.config.litellmBaseUrl` | string | `""` | Admin API of the LiteLLM gateway. Requires `secrets.aiFoundryBeKeys.litellmAdminKey`, `authorizationServer.issuer` and `apiGateway.authorizationServer.audiences`. |
+| `aiFoundryBe.config.langfuseBaseUrl` | string | `""` | Langfuse read API. Requires `secrets.aiFoundryBeKeys.langfuseAuthHeader`. Empty disables the trace screens. |
+| `aiFoundryBe.config.prometheusBaseUrl` | string | `""` | Prometheus-compatible metrics API (Prometheus, or Mimir with its `/prometheus` prefix). Empty disables the metrics screens. |
+| `aiFoundryBe.config.litellmBaseUrl` | string | `""` | Admin API of the LiteLLM gateway of AI Services (e.g. `https://<ai-services host>/litellm/`), used for the model providers, the model catalogue, the spend screens and the gateway identity of each person. Empty makes these routes answer `503`. Requires `secrets.aiFoundryBeKeys.litellmAdminKey`, `authorizationServer.issuer` and `apiGateway.authorizationServer.audiences`. |
 
 ## aiFoundryWorkflows
 
@@ -259,7 +264,10 @@ The Agentic Workflows engine: a REST API and a Temporal worker. Temporal is prov
 | `aiFoundryWorkflows.config.temporalAddress` | string | `""` | `host:port` of the Temporal gRPC frontend of AI Services (e.g. `temporal-frontend.<ai-services namespace>.svc.cluster.local:7233`). Empty makes every workflow route answer `503`. |
 | `aiFoundryWorkflows.config.temporalNamespace` | string | `""` | **Required** while enabled: a Temporal namespace (not a Kubernetes one) declared in `temporal.namespaces` of the AI Services values. |
 | `aiFoundryWorkflows.config.temporalTaskQueue` | string | `"agentic-workflows"` | Default Temporal task queue. |
-| `aiFoundryWorkflows.config.adkBaseUrl` | string | `""` | Runtime that runs `agent` steps. Empty defaults to this release's `adkBeApp`. |
+| `aiFoundryWorkflows.config.adkBaseUrl` | string | `""` | Runtime that runs `agent` steps. Empty defaults to this release's `adkBeApp`; with `adkBeApp` disabled it is required, otherwise the chart refuses to render. |
+| `aiFoundryWorkflows.config.httpAllowPrivate` | boolean | `false` | Whether an `http` step may reach a private address. Must stay `false`: the chart refuses to render with `true`, because the URL of such a step is chosen by whoever can edit a workflow. |
+| `aiFoundryWorkflows.config.workspaceBaseUrl` | string | `""` | Workspace service used by the workflow runs. Empty defaults to this release's `workspaceService`. |
+| `aiFoundryWorkflows.config.aiServicesBaseUrl` | string | `""` | Public URL of AI Services, used only for the runner-flavour lookup when the workspace service runs in another release. Requires `authtoolBffUrl` and `aiServicesClientId`, `workspaceService.enabled: false` and a `workspaceBaseUrl`: the chart refuses to render otherwise. Leave empty when `workspaceService` runs in this release. |
 
 The database credential is in `secrets.aiFoundryWorkflowsKeys`.
 
@@ -287,27 +295,20 @@ A `post-install`/`post-upgrade` hook Job that seeds and migrates the AI Foundry 
 
 ## aiFoundryWebsite
 
-The AI Foundry frontend application. The `config.links` section configures all cross-product navigation links displayed in the UI.
+The AI Foundry frontend application. The `config.links` section configures the documentation links shown in the integration pages. The links to the other Mia Platform products (Homepage, Catalog, Console, Flow) are not set here: the website reads them from the product configuration of the organization, served by Homepage & RBAC. The schema still accepts `catalogHref`, `consoleHref`, `homepageHref`, `miaFlowHref`, `dataFabricHref`, `p4samdHref`, `claudeCodeHref`, `githubCopilotHref` and `miaDocsHref`, but the website does not read them.
 
 | Key | Type | Default | Description |
 |---|---|---|---|
 | `aiFoundryWebsite.config.enabled` | boolean | `true` | Enable the runtime configuration injection. |
-| `aiFoundryWebsite.config.links.catalogHref` | string |  | URL of the Mia Platform Catalog website. |
-| `aiFoundryWebsite.config.links.miaFlowHref` | string |  | URL of the Mia Flow application. |
-| `aiFoundryWebsite.config.links.consoleHref` | string |  | URL of the Mia Platform Console. |
-| `aiFoundryWebsite.config.links.dataFabricHref` | string |  | URL of the Data Fabric control plane. |
-| `aiFoundryWebsite.config.links.homepageHref` | string |  | URL of the Mia Platform homepage (deployed by the `services` chart). |
-| `aiFoundryWebsite.config.links.p4samdHref` | string |  | URL of the p4samd platform. |
-| `aiFoundryWebsite.config.links.claudeCodeHref` | string |  | URL of Claude Code. |
 | `aiFoundryWebsite.config.links.claudeCodeDocsHref` | string |  | URL of the Claude Code plugin discovery docs. |
 | `aiFoundryWebsite.config.links.claudeCodeSkillsDocsHref` | string |  | URL of the Claude Code skills docs. |
 | `aiFoundryWebsite.config.links.claudeCodeTracesDocsHref` | string |  | URL of the Claude Code traces/monitoring docs. |
-| `aiFoundryWebsite.config.links.githubCopilotHref` | string |  | URL of GitHub Copilot. |
 | `aiFoundryWebsite.config.links.githubCopilotCustomInstructionsHref` | string |  | URL of the GitHub Copilot custom instructions docs. |
-| `aiFoundryWebsite.config.links.miaDocsHref` | string |  | URL of the Mia Platform documentation. |
 | `aiFoundryWebsite.config.links.vscodeDocsHref` | string |  | URL of the VS Code agent customization docs. |
 | `aiFoundryWebsite.config.links.vscodeMonitoringDocsHref` | string |  | URL of the VS Code agent monitoring docs. |
 | `aiFoundryWebsite.config.links.kiroDocsHref` | string |  | URL of the Kiro IDE docs. |
+| `aiFoundryWebsite.config.links.jetbrainsDocsHref` | string |  | URL of the JetBrains IDE docs. |
+| `aiFoundryWebsite.config.links.jetbrainsTracesDocsHref` | string |  | URL of the JetBrains traces/monitoring docs. |
 | `aiFoundryWebsite.config.oauth.scopes` | string |  | OAuth scopes requested by the git credential helper setup shown in the integration pages. When unset, derived from `isPaaS`: `openid offline_access` on-premises, `openid offline_access organization:*` on PaaS. Set it explicitly only for a realm that needs different scopes. |
 | `aiFoundryWebsite.config.otelServices` | array | `["copilot-chat","claude-code","mia-ai-foundry","litellm","mia-flow","adk-be-app"]` | List of service names displayed in the OTEL traces view. |
 | `aiFoundryWebsite.env.BASE_PATH` | string | `"/website/"` | Base path at which the website is served. |
@@ -365,12 +366,12 @@ Shared application Redis of the AI Foundry services, used as a cache (persistenc
 
 ## secretStoreService
 
-Credential store in front of OpenBao or Vault (with AI Services, its OpenBao), holding the credentials configured in AI Foundry. Enabled by default.
+Credential store in front of OpenBao, holding the credentials configured in AI Foundry. Enabled by default.
 
 | Key | Type | Default | Description |
 |---|---|---|---|
 | `secretStoreService.enabled` | boolean | `true` | Deploy the secret store service. |
-| `secretStoreService.config.storeAddr` | string | `""` | **Required** while enabled: address of OpenBao or Vault (with AI Services, `http://openbao.<ai-services namespace>.svc.cluster.local:8200`). |
+| `secretStoreService.config.storeAddr` | string | `""` | **Required** while enabled: address of OpenBao (e.g. `https://openbao.your-domain.com`). |
 | `secretStoreService.config.auth.method` | string | `"approle"` | `approle` uses the pair in `secrets.secretStoreServiceKeys`; `jwt` logs in with the pod ServiceAccount and needs a store whose JWT mount trusts the cluster OIDC issuer. |
 | `secretStoreService.config.auth.jwt.role` | string | `""` | Store role bound to this namespace's ServiceAccount. Required with `auth.method: jwt`. |
 

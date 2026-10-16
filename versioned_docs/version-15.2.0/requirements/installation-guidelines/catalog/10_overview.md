@@ -15,7 +15,7 @@ The Catalog also exposes its API via the **Model Context Protocol (MCP)**, makin
 | Component | Image | Description |
 |---|---|---|
 | **accessControl** | `platform/auth/access-control/ext-authz` | OPA-based ext-authz service. Enforces RBAC policies on every request forwarded by the API gateway. |
-| **adkBeApp** | `ai-foundry/adk-be-app` | ADK Backend App. Orchestrates AI agents using Google ADK. By default it reaches the models through the [AI Services](/requirements/installation-guidelines/ai-services/10_overview.md) LiteLLM gateway. The same image is shared with the AI Foundry chart. |
+| **adkBeApp** | `ai-foundry/adk-be-app` | ADK Backend App. Orchestrates AI agents using Google ADK. By default it reaches the models through the [AI Services](/requirements/installation-guidelines/shared-services/ai-services/10_overview.md) LiteLLM gateway. The same image is shared with the AI Foundry chart. |
 | **apiGateway** | `cache/envoyproxy/envoy` | Envoy reverse proxy. Routes all inbound traffic, validates JWTs, and delegates per-request authorization to `accessControl`. |
 | **authtoolBff** | `platform/auth/authtool/authtool-bff` | OIDC Backend-for-Frontend. Manages the PKCE login/logout flow with Keycloak and issues signed, encrypted session cookies to the browser. |
 | **cache** | `redis` | Redis instance used by `authtoolBff` for session storage and by `policyEngine` for policy caching. |
@@ -29,7 +29,7 @@ The Catalog also exposes its API via the **Model Context Protocol (MCP)**, makin
 | **secretStoreService** | `ai-resources/secret-store-service` | *(Optional, disabled by default.)* Stores the webhook signing keys of `catalogEngine` in an external OpenBao/Vault, which is not deployed by the chart. |
 | **swaggerAggregator** | `core/swagger-aggregator` | *(Optional, disabled by default.)* Aggregates OpenAPI specs from platform projects and exposes a unified API portal. |
 
-The chart no longer deploys a Docling service. Document parsing is provided by [AI Services](/requirements/installation-guidelines/ai-services/10_overview.md): set `apiGateway.docling.url` to route `/api/docling/` to it.
+The chart no longer deploys a Docling service. Document parsing is provided by [AI Services](/requirements/installation-guidelines/shared-services/ai-services/10_overview.md): set `apiGateway.docling.url` to route `/api/docling/` to it.
 
 ## Architecture overview
 

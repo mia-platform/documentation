@@ -62,7 +62,7 @@ Base URLs used to compute OIDC redirect URIs, post-logout redirect URIs, and COR
 | `urls.aiFoundry` | string | `""` | AI Foundry URL. Required when `products.aiFoundry: true`. |
 | `urls.flow` | string | `""` | Mia Flow URL. Required when `products.flow: true`. |
 | `urls.authz` | string | `""` | Authorization service URL. Required when `products.authz: true`. |
-| `urls.aiServices` | string | `""` | Public AI Services URL. Required when `products.aiServices: true`. Must match the URL configured in the [AI Services](/requirements/installation-guidelines/ai-services/10_overview.md) chart. |
+| `urls.aiServices` | string | `""` | Public AI Services URL. Required when `products.aiServices: true`. Must match the URL configured in the [AI Services](/requirements/installation-guidelines/shared-services/ai-services/10_overview.md) chart. |
 
 ## Platform options (`options`)
 

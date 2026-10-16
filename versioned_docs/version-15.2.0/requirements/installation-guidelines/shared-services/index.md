@@ -31,3 +31,17 @@ The Homepage & RBAC section covers the `services` Helm chart, which deploys the 
 This layer must be running before installing Console, Catalog, AI Services, and AI Foundry: they rely on its `rbacManagement` authorization API and on `access-control` for request authorization. The `authtool-bff` deployed here serves the homepage; each product bundles its own `authtool-bff` instance for browser login.
 
 [Go to Homepage & RBAC →](/requirements/installation-guidelines/shared-services/services/10_overview.md)
+
+## AI Services
+
+The AI Services section covers the `ai-services` Helm chart, the shared AI infrastructure used by the AI features of every product:
+
+- **LiteLLM Proxy**: the AI gateway. Every model call of Homepage, Catalog and AI Foundry goes through it.
+- **Secret store service**: holds each tenant's AI gateway key, read by the agent backends of the products.
+- **Docling**: document conversion, used for chat attachments.
+- **Temporal**: the workflow engine used by AI Foundry's Agentic Workflows.
+- **Memory**: long-term memory exposed through a REST API and an MCP endpoint.
+
+AI Services is installed after Homepage & RBAC, whose authorization API it uses, and before the products.
+
+[Go to AI Services →](/requirements/installation-guidelines/shared-services/ai-services/10_overview.md)

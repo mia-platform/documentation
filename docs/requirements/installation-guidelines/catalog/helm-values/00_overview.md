@@ -17,7 +17,7 @@ This page describes all configurable values for the `catalog` chart. See `values
 | `namespacePrefix` | string | `""` | ❌ | Optional prefix prepended as `<namespacePrefix>-<name>` to the names of the chart microservice resources (including their `<service>-keys` Secrets, such as `catalog-engine-keys`), to the image pull secret name, to the `IngressRoute` name and to `ingressRoute.tls.secretName`. Leave empty when the Catalog is installed in a dedicated namespace. |
 | `environment` | string | `""` | ❌ | Logical environment name. One of `local`, `development`, `experimental`, `lts`, `preproduction`, `preview`, `demo`. |
 | `authzUrl` | string | `~` | ❌ | URL of an external authorization API used by `accessControl` to enrich policy evaluation with external context (e.g. the `services` chart's `apiGateway`, routed to `rbacManagement`). Required when `accessControl.config.externalContext.enabled: true`. |
-| `aiServicesClientId` | string | `""` | ❌ | Alias of the token exchange towards the [AI Services](/requirements/installation-guidelines/ai-services/10_overview.md) gateway (the `ai-services-api` Keycloak client), used for the Docling route and by `adkBeApp` to read the tenant's LiteLLM key. When empty, the caller's token is forwarded unchanged. |
+| `aiServicesClientId` | string | `""` | ❌ | Alias of the token exchange towards the [AI Services](/requirements/installation-guidelines/shared-services/ai-services/10_overview.md) gateway (the `ai-services-api` Keycloak client), used for the Docling route and by `adkBeApp` to read the tenant's LiteLLM key. When empty, the caller's token is forwarded unchanged. |
 
 ## IngressRoute (Traefik)
 
@@ -267,7 +267,7 @@ The Envoy API gateway. Validates JWTs and routes traffic to backend services.
 | `apiGateway.authorizationServer.name` | string | `""` | Name of the OIDC authorization server cluster in Envoy (used for JWKS resolution). |
 | `apiGateway.authorizationServer.audiences` | array | `["catalog-api"]` | Expected JWT audiences. |
 | `apiGateway.maxBodyBytes` | integer | `10485760` | Maximum allowed request body size in bytes (default: 10 MiB). |
-| `apiGateway.docling.url` | string | `""` | URL of the Docling service of [AI Services](/requirements/installation-guidelines/ai-services/10_overview.md) (e.g. `https://<ai-services host>/api/docling/`), served on `/api/docling/`. The route is created only when set. |
+| `apiGateway.docling.url` | string | `""` | URL of the Docling service of [AI Services](/requirements/installation-guidelines/shared-services/ai-services/10_overview.md) (e.g. `https://<ai-services host>/api/docling/`), served on `/api/docling/`. The route is created only when set. |
 | `apiGateway.docling.maxBodyBytes` | integer | `33554432` | Maximum allowed request body size in bytes for the `/api/docling/` route (default: 32 MiB). |
 
 ## catalogWebsite
@@ -280,7 +280,7 @@ The Catalog frontend application.
 
 ## adkBeApp
 
-The ADK Backend App, enabled by default. Orchestrates AI agents using Google ADK and, by default, reaches the models through the [AI Services](/requirements/installation-guidelines/ai-services/10_overview.md) LiteLLM gateway. The same image is shared with the AI Foundry chart. The chart fails to render if the required values below are missing; set `adkBeApp.enabled: false` if you do not need it.
+The ADK Backend App, enabled by default. Orchestrates AI agents using Google ADK and, by default, reaches the models through the [AI Services](/requirements/installation-guidelines/shared-services/ai-services/10_overview.md) LiteLLM gateway. The same image is shared with the AI Foundry chart. The chart fails to render if the required values below are missing; set `adkBeApp.enabled: false` if you do not need it.
 
 | Key | Type | Default | Description |
 |---|---|---|---|

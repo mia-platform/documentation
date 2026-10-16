@@ -129,7 +129,7 @@ Envoy reverse proxy. Routes all inbound traffic and delegates per-request author
 |---|---|---|---|
 | `apiGateway.enabled` | boolean | `true` | Deploy the API gateway. |
 | `apiGateway.maxBodyBytes` | integer | `10485760` | Maximum allowed request body size in bytes (default: 10 MiB). |
-| `apiGateway.docling.url` | string | `""` | URL of the Docling service of [AI Services](/requirements/installation-guidelines/ai-services/10_overview.md) (e.g. `https://<ai-services host>/api/docling/`), used for chat attachments and served on `/api/docling/`. When empty, the route is not created. |
+| `apiGateway.docling.url` | string | `""` | URL of the Docling service of [AI Services](/requirements/installation-guidelines/shared-services/ai-services/10_overview.md) (e.g. `https://<ai-services host>/api/docling/`), used for chat attachments and served on `/api/docling/`. When empty, the route is not created. |
 | `apiGateway.docling.maxBodyBytes` | integer | `33554432` | Maximum allowed request body size in bytes for the `/api/docling/` route (default: 32 MiB). |
 | `apiGateway.extraVirtualHosts` | array | `[]` | Additional hostnames (and, optionally, ports) accepted on the main virtual host, e.g. when the homepage is reachable under more than one domain/port. |
 | `apiGateway.authorizationServer.audiences` | array | `["authz-api"]` | Expected token audiences accepted when validating requests against the authorization server. |
@@ -159,7 +159,7 @@ OIDC Backend-for-Frontend. Handles the PKCE login/logout flow with Keycloak and 
 
 ## adkBeApp
 
-ADK Backend App, enabled by default. It reads agents, playbooks, skills and models from the Catalog and, by default, calls the models through the [AI Services](/requirements/installation-guidelines/ai-services/10_overview.md) LiteLLM gateway. The chart fails to render if the required values below are missing; set `adkBeApp.enabled: false` if you do not need it.
+ADK Backend App, enabled by default. It reads agents, playbooks, skills and models from the Catalog and, by default, calls the models through the [AI Services](/requirements/installation-guidelines/shared-services/ai-services/10_overview.md) LiteLLM gateway. The chart fails to render if the required values below are missing; set `adkBeApp.enabled: false` if you do not need it.
 
 | Key | Type | Default | Description |
 |---|---|---|---|

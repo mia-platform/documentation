@@ -29,7 +29,9 @@ The following tools must be available on the operator's workstation before insta
 
 **Homepage & RBAC** is also a prerequisite and must be installed right after the Auth tooling, before any product: it exposes the `rbacManagement` authorization API (via `authzUrl`) that Console, Catalog, and AI Foundry rely on to manage users, tenants, roles, and permissions, so without it the products cannot be used. Each product bundles its own `authtool-bff` instance for browser login and does not depend on the `services` chart for it.
 
-Once the shared services layer is running, **Console**, **Catalog** and **AI Services** can be installed in parallel. AI Services provides the AI gateway, the workflow engine, document conversion and the memory service used by the other products. AI Foundry depends on Catalog (shared agent backend and navigation links) and on AI Services, and must be installed last.
+**AI Services** completes the shared services layer and is installed right after Homepage & RBAC, whose authorization API it uses. It provides the AI gateway (LiteLLM), the secret store holding each tenant's gateway key, document conversion (Docling), the workflow engine and the memory service. These are used not only by AI Foundry but also by the AI components bundled in Homepage & RBAC and in Catalog (the `adk-be-app` agent backend and the chat attachments), so the AI features of every product need AI Services to be running.
+
+Once the shared services layer is running, **Console** and **Catalog** can be installed in parallel. AI Foundry depends on Catalog (shared agent backend and navigation links) and must be installed last.
 
 :::tip Looking for a working reference example?
 If you'd like to see the whole suite running end-to-end before planning your own installation, see the [On-Prem Quickstart](/requirements/installation-guidelines/02_on-prem-quickstart.md): a local reference implementation you can use as a blueprint.
@@ -44,19 +46,21 @@ If you'd like to see the whole suite running end-to-end before planning your own
 │                              │                                       │
 │                              ▼                                       │
 │  2 — Homepage & RBAC  (prerequisite for all — authz API)             │
+│                              │                                       │
+│                              ▼                                       │
+│  3 — AI Services  (AI gateway, secret store, Docling — used by the   │
+│                    AI features of Homepage, Catalog and AI Foundry)  │
 └────────────────────────────────┬─────────────────────────────────────┘
                                  ▼
-               ┌─────────────────┼─────────────────┐
-               ▼                 ▼                 ▼
-     ┌──────────────────┐ ┌──────────────────┐ ┌──────────────────┐
-     │  3: Console      │ │  3: Catalog      │ │  3: AI Services  │
-     └──────────────────┘ └────────┬─────────┘ └────────┬─────────┘
-                                   └─────────┬──────────┘
-                                             ▼
+                     ┌───────────┴───────────┐
+                     ▼                       ▼
+           ┌──────────────────┐    ┌──────────────────┐
+           │  4: Console      │    │  4: Catalog      │
+           └──────────────────┘    └────────┬─────────┘
+                                            ▼
                               ┌──────────────────────────────┐
-                              │  4: AI Foundry               │
-                              │  (requires Catalog and       │
-                              │   AI Services)               │
+                              │  5: AI Foundry               │
+                              │  (requires Catalog)          │
                               └──────────────────────────────┘
 ```
 ## Component index
@@ -72,6 +76,7 @@ If this is your first self-hosted Mia Platform installation, read the [Authentic
 | **Auth: Keycloak** | `keycloak-operator` | [Overview](/requirements/installation-guidelines/shared-services/authn/keycloak/10_overview.md) · [Getting Started](/requirements/installation-guidelines/shared-services/authn/keycloak/15_getting-started.md) |
 | **Auth: Realm Management** | `keycloak-realm-management` | [Overview](/requirements/installation-guidelines/shared-services/authn/keycloak-realm-management/10_overview.md) · [Getting Started](/requirements/installation-guidelines/shared-services/authn/keycloak-realm-management/15_getting-started.md) |
 | **Homepage & RBAC** | `services` | [Overview](/requirements/installation-guidelines/shared-services/services/10_overview.md) · [Getting Started](/requirements/installation-guidelines/shared-services/services/15_getting-started.md) |
+| **AI Services** | `ai-services` | [Overview](/requirements/installation-guidelines/shared-services/ai-services/10_overview.md) · [Getting Started](/requirements/installation-guidelines/shared-services/ai-services/15_getting-started.md) |
 
 ### Products
 
@@ -80,4 +85,3 @@ If this is your first self-hosted Mia Platform installation, read the [Authentic
 | **Console** | `console` | [Overview](/requirements/installation-guidelines/console/infrastructure_overview.md) · [Getting Started](/requirements/installation-guidelines/console/self-hosted/15_getting-started.md) |
 | **Catalog** | `catalog` | [Overview](/requirements/installation-guidelines/catalog/10_overview.md) · [Getting Started](/requirements/installation-guidelines/catalog/15_getting-started.md) |
 | **AI Foundry** | `ai-foundry` | [Overview](/requirements/installation-guidelines/ai-foundry/10_overview.md) · [Getting Started](/requirements/installation-guidelines/ai-foundry/15_getting-started.md) |
-| **AI Services** | `ai-services` | [Overview](/requirements/installation-guidelines/ai-services/10_overview.md) · [Getting Started](/requirements/installation-guidelines/ai-services/15_getting-started.md) |

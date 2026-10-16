@@ -114,7 +114,6 @@ The following table highlights the main shared dependencies across products.
 | MongoDB | ❌ | ❌ | ❌ | ✅ |
 | Redis | ✅ | ✅ | ✅ | ✅ |
 | Kafka | ❌ | ✅ | ❌ | ❌ |
-| Google Cloud / Vertex AI | ✅ | ✅ | ✅ | ✅ optional |
 
 :::info
 The provisioning and management of these tools depends on what distribution model has been chosen (see paragraph above).
@@ -178,18 +177,21 @@ Compatibility matrix:
 | CI/CD tool | Currently compatible only with GitLab, GitHub Actions (SaaS), and Azure Pipelines |
 
 
-### Foundry
+### AI Foundry
 
 | Dependency | Version |
 | --- | --- |
 | Keycloak | >= 26.2 |
-| Redis | >= 8.4 |
-| PostgreSQL | >= 15 |
-| LLM API key / Service Account | N/A |
 | Kubernetes | >= 1.34 |
+| Langfuse (optional) | >= 4.24.0 |
+| LLM API key / Service Account | N/A |
+| Mia-Platform AI Shared Services | Required (`ai-services` chart >= 0.1.0-preview.0) |
 | Mia-Platform Catalog | V2 |
-| Mia Flow (optional) | Optional |
-| Grafana Tempo (optional) | Optional |
+| Mia-Platform Homepage & RBAC | Required |
+| OpenBao | >= 2.6.2 |
+| PostgreSQL | >= 15 |
+| Prometheus / Mimir (optional) | Prometheus >= 3.14.0, or Mimir (via its `/prometheus` API) |
+| Redis | >= 8.4 |
 
 ## Next Step
 

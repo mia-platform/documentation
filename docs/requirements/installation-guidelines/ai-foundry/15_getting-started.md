@@ -14,8 +14,14 @@ This guide walks through installing the `ai-foundry` chart to deploy the AI Foun
 - [Helm](https://helm.sh/docs/helm/helm_install/) v3
 - A running **Keycloak** instance with a configured realm and a registered OIDC client for `authtool-bff`. See the [Keycloak installation guide](/requirements/installation-guidelines/shared-services/authn/keycloak/15_getting-started.md).
 - The Keycloak realm configured with the [Realm Management chart](/requirements/installation-guidelines/shared-services/authn/keycloak-realm-management/15_getting-started.md) `0.1.47` or later, with `products.aiFoundry: true` and `products.aiServices: true`.
-- [AI Services](/requirements/installation-guidelines/ai-services/10_overview.md) installed in its own namespace. AI Foundry uses its LiteLLM AI gateway, Temporal, Docling, memory service, Langfuse and Prometheus, and its OpenBao secret store.
+- [Homepage & RBAC](/requirements/installation-guidelines/shared-services/services/15_getting-started.md) installed. AI Foundry calls its authorization API (`authzUrl`) for users, tenants, roles and permissions.
+- [AI Services](/requirements/installation-guidelines/shared-services/ai-services/10_overview.md) installed in its own namespace. AI Foundry uses its LiteLLM AI gateway, Temporal, Docling and memory service.
+- An **OpenBao** instance for the `secretStoreService` credential store and, optionally, **Langfuse** and **Prometheus** for the trace and metric screens.
 - An external **PostgreSQL** server (v15+) accessible from the cluster, with one database shared by `adk-be-app`, `ai-foundry-be` and `ai-foundry-workflows`, and a separate database for `workspace-service`.
+
+:::info
+The installation of Langfuse, OpenBao and Prometheus is not covered by these guides yet: we are working to provide the documentation to install these components as well.
+:::
 
 ## Required information
 
@@ -26,14 +32,16 @@ This guide walks through installing the `ai-foundry` chart to deploy the AI Foun
 | Keycloak realm issuer URL | `https://keycloak.your-domain.com/realms/my-realm` |
 | OIDC client ID for `authtool-bff` (website) | `ai-foundry-website-bff` |
 | OIDC client ID for `authtool-bff` (token exchange) | `ai-foundry-token-exchange` |
-| PostgreSQL connection string (shared AI Foundry database) | `postgresql://user:pass@host:5432/ai_foundry` |
+| PostgreSQL connection string of `adk-be-app` (shared AI Foundry database, `asyncpg` driver) | `postgresql+asyncpg://user:pass@host:5432/ai_foundry` |
+| PostgreSQL connection string of `ai-foundry-be` and `ai-foundry-workflows` (same database) | `postgresql://user:pass@host:5432/ai_foundry` |
 | PostgreSQL connection string (workspace service database) | `postgresql://user:pass@host:5432/ai_workspace` |
 | LiteLLM AI gateway URL of AI Services | `https://<ai-services host>/litellm/` |
+| LiteLLM master key of AI Services (`secrets.litellmProxyKeys.masterKey` of the AI Services values) | `sk-...` |
 | Temporal frontend address and Temporal namespace of AI Services | `temporal-frontend.<ai-services namespace>.svc.cluster.local:7233`, a namespace from `temporal.namespaces` of the AI Services values |
-| OpenBao address of AI Services and its AppRole `role-id`/`secret-id` | `http://openbao.<ai-services namespace>.svc.cluster.local:8200` |
+| OpenBao address and its AppRole `role-id`/`secret-id` | `https://openbao.your-domain.com` |
 | Docling route of AI Services (optional) | `https://<ai-services host>/api/docling/` |
 | Mia Platform Catalog URL | `https://catalog.your-domain.com` |
-| External Authorization API URL (optional, for `accessControl`/`aiFoundryBff`) | `https://home.your-domain.com` |
+| Authorization API URL of Homepage & RBAC (`authzUrl`) | `https://home.your-domain.com` |
 | Private container registry credentials | Nexus username and password |
 
 ## Step 1: Create the authtool-bff secret
@@ -90,9 +98,11 @@ The `adkBeApp` requires a PostgreSQL connection string:
 ```bash
 kubectl create secret generic adk-be-app-keys \
   --namespace ai-foundry \
-  --from-literal=postgresConnectionString="<shared AI Foundry database connection string>" \
+  --from-literal=postgresConnectionString="postgresql+asyncpg://<user>:<password>@<host>:5432/<database>" \
   --from-literal=otelExporterOtlpHeaders=""
 ```
+
+`adk-be-app` connects with the `asyncpg` driver: its connection string must start with `postgresql+asyncpg://`.
 
 If your LiteLLM gateway requires a key, also add the `litellmProxyApiKey` entry and set `secrets.adkBeAppKeys.litellmProxyApiKey`.
 
@@ -106,20 +116,22 @@ The chart refuses to render when an enabled service has no credential. Create th
 
 | Secret | Keys | Used by |
 |---|---|---|
-| `ai-foundry-be-keys` | `postgresConnectionString` (same database as `adk-be-app-keys`); optional `langfuseAuthHeader`, `prometheusAuthHeader`, and `litellmAdminKey` with `mcpConsentKeySecret` when `aiFoundryBe.config.litellmBaseUrl` is set | `aiFoundryBe`, `aiFoundryProvisioner` |
-| `ai-foundry-workflows-keys` | `postgresConnectionString` (same database as `adk-be-app-keys`) | `aiFoundryWorkflows` |
-| `secret-store-service-keys` | `storeRoleId`, `storeSecretId` (the AppRole pair of the AI Services OpenBao) | `secretStoreService` with the default `approle` auth method |
+| `ai-foundry-be-keys` | `postgresConnectionString` (same database as `adk-be-app-keys`, but as `postgresql://` without the `+asyncpg` driver suffix); `litellmAdminKey` (the LiteLLM master key of AI Services) and `mcpConsentKeySecret` (a random secret, kept stable over time), both needed with `aiFoundryBe.config.litellmBaseUrl`; optional `langfuseAuthHeader`, `prometheusAuthHeader` | `aiFoundryBe`, `aiFoundryProvisioner` |
+| `ai-foundry-workflows-keys` | `postgresConnectionString` (same database as `adk-be-app-keys`; both `postgresql://` and `postgresql+asyncpg://` are accepted) | `aiFoundryWorkflows` |
+| `secret-store-service-keys` | `storeRoleId`, `storeSecretId` (the AppRole pair of your OpenBao) | `secretStoreService` with the default `approle` auth method |
 | `workspace-service-keys` | `postgresConnectionString` (a database of its own) | `workspaceService` |
 | `ai-foundry-provisioner-keys` | `privateKey` or `clientSecret` of the `ai-foundry-provisioner` Keycloak client | `aiFoundryProvisioner`, only when `catalogUrl` is set |
 
 ```bash
 kubectl create secret generic ai-foundry-be-keys \
   --namespace ai-foundry \
-  --from-literal=postgresConnectionString="<shared AI Foundry database connection string>"
+  --from-literal=postgresConnectionString="postgresql://<user>:<password>@<host>:5432/<database>" \
+  --from-literal=litellmAdminKey="<LiteLLM master key of AI Services>" \
+  --from-literal=mcpConsentKeySecret="$(openssl rand -hex 32)"
 
 kubectl create secret generic ai-foundry-workflows-keys \
   --namespace ai-foundry \
-  --from-literal=postgresConnectionString="<shared AI Foundry database connection string>"
+  --from-literal=postgresConnectionString="postgresql://<user>:<password>@<host>:5432/<database>"
 
 kubectl create secret generic secret-store-service-keys \
   --namespace ai-foundry \
@@ -128,7 +140,7 @@ kubectl create secret generic secret-store-service-keys \
 
 kubectl create secret generic workspace-service-keys \
   --namespace ai-foundry \
-  --from-literal=postgresConnectionString="<workspace service database connection string>"
+  --from-literal=postgresConnectionString="postgresql://<user>:<password>@<host>:5432/<workspace database>"
 ```
 
 :::tip
@@ -162,13 +174,14 @@ environment: "production"
 catalogUrl: "https://catalog.your-domain.com"
 catalogClientId: "catalog-api"
 
-# Optional: URL and client ID of an external Authz API (e.g. the services chart's
-# api-gateway, routed to rbacManagement) used by aiFoundryBff and accessControl
-# authzUrl: "https://home.your-domain.com"
-# authzClientId: "authz-api"
+# Authorization API of Homepage & RBAC (the services chart's api-gateway, routed to
+# rbacManagement), used by aiFoundryBff, aiFoundryBe, accessControl and aiFoundryProvisioner
+authzUrl: "https://home.your-domain.com"
+authzClientId: "authz-api"
 
-# Route token-exchange calls through authtool-bff. Needed to call AI Services,
-# which accepts only tokens exchanged for the ai-services-api audience.
+# authtool-bff base URL: the token exchange towards Catalog, Authz and AI Services
+# happens only when it is set. AI Services accepts only tokens exchanged for the
+# ai-services-api audience.
 authtoolBffUrl: "http://authtool-bff"
 aiServicesClientId: "ai-services-api"
 
@@ -187,16 +200,22 @@ adkBeApp:
   config:
     litellmProxyApiBase: "https://<ai-services host>/litellm/"
 
+# ai-foundry-be: admin API of the same LiteLLM gateway, needed for the model
+# providers, the model catalogue and the spend screens (uses litellmAdminKey)
+aiFoundryBe:
+  config:
+    litellmBaseUrl: "https://<ai-services host>/litellm/"
+
 # Agentic Workflows: Temporal of AI Services (or set aiFoundryWorkflows.enabled: false)
 aiFoundryWorkflows:
   config:
     temporalAddress: "temporal-frontend.<ai-services namespace>.svc.cluster.local:7233"
     temporalNamespace: "<Temporal namespace from the AI Services values>"
 
-# Credential store in front of the OpenBao of AI Services
+# Credential store in front of your OpenBao
 secretStoreService:
   config:
-    storeAddr: "http://openbao.<ai-services namespace>.svc.cluster.local:8200"
+    storeAddr: "https://openbao.your-domain.com"
 
 # Migration hook Job: with catalogUrl set it needs the ai-foundry-provisioner
 # Keycloak client (see the Helm Values reference); disable it to skip the migration
@@ -231,14 +250,6 @@ authtoolBff:
         clientAlias: "ai-services-api"
         tokenAuthMethod: "private_key_jwt"
 
-# Website links to other platform products
-aiFoundryWebsite:
-  config:
-    links:
-      consoleHref: "https://console.your-domain.com"
-      catalogHref: "https://catalog.your-domain.com"
-      homepageHref: "https://home.your-domain.com"
-
 # Image pull secret: created by the chart only when name and all the imageCredentials are set
 global:
   imagePullSecret:
@@ -250,6 +261,8 @@ global:
     password: "<PASSWORD>"
     email: "operations@your-domain.com"
 ```
+
+The links to the other Mia Platform products shown in the website menu (Homepage, Catalog, Console, Flow) are not set in the chart values: the website reads them from the product configuration of the organization, served by the authorization API of Homepage & RBAC (`authzUrl`).
 
 See the [Helm Values reference](/requirements/installation-guidelines/ai-foundry/helm-values/00_overview.md) for the full list of available options.
 
@@ -303,6 +316,9 @@ aiFoundry:
   catalogUrl: "https://catalog.your-domain.com"
   catalogClientId: "catalog-api"
 
+  authzUrl: "https://home.your-domain.com"
+  authzClientId: "authz-api"
+
   authorizationServer:
     issuer: "https://keycloak.your-domain.com/realms/my-realm"
 
@@ -335,6 +351,10 @@ aiFoundry:
     config:
       litellmProxyApiBase: "https://<ai-services host>/litellm/"
 
+  aiFoundryBe:
+    config:
+      litellmBaseUrl: "https://<ai-services host>/litellm/"
+
   aiFoundryWorkflows:
     config:
       temporalAddress: "temporal-frontend.<ai-services namespace>.svc.cluster.local:7233"
@@ -342,7 +362,7 @@ aiFoundry:
 
   secretStoreService:
     config:
-      storeAddr: "http://openbao.<ai-services namespace>.svc.cluster.local:8200"
+      storeAddr: "https://openbao.your-domain.com"
 
   aiFoundryProvisioner:
     enabled: false

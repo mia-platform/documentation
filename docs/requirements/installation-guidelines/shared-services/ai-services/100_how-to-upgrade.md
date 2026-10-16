@@ -15,7 +15,7 @@ Always review the chart changelog before upgrading. On every upgrade the `tempor
 :::caution
 
 - Temporal guarantees data compatibility only between consecutive minor versions. When an upgrade changes the Temporal server image (`temporal.image.tag`) on a cluster with data to keep, move one minor version at a time.
-- Never change `secrets.litellmProxyKeys.saltKey` or `secrets.langfuseKeys.encryptionKey` on an existing installation: the credentials already stored with them become unreadable.
+- Never change `secrets.litellmProxyKeys.saltKey` on an existing installation: the credentials already stored with it become unreadable.
 - `temporal.numHistoryShards` cannot be changed after the first install.
 
 :::

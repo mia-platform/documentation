@@ -211,7 +211,7 @@ Set `temporal.numHistoryShards` (default `512`) before the first install. It is 
 
 If you set `namespacePrefix`, the chart prepends it (as `<namespacePrefix>-<name>`) to the names of its component resources, including the Secrets of the previous steps (for example `<namespacePrefix>-litellm-proxy-keys`), the image pull secret and `ingressRoute.tls.secretName`: when you create these Secrets yourself, use the prefixed names.
 
-See the [Helm Values reference](/requirements/installation-guidelines/ai-services/helm-values/00_overview.md) for the full list of available options.
+See the [Helm Values reference](/requirements/installation-guidelines/shared-services/ai-services/helm-values/00_overview.md) for the full list of available options.
 
 ## Step 10: Add the Helm repository and install
 

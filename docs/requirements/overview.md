@@ -114,7 +114,6 @@ The following table highlights the main shared dependencies across products.
 | MongoDB | ❌ | ❌ | ❌ | ✅ |
 | Redis | ✅ | ✅ | ✅ | ✅ |
 | Kafka | ❌ | ✅ | ❌ | ❌ |
-| Google Cloud / Vertex AI | ✅ | ✅ | ✅ | ✅ optional |
 
 :::info
 The provisioning and management of these tools depends on what distribution model has been chosen (see paragraph above).
@@ -178,7 +177,7 @@ Compatibility matrix:
 | CI/CD tool | Currently compatible only with GitLab, GitHub Actions (SaaS), and Azure Pipelines |
 
 
-### Foundry
+### AI Foundry
 
 | Dependency | Version |
 | --- | --- |
