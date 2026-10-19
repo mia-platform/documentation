@@ -41,7 +41,7 @@ Blanks cell in the following table are for tools that do not require a specific 
       </tr>
       <tr>
          <td><img src="/img/gitlab.png" width="15" height="15"/> GitLab</td>
-         <td>&gt;= 14.x<br/>&lt;= 18.x, SaaS</td>
+         <td>&gt;= 14.x<br/>&lt;= 19.3.x, SaaS</td>
          <td></td>
          <td></td>
       </tr>
@@ -78,7 +78,7 @@ Blanks cell in the following table are for tools that do not require a specific 
       <tr>
          <td rowspan="5"><strong>Git Provider</strong></td>
          <td><img src="/img/gitlab.png" width="15" height="15"/> GitLab</td>
-         <td>&gt;= 14.x<br/>&lt;= 18.x , SaaS</td>
+         <td>&gt;= 14.x<br/>&lt;= 19.3.x , SaaS</td>
          <td>4 cores</td>
          <td>4 GB</td>
       </tr>
@@ -109,7 +109,7 @@ Blanks cell in the following table are for tools that do not require a specific 
       <tr>
          <td rowspan="3"><strong>Secret Manager</strong></td>
          <td><img src="/img/gitlab.png" width="15" height="15"/> GitLab</td>
-         <td>&gt;= 14.x<br/>&lt;= 18.x , SaaS</td>
+         <td>&gt;= 14.x<br/>&lt;= 19.3.x , SaaS</td>
          <td></td>
          <td></td>
       </tr>
@@ -128,7 +128,7 @@ Blanks cell in the following table are for tools that do not require a specific 
       <tr>
          <td rowspan="5"><strong>CI/CD Tool</strong></td>
          <td><img src="/img/gitlab.png" width="15" height="15"/> GitLab CI Runners</td>
-         <td>&gt;= 14.x<br/>&lt;= 18.x , SaaS</td>
+         <td>&gt;= 14.x<br/>&lt;= 19.3.x , SaaS</td>
          <td>1 core</td>
          <td>2 GB</td>
       </tr>
