@@ -336,17 +336,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/eslint-parser@npm:^8.0.6":
-  version: 8.0.6
-  resolution: "@babel/eslint-parser@npm:8.0.6"
+"@babel/eslint-parser@npm:^8.0.7":
+  version: 8.0.7
+  resolution: "@babel/eslint-parser@npm:8.0.7"
   dependencies:
     eslint-scope: ^9.1.0
     eslint-visitor-keys: ^5.0.0
-    verkit: ^0.3.2
+    verkit: ^0.5.0
   peerDependencies:
     "@babel/core": ^8.0.0
     eslint: ^9.0.0 || ^10.0.0
-  checksum: 70c4de295eca1dc1450c0d56ec3c25631997b8b0be947b43965dbeedd5299a8bb1c3de58b120f37aa02a7d603041c1b0fcbd8e461537bd7db5d869c963dd8aff
+  checksum: 40e3b844b83ede0334df605a538b758f846b7ad4c07529ee086806e69a6450209ed600e96b6b32018ee721d2c33a66ed3adfe84bb3c6e248933748870df934ae
   languageName: node
   linkType: hard
 
@@ -13760,7 +13760,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "p4samd-handbook@workspace:."
   dependencies:
-    "@babel/eslint-parser": ^8.0.6
+    "@babel/eslint-parser": ^8.0.7
     "@docusaurus/core": 3.10.2
     "@docusaurus/plugin-client-redirects": 3.10.2
     "@docusaurus/preset-classic": 3.10.2
@@ -17638,10 +17638,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"verkit@npm:^0.3.2":
-  version: 0.3.2
-  resolution: "verkit@npm:0.3.2"
-  checksum: e2364db764e4b27bfa65480d926c36c441eb9086af452006a5444b508c1a4f57e877488c15b0b7f747fa9a6671ffce174f271022d6cc8f4060a40c96aab4a6a8
+"verkit@npm:^0.5.0":
+  version: 0.5.0
+  resolution: "verkit@npm:0.5.0"
+  checksum: 021a9b99f650c530740f375eb842b0cbc707a500746c939a2f53a41eb3f0a63d17c5310743004183c657821b89d9a4d060491ce39ed7c775549f52da95025422
   languageName: node
   linkType: hard
 
