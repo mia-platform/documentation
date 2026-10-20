@@ -81,6 +81,16 @@
           "type": "doc"
         },
         {
+          "id": "p4samd/handbook/unit_test_acquisition",
+          "label": "Automatic Test Acquisition",
+          "type": "doc"
+        },
+        {
+          "id": "p4samd/handbook/documentation_hub",
+          "label": "Documentation Hub",
+          "type": "doc"
+        },
+        {
           "label": "Brownfield Import",
           "type": "category",
           "items": [

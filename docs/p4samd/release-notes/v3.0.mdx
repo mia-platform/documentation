@@ -10,6 +10,125 @@ import ReleaseNoteAccordion from '@site/src/components/ReleaseNoteAccordion';
 
 Releases are grouped by the month they shipped, newest first.
 
+## October 2026 (v3.7.0)
+
+### P4SaMD v3.7.0, 19 October 2026
+
+Version 3.7 adds automatic acquisition of unit test reports from GitLab and GitHub Actions, a new Documentation Hub that gathers every exportable compliance artifact in one place, SOUP license and security-classification fields in System Design, and ten new US-oriented regulatory frameworks for Brownfield gap analysis.
+
+<FeatureGrid>
+
+<FeatureBox icon="🔄" title="Automatic Unit Test Report Acquisition">
+
+Configure a software item to pull its unit test reports automatically from a GitLab job or a GitHub Actions artifact, on a daily or weekly schedule, instead of uploading them by hand. A new Repository health view gives you one place to see every git-linked software item's acquisition status and trigger, pause, or re-enable it.
+
+</FeatureBox>
+
+<FeatureBox icon="📚" title="Documentation Hub">
+
+A single page to browse and export every compliance artifact your product has generated, grouped into seven sections, with a full, searchable history of who downloaded what and when.
+
+</FeatureBox>
+
+<FeatureBox icon="🇺🇸" title="Expanded Brownfield Regulatory Coverage">
+
+Ten new US-oriented frameworks are available for Brownfield gap analysis, covering FDA medical device reporting, premarket pathways, quality systems, unique device identification, and federal cybersecurity directives.
+
+</FeatureBox>
+
+</FeatureGrid>
+
+<ReleaseNoteAccordion areas={[
+  {
+    name: "Verification",
+    newFeatures: [
+      "A software item's **Add Git Repository** dialog gains an opt-in section to configure automatic acquisition of its unit test reports: choose GitLab or GitHub Actions, name the CI job or artifact that holds the JUnit report, optionally pin a branch, and set a daily or weekly schedule. The Verification page's former Repository Settings tab is replaced by **Repository health**: one row per git-linked software item in the project, whether or not it has acquisition configured, with actions to trigger a pull on demand, pause or resume the schedule, re-enable a source after it was automatically disabled, or delete the configuration (the reports it already pulled are kept).",
+      "A source is automatically disabled after too many consecutive failed pull attempts, so a broken credential or a renamed CI job does not keep retrying unnoticed; re-enable it from Repository health once the issue is fixed.",
+      "When a report is pulled in automatically, the run detail page shows it was acquired automatically rather than uploaded by a person.",
+      "Reviewing a run against its workspace version's previous run now flags what changed since then: a removed test case needs your explicit acknowledgement before the run can be approved or submitted for approval, and a suspected rename or move between the two runs can be confirmed (carrying its identifier, links, and approval state forward) or rejected. A newly added test case is simply marked **New** in the test list.",
+      "An already-uploaded unit test report that has no software item linked now shows a warning banner, and can be linked to one after the fact from the report itself, through a new **Link software item** action.",
+      "The **All Tests** table's rows now open a dedicated **test case detail page**, with its own paginated run history, a traceability panel, and the same Approve / Submit for approval / Reverse approval actions available elsewhere. A test case's entire execution history can be downloaded as one file from this page.",
+      "A test case can now be deleted on its own. Deleting keeps its execution history and traceability links as evidence; it is refused for a test case that already has execution results tied to a specific uploaded report, or that belongs to a released version.",
+      "The All Tests view gains an **Export** control, for all tests or only the ones matching your current filters.",
+    ],
+    improvements: [
+      "The All Tests table's Item, Type, Status, Runs, and Last result columns are now sortable.",
+      "Deleting a software item that still has linked test cases now tells you how many will be unlinked — never deleted — before you confirm.",
+    ],
+    bugFixes: [
+      "Deprecating a test case, and the Approve / Submit for approval / Reverse approval actions on the test case detail page, now work correctly; they previously failed with an error.",
+      "Clicking a sortable column a third time now clears the sort instead of cycling forever between ascending and descending.",
+    ],
+  },
+  {
+    name: "Documentation Hub",
+    newFeatures: [
+      "A new **Documentation Hub** page catalogs every exportable artifact across seven sections — Requirements, Software Design, Software Development, Verification, Risk Analysis, Traceability, and Product — each showing how many records it holds for the active version. It is visible to every project member, including Viewers, though a Viewer's download controls are disabled with an explanation; the same applies to anyone without read access to a given section.",
+      "A **Download History** view lists every download made from the Hub (and from a report or SBOM's own page), searchable and filterable by section, user, and date, with a one-click re-download of the exact same file.",
+    ],
+  },
+  {
+    name: "System Design",
+    newFeatures: [
+      "SOUP items gain a **license** field: pick a suggested value from reconciliation, choose from a curated common-license list, use the \"unknown\" option, or enter a license expression yourself.",
+      "SOUP items gain a **security classification** field (per IEC 81001-5-1), with an in-product guide to help you choose the right one. Clearing an already-set value asks for confirmation.",
+      "The Software Items table gains **tag-based filtering**: select multiple tags to show items matching any of them, combined with your other filters. Tag entry now suggests tags already used in the project, and the Tags column shows a count with the full list on hover.",
+    ],
+    improvements: [
+      "The completeness check for mandatory compliance fields now distinguishes a field that is still empty from one that is filled in but does not qualify, and explains why in the latter case. Changing an item's safety class away from Class B or C now warns you before it clears that item's performance and interface requirements.",
+      "SBOM reconciliation handles a component observed at more than one version in the same scan by showing all of them, instead of silently picking one. A bulk resolution that includes one invalid row no longer fails the whole batch — that row is reported and left out, and the rest is still applied.",
+    ],
+    bugFixes: [
+      "Removing a software item's last tag works again, and tags are now matched without regard to case, so the same tag is not added twice under different capitalization.",
+    ],
+  },
+  {
+    name: "Brownfield Import",
+    newFeatures: [
+      "Ten new target frameworks are available for gap analysis, covering **FDA 21 CFR Part 803** (medical device reporting), **Part 806** (corrections and removals), **Part 807** (establishment registration and 510(k) premarket notification), **Part 812** (investigational device exemptions), **Part 814** (premarket approval, including humanitarian device exemptions), **Part 830** (unique device identification), the **CISA Binding Operational Directives**, the **FDA Predetermined Change Control Plan guidance for AI-enabled device software**, the **FDA AI/ML-based SaMD Action Plan**, and the EU's **NIS2 Directive**.",
+    ],
+    improvements: [
+      "The FDA quality-system framework is relabeled **FDA 21 CFR Part 820 (QMSR)**, reflecting that it now incorporates ISO 13485:2016 by reference. The FDA cybersecurity framework used in gap analysis is updated to the agency's current guidance.",
+      "**HIPAA** and **FDA 21 CFR Part 11**, both selectable as target frameworks since v3.0, now have real compliance checks behind them for the first time. Selecting either previously produced no actual findings; a gap analysis against them is now meaningful.",
+    ],
+  },
+  {
+    name: "Authentication & Security",
+    newFeatures: [
+      "New users are now asked to set up two-factor authentication the first time they sign in, using an authenticator app such as Google Authenticator or 1Password, before they can continue into the product.",
+    ],
+  },
+  {
+    name: "Requirements",
+    bugFixes: [
+      "Filtering the requirements tree now also keeps a matching requirement visible when its path to the root passes through another requirement rather than only a section, so it is no longer hidden.",
+      "A requirement with no parent and no children no longer shows a tree connector that made it look nested under something it wasn't.",
+    ],
+  },
+  {
+    name: "Risk Management",
+    bugFixes: [
+      "A filtered risk list's reported total now matches the number of filtered results instead of the whole, unfiltered count.",
+    ],
+  },
+  {
+    name: "Organization & Members",
+    bugFixes: [
+      "The account menu's own tooltip could cover the Log out option while your pointer was still on the avatar. Opening the menu now shows a header with your name (and email, when it differs) instead.",
+    ],
+  },
+]} />
+
+#### For developers
+
+- The MCP tool catalog grows from 41 to 43 tools, adding update and delete operations for test cases.
+- The Software Items list's tag filter now matches an item carrying *any* of the given tags rather than requiring all of them, and a new endpoint lists every tag used in a project.
+- A test case's full execution history can be downloaded as a single file through a new export endpoint.
+
+#### Upgrade notes
+
+- **Deploy backend and frontend together.** Automatic acquisition, the reconciliation review for acquired reports, the test case detail page, the SOUP license and security-classification fields, tag-based filtering, and the Documentation Hub all depend on this release's backend; an older backend does not expose them.
+
 ## September 2026 (v3.5.1 to v3.6.0)
 
 ### P4SaMD v3.6.0, 17 September 2026

@@ -44,6 +44,10 @@ const FAQ_DATA = [
         q: "Can I integrate tools that P4SaMD does not natively support?",
         a: "Yes. P4SaMD exposes APIs you can use to connect it to any tool or technology stack. Your team can build the integrations, or Mia-Care can build them with you.",
       },
+      {
+        q: "What access does P4SaMD need to pull unit test reports automatically from GitHub or GitLab?",
+        a: "Automatic acquisition only needs read access to the specific repository and CI job or workflow artifact you configure for a software item, using the same repository credential you already provide for that item's git link. P4SaMD does not request access to any other repository, and a source stops pulling and asks you to step in after too many consecutive failures, for example if the credential expires or the job is renamed.",
+      },
     ],
   },
   {
