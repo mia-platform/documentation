@@ -3756,9 +3756,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@mia-platform/console-types@npm:^0.42.0":
-  version: 0.42.0
-  resolution: "@mia-platform/console-types@npm:0.42.0"
+"@mia-platform/console-types@npm:^0.42.1":
+  version: 0.42.1
+  resolution: "@mia-platform/console-types@npm:0.42.1"
   dependencies:
     "@types/json-schema": "npm:^7.0.9"
     json-schema-to-ts: "npm:^2.9.2"
@@ -3766,7 +3766,7 @@ __metadata:
   peerDependencies:
     "@fastify/swagger": ">= 8 || ^6"
     fastify: ">= 3 < 6"
-  checksum: 10/f396d5c85cdec30b1e2a59446de709e12da884ac4b2d2683a595c4c5e895741134544b24a29739ec50cd5fc9422cdabc181099915f91101cccec6a976e69a558
+  checksum: 10/844b601866928fc6409f42bd31439517ccd64a385b065edc8acb679959c80addb1e4939ed85c3d560ffbe651283ecf3a6065e19fc01ac2a82e9e416dd2ae3b46
   languageName: node
   linkType: hard
 
@@ -11903,7 +11903,7 @@ __metadata:
     "@inquirer/prompts": "npm:^8.7.3"
     "@mdx-js/react": "npm:^3.0.0"
     "@mermaid-js/layout-elk": "npm:^1.0.1"
-    "@mia-platform/console-types": "npm:^0.42.0"
+    "@mia-platform/console-types": "npm:^0.42.1"
     "@types/semver": "npm:^7"
     clsx: "npm:^2.0.0"
     docusaurus-json-schema-plugin: "npm:^1.15.1"
