@@ -3303,6 +3303,26 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@inquirer/core@npm:^12.0.5":
+  version: 12.0.5
+  resolution: "@inquirer/core@npm:12.0.5"
+  dependencies:
+    "@inquirer/ansi": "npm:^2.0.9"
+    "@inquirer/figures": "npm:^2.0.9"
+    "@inquirer/type": "npm:4.2.0"
+    cli-width: "npm:^4.1.0"
+    fast-wrap-ansi: "npm:^0.2.0"
+    mute-stream: "npm:^3.0.0"
+    signal-exit: "npm:^4.1.0"
+  peerDependencies:
+    "@types/node": ">=18"
+  peerDependenciesMeta:
+    "@types/node":
+      optional: true
+  checksum: 10/c17962823703a87aa31a71a0b45a1da49b90ff1358dc88788234158a8a9910c4a291491c975363040bc72ea6278b1e32ba3b1f1dd5f435e68f7d494d1179db23
+  languageName: node
+  linkType: hard
+
 "@inquirer/editor@npm:^5.3.4":
   version: 5.3.4
   resolution: "@inquirer/editor@npm:5.3.4"
@@ -11899,7 +11919,7 @@ __metadata:
     "@docusaurus/types": "npm:3.10.2"
     "@eslint/js": "npm:^10"
     "@ianvs/prettier-plugin-sort-imports": "npm:4.7.1"
-    "@inquirer/core": "npm:^12.0.4"
+    "@inquirer/core": "npm:^12.0.5"
     "@inquirer/prompts": "npm:^8.7.3"
     "@mdx-js/react": "npm:^3.0.0"
     "@mermaid-js/layout-elk": "npm:^1.0.1"
