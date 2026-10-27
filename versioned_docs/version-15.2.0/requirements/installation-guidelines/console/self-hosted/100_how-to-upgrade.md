@@ -37,7 +37,7 @@ The Chart version follows [semver](https://semver.org/) policy so any breaking c
 
 ## Console v15 - version upgrades
 
-### From 15.1.0-2 to 15.2.0-beta.3 (Mia-Platform v15.1.1 to v15.2.0)
+### From 15.1.0-4 to 15.2.0-beta.3 (Mia-Platform v15.1.1 to v15.2.0)
 
 No manual action required: install the new chart version.
 
@@ -45,7 +45,7 @@ Also note:
 
 - The `embeddings-importer` job now runs only when `configurations.assistant.embeddings` is set, in addition to `configurations.assistant.enabled`. If you enabled Mia Assistant without `embeddings`, the job is skipped and the Mia-Platform documentation is not imported into the `assistant-documents` collection. Configure `configurations.assistant.embeddings` if you want Mia Assistant to use the documentation.
 
-### From 15.1.0 to 15.1.0-2 (Mia-Platform v15.1.0 to v15.1.1)
+### From 15.1.0 to 15.1.0-4 (Mia-Platform v15.1.0 to v15.1.1)
 
 No manual action required: install the new chart version.
 
