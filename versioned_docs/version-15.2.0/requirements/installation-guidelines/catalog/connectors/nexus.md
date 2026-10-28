@@ -16,9 +16,11 @@ The source operates on Docker repositories only — non-Docker components are sk
 ## Commands
 
 ```sh
-ibdm sync nexus --mapping-file <path to mapping file or folder>
-ibdm run  nexus --mapping-file <path to mapping file or folder>
+ibdm sync nexus --include-internal-mappings=all
+ibdm run  nexus --include-internal-mappings=all
 ```
+
+The commands use every internal mapping of the source. To select only some of them, or to add mappings of your own, see [Mappings](/requirements/installation-guidelines/catalog/connectors/00_overview.md#mappings).
 
 ## Configuration
 
@@ -30,7 +32,7 @@ ibdm run  nexus --mapping-file <path to mapping file or folder>
 | `NEXUS_TOKEN_PASSCODE` | Yes | _(empty)_ | Second part of the user token. Sent as the HTTP Basic Auth password. |
 | `NEXUS_HTTP_TIMEOUT` | No | `30s` | HTTP request timeout (Go duration). |
 | `NEXUS_SPECIFIC_REPOSITORY` | No | _(empty)_ | Restrict sync to a single repository. When empty, all repositories are iterated. |
-| `NEXUS_WEBHOOK_SECRET` | No | _(empty)_ | HMAC-SHA1 secret for inbound webhook signature validation. When unset, signature validation is disabled. |
+| `NEXUS_WEBHOOK_SECRET` | No | _(empty)_ | HMAC-SHA1 secret for inbound webhook signature validation. When unset, unsigned requests are accepted and signed requests are rejected. |
 | `NEXUS_WEBHOOK_PATH` | No | `/nexus/webhook` | HTTP path for inbound webhook events. |
 
 ## Authentication
@@ -61,19 +63,15 @@ The event time recorded on each emitted item is taken from the webhook payload's
 
 ### Signature validation
 
-When `NEXUS_WEBHOOK_SECRET` is set, each request is verified against the `X-Nexus-Webhook-Signature` header (HMAC-SHA1). Requests with missing or invalid signatures are rejected. When `NEXUS_WEBHOOK_SECRET` is empty, all requests are accepted — useful for internal deployments protected at the network level.
+When `NEXUS_WEBHOOK_SECRET` is set, each request is verified against the `X-Nexus-Webhook-Signature` header (HMAC-SHA1). Requests with missing or invalid signatures are rejected. When `NEXUS_WEBHOOK_SECRET` is empty, requests without a signature are accepted, and requests that carry one are rejected, because `ibdm` has no secret to verify them with. Without a secret the webhook endpoint is unauthenticated: set one whenever the webhook path is reachable from outside a trusted network.
 
 To make Nexus sign requests, configure the **Secret Key** field when registering the webhook in the Nexus administration UI.
 
-## Example mappings
+## Internal mappings
 
-Reference mapping files live in [`docs/examples/nexus/mappings/`](https://github.com/mia-platform/ibdm/tree/main/docs/examples/nexus/mappings) of the `ibdm` repository:
+`ibdm mappings list nexus` prints the internal mappings of this source, and the [Internal Mappings](https://github.com/mia-platform/ibdm/blob/main/docs/reference/20_internal-mappings.md#nexus) reference lists the Item Type each one writes.
 
-- `dockerimages.yaml` — map Docker image assets to Catalog items.
-
-```sh
-ibdm sync nexus --mapping-file docs/examples/nexus/mappings/
-```
+`dockerimages` is the only internal mapping, produced by both the sync and the webhook. It creates no relationship itself, but its items are the targets of the relationships of the [Console](/requirements/installation-guidelines/catalog/connectors/mia-platform-console.md) `services` and of the [Sysdig](/requirements/installation-guidelines/catalog/connectors/sysdig.md) `vulnerabilities`, which only resolve when this connector publishes them.
 
 ## See also
 

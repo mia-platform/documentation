@@ -14,9 +14,11 @@ The Google Cloud connector ingests cloud resources from a Google Cloud Platform 
 ## Commands
 
 ```sh
-ibdm sync gcp --mapping-file <path to mapping file or folder>
-ibdm run  gcp --mapping-file <path to mapping file or folder>
+ibdm sync gcp --include-internal-mappings=all
+ibdm run  gcp --include-internal-mappings=all
 ```
+
+The commands use every internal mapping of the source. To select only some of them, or to add mappings of your own, see [Mappings](/requirements/installation-guidelines/catalog/connectors/00_overview.md#mappings).
 
 ## Configuration
 
@@ -30,6 +32,12 @@ ibdm run  gcp --mapping-file <path to mapping file or folder>
 ## Authentication
 
 The source authenticates through [Application Default Credentials (ADC)](https://docs.cloud.google.com/docs/authentication/application-default-credentials). You can supply credentials in any of the standard ADC ways, including pointing `GOOGLE_APPLICATION_CREDENTIALS` at a service-account key file. The principal must have read access to the resources you intend to ingest.
+
+## Internal mappings
+
+`ibdm mappings list gcp` prints the internal mappings of this source, and the [Internal Mappings](https://github.com/mia-platform/ibdm/blob/main/docs/reference/20_internal-mappings.md#gcp) reference lists the Item Type each one writes.
+
+The source ships one internal mapping per supported asset type: `buckets`, `clusters`, `computeinstances`, `firewallrules`, `folders`, `jobs`, `networks`, `projects`, `services` and `sqlinstances`. Every mapping is independent: the sync asks the Cloud Asset API for the asset types of the selected mappings only, and the Pub/Sub stream keeps only the events of those asset types. No internal mapping creates relationships to another one.
 
 ## See also
 

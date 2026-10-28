@@ -16,9 +16,11 @@ GitHub Enterprise Server is supported by overriding `GITHUB_URL`.
 ## Commands
 
 ```sh
-ibdm sync github --mapping-file <path to mapping file or folder>
-ibdm run  github --mapping-file <path to mapping file or folder>
+ibdm sync github --include-internal-mappings=all
+ibdm run  github --include-internal-mappings=all
 ```
+
+The commands use every internal mapping of the source. To select only some of them, or to add mappings of your own, see [Mappings](/requirements/installation-guidelines/catalog/connectors/00_overview.md#mappings).
 
 ## Configuration
 
@@ -66,6 +68,19 @@ Whenever a `repository` item is produced (sync or webhook), `ibdm` calls `GET /r
 ```
 
 If the languages call fails, the repository item is still emitted without `repositoryLanguages`.
+
+## Internal mappings
+
+`ibdm mappings list github` prints the internal mappings of this source, and the [Internal Mappings](https://github.com/mia-platform/ibdm/blob/main/docs/reference/20_internal-mappings.md#github) reference lists the Item Type each one writes.
+
+| Internal mapping | Sync | Webhook | Its relationships point at |
+| :--------------- | :--- | :------ | :------------------------- |
+| `repositories` | ✅ | ✅ on `repository` and `push` events | — |
+| `workflowruns` | ✅ for every repository | ✅ on `workflow_run` events | `repositories` |
+
+The sync lists the repositories of the organization as soon as either mapping is selected, and fetches the workflow runs of each repository while listing them. Selecting `workflowruns` alone works, but its items then relate to repository items that nothing creates: select `repositories` too.
+
+`personal_access_token_request` and `workflow_dispatch` have no internal mapping. An external mapping for either type can only be produced by `ibdm run github`: declare it `syncable: false`.
 
 ## Setting up a GitHub webhook
 

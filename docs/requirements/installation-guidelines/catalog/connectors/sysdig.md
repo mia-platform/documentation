@@ -14,9 +14,11 @@ The Sysdig connector ingests container-image vulnerability data from [Sysdig Sec
 ## Commands
 
 ```sh
-ibdm sync sysdig --mapping-file <path to mapping file or folder>
-ibdm run  sysdig --mapping-file <path to mapping file or folder>
+ibdm sync sysdig --include-internal-mappings=all
+ibdm run  sysdig --include-internal-mappings=all
 ```
+
+The commands use every internal mapping of the source. To select only some of them, or to add mappings of your own, see [Mappings](/requirements/installation-guidelines/catalog/connectors/00_overview.md#mappings).
 
 ## Configuration
 
@@ -86,6 +88,12 @@ The shape of `.vuln` differs between the two modes — they are **not** the same
 - **Webhook** — `.vuln` is a fixed subset built from the Vulnerability API response, limited to: `name`, `severity`, `cvssScore`, `cvssSource`, `cvssVector`, `cvssVersion`, `publicationDate`, `solutionDate`, `exploitable`, `fixedInVersion`. Nested API fields (e.g. `severity.value`, `cvssScore.value.score`) are flattened to these scalar keys so that templates referencing the common fields work in both modes.
 
 In both modes the fields are accessed as flat scalars (e.g. `{{ .vuln.severity }}`, `{{ .vuln.cvssScore }}`), and `.img.imageReference` is the container image pull string (e.g. `registry.example.com/app:v1.0.0`).
+
+## Internal mappings
+
+`ibdm mappings list sysdig` prints the internal mappings of this source, and the [Internal Mappings](https://github.com/mia-platform/ibdm/blob/main/docs/reference/20_internal-mappings.md#sysdig) reference lists the Item Type each one writes.
+
+`vulnerabilities` is the only internal mapping: the sync queries every image vulnerability, and the webhook handles the failed policy evaluations of Docker images. Its relationships point at the `dockerimages` of the [Nexus connector](/requirements/installation-guidelines/catalog/connectors/nexus.md), and only resolve when that connector publishes them. The Catalog accepts such relationships without error.
 
 ## See also
 
