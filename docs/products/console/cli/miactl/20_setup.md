@@ -28,18 +28,14 @@ brew install mia-platform/tap/miactl
 
 #### Go
 
-If you have [Golang] installed with a version >= 1.13 in your system and you have the `$GOPATH`env set, you can
-install `miactl` like this:
+If you have [Golang] 1.25 or later installed on your system, you can install `miactl` like this:
 
 ```sh
 go install github.com/mia-platform/miactl/cmd/miactl@v0.25.2
 ```
 
-Or like this if the `install` command is not available
-
-```sh
-go get -u github.com/mia-platform/miactl/cmd/miactl@v0.25.2
-```
+The binary is installed in `$GOBIN`, or in `$(go env GOPATH)/bin` if `$GOBIN` is not set. Make sure that folder
+is included in your `PATH`.
 
 #### Binary Download
 
