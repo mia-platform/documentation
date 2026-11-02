@@ -11805,10 +11805,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"medium-zoom@npm:^1.1.0":
-  version: 1.1.0
-  resolution: "medium-zoom@npm:1.1.0"
-  checksum: 10/e27692851ce65f03877a1c9f56de16a2c10ea720278b47f06b8a0ff503cef91762e683790d2b7bd3e9136fff36bf4f583e677173f0f0c4070a391a5d849ebbcd
+"medium-zoom@npm:^1.1.2":
+  version: 1.1.2
+  resolution: "medium-zoom@npm:1.1.2"
+  checksum: 10/4c500119c1ed744494bbdb88e45a335d72608bf6f9f4bd44b2f0e00e1dcc83f5496bdadc8a1696b06440d6c02cd9c49182f49cb5731da4535d3510dc80ed8f79
   languageName: node
   linkType: hard
 
@@ -11913,7 +11913,7 @@ __metadata:
     glob: "npm:^13.0.6"
     gray-matter: "npm:^4.0.3"
     klaw: "npm:^4.1.0"
-    medium-zoom: "npm:^1.1.0"
+    medium-zoom: "npm:^1.1.2"
     prettier: "npm:3.9.10"
     prism-react-renderer: "npm:^2.3.0"
     prompts: "npm:^2.4.2"
