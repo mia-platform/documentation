@@ -9,7 +9,7 @@ sidebar_label: Overview
 This page describes all configurable values for the `ai-services` chart. See `values.yaml` for defaults. The chart does not ship a `values.schema.json`: invalid combinations are rejected at render time by the chart's validation template.
 
 :::info
-Langfuse, OpenBao, the OpenTelemetry Collector and Prometheus are not covered by this reference. We are working to provide the documentation to install these components as well.
+Langfuse and OpenBao are not deployed by this chart and have no values here: see [Langfuse and OpenBao](/requirements/installation-guidelines/shared-services/ai-services/20_langfuse-and-openbao.md).
 :::
 
 ## URL and environment
@@ -120,6 +120,13 @@ Used by a `secretStoreService` deployed by this chart that logs in to an externa
 | `secrets.secretStoreServiceKeys.storeRoleId` | string | `""` | AppRole role ID. Stored as `storeRoleId`. |
 | `secrets.secretStoreServiceKeys.storeSecretId` | string | `""` | AppRole secret ID. Stored as `storeSecretId`. |
 
+### otel-collector keys
+
+| Key | Type | Default | Description |
+|---|---|---|---|
+| `secrets.otelCollectorKeys.enabled` | boolean | `false` | When `true`, the chart creates the `otel-collector-keys` Secret with `langfuseOtlpBasic`. |
+| `secrets.otelCollectorKeys.langfuseOtlpBasic` | string | `""` | Base64 of `publicKey:secretKey` of the Langfuse project the traces are written to. Required when `otelCollector.enabled` is `true`. |
+
 ## Global image settings
 
 | Key | Type | Default | Description |
@@ -137,7 +144,7 @@ Used by a `secretStoreService` deployed by this chart that logs in to an externa
 
 ## Service accounts
 
-Each component gets its own dedicated `ServiceAccount`, created by default. Applies to: `accessControl`, `apiGateway`, `litellmProxy`, `temporalFrontend`, `temporalHistory`, `temporalMatching`, `temporalWorker`, `temporalAdminTools`, `temporalUi`, `temporalSchemaSetup`, `temporalNamespaceSetup`, `doclingService`, `memoryService`, `secretStoreService`.
+Each component gets its own dedicated `ServiceAccount`, created by default. Applies to: `accessControl`, `apiGateway`, `litellmProxy`, `temporalFrontend`, `temporalHistory`, `temporalMatching`, `temporalWorker`, `temporalAdminTools`, `temporalUi`, `temporalSchemaSetup`, `temporalNamespaceSetup`, `doclingService`, `memoryService`, `otelCollector`, `prometheus`, `secretStoreService`.
 
 | Key | Type | Default | Description |
 |---|---|---|---|
@@ -145,7 +152,7 @@ Each component gets its own dedicated `ServiceAccount`, created by default. Appl
 
 ## Common component fields
 
-The Deployment-based components (`apiGateway`, `accessControl`, `litellmProxy`, `doclingService`, `memoryService`, `secretStoreService`, `temporalUi`, and the Temporal roles `temporalFrontend`, `temporalHistory`, `temporalMatching`, `temporalWorker`) share the following fields. The Temporal roles take their image from `temporal.image`.
+The Deployment-based components (`apiGateway`, `accessControl`, `litellmProxy`, `doclingService`, `memoryService`, `secretStoreService`, `otelCollector`, `temporalUi`, and the Temporal roles `temporalFrontend`, `temporalHistory`, `temporalMatching`, `temporalWorker`) share the following fields. The Temporal roles take their image from `temporal.image`.
 
 | Key | Type | Description |
 |---|---|---|
@@ -179,6 +186,8 @@ The Deployment-based components (`apiGateway`, `accessControl`, `litellmProxy`, 
 | `temporalFrontend`, `temporalHistory`, `temporalMatching`, `temporalWorker` | follows `temporal.enabled` (`true`) | `docker.io/temporalio/server:1.32.0` | `150m` / `256Mi` | `500m` / `512Mi` |
 | `temporalUi` | `true` | `docker.io/temporalio/ui:2.55.0` | `25m` / `64Mi` | `250m` / `256Mi` |
 | `temporalAdminTools` | `true` | `docker.io/temporalio/admin-tools:1.32.0` | `25m` / `64Mi` | `250m` / `256Mi` |
+| `otelCollector` | `false` | `docker.io/otel/opentelemetry-collector-contrib:0.139.0` | `100m` / `128Mi` | `1` / `512Mi` |
+| `prometheus` | `false` | `docker.io/prom/prometheus:v3.6.0` | `100m` / `512Mi` | `1` / `2Gi` |
 
 ---
 
@@ -213,7 +222,7 @@ LiteLLM Proxy, the AI gateway. Served under `basePath` on the API gateway, with 
 | Key | Type | Default | Description |
 |---|---|---|---|
 | `litellmProxy.enabled` | boolean | `true` | Enable LiteLLM Proxy. |
-| `litellmProxy.basePath` | string | `"/litellm"` | Path prefix on the API gateway. Must start with `/`. |
+| `litellmProxy.basePath` | string | `"/ai-gateway"` | Path prefix on the API gateway. Must start with `/`. |
 | `litellmProxy.logLevel` | string | `"info"` | LiteLLM log level. |
 | `litellmProxy.extraEnv` | object | `{}` | Additional environment variables as a `NAME: value` map. |
 | `litellmProxy.config` | object | see below | Raw LiteLLM proxy configuration ([LiteLLM docs](https://docs.litellm.ai/docs/proxy/configs)). |
@@ -227,7 +236,7 @@ LiteLLM Proxy, the AI gateway. Served under `basePath` on the API gateway, with 
 | `litellmProxy.modelCostMap.image` | object | `docker.io/nginxinc/nginx-unprivileged:1.31.3-alpine` | Image of the cost map sidecar. |
 | `litellmProxy.modelCostMap.resources` | object | requests `10m` CPU / `16Mi` memory, limits `100m` CPU / `64Mi` memory | Resources of the cost map sidecar. |
 | `litellmProxy.telemetry.serviceName` | string | `"litellm"` | OTel `service.name` reported by the proxy. Must not be empty: downstream attribution rules match `litellm`. |
-| `litellmProxy.telemetry.otlpEndpoint` | string | `""` | OTLP endpoint of the proxy. When empty, `telemetry.otelExporterOtlpEndpoint` is used. |
+| `litellmProxy.telemetry.otlpEndpoint` | string | `""` | OTLP endpoint of the proxy. When empty, the in-chart `otelCollector` is used if enabled, otherwise `telemetry.otelExporterOtlpEndpoint`. |
 | `litellmProxy.telemetry.otlpExporter` | string | `""` | `otlp_http` or `otlp_grpc`. Empty derives it from the endpoint and `telemetry.otelExporterOtlpProtocol`. |
 | `litellmProxy.telemetry.otelV2` | boolean | `true` | Enable LiteLLM's OTel v2 integration, which emits the `gen_ai.*` attributes and GenAI metrics. |
 | `litellmProxy.telemetry.captureMessageContent` | string | `"span_only"` | Capture prompts and completions on spans. `no_content` disables it; `span_and_event` also emits them as span events. |
@@ -267,15 +276,44 @@ Central store of the tenants' LiteLLM virtual keys (the `gateway-keys` collectio
 |---|---|---|---|
 | `secretStoreService.enabled` | boolean | `false` | Enable the secret store service. Requires the authentication chain and an external store (`config.storeAddr`). |
 | `secretStoreService.config.mode` | string | `"both"` | `read`, `write` or `both`. |
-| `secretStoreService.config.storeAddr` | string | `""` | Address of the external OpenBao or Vault store. |
-| `secretStoreService.config.storeKvMount` | string | `"kv"` | KV mount of the store. |
-| `secretStoreService.config.storeNamespace` | string | `""` | `X-Vault-Namespace` sent on every call. Empty for a store without namespaces. |
+| `secretStoreService.config.storeAddr` | string | `""` | Address of the external OpenBao or Vault store. Required when enabled. See [Langfuse and OpenBao](/requirements/installation-guidelines/shared-services/ai-services/20_langfuse-and-openbao.md). |
+| `secretStoreService.config.storeKvMount` | string | `"secret"` | KV v2 mount of the store. |
+| `secretStoreService.config.storeNamespace` | string | `""` | `X-Vault-Namespace` sent on every call, for example `console/production/ai-services`. Empty for a store without namespaces. |
 | `secretStoreService.config.auth.method` | string | `"approle"` | `approle` (role/secret pair) or `jwt` (the pod's own ServiceAccount token). |
 | `secretStoreService.config.auth.jwt.mount` | string | `"jwt"` | JWT auth mount on the store. Required with `auth.method: jwt`. |
 | `secretStoreService.config.auth.jwt.role` | string | `""` | Role on the store. Required with `auth.method: jwt`. |
 | `secretStoreService.config.auth.jwt.audience` | string | `"openbao"` | Audience of the projected ServiceAccount token. Must match the role's bound audiences. |
 | `secretStoreService.config.auth.jwt.expirationSeconds` | integer | `600` | Lifetime of the projected token. |
 | `secretStoreService.config.auth.jwt.mountPath` | string | `"/var/run/secrets/openbao"` | Mount path of the projected token. |
+
+## otelCollector
+
+OpenTelemetry Collector that sends traces to Langfuse and metrics to Prometheus. Requires a Langfuse credential (`secrets.otelCollectorKeys`), the traces endpoint of a Langfuse installed outside this chart (see [Langfuse and OpenBao](/requirements/installation-guidelines/shared-services/ai-services/20_langfuse-and-openbao.md)) and a metrics destination.
+
+| Key | Type | Default | Description |
+|---|---|---|---|
+| `otelCollector.enabled` | boolean | `false` | Deploy the collector. |
+| `otelCollector.logLevel` | string | `"warn"` | Collector log level. |
+| `otelCollector.config.langfuse.tracesEndpoint` | string | `""` | **Required** when the collector is enabled. OTLP traces endpoint of Langfuse, for example `http://langfuse-web.langfuse.svc.cluster.local:3000/api/public/otel/v1/traces`. |
+| `otelCollector.config.prometheus.metricsEndpoint` | string | `""` | Metrics destination (a Prometheus OTLP receiver). Empty defaults to the in-chart Prometheus. |
+| `otelCollector.configOverride` | string | `""` | Replaces the collector configuration shipped with the chart. |
+
+## prometheus
+
+Prometheus with the OTLP receiver enabled: `otelCollector` pushes metrics to it. Reachable only inside the cluster, at `http://prometheus.<namespace>.svc.cluster.local`: it is not routed by the API gateway, and its queries are not isolated by tenant. AI Foundry reads it there (`prometheusBaseUrl`) and restricts every query to the tenant of the caller itself.
+
+| Key | Type | Default | Description |
+|---|---|---|---|
+| `prometheus.enabled` | boolean | `false` | Deploy Prometheus. Requires `otelCollector.enabled` or `config.extraScrapeConfigs`. |
+| `prometheus.logLevel` | string | `"warn"` | Log level. |
+| `prometheus.config.retentionTime` | string | `"15d"` | TSDB retention. |
+| `prometheus.config.externalLabels` | object | `stack: ai-services` | `global.external_labels`. |
+| `prometheus.config.promoteResourceAttributes` | array | `service.name`, `service.namespace`, `service.instance.id`, `mia.playbook`, `mia.tenant`, `mia.organization` | OTLP resource attributes promoted to labels. |
+| `prometheus.config.extraScrapeConfigs` | array | `[]` | Additional scrape jobs. |
+| `prometheus.configOverride` | string | `""` | Replaces the Prometheus configuration shipped with the chart. |
+| `prometheus.persistence.size` | string | `"20Gi"` | Volume size. |
+| `prometheus.persistence.storageClassName` | string | `""` | StorageClass. |
+| `prometheus.securityContext` | object | `runAsUser: 65534`, `runAsGroup: 65534`, `fsGroup: 65534` | Pod security context. |
 
 ## temporal
 
@@ -312,7 +350,7 @@ Temporal Web UI, served under `basePath` on the API gateway. The route is public
 | Key | Type | Default | Description |
 |---|---|---|---|
 | `temporalUi.enabled` | boolean | `true` | Deploy the Temporal UI. Requires `temporal.enabled`. |
-| `temporalUi.basePath` | string | `"/temporal"` | Path prefix on the API gateway. Must start with `/`. |
+| `temporalUi.basePath` | string | `"/workflow-manager"` | Path prefix on the API gateway. Must start with `/`. |
 | `temporalUi.auth.enabled` | boolean | `false` | Run the OIDC authorization-code flow in the UI. Requires `auth.clientId`, a realm (`auth.providerUrl` or `authorizationServer.issuer`) and the `temporal-ui-keys` Secret. Without it, the UI is open to anyone who can reach `url`. |
 | `temporalUi.auth.label` | string | `"Mia-Platform"` | Label of the UI's own login page. |
 | `temporalUi.auth.providerUrl` | string | `""` | Realm used for OIDC discovery. Empty uses `authorizationServer.issuer`. |

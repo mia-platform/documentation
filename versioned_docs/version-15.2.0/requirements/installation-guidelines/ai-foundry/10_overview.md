@@ -9,7 +9,7 @@ sidebar_label: Overview
 AI Foundry is a Mia Platform product for managing and deploying AI agent applications. It provides a web interface for interacting with AI agents, orchestrates agent execution via [Google ADK](https://google.github.io/adk-docs/), runs Agentic Workflows, and manages user sessions through Keycloak OIDC. It relies on [AI Services](/requirements/installation-guidelines/shared-services/ai-services/10_overview.md) for the AI gateway (LiteLLM), the workflow engine (Temporal), document conversion (Docling) and the memory service. It also needs an OpenBao secret store and can read traces and metrics from Langfuse and Prometheus.
 
 :::info
-The installation of Langfuse, OpenBao and Prometheus is not covered by these guides yet: we are working to provide the documentation to install these components as well.
+Langfuse and OpenBao are installed with their official Helm charts on Kubernetes, or in any other way their official guides support: see [Langfuse and OpenBao](/requirements/installation-guidelines/shared-services/ai-services/20_langfuse-and-openbao.md). Prometheus is an optional component of AI Services, together with the OpenTelemetry Collector that feeds it: see [the `prometheus` values](/requirements/installation-guidelines/shared-services/ai-services/helm-values/00_overview.md#prometheus). To read it, set `prometheusBaseUrl` to `http://prometheus.<ai-services-namespace>.svc.cluster.local`, and send the metrics of AI Foundry to `http://otel-collector.<ai-services-namespace>.svc.cluster.local:4318`. Any other Prometheus-compatible store, such as Mimir, works as well.
 :::
 
 ## What the chart deploys

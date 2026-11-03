@@ -57,7 +57,7 @@ A provider credential is stored encrypted on the gateway and is never shown agai
 - **A shared LLM Credential**, managed under **Administration** > **LLM Credentials**. One credential can be shared by several models, and rotating it updates all of them at once.
 - **A key of the model's own**, for a key nothing else should be able to use. You rotate it from the model's detail page with **Rotate credential**.
 
-From the model's detail page you can also run **Test connection**, which asks the gateway to place a live call and reports whether the model is answering. The check runs only on demand, because it consumes provider quota.
+From the model's detail page you can also run **Test connection**, which asks the gateway to place a live call and reports whether the model is answering. The check runs only on demand, because it consumes provider quota, and only people who can edit models can run it.
 
 ## Advanced settings
 

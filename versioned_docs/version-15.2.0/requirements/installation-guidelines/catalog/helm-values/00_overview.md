@@ -289,7 +289,7 @@ The ADK Backend App, enabled by default. Orchestrates AI agents using Google ADK
 | `adkBeApp.config.authtoolBffUrl` | string | `""` | URL of the `authtool-bff` used to exchange the caller's token for the Catalog audience. When empty, the release's own `authtoolBff` is used. |
 | `adkBeApp.config.catalogClientId` | string | `"catalog-api"` | Client alias used to exchange the caller's token for the Catalog audience. |
 | `adkBeApp.config.aiGatewayEnabled` | boolean | `true` | Call every model through the AI Services LiteLLM gateway. When `true`, `litellmProxyApiBase` and `secretStoreBaseUrl` are required, together with `aiServicesClientId`. Set to `false` to call the models directly. |
-| `adkBeApp.config.litellmProxyApiBase` | string | `""` | URL of the AI Services LiteLLM gateway (e.g. `https://<ai-services host>/litellm/`). Required while `aiGatewayEnabled` is `true`. |
+| `adkBeApp.config.litellmProxyApiBase` | string | `""` | URL of the AI Services LiteLLM gateway (e.g. `https://<ai-services host>/ai-gateway/`). Required while `aiGatewayEnabled` is `true`. |
 | `adkBeApp.config.secretStoreBaseUrl` | string | `""` | AI Services public URL (e.g. `https://<ai-services host>`), from which the tenant's LiteLLM key is read. Required while `aiGatewayEnabled` is `true`. |
 | `adkBeApp.config.googleCloudProject` | string | | GCP project ID, used to call the models directly on Vertex AI. No longer has a default. |
 | `adkBeApp.config.googleCloudLocation` | string | | GCP region. No longer has a default. |

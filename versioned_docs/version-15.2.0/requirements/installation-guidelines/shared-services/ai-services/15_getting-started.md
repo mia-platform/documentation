@@ -16,6 +16,7 @@ This guide walks through installing the `ai-services` chart with its default com
 - A running **Keycloak** instance with a configured realm. See the [Keycloak installation guide](/requirements/installation-guidelines/shared-services/authn/keycloak/15_getting-started.md). The realm needs the AI Services clients and client scope described in [Step 1](#step-1-prepare-the-keycloak-realm).
 - The platform **authorization service** that `accessControl` resolves the caller's external context against, typically exposed by the [Homepage & RBAC](/requirements/installation-guidelines/shared-services/services/15_getting-started.md) (`services`) chart's API gateway.
 - An external **PostgreSQL** server. The chart does not deploy any database: LiteLLM Proxy, Temporal and Memory each need their own (see [Step 2](#step-2-prepare-the-postgresql-databases)).
+- An **OpenBao** (or Vault) instance, only if you enable `secretStoreService`, and optionally **Langfuse** for AI observability. Neither is deployed by this chart: see [Langfuse and OpenBao](/requirements/installation-guidelines/shared-services/ai-services/20_langfuse-and-openbao.md).
 
 ## Required information
 
@@ -38,7 +39,7 @@ The chart cannot create realm objects. Before installing, make sure the realm co
 
 1. The **`ai-services-access-control`** client, used by `accessControl` to authenticate to the authorization service. It is a service-account client using `private_key_jwt` ("Signed JWT") with the JWKS URL `<AI Services URL>/.well-known/jwks.json`, and its service account carries the `external-context:subscriber` and `external-context:viewer` roles. The URL configured for AI Services in the realm must be equal to the chart's `url`: if they differ, Keycloak gets a 404 when fetching the JWKS and `accessControl` never obtains a token.
 2. The **`ai-services-api`** client, used only as an audience target, and the **`mia:ai-services`** client scope with an audience mapper for it. Every token minted with that scope carries the `ai-services-api` audience, which the API gateway requires (`apiGateway.authorizationServer.audiences`).
-3. *(Optional, for the Temporal Web UI login.)* A **confidential** client, for example `ai-services-temporal-ui`, with the authorization-code flow enabled and `<AI Services URL>/temporal/auth/sso/callback` registered as a valid redirect URI. The redirect URI is matched verbatim.
+3. *(Optional, for the Temporal Web UI login.)* A **confidential** client, for example `ai-services-temporal-ui`, with the authorization-code flow enabled and `<AI Services URL>/workflow-manager/auth/sso/callback` registered as a valid redirect URI. The redirect URI is matched verbatim.
 
 The [Realm Management](/requirements/installation-guidelines/shared-services/authn/keycloak-realm-management/15_getting-started.md) chart (version `0.1.47` or later) creates these clients, `ai-services-access-control`, `ai-services-api`, `ai-services-temporal-ui` and `ai-services-mcp-gateway`, and the `mia:ai-services` scope when `products.aiServices` is `true` and `urls.aiServices` is set to the AI Services URL. The `ai-services-temporal-ui` client reads its secret from the `<realmId>_ai-services-temporal-ui-client-secret` entry of the Keycloak vault, which you must add before the realm import.
 
@@ -122,7 +123,7 @@ Alternatively, set `secrets.memoryServiceKeys.enabled: true` and provide `postgr
 
 ## Step 7: Create the Temporal UI secret (optional)
 
-Skip this step if you leave `temporalUi.auth.enabled: false` (default). In that case the `/temporal/` route is open to anyone who can reach the AI Services URL.
+Skip this step if you leave `temporalUi.auth.enabled: false` (default). In that case the `/workflow-manager/` route is open to anyone who can reach the AI Services URL.
 
 ```bash
 kubectl create secret generic temporal-ui-keys \
@@ -187,6 +188,20 @@ ingressRoute:
 # Optional: Memory service (requires the memory-service-keys Secret)
 # memoryService:
 #   enabled: true
+
+# Optional: OpenTelemetry Collector and Prometheus. Langfuse is installed separately:
+# see the Langfuse and OpenBao page.
+# otelCollector:
+#   enabled: true
+#   config:
+#     langfuse:
+#       tracesEndpoint: "http://langfuse-web.langfuse.svc.cluster.local:3000/api/public/otel/v1/traces"
+# prometheus:
+#   enabled: true
+# secrets:
+#   otelCollectorKeys:
+#     enabled: true
+#     langfuseOtlpBasic: "<base64 of pk-lf-...:sk-lf-...>"
 
 # Optional: Temporal Web UI login (requires the temporal-ui-keys Secret)
 # temporalUi:

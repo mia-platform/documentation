@@ -41,7 +41,8 @@ The AI Services section covers the `ai-services` Helm chart, the shared AI infra
 - **Docling**: document conversion, used for chat attachments.
 - **Temporal**: the workflow engine used by AI Foundry's Agentic Workflows.
 - **Memory**: long-term memory exposed through a REST API and an MCP endpoint.
+- **OpenTelemetry Collector** and **Prometheus** *(optional)*: the telemetry pipeline, which sends AI traces to Langfuse and metrics to Prometheus.
 
-AI Services is installed after Homepage & RBAC, whose authorization API it uses, and before the products.
+AI Services is installed after Homepage & RBAC, whose authorization API it uses, and before the products. The utility services it relies on, Langfuse and OpenBao, are installed with their official charts or guides: see [Langfuse and OpenBao](/requirements/installation-guidelines/shared-services/ai-services/20_langfuse-and-openbao.md).
 
 [Go to AI Services →](/requirements/installation-guidelines/shared-services/ai-services/10_overview.md)

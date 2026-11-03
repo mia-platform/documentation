@@ -20,7 +20,7 @@ This guide walks through installing the `ai-foundry` chart to deploy the AI Foun
 - An external **PostgreSQL** server (v15+) accessible from the cluster, with one database shared by `adk-be-app`, `ai-foundry-be` and `ai-foundry-workflows`, and a separate database for `workspace-service`.
 
 :::info
-The installation of Langfuse, OpenBao and Prometheus is not covered by these guides yet: we are working to provide the documentation to install these components as well.
+Langfuse and OpenBao are installed with their official Helm charts on Kubernetes, or in any other way their official guides support: see [Langfuse and OpenBao](/requirements/installation-guidelines/shared-services/ai-services/20_langfuse-and-openbao.md). Prometheus is an optional component of AI Services, together with the OpenTelemetry Collector that feeds it: see [the `prometheus` values](/requirements/installation-guidelines/shared-services/ai-services/helm-values/00_overview.md#prometheus). To read it, set `prometheusBaseUrl` to `http://prometheus.<ai-services-namespace>.svc.cluster.local`, and send the metrics of AI Foundry to `http://otel-collector.<ai-services-namespace>.svc.cluster.local:4318`. Any other Prometheus-compatible store, such as Mimir, works as well.
 :::
 
 ## Required information
@@ -35,7 +35,7 @@ The installation of Langfuse, OpenBao and Prometheus is not covered by these gui
 | PostgreSQL connection string of `adk-be-app` (shared AI Foundry database, `asyncpg` driver) | `postgresql+asyncpg://user:pass@host:5432/ai_foundry` |
 | PostgreSQL connection string of `ai-foundry-be` and `ai-foundry-workflows` (same database) | `postgresql://user:pass@host:5432/ai_foundry` |
 | PostgreSQL connection string (workspace service database) | `postgresql://user:pass@host:5432/ai_workspace` |
-| LiteLLM AI gateway URL of AI Services | `https://<ai-services host>/litellm/` |
+| LiteLLM AI gateway URL of AI Services | `https://<ai-services host>/ai-gateway/` |
 | LiteLLM master key of AI Services (`secrets.litellmProxyKeys.masterKey` of the AI Services values) | `sk-...` |
 | Temporal frontend address and Temporal namespace of AI Services | `temporal-frontend.<ai-services namespace>.svc.cluster.local:7233`, a namespace from `temporal.namespaces` of the AI Services values |
 | OpenBao address and its AppRole `role-id`/`secret-id` | `https://openbao.your-domain.com` |
@@ -198,13 +198,13 @@ ingressRoute:
 # ADK Backend App: LiteLLM AI gateway of AI Services
 adkBeApp:
   config:
-    litellmProxyApiBase: "https://<ai-services host>/litellm/"
+    litellmProxyApiBase: "https://<ai-services host>/ai-gateway/"
 
 # ai-foundry-be: admin API of the same LiteLLM gateway, needed for the model
-# providers, the model catalogue and the spend screens (uses litellmAdminKey)
+# providers, the model catalogue and the observability (uses litellmAdminKey)
 aiFoundryBe:
   config:
-    litellmBaseUrl: "https://<ai-services host>/litellm/"
+    litellmBaseUrl: "https://<ai-services host>/ai-gateway/"
 
 # Agentic Workflows: Temporal of AI Services (or set aiFoundryWorkflows.enabled: false)
 aiFoundryWorkflows:
@@ -349,11 +349,11 @@ aiFoundry:
 
   adkBeApp:
     config:
-      litellmProxyApiBase: "https://<ai-services host>/litellm/"
+      litellmProxyApiBase: "https://<ai-services host>/ai-gateway/"
 
   aiFoundryBe:
     config:
-      litellmBaseUrl: "https://<ai-services host>/litellm/"
+      litellmBaseUrl: "https://<ai-services host>/ai-gateway/"
 
   aiFoundryWorkflows:
     config:

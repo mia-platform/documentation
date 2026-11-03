@@ -8,6 +8,10 @@ sidebar_label: Overview
 
 This page describes all configurable values for the `ai-services` chart. See `values.yaml` for defaults. The chart does not ship a `values.schema.json`: invalid combinations are rejected at render time by the chart's validation template.
 
+:::info
+Langfuse and OpenBao are not deployed by this chart and have no values here: see [Langfuse and OpenBao](/requirements/installation-guidelines/shared-services/ai-services/20_langfuse-and-openbao.md).
+:::
+
 ## URL and environment
 
 | Key | Type | Default | Required | Description |
@@ -116,43 +120,12 @@ Used by a `secretStoreService` deployed by this chart that logs in to an externa
 | `secrets.secretStoreServiceKeys.storeRoleId` | string | `""` | AppRole role ID. Stored as `storeRoleId`. |
 | `secrets.secretStoreServiceKeys.storeSecretId` | string | `""` | AppRole secret ID. Stored as `storeSecretId`. |
 
-### openbao keys
-
-Required when `openbao.enabled` is `true`.
-
-| Key | Type | Default | Description |
-|---|---|---|---|
-| `secrets.openbaoKeys.enabled` | boolean | `false` | When `true`, the chart creates a Secret named `openbao-approle`. |
-| `secrets.openbaoKeys.approle.roleId` | string | `""` | AppRole role ID pushed into OpenBao by the bootstrap sidecar. Stored as `roleId`. Any long random string (`openssl rand -hex 32`). |
-| `secrets.openbaoKeys.approle.secretId` | string | `""` | AppRole secret ID. Stored as `secretId`. |
-
-When `openbao.enabled` and `secrets.openbaoKeys.enabled` are both `true`, `secretStoreService` reads the pair from `openbao-approle`.
-
-### langfuse keys
-
-Required when `langfuse.enabled` is `true`. One Secret, `langfuse-keys`, for all five Langfuse workloads.
-
-| Key | Type | Default | Description |
-|---|---|---|---|
-| `secrets.langfuseKeys.enabled` | boolean | `false` | When `true`, the chart creates the `langfuse-keys` Secret. |
-| `secrets.langfuseKeys.postgresConnectionString` | string | `""` | Connection string of the external PostgreSQL database owned by Langfuse. |
-| `secrets.langfuseKeys.nextauthSecret` | string | `""` | Session cookie secret (`openssl rand -base64 32`). |
-| `secrets.langfuseKeys.salt` | string | `""` | Salt of the API key hashes. Changing it invalidates every project key issued. |
-| `secrets.langfuseKeys.encryptionKey` | string | `""` | Exactly 64 hexadecimal characters (`openssl rand -hex 32`). Encrypts the provider credentials Langfuse stores. Never rotate it in place. |
-| `secrets.langfuseKeys.clickhousePassword` | string | `""` | ClickHouse password. |
-| `secrets.langfuseKeys.s3AccessKeyId` | string | `""` | S3 access key ID. Also MinIO's root user when MinIO is deployed by the chart. |
-| `secrets.langfuseKeys.s3SecretAccessKey` | string | `""` | S3 secret access key. Also MinIO's root password when MinIO is deployed by the chart. |
-| `secrets.langfuseKeys.redisPassword` | string | `""` | Redis password. |
-| `secrets.langfuseKeys.initProjectPublicKey` | string | `""` | Public key of the initial project (`pk-lf-...`). |
-| `secrets.langfuseKeys.initProjectSecretKey` | string | `""` | Secret key of the initial project (`sk-lf-...`). |
-| `secrets.langfuseKeys.initUserPassword` | string | `""` | Password of the initial user. Required when `langfuse.config.init.userEmail` is set. |
-
 ### otel-collector keys
 
 | Key | Type | Default | Description |
 |---|---|---|---|
-| `secrets.otelCollectorKeys.enabled` | boolean | `false` | Use `langfuseOtlpBasic` for the collector's Langfuse credential. |
-| `secrets.otelCollectorKeys.langfuseOtlpBasic` | string | `""` | Base64 of `publicKey:secretKey` of a Langfuse project. When empty, it is derived from `secrets.langfuseKeys.initProjectPublicKey` and `initProjectSecretKey`. Stored in the `otel-collector-keys` Secret. |
+| `secrets.otelCollectorKeys.enabled` | boolean | `false` | When `true`, the chart creates the `otel-collector-keys` Secret with `langfuseOtlpBasic`. |
+| `secrets.otelCollectorKeys.langfuseOtlpBasic` | string | `""` | Base64 of `publicKey:secretKey` of the Langfuse project the traces are written to. Required when `otelCollector.enabled` is `true`. |
 
 ## Global image settings
 
@@ -215,18 +188,17 @@ The Deployment-based components (`apiGateway`, `accessControl`, `litellmProxy`, 
 | `temporalAdminTools` | `true` | `docker.io/temporalio/admin-tools:1.32.0` | `25m` / `64Mi` | `250m` / `256Mi` |
 | `otelCollector` | `false` | `docker.io/otel/opentelemetry-collector-contrib:0.139.0` | `100m` / `128Mi` | `1` / `512Mi` |
 | `prometheus` | `false` | `docker.io/prom/prometheus:v3.6.0` | `100m` / `512Mi` | `1` / `2Gi` |
-| `openbao` | `false` | `nexus.mia-platform.eu/flow/openbao:0.1.0` | `50m` / `64Mi` | `500m` / `256Mi` |
 
 ---
 
 ## apiGateway
 
-The Envoy API gateway. Routes traffic to LiteLLM Proxy, the Temporal UI, Docling, Memory, the secret store and Langfuse, and applies `jwt_authn` and `ext_authz` on the gated routes.
+The Envoy API gateway. Routes traffic to LiteLLM Proxy, the Temporal UI, Docling, Memory and the secret store, and applies `jwt_authn` and `ext_authz` on the gated routes.
 
 | Key | Type | Default | Description |
 |---|---|---|---|
 | `apiGateway.logLevel` | string | `"info"` | Envoy log level. |
-| `apiGateway.authorizationServer.audiences` | array | `[]` | JWT audiences accepted by `jwt_authn`. Must not be empty when `authorizationServer.enabled` is `true` and any of `doclingService`, `memoryService`, `secretStoreService` or `prometheus` is enabled. Set `["ai-services-api"]` on a Mia-Platform installation. |
+| `apiGateway.authorizationServer.audiences` | array | `[]` | JWT audiences accepted by `jwt_authn`. Must not be empty when `authorizationServer.enabled` is `true` and any of `doclingService`, `memoryService` or `secretStoreService` is enabled. Set `["ai-services-api"]` on a Mia-Platform installation. |
 | `apiGateway.config` | object | `{}` | Advanced Envoy configuration. `apiGateway.config.clusterOverrides.<cluster>` overrides the address of an upstream cluster, intended for local development. |
 | `apiGateway.maxBodyBytes` | integer | `10485760` | Maximum allowed request body size in bytes (default: 10 MiB). |
 
@@ -250,7 +222,7 @@ LiteLLM Proxy, the AI gateway. Served under `basePath` on the API gateway, with 
 | Key | Type | Default | Description |
 |---|---|---|---|
 | `litellmProxy.enabled` | boolean | `true` | Enable LiteLLM Proxy. |
-| `litellmProxy.basePath` | string | `"/litellm"` | Path prefix on the API gateway. Must start with `/`. |
+| `litellmProxy.basePath` | string | `"/ai-gateway"` | Path prefix on the API gateway. Must start with `/`. |
 | `litellmProxy.logLevel` | string | `"info"` | LiteLLM log level. |
 | `litellmProxy.extraEnv` | object | `{}` | Additional environment variables as a `NAME: value` map. |
 | `litellmProxy.config` | object | see below | Raw LiteLLM proxy configuration ([LiteLLM docs](https://docs.litellm.ai/docs/proxy/configs)). |
@@ -302,110 +274,33 @@ Central store of the tenants' LiteLLM virtual keys (the `gateway-keys` collectio
 
 | Key | Type | Default | Description |
 |---|---|---|---|
-| `secretStoreService.enabled` | boolean | `false` | Enable the secret store service. Requires the authentication chain and a store (`config.storeAddr` or `openbao.enabled`). |
+| `secretStoreService.enabled` | boolean | `false` | Enable the secret store service. Requires the authentication chain and an external store (`config.storeAddr`). |
 | `secretStoreService.config.mode` | string | `"both"` | `read`, `write` or `both`. |
-| `secretStoreService.config.storeAddr` | string | `""` | OpenBao or Vault address. Empty defaults to the in-chart `openbao` when enabled. |
-| `secretStoreService.config.storeKvMount` | string | `"kv"` | KV mount of the store. |
-| `secretStoreService.config.storeNamespace` | string | `""` | `X-Vault-Namespace` sent on every call. Empty for a store without namespaces. |
-| `secretStoreService.config.auth.method` | string | `"approle"` | `approle` (role/secret pair) or `jwt` (the pod's own ServiceAccount token). `jwt` cannot be combined with `openbao.enabled`. |
+| `secretStoreService.config.storeAddr` | string | `""` | Address of the external OpenBao or Vault store. Required when enabled. See [Langfuse and OpenBao](/requirements/installation-guidelines/shared-services/ai-services/20_langfuse-and-openbao.md). |
+| `secretStoreService.config.storeKvMount` | string | `"secret"` | KV v2 mount of the store. |
+| `secretStoreService.config.storeNamespace` | string | `""` | `X-Vault-Namespace` sent on every call, for example `console/production/ai-services`. Empty for a store without namespaces. |
+| `secretStoreService.config.auth.method` | string | `"approle"` | `approle` (role/secret pair) or `jwt` (the pod's own ServiceAccount token). |
 | `secretStoreService.config.auth.jwt.mount` | string | `"jwt"` | JWT auth mount on the store. Required with `auth.method: jwt`. |
 | `secretStoreService.config.auth.jwt.role` | string | `""` | Role on the store. Required with `auth.method: jwt`. |
 | `secretStoreService.config.auth.jwt.audience` | string | `"openbao"` | Audience of the projected ServiceAccount token. Must match the role's bound audiences. |
 | `secretStoreService.config.auth.jwt.expirationSeconds` | integer | `600` | Lifetime of the projected token. |
 | `secretStoreService.config.auth.jwt.mountPath` | string | `"/var/run/secrets/openbao"` | Mount path of the projected token. |
 
-## openbao
-
-OpenBao secret store, single replica with `file` storage and a bootstrap sidecar that initializes and unseals it. The unseal key is written to an `openbao-keys` Secret that Helm does not manage. Not routed by the API gateway. The image is amd64 only.
-
-| Key | Type | Default | Description |
-|---|---|---|---|
-| `openbao.enabled` | boolean | `false` | Deploy OpenBao. Requires `secrets.openbaoKeys` or an existing `openbao-approle` Secret. |
-| `openbao.service.port` | integer | `80` | Service port. The container listens on `8200`. |
-| `openbao.securityContext` | object | `runAsUser: 100`, `runAsGroup: 1000`, `fsGroup: 1000` | Pod security context. Must match the image's user. |
-| `openbao.persistence.size` | string | `"1Gi"` | Volume size. |
-| `openbao.persistence.storageClassName` | string | `""` | StorageClass. Empty uses the cluster default. |
-| `openbao.config.ui` | boolean | `true` | Enable the OpenBao UI. |
-| `openbao.config.auditToStdout` | boolean | `true` | Write an audit log of every request to the pod logs. |
-| `openbao.config.extraConfig` | string | `""` | Appended verbatim to `config.hcl`. |
-| `openbao.bootstrap.tokenTtl` | string | `"1h"` | TTL of the tokens issued by the AppRole. |
-| `openbao.bootstrap.tokenMaxTtl` | string | `"24h"` | Maximum TTL of the tokens issued by the AppRole. |
-| `openbao.bootstrap.unsealInterval` | integer | `10` | Seconds between checks for a sealed server. |
-| `openbao.bootstrap.resources` | object | requests `10m` CPU / `32Mi` memory, limits `200m` CPU / `128Mi` memory | Resources of the bootstrap sidecar. |
-
-## langfuse
-
-Langfuse AI observability: web, worker, ClickHouse, MinIO and Redis. PostgreSQL is always external. The `/langfuse/` route on the API gateway serves the REST API only; the Langfuse UI needs a host of its own, which this chart does not create.
-
-| Key | Type | Default | Description |
-|---|---|---|---|
-| `langfuse.enabled` | boolean | `false` | Deploy Langfuse. Requires `secrets.langfuseKeys` or an existing `langfuse-keys` Secret. |
-| `langfuse.image` | object | `docker.io/langfuse/langfuse:4.14.0` | Web image. Keep it on the same version as `workerImage`. |
-| `langfuse.workerImage` | object | `docker.io/langfuse/langfuse-worker:4.14.0` | Worker image. |
-| `langfuse.web.*`, `langfuse.worker.*` | object | 1 replica, requests `100m` / `512Mi`, limits `1000m` / `2Gi` | `replicaCount`, `resources`, `env`, `autoscaling` of the web and worker Deployments. `langfuse.worker.tmpSizeLimit` defaults to `"1Gi"`. |
-| `langfuse.config.nextauthUrl` | string | `""` | **Required** when Langfuse is enabled. URL a browser reaches Langfuse at. |
-| `langfuse.config.logLevel` | string | `"info"` | Log level. |
-| `langfuse.config.logFormat` | string | `"text"` | Log format. |
-| `langfuse.config.telemetryEnabled` | boolean | `false` | Langfuse usage telemetry. |
-| `langfuse.config.signUpDisabled` | boolean | `true` | Disable self sign-up. |
-| `langfuse.config.experimentalFeatures` | boolean | `false` | Langfuse experimental features. |
-| `langfuse.config.smtp.connectionUrl` | string | `""` | SMTP connection URL. Requires `fromAddress`. |
-| `langfuse.config.smtp.fromAddress` | string | `""` | Sender address. |
-| `langfuse.config.init.orgId` | string | `"mia-platform"` | Initial organization ID, applied on first start. |
-| `langfuse.config.init.orgName` | string | `"Mia-Platform"` | Initial organization name. |
-| `langfuse.config.init.projectId` | string | `"ai-foundry"` | Initial project ID. |
-| `langfuse.config.init.projectName` | string | `"AI Foundry"` | Initial project name. |
-| `langfuse.config.init.userEmail` | string | `""` | Initial user email. Empty skips creating the user. |
-| `langfuse.config.init.userName` | string | `""` | Initial user name. |
-| `langfuse.config.clickhouse.deploy` | boolean | `true` | Deploy a single-node ClickHouse. `false` requires `clickhouse.host`. |
-| `langfuse.config.clickhouse.image` | object | `docker.io/clickhouse/clickhouse-server:26.6` | ClickHouse image. |
-| `langfuse.config.clickhouse.host` | string | `""` | External ClickHouse host. Empty means the in-chart one. |
-| `langfuse.config.clickhouse.httpPort` | integer | `8123` | HTTP port. |
-| `langfuse.config.clickhouse.nativePort` | integer | `9000` | Native port. |
-| `langfuse.config.clickhouse.database` | string | `"default"` | Database. |
-| `langfuse.config.clickhouse.user` | string | `"clickhouse"` | User. |
-| `langfuse.config.clickhouse.clusterEnabled` | boolean | `false` | Must stay `false` with `deploy: true`. Set `true` only with a `host` naming a real ClickHouse cluster. |
-| `langfuse.config.clickhouse.autoMigrate` | boolean | `true` | Run ClickHouse migrations automatically. |
-| `langfuse.config.clickhouse.persistence.size` | string | `"20Gi"` | Volume size. |
-| `langfuse.config.clickhouse.persistence.storageClassName` | string | `""` | StorageClass. |
-| `langfuse.config.clickhouse.logsSizeLimit` | string | `"1Gi"` | Size limit of the logs volume. |
-| `langfuse.config.clickhouse.resources` | object | requests `250m` / `1Gi`, limits `2000m` / `4Gi` | Resources. |
-| `langfuse.config.s3.deploy` | boolean | `true` | Deploy MinIO. `false` requires `s3.endpoint`. |
-| `langfuse.config.s3.image` | object | `docker.io/minio/minio:RELEASE.2025-04-22T22-12-26Z` | MinIO image. |
-| `langfuse.config.s3.endpoint` | string | `""` | External S3-compatible endpoint. Empty means the in-chart MinIO. |
-| `langfuse.config.s3.bucket` | string | `"langfuse"` | Bucket. |
-| `langfuse.config.s3.region` | string | `"auto"` | Region. |
-| `langfuse.config.s3.forcePathStyle` | boolean | `true` | Path-style addressing. |
-| `langfuse.config.s3.batchExportEnabled` | boolean | `false` | Langfuse batch export. |
-| `langfuse.config.s3.persistence.size` | string | `"20Gi"` | Volume size. |
-| `langfuse.config.s3.persistence.storageClassName` | string | `""` | StorageClass. |
-| `langfuse.config.s3.resources` | object | requests `100m` / `256Mi`, limits `1000m` / `1Gi` | Resources. |
-| `langfuse.config.redis.deploy` | boolean | `true` | Deploy Redis (ingestion queue, `maxmemory-policy noeviction`). `false` requires `redis.host`. |
-| `langfuse.config.redis.image` | object | `docker.io/redis:8.4.0` | Redis image. |
-| `langfuse.config.redis.host` | string | `""` | External Redis host. |
-| `langfuse.config.redis.port` | integer | `6379` | Redis port. |
-| `langfuse.config.redis.tlsEnabled` | boolean | `false` | TLS to Redis. |
-| `langfuse.config.redis.maxMemory` | string | `"512mb"` | Redis `maxmemory`. Size it for the queue depth to survive. |
-| `langfuse.config.redis.extraConfig` | string | `""` | Additional Redis configuration. |
-| `langfuse.config.redis.persistence.size` | string | `"8Gi"` | Volume size. |
-| `langfuse.config.redis.persistence.storageClassName` | string | `""` | StorageClass. |
-| `langfuse.config.redis.resources` | object | requests `100m` / `128Mi`, limits `500m` / `768Mi` | Resources. |
-
 ## otelCollector
 
-OpenTelemetry Collector that sends traces to Langfuse and metrics to Prometheus. Requires a Langfuse credential (`secrets.otelCollectorKeys` or the initial project keys of `secrets.langfuseKeys`), a traces destination and a metrics destination.
+OpenTelemetry Collector that sends traces to Langfuse and metrics to Prometheus. Requires a Langfuse credential (`secrets.otelCollectorKeys`), the traces endpoint of a Langfuse installed outside this chart (see [Langfuse and OpenBao](/requirements/installation-guidelines/shared-services/ai-services/20_langfuse-and-openbao.md)) and a metrics destination.
 
 | Key | Type | Default | Description |
 |---|---|---|---|
 | `otelCollector.enabled` | boolean | `false` | Deploy the collector. |
 | `otelCollector.logLevel` | string | `"warn"` | Collector log level. |
-| `otelCollector.config.langfuse.tracesEndpoint` | string | `""` | Traces destination. Empty defaults to the in-chart Langfuse web service. |
+| `otelCollector.config.langfuse.tracesEndpoint` | string | `""` | **Required** when the collector is enabled. OTLP traces endpoint of Langfuse, for example `http://langfuse-web.langfuse.svc.cluster.local:3000/api/public/otel/v1/traces`. |
 | `otelCollector.config.prometheus.metricsEndpoint` | string | `""` | Metrics destination (a Prometheus OTLP receiver). Empty defaults to the in-chart Prometheus. |
 | `otelCollector.configOverride` | string | `""` | Replaces the collector configuration shipped with the chart. |
 
 ## prometheus
 
-Prometheus with the OTLP receiver enabled. Scrape-only on the cluster network: not routed by the API gateway.
+Prometheus with the OTLP receiver enabled: `otelCollector` pushes metrics to it. Reachable only inside the cluster, at `http://prometheus.<namespace>.svc.cluster.local`: it is not routed by the API gateway, and its queries are not isolated by tenant. AI Foundry reads it there (`prometheusBaseUrl`) and restricts every query to the tenant of the caller itself.
 
 | Key | Type | Default | Description |
 |---|---|---|---|
@@ -455,7 +350,7 @@ Temporal Web UI, served under `basePath` on the API gateway. The route is public
 | Key | Type | Default | Description |
 |---|---|---|---|
 | `temporalUi.enabled` | boolean | `true` | Deploy the Temporal UI. Requires `temporal.enabled`. |
-| `temporalUi.basePath` | string | `"/temporal"` | Path prefix on the API gateway. Must start with `/`. |
+| `temporalUi.basePath` | string | `"/workflow-manager"` | Path prefix on the API gateway. Must start with `/`. |
 | `temporalUi.auth.enabled` | boolean | `false` | Run the OIDC authorization-code flow in the UI. Requires `auth.clientId`, a realm (`auth.providerUrl` or `authorizationServer.issuer`) and the `temporal-ui-keys` Secret. Without it, the UI is open to anyone who can reach `url`. |
 | `temporalUi.auth.label` | string | `"Mia-Platform"` | Label of the UI's own login page. |
 | `temporalUi.auth.providerUrl` | string | `""` | Realm used for OIDC discovery. Empty uses `authorizationServer.issuer`. |
