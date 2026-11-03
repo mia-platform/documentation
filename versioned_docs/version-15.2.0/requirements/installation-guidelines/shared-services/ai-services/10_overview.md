@@ -46,34 +46,59 @@ The chart does not deploy a PostgreSQL database for any component, and it does n
 
 ## Architecture overview
 
-```
-  Client ──► IngressRoute (Traefik)
-                    │
-              apiGateway (Envoy)
-                    │
-   ┌────────────┬───┴────────┬──────────────┬─────────────────────┐
-   │            │            │              │                     │
-/ai-gateway/    │       /api/docling/  /api/memories      /api/secrets/gateway-keys/
-   │    /workflow-manager/   │          /memory/mcp               │
-   │            │            │              │                     │
-litellmProxy temporalUi  doclingService memoryService     secretStoreService
-   │            │                           │                     │
-PostgreSQL   temporalFrontend ◄── Temporal SDK clients      OpenBao / Vault (external)
-(external)      │                (in-cluster gRPC, port 7233)
-          temporalHistory / temporalMatching / temporalWorker
-                │
-          PostgreSQL (external: default + visibility databases)
+```mermaid
+flowchart TD
+    client["Client"] --> ingress["IngressRoute<br/>(Traefik)"]
+    ingress --> gw["apiGateway<br/>(Envoy)"]
 
-  accessControl ◄── ext_authz (gated routes only)
-       │
-  Authorization service (rbacAuthzServiceUrl / authzUrl)
+    gw -->|"/ai-gateway/"| litellm["litellmProxy"]
+    gw -->|"/workflow-manager/"| tui["temporalUi"]
+    gw -->|"/api/memories<br/>/memory/mcp"| memory["memoryService"]
+    gw -->|"/api/docling/"| docling["doclingService"]
+    gw -->|"/api/secrets/gateway-keys/"| secrets["secretStoreService"]
+    gw -.->|"ext_authz<br/>(gated routes only)"| ac["accessControl"]
+
+    litellm --> pgLite[("PostgreSQL<br/>(external)")]
+
+    subgraph temporal["Temporal"]
+        tfe["temporalFrontend"]
+        tcore["temporalHistory / temporalMatching / temporalWorker"]
+        tfe --> tcore
+    end
+
+    tui --> tfe
+    memory -.->|"Temporal SDK<br/>in-cluster gRPC :7233"| tfe
+    tcore --> pgTemporal[("PostgreSQL (external)<br/>default + visibility DBs")]
+
+    secrets --> vault["OpenBao / Vault<br/>(external)"]
+    ac --> authz["Authorization service<br/>rbacAuthzServiceUrl / authzUrl"]
+
+    classDef edge fill:#EEEDFE,stroke:#534AB7,color:#3C3489
+    classDef svc fill:#E1F5EE,stroke:#0F6E56,color:#085041
+    classDef ext fill:#F1EFE8,stroke:#5F5E5A,color:#444441,stroke-dasharray:4 3
+    classDef neutral fill:#FFFFFF,stroke:#888780,color:#2C2C2A
+
+    class client neutral
+    class ingress,gw,ac edge
+    class litellm,tui,memory,docling,secrets,tfe,tcore svc
+    class pgLite,pgTemporal,vault,authz ext
 ```
 
 When the optional telemetry pipeline is enabled, it stays inside the cluster and has no route on the API gateway:
 
-```text
-  litellmProxy and other OTLP senders ──► otelCollector ──traces──► Langfuse (external)
-                                                       └─metrics──► prometheus
+```mermaid
+flowchart LR
+    senders["litellmProxy<br/>and other OTLP senders"] -->|"OTLP"| otel["otelCollector"]
+    otel -->|"traces"| langfuse["Langfuse<br/>(external)"]
+    otel -->|"metrics"| prom["prometheus"]
+
+    classDef edge fill:#EEEDFE,stroke:#534AB7,color:#3C3489
+    classDef svc fill:#E1F5EE,stroke:#0F6E56,color:#085041
+    classDef ext fill:#F1EFE8,stroke:#5F5E5A,color:#444441,stroke-dasharray:4 3
+
+    class otel edge
+    class senders,prom svc
+    class langfuse ext
 ```
 
 Routes and their authentication chain:
