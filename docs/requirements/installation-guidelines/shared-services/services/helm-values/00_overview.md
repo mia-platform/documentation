@@ -167,7 +167,7 @@ ADK Backend App, enabled by default. It reads agents, playbooks, skills and mode
 | `adkBeApp.config.catalogApiUrl` | string | `""` | **Required.** URL of the Catalog API gateway (e.g. `http://api-gateway.catalog.svc.cluster.local:8080`). |
 | `adkBeApp.config.catalogClientId` | string | `catalog-api` | Client alias used to exchange the caller's token for the Catalog audience. |
 | `adkBeApp.config.aiGatewayEnabled` | boolean | `true` | Call every model through the AI Services LiteLLM gateway. When `true`, `litellmProxyApiBase`, `secretStoreBaseUrl` and `aiServicesClientId` are required. Set to `false` to call the models directly. |
-| `adkBeApp.config.litellmProxyApiBase` | string | `""` | URL of the AI Services LiteLLM gateway (e.g. `https://<ai-services host>/litellm/`). Required while `aiGatewayEnabled` is `true`. |
+| `adkBeApp.config.litellmProxyApiBase` | string | `""` | URL of the AI Services LiteLLM gateway (e.g. `https://<ai-services host>/ai-gateway/`). Required while `aiGatewayEnabled` is `true`. |
 | `adkBeApp.config.secretStoreBaseUrl` | string | `""` | AI Services public URL (e.g. `https://<ai-services host>`), from which the tenant's LiteLLM key is read. Required while `aiGatewayEnabled` is `true`. |
 | `adkBeApp.config.googleCloudProject` | string | | Google Cloud project, used to call the models directly on Vertex AI. No longer has a default. |
 | `adkBeApp.config.googleCloudLocation` | string | | Google Cloud location. No longer has a default. |

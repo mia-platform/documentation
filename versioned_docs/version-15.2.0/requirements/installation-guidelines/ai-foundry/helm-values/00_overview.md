@@ -11,7 +11,7 @@ This page describes the main configurable values for the `ai-foundry` chart. See
 The chart validates the values at render time and refuses to render a configuration that would fail at runtime; the error message names the setting to fix.
 
 :::info
-The installation of Langfuse, OpenBao and Prometheus is not covered by these guides yet: we are working to provide the documentation to install these components as well.
+Langfuse and OpenBao are installed with their official Helm charts on Kubernetes, or in any other way their official guides support: see [Langfuse and OpenBao](/requirements/installation-guidelines/shared-services/ai-services/20_langfuse-and-openbao.md). Prometheus is an optional component of AI Services, together with the OpenTelemetry Collector that feeds it: see [the `prometheus` values](/requirements/installation-guidelines/shared-services/ai-services/helm-values/00_overview.md#prometheus). To read it, set `prometheusBaseUrl` to `http://prometheus.<ai-services-namespace>.svc.cluster.local`, and send the metrics of AI Foundry to `http://otel-collector.<ai-services-namespace>.svc.cluster.local:4318`. Any other Prometheus-compatible store, such as Mimir, works as well.
 :::
 
 ## URL and environment
@@ -30,6 +30,7 @@ The installation of Langfuse, OpenBao and Prometheus is not covered by these gui
 | `aiServicesClientId` | string | `""` | ❌ | `authtool-bff` exchange alias for the AI Services audience: set it to `ai-services-api` (the alias of the `exchangeAiServices` client). Used for the calls to AI Services (memory service, Docling route, central secret store) and to the metrics store; when empty the caller's token is forwarded unchanged, which the AI Services gateway refuses. |
 | `aiServicesSecretStoreUrl` | string | `""` | ❌ | Public URL of AI Services in front of its central secret store, used to keep the tenants' AI gateway keys there. Requires `authtoolBffUrl` and `aiServicesClientId`. Empty keeps every credential in this release's `secretStoreService`. |
 | `systemAgentModel` | string | `""` | ❌ | Model of the seeded system playbooks (session namer, follow-ups, feedback summaries, compaction, memory extraction, Insights narration). Replaces `adkBeApp.config.compactionSummarizerModel` and `sessionNamerModel`. Empty uses the default of the seed, `claude-haiku-5-5`. The model must be served by the AI gateway. |
+| `assistantAgentModel` | string | `""` | ❌ | Model of the seeded assistants people chat with (AI Foundry assistant, Catalog assistant, documentation assistant, resource generator), passed to `aiFoundryProvisioner`. Empty uses the default of the seed, `claude-sonnet-5-5`, which is seeded as a Model on PaaS only: on-premises, set it to one of your models. The model must be a Model of every tenant and be served by the AI gateway. |
 
 ## IngressRoute (Traefik)
 
@@ -225,7 +226,7 @@ The ADK Backend App orchestrates AI agents using Google ADK and calls the models
 | Key | Type | Default | Description |
 |---|---|---|---|
 | `adkBeApp.config.aiGatewayEnabled` | boolean | `true` | Call the models through the AI gateway. Set to `false` to call them directly. |
-| `adkBeApp.config.litellmProxyApiBase` | string | `""` | **Required** while `aiGatewayEnabled` is `true`: URL of the LiteLLM gateway of AI Services (e.g. `https://<ai-services host>/litellm/`). |
+| `adkBeApp.config.litellmProxyApiBase` | string | `""` | **Required** while `aiGatewayEnabled` is `true`: URL of the LiteLLM gateway of AI Services (e.g. `https://<ai-services host>/ai-gateway/`). |
 | `adkBeApp.config.agentMemoryBaseUrl` | string | `""` | URL of the AI Services gateway in front of the memory service. Empty disables agent memory. |
 | `adkBeApp.config.langfuseBaseUrl` | string | `""` | Langfuse read API, for the trace agent tools. Credential in `secrets.adkBeAppKeys.langfuseAuthHeader`. |
 | `adkBeApp.config.prometheusBaseUrl` | string | `""` | Prometheus-compatible metrics API, for the metrics agent tool. |
@@ -242,6 +243,7 @@ The AI Foundry BFF provides the backend API to the website. It requires `aiFound
 | `aiFoundryBff.enabled` | boolean | `true` | Deploy the BFF. Requires `aiFoundryBe.enabled: true`: the chart refuses to render otherwise. |
 | `aiFoundryBff.config.memoryBaseUrl` | string | `""` | URL of the AI Services gateway in front of the memory service (same value as `adkBeApp.config.agentMemoryBaseUrl`). Empty disables the memory routes. |
 | `aiFoundryBff.config.secretStoreBaseUrl` | string | `""` | Secret store used to write credentials. Empty defaults to this release's `secretStoreService`; with `secretStoreService` disabled it is required, otherwise the chart refuses to render. |
+| `aiFoundryBff.config.marketplaceName` | string | `""` | Name of the plugin marketplace served by the BFF, in kebab-case. Empty means `ai-foundry`. Claude Code refuses a second marketplace with a name it already holds, so deployments a person adds side by side (for example Dev and Demo) need different names. Changing it on an existing deployment re-keys every plugin installed from it. |
 
 ## aiFoundryBe
 
@@ -252,7 +254,7 @@ PostgreSQL-backed implementation of the Catalog item API and read API for the ob
 | `aiFoundryBe.enabled` | boolean | `true` | Deploy `ai-foundry-be`. Required when `catalogUrl` is empty or `aiFoundryBff` is enabled. |
 | `aiFoundryBe.config.langfuseBaseUrl` | string | `""` | Langfuse read API. Requires `secrets.aiFoundryBeKeys.langfuseAuthHeader`. Empty disables the trace screens. |
 | `aiFoundryBe.config.prometheusBaseUrl` | string | `""` | Prometheus-compatible metrics API (Prometheus, or Mimir with its `/prometheus` prefix). Empty disables the metrics screens. |
-| `aiFoundryBe.config.litellmBaseUrl` | string | `""` | Admin API of the LiteLLM gateway of AI Services (e.g. `https://<ai-services host>/litellm/`), used for the model providers, the model catalogue, the spend screens and the gateway identity of each person. Empty makes these routes answer `503`. Requires `secrets.aiFoundryBeKeys.litellmAdminKey`, `authorizationServer.issuer` and `apiGateway.authorizationServer.audiences`. |
+| `aiFoundryBe.config.litellmBaseUrl` | string | `""` | Admin API of the LiteLLM gateway of AI Services (e.g. `https://<ai-services host>/ai-gateway/`), used for the model providers, the model catalogue, the spend screens and the gateway identity of each person. Empty makes these routes answer `503`. Requires `secrets.aiFoundryBeKeys.litellmAdminKey`, `authorizationServer.issuer` and `apiGateway.authorizationServer.audiences`. |
 
 ## aiFoundryWorkflows
 

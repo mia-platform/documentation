@@ -195,7 +195,7 @@ aiServicesClientId: "ai-services-api"
 adkBeApp:
   config:
     # Required while aiGatewayEnabled is true (default)
-    litellmProxyApiBase: "https://<ai-services host>/litellm/"
+    litellmProxyApiBase: "https://<ai-services host>/ai-gateway/"
     secretStoreBaseUrl: "https://<ai-services host>"
 apiGateway:
   docling:
@@ -329,7 +329,7 @@ catalog:
   aiServicesClientId: "ai-services-api"
   adkBeApp:
     config:
-      litellmProxyApiBase: "https://<ai-services host>/litellm/"
+      litellmProxyApiBase: "https://<ai-services host>/ai-gateway/"
       secretStoreBaseUrl: "https://<ai-services host>"
   apiGateway:
     docling:

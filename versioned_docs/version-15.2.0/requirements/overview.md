@@ -185,7 +185,7 @@ Compatibility matrix:
 | Kubernetes | >= 1.34 |
 | Langfuse (optional) | >= 4.24.0 |
 | LLM API key / Service Account | N/A |
-| Mia-Platform AI Shared Services | Required (`ai-services` chart >= 0.1.0-preview.0) |
+| Mia-Platform AI Shared Services | Required (`ai-services` chart >= 0.1.0-preview.1) |
 | Mia-Platform Catalog | V2 |
 | Mia-Platform Homepage & RBAC | Required |
 | OpenBao | >= 2.6.2 |

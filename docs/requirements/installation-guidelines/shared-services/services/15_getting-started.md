@@ -123,7 +123,7 @@ adkBeApp:
     # Required: the Catalog API gateway
     catalogApiUrl: "http://api-gateway.catalog.svc.cluster.local:8080"
     # Required while aiGatewayEnabled is true (default)
-    litellmProxyApiBase: "https://<ai-services host>/litellm/"
+    litellmProxyApiBase: "https://<ai-services host>/ai-gateway/"
     secretStoreBaseUrl: "https://<ai-services host>"
 
 # Image pull secret
@@ -222,7 +222,7 @@ services:
   adkBeApp:
     config:
       catalogApiUrl: "http://api-gateway.catalog.svc.cluster.local:8080"
-      litellmProxyApiBase: "https://<ai-services host>/litellm/"
+      litellmProxyApiBase: "https://<ai-services host>/ai-gateway/"
       secretStoreBaseUrl: "https://<ai-services host>"
 ```
 
