@@ -30,7 +30,7 @@ Langfuse and OpenBao are installed with their official Helm charts on Kubernetes
 | `aiServicesClientId` | string | `""` | ❌ | `authtool-bff` exchange alias for the AI Services audience: set it to `ai-services-api` (the alias of the `exchangeAiServices` client). Used for the calls to AI Services (memory service, Docling route, central secret store) and to the metrics store; when empty the caller's token is forwarded unchanged, which the AI Services gateway refuses. |
 | `aiServicesSecretStoreUrl` | string | `""` | ❌ | Public URL of AI Services in front of its central secret store, used to keep the tenants' AI gateway keys there. Requires `authtoolBffUrl` and `aiServicesClientId`. Empty keeps every credential in this release's `secretStoreService`. |
 | `systemAgentModel` | string | `""` | ❌ | Model of the seeded system playbooks (session namer, follow-ups, feedback summaries, compaction, memory extraction, Insights narration). Replaces `adkBeApp.config.compactionSummarizerModel` and `sessionNamerModel`. Empty uses the default of the seed, `claude-haiku-5-5`. The model must be served by the AI gateway. |
-| `assistantAgentModel` | string | `""` | ❌ | Model of the seeded assistants people chat with (AI Foundry assistant, Catalog assistant, documentation assistant, resource generator), passed to `aiFoundryProvisioner`. Empty uses the default of the seed, `claude-sonnet-5-5`, which is seeded as a Model on PaaS only: on-premises, set it to one of your models. The model must be a Model of every tenant and be served by the AI gateway. |
+| `assistantAgentModel` | string | `""` | ❌ | Model used by built-in assistants (AI Foundry assistant, Catalog assistant, documentation assistant, resource generator), passed to `aiFoundryProvisioner`. Empty uses the default of the seed, `claude-sonnet-5-5`, which is seeded as a Model on PaaS only: on-premises, set it to one of your models. The model must be a Model of every tenant and be served by the AI gateway. |
 
 ## IngressRoute (Traefik)
 
@@ -254,7 +254,7 @@ PostgreSQL-backed implementation of the Catalog item API and read API for the ob
 | `aiFoundryBe.enabled` | boolean | `true` | Deploy `ai-foundry-be`. Required when `catalogUrl` is empty or `aiFoundryBff` is enabled. |
 | `aiFoundryBe.config.langfuseBaseUrl` | string | `""` | Langfuse read API. Requires `secrets.aiFoundryBeKeys.langfuseAuthHeader`. Empty disables the trace screens. |
 | `aiFoundryBe.config.prometheusBaseUrl` | string | `""` | Prometheus-compatible metrics API (Prometheus, or Mimir with its `/prometheus` prefix). Empty disables the metrics screens. |
-| `aiFoundryBe.config.litellmBaseUrl` | string | `""` | Admin API of the LiteLLM gateway of AI Services (e.g. `https://<ai-services host>/ai-gateway/`), used for the model providers, the model catalogue, the spend screens and the gateway identity of each person. Empty makes these routes answer `503`. Requires `secrets.aiFoundryBeKeys.litellmAdminKey`, `authorizationServer.issuer` and `apiGateway.authorizationServer.audiences`. |
+| `aiFoundryBe.config.litellmBaseUrl` | string | `""` | Admin API of the LiteLLM gateway of AI Services (e.g. `https://<ai-services host>/ai-gateway/`), used for the model providers, the model catalogue, the observability and the gateway identity of each person. Empty makes these routes answer `503`. Requires `secrets.aiFoundryBeKeys.litellmAdminKey`, `authorizationServer.issuer` and `apiGateway.authorizationServer.audiences`. |
 
 ## aiFoundryWorkflows
 

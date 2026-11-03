@@ -201,7 +201,7 @@ adkBeApp:
     litellmProxyApiBase: "https://<ai-services host>/ai-gateway/"
 
 # ai-foundry-be: admin API of the same LiteLLM gateway, needed for the model
-# providers, the model catalogue and the spend screens (uses litellmAdminKey)
+# providers, the model catalogue and the observability (uses litellmAdminKey)
 aiFoundryBe:
   config:
     litellmBaseUrl: "https://<ai-services host>/ai-gateway/"
