@@ -36,7 +36,7 @@
     "clsx": "^2.0.0",
     "docusaurus-json-schema-plugin": "^1.15.1",
     "klaw": "^4.1.0",
-    "medium-zoom": "^1.1.0",
+    "medium-zoom": "^1.1.2",
     "prism-react-renderer": "^2.3.0",
     "react": "^19.3.1",
     "react-dom": "^19.3.1",
