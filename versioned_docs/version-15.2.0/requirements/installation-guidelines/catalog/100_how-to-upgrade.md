@@ -51,7 +51,7 @@ helm upgrade catalog . \
 
 ## Version-specific upgrade notes
 
-### From 0.3.42-0 to 0.4.4 (Mia-Platform v15.1.1 to v15.2.0)
+### From 0.3.42-0 to 0.5.3 (Mia-Platform v15.1.1 to v15.2.0)
 
 1. Remove the `doclingService` block and `serviceAccounts.doclingService` from your values, including `doclingService.enabled: false`. The chart no longer deploys Docling and its values schema rejects unknown keys, so `helm upgrade` fails while they are set.
 2. To keep document parsing in the Catalog, set the new `apiGateway.docling.url` to the Docling route of [AI Services](/requirements/installation-guidelines/shared-services/ai-services/10_overview.md) (for example `https://<ai-services host>/api/docling/`) and `aiServicesClientId: "ai-services-api"`, so that the API gateway exchanges the caller's token for the AI Services audience. This requires `authtoolBff.enabled: true`. With an empty URL the `/api/docling/` route is not served.
@@ -65,6 +65,7 @@ Also note:
 - The chart now creates the image pull Secret only when `global.imagePullSecret.name`, `global.imageCredentials.registry`, `username`, `password` and `email` are all set; `global.imagePullSecret.enabled` only controls whether pods reference it. If you relied on the chart to create the Secret, make sure all five values are set, or Helm removes it on upgrade.
 - The new optional `catalogEngine.workerThreads` limits the worker threads of Catalog Engine.
 - The new `apiGateway.docling.maxBodyBytes` (default `33554432`, 32 MiB) limits the size of documents uploaded to `/api/docling/`.
+- The MCP server (`mcpServer`) is now configured only through a `config.json` file that the chart generates in a ConfigMap. The optional `mcpServer.config` value (default `{}`), which was not used before, is now merged under the generated file; the settings the chart computes (allowed hosts, Catalog Engine URL, resource URIs) take precedence.
 
 ### From 0.3.28 to 0.3.42-0 (Mia-Platform v15.0.2 to v15.1.0)
 
