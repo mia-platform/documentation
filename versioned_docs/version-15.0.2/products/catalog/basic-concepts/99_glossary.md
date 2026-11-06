@@ -90,7 +90,7 @@ urn:mia-platform-catalog:<group>:<version>:<kind>:<name>
 Examples:
 
 - `urn:mia-platform-catalog:stable.example.com:v1:DockerImage:my-resource`
-- `urn:mia-platform-catalog:mia-platform.eu:v1alpha1:RelationshipType:ownership`
+- `urn:mia-platform-catalog:mia-platform.eu:v1:RelationshipType:ownership`
 
 Omitting the trailing `:<name>` yields an **item type URN**, which selects an entire family.
 
