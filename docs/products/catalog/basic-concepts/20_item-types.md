@@ -193,6 +193,29 @@ Some behaviors are configured on the ITD itself, and therefore apply to every it
 - **[Audit Logs](/products/catalog/basic-concepts/68_audit-logs.md)** — audit settings for the type determine which of its actions are tracked in the tenant-wide audit log.
 - **[Webhooks](/products/catalog/basic-concepts/62_webhooks.md)** — a webhook registered on an ITD fires for every item of that type on the configured create/update/delete events.
 
+## API Reference
+
+Each Item Type Definition has an **API** section in its detail page (**Configuration** > **Item Types**) with the OpenAPI documentation of that definition, generated automatically by the Catalog. It lists every operation available on the ITD: get, create or update, and delete it; patch its audit, history and lifecycle settings; manage its webhooks; and retrieve its OpenAPI specification. The **Schemas** section at the bottom lists the related data models, such as `ItemTypeDefinition` and `Webhook`.
+
+| Method | Path | Description |
+|---|---|---|
+| `GET` | `/item-type-definitions/{name}` | Get an item type definition by name |
+| `PUT` | `/item-type-definitions/{name}` | Create or update an item type definition |
+| `DELETE` | `/item-type-definitions/{name}` | Delete an item type definition by name |
+| `PATCH` | `/item-type-definitions/{name}/audit` | Patch audit settings |
+| `PATCH` | `/item-type-definitions/{name}/history` | Patch history settings |
+| `PATCH` | `/item-type-definitions/{name}/lifecycle` | Patch the lifecycle reference |
+| `GET` | `/item-type-definitions/{name}/oas` | Get the OpenAPI specification |
+| `GET` | `/item-type-definitions/{name}/webhooks` | List webhooks |
+| `POST` | `/item-type-definitions/{name}/webhooks` | Create a webhook |
+| `GET` | `/item-type-definitions/{name}/webhooks/{uid}` | Get a webhook by UID |
+| `PATCH` | `/item-type-definitions/{name}/webhooks/{uid}` | Patch a webhook |
+| `DELETE` | `/item-type-definitions/{name}/webhooks/{uid}` | Delete a webhook |
+
+Paths are relative to `/api/catalog/mia-platform.eu/v1`.
+
+Use **Download OpenAPI** to import the specification into an API client, generate a client SDK, or manage item types as code from a pipeline. Requests use your Catalog credentials and follow the same RBAC as the UI. Item types provided by AI Foundry (e.g., Agent, MCP Server, Tool) cannot be edited from the UI, but their API section remains available. For the general conventions of the API, see [Catalog API](/products/catalog/usage/catalog-api.md).
+
 ## See also
 
 - [Items](/products/catalog/basic-concepts/10_items.md): the objects whose shape an ITD constrains.
