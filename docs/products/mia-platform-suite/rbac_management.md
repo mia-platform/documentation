@@ -242,7 +242,6 @@ The Administration UI introduces two changes as of v15.2:
 In this v15 release, the Administration has the following constraints:
 
 - **Roles**: built-in roles cannot be modified or deleted and correspond to those defined in the [Permission Matrix](#permission-matrix) above. Custom roles can be created, modified, and deleted.
-- **Groups**: can be created, to combine users under a shared set of role assignments. Built-in groups are created with every new tenant.
 - **Users**: cannot be created. Users can only be **assigned** to existing roles and groups.
 - **Permissions**: not yet customizable in this phase permissions are tied to roles as defined in the matrix and cannot be edited individually.
 - **Group scope**: the only scope that can currently be assigned to a group is the **entire tenant**; scoping a group to a specific path or sub-resource is not yet available.
