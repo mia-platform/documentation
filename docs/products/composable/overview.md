@@ -4,9 +4,9 @@ title: Composable Overview
 sidebar_label: Overview
 ---
 
-:::caution Beta
+:::caution Alpha
 
-Composable is in **beta**. We are actively shaping the product, so things may change as we iterate. Your feedback is welcome.
+Composable is in **alpha**. We are actively shaping the product, so things may change as we iterate. Your feedback is welcome.
 
 :::
 
