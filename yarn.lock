@@ -3738,19 +3738,19 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@mermaid-js/layout-elk@npm:^1.0.1":
-  version: 1.0.1
-  resolution: "@mermaid-js/layout-elk@npm:1.0.1"
+"@mermaid-js/layout-elk@npm:^1.0.2":
+  version: 1.0.2
+  resolution: "@mermaid-js/layout-elk@npm:1.0.2"
   dependencies:
     d3: "npm:^7.9.0"
     dagre-d3-es: "npm:7.0.14"
     dayjs: "npm:^1.11.21"
-    dompurify: "npm:^3.4.12"
-    elkjs: "npm:^0.9.3"
-    katex: "npm:^0.16.47"
+    dompurify: "npm:^3.4.17"
+    elkjs: "npm:^0.12.0"
+    katex: "npm:^0.18.0"
   peerDependencies:
     mermaid: ^12.0.0
-  checksum: 10/79fca587d97f55bc5d118e9e1ea7f77f17636cd6d33aa307478b039c9274831d9fb8421e01ca10a9561024229ce3830a6afceaa8e8f9f55722b172c6b528a182
+  checksum: 10/a9d81aa67450955dffd5bea4368d9684b0ae019f9018b1e49d3300b856eea8b90149ea417762619346aa368e4676c6ce4cd8c8b60d121aa7fe5b16e4ffcc1fb7
   languageName: node
   linkType: hard
 
@@ -6980,6 +6980,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"commander@npm:^15.0.0":
+  version: 15.0.0
+  resolution: "commander@npm:15.0.0"
+  checksum: 10/a5dab1f5c3f1bf2ea19e8089f650f7fb65c3ed88e13ddde62e490d34b20057bcb2cd3de5b6ddc8aae93286083f8256ca0b812df842f574cbebe0e40f5b2f98f7
+  languageName: node
+  linkType: hard
+
 "commander@npm:^2.20.0":
   version: 2.20.3
   resolution: "commander@npm:2.20.3"
@@ -8217,7 +8224,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"dompurify@npm:^3.4.12":
+"dompurify@npm:^3.4.12, dompurify@npm:^3.4.17":
   version: 3.4.17
   resolution: "dompurify@npm:3.4.17"
   dependencies:
@@ -8306,6 +8313,13 @@ __metadata:
   version: 1.5.439
   resolution: "electron-to-chromium@npm:1.5.439"
   checksum: 10/485b50ec998863387d46b83d058649983249f1ae00804327f54861dad4b52d2c0392a8674b3ed1e1e47e3a22410d7f0e69e5db8420d55a21e97b5375ecb5b6f6
+  languageName: node
+  linkType: hard
+
+"elkjs@npm:^0.12.0":
+  version: 0.12.1
+  resolution: "elkjs@npm:0.12.1"
+  checksum: 10/2821902e3c1bf9bf73fa1f7393b7ba0a2252bb4c934f4731f197b0d3362852b953a16d0c3f6003e33ac30f78cc0c16a85ba9bf9d544fc0a1e8ef46ffb3adb811
   languageName: node
   linkType: hard
 
@@ -11126,6 +11140,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"katex@npm:^0.18.0":
+  version: 0.18.10
+  resolution: "katex@npm:0.18.10"
+  dependencies:
+    commander: "npm:^15.0.0"
+  bin:
+    katex: cli.js
+  checksum: 10/cf3349b390754b588a64739e8518400fd5050742af14413c85057144a815021b395bb1e163ff307d3fc0e072a9561da79710cc8e2cff51d964fee8879cc17c7a
+  languageName: node
+  linkType: hard
+
 "keyv@npm:^4.5.3":
   version: 4.5.4
   resolution: "keyv@npm:4.5.4"
@@ -11909,7 +11934,7 @@ __metadata:
     "@inquirer/core": "npm:^12.0.6"
     "@inquirer/prompts": "npm:^8.7.5"
     "@mdx-js/react": "npm:^3.0.0"
-    "@mermaid-js/layout-elk": "npm:^1.0.1"
+    "@mermaid-js/layout-elk": "npm:^1.0.2"
     "@mia-platform/console-types": "npm:^0.42.1"
     "@types/semver": "npm:^7"
     clsx: "npm:^2.0.0"
