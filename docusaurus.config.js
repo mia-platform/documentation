@@ -83,6 +83,12 @@ const config = {
               label: "AI Foundry",
               activeBaseRegex: "(docs|docs/\\d.x)/products/ai-foundry"
             },
+            // Canary-only until the product is part of a released version: a `doc` item would crash the navbar on versions that do not contain the page
+            ...(process.env.NODE_ENV !== "production" ? [{
+              label: "Composable",
+              to: "/docs/next/products/composable/overview",
+              activeBaseRegex: "(docs|docs/\\d.x|docs/next)/products/composable"
+            }] : []),
             {
               type: 'html',
               value: '<div style="margin: 8px 12px 4px; font-weight: 600; font-size: 12px; text-transform: uppercase; opacity: 0.6;">Data</div>',
