@@ -8,7 +8,8 @@
       "newFeatures": [],
       "improvements": [],
       "bugFixes": [
-        "Optimized Console Design Overview loading to improve performance and reduce timeout risk for companies with many projects and large configurations."
+        "Optimized Console Design Overview loading to improve performance and reduce timeout risk for companies with many projects and large configurations.",
+        "Solved a bug that prevented the 'unsaved changes' message to appear when configuring EmptyDirs inside the Design Area."
       ]
     }
   }
