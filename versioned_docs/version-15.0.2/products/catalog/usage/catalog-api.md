@@ -69,7 +69,7 @@ Item URIs generally take the form:
 [Item Type Definitions (ITDs)](/products/catalog/basic-concepts/20_item-types.md) are themselves catalog objects, but they are not exposed under `/items/`. They live at a dedicated endpoint, scoped to the core API group:
 
 ```text
-/mia-platform.eu/v1alpha1/item-type-definitions/{name}
+/mia-platform.eu/v1/item-type-definitions/{name}
 ```
 
 Once an ITD is registered, the API server provisions the resource path it declares (`/{spec.group}/{spec.versions.name}/items/{spec.names.plural}/*`), and items of the new kind become reachable through the standard item URIs described above.
@@ -78,10 +78,10 @@ The ITD endpoint supports a restricted set of operations:
 
 | Operation  | HTTP                                                             | Notes                                                                                                               |
 | :--------- | :--------------------------------------------------------------- | :------------------------------------------------------------------------------------------------------------------ |
-| List ITDs  | `GET /mia-platform.eu/v1alpha1/item-type-definitions`            | Same query parameters as item `list` (`limit`, `continue`, `label`, `field`, `rawq`, `sort`).                       |
-| Get ITD    | `GET /mia-platform.eu/v1alpha1/item-type-definitions/{name}`     | Returns the ITD object.                                                                                             |
-| Upsert ITD | `PUT /mia-platform.eu/v1alpha1/item-type-definitions/{name}`     | Creates the ITD if missing, replaces it otherwise. The `metadata.name` must equal `<spec.names.plural>.<spec.group>`. |
-| Delete ITD | `DELETE /mia-platform.eu/v1alpha1/item-type-definitions/{name}`  | Removes the ITD; the resource endpoints it had registered are unregistered as a consequence.                        |
+| List ITDs  | `GET /mia-platform.eu/v1/item-type-definitions`            | Same query parameters as item `list` (`limit`, `continue`, `label`, `field`, `rawq`, `sort`).                       |
+| Get ITD    | `GET /mia-platform.eu/v1/item-type-definitions/{name}`     | Returns the ITD object.                                                                                             |
+| Upsert ITD | `PUT /mia-platform.eu/v1/item-type-definitions/{name}`     | Creates the ITD if missing, replaces it otherwise. The `metadata.name` must equal `<spec.names.plural>.<spec.group>`. |
+| Delete ITD | `DELETE /mia-platform.eu/v1/item-type-definitions/{name}`  | Removes the ITD; the resource endpoints it had registered are unregistered as a consequence.                        |
 
 :::note
 The ITD endpoint does not accept `POST` or `PATCH`: ITDs can only be created or replaced through `PUT`. [Concurrency control](#concurrency-control) via `resourceVersion` applies as for items.
@@ -119,7 +119,7 @@ Content-Type: application/json
 Vary: Accept
 
 {
-  "apiVersion": "mia-platform.eu/v1alpha1",
+  "apiVersion": "mia-platform.eu/v1",
   "kind": "List",
   "metadata": { ... },
   "items": [ ... ]

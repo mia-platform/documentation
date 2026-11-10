@@ -9,7 +9,7 @@ sidebar_label: Items
 An **item** is the unit of information stored in the Catalog. It is an *object* whose schema depends on its kind, plus a fixed set of metadata that the catalog uses to identify, describe, and govern it.
 
 :::tip
-The full JSON schema describing a Catalog item is [available to download](https://cdn.mia-platform.eu/catalog/v1alpha1/mia-platform.eu.v1alpha1.Item.json).
+The full JSON schema describing a Catalog item is [available to download](https://cdn.mia-platform.eu/catalog/v1/mia-platform.eu.v1.Item.json).
 :::
 
 This page focuses on items themselves: their shape, the meaning of each field, and how clients should reference them. Item *types*, the schemas that an item must respect, are described in [Item Types](/products/catalog/basic-concepts/20_item-types.md).
@@ -146,7 +146,7 @@ customFields:
 resourceVersion: 1
 ```
 
-Each key in `customFields` corresponds to the `spec.key` of a separate `CustomField` catalog entity (kind `CustomField`, family `custom-fields`, group `mia-platform.eu/v1alpha1`). Custom fields can be declared and managed through the [Catalog API](/products/catalog/usage/catalog-api.md), or through the dedicated **Custom Fields** UI in the Catalog App — see [Custom Fields](/products/catalog/basic-concepts/61_custom-fields.md) for the UI-driven workflow. The `CustomField` declares:
+Each key in `customFields` corresponds to the `spec.key` of a separate `CustomField` catalog entity (kind `CustomField`, family `custom-fields`, group `mia-platform.eu/v1`). Custom fields can be declared and managed through the [Catalog API](/products/catalog/usage/catalog-api.md), or through the dedicated **Custom Fields** UI in the Catalog App — see [Custom Fields](/products/catalog/basic-concepts/61_custom-fields.md) for the UI-driven workflow. The `CustomField` declares:
 
 - **`spec.key`** — the unique key used in items' `customFields` map. May be plain (e.g. `sensitivity`) or prefixed (e.g. `runtime/java-version`).
 - **`spec.schema`** — a JSON Schema (Draft 2020-12) that validates the value of the field on items.
@@ -155,7 +155,7 @@ Each key in `customFields` corresponds to the `spec.key` of a separate `CustomFi
 Example `CustomField` declaration:
 
 ```yaml
-apiVersion: mia-platform.eu/v1alpha1
+apiVersion: mia-platform.eu/v1
 kind: CustomField
 metadata:
   name: sensitivity
@@ -165,8 +165,8 @@ spec:
     type: string
     enum: ["public", "internal", "confidential", "secret"]
   applicableTo:
-    - urn:mia-platform-catalog:example.com:v1alpha1:Database
-    - urn:mia-platform-catalog:example.com:v1alpha1:Service
+    - urn:mia-platform-catalog:example.com:v1:Database
+    - urn:mia-platform-catalog:example.com:v1:Service
 ```
 
 Unlike an ITD's `spec` schema — which is fixed at the ITD-version level — a `CustomField` can be introduced or deprecated independently and reused across many item types. This makes custom fields the right tool when you want to attach an attribute (e.g. data sensitivity, runtime version, business owner) consistently across several otherwise unrelated kinds.
@@ -229,7 +229,7 @@ URN regex (named groups):
 Examples:
 
 - `urn:mia-platform-catalog:stable.example.com:v1:DockerImage:my-resource`
-- `urn:mia-platform-catalog:mia-platform.eu:v1alpha1:RelationshipType:ownership`
+- `urn:mia-platform-catalog:mia-platform.eu:v1:RelationshipType:ownership`
 
 Omitting the trailing `:<name>` yields a **family selector**:
 
