@@ -20,6 +20,7 @@ Everything you build with Mia-Platform lives behind one of these applications, a
 | **AI Foundry** | Web-based management and orchestration platform for building, managing, and validating AI-powered workflows. |
 | **Console** | Platform Builder that lets you build, manage, and simplify your own fully customized Internal Developer Platform. |
 | **Flow** | AI-driven development application: describe what you want to build in natural language and it generates, previews, and deploys the code. |
+| **Composable** | Visual authoring of infrastructure topology on a graph canvas, with isolated change workspaces, ITSM tracking, and GitOps release. |
 | **Data Fabric** | Configures and manages real-time, enterprise-scale data aggregation pipelines. |
 | **P4SaMD** | Compliance governance platform. |
 
