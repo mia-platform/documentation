@@ -31,7 +31,3 @@ From the **Webhooks** tab, **Add webhook** opens a form to register a new webhoo
 - **Description** *(optional)* — what the webhook is for.
 - **Which events would you like to trigger this webhook?** — `On create`, `On update`, and `On delete` can be enabled independently, so a webhook can respond to only the operations you care about.
 - **Enabled** — a toggle to activate the webhook immediately, or leave it registered but inactive.
-
-## Current limitations
-
-- Only operations that modify an item are covered — a new **version** being created for an item ([see Item Versioning](/products/catalog/basic-concepts/65_item-history.md)) does not, on its own, fire a webhook.
