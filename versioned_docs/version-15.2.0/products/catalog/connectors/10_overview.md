@@ -70,12 +70,12 @@ Connectors are available for nine upstream systems, grouped below by the kind of
 
 ## Shaping what lands in the Catalog
 
-The shape of the items a connector produces isn't fixed by the connector itself: what a source's data becomes in the Catalog is decided by **mapping files**. There are two ways to get there:
+The shape of the items a connector produces isn't fixed by the connector itself: what a source's data becomes in the Catalog is decided by **mappings**. There are two ways to get there:
 
-- **Use the ready-made mappings.** Each connector ships mappings built for the Catalog's [built-in Item Types](/products/catalog/basic-concepts/20_item-types.md), ready to use out of the box. They live in the [`docs/mappings`](https://github.com/mia-platform/ibdm/tree/main/docs/mappings) folder of the `ibdm` repository, one set per source.
-- **Map to your own Item Types.** Every source exposes a defined set of *data types* (for example, GitHub's `repository` and `workflow_run`). Starting from the data a source delivers, you can define [custom Item Types](/products/catalog/basic-concepts/20_item-types.md) and write your own mappings that `ibdm` manages.
+- **Use the ready-made mappings.** Each connector ships **internal mappings** built for the Catalog's [built-in Item Types](/products/catalog/basic-concepts/20_item-types.md), ready to use out of the box. They are part of `ibdm` itself, one set per source, and you choose which ones run by name, with `--include-internal-mappings` and `--exclude-internal-mappings`: no mapping file is needed. The [Internal Mappings](https://github.com/mia-platform/ibdm/blob/main/docs/reference/20_internal-mappings.md) reference lists them all.
+- **Map to your own Item Types.** Every source exposes a defined set of *data types* (for example, GitHub's `repository` and `workflow_run`). Starting from the data a source delivers, you can define [custom Item Types](/products/catalog/basic-concepts/20_item-types.md) and write your own mapping files, passed to `ibdm` with `--mapping-file`. They can run alongside the internal mappings, but they cannot write the built-in Item Types.
 
-The mapping-file format and the full setup are covered in the configuration reference.
+Selecting mappings, the mapping-file format and the full setup are covered in the [configuration reference](/requirements/installation-guidelines/catalog/connectors/00_overview.md#mappings).
 
 ## Authenticating a connector
 

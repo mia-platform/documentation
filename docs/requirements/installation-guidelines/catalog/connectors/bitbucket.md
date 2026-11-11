@@ -14,9 +14,11 @@ The Bitbucket connector ingests data from [Bitbucket Cloud](https://bitbucket.or
 ## Commands
 
 ```sh
-ibdm sync bitbucket --mapping-file <path to mapping file or folder>
-ibdm run  bitbucket --mapping-file <path to mapping file or folder>
+ibdm sync bitbucket --include-internal-mappings=all
+ibdm run  bitbucket --include-internal-mappings=all
 ```
+
+The commands use every internal mapping of the source. To select only some of them, or to add mappings of your own, see [Mappings](/requirements/installation-guidelines/catalog/connectors/00_overview.md#mappings).
 
 ## Configuration
 
@@ -52,6 +54,17 @@ Subscribed webhook events:
 | `repo:push` | `repository` upsert |
 | `repo:updated` | `repository` upsert |
 | `pullrequest:fulfilled` | `repository` upsert |
+
+## Internal mappings
+
+`ibdm mappings list bitbucket` prints the internal mappings of this source, and the [Internal Mappings](https://github.com/mia-platform/ibdm/blob/main/docs/reference/20_internal-mappings.md#bitbucket) reference lists the Item Type each one writes.
+
+| Internal mapping | Sync | Webhook | Its relationships point at |
+| :--------------- | :--- | :------ | :------------------------- |
+| `repositories` | ✅ | ✅ | — |
+| `pipelines` | ✅ for every repository | — | `repositories` |
+
+The sync walks the repositories of the workspaces as soon as either mapping is selected, and fetches the pipelines of each repository while walking them. Selecting `pipelines` alone works, but its items then relate to repository items that nothing creates: select `repositories` too.
 
 ## Setting up a Bitbucket webhook
 

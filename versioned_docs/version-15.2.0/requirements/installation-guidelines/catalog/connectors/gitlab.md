@@ -16,9 +16,11 @@ Both GitLab.com and self-hosted instances are supported through `GITLAB_BASE_URL
 ## Commands
 
 ```sh
-ibdm sync gitlab --mapping-file <path to mapping file or folder>
-ibdm run  gitlab --mapping-file <path to mapping file or folder>
+ibdm sync gitlab --include-internal-mappings=all
+ibdm run  gitlab --include-internal-mappings=all
 ```
+
+The commands use every internal mapping of the source. To select only some of them, or to add mappings of your own, see [Mappings](/requirements/installation-guidelines/catalog/connectors/00_overview.md#mappings).
 
 ## Configuration
 
@@ -43,12 +45,12 @@ The source sends `GITLAB_TOKEN` as the `PRIVATE-TOKEN` header on every request. 
 
 ### Sync mode
 
-`project` is the primary resource. When it appears in the mapping file, `ibdm` iterates over all accessible projects and, for each one, optionally fetches:
+`project` is the primary resource. When a mapping of type `project` is used, such as the internal `projects`, `ibdm` iterates over all accessible projects and, for each one, optionally fetches:
 
-- **project access tokens**, when `accesstoken` is also in the mapping;
-- **project pipelines**, when `pipeline` is also in the mapping.
+- **project access tokens**, when a mapping of type `accesstoken` is also used;
+- **project pipelines**, when a mapping of type `pipeline` is also used.
 
-When `accesstoken` is in the mapping, `ibdm` additionally iterates over all accessible _groups_ and fetches their group-level access tokens.
+When a mapping of type `accesstoken` is used, `ibdm` additionally iterates over all accessible _groups_ and fetches their group-level access tokens.
 
 Each `project` item includes a `project_languages` field containing the language usage breakdown for that project, enriched via `GET /api/v4/projects/{id}/languages`. The value is a JSON object mapping each language name to its percentage share:
 
@@ -62,23 +64,25 @@ If the languages call fails, the sync run aborts entirely for that project (and 
 
 | Event | Emits |
 | :---- | :---- |
-| **Pipeline Hook** | `project` + `pipeline` (`pipeline` is only emitted if `project` is also in the mapping — a mapping containing only `pipeline` produces no events at all) |
+| **Pipeline Hook** | `project` + `pipeline`, only when mappings of both types are used: with `projects` or `pipelines` alone, a Pipeline Hook writes nothing |
 | **Push Hook** | `project` |
 
 Both webhook event types also populate `project_languages` on `project` items, using the same enrichment call as sync mode.
 
-## Example mappings
+## Internal mappings
 
-Reference mapping files live in [`docs/examples/gitlab/mappings/`](https://github.com/mia-platform/ibdm/tree/main/docs/examples/gitlab/mappings) of the `ibdm` repository:
+`ibdm mappings list gitlab` prints the internal mappings of this source, and the [Internal Mappings](https://github.com/mia-platform/ibdm/blob/main/docs/reference/20_internal-mappings.md#gitlab) reference lists the Item Type each one writes.
 
-- `projects.yaml` — map GitLab projects to Catalog items.
-- `pipelines.yaml` — map pipelines to Catalog items.
-- `accesstokens.yaml` — map access tokens to Catalog items.
+| Internal mapping | Type | Sync | Webhook |
+| :--------------- | :--- | :--- | :------ |
+| `projects` | `project` | ✅ | ✅ |
+| `pipelines` | `pipeline` | ✅ while the projects are walked | ✅ together with `projects` |
+| `accesstokens` | `accesstoken` | ✅ | — |
 
-Pass the file or the folder to `--mapping-file`:
+Pipelines are only fetched while the projects are walked, so selecting `pipelines` alone produces nothing: select it together with `projects`, for example:
 
 ```sh
-ibdm sync gitlab --mapping-file docs/examples/gitlab/mappings/
+ibdm sync gitlab --include-internal-mappings=projects,pipelines
 ```
 
 ## See also

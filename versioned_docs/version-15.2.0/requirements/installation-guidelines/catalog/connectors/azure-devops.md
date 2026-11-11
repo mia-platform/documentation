@@ -14,9 +14,11 @@ The Microsoft Azure DevOps connector ingests entities from an Azure DevOps organ
 ## Commands
 
 ```sh
-ibdm sync azure-devops --mapping-file <path to mapping file or folder>
-ibdm run  azure-devops --mapping-file <path to mapping file or folder>
+ibdm sync azure-devops --include-internal-mappings=all
+ibdm run  azure-devops --include-internal-mappings=all
 ```
+
+The commands use every internal mapping of the source. To select only some of them, or to add mappings of your own, see [Mappings](/requirements/installation-guidelines/catalog/connectors/00_overview.md#mappings).
 
 ## Configuration
 
@@ -46,6 +48,17 @@ Subscribed webhook events:
 - [`git.repo.created`](https://learn.microsoft.com/en-us/azure/devops/service-hooks/events?view=azure-devops#repository-created) → `gitrepository` upsert
 - [`git.repo.renamed`](https://learn.microsoft.com/en-us/azure/devops/service-hooks/events?view=azure-devops#repository-renamed) → `gitrepository` upsert
 - [`git.repo.deleted`](https://learn.microsoft.com/en-us/azure/devops/service-hooks/events?view=azure-devops#repository-deleted) → `gitrepository` delete
+
+## Internal mappings
+
+`ibdm mappings list azure-devops` prints the internal mappings of this source, and the [Internal Mappings](https://github.com/mia-platform/ibdm/blob/main/docs/reference/20_internal-mappings.md#azure-devops) reference lists the Item Type each one writes.
+
+| Internal mapping | Sync | Webhook |
+| :--------------- | :--- | :------ |
+| `gitrepositories` | ✅ | ✅ on the events listed in its `extra.eventNames`: `git.repo.created`, `git.repo.renamed`, `git.repo.deleted` |
+| `teams` | ✅ | — it lists no `eventNames` |
+
+The two mappings are independent, and neither creates relationships to the other. The webhook events a mapping reacts to are the ones listed in its `extra.eventNames`: an external mapping of type `gitrepository` can list its own.
 
 ## See also
 
