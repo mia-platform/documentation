@@ -195,6 +195,8 @@ The **Items Ingestor** role is intended for **service accounts**, not human user
 | **Workflow Manager** | Read/write access to agentic workflow definitions and their executions, plus the API Credentials used by workflow steps; read access to related catalog items. |
 | **Workflow Trigger** | Management, creation, and rotation of the secret keys associated with a workflow's public webhook triggers. |
 
+To use the AI features of the suite, a **service account** must be assigned one of the **Admin**, **Editor**, **Viewer**, or **Chatbot Usage** roles. The same applies to the service account the [AI Foundry agent runtime](/products/ai-foundry/administration/30_runtime-installation.md) reads the Catalog with.
+
 ### Authorization roles
 
 | Role | Description and permissions |

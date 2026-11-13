@@ -162,7 +162,7 @@ Every save is validated by the workflow engine, including the integration provid
 
 - **Manual**: the **Run** button on the workflow page prompts for the declared inputs.
 - **Schedule**: runs start from the cron expression with the configured inputs. You can pause and resume the schedule from the **Schedules** tab.
-- **Webhook**: external systems start a run with `POST /api/workflow-webhooks/{organization}/{tenant}/{name}`, signing the raw request body with an HMAC secret in the `X-Hub-Signature-256: sha256=<signature>` header, the same scheme GitHub webhooks use. From the **Webhook** tab you create the secret and rotate it; after a rotation the previous secret stops working. Only declared inputs are passed to the run; anything else in the request is dropped.
+- **Webhook**: external systems start a run with `POST /api/workflow-webhooks/{organization}/{tenant}/{name}`, signing the raw request body with an HMAC secret in the `X-Webhook-Signature-256: sha256=<signature>` header, the same scheme GitHub webhooks use. From the **Webhook** tab you create the secret and rotate it; after a rotation the previous secret stops working. Only declared inputs are passed to the run; anything else in the request is dropped.
 
 Runs are durable. A run keeps executing the workflow version it started with, even if the workflow is edited while it runs. A run is stopped after 500 step executions, which protects against endless loops in the graph.
 
