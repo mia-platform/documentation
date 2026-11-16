@@ -374,7 +374,7 @@ If the previous scheduled run is still running when the next one is due, the new
 2. Open the **Webhook** tab of the workflow, copy the **URL**, and click **Create secret**. Copy the secret: it is shown only once.
 3. Configure the calling system to send a JSON object whose keys are the workflow inputs, signed with the secret.
 
-The request body *is* the inputs, with no envelope. The signature is the hex-encoded HMAC-SHA256 of the raw body, sent as `X-Hub-Signature-256: sha256=<signature>`, the scheme GitHub webhooks use:
+The request body *is* the inputs, with no envelope. The signature is the hex-encoded HMAC-SHA256 of the raw body, sent as `X-Webhook-Signature-256: sha256=<signature>`, the scheme GitHub webhooks use:
 
 ```bash
 WEBHOOK_URL='https://<ai-foundry-host>/api/workflow-webhooks/<organization>/<tenant>/issue-triage'
@@ -383,7 +383,7 @@ SIGNATURE="sha256=$(printf '%s' "$BODY" | openssl dgst -sha256 -hmac "$WEBHOOK_S
 
 curl -X POST "$WEBHOOK_URL" \
   -H 'Content-Type: application/json' \
-  -H "X-Hub-Signature-256: $SIGNATURE" \
+  -H "X-Webhook-Signature-256: $SIGNATURE" \
   --data-raw "$BODY"
 ```
 
@@ -460,7 +460,7 @@ The **Workflow Runs** page in the **Observability** section is a live board of r
 | A condition always takes the "no" branch | The value is missing, is not a number for `gt`/`lt` comparisons, or does not match exactly (`contains` is case-sensitive). | Check the step output in the run page and fix the placeholder or the marker. |
 | A pull request or other resource was created twice | The step was retried after a timeout. | Set **Attempts** to `1` for non-repeatable actions and add an `onError` branch. |
 | A run fails with `this run executed 500 steps without finishing` | The graph has a cycle with no exit. | Add a condition that leaves the cycle. |
-| A webhook call answers `401` | The `X-Hub-Signature-256` header is missing, or it was computed with another secret or on different bytes. | Sign the exact raw body with the current secret. |
+| A webhook call answers `401` | The `X-Webhook-Signature-256` header is missing, or it was computed with another secret or on different bytes. | Sign the exact raw body with the current secret. |
 | A webhook call answers `409` | The **REST webhook** trigger is off, or no secret has been created. | Turn on the trigger and create a secret in the **Webhook** tab. |
 | A webhook call answers `400` | The body is not a JSON object, or a required input is missing. | Send a JSON object with all required inputs. |
 

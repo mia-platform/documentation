@@ -150,7 +150,7 @@ You need two agents for this pipeline. Create them one at a time.
    | ---------------- | --------------------------------------------------------------- |
    | **Title**        | Customer Triage Agent                                           |
    | **Name**         | `customer-triage-agent`                                         |
-   | **Runtime Name** | `customer-triage-agent`                                         |
+   | **Runtime Name** | `customer_triage_agent`                                         |
    | **Description**  | Classifies the intent and urgency of incoming customer messages |
    | **Model**        | `Claude Haiku 4.5` (the model created in Step 1)                |
 
