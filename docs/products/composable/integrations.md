@@ -16,19 +16,25 @@ Composable is the place where infrastructure is designed and governed. Execution
 
 ## ITSM
 
-Change management usually lives in an ITSM such as ServiceNow or Jira Service Management. With the ITSM integration, developers never have to log in there.
+Change management usually lives in an ITSM such as ServiceNow or Jira Service Management, and it is rarely something a team can replace. Composable integrates with the ITSM you already have, so your existing change process stays in place and the Solution lifecycle feeds into it.
 
-When a Solution moves along its approval steps, a change request is opened automatically. It carries the requester, a readable description of the changes, the exact differences, and a link back to the visual topology.
+Each state of a Solution's lifecycle can trigger operations towards the ITSM. For example, when a Solution moves along its approval steps, a change request can be opened automatically, carrying the requester, a readable description of the changes, the exact differences, and a link back to the visual topology.
 
-Approvals and rejections recorded in the ITSM are reflected on the Solution, and the ticket is closed when the change is released. The ITSM becomes the register for compliance and auditing, while the working experience stays in Composable.
+Approvals can be given directly in Composable, which then updates the change request in the ITSM to record the outcome. Later states can update or close the ticket when the change is released.
+
+This way the ITSM stays up to date without anyone having to work in it. It remains the register for compliance and auditing, and it is still available whenever you need to read the full record of a change.
 
 ## GitOps and Infrastructure-as-Code
 
-Composable does not call cloud provider APIs. When a change is approved and released, it is turned into declarative configuration files and merged into a configuration repository. The merge triggers the CI/CD pipeline your Platform Team maintains, which validates, plans, and applies the change with Infrastructure-as-Code tools such as Terraform. Infrastructure-as-Code remains the only authority over provisioning.
+Composable does not call cloud provider APIs. It connects to the Git workflow and the Infrastructure-as-Code tooling your Platform Team already maintains, which remain the only authority over provisioning.
+
+When a change is submitted for approval, Composable turns it into declarative configuration files and opens a merge request on the configuration repository. Approving the change in Composable is the green light for that merge request. When the change is released, the merge request is merged to the main branch, which triggers your CI/CD pipeline: it validates, plans, and applies the change with Infrastructure-as-Code tools such as Terraform.
 
 ## Cloud connectors
 
-After provisioning, connectors for cloud providers and runtime platforms discover what was actually created, such as identifiers, network addresses, and final configuration. They update the Catalog from the provisional state to the active one and detect drift between the design and the real infrastructure.
+After provisioning, connectors for cloud providers and runtime platforms discover what was actually created, such as identifiers, network addresses, and final configuration. They update the Catalog from the provisional state to the active one.
+
+Since Composable reads from the Catalog, what you see in the topology reflects the infrastructure that is really running. Depending on how the connectors are configured, they can keep the Catalog aligned continuously, so the topology stays up to date as the infrastructure changes.
 
 ## Webhooks and events
 

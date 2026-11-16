@@ -25,7 +25,7 @@ Because these are ordinary Catalog items, you can browse, filter, and query them
 
 ## A digital twin of your ecosystem
 
-Every action in Composable, such as saving a node, changing a parameter, or moving a Solution to another state, updates the Catalog right away. The Catalog therefore acts as a digital twin of your infrastructure that always matches what teams have designed and approved, and it notifies other systems through [webhooks](/products/catalog/basic-concepts/62_webhooks.md) without any polling.
+Every action in Composable, such as saving a node, changing a parameter, or moving a Solution to another state, updates the Catalog right away. The Catalog therefore acts as a digital twin of your infrastructure that stays up to date with what teams have designed and with what is really running, and it notifies other systems through [webhooks](/products/catalog/basic-concepts/62_webhooks.md) without any polling.
 
 ## Governance from the Catalog
 
