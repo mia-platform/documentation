@@ -11,6 +11,22 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 7.2.7 - 2026-11-16
+
+### Fixed
+
+- Updated internal libraries to fix vulnerabilities
+
+## 7.2.5 - 2025-10-01
+
+### Fixed
+
+- introduce environment variable `FASTIFY_PLUGIN_TIMEOUT_MS` to allow users customizing the startup timeout of a fastify plugin
+
+### Dependencies
+
+- updated NodeJS version in Docker image to v20.20.0
+
 ## 7.2.4 - 2025-08-06
 
 ### Fixed

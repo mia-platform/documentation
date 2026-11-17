@@ -15,7 +15,16 @@
         }
       ],
       "improvements": [],
-      "bugFixes": []
+      "bugFixes": [
+        {
+          "title": "Excel Add-in v0.4.1",
+          "description": [
+            "The new version `v0.4.1` of the _Excel Add-in_ is available!",
+            "The pull operation no longer fails with a worksheet error when an option custom property has a long or empty list of options.",
+            "Check the [changelog](/docs/15.2.0/products/data_catalog/excel_add_in/changelog) for the full list of changes."
+          ]
+        }
+      ]
     }
   },
   {
@@ -130,7 +139,7 @@
           "title": "Helm charts in Project Blueprint templates",
           "description": [
             "Helm charts defined in the `charts` property of a Project Blueprint template are now saved in the configuration of the new Project when it is created. This applies only to Projects with the enhanced workflow."
-            ]
+          ]
         }
       ],
       "bugFixes": [
@@ -140,12 +149,51 @@
     }
   },
   {
+    "title": "Fast Data",
+    "icon": "fast-data",
+    "defaultOpen": false,
+    "type": "versions",
+    "items": {
+      "newFeatures": [],
+      "improvements": [],
+      "bugFixes": [
+        {
+          "title": "Farm Data v0.6.4",
+          "description": [
+            "The new version `v0.6.4` of _Farm Data_ is available!",
+            "Compound index keys are now sorted, preventing the creation of duplicate MongoDB indexes.",
+            "Check the [changelog](/docs/15.2.0/products/fast_data_v2/farm_data/changelog) for the full list of changes."
+          ]
+        },
+        {
+          "title": "Mongezium v0.5.1",
+          "description": [
+            "The new version `v0.5.1` of _Mongezium_ is available!",
+            "Mongezium now selects the newest resume token across all the partitions of a topic.",
+            "Check the [changelog](/docs/15.2.0/products/fast_data_v2/mongezium_cdc/changelog) for the full list of changes."
+          ]
+        }
+      ]
+    }
+  },
+  {
     "title": "Runtime Components",
     "icon": "runtime-components",
     "defaultOpen": false,
     "type": "versions",
     "items": {
-      "newFeatures": [],
+      "newFeatures": [
+        {
+          "title": "Notification Manager Service v2.6.1",
+          "description": [
+            "The new versions `v2.6.1`, `v2.6.0` and `v2.5.0` of the _Notification Manager Service_ are available!",
+            "`v2.5.0` adds support for **multiple Firebase credentials**, to send push notifications to multiple apps.",
+            "`v2.6.0` adds support for **multiple device tokens per user** via the `deviceTokens` field, to send push notifications to multiple devices.",
+            "`v2.6.1` fixes the custom handler utility functions, which can now use the new `deviceTokens` field when sending push notifications to multiple devices.",
+            "Check the [changelog](/docs/15.2.0/runtime-components/plugins/notification-manager-service/changelog) for the full list of changes."
+          ]
+        }
+      ],
       "improvements": [
         {
           "title": "Authentication Service v3.14.2",
@@ -164,6 +212,15 @@
             "It also adds support for authenticating to **Redis Sentinel** with its own username and password, distinct from the Redis master's credentials, via the `REDIS_SENTINEL_USERNAME` and `REDIS_SENTINEL_PASSWORD` environment variables.",
             "Check the [changelog](/docs/15.2.0/runtime-components/plugins/client-credentials/changelog) for the full list of changes."
           ]
+        },
+        {
+          "title": "CRUD Service v7.2.7",
+          "description": [
+            "The new versions `v7.2.7` and `v7.2.5` of the _CRUD Service_ are available!",
+            "`v7.2.5` introduces the `FASTIFY_PLUGIN_TIMEOUT_MS` environment variable to customize the startup timeout of a Fastify plugin, which helps when the service manages many collections.",
+            "`v7.2.7` updates internal libraries to fix vulnerabilities.",
+            "Check the [changelog](/docs/15.2.0/runtime-components/plugins/crud-service/changelog) for the full list of changes."
+          ]
         }
       ],
       "bugFixes": [
@@ -174,6 +231,21 @@
             "JWT payload decoding now uses base64url encoding, fixing spurious `unable decoding JWT payload` errors for claim values containing multi-byte UTF-8 characters (e.g. accented letters).",
             "The `/verify` handler now refreshes the JWKS and retries when the cached keys can't verify the token (e.g. after a key rotation), instead of failing immediately.",
             "Check the [changelog](/docs/15.2.0/runtime-components/plugins/jwt-token-validator/changelog) for the full list of changes."
+          ]
+        },
+        {
+          "title": "Export Service v2.1.0",
+          "description": [
+            "The new versions `v2.1.0` and `v2.0.2` of the _Export Service_ are available!",
+            "The service now sends the `accept: application/x-ndjson` header required by the CRUD Service from version 6.9.0.",
+            "It also updates the Node.js Docker image to fix vulnerabilities.",
+            "Check the [changelog](/docs/15.2.0/runtime-components/plugins/export-service/changelog) for the full list of changes."
+          ]
+        },
+        {
+          "title": "Security updates",
+          "description": [
+            "The following Runtime Components have new versions that fix security vulnerabilities: [Files Service v2.10.6](/docs/15.2.0/runtime-components/plugins/files-service/changelog), [Real-Time Updater v7.11.3](/docs/15.2.0/runtime-components/plugins/real-time-updater/changelog), [Single View Creator v6.8.2](/docs/15.2.0/runtime-components/plugins/single-view-creator/changelog), [Swagger Aggregator v3.9.7](/docs/15.2.0/runtime-components/plugins/swagger-aggregator/changelog) and [Timer Service v2.1.5](/docs/15.2.0/runtime-components/plugins/timer-service/changelog)."
           ]
         }
       ]

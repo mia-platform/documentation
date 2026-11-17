@@ -6,6 +6,12 @@ sidebar_label: CHANGELOG
 
 
 
+## [3.9.7] 2026-11-13
+
+### Fixed
+
+- Updated Node in `Dockerfile` to fix vulnerabilities
+
 ## [3.9.6] 2025-07-25
 
 - Updated node.js docker image to version `node:24.4-alpine`

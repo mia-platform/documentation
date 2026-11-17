@@ -31,9 +31,9 @@ Please ensure that your services respect the following matrix.
 |-----------------------------------------------------------------------------------------------|---------|
 | [Control Plane Frontend](/products/fast_data_v2/runtime_management/application_configuration.md)        | 0.2.0   |
 | [Control Plane](/products/fast_data_v2/runtime_management/application_configuration.md)  | 0.2.0-mongodb   |
-| [Mongezium](/products/fast_data_v2/mongezium_cdc/10_Overview.md)                                   | 0.5.0   |
+| [Mongezium](/products/fast_data_v2/mongezium_cdc/10_Overview.md)                                   | 0.5.1   |
 | [Stream Processor](/products/fast_data_v2/stream_processor/10_Overview.md)                         | 0.6.3   |
-| [Farm Data](/products/fast_data_v2/farm_data/10_Overview.md)                                       | 0.6.2   |
+| [Farm Data](/products/fast_data_v2/farm_data/10_Overview.md)                                       | 0.6.4   |
 | [Kango](/products/fast_data_v2/kango/10_Overview.md)                                               | 0.6.2   |
 
 ## Internal Compatibility
