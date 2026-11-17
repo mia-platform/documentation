@@ -129,6 +129,10 @@ Each step can declare a timeout and a retry policy, and can reference the workfl
 
 Runs are durable: they survive service restarts and keep the workflow version they started with. The workflow detail page lists executions and schedules, and each run shows a step-by-step timeline with inputs, results, and trigger details. Runs waiting for an approval are highlighted on the home page and on the **Workflow Runs** board, and are approved or rejected from the run page.
 
+### Versioning
+
+Every AI Foundry resource, such as an agent, a playbook, a prompt, a skill or a tool, has a **History** section in its detail page. It lists all the revisions of the resource, lets you promote a revision to a named version, compare two states with a line-by-line diff, and restore a previous one. History tracking is always on by default for AI Foundry resources. Versioning works as for the items of the Catalog: see [History and Item Versioning](/products/catalog/basic-concepts/65_item-history.md#ai-foundry-resources).
+
 ### Observability
 
 Monitor how your agents, playbooks, and exported plugins behave in production from the **Observability** section:

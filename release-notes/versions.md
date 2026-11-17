@@ -9,6 +9,17 @@ import Changelog from '@site/src/components/Changelog';
 
 <Changelog>
 
+## [v15.2.1](/release-notes/v15.2.1.mdx)
+
+*TBD*
+
+Mia-Platform v15.2.1 includes improvements across the Mia-Platform Suite, in particular:
+
+- **Catalog**: item **Lifecycles** with built-in and custom states and transitions, and an auto-generated **API Reference** for every item and Item Type.
+- **AI Foundry**: **Item Versioning** for AI Foundry resources, always on by default, and the new **MCP Gateway**, a single governed endpoint that lets Claude Code and VS Code use the tools of every MCP server granted to a virtual key.
+
+[Read the release notes](/release-notes/v15.2.1.mdx)
+
 ## [v15.2.0](/release-notes/v15.2.0.mdx)
 
 *Sep 21st, 2026*
