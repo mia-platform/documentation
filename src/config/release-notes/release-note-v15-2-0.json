@@ -125,9 +125,18 @@
             "You can still switch to the YAML editor for more advanced changes; if the manifest no longer matches the JSON schema of the item version, switching back to the form is disabled. Once a resource is detached from the Marketplace, only the YAML editor is available.",
             "Check the [Infrastructure Resources documentation](/docs/15.2.0/products/console/design-your-projects/custom-resources/#update-an-infrastructure-resource) for more details."
           ]
+        },
+        {
+          "title": "Helm charts in Project Blueprint templates",
+          "description": [
+            "Helm charts defined in the `charts` property of a Project Blueprint template are now saved in the configuration of the new Project when it is created. This applies only to Projects with the enhanced workflow."
+            ]
         }
       ],
-      "bugFixes": []
+      "bugFixes": [
+        "Fixed an issue where, in Projects with the Enhanced Workflow using Azure DevOps, GitLab, or Bitbucket pipelines, the Deploy section showed the pipeline branch (for example `master`) as the last deployed revision instead of the revision or version actually deployed.",
+        "Fixed an issue where, in Projects with the Enhanced Workflow and an external Orchestrator Generator, the comparison with the last deployment showed every file as deleted and added again, hiding the actual differences. Files are now matched again and the comparison shows only the real content changes."
+      ]
     }
   },
   {
