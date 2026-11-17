@@ -8,7 +8,7 @@ sidebar_label: Overview
 
 The **Catalog** is Mia-Platform's system to record, classify, and connect any entity that lives in your organization's tenants, from software components and infrastructure resources to business artifacts and processes. It provides a unified, queryable model of your platform's "context" so that humans and automations can reason about what exists, how it relates, and whether it complies with the rules you care about.
 
-![Catalog Home Page](img/catalog_welcome.png)
+![Catalog Home Page](img/catalog_homepage_v15_2_1.png)
 
 ## Core ideas
 

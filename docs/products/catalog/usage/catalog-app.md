@@ -8,7 +8,7 @@ sidebar_label: Catalog App
 
 The **Catalog App** is the web interface that lets operators and platform users browse the Catalog, inspect the entities it tracks, and oversee compliance activities. It is the human-facing complement to the [Catalog API](/products/catalog/usage/catalog-api.md).
 
-![Catalog App Home Page](../img/catalog_welcome.png)
+![Catalog App Home Page](../img/catalog_homepage_v15_2_1.png)
 
 ## What you can do
 
