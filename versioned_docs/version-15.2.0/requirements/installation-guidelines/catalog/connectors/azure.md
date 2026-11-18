@@ -14,9 +14,11 @@ The Microsoft Azure connector ingests cloud resources from an Azure subscription
 ## Commands
 
 ```sh
-ibdm sync azure --mapping-file <path to mapping file or folder>
-ibdm run  azure --mapping-file <path to mapping file or folder>
+ibdm sync azure --include-internal-mappings=all
+ibdm run  azure --include-internal-mappings=all
 ```
+
+The commands use every internal mapping of the source. To select only some of them, or to add mappings of your own, see [Mappings](/requirements/installation-guidelines/catalog/connectors/00_overview.md#mappings).
 
 ## Configuration
 
@@ -47,7 +49,13 @@ Run mode does not connect to Azure directly for change notifications — it cons
 
 On a `ResourceWriteSuccess` event, `ibdm` re-fetches the resource via the ARM `GetByID` API (using the `apiVersion` extra for that type) and emits an upsert; on `ResourceDeleteSuccess` it emits a delete. The resource type and ID are parsed from the CloudEvent's `Subject` field.
 
-Each resource type declared in the mapping file must also declare an `apiVersion` extra (the [Azure Resource Manager](https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/resource-providers-and-types) API version used to re-fetch that resource on a change event). A type without an `apiVersion` extra is silently skipped when a matching event arrives.
+Every mapping of an Azure resource type carries an `apiVersion` extra: the [Azure Resource Manager](https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/resource-providers-and-types) API version used to re-fetch that resource. The internal mappings already declare it; an external mapping must declare it too, quoted as in `apiVersion: "2025-03-01"`, or its type is skipped when a matching event arrives. An external mapping declaring a different `apiVersion` from the internal mapping of its type makes the source fetch the resource once per version.
+
+## Internal mappings
+
+`ibdm mappings list azure` prints the internal mappings of this source, and the [Internal Mappings](https://github.com/mia-platform/ibdm/blob/main/docs/reference/20_internal-mappings.md#azure) reference lists the Item Type each one writes.
+
+The source ships one internal mapping per supported Azure resource type, such as `resourcegroups`, `virtualmachines`, `storageaccounts` or `websites`, plus `websites_functionapps`, which produces a Function App item for each site whose `kind` carries the `functionapp` token, related to the item of its site: it only produces items when `websites` is selected too. Each mapping is independent otherwise: the sync queries the Azure Resource Graph for the resource types of the selected mappings only, and the EventHub stream keeps the events of those types. The relationships between Notification Hubs and their namespaces resolve only when both `notificationhubs_namespaces` and `notificationhubs_notificationhubs` are selected. `managedclusters` also relates each AKS cluster to the cluster item of the [Mia-Platform Console connector](/requirements/installation-guidelines/catalog/connectors/mia-platform-console.md) whose connection URL is the FQDN of the AKS cluster. It only resolves when that connector publishes its clusters. See the [Azure source documentation](https://github.com/mia-platform/ibdm/blob/main/docs/how-to/030_azure-source.md) of `ibdm` for the details.
 
 ## See also
 

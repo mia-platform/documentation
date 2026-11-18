@@ -14,9 +14,11 @@ The Microsoft Azure connector ingests cloud resources from an Azure subscription
 ## Commands
 
 ```sh
-ibdm sync azure --mapping-file <path to mapping file or folder>
-ibdm run  azure --mapping-file <path to mapping file or folder>
+ibdm sync azure --include-internal-mappings=all
+ibdm run  azure --include-internal-mappings=all
 ```
+
+The commands use every internal mapping of the source. To select only some of them, or to add mappings of your own, see [Mappings](/requirements/installation-guidelines/catalog/connectors/00_overview.md#mappings).
 
 ## Configuration
 
@@ -50,7 +52,7 @@ Run mode does not connect to Azure directly for change notifications — it cons
 
 On a `ResourceWriteSuccess` event, `ibdm` re-fetches the resource via the ARM `GetByID` API (using the `apiVersion` extra for that type) and emits an upsert; on `ResourceDeleteSuccess` it emits a delete. The resource type and ID are parsed from the CloudEvent's `Subject` field.
 
-Each resource type declared in the mapping file must also declare an `apiVersion` extra (the [Azure Resource Manager](https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/resource-providers-and-types) API version used to re-fetch that resource on a change event). A type without an `apiVersion` extra is silently skipped when a matching event arrives.
+Every mapping of an Azure resource type carries an `apiVersion` extra: the [Azure Resource Manager](https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/resource-providers-and-types) API version used to re-fetch that resource. The internal mappings already declare it; an external mapping must declare it too, quoted as in `apiVersion: "2025-03-01"`, or its type is skipped when a matching event arrives. An external mapping declaring a different `apiVersion` from the internal mapping of its type makes the source fetch the resource once per version.
 
 ## Resource identifiers
 
@@ -61,7 +63,7 @@ Because the mappings hash the ID to build the Catalog identifier, every casing d
 To prevent that, the source normalizes every resource before handing it to the mapper:
 
 - `id` is lowercased in full
-- `type` is set to the resource type exactly as the mapping file declares it
+- `type` is set to the resource type exactly as the mapping declares it
 
 The two values are therefore identical for Sync and Run mode, which makes `{{ .id | sha256sum }}` a stable identifier and lets a delete event target the item a previous import created.
 
@@ -78,39 +80,39 @@ The spelling Azure reported, if needed, is written to the source logs at `Debug`
 
 Some Azure resource types describe more than one thing: a `Microsoft.Web/sites` resource is an App Service site, but when its `kind` carries the `functionapp` token it is also a Function App.
 
-For these types the source produces, out of one Azure resource, both the item of the resource itself and one or more **sub-type** items, each described by its own mapping file and related to the item of the resource it was derived from.
+For these types the source produces, out of one Azure resource, both the item of the resource itself and one or more **sub-type** items, each described by its own mapping and related to the item of the resource it was derived from.
 A sub-type is always additive: the item of the Azure resource is produced exactly as it was before, and the sub-type item is created next to it together with a relationship pointing at it.
 
 Which Azure type produces which sub-type is hardcoded in the source, together with the check deciding whether a retrieved resource must produce it.
-A sub-type can therefore never be introduced by configuration alone: it takes both a new mapping file and a change to `ibdm` itself.
-In a sub-type mapping file the `type` field is an internal dispatch key rather than an Azure provider type — it is never sent to Azure, never matched against the resource type of an event, and its `apiVersion` extra is never read, because the resource is always retrieved with the `apiVersion` of its parent type.
+A sub-type can therefore never be introduced by configuration alone: it takes both a new mapping and a change to `ibdm` itself.
+In a sub-type mapping the `type` field is an internal dispatch key rather than an Azure provider type — it is never sent to Azure, never matched against the resource type of an event, and its `apiVersion` extra is never read, because the resource is always retrieved with the `apiVersion` of its parent type.
 
 ### The sub-types shipped with ibdm
 
 | Azure type | Sub-type mapping | Produced when |
 | :--------- | :--------------- | :------------ |
-| `Microsoft.Web/sites` | `websites_functionapps.yaml` — `type: functionapps` | the `kind` of the site carries the `functionapp` token |
+| `Microsoft.Web/sites` | internal mapping `websites_functionapps`, `type: functionapps` | the `kind` of the site carries the `functionapp` token |
 
 `kind` is a comma separated list of tokens, such as `app`, `app,linux` or `functionapp,linux`, and the tokens are compared one by one: a site whose kind is `myfunctionapp` is not a Function App.
 A site without a usable `kind` produces no sub-type and nothing fails.
 
 The mapping creates a `functionapps` item and, through its `extra` section, a `dependency` relationship from that item to the `websites` item of the same site.
 
-Both mapping files must be loaded for the sub-type to be produced:
+Both internal mappings must be selected for the sub-type to be produced:
 
-- loading `websites.yaml` alone reproduces exactly the behaviour the source had before sub-types existed, deletion included;
-- loading `websites_functionapps.yaml` alone can never produce anything, so the source logs a warning when it starts and carries on.
+- selecting `websites` alone produces the site items only, and deletes them alone;
+- selecting `websites_functionapps` alone can never produce anything, so the source logs a warning when it starts and carries on.
 
 Sync and Run mode behave identically here, because the check runs on the payload the Azure APIs returned and is indifferent to which of them retrieved it.
-To adopt a sub-type on an already imported subscription, load both mapping files and run `ibdm sync azure` once: every site that already exists gets its sub-type item and its relationship.
-These are the reference links for [`mappings`](https://github.com/mia-platform/ibdm/tree/main/docs/mappings/azure) and [`docs`](https://github.com/mia-platform/ibdm/blob/main/docs/how-to/030_azure-source.md) of Azure Source in ibdm.
+To adopt a sub-type on an already imported subscription, select both internal mappings and run `ibdm sync azure` once: every site that already exists gets its sub-type item and its relationship.
+See the [Azure source documentation](https://github.com/mia-platform/ibdm/blob/main/docs/how-to/030_azure-source.md) of `ibdm` for the details.
 
 ### Deleting a resource that has sub-types
 
 `Microsoft.Resources.ResourceDeleteSuccess` carries only the id of the deleted resource.
 Its `kind` is gone and no API can return it any more, so at deletion time the check cannot run: the source deletes the item of the resource **and the item of every sub-type its type can produce**, whether or not that resource ever produced it.
 
-For a `Microsoft.Web/sites` resource with both mapping files loaded, three deletions reach the Catalog:
+For a `Microsoft.Web/sites` resource with both internal mappings selected, three deletions reach the Catalog:
 
 | Deleted | Why |
 | :------ | :-- |
@@ -121,7 +123,13 @@ For a `Microsoft.Web/sites` resource with both mapping files loaded, three delet
 A deletion addressed to a sub-type item the resource never produced is inert: the Catalog publish reports no per item outcome, so nothing fails and nothing is left behind.
 The identifier of a sub-type item also lives in its own namespace — `functionapps-<resource id>` for the Function Apps — so such a deletion can only ever name the sub-type item of that very resource.
 
-Removing a sub-type mapping file is not the reverse operation: the items it already published stop being updated and stop being deleted together with their resource, so they have to be removed by hand.
+Excluding a sub-type mapping from the selection is not the reverse operation: the items it already published stop being updated and stop being deleted together with their resource, so they have to be removed by hand.
+
+## Internal mappings
+
+`ibdm mappings list azure` prints the internal mappings of this source, and the [Internal Mappings](https://github.com/mia-platform/ibdm/blob/main/docs/reference/20_internal-mappings.md#azure) reference lists the Item Type each one writes.
+
+The source ships one internal mapping per supported Azure resource type, such as `resourcegroups`, `virtualmachines`, `storageaccounts` or `websites`, plus the `websites_functionapps` sub-type described above. Each mapping is independent: the sync queries the Azure Resource Graph for the resource types of the selected mappings only, and the EventHub stream keeps the events of those types. The relationships between Notification Hubs and their namespaces resolve only when both `notificationhubs_namespaces` and `notificationhubs_notificationhubs` are selected. `managedclusters` also relates each AKS cluster to the cluster item of the [Mia-Platform Console connector](/requirements/installation-guidelines/catalog/connectors/mia-platform-console.md) whose connection URL is the FQDN of the AKS cluster. It only resolves when that connector publishes its clusters.
 
 ## See also
 

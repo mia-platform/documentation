@@ -75,17 +75,17 @@ Most catalogs are not populated by hand: they are kept in sync with the systems 
 In short, Mia-Platform connectors:
 
 - are deployed alongside your platform and run in **sync** mode (a one-off pull from the upstream REST APIs) or **run** mode (an event-stream integration that, depending on the source, either listens for webhooks or polls the upstream system);
-- transform upstream payloads into Catalog items through user-provided **mapping files** (YAML with Go templates);
-- write into the Catalog authenticated with a Client ID / Secret pair.
+- transform upstream payloads into Catalog items through **mappings** (YAML with Go templates): the internal mappings built into `ibdm` for the Catalog's built-in Item Types, and mapping files of your own;
+- write into the Catalog authenticated with a Client ID and a private key.
 
 The high-level setup is:
 
-1. **Register a matching service account.** The Client Secret (or key pair, for `private_key_jwt`) is not set in the Catalog App — a platform Super Admin registers it separately, with the *same* Client ID, as a **service account** in Platform Administration. See [Registering a service account](/products/mia-platform-suite/rbac_management.md#registering-a-service-account).
+1. **Register a matching service account.** The key pair used for `private_key_jwt` is not set in the Catalog App — a platform Super Admin registers it separately, with the *same* Client ID, as a **service account** in Platform Administration. See [Registering a service account](/products/mia-platform-suite/rbac_management.md#registering-a-service-account).
 
 2. **Register the connector in the Catalog App.** Open **Configuration → Connectors → Add connector** to create a *Connector* item and give it a Client ID — every item it later syncs in will be attributed to this ID (see [Connectors section](/products/catalog/usage/catalog-app.md#connectors) of the Catalog App reference). This step is only about attribution/labeling; it does not create any credential.
-3. **Configure `ibdm`.** Set `MIA_CATALOG_ENDPOINT`, `MIA_CATALOG_CLIENT_ID` (matching the Client ID from step 1), and `MIA_CATALOG_CLIENT_SECRET` for the destination, plus the source-specific variables documented on each connector page.
-4. **Add a mapping file.** Reference mappings are provided in the [`ibdm` repository examples](https://github.com/mia-platform/ibdm/tree/main/docs/examples); you can use them as-is or customize them.
-5. **Launch `ibdm`.** Either `ibdm sync <source> --mapping-file mapping.yaml` for a one-off pull, or `ibdm run <source> --mapping-file mapping.yaml` to start the event-stream integration.
+3. **Configure `ibdm`.** Set `MIA_CATALOG_ENDPOINT`, `MIA_CATALOG_CLIENT_ID` (matching the Client ID from step 1) and `MIA_CATALOG_PRIVATE_KEY_PATH` for the destination, together with the token endpoint settings described in [Wiring `ibdm` to the Catalog](/requirements/installation-guidelines/catalog/connectors/00_overview.md#wiring-ibdm-to-the-catalog), plus the source-specific variables documented on each connector page.
+4. **Choose the mappings.** Each source ships internal mappings for the built-in Item Types: `ibdm mappings list <source>` prints their names, and `--include-internal-mappings=all` selects all of them. Add mapping files of your own with `--mapping-file`, as described in [Mappings](/requirements/installation-guidelines/catalog/connectors/00_overview.md#mappings).
+5. **Launch `ibdm`.** Either `ibdm sync <source> --include-internal-mappings=all` for a one-off pull, or `ibdm run <source> --include-internal-mappings=all` to start the event-stream integration.
 6. **Inspect what came in.** Open the connector's detail page in the Catalog App and switch to the **Imported items** tab to browse the items it has synchronized.
 7. **Wire compliance on top.** Point your [Evaluation Criteria](/products/catalog/basic-concepts/30_evaluation-criteria.md), [Scorecards](/products/catalog/basic-concepts/40_scorecards.md), and [Campaigns](/products/catalog/basic-concepts/50_campaigns.md) at the ingested items just like at hand-created items.
 
