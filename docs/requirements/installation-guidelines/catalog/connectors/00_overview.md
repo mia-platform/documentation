@@ -58,7 +58,10 @@ External mappings are loaded from the files and directories passed with `--mappi
 
 ```sh
 # external mappings only
+# Load all mappings in the folder
 ibdm sync github --mapping-file ./my-mappings/
+# Load only the service mapping
+ibdm sync github --mapping-file ./my-mappings/service.yml
 
 # every internal mapping, plus the external ones
 ibdm sync github --include-internal-mappings=all --mapping-file ./my-mappings/
