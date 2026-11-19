@@ -10,29 +10,35 @@ _TBD_
 
 ## Catalog
 
-### Lifecycles
+### API Reference
 
-Items can now follow a **Lifecycle**: a set of states, such as Draft, In Review, Published and Archived, and the transitions allowed between them. Lifecycles are managed from **Configuration > Lifecycles**, where you find the built-in **Standard Lifecycle** and can create custom lifecycles with branches, backward transitions and loops. Once a lifecycle is associated with an Item Type, every new item of that type starts in the default state and can move only along the allowed transitions. See the official [Lifecycles documentation](/docs/15.2.1/products/catalog/basic-concepts/lifecycles) to discover all the available features.
-
-![Lifecycles](./img/catalog_lifecycles.png)
-
-### API Reference for items and Item Types
-
-Every item and every Item Type Definition now has an **API** section in its detail page, with its OpenAPI documentation generated automatically by the Catalog and always in sync with the Item Type schema. The section lists every available operation with paths already resolved, and **Download OpenAPI** lets you import the specification into an API client, generate a client SDK, or give it to an AI agent as the item's contract. See the [Items](/docs/15.2.1/products/catalog/basic-concepts/items#api-reference) and [Item Types](/docs/15.2.1/products/catalog/basic-concepts/item-types#api-reference) documentation.
+Items and Item Types now include auto-generated OpenAPI documentation, always in sync with the schema — see the official [Items](/docs/15.2.1/products/catalog/basic-concepts/items#api-reference) and [Item Types](/docs/15.2.1/products/catalog/basic-concepts/item-types#api-reference) documentation.
 
 ## AI Foundry
 
-### Item Versioning
+### Versioning
 
-AI Foundry resources, such as agents, playbooks, prompts, skills and tools, now have the same **History** section as Catalog items: browse all revisions, promote a revision to a named version, compare two states with a line-by-line diff and restore a previous one. History tracking is **always on by default** for AI Foundry resources. See the official [Item Versioning documentation](/docs/15.2.1/products/catalog/basic-concepts/item-history#ai-foundry-resources).
+Agents, playbooks, prompts, skills and tools now have a **History** section to compare, promote and restore revisions — see the official [Item Versioning documentation](/docs/15.2.1/products/catalog/basic-concepts/item-history#ai-foundry-resources).
+
+<div style={{display: 'flex', justifyContent: 'center'}}>
+  <div style={{display: 'flex', width: '700px'}}>
 
 ![History of an AI Foundry playbook](./img/ai_foundry_history.png)
 
+  </div>
+</div>
+
 ### MCP Gateway
 
-The new **MCP Gateway** gives external AI clients, such as **Claude Code** and **VS Code**, a single governed endpoint for the tools of every MCP server registered in AI Foundry. Admins grant MCP servers to a **virtual key** from **Administration > Virtual Keys**; users open the **MCP Gateway** tab of the **MCP servers** panel, paste their key and register the server with one command. The client then sees only the tools of the servers granted to the key, while the servers' credentials never leave AI Foundry. See the official [MCP Gateway documentation](/docs/15.2.1/products/ai-foundry/connections/mcp-gateway).
+The new **MCP Gateway** exposes the tools of all registered MCP servers to external AI clients through a single governed endpoint, while credentials stay in AI Foundry — see the official [MCP Gateway documentation](/docs/15.2.1/products/ai-foundry/connections/mcp-gateway).
+
+<div style={{display: 'flex', justifyContent: 'center'}}>
+  <div style={{display: 'flex', width: '700px'}}>
 
 ![MCP Gateway](./img/ai_foundry_mcp_gateway.png)
+
+  </div>
+</div>
 
 ## How to update
 
