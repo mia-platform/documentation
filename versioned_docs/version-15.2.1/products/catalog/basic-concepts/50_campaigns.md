@@ -109,10 +109,6 @@ When configuring notifications for a campaign, users can set:
 * **Followers reuse the generic relationship model.** Modeling followers as `Relationship` items — instead of a campaign-specific structure — lets the same mechanism apply across resource types.
 * **Configuration is decoupled from transport.** The data model doesn't depend on the delivery mechanism, so new channels (in-app, push, messaging platforms) can be added without changing the Campaign domain model.
 
-### Current limitation
-
-At the time of writing, only `spec.reportFrequency` is guaranteed to be persisted consistently by the backend. The remaining notification configuration fields are part of the intended data model but may not yet be fully supported by the persistence layer.
-
 ## Item types involved
 
 Campaigns interact with a small number of catalog item types:
