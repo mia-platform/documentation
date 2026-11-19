@@ -18,14 +18,14 @@ The catalog models relationships with three built-in kinds:
 - `RelationshipConstraint` — declares which item kinds *may* participate as source and target of a given relationship type.
 - `Relationship` — the actual instance linking two specific items through a relationship type.
 
-All three are themselves catalog items, governed by Item Type Definitions under the `mia-platform.eu/v1alpha1` group, and exposed at fixed paths on the [Catalog API](/products/catalog/usage/catalog-api.md#resource-uris).
+All three are themselves catalog items, governed by Item Type Definitions under the `mia-platform.eu/v1` group, and exposed at fixed paths on the [Catalog API](/products/catalog/usage/catalog-api.md#resource-uris).
 
 ## RelationshipType
 
 A `RelationshipType` defines the *vocabulary* of a connection. It carries the labels used by the UI to phrase the relationship from each endpoint's perspective.
 
 ```yaml
-apiVersion: mia-platform.eu/v1alpha1
+apiVersion: mia-platform.eu/v1
 kind: RelationshipType
 metadata:
   name: part-of.mia-platform.eu
@@ -45,12 +45,12 @@ Required fields:
 A `RelationshipConstraint` declares which item kinds may legitimately participate in a relationship of a given type. It is the catalog's way to *document* the intended shape of the graph.
 
 ```yaml
-apiVersion: mia-platform.eu/v1alpha1
+apiVersion: mia-platform.eu/v1
 kind: RelationshipConstraint
 metadata:
   name: part-of-service-in-domain
 spec:
-  relationshipTypeRef: urn:mia-platform-catalog:mia-platform.eu:v1alpha1:RelationshipType:part-of.mia-platform.eu
+  relationshipTypeRef: urn:mia-platform-catalog:mia-platform.eu:v1:RelationshipType:part-of.mia-platform.eu
   sourceType: urn:mia-platform-catalog:mia-platform.eu:v1:Service
   targetType: urn:mia-platform-catalog:mia-platform.eu:v1:Domain
 ```
@@ -72,12 +72,12 @@ Constraints are **permissive, not restrictive**: the catalog does not reject a `
 A `Relationship` is the actual edge: it pairs a source item URN with a target item URN through a relationship type URN.
 
 ```yaml
-apiVersion: mia-platform.eu/v1alpha1
+apiVersion: mia-platform.eu/v1
 kind: Relationship
 metadata:
   name: api-gateway-part-of-platform-domain
 spec:
-  typeRef: urn:mia-platform-catalog:mia-platform.eu:v1alpha1:RelationshipType:part-of.mia-platform.eu
+  typeRef: urn:mia-platform-catalog:mia-platform.eu:v1:RelationshipType:part-of.mia-platform.eu
   sourceRef: urn:mia-platform-catalog:console.mia-platform.eu:v1:Service:api-gateway
   targetRef: urn:mia-platform-catalog:mia-platform.eu:v1:Domain:platform-domain
 ```

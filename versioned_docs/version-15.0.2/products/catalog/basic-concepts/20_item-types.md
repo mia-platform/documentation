@@ -11,7 +11,7 @@ Each item in the Catalog has a **type**. Items of the same type are a **family**
 Mia-Platform provides a set of default ITDs that enable the catalog to function correctly out of the box. Users and external systems can extend the catalog's functionalities with custom ITDs that introduce new kinds of items.
 
 :::tip
-The full JSON schema describing a Catalog Item Type Definition is [available to download](https://cdn.mia-platform.eu/catalog/v1alpha1/mia-platform.eu.v1alpha1.ItemTypeDefinition.json).
+The full JSON schema describing a Catalog Item Type Definition is [available to download](https://cdn.mia-platform.eu/catalog/v1/mia-platform.eu.v1.ItemTypeDefinition.json).
 :::
 
 ## How a type is identified
@@ -43,7 +43,7 @@ ITDs for built-in resources declare a reserved group with the form `*mia-platfor
 Example ITD that introduces a `DockerImage` kind:
 
 ```yaml
-apiVersion: mia-platform.eu/v1alpha1
+apiVersion: mia-platform.eu/v1
 kind: ItemTypeDefinition
 metadata:
   # Name must match the spec fields below, and be in the form `<plural>.<group>`.
@@ -151,7 +151,7 @@ Selectable fields are the catalog's contract for queryability: when you mark a f
 Selectable fields are declared at the ITD-version level alongside the schema. They must point to fields that hold a primitive value or a homogeneous array of primitives.
 
 ```yaml
-apiVersion: mia-platform.eu/v1alpha1
+apiVersion: mia-platform.eu/v1
 kind: ItemTypeDefinition
 metadata:
   name: dockerimages.stable.example.com
