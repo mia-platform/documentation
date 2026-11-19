@@ -260,6 +260,34 @@ Two features let you follow what happens to an item over time and react to it:
 
 Additionally, [Webhooks](/products/catalog/basic-concepts/62_webhooks.md) can be registered on an item type to notify an external service whenever one of its items is created, updated, or deleted.
 
+## API Reference
+
+Each item has an **API** section in its detail page with the OpenAPI documentation of that item, generated automatically by the Catalog and always in sync with its Item Type schema. It lists every operation available on the item, with paths already resolved: get, create or update, and delete the item; patch its custom fields; change its [lifecycle](/products/catalog/basic-concepts/63_lifecycles.md) state; browse its revisions; manage its versions; get its relationships; and retrieve its OpenAPI specification.
+
+| Method | Path | Description |
+|---|---|---|
+| `GET` | `/items/{plural}/{name}` | Get an item by name |
+| `PUT` | `/items/{plural}/{name}` | Create or update an item |
+| `DELETE` | `/items/{plural}/{name}` | Delete an item by name |
+| `PATCH` | `/items/{plural}/{name}/custom-fields` | Patch an item's custom fields |
+| `POST` | `/items/{plural}/{name}/state` | Change an item's lifecycle state |
+| `GET` | `/items/{plural}/{name}/revisions` | List an item's revisions |
+| `GET` | `/items/{plural}/{name}/revisions/{revisionUid}` | Get a revision by UID |
+| `GET` | `/items/{plural}/{name}/versions` | List an item's versions |
+| `POST` | `/items/{plural}/{name}/versions` | Tag a revision as a version |
+| `GET` | `/items/{plural}/{name}/versions/count` | Count an item's versions |
+| `GET` | `/items/{plural}/{name}/versions/{versionName}` | Get a version by name |
+| `PATCH` | `/items/{plural}/{name}/versions/{versionName}` | Patch a version |
+| `POST` | `/items/{plural}/{name}/versions/{versionName}/restore` | Restore a version |
+| `GET` | `/items/{plural}/{name}/oas` | Get the item's OpenAPI specification |
+| `GET` | `/bff/{group}/{version}/items/{plural}/{name}/relationships` | Get an item's relationships |
+
+Paths are relative to `/api/catalog/{group}/{version}`, except the relationships endpoint, whose full path starts with `/api/catalog`.
+
+Use **Download OpenAPI** to import the specification into an API client such as Postman, generate a client SDK, or give it to an AI agent as the item's contract. Requests use your Catalog credentials and follow the same RBAC as the UI. For the general conventions of the API, see [Catalog API](/products/catalog/usage/catalog-api.md).
+
+![API section of an item](../img/api_tab_item.png)
+
 ## See also
 
 - [Item Types](/products/catalog/basic-concepts/20_item-types.md): the schemas that an item's `spec` must respect.

@@ -9,6 +9,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.6.4] - 2026-10-16
+
+### Fixed
+
+- Upgrade zlib to 1.3.2-r1 in runtime image
+- Sort compound index keys to avoid duplicate mongodb indexes
+
 ## [0.6.3] - 2026-04-20
 
 ### Fixed

@@ -190,7 +190,7 @@ The token usage indicator in the message box shows **Input**, **Output**, and **
 
 ### Iterate on instructions
 
-Change one thing at a time, usually the instructions of a single agent, then rerun the same inputs and compare the results with the previous sessions. Keep the changes that improve the representative inputs without breaking the edge cases.
+Change one thing at a time, usually the instructions of a single agent, then rerun the same inputs and compare the results with the previous sessions. Keep the changes that improve the representative inputs without breaking the edge cases. Every saved change is a revision in the **History** section of the playbook: promote a working state to a named version, compare it with the previous one, and restore it if a change makes results worse. See [History and Item Versioning](/products/catalog/basic-concepts/65_item-history.md#ai-foundry-resources).
 
 ### Checklist
 

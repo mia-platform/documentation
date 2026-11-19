@@ -62,3 +62,15 @@ The **Compare Changes** dialog lets you pick a **Reference state** and a **Compa
 You can change the name and the description of a version. Editing them changes only the version's metadata, never the content of the item it refers to.
 
 Versions cannot be deleted.
+
+## AI Foundry resources
+
+The resources of [AI Foundry](/products/ai-foundry/overview.md), such as agents, playbooks, prompts, skills and tools, are items of the Catalog too, so they have the same **History** section, with the same tabs and operations: browse **All Revisions** and **Versions**, view a past state, create a version, compare two states and restore one.
+
+![History of an AI Foundry playbook](../img/history_ai_foundry_playbook.png)
+
+For AI Foundry resources, revisions history tracking is **always on by default**: every change is recorded from the moment the resource is created, with no need to enable it on the Item Type.
+
+![Compare Changes on an AI Foundry playbook](../img/history_ai_foundry_compare.png)
+
+Actions on AI Foundry resources are also recorded in the Catalog [Audit Logs](/products/catalog/basic-concepts/68_audit-logs.md), where audit logging, reads included, is on by default for the AI Foundry Item Types.

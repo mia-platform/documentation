@@ -11,6 +11,24 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.6.1]
+
+### Fixed
+
+- Fixed a bug in the custom handler utility functions that prevented them from using the new `deviceTokens` field when sending push notifications to multiple devices
+
+## [2.6.0]
+
+### Added
+
+- Support for multiple device tokens per user via the `deviceTokens` field, to send push notifications to multiple devices
+
+## [2.5.0]
+
+### Added
+
+- Support for multiple Firebase credentials, to send push notifications to multiple apps
+
 ## [2.4.4] 2025-07-28
 
 ### Fixed
