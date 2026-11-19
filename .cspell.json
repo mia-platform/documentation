@@ -407,7 +407,9 @@
     "Keycloakify",
     "Infinispan",
     "litellm",
-    "openbao"
+    "openbao",
+    "ITSM",
+    "SIEM"
   ],
   "dictionaries": [
     "softwareTerms",

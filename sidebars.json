@@ -2054,6 +2054,20 @@
       "type": "doc"
     }
   ],
+  "composable": [
+    {
+      "id": "products/composable/overview",
+      "type": "doc"
+    },
+    {
+      "id": "products/composable/catalog-integration",
+      "type": "doc"
+    },
+    {
+      "id": "products/composable/integrations",
+      "type": "doc"
+    }
+  ],
   "fastDataV2": [
     {
       "id": "products/fast_data_v2/overview",
