@@ -310,7 +310,7 @@ The Model Context Protocol server. Exposes the Catalog API as an MCP tool for AI
 
 | Key | Type | Default | Description |
 |---|---|---|---|
-| `mcpServer.config` | object | `{}` | Additional MCP server configuration passed as a ConfigMap. |
+| `mcpServer.config` | object | `{}` | Additional MCP server configuration, merged under the `config.json` file that the chart generates in a ConfigMap. The settings the chart computes (allowed hosts, Catalog Engine URL, resource URIs) take precedence. |
 
 ## secretStoreService
 

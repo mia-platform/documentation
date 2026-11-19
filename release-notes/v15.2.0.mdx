@@ -86,7 +86,7 @@ To move from Mia-Platform v15.1.1 to v15.2.0, update the Helm charts listed belo
 |---|---|---|---|
 | **Auth â€” Realm Management** | `keycloak-realm-management` | `0.1.47` | [How to upgrade](/docs/15.2.0/requirements/installation-guidelines/shared-services/authn/keycloak-realm-management/how-to-upgrade) |
 | **Homepage & RBAC** | `services` | `0.4.6` | [How to upgrade](/docs/15.2.0/requirements/installation-guidelines/shared-services/services/how-to-upgrade) |
-| **Catalog** | `catalog` | `0.4.4` | [How to upgrade](/docs/15.2.0/requirements/installation-guidelines/catalog/how-to-upgrade) |
+| **Catalog** | `catalog` | `0.5.3` | [How to upgrade](/docs/15.2.0/requirements/installation-guidelines/catalog/how-to-upgrade) |
 | **AI Foundry** | `ai-foundry` | `0.5.0-preview.4` | [How to upgrade](/docs/15.2.0/requirements/installation-guidelines/ai-foundry/how-to-upgrade) |
 | **AI Services** | `ai-services` | `0.1.0-preview.1` | [How to upgrade](/docs/15.2.0/requirements/installation-guidelines/shared-services/ai-services/how-to-upgrade) |
 | **Console** | `mia-console` | `15.2.0-beta.3` | [How to upgrade](/docs/15.2.0/requirements/installation-guidelines/console/self-hosted/how-to-upgrade) |
@@ -101,9 +101,9 @@ Manual action required before you install the new chart version. See the [Auth â
 
 Manual action required before you install the new chart version. See the [Homepage & RBAC upgrade guide](/docs/15.2.0/requirements/installation-guidelines/shared-services/services/how-to-upgrade#from-0316-to-046-mia-platform-v1511-to-v1520) for the steps.
 
-#### Catalog: from 0.3.42-0 to 0.4.4
+#### Catalog: from 0.3.42-0 to 0.5.3
 
-Manual action required before you install the new chart version. See the [Catalog upgrade guide](/docs/15.2.0/requirements/installation-guidelines/catalog/how-to-upgrade#from-0342-0-to-044-mia-platform-v1511-to-v1520) for the steps.
+Manual action required before you install the new chart version. See the [Catalog upgrade guide](/docs/15.2.0/requirements/installation-guidelines/catalog/how-to-upgrade#from-0342-0-to-053-mia-platform-v1511-to-v1520) for the steps.
 
 #### AI Foundry: from 0.4.83-0 to 0.5.0-preview.4
 
@@ -149,18 +149,18 @@ Click on each chart to expand its full image list.
 </details>
 
 <details>
-<summary><strong>catalog v0.4.4</strong></summary>
+<summary><strong>catalog v0.5.3</strong></summary>
 
 | Image repository | Version |
 |---|:---:|
 | docker.io/apache/kafka | 4.2.0 |
 | docker.io/redis | 8.4.0 |
-| nexus.mia-platform.eu/ai-foundry/adk-be-app | 0.8.5 |
+| nexus.mia-platform.eu/ai-foundry/adk-be-app | 0.8.8 |
 | nexus.mia-platform.eu/ai-resources/secret-store-service | 0.1.1 |
 | nexus.mia-platform.eu/cache/envoyproxy/envoy | v1.36.2 |
-| nexus.mia-platform.eu/catalog/catalog-engine | 0.9.6 |
-| nexus.mia-platform.eu/catalog/catalog-mcp-server | 0.2.3 |
-| nexus.mia-platform.eu/catalog/catalog-website | 0.6.0 |
+| nexus.mia-platform.eu/catalog/catalog-engine | 0.9.7 |
+| nexus.mia-platform.eu/catalog/catalog-mcp-server | 0.3.0 |
+| nexus.mia-platform.eu/catalog/catalog-website | 0.6.1 |
 | nexus.mia-platform.eu/catalog/items-consumer | 0.2.0 |
 | nexus.mia-platform.eu/catalog/items-producer | 0.2.0 |
 | nexus.mia-platform.eu/core/swagger-aggregator | 3.9.4 |
@@ -212,7 +212,7 @@ Click on each chart to expand its full image list.
 </details>
 
 <details>
-<summary><strong>console v15.2.0-beta.3</strong></summary>
+<summary><strong>mia-console v15.2.0-beta.3</strong></summary>
 
 | Image repository | Version |
 |---|:---:|
