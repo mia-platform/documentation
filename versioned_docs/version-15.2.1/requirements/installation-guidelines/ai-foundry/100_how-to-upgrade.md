@@ -52,7 +52,7 @@ helm upgrade ai-foundry . \
 
 ## Version-specific upgrade notes
 
-### From 0.4.83-0 to 0.5.0-preview.4 (Mia-Platform v15.1.1 to v15.2.0) {#from-0483-0-to-050-preview-4-mia-platform-v1511-to-v1520}
+### From 0.4.83-0 to 0.5.0 (Mia-Platform v15.1.1 to v15.2.0) {#from-0483-0-to-050-mia-platform-v1511-to-v1520}
 
 This version moves the AI gateway (LiteLLM), the workflow engine (Temporal), document conversion (Docling) and the memory service to the new [AI Services](/requirements/installation-guidelines/shared-services/ai-services/10_overview.md) product, adds a credential store (`secretStoreService`) in front of OpenBao, and adds new services that are enabled by default. The chart validates the values at render time and refuses to render incomplete configurations.
 

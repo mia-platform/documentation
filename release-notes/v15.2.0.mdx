@@ -80,12 +80,12 @@ To move from Mia-Platform v15.1.1 to v15.2.0, update the Helm charts listed belo
 
 | Product | Helm Chart | Version | Upgrade guide |
 |---|---|---|---|
-| **Auth — Realm Management** | `keycloak-realm-management` | `0.1.47` | [How to upgrade](/docs/requirements/installation-guidelines/shared-services/authn/keycloak-realm-management/how-to-upgrade) |
-| **Homepage & RBAC** | `services` | `0.4.6` | [How to upgrade](/docs/requirements/installation-guidelines/shared-services/services/how-to-upgrade) |
-| **Catalog** | `catalog` | `0.5.3` | [How to upgrade](/docs/requirements/installation-guidelines/catalog/how-to-upgrade) |
-| **AI Foundry** | `ai-foundry` | `0.5.0-preview.4` | [How to upgrade](/docs/requirements/installation-guidelines/ai-foundry/how-to-upgrade) |
-| **AI Services** | `ai-services` | `0.1.0-preview.1` | [How to upgrade](/docs/requirements/installation-guidelines/shared-services/ai-services/how-to-upgrade) |
-| **Console** | `mia-console` | `15.2.0` | [How to upgrade](/docs/requirements/installation-guidelines/console/self-hosted/how-to-upgrade) |
+| **Auth — Realm Management** | `keycloak-realm-management` | `0.1.47` | [How to upgrade](/docs/15.2.1/requirements/installation-guidelines/shared-services/authn/keycloak-realm-management/how-to-upgrade) |
+| **Homepage & RBAC** | `services` | `0.4.6` | [How to upgrade](/docs/15.2.1/requirements/installation-guidelines/shared-services/services/how-to-upgrade) |
+| **Catalog** | `catalog` | `0.5.3` | [How to upgrade](/docs/15.2.1/requirements/installation-guidelines/catalog/how-to-upgrade) |
+| **AI Foundry** | `ai-foundry` | `0.5.0` | [How to upgrade](/docs/15.2.1/requirements/installation-guidelines/ai-foundry/how-to-upgrade) |
+| **AI Services** | `ai-services` | `0.1.0` | [How to upgrade](/docs/15.2.1/requirements/installation-guidelines/shared-services/ai-services/how-to-upgrade) |
+| **Console** | `mia-console` | `15.2.0` | [How to upgrade](/docs/15.2.1/requirements/installation-guidelines/console/self-hosted/how-to-upgrade) |
 
 ### Upgrade notes
 
@@ -101,11 +101,11 @@ Manual action required before you install the new chart version. See the [Homepa
 
 Manual action required before you install the new chart version. See the [Catalog upgrade guide](/docs/requirements/installation-guidelines/catalog/how-to-upgrade#from-0342-0-to-053-mia-platform-v1511-to-v1520) for the steps.
 
-#### AI Foundry: from 0.4.83-0 to 0.5.0-preview.4
+#### AI Foundry: from 0.4.83-0 to 0.5.0
 
-Manual action required before you install the new chart version. See the [AI Foundry upgrade guide](/docs/requirements/installation-guidelines/ai-foundry/how-to-upgrade#from-0483-0-to-050-preview-4-mia-platform-v1511-to-v1520) for the steps.
+Manual action required before you install the new chart version. See the [AI Foundry upgrade guide](/docs/15.2.1/requirements/installation-guidelines/ai-foundry/how-to-upgrade#from-0483-0-to-050-mia-platform-v1511-to-v1520) for the steps.
 
-#### AI Services: first release, 0.1.0-preview.1
+#### AI Services: first release, 0.1.0
 
 No manual action required: install the new chart version.
 
@@ -169,28 +169,29 @@ Click on each chart to expand its full image list.
 </details>
 
 <details>
-<summary><strong>ai-foundry v0.5.0-preview.4</strong></summary>
+<summary><strong>ai-foundry v0.5.0</strong></summary>
 
 | Image repository | Version |
 |---|:---:|
 | docker.io/redis | 8.4.0 |
-| nexus.mia-platform.eu/ai-foundry/adk-be-app | 0.8.8 |
-| nexus.mia-platform.eu/ai-foundry/ai-foundry-be | 0.1.6 |
-| nexus.mia-platform.eu/ai-foundry/ai-foundry-bff | 0.4.4 |
-| nexus.mia-platform.eu/ai-foundry/ai-foundry-mcp-server | 0.1.3 |
-| nexus.mia-platform.eu/ai-foundry/ai-foundry-provisioner | 0.1.4 |
-| nexus.mia-platform.eu/ai-foundry/ai-foundry-website | 0.8.9 |
-| nexus.mia-platform.eu/ai-foundry/ai-foundry-workflows | 0.1.5 |
-| nexus.mia-platform.eu/ai-resources/secret-store-service | 0.1.1 |
-| nexus.mia-platform.eu/ai-resources/workspace-service | 0.1.1 |
+| nexus.mia-platform.eu/ai-foundry/adk-be-app | 0.8.9 |
+| nexus.mia-platform.eu/ai-foundry/ai-foundry-be | 0.1.7 |
+| nexus.mia-platform.eu/ai-foundry/ai-foundry-bff | 0.4.5 |
+| nexus.mia-platform.eu/ai-foundry/ai-foundry-mcp-server | 0.1.4 |
+| nexus.mia-platform.eu/ai-foundry/ai-foundry-provisioner | 0.1.5 |
+| nexus.mia-platform.eu/ai-foundry/ai-foundry-website | 0.8.10 |
+| nexus.mia-platform.eu/ai-foundry/ai-foundry-workflows | 0.1.6 |
+| nexus.mia-platform.eu/ai-resources/secret-store-service | 0.1.2 |
+| nexus.mia-platform.eu/ai-resources/workspace-runner | 0.1.2 |
+| nexus.mia-platform.eu/ai-resources/workspace-service | 0.1.2 |
 | nexus.mia-platform.eu/cache/envoyproxy/envoy | v1.36.2 |
 | nexus.mia-platform.eu/platform/auth/access-control/ext-authz | 0.2.2-nocache |
-| nexus.mia-platform.eu/platform/auth/authtool/authtool-bff | 0.5.2 |
+| nexus.mia-platform.eu/platform/auth/authtool/authtool-bff | 0.5.3 |
 
 </details>
 
 <details>
-<summary><strong>ai-services v0.1.0-preview.1</strong></summary>
+<summary><strong>ai-services v0.1.0</strong></summary>
 
 | Image repository | Version |
 |---|:---:|
@@ -199,8 +200,8 @@ Click on each chart to expand its full image list.
 | docker.io/temporalio/server | 1.32.0 |
 | docker.io/temporalio/ui | 2.55.0 |
 | docker.litellm.ai/berriai/litellm | v1.103.1 |
-| nexus.mia-platform.eu/ai-resources/secret-store-service | 0.1.1 |
-| nexus.mia-platform.eu/ai-services/memory-service | 0.1.0 |
+| nexus.mia-platform.eu/ai-resources/secret-store-service | 0.1.2 |
+| nexus.mia-platform.eu/ai-services/memory-service | 0.1.1 |
 | nexus.mia-platform.eu/cache/envoyproxy/envoy | v1.36.2 |
 | nexus.mia-platform.eu/platform/auth/access-control/ext-authz | 0.2.2-nocache |
 | quay.io/docling-project/docling-serve-cpu | v1.36.0 |

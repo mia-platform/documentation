@@ -63,7 +63,7 @@ To move from Mia-Platform v15.2.0 to v15.2.1, update the Helm charts listed belo
 | Product | Helm Chart | Version | Upgrade guide |
 |---|---|---|---|
 | **Catalog** | `catalog` | `TBD` | [How to upgrade](/docs/15.2.1/requirements/installation-guidelines/catalog/how-to-upgrade) |
-| **AI Foundry** | `ai-foundry` | `TBD` | [How to upgrade](/docs/15.2.1/requirements/installation-guidelines/ai-foundry/how-to-upgrade) |
+| **AI Foundry** | `ai-foundry` | `0.5.2-preview.2` | [How to upgrade](/docs/15.2.1/requirements/installation-guidelines/ai-foundry/how-to-upgrade) |
 
 ### Upgrade notes
 
@@ -71,10 +71,34 @@ To move from Mia-Platform v15.2.0 to v15.2.1, update the Helm charts listed belo
 
 TBD
 
-#### AI Foundry: from 0.5.0-preview.4 to TBD
+#### AI Foundry: from 0.5.0 to 0.5.2-preview.2
 
 TBD
 
 ### Bill of materials
 
 {/* TODO: add one <details> block per chart, as in the v15.2.0 release notes. */}
+
+Click on each chart to expand its full image list.
+
+<details>
+<summary><strong>ai-foundry v0.5.2-preview.2</strong></summary>
+
+| Image repository | Version |
+|---|:---:|
+| docker.io/redis | 8.4.0 |
+| nexus.mia-platform.eu/ai-foundry/adk-be-app | 0.8.11 |
+| nexus.mia-platform.eu/ai-foundry/ai-foundry-be | 0.1.7 |
+| nexus.mia-platform.eu/ai-foundry/ai-foundry-bff | 0.5.1 |
+| nexus.mia-platform.eu/ai-foundry/ai-foundry-mcp-server | 0.1.4 |
+| nexus.mia-platform.eu/ai-foundry/ai-foundry-provisioner | 0.1.5 |
+| nexus.mia-platform.eu/ai-foundry/ai-foundry-website | 0.9.1 |
+| nexus.mia-platform.eu/ai-foundry/ai-foundry-workflows | 0.1.7 |
+| nexus.mia-platform.eu/ai-resources/secret-store-service | 0.1.2 |
+| nexus.mia-platform.eu/ai-resources/workspace-runner | 0.1.2 |
+| nexus.mia-platform.eu/ai-resources/workspace-service | 0.1.2 |
+| nexus.mia-platform.eu/cache/envoyproxy/envoy | v1.36.2 |
+| nexus.mia-platform.eu/platform/auth/access-control/ext-authz | 0.2.2-nocache |
+| nexus.mia-platform.eu/platform/auth/authtool/authtool-bff | 0.5.3 |
+
+</details>
