@@ -52,12 +52,16 @@ helm upgrade ai-foundry . \
 
 ## Version-specific upgrade notes
 
+### From 0.5.0 to 0.5.2-preview.2 (Mia-Platform v15.2.0 to v15.2.1)
+
+No manual action required: install the new chart version.
+
 ### From 0.4.83-0 to 0.5.0 (Mia-Platform v15.1.1 to v15.2.0) {#from-0483-0-to-050-mia-platform-v1511-to-v1520}
 
 This version moves the AI gateway (LiteLLM), the workflow engine (Temporal), document conversion (Docling) and the memory service to the new [AI Services](/requirements/installation-guidelines/shared-services/ai-services/10_overview.md) product, adds a credential store (`secretStoreService`) in front of OpenBao, and adds new services that are enabled by default. The chart validates the values at render time and refuses to render incomplete configurations.
 
-1. Upgrade the [Realm Management chart](/requirements/installation-guidelines/shared-services/authn/keycloak-realm-management/100_how-to-upgrade.md) to `0.1.47` with `products.aiFoundry: true` and `products.aiServices: true`.
-2. Upgrade [Homepage & RBAC](/requirements/installation-guidelines/shared-services/services/100_how-to-upgrade.md) to `0.4.6`. AI Foundry requires its authorization API: make sure `authzUrl` and `authzClientId: "authz-api"` point to it.
+1. Upgrade the [Realm Management chart](/requirements/installation-guidelines/shared-services/authn/keycloak-realm-management/100_how-to-upgrade.md) to `0.1.55` with `products.aiFoundry: true` and `products.aiServices: true`.
+2. Upgrade [Homepage & RBAC](/requirements/installation-guidelines/shared-services/services/100_how-to-upgrade.md) to `0.5.0-beta.5`. AI Foundry requires its authorization API: make sure `authzUrl` and `authzClientId: "authz-api"` point to it.
 3. Install [AI Services](/requirements/installation-guidelines/shared-services/ai-services/10_overview.md) in its own namespace.
 4. Point `adkBeApp.config.litellmProxyApiBase` at the LiteLLM gateway of AI Services, and set `secrets.adkBeAppKeys.litellmProxyApiKey` if your gateway needs one. `adkBeApp.config.aiGatewayEnabled` defaults to `true`; to call the models directly, set it to `false`. Remove `adkBeApp.config.googleCloudProject`, `googleCloudLocation`, `googleGenaiUseVertexai`, `compactionSummarizerModel` and `sessionNamerModel`: they are no longer read. Remove also `secrets.adkBeAppKeys.googleApplicationCredentials`: the key has been removed from the chart and `helm upgrade` fails while it is set.
 

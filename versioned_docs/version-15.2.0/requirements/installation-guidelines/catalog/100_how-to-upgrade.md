@@ -51,13 +51,22 @@ helm upgrade catalog . \
 
 ## Version-specific upgrade notes
 
-### From 0.3.42-0 to 0.5.3 (Mia-Platform v15.1.1 to v15.2.0)
+### From 0.5.3-2 to 0.5.12 (Mia-Platform v15.2.0 to v15.2.1)
+
+No manual action required: install the new chart version.
+
+Also note:
+
+- The new optional `catalogWebsite.config.gaMeasurementId` (default empty) enables Google Analytics on the Catalog website. When it is empty, nothing changes.
+- The access-control service now always exposes its HTTP port (service port `80`, named `http`) for the evaluation API and the JWKS, whatever the value of `accessControl.config.externalContext.authorization.enabled`.
+
+### From 0.3.42-0 to 0.5.3-2 (Mia-Platform v15.1.1 to v15.2.0)
 
 1. Remove the `doclingService` block and `serviceAccounts.doclingService` from your values, including `doclingService.enabled: false`. The chart no longer deploys Docling and its values schema rejects unknown keys, so `helm upgrade` fails while they are set.
 2. To keep document parsing in the Catalog, set the new `apiGateway.docling.url` to the Docling route of [AI Services](/requirements/installation-guidelines/shared-services/ai-services/10_overview.md) (for example `https://<ai-services host>/api/docling/`) and `aiServicesClientId: "ai-services-api"`, so that the API gateway exchanges the caller's token for the AI Services audience. This requires `authtoolBff.enabled: true`. With an empty URL the `/api/docling/` route is not served.
 3. Configure how the ADK Backend App reaches the models. `adkBeApp` is enabled by default and the new `adkBeApp.config.aiGatewayEnabled` defaults to `true`, so the chart refuses to render unless you either set `adkBeApp.config.litellmProxyApiBase` (for example `https://<ai-services host>/ai-gateway/`) and `adkBeApp.config.secretStoreBaseUrl` (the public URL of AI Services) together with `aiServicesClientId`, or set `adkBeApp.config.aiGatewayEnabled: false`, or set `adkBeApp.enabled: false`.
 4. Remove `adkBeApp.config.useInternalEngine`, `adkBeApp.config.tempoBaseUrl` and `secrets.adkBeAppKeys.tempoAuthHeader` from your values: the schema rejects them. If you manage the `adk-be-app-keys` Secret yourself, you can drop its `tempoAuthHeader` key. The ADK Backend App now reads the Catalog through the API gateway of the same release unless you set `adkBeApp.config.catalogApiUrl`; when it is empty, `apiGateway.enabled` must be `true`.
-5. If you set `aiServicesClientId`, upgrade the [Realm Management chart](/requirements/installation-guidelines/shared-services/authn/keycloak-realm-management/100_how-to-upgrade.md) to `0.1.47` with `products.aiServices: true`, so that the `catalog-token-exchange` and `catalog-website-bff` clients can request the `mia:ai-services` scope. If you do not manage the realm with that chart, add `mia:ai-services` as an optional client scope of both clients.
+5. If you set `aiServicesClientId`, upgrade the [Realm Management chart](/requirements/installation-guidelines/shared-services/authn/keycloak-realm-management/100_how-to-upgrade.md) to `0.1.55` with `products.aiServices: true`, so that the `catalog-token-exchange` and `catalog-website-bff` clients can request the `mia:ai-services` scope. If you do not manage the realm with that chart, add `mia:ai-services` as an optional client scope of both clients.
 
 Also note:
 
@@ -65,6 +74,7 @@ Also note:
 - The chart now creates the image pull Secret only when `global.imagePullSecret.name`, `global.imageCredentials.registry`, `username`, `password` and `email` are all set; `global.imagePullSecret.enabled` only controls whether pods reference it. If you relied on the chart to create the Secret, make sure all five values are set, or Helm removes it on upgrade.
 - The new optional `catalogEngine.workerThreads` limits the worker threads of Catalog Engine.
 - The new `apiGateway.docling.maxBodyBytes` (default `33554432`, 32 MiB) limits the size of documents uploaded to `/api/docling/`.
+- The default resources of the ADK Backend App are higher: requests `300m` CPU and `800Mi` memory, limits `1000m` CPU and `2000Mi` memory. If you do not set `adkBeApp.resources`, check that your nodes have enough capacity.
 - The MCP server (`mcpServer`) is now configured only through a `config.json` file that the chart generates in a ConfigMap. The optional `mcpServer.config` value (default `{}`), which was not used before, is now merged under the generated file; the settings the chart computes (allowed hosts, Catalog Engine URL, resource URIs) take precedence.
 
 ### From 0.3.28 to 0.3.42-0 (Mia-Platform v15.0.2 to v15.1.0)

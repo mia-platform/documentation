@@ -89,7 +89,7 @@ All imports are safe to run in any order and any number of times, the `no-delete
 
 ## Chart version migration notes
 
-### From 0.1.35 to 0.1.47 (Mia-Platform v15.1.1 to v15.2.0)
+### From 0.1.35 to 0.1.55 (Mia-Platform v15.1.1 to v15.2.0)
 
 1. If `products.authz` is enabled, add the `<realmId>_scim-client-secret` entry (for example `mia-platform_scim-client-secret`) to the Keycloak vault through the Keycloak chart `vault.*` values before you import the realm. The chart now always creates the `scim-client` client with `products.authz: true`, and the client reads its secret from `${vault.scim-client-secret}`.
 2. If you install AI Services, set `products.aiServices: true` and `urls.aiServices` to the public AI Services URL, which must match the URL configured in the AI Services chart. Before the import, also add the `<realmId>_ai-services-temporal-ui-client-secret` entry to the Keycloak vault. The chart then creates the `ai-services-api`, `ai-services-access-control`, `ai-services-temporal-ui` and `ai-services-mcp-gateway` clients and adds the `mia:ai-services` scope to the token exchange clients of the other products.
@@ -100,6 +100,10 @@ Also note:
 - With `products.aiFoundry: true`, the chart now also creates the `ai-foundry-provisioner` service account client, which reads its keys from `<urls.aiFoundry>/.well-known/ai-foundry-provisioner/jwks.json`, and the public `ai-foundry-cli` client. The provisioner client also uses the `mia:authz`, `mia:authz-roles` and `mia:catalog` scopes, so enable `products.authz` and `products.catalog` as well.
 - The `service-account-catalog-access-control` and `catalog-engine` users are now created only with `products.catalog: true`, and `service-account-ai-foundry-access-control` only with `products.aiFoundry: true`. Users created by an earlier version stay in Keycloak.
 - The chart adds the `authz-api` client roles `urn:mia-platform-internal:role:authz:principals:reader`, `urn:mia-platform-internal:role:authz:provisioning:groups` and `urn:mia-platform-internal:role:authz:provisioning:users`, and gives `principals:reader` to the `catalog-engine` service account.
+- With `products.console: true`, the chart now also creates the `console-token-exchange` client and the `console-iam` and `console-access-control` service account clients, with the `service-account-console-iam` and `service-account-console-access-control` users. These clients authenticate with a signed JWT and read their keys from `<urls.console>/.well-known/jwks.json`, so no client secret is needed. The Console clients also get the `mia:authz` scope, and `console-token-exchange` offers the `mia:ai-services` scope with `products.aiServices: true`.
+- The chart now also creates the `ai-foundry` client and its `service-account-ai-foundry` user, which has the `urn:mia-platform-internal:role:authz:principals:reader` role of the `authz-api` client. The AI Foundry token exchange can now also exchange tokens for the `catalog-token-exchange` client.
+- With `products.aiServices: true`, the Temporal UI client now uses `<urls.aiServices>/workflow-manager` as base URL, with the redirect URI `<urls.aiServices>/workflow-manager/auth/sso/callback`, and the redirect URI `<urls.aiServices>/ai-gateway/callback` is also allowed. The `/temporal` logout redirect is still accepted.
+- `mia-platform-oidc` is now accepted as `identityProviders[].providerId`.
 - The Keycloak version is unchanged: no newer Keycloak or Keycloak chart is required.
 
 ### From 0.1.28 to 0.1.35 (Mia-Platform v15.0.2 to v15.1.0)
