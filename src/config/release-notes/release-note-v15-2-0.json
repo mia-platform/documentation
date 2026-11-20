@@ -16,14 +16,7 @@
       ],
       "improvements": [],
       "bugFixes": [
-        {
-          "title": "Excel Add-in v0.4.1",
-          "description": [
-            "The new version `v0.4.1` of the _Excel Add-in_ is available!",
-            "The pull operation no longer fails with a worksheet error when an option custom property has a long or empty list of options.",
-            "Check the [changelog](/docs/products/data_catalog/excel_add_in/changelog) for the full list of changes."
-          ]
-        }
+        "**Excel Add-in v0.4.1**: The pull operation no longer fails with a worksheet error when an option custom property has a long or empty list of options. Check the [changelog](/docs/products/data_catalog/excel_add_in/changelog) for the full list of changes."
       ]
     }
   },
@@ -157,22 +150,8 @@
       "newFeatures": [],
       "improvements": [],
       "bugFixes": [
-        {
-          "title": "Farm Data v0.6.4",
-          "description": [
-            "The new version `v0.6.4` of _Farm Data_ is available!",
-            "Compound index keys are now sorted, preventing the creation of duplicate MongoDB indexes.",
-            "Check the [changelog](/docs/products/fast_data_v2/farm_data/changelog) for the full list of changes."
-          ]
-        },
-        {
-          "title": "Mongezium v0.5.1",
-          "description": [
-            "The new version `v0.5.1` of _Mongezium_ is available!",
-            "Mongezium now selects the newest resume token across all the partitions of a topic.",
-            "Check the [changelog](/docs/products/fast_data_v2/mongezium_cdc/changelog) for the full list of changes."
-          ]
-        }
+        "**Farm Data v0.6.4**: Compound index keys are now sorted, preventing the creation of duplicate MongoDB indexes. Check the [changelog](/docs/products/fast_data_v2/farm_data/changelog) for the full list of changes.",
+        "**Mongezium v0.5.1**: Mongezium now selects the newest resume token across all the partitions of a topic. Check the [changelog](/docs/products/fast_data_v2/mongezium_cdc/changelog) for the full list of changes."
       ]
     }
   },
@@ -224,30 +203,9 @@
         }
       ],
       "bugFixes": [
-        {
-          "title": "JWT Token Validator v1.3.0",
-          "description": [
-            "The new version `v1.3.0` of the _JWT Token Validator_ is available!",
-            "JWT payload decoding now uses base64url encoding, fixing spurious `unable decoding JWT payload` errors for claim values containing multi-byte UTF-8 characters (e.g. accented letters).",
-            "The `/verify` handler now refreshes the JWKS and retries when the cached keys can't verify the token (e.g. after a key rotation), instead of failing immediately.",
-            "Check the [changelog](/docs/runtime-components/plugins/jwt-token-validator/changelog) for the full list of changes."
-          ]
-        },
-        {
-          "title": "Export Service v2.1.0",
-          "description": [
-            "The new versions `v2.1.0` and `v2.0.2` of the _Export Service_ are available!",
-            "The service now sends the `accept: application/x-ndjson` header required by the CRUD Service from version 6.9.0.",
-            "It also updates the Node.js Docker image to fix vulnerabilities.",
-            "Check the [changelog](/docs/runtime-components/plugins/export-service/changelog) for the full list of changes."
-          ]
-        },
-        {
-          "title": "Security updates",
-          "description": [
-            "The following Runtime Components have new versions that fix security vulnerabilities: [Files Service v2.10.6](/docs/runtime-components/plugins/files-service/changelog), [Real-Time Updater v7.11.3](/docs/runtime-components/plugins/real-time-updater/changelog), [Single View Creator v6.8.2](/docs/runtime-components/plugins/single-view-creator/changelog), [Swagger Aggregator v3.9.7](/docs/runtime-components/plugins/swagger-aggregator/changelog) and [Timer Service v2.1.5](/docs/runtime-components/plugins/timer-service/changelog)."
-          ]
-        }
+        "**JWT Token Validator v1.3.0**: JWT payload decoding now uses base64url encoding, fixing spurious `unable decoding JWT payload` errors for claim values containing multi-byte UTF-8 characters (e.g. accented letters). The `/verify` handler now refreshes the JWKS and retries when the cached keys can't verify the token (e.g. after a key rotation), instead of failing immediately. Check the [changelog](/docs/runtime-components/plugins/jwt-token-validator/changelog) for the full list of changes.",
+        "**Export Service v2.1.0**: The new versions `v2.1.0` and `v2.0.2` of the _Export Service_ are available! The service now sends the `accept: application/x-ndjson` header required by the CRUD Service from version 6.9.0. It also updates the Node.js Docker image to fix vulnerabilities. Check the [changelog](/docs/runtime-components/plugins/export-service/changelog) for the full list of changes.",
+        "**Security updates**: The following Runtime Components have new versions that fix security vulnerabilities: [Files Service v2.10.6](/docs/runtime-components/plugins/files-service/changelog), [Real-Time Updater v7.11.3](/docs/runtime-components/plugins/real-time-updater/changelog), [Single View Creator v6.8.2](/docs/runtime-components/plugins/single-view-creator/changelog), [Swagger Aggregator v3.9.7](/docs/runtime-components/plugins/swagger-aggregator/changelog) and [Timer Service v2.1.5](/docs/runtime-components/plugins/timer-service/changelog)."
       ]
     }
   }

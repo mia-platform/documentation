@@ -37,7 +37,7 @@ The Chart version follows [semver](https://semver.org/) policy so any breaking c
 
 ## Console v15 - version upgrades
 
-### From 15.1.0-4 to 15.2.0-beta.6 (Mia-Platform v15.1.1 to v15.2.0)
+### From 15.1.0-4 to 15.2.0 (Mia-Platform v15.1.1 to v15.2.0)
 
 No manual action required: install the new chart version.
 

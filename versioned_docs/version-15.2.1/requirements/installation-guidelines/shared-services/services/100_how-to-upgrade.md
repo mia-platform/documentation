@@ -50,13 +50,18 @@ helm upgrade --install services . \
 
 ## Version-specific notes
 
-### From 0.3.16 to 0.4.6 (Mia-Platform v15.1.1 to v15.2.0)
+### From 0.5.0-beta.5 to 0.5.0 (Mia-Platform v15.2.0 to v15.2.1)
 
-1. Upgrade the [Realm Management chart](/requirements/installation-guidelines/shared-services/authn/keycloak-realm-management/100_how-to-upgrade.md) to `0.1.47` first, with `products.authz` enabled, plus `products.catalog` and `products.aiServices` if you use those products. The ADK Backend App exchanges the user token through the Keycloak client set in the new `authtoolBff.config.exchangeClientId` (default `authz-token-exchange`), which needs the `mia:catalog` scope and, with AI Services, the `mia:ai-services` scope.
+No manual action required: install the new chart version.
+
+### From 0.3.16 to 0.5.0-beta.5 (Mia-Platform v15.1.1 to v15.2.0)
+
+1. Upgrade the [Realm Management chart](/requirements/installation-guidelines/shared-services/authn/keycloak-realm-management/100_how-to-upgrade.md) to `0.1.55` first, with `products.authz` enabled, plus `products.catalog` and `products.aiServices` if you use those products. The ADK Backend App exchanges the user token through the Keycloak client set in the new `authtoolBff.config.exchangeClientId` (default `authz-token-exchange`), which needs the `mia:catalog` scope and, with AI Services, the `mia:ai-services` scope.
 2. Set `adkBeApp.config.catalogApiUrl` to the API gateway of your Catalog installation (for example `http://api-gateway.<catalog namespace>.svc.cluster.local:8080`). `adkBeApp` is enabled by default and the chart refuses to render while this value is empty. If you do not run the Catalog, set `adkBeApp.enabled: false`.
 3. Configure how the ADK Backend App reaches the models. `adkBeApp.config.aiGatewayEnabled` defaults to `true`, so the models are called through the LiteLLM gateway of [AI Services](/requirements/installation-guidelines/shared-services/ai-services/10_overview.md): set `adkBeApp.config.litellmProxyApiBase` (for example `https://<ai-services host>/ai-gateway/`), `adkBeApp.config.secretStoreBaseUrl` (the public URL of AI Services) and the new top-level `aiServicesClientId: "ai-services-api"`. Without them the chart refuses to render. If you do not use AI Services, set `adkBeApp.config.aiGatewayEnabled: false`.
 4. Remove the `doclingService` block and `serviceAccounts.doclingService` from your values: the chart no longer deploys Docling and its values schema rejects them. To keep document parsing for chat attachments, set the new `apiGateway.docling.url` to the Docling route of AI Services (for example `https://<ai-services host>/api/docling/`) together with `aiServicesClientId`. With an empty URL the `/api/docling/` route is not served.
 5. Remove `adkBeApp.config.tempoBaseUrl` and `secrets.adkBeAppKeys.tempoAuthHeader` from your values: the schema no longer accepts them. If you manage the `adk-be-app-keys` Secret yourself, you can drop its `tempoAuthHeader` key.
+6. Set the top-level `url` to the public URL of your Homepage & RBAC installation, or set `mcpServer.enabled: false`. The new MCP server (`mcpServer`) is enabled by default, is served at `<url>/mcp`, and the chart refuses to render while `url` is empty.
 
 Also note:
 
@@ -65,6 +70,10 @@ Also note:
 - `adkBeApp.config.catalogClientId` now defaults to `catalog-api`.
 - The new optional `hooks.seedBuiltinGroups.enabled` hook seeds the built-in groups and their role assignments into every tenant. It reads the `postgres-connection-string` key of the `rbac-management-keys` Secret.
 - With `hooks.seedEmails.enabled`, you can now also customize the onboarding email under `hooks.seedEmails.data.defaultOnboardingEmail`.
+- The new MCP server exposes the tenants and principals of Homepage & RBAC as MCP tools. Its optional settings are under `mcpServer.config`, `mcpServer.autoscaling`, `mcpServer.resources` and `mcpServer.env`.
+- The new optional `hooks.seedSystemRoles.enabled` hook (default `false`) seeds the system roles. It reads the `postgres-connection-string` key of the `rbac-management-keys` Secret.
+- The new optional `hooks.seedServiceAccounts.enabled` hook (default `false`) creates the system service accounts as Keycloak clients and as principals. When you enable it, it requires `authorizationServer.issuer`.
+- The default resources of the ADK Backend App are higher: requests `300m` CPU and `800Mi` memory, limits `1000m` CPU and `2000Mi` memory. If you do not set `adkBeApp.resources`, check that your nodes have enough capacity.
 
 ### From 0.2.65-hotfix.0 to 0.3.16 (Mia-Platform v15.0.2 to v15.1.0)
 

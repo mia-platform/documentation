@@ -11,7 +11,7 @@ import Changelog from '@site/src/components/Changelog';
 
 ## [v15.2.1](/release-notes/v15.2.1.mdx)
 
-*TBD*
+*Nov 19th, 2026*
 
 Mia-Platform v15.2.1 includes improvements across the Mia-Platform Suite, in particular:
 
