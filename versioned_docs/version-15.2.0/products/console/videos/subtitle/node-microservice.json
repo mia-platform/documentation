@@ -1,0 +1,45 @@
+{
+  "videoId": "mHX6rcchRlc",
+  "subtitles": [
+    {
+      "startTimeString": "00:00:03,200",
+      "endTimeString": "00:00:20,200 ",
+      "text": "Hi everyone, this is Rhea from Mia-Platform and today I'm going to show you how you can create a node.js microservice in the Mia-Platform Console. To begin with, we're in the Mia-Platform Console, in the design section - let's go ahead and click on \"Create a microservice\" from Marketplace."
+    },
+    {
+      "startTimeString": "00:00:20,200",
+      "endTimeString": "00:01:29,200 ",
+      "text": "The Mia-Platform Marketplace is a repository of microservices that are easily available for your use. For this example, let's just go ahead and look up node.js. We're going going to be using the \"Node.js HelloWorld Microservice Example\" here. Let's start by giving it a name: for this example I'm going to give it the name \"books.3\". Here, you can see, you can change the description and also the docker image name. Let's go ahead and click on \"Create\" and continue. Within a couple of moments, your microservice is going to be created, Perfect, as you can see the microservice is created. Now let's go ahead and expose the endpoint. Let's move into the endpoint section over here, where we will create a new endpoint. Let's give it a base path name: again, let's go with \"books.3\" and then we can select the type. The type of course is microservice and here you can select the exact microservice, the one we just created which is example books.3. Once you're happy with this, go ahead and click on \"create\". As you can see, here you can also change the security settings and documentation settings of the endpoint. Once your endpoint has been created and exposed, it's time to save your local changes."
+    },
+    {
+      "startTimeString": "00:01:29,200",
+      "endTimeString": "00:01:43,000 ",
+      "text": "So let's go over here to the left hand side menu and click on \"Save configuration\". While saving the configuration, you have to write a title commit: fo this example, let's go ahead and write \"commit books.3\"."
+    },
+    {
+      "startTimeString": "00:01:43,000",
+      "endTimeString": "00:01:55,280 ",
+      "text": "Perfect, once you're happy with that go ahead and save that. Now your configuration is being saved and loaded. Perfect, everything is up to date now and we just need to move to the deploy section."
+    },
+    {
+      "startTimeString": "00:01:55,280",
+      "endTimeString": "00:02:24,000 ",
+      "text": "Let's go ahead here to deploy. Perfect, as you can see that our latest microservice which is \"books.3\" has been built successfully. Once you happy with this, let's go ahead and click on \"Smart deploy\". This just takes a couple of moments to deploy Master on development. Perfect, our deploy has been successful! Let's move on to the next step which is to run this."
+    },
+    {
+      "startTimeString": "00:02:24,000",
+      "endTimeString": "00:02:45,000 ",
+      "text": "Let's move into the Runtime section, where you can see each of the pods have a status. Currently the status is okay for only three of them, but we need it to be okay for all of them, so let's just give it a couple of seconds before we can go ahead and auto refresh this. Perfect, as you can see all of the pods are ready now and now we just need to move into the overview section on the left hand side."
+    },
+    {
+      "startTimeString": "00:02:45,000",
+      "endTimeString": "00:03:13,000 ",
+      "text": "Let's move into the overview section and go into environments, and here we will enter the runtime environments for the development. Perfect, let's go ahead to documentation - this is going to open the API portal for us. Perfect, as you can see this has opened the API portal where we have our \"get\" function for our microservice books.3. Let's click on the \"get\" function and over here you can try it. Let's click on \"Try it\"."
+    },
+    {
+      "startTimeString": "00:03:13,000",
+      "endTimeString": "00:03:29,760 ",
+      "text": "Perfect, as you can see our microservices hasn't been installed, our endpoint has been exposed and here is the output \"hello world\". If you have any questions feel free to reach out to us for a demo or send us an email - and thank you for watching!"
+    }
+  ]
+}

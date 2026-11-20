@@ -1,0 +1,8 @@
+{
+  "label": "Self Hosted",
+  "position": 2,
+  "link": {
+    "type": "doc",
+    "id": "requirements/installation-guidelines/console/self-hosted/self-hosted-requirements"
+  }
+}

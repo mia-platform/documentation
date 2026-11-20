@@ -1,0 +1,279 @@
+---
+id: control_plane
+title: Control Plane
+sidebar_label: Control Plane
+---
+
+import ControlPlaneSchema from "@site/static/schemas/data-fabric-control-plane.config.schema.json"
+import SchemaViewer from "../snippets/schema_viewer.mdx"
+
+Fast Data Control Plane allows to:
+
+* manage Fast Data Runtimes, in particular groups them in Runtime Views;
+* keep track of the state of the different pipelines belonging to all the managed runtimes;
+* receive user interactions through Control Plane, and to update pipeline state accordingly;
+* receive feedbacks from the Control Plane Operators that registered to this specific Control Plane instance;
+
+In the following paragraphs is described Control Plane service configuration and communication interfaces.
+
+## Configuration
+
+Configuration of _Control Plane_ is a straightforward process that involves setting up a ConfigMap and specifying essential environment variables.
+
+### Environment Variables
+
+Control Plane service can be customized using the following environment variables:
+
+| Name                                      | Required | Description                                                                                                                       | Default Value                            |
+|-------------------------------------------|----------|-----------------------------------------------------------------------------------------------------------------------------------|------------------------------------------|
+| `HTTP_PORT`                               | -        | This variable determines the TCP port where the **HTTP controller** binds its listener                                            | 3000                                     |
+| `GRPC_PORT`                               | -        | This variable determines the TCP port where the **gRPC controller** binds its listener                                            | 50051                                    |
+| `LOG_LEVEL`                               | -        | Specify the centralized application log level, choosing from options such as `debug`, `error`, `info`, `trace` or `warn`          | `info`                                   |
+| `FD_CONTROL_PLANE_CONFIGURATION_FILEPATH` | -        | Set the location of the configuration file                                                                                        | `~/.fd/control_plane/configuration.json` |
+| `OTEL_EXPORTER_OTLP_ENDPOINT`             | -        | The URL to a GRPC endpoint of an OpenTelemetry Collector.<br/>Specifying this value enables the support for OpenTelemetry tracing |                                          |
+
+### Config Map
+
+The configuration of the service is handled by a JSON file whose location is defined by the `FD_CONTROL_PLANE_CONFIGURATION_FILEPATH`. When instantiating
+[Control Plane application](/runtime-components/applications/fast-data-control-plane/10_overview.md) from Marketplace, Control Plane service configuration is generated with
+a dedicated Config Map, named `control-plane-configuration`.  
+This file contains a template configuration that should help in configuring the service.
+
+<SchemaViewer schema={ControlPlaneSchema} />
+
+#### Feedback Cache
+
+:::info
+Currently only [Redis](https://redis.io/) is supported as feedback cache for storing relevant data, such as current pipelines state.
+:::
+
+Control Plane receive feedbacks from all the registered Control Plane Operators, which may vary in the number depending on how many Fast Data Runtimes are selected for management.
+In order to decouple the internal feedback flow from the live updates stream opened towards the Control Plane UI and to support service replication, Control Plane service leverages
+an external cache to store those Fast Data Runtime states.  
+Cache details can be declared in the configuration file under the `cache.configuration` property, whose main fields are:
+
+- `url` &rarr; the connection string to your Redis instance;
+
+An example of cache configuration can be seen below:
+
+```json
+{
+  "cache": {
+    "type": "redis",
+    "configuration": {
+      "url": "redis://<redis-instance-address>:6379"
+    }
+  },
+  // ...other control plane configurations
+}
+```
+
+:::tip
+The following properties support [secret resolution](/products/fast_data/configuration/secrets_resolution.md):
+- `cache.configuration.url`
+:::
+
+:::note
+When instantiating Fast Data Control Plane application, a small Redis instance is added to your project, ready for supporting Control Plane operator. In case you would like
+to adopt your own Redis instance, please update the generated configuration accordingly.
+:::
+
+#### Persistence Layer
+
+:::info
+Currently only [MongoDB](https://mongodb.com/) is supported as persistence layer for storing relevant data.
+:::
+
+:::caution
+The MongoDB database selected for storing Control Plane data **must be configured to have [`replicaSet` enabled](https://www.mongodb.com/docs/manual/replication/)**, since
+Control Plane exploits features that can be used only when a `replicaSet` is available.
+:::
+
+In order to carry out all its operations, Control Plane requires a _persistence layer_ where relevant information are stored. In particular,
+it stores the next desired state of each Fast Data Runtime, which the system needs to reconcile with, alongside details regarding [Runtime Views](/products/fast_data/runtime_management/overview.mdx#runtime-view)
+and [Pipelines](/products/fast_data/runtime_management/overview.mdx#pipeline) components.
+
+This configuration can be set under the `persistence.configuration` key of the configuration file. The main properties are:
+
+- `url` &rarr; the connection string to your MongoDB instance with `replicaSet` enabled;
+- `database` &rarr; the database name where to search for the  collections relevant to Control Plane service. Please notice that setting this property will **override** the database
+name potentially set in the connection string;
+
+An example of persistence configuration can be seen below:
+
+```json
+{
+  // ...other control plane configurations
+  "persistence": {
+    "type": "mongodb",
+    "configuration": {
+      "url": "mongodb://<server>:27017/<default-database>?replicaSet=local",
+      "database": "<data-fabric-database-name>"
+    }
+  },
+  // ...other control plane configurations
+}
+```
+
+:::tip
+The following properties support [secret resolution](/products/fast_data/configuration/secrets_resolution.md):
+- `persistence.configuration.url`
+- `persistence.configuration.database`
+:::
+
+#### Service Settings
+
+Additionally, the Control Plane service itself has a set of properties for changing its behavior. Here are listed the available ones within `settings` properties:
+
+- `apiPrefix` &rarr; the base path applied to all the exposed routes. It defaults to `/`;
+- `auditUserHeader` &rarr; specifies in which HTTP header can be found the user identifier set by the authentication system. The value of this header will be employed to correlate requests stored by
+the auditing system with the user that performed them. When using Mia-Platform Authentication and Authorization services this property can be set to `miauserid`.  
+In case it is not set the auditing system does not correlate users with requests;
+
+Here can be found a configuration example:
+
+```json
+{
+  // ...other control plane configurations
+  "settings": {
+    "apiPrefix": "/",
+    "auditUserHeader": "miauserid"
+  }
+}
+```
+
+### Enable gRPC communications
+
+Control Plane main service **must** be reachable through [gRPC](https://grpc.io/) from Control Plane Operators deployed in other namespaces either _internally_, within your K8s cluster, or _externally_ from outside.
+In this manner Control Plane Operators can register themselves on the main Control Plane instance and establish a channel where desired pipelines states
+are received and Fast Data Runtimes states are sent back.
+
+Thus, it is necessary to advertise the port where the gRPC controller is exposed by Control Plane service, which by default is the `50051`. This operation can be achieved by adding the proper port
+to the list of [_Container Ports_](/products/console/api-console/api-design/microservice-container-ports.md) that can be found in the Console Design area, under the specific microservice resource. The expected list, based on default configuration, is shown below in the image.
+
+![Control Plane microservice ports](./img/control_plane_ports.png)
+
+:::tip
+When instantiating Fast Data Control Plane application, _Container Ports_ are pre-filled with all the needed ports using their default value.  
+In case either the HTTP or the gRPC port chosen through [environment variables](#environment-variables) has been edited, please change the _Container Ports_ accordingly.
+:::
+
+#### Reach Control Plane from within your cluster
+
+When connecting to Control Plane service from another namespace of your cluster, depending on your additional K8s rules and policies, it shouldn't be
+necessary to apply any further configuration. If in doubt, please contact your K8s cluster administrator to learn whether additional communication restrictions were put in place.
+
+#### Reach Control Plane from outside your cluster
+
+In case Control Plane service should be configured to be reachable from outside your cluster, for example because your Fast Data Control Plane application is located in a cluster
+different from the one where Fast Data Runtimes are deployed, a few extra advanced configuration steps are necessary. These are listed here:
+
+- **Introduce further Envoy [`cluster`](https://www.envoyproxy.io/docs/envoy/latest/api-v3/config/cluster/v3/cluster.proto) to expose the gRPC port of Control Plane service through the API Gateway.**  
+  This can be obtained by opening your Mia-Platform Console Project and selecting the Advanced tab from the Design area's sidebar. 
+  
+  :::info
+  This step is necessary if you are using Mia-Platform Console versions lower than v13.5.1. Otherwise, you can skip the modification to the file `api-gateway-envoy/clusters.yaml` here described.
+  :::
+  
+  Within this area of Console it is possible
+  to extend Envoy API Gateway default configuration, by editing the file `api-gateway-envoy/clusters.yaml` with the following content:
+
+  ```yaml title=api-gateway-envoy/clusters.yaml
+  - "@type": type.googleapis.com/envoy.config.cluster.v3.Cluster
+    name: control-plane
+    connect_timeout: 30s
+    http2_protocol_options:
+      max_concurrent_streams: 100
+    type: LOGICAL_DNS
+    lb_policy: ROUND_ROBIN
+    load_assignment:
+      cluster_name: control-plane
+      endpoints:
+      - lb_endpoints:
+        - endpoint:
+          address:
+            socket_address:
+              address: 'control-plane'
+              port_value: 50051
+- **Expose new subdomain from which Control Plane gets accessible** (assuming [`traefik`](https://traefik.io/traefik/) is employed as ingress controller)   
+  In order to carry out this operation you first need to have access to the repository of the Console Project where Control Plane application has been configured.
+  Within the project repository there is a folder named `overlays`, which should contains a folder for each environment available for the project.  
+  For each of the environment of interest, open the folder and edit the `default.ingressroute.yml` by adding the following record under the `spec.routes` array:
+
+  ```yaml
+  - match: Host(`grpc-<PROJECT_DOMAIN>`)
+    middlewares:
+      - name: "ingress-controller-hsts-headers"
+        namespace: mia-platform
+    kind: Rule
+    services:
+      - name: api-gateway
+        port: 50051
+        scheme: h2c
+        passHostHeader: true
+  ```
+  where `<PROJECT_DOMAIN>` should be replaced with the project's domain for currently selected environment. An example could be `my-cool-project.test.my-domain.com`.
+
+
+## Endpoints
+
+When connecting internally to Control Plane service, it is not necessary to publicly expose any endpoint, since all the Control Plane routes can be reached internally
+or via Fabric BFF.
+
+In case the service must be reached from outside the cluster, the endpoints listed in the table below should be _defined in Console_ and assigned to Control Plane service.
+These endpoints are necessary to allow gRPC Control Plane Operator requests to reach Control Plane from outside the K8s cluster.
+
+| Endpoint                                    | Rewrite Base Path                           | Microservice    | Container Port |
+|---------------------------------------------|---------------------------------------------|-----------------|----------------|
+| `/grpc.reflection.v1.ServerReflection`      | `/grpc.reflection.v1.ServerReflection`      | `control-plane` |     `50051`    |
+| `/grpc.reflection.v1alpha.ServerReflection` | `/grpc.reflection.v1alpha.ServerReflection` | `control-plane` |     `50051`    |
+| `/control_plane_fabric.RuntimeManagement`   | `/control_plane_fabric.RuntimeManagement`   | `control-plane` |     `50051`    |                        
+| `/control_plane_fabric.ControlPlane`        | `/control_plane_fabric.ControlPlane`        | `control-plane` |     `50051`    |
+
+Also, in the `Advanced Section` of each endpoint, be sure that the _Use DownStream Protocol option_ is set to `true`.
+
+### Routes
+
+Here are described which routes Control Plane service serves
+
+| Endpoint                                    | Type | Method | Description                                                                                                               |
+|---------------------------------------------|------|--------|---------------------------------------------------------------------------------------------------------------------------|
+| `/fast-data/runtimes/items`                 | REST | GET    | List existing runtime views                                                                                               |
+| `/fast-data/runtimes/items`                 | REST | POST   | Create a new runtime view                                                                                                 |
+| `/fast-data/runtimes/items/:id`             | REST | GET    | Retrieve the details of specified runtime view                                                                            |
+| `/fast-data/runtimes/items/:id`             | REST | PATCH  | Update the details of specified runtime view                                                                              |
+| `/fast-data/runtimes/items/:id`             | REST | DELETE | Delete specified runtime view                                                                                             |
+| `/fast-data/runtimes/items/:id/pipelines`   | REST | GET    | Return the list of pipelines associated to specified rumtime                                                              |
+| `/fast-data/runtimes/stats`                 | REST | GET    | Return additional details for each runtime, such as the number of pipelines registered on them                            |
+| `/fast-data/runtimes/namespaces/usage`      | REST | GET    | Returns a list of registered namespaces with their usage status within runtime views                                      |
+| `/grpc.reflection.v1.ServerReflection`      | gRPC |        | [gRPC reflection](https://grpc.io/docs/guides/reflection/) service that describes protobuf-defined API                    |
+| `/grpc.reflection.v1alpha.ServerReflection` | gRPC |        | [gRPC reflection](https://grpc.io/docs/guides/reflection/) service that describes protobuf-defined API                    |                                                              |
+| `/control_plane_fabric.RuntimeManagement`   | gRPC |        | gRPC service that allows Control Plane Operator to register itself on the Control Plane                                   |
+| `/control_plane_intercomm.ControlPlane`     | gRPC |        | gRPC service for exchanging Fast Data desired state and runtime feedback between Control Plane and Control Plane Operator |
+
+## Migration Guides
+
+Here are the migration steps to perform between each version of the service.
+
+### From 0.1.x to 0.3.0
+
+Control Plane changes the activation default behavior of pipelines from 'pause' to 'resume'. This
+means that when a pipeline is first added it receives the command to 'resume' all its workloads.
+The behavior is not suitable to release control to Control Plane from production envirnments where
+Fast Data is currently running.
+
+If updating from version 0.1.x it is recommended to update the runtime current activation status by either:
+
+- recreting the runtime
+- use the api-portal/swagger and invoke a post on `<prefix>/fast-data/control` with body
+```json
+{
+  "id": 1,
+  "jsonrpc": "2.0",
+  "method": "resume",
+  "params": {
+    "runtime": "<ID OF THE RUNTIME>"
+  }
+}
+```
+

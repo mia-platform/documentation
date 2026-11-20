@@ -1,0 +1,45 @@
+{
+  "videoId": "Tqu0ZvAz1aA",
+  "subtitles": [
+    {
+      "startTimeString": "00:00:00,960",
+      "endTimeString": "00:00:09,000 ",
+      "text": "Hi everyone, this is Rhea from Mia-Platform and today I'm going to show you how you can create a CRUD service using the Mia-Platform Console."
+    },
+    {
+      "startTimeString": "00:00:09,000",
+      "endTimeString": "00:01:10,000 ",
+      "text": "Let's go ahead and start with the Mia-Platform Console. We're in the design section. Let's go ahead and scroll down to MongoDB CRUDs and here we can click on \"Create a new CRUD\". Let's start by giving it a name: for this example, I'm going to give it the name \"employee2\" and click on \"Create\". Perfect, as you can see here this is a collection of employee2 and all of the fields are attached below. Let's add some of our own fields. Let's go ahead and write \"Name\" set the field type as string and click on \"Create\". Let's add another one for \"Last name\" or surname, create, set the type as string and go ahead and create, and then we can add the third one as \"email ID\" where we also set the type as string and go ahead and click on create. Perfect, as you can see collection employee2 now has three different fields that we have added: name, surname and email ID, which are all type string. Once you're happy with that we need to go ahead and create and expose the endpoint."
+    },
+    {
+      "startTimeString": "00:01:10,000",
+      "endTimeString": "00:01:37,000 ",
+      "text": "Let's scroll in this menu to find \"Endpoint\" and create a new endpoint. Let's name the base part of this endpoint \"employee 2 \", let's select the endpoint type as CRUD and then choose the base part. The base part is employee2, the crud we just created. Let's go ahead and click on \"Create\". Once this is created of course you can see here you can change the security and documentation settings and once this is created it's time for us to save our configuration."
+    },
+    {
+      "startTimeString": "00:01:37,000",
+      "endTimeString": "00:02:02,000 ",
+      "text": "Let's move ahead to the left hand side menu and click on \"Save configuration\". When you're saving your configuration you will have to write a title commit - for this example let's go ahead and write \"commit employee2\" and go ahead and save that. Perfect, your configuration is now saved and everything is up to date. The next step would be moving into the deploy section."
+    },
+    {
+      "startTimeString": "00:02:02,000",
+      "endTimeString": "00:02:28,000 ",
+      "text": "Let's go ahead here into the deploy section and select our branch. Our branch is master and here we can go ahead and smart deploy our CRUD function. Perfect, as you can see our CRUD function is ready and we can go ahead and click on Smart Deploy. Perfect, as you can see your deploy is now successful and now we can move into the runtime section."
+    },
+    {
+      "startTimeString": "00:02:28,000",
+      "endTimeString": "00:02:55,520 ",
+      "text": " Perfect, now we've entered our runtime section where you can see all of the pods that are running and you can see that all of them are at status \"okay\" - this means we can go ahead into the overview section and enter environments where in which we'll be able to see the runtime environments and access the API portal. We're in the development section, let's go ahead to documentation which opens up your API portal."
+    },
+    {
+      "startTimeString": "00:02:55,520",
+      "endTimeString": "00:03:55,000 ",
+      "text": "Perfect, we've now entered our API portal where we can see our function employee2, the CRUD service we created. Let's go ahead and put in some data using the \"Post\" function. As you can see here we can add some parameters, so \"name\" let's go ahead and put in Rhea, \"surname\" let's go ahead and put in Arora and \"email ID\" let's go ahead and put in rheaaroraxyz@gmail.com.Perfect, once you're happy with this we can go ahead and click on \"Try it\". Once you try it this is going to generate an ID. Let's go ahead and copy paste that ID and now let's move into the get function. This is where we'll be able to return a list of all of the documents we've added in employee2, so let's go ahead into get the get function and put in an ID and go ahead and click on \"Try it\". Perfect, as you can see this has worked well: you're able to see the name, the surname and the email ID."
+    },
+    {
+      "startTimeString": "00:03:55,000",
+      "endTimeString": "00:03:36,120 ",
+      "text": "So that's basically how you create a CRUD service on the Mia-Platform console - it's super easy easy! Let us know if you have any questions, feel free to reach out to us via email or book a demo call anytime you like. Thank you!"
+    }
+  ]
+}

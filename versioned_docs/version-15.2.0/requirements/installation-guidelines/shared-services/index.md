@@ -1,0 +1,48 @@
+---
+id: index
+title: Shared services & tools
+sidebar_label: Shared services & tools
+---
+
+# Shared services & tools
+
+This section covers the foundational platform-layer components that must be deployed before any Mia Platform product (Console, Catalog, AI Foundry). These components are not standalone business products; they form the shared infrastructure that authenticates users, enforces authorization, and exposes the platform entry point.
+
+## Auth
+
+The Auth section covers the identity and OIDC layer of the platform:
+
+- **Keycloak**: deployed via the `keycloak-operator` Helm chart. It acts as an *Identity Broker* for the platform, supporting *OpenID Connect* and federating with external identity providers to authenticate platform users.
+- **Realm Management**: the `keycloak-realm-management` chart that manages Mia Platform realm configuration declaratively via `keycloak-config-cli`.
+
+Auth must be fully operational before any other component is installed.
+
+[Go to Auth →](/requirements/installation-guidelines/shared-services/authn/10_overview.md)
+
+## Homepage & RBAC
+
+The Homepage & RBAC section covers the `services` Helm chart, which deploys the shared gateway and authorization layer:
+
+- **Envoy API gateway**: routes all inbound traffic and delegates per-request authorization to the ext-authz service.
+- **Access Control** (OPA-based ext-authz): enforces RBAC policies on every request. Console and Catalog both delegate authorization to this service.
+- **authtool-bff**: the OIDC Backend-for-Frontend that manages browser sessions and PKCE flows with Keycloak.
+- **Mia Platform homepage** frontend.
+
+This layer must be running before installing Console, Catalog, AI Services, and AI Foundry: they rely on its `rbacManagement` authorization API and on `access-control` for request authorization. The `authtool-bff` deployed here serves the homepage; each product bundles its own `authtool-bff` instance for browser login.
+
+[Go to Homepage & RBAC →](/requirements/installation-guidelines/shared-services/services/10_overview.md)
+
+## AI Services
+
+The AI Services section covers the `ai-services` Helm chart, the shared AI infrastructure used by the AI features of every product:
+
+- **LiteLLM Proxy**: the AI gateway. Every model call of Homepage, Catalog and AI Foundry goes through it.
+- **Secret store service**: holds each tenant's AI gateway key, read by the agent backends of the products.
+- **Docling**: document conversion, used for chat attachments.
+- **Temporal**: the workflow engine used by AI Foundry's Agentic Workflows.
+- **Memory**: long-term memory exposed through a REST API and an MCP endpoint.
+- **OpenTelemetry Collector** and **Prometheus** *(optional)*: the telemetry pipeline, which sends AI traces to Langfuse and metrics to Prometheus.
+
+AI Services is installed after Homepage & RBAC, whose authorization API it uses, and before the products. The utility services it relies on, Langfuse and OpenBao, are installed with their official charts or guides: see [Langfuse and OpenBao](/requirements/installation-guidelines/shared-services/ai-services/20_langfuse-and-openbao.md).
+
+[Go to AI Services →](/requirements/installation-guidelines/shared-services/ai-services/10_overview.md)

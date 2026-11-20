@@ -1,0 +1,8 @@
+{
+  "label": "PaaS",
+  "position": 3,
+  "link": {
+    "type": "doc",
+    "id": "requirements/installation-guidelines/console/paas/overview"
+  }
+}
