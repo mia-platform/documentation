@@ -13,15 +13,15 @@ _Nov 19th, 2026_
 
 ### Item Versioning
 
-Items now have a **History** section that tracks their full revision history, lets you promote a revision to a named version, compare any two states with a line-by-line diff, and roll back when needed — see the official [Item Versioning documentation](/docs/15.2.1/products/catalog/basic-concepts/item-history) to discover all the available features.
+Items now have a **History** section that tracks their full revision history, lets you promote a revision to a named version, compare any two states with a line-by-line diff, and roll back when needed — see the official [Item Versioning documentation](/docs/products/catalog/basic-concepts/item-history) to discover all the available features.
 
 ### Audit Logs
 
-The Catalog now has **Audit Logs**, available tenant-wide under **Activity > Audit Logs** and on each Item Type, that lets Auditors review every action performed on the Catalog for security and compliance purposes — see the official [Audit Logs documentation](/docs/15.2.1/products/catalog/basic-concepts/audit-logs) to discover all the available features.
+The Catalog now has **Audit Logs**, available tenant-wide under **Activity > Audit Logs** and on each Item Type, that lets Auditors review every action performed on the Catalog for security and compliance purposes — see the official [Audit Logs documentation](/docs/products/catalog/basic-concepts/audit-logs) to discover all the available features.
 
 ### Webhooks
 
-Item Types now support **Webhooks**, notifying an external service whenever one of their items is created, updated, or deleted, removing the need for external systems to poll the Catalog for changes — see the official [Webhooks documentation](/docs/15.2.1/products/catalog/basic-concepts/webhooks) to discover all the available features.
+Item Types now support **Webhooks**, notifying an external service whenever one of their items is created, updated, or deleted, removing the need for external systems to poll the Catalog for changes — see the official [Webhooks documentation](/docs/products/catalog/basic-concepts/webhooks) to discover all the available features.
 
 ## AI Foundry
 
@@ -53,10 +53,10 @@ The Data Catalog now includes a **Business Glossary** that lets you define terms
 
 ![Business Glossary](./img/glossary_terms_list.png)
 
-To discover all the available features, visit the official [Business Glossary documentation](/docs/15.2.1/products/data_catalog/frontend/data_catalog_business_glossary).  
+To discover all the available features, visit the official [Business Glossary documentation](/docs/products/data_catalog/frontend/data_catalog_business_glossary).  
 
 :::info
-To enable the glossary, update your Data Catalog Application services to the versions listed in the [compatibility matrix](/docs/15.2.1/products/data_catalog/data_catalog_compatibility_matrix#service-latest-versions).  
+To enable the glossary, update your Data Catalog Application services to the versions listed in the [compatibility matrix](/docs/products/data_catalog/data_catalog_compatibility_matrix#service-latest-versions).  
 Once the new versions of Data Catalog Application have been deployed, run the fabric-admin cronjob `v0.5.7` to propertly setup the business glossary feature.
 :::
 
@@ -66,7 +66,7 @@ Once the new versions of Data Catalog Application have been deployed, run the fa
 
 Users and groups of a tenant can now be **provisioned automatically** by any Identity Provider that supports outbound **SCIM 2.0** provisioning, such as Microsoft Entra ID or Okta. The Identity Provider keeps users, groups, and group memberships in sync with its own directory, including user deactivation and group removal, while roles and permissions keep being assigned to the synchronized groups from the Administration section.
 
-See the official [Automatic Provisioning via SCIM documentation](/docs/15.2.1/products/mia-platform-suite/scim-provisioning) for how the synchronization works and how to configure your Identity Provider. On-premise installations need the `scim-client` secret to be provisioned in the Keycloak vault, as described in the [Keycloak Realm Management documentation](/docs/15.2.1/requirements/installation-guidelines/shared-services/authn/keycloak-realm-management/overview#scim-provisioning-client).
+See the official [Automatic Provisioning via SCIM documentation](/docs/products/mia-platform-suite/scim-provisioning) for how the synchronization works and how to configure your Identity Provider. On-premise installations need the `scim-client` secret to be provisioned in the Keycloak vault, as described in the [Keycloak Realm Management documentation](/docs/requirements/installation-guidelines/shared-services/authn/keycloak-realm-management/overview#scim-provisioning-client).
 
 ## Other New Features, Improvements and Bug Fixes
 
@@ -74,36 +74,36 @@ See the official [Automatic Provisioning via SCIM documentation](/docs/15.2.1/pr
 
 ## How to update
 
-To move from Mia-Platform v15.1.1 to v15.2.0, update the Helm charts listed below. Products not listed here stay on the chart versions of the previous release notes. For the complete installation sequence, see the [Installation Guidelines](/docs/15.2.1/requirements/installation-guidelines/overview).
+To move from Mia-Platform v15.1.1 to v15.2.0, update the Helm charts listed below. Products not listed here stay on the chart versions of the previous release notes. For the complete installation sequence, see the [Installation Guidelines](/docs/requirements/installation-guidelines/overview).
 
 ### Helm chart versions
 
 | Product | Helm Chart | Version | Upgrade guide |
 |---|---|---|---|
-| **Auth — Realm Management** | `keycloak-realm-management` | `0.1.47` | [How to upgrade](/docs/15.2.1/requirements/installation-guidelines/shared-services/authn/keycloak-realm-management/how-to-upgrade) |
-| **Homepage & RBAC** | `services` | `0.4.6` | [How to upgrade](/docs/15.2.1/requirements/installation-guidelines/shared-services/services/how-to-upgrade) |
-| **Catalog** | `catalog` | `0.5.3` | [How to upgrade](/docs/15.2.1/requirements/installation-guidelines/catalog/how-to-upgrade) |
-| **AI Foundry** | `ai-foundry` | `0.5.0-preview.4` | [How to upgrade](/docs/15.2.1/requirements/installation-guidelines/ai-foundry/how-to-upgrade) |
-| **AI Services** | `ai-services` | `0.1.0-preview.1` | [How to upgrade](/docs/15.2.1/requirements/installation-guidelines/shared-services/ai-services/how-to-upgrade) |
-| **Console** | `mia-console` | `15.2.0` | [How to upgrade](/docs/15.2.1/requirements/installation-guidelines/console/self-hosted/how-to-upgrade) |
+| **Auth — Realm Management** | `keycloak-realm-management` | `0.1.47` | [How to upgrade](/docs/requirements/installation-guidelines/shared-services/authn/keycloak-realm-management/how-to-upgrade) |
+| **Homepage & RBAC** | `services` | `0.4.6` | [How to upgrade](/docs/requirements/installation-guidelines/shared-services/services/how-to-upgrade) |
+| **Catalog** | `catalog` | `0.5.3` | [How to upgrade](/docs/requirements/installation-guidelines/catalog/how-to-upgrade) |
+| **AI Foundry** | `ai-foundry` | `0.5.0-preview.4` | [How to upgrade](/docs/requirements/installation-guidelines/ai-foundry/how-to-upgrade) |
+| **AI Services** | `ai-services` | `0.1.0-preview.1` | [How to upgrade](/docs/requirements/installation-guidelines/shared-services/ai-services/how-to-upgrade) |
+| **Console** | `mia-console` | `15.2.0` | [How to upgrade](/docs/requirements/installation-guidelines/console/self-hosted/how-to-upgrade) |
 
 ### Upgrade notes
 
 #### Auth — Realm Management: from 0.1.35 to 0.1.47
 
-Manual action required before you install the new chart version. See the [Auth — Realm Management upgrade guide](/docs/15.2.1/requirements/installation-guidelines/shared-services/authn/keycloak-realm-management/how-to-upgrade#from-0135-to-0147-mia-platform-v1511-to-v1520) for the steps.
+Manual action required before you install the new chart version. See the [Auth — Realm Management upgrade guide](/docs/requirements/installation-guidelines/shared-services/authn/keycloak-realm-management/how-to-upgrade#from-0135-to-0147-mia-platform-v1511-to-v1520) for the steps.
 
 #### Homepage & RBAC: from 0.3.16 to 0.4.6
 
-Manual action required before you install the new chart version. See the [Homepage & RBAC upgrade guide](/docs/15.2.1/requirements/installation-guidelines/shared-services/services/how-to-upgrade#from-0316-to-046-mia-platform-v1511-to-v1520) for the steps.
+Manual action required before you install the new chart version. See the [Homepage & RBAC upgrade guide](/docs/requirements/installation-guidelines/shared-services/services/how-to-upgrade#from-0316-to-046-mia-platform-v1511-to-v1520) for the steps.
 
 #### Catalog: from 0.3.42-0 to 0.5.3
 
-Manual action required before you install the new chart version. See the [Catalog upgrade guide](/docs/15.2.1/requirements/installation-guidelines/catalog/how-to-upgrade#from-0342-0-to-053-mia-platform-v1511-to-v1520) for the steps.
+Manual action required before you install the new chart version. See the [Catalog upgrade guide](/docs/requirements/installation-guidelines/catalog/how-to-upgrade#from-0342-0-to-053-mia-platform-v1511-to-v1520) for the steps.
 
 #### AI Foundry: from 0.4.83-0 to 0.5.0-preview.4
 
-Manual action required before you install the new chart version. See the [AI Foundry upgrade guide](/docs/15.2.1/requirements/installation-guidelines/ai-foundry/how-to-upgrade#from-0483-0-to-050-preview-4-mia-platform-v1511-to-v1520) for the steps.
+Manual action required before you install the new chart version. See the [AI Foundry upgrade guide](/docs/requirements/installation-guidelines/ai-foundry/how-to-upgrade#from-0483-0-to-050-preview-4-mia-platform-v1511-to-v1520) for the steps.
 
 #### AI Services: first release, 0.1.0-preview.1
 
