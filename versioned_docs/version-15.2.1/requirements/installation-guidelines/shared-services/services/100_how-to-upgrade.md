@@ -50,11 +50,7 @@ helm upgrade --install services . \
 
 ## Version-specific notes
 
-### From 0.5.0-beta.5 to 0.5.0 (Mia-Platform v15.2.0 to v15.2.1)
-
-No manual action required: install the new chart version.
-
-### From 0.3.16 to 0.5.0-beta.5 (Mia-Platform v15.1.1 to v15.2.0)
+### From 0.3.16 to 0.5.1 (Mia-Platform v15.1.1 to v15.2.0)
 
 1. Upgrade the [Realm Management chart](/requirements/installation-guidelines/shared-services/authn/keycloak-realm-management/100_how-to-upgrade.md) to `0.1.55` first, with `products.authz` enabled, plus `products.catalog` and `products.aiServices` if you use those products. The ADK Backend App exchanges the user token through the Keycloak client set in the new `authtoolBff.config.exchangeClientId` (default `authz-token-exchange`), which needs the `mia:catalog` scope and, with AI Services, the `mia:ai-services` scope.
 2. Set `adkBeApp.config.catalogApiUrl` to the API gateway of your Catalog installation (for example `http://api-gateway.<catalog namespace>.svc.cluster.local:8080`). `adkBeApp` is enabled by default and the chart refuses to render while this value is empty. If you do not run the Catalog, set `adkBeApp.enabled: false`.

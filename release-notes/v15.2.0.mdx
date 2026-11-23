@@ -9,6 +9,10 @@ import dataAccordion from '@site/src/config/release-notes/release-note-v15-2-0.j
 
 _Nov 19th, 2026_
 
+:::caution
+This release fixes [CVE-2026-111497](https://www.tenable.com/cve/CVE-2026-111497), a critical out-of-bounds write in the Brotli decoder of the Node.js runtime, upgrading all Console components to patched Node.js versions.
+:::
+
 ## Catalog
 
 ### Item Versioning
@@ -81,11 +85,11 @@ To move from Mia-Platform v15.1.1 to v15.2.0, update the Helm charts listed belo
 | Product | Helm Chart | Version | Upgrade guide |
 |---|---|---|---|
 | **Auth — Realm Management** | `keycloak-realm-management` | `0.1.55` | [How to upgrade](/docs/requirements/installation-guidelines/shared-services/authn/keycloak-realm-management/how-to-upgrade) |
-| **Homepage & RBAC** | `services` | `0.5.0-beta.5` | [How to upgrade](/docs/requirements/installation-guidelines/shared-services/services/how-to-upgrade) |
+| **Homepage & RBAC** | `services` | `0.5.1` | [How to upgrade](/docs/requirements/installation-guidelines/shared-services/services/how-to-upgrade) |
 | **Catalog** | `catalog` | `0.5.3-2` | [How to upgrade](/docs/requirements/installation-guidelines/catalog/how-to-upgrade) |
 | **AI Foundry** | `ai-foundry` | `0.5.0` | [How to upgrade](/docs/requirements/installation-guidelines/ai-foundry/how-to-upgrade) |
 | **AI Services** | `ai-services` | `0.1.0` | [How to upgrade](/docs/requirements/installation-guidelines/shared-services/ai-services/how-to-upgrade) |
-| **Console** | `mia-console` | `15.2.0` | [How to upgrade](/docs/requirements/installation-guidelines/console/self-hosted/how-to-upgrade) |
+| **Console** | `mia-console` | `15.2.0-0` | [How to upgrade](/docs/requirements/installation-guidelines/console/self-hosted/how-to-upgrade) |
 
 ### Upgrade notes
 
@@ -93,9 +97,9 @@ To move from Mia-Platform v15.1.1 to v15.2.0, update the Helm charts listed belo
 
 Manual action required before you install the new chart version. See the [Auth — Realm Management upgrade guide](/docs/requirements/installation-guidelines/shared-services/authn/keycloak-realm-management/how-to-upgrade#from-0135-to-0155-mia-platform-v1511-to-v1520) for the steps.
 
-#### Homepage & RBAC: from 0.3.16 to 0.5.0-beta.5
+#### Homepage & RBAC: from 0.3.16 to 0.5.1
 
-Manual action required before you install the new chart version. See the [Homepage & RBAC upgrade guide](/docs/requirements/installation-guidelines/shared-services/services/how-to-upgrade#from-0316-to-050-beta5-mia-platform-v1511-to-v1520) for the steps.
+Manual action required before you install the new chart version. See the [Homepage & RBAC upgrade guide](/docs/requirements/installation-guidelines/shared-services/services/how-to-upgrade#from-0316-to-051-mia-platform-v1511-to-v1520) for the steps.
 
 #### Catalog: from 0.3.42-0 to 0.5.3-2
 
@@ -109,7 +113,7 @@ Manual action required before you install the new chart version. See the [AI Fou
 
 No manual action required: install the new chart version.
 
-#### Console: from 15.1.0-4 to 15.2.0
+#### Console: from 15.1.0-4 to 15.2.0-0
 
 No manual action required: install the new chart version.
 
@@ -127,7 +131,7 @@ Click on each chart to expand its full image list.
 </details>
 
 <details>
-<summary><strong>services v0.5.0-beta.5</strong></summary>
+<summary><strong>services v0.5.1</strong></summary>
 
 | Image repository | Version |
 |---|:---:|
@@ -137,9 +141,9 @@ Click on each chart to expand its full image list.
 | nexus.mia-platform.eu/core/swagger-aggregator | 3.9.4 |
 | nexus.mia-platform.eu/platform/auth/access-control/ext-authz | 0.4.0-nocache |
 | nexus.mia-platform.eu/platform/auth/authtool/authtool-bff | 0.5.2 |
-| nexus.mia-platform.eu/platform/services/homepage | 0.7.1 |
+| nexus.mia-platform.eu/platform/services/homepage | 0.7.3 |
 | nexus.mia-platform.eu/platform/services/mcp-server | 0.1.0 |
-| nexus.mia-platform.eu/platform/services/rbac-management | 0.5.0-rc.9 |
+| nexus.mia-platform.eu/platform/services/rbac-management | 0.5.1 |
 | docker.io/alpine/psql | 18.4 |
 | docker.io/curlimages/curl | 8.11.1 |
 
@@ -210,16 +214,16 @@ Click on each chart to expand its full image list.
 </details>
 
 <details>
-<summary><strong>mia-console v15.2.0</strong></summary>
+<summary><strong>mia-console v15.2.0-0</strong></summary>
 
 | Image repository | Version |
 |---|:---:|
 | docker.io/envoyproxy/ratelimit | 19f2079f |
-| nexus.mia-platform.eu/back-kit/mfe-toolkit-on-prem | 1.3.13 |
+| nexus.mia-platform.eu/back-kit/mfe-toolkit-on-prem | 1.3.14 |
 | nexus.mia-platform.eu/cache/envoyproxy/envoy | v1.32.1 |
 | nexus.mia-platform.eu/console/aggregated-website | 1.6.4 |
 | nexus.mia-platform.eu/console/backend | 33.3.0 |
-| nexus.mia-platform.eu/console/catalog-service | 1.7.2 |
+| nexus.mia-platform.eu/console/catalog-service | 1.7.3 |
 | nexus.mia-platform.eu/console/deploy-service | 8.4.1 |
 | nexus.mia-platform.eu/console/environments-variables | 3.7.0 |
 | nexus.mia-platform.eu/console/events-manager | 1.5.1 |
@@ -235,20 +239,20 @@ Click on each chart to expand its full image list.
 | nexus.mia-platform.eu/console/rbac-manager-bff | 2.1.3 |
 | nexus.mia-platform.eu/console/scripts/bindings-cleaner | 1.2.2 |
 | nexus.mia-platform.eu/console/scripts/configuration-history-cleaner | 0.4.2 |
-| nexus.mia-platform.eu/console/scripts/marketplace-sync | 10.11.0 |
+| nexus.mia-platform.eu/console/scripts/marketplace-sync | 10.11.1 |
 | nexus.mia-platform.eu/console/scripts/mia-assistant-embeddings-importer | 15.2.0-text-embedding-3-large |
 | nexus.mia-platform.eu/console/scripts/software-catalog-sync | 0.7.30 |
-| nexus.mia-platform.eu/console/scripts/version-upgrader | 11.2.1 |
+| nexus.mia-platform.eu/console/scripts/version-upgrader | 11.2.2 |
 | nexus.mia-platform.eu/console/tenant-overview | 4.2.2 |
 | nexus.mia-platform.eu/core/authorization-service | 2.4.3 |
 | nexus.mia-platform.eu/core/client-credentials | 3.4.1 |
-| nexus.mia-platform.eu/core/crud-service | 6.10.3 |
+| nexus.mia-platform.eu/core/crud-service | 6.10.6 |
 | nexus.mia-platform.eu/core/proxy-manager | 3.5.0 |
 | nexus.mia-platform.eu/core/swagger-aggregator | 3.9.7 |
 | nexus.mia-platform.eu/microlc/middleware | 3.4.0 |
 | nexus.mia-platform.eu/platform/auth/authtool/authtool-bff | 0.5.2 |
 | nexus.mia-platform.eu/plugins/files-service | 2.10.6 |
-| nexus.mia-platform.eu/plugins/ses-mail-notification-service | 3.5.0 |
+| nexus.mia-platform.eu/plugins/ses-mail-notification-service | 3.5.2 |
 | nexus.mia-platform.eu/rond-authz/rond | 1.14.2 |
 
 </details>
