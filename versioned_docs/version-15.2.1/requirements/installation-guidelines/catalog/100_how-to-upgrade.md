@@ -51,7 +51,7 @@ helm upgrade catalog . \
 
 ## Version-specific upgrade notes
 
-### From 0.5.3-2 to 0.5.12 (Mia-Platform v15.2.0 to v15.2.1)
+### From 0.5.3-3 to 0.5.12 (Mia-Platform v15.2.0 to v15.2.1)
 
 No manual action required: install the new chart version.
 
@@ -60,7 +60,7 @@ Also note:
 - The new optional `catalogWebsite.config.gaMeasurementId` (default empty) enables Google Analytics on the Catalog website. When it is empty, nothing changes.
 - The access-control service now always exposes its HTTP port (service port `80`, named `http`) for the evaluation API and the JWKS, whatever the value of `accessControl.config.externalContext.authorization.enabled`.
 
-### From 0.3.42-0 to 0.5.3-2 (Mia-Platform v15.1.1 to v15.2.0)
+### From 0.3.42-0 to 0.5.3-3 (Mia-Platform v15.1.1 to v15.2.0)
 
 1. Remove the `doclingService` block and `serviceAccounts.doclingService` from your values, including `doclingService.enabled: false`. The chart no longer deploys Docling and its values schema rejects unknown keys, so `helm upgrade` fails while they are set.
 2. To keep document parsing in the Catalog, set the new `apiGateway.docling.url` to the Docling route of [AI Services](/requirements/installation-guidelines/shared-services/ai-services/10_overview.md) (for example `https://<ai-services host>/api/docling/`) and `aiServicesClientId: "ai-services-api"`, so that the API gateway exchanges the caller's token for the AI Services audience. This requires `authtoolBff.enabled: true`. With an empty URL the `/api/docling/` route is not served.
