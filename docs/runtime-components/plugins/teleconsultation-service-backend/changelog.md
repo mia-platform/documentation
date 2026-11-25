@@ -11,6 +11,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.1.1] 2026-11-09
+
+### Security
+
+- [MCRDHCP-97](https://makeitapp.atlassian.net/browse/MCRDHCP-97): Upgraded Node.js to version 22 (CVE-2026-111497, Brotli remote code execution), in the Docker image (`node:22-alpine`, OS packages upgraded and npm, npx, corepack and yarn removed from the final image), `.nvmrc`, `engines` and CI
+- [MCRDHCP-97](https://makeitapp.atlassian.net/browse/MCRDHCP-97): Upgraded `@mia-platform/custom-plugin-lib` to `^8.1.1` (Fastify 5), replaced `fastify-multipart` with `@fastify/multipart`, upgraded `axios` to `^1.21.0` and the other vulnerable transitive dependencies
+
 ## [2.1.0] 2025-04-15
 
 - : Added endpoint `GET /transcription/:roomId/:sessionId`

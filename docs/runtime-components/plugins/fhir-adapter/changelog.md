@@ -11,6 +11,15 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.3.1] 2026-11-09
+
+### Security
+- Updated Node.js to 22 everywhere (Docker runtime image `nodejs22-debian13`, CI, `.nvmrc`, engines `>=22`) to fix CVE-2026-111497 (Brotli RCE), which is not fixed on Node.js 20
+- Updated `@mia-platform/custom-plugin-lib` to v8.1.1 (Fastify 5) and `@fastify/multipart` to v9
+- Updated `@fastify/busboy` and `fast-uri` to patched versions
+- Errors without a status code (e.g. network errors) are masked with a `Something went wrong` 500 response, as with the previous library version
+- Known issue: `decode-uri-component@0.2.2` (CVE-2026-118664), used by `query-string` inside `fhir-kit-client@1.x`, is still present: the fix requires `fhir-kit-client@2`, an ESM-only rewrite
+
 ## v1.3.0 - 2025-08-14
 
 ## Changed
