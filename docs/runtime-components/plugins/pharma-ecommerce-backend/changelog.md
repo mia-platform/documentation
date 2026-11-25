@@ -11,6 +11,20 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.0.1] 2026-11-09
+
+### Security
+
+- [MCRDHCP-97](https://makeitapp.atlassian.net/browse/MCRDHCP-97): Upgraded the runtime to Node.js 22 (Docker images, CI, `.nvmrc`, `engines`) to fix CVE-2026-111497 (Node.js Brotli RCE) and the EOL Node 18. Upgraded `@mia-platform/custom-plugin-lib` to `^8.1.1` (Fastify 5), `@fastify/multipart` to `^9.4.0`, `axios` to `^0.34.0` and `jest` to `^29.7.0`, and updated transitive dependencies to clear the vulnerable ones. The final Docker image now upgrades Alpine packages, installs production dependencies only and ships without npm, corepack and yarn
+
+### Changed
+
+- [MCRDHCP-97](https://makeitapp.atlassian.net/browse/MCRDHCP-97): Replaced the removed `getDirectServiceProxy` with an adapter (`src/lib/serviceProxy.js`) over `getHttpClient`, preserving the previous call signatures and behaviour
+
+### Fixed
+
+- [MCRDMPE-122](https://makeitapp.atlassian.net/browse/MCRDMPE-122): Fixed documentation links
+
 ## [1.0.0] 2022-12-06
 
 ### Changed

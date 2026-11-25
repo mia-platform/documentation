@@ -11,6 +11,28 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.7.3] 2026-11-09
+
+### Security
+
+- Fixed CVE-2026-111497 (Node.js Brotli remote code execution): verified the `node:24-alpine` base image resolves to a patched Node.js (>= 24.22.1); final image scan reports no CRITICAL or HIGH findings
+- Aligned `.nvmrc` to `lts/krypton` (Node.js 24), matching the Docker image and the CI
+
+## [1.7.2] 2026-11-03
+
+### Security
+
+- Fixed all CRITICAL and HIGH vulnerabilities reported by the image scanner: base image updated to `node:24-alpine`, only production dependencies are installed in the image, npm and yarn are removed from the final image
+- Updated `@mia-platform/custom-plugin-lib` to v8 (Fastify 5), `form-data`, `handlebars` and the vulnerable transitive dependencies of `handlebars-helpers`
+
+### Changed
+
+- The service now requires the Mia-Platform environment variables `MICROSERVICE_GATEWAY_SERVICE_NAME`, `USERID_HEADER_KEY`, `USER_PROPERTIES_HEADER_KEY`, `GROUPS_HEADER_KEY`, `CLIENTTYPE_HEADER_KEY` and `BACKOFFICE_HEADER_KEY`, which are already injected by the Console on deploy
+
+### BREAKING CHANGES
+
+- Node.js 22 or later is required
+
 ## [1.7.1] 2024-10-25
 
 ### Fixed

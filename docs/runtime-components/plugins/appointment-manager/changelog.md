@@ -11,6 +11,24 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.6.2] 2026-11-09
+
+### Security
+
+- Fixed CVE-2026-111497 (Node.js Brotli decoder): the runtime image now uses `distroless/nodejs22-debian13` (Node.js >= 22.23.4)
+- Updated `@mia-platform/custom-plugin-lib` to 8.x (Fastify 5) and TypeScript to 5.x; fixed all CRITICAL and HIGH vulnerabilities reported by the image scanner
+
+## [2.6.1] 2026-09-08
+
+### Fixed
+
+- Deleted appointment notification was not sent correctly
+
+## [2.6.0] 2026-06-04
+
+- [MCRDMPE-588](https://makeitapp.atlassian.net/browse/MCRDMPE-588): Set appointment property `isFlagged` to false when needed
+- Add digital signature of Docker images to CI/CD pipeline
+
 ## [2.5.0] 2024-10-14
 
 ### Changed

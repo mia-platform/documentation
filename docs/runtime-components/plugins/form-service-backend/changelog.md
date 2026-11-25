@@ -11,6 +11,16 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.1.2] 2026-11-03
+
+### Security
+
+- Fixed all CRITICAL and HIGH vulnerabilities reported by the image scanner: base image updated to `node:24-alpine`, dependencies updated (`@mia-platform/custom-plugin-lib` 8.x, Fastify 5), npm and yarn removed from the final image
+
+### BREAKING CHANGES
+
+- Node.js 22 or later is required
+
 ## [2.1.1] 2025-01-21
 
 - Form metadata can be edited after form is expired
