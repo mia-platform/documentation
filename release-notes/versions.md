@@ -10,7 +10,7 @@ import Changelog from '@site/src/components/Changelog';
 <Changelog>
 
 ## [v14.7.1](/release-notes/v14.7.1.mdx)
-*November 24th, 2026*
+*November 27th, 2026*
 
 This release introduces form-based editing in the **Console** for Infrastructure Resources created from Marketplace items that define a JSON schema.
 
