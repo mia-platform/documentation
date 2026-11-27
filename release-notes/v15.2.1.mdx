@@ -62,10 +62,15 @@ To move from Mia-Platform v15.2.0 to v15.2.1, update the Helm charts listed belo
 
 | Product | Helm Chart | Version | Upgrade guide |
 |---|---|---|---|
+| **Homepage & RBAC** | `services` | `0.5.3` | [How to upgrade](/docs/15.2.1/requirements/installation-guidelines/shared-services/services/how-to-upgrade) |
 | **Catalog** | `catalog` | `0.5.16` | [How to upgrade](/docs/15.2.1/requirements/installation-guidelines/catalog/how-to-upgrade) |
 | **AI Foundry** | `ai-foundry` | `0.5.2-preview.2` | [How to upgrade](/docs/15.2.1/requirements/installation-guidelines/ai-foundry/how-to-upgrade) |
 
 ### Upgrade notes
+
+#### Homepage & RBAC: from 0.5.2 to 0.5.3
+
+No manual action required: install the new chart version.
 
 #### Catalog: from 0.5.3-3 to 0.5.16
 
@@ -78,6 +83,25 @@ No manual action required: install the new chart version.
 ### Bill of materials
 
 Click on each chart to expand its full image list.
+
+<details>
+<summary><strong>services v0.5.3</strong></summary>
+
+| Image repository | Version |
+|---|:---:|
+| docker.io/redis | 8.4.0 |
+| nexus.mia-platform.eu/ai-foundry/adk-be-app | 0.8.12 |
+| nexus.mia-platform.eu/cache/envoyproxy/envoy | v1.36.2 |
+| nexus.mia-platform.eu/core/swagger-aggregator | 3.9.7 |
+| nexus.mia-platform.eu/platform/auth/access-control/ext-authz | 0.4.0-nocache |
+| nexus.mia-platform.eu/platform/auth/authtool/authtool-bff | 0.5.2 |
+| nexus.mia-platform.eu/platform/services/homepage | 0.7.4 |
+| nexus.mia-platform.eu/platform/services/mcp-server | 0.1.0 |
+| nexus.mia-platform.eu/platform/services/rbac-management | 0.5.1 |
+| docker.io/alpine/psql | 18.4 |
+| docker.io/curlimages/curl | 8.11.1 |
+
+</details>
 
 <details>
 <summary><strong>catalog v0.5.16</strong></summary>
